@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
-  "startedAt": "2026-09-13T21:19:24.6742783Z",
+  "startedAt": "2026-09-13T20:53:31.2615298Z",
   "passed": true,
   "scope": "Final Fumadocs type/content checks and production static export for both root and /Lyra; no UE build is performed here",
-  "rootSnapshot": "F:\\UE\\LyraDoc\\.local\\site-final-root-20260913-211924-774c242b",
+  "rootSnapshot": "F:\\UE\\LyraDoc\\.local\\site-final-root-20260913-205331-0a103335",
   "typecheck": {
     "log": "F:\\UE\\LyraDoc\\.local\\site-final-check.log",
+    "sha256": "7b10b73e75301506924d9c867d32fbf826c8b811251862d1b33a49adc55cc98c",
     "exitCode": 0,
-    "command": "pnpm check",
-    "sha256": "b94eb0ea7d1423343814f523ea68351bd1c9ee176f131be3d513b614dcc709d5"
+    "command": "pnpm check"
   },
   "exports": [
     {
       "basePath": "",
-      "startedAt": "2026-09-13T21:19:27.2435287Z",
-      "completedAt": "2026-09-13T21:19:37.0528911Z",
+      "startedAt": "2026-09-13T20:53:45.1771999Z",
+      "completedAt": "2026-09-13T20:55:02.3158441Z",
       "passed": true,
       "buildExitCode": 0,
       "contentExitCode": 0,
       "htmlPages": 68,
       "mdxDocuments": 64,
       "log": "F:\\UE\\LyraDoc\\.local\\site-final-root-build.log",
-      "logSHA256": "8ec27bd5560afa238d70d3339e434924de137a1f6d67c4bad5f59b8e034b4603",
-      "indexSHA256": "5e010a9644c91e62286a1930dbba520a3f649067592d48238a7f49cd64b67544",
+      "logSHA256": "962ab10c9c398212f7901c6eac627304fa8af2bc94f745df933474d4e4546b79",
+      "indexSHA256": "ab0730e88c380e5917a3aaf456fd35b1cd59f5875ceac4574398f15ae633d8c0",
       "packages": [
         {
           "id": "lyra-mmorpg-examples",
@@ -48,16 +48,16 @@
     },
     {
       "basePath": "/Lyra",
-      "startedAt": "2026-09-13T21:19:37.9252422Z",
-      "completedAt": "2026-09-13T21:19:56.9638884Z",
+      "startedAt": "2026-09-13T20:55:04.4672936Z",
+      "completedAt": "2026-09-13T20:55:19.5650645Z",
       "passed": true,
       "buildExitCode": 0,
       "contentExitCode": 0,
       "htmlPages": 68,
       "mdxDocuments": 64,
       "log": "F:\\UE\\LyraDoc\\.local\\site-final-pages-build.log",
-      "logSHA256": "2b7af592c45357ea78c6a384446916150b3e36b9430b0965af0b81c0bf7121aa",
-      "indexSHA256": "677cab64b5d49887daf21910839bcf14a0e5daa9650c927aceb5483c02fcc237",
+      "logSHA256": "d319231b486431a65684ccd22c894341361a9ffae2663c6ef1631749fe418722",
+      "indexSHA256": "45641727b9df05a338085baff9f74906b57e30b90d49297daec86244ea47bbb0",
       "packages": [
         {
           "id": "lyra-mmorpg-examples",
@@ -83,5 +83,5 @@
     }
   ],
   "error": null,
-  "completedAt": "2026-09-13T21:19:56.9782130Z"
+  "completedAt": "2026-09-13T20:55:19.5825311Z"
 }

@@ -306,11 +306,23 @@ try {
     const bytes = await readFile(archive);
     const manifestFilename = `${definition.id}.manifest.json`;
     await writeFile(path.join(destination,manifestFilename),manifestBytes);
-    // The system temporary directory and repository can live on different drives.
-    // Stage the final replacement beside its destination so rename stays atomic.
-    const stagedArchive = path.join(destination,`${filename}.${process.pid}.tmp`);
-    await writeFile(stagedArchive,bytes);
-    await rename(stagedArchive,path.join(destination,filename));
+    const archiveDestination = path.join(destination,filename);
+    const existingArchive = await readFile(archiveDestination).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
+    // Regenerate and validate every archive, but leave identical public bytes in
+    // place: Windows can deny replacing a file while another reader has it open.
+    if (!existingArchive?.equals(bytes)) {
+      // Keep unfinished files outside public so a later export cannot copy them.
+      // The repository-local staging directory also avoids the system temp drive.
+      const archiveStaging = path.join(repository,'.local','package-staging');
+      await mkdir(archiveStaging,{recursive:true});
+      const stagedArchive = path.join(archiveStaging,`${filename}.${process.pid}.tmp`);
+      try {
+        await writeFile(stagedArchive,bytes);
+        await rename(stagedArchive,archiveDestination);
+      } finally {
+        await rm(stagedArchive,{force:true});
+      }
+    }
     packages.push({ id:definition.id, title:definition.title, filename, bytes:bytes.length, sha256:digest(bytes),
       fileCount:archiveEntries.length, originalAssetCount:manifest.originalAssetCount, manifest:manifestFilename });
     console.log(`Packaged ${filename}: ${archiveEntries.length} allowlisted files, ${bytes.length} bytes, ${manifest.originalAssetCount} original assets.`);

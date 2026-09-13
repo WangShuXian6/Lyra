@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T21:23:12.7070140Z",
+  "passed": true,
+  "scope": "Actual missing-destination archive publication branch: preserve a validated Training tar.gz, remove only that public pathname with a guarded single-file move, run the real packager, verify both generated/public archive bytes and temporary-file cleanup. No UE, database or gameplay execution.",
+  "script": {
+    "path": "scripts/package-examples.mjs",
+    "sha256": "f38e6ee9f7798de1d1e423834ecc62c4568965c256646e0aa85e84d2949b722a"
+  },
+  "command": "node scripts/package-examples.mjs",
+  "sourceArchive": "F:\\UE\\LyraDoc\\public\\downloads\\lyra-training-examples.tar.gz",
+  "preservedOriginal": "F:\\UE\\LyraDoc\\.local\\package-publication-regression-20260913-212312-01aab5de\\lyra-training-examples.original.tar.gz",
+  "resolvedMovePathsValidated": true,
+  "sameVolume": true,
+  "before": [
+    {
+      "filename": "lyra-mmorpg-examples.tar.gz",
+      "lastWriteTimeUtc": "2026-09-13T21:16:21.9150352Z",
+      "bytes": 481882,
+      "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223"
+    },
+    {
+      "filename": "lyra-training-examples.tar.gz",
+      "lastWriteTimeUtc": "2026-09-13T21:16:22.0347556Z",
+      "bytes": 105559,
+      "sha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a"
+    }
+  ],
+  "stagingFilesBefore": [],
+  "publicTemporaryFilesBefore": [],
+  "targetAbsentBeforeCommand": true,
+  "generationExitCode": 0,
+  "after": [
+    {
+      "filename": "lyra-mmorpg-examples.tar.gz",
+      "lastWriteTimeUtc": "2026-09-13T21:16:21.9150352Z",
+      "matchesPriorValidatedArchive": true,
+      "bytes": 481882,
+      "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223"
+    },
+    {
+      "filename": "lyra-training-examples.tar.gz",
+      "lastWriteTimeUtc": "2026-09-13T21:23:13.4135443Z",
+      "matchesPriorValidatedArchive": true,
+      "bytes": 105559,
+      "sha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a"
+    }
+  ],
+  "metadataChecks": [
+    {
+      "filename": "lyra-mmorpg-examples.manifest.json",
+      "unchanged": true,
+      "sha256": "356d8b4cfa68e165ac55c2db7c30300ca121054ac2874c039e8c5e1cdad81b69"
+    },
+    {
+      "filename": "lyra-training-examples.manifest.json",
+      "unchanged": true,
+      "sha256": "7c630ce2e74e44616de820443f66e6bec5e81a83064a2b924a352ecae258e4de"
+    },
+    {
+      "filename": "packages.json",
+      "unchanged": true,
+      "sha256": "9baf5062fe7e1b87fc5f3454f32451a0245f40a363aa2fd5dda24b1389de27ad"
+    },
+    {
+      "filename": "SHA256SUMS.txt",
+      "unchanged": true,
+      "sha256": "c0f37d848aad63e917e09c26fe4f8d39fdece53a284af2c5f1a063ddf70ba32d"
+    }
+  ],
+  "stagingFilesAfter": [],
+  "publicTemporaryFilesAfter": [],
+  "restoredOriginalAfterFailure": false,
+  "error": null,
+  "log": "F:\\UE\\LyraDoc\\.local\\package-publication-regression-20260913-212312-01aab5de\\generation.log",
+  "preservedOriginalSha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a",
+  "regeneratedTrainingEqualsPreservedOriginal": true,
+  "downloadPageBytesUnchanged": true,
+  "packagerSourceUnchanged": true,
+  "completedAt": "2026-09-13T21:23:13.4776187Z",
+  "boundaries": {
+    "failureInjectionExecuted": false,
+    "sourceCodeEdited": false,
+    "ueOrMcpCalled": false,
+    "ubtOrUatExecuted": false,
+    "databaseReadOrChanged": false,
+    "note": "This run exercises missing-destination publication. It does not simulate an EPERM rename failure; failure-path finally cleanup was reviewed separately in source.",
+    "freshHostReplayExecuted": false
+  },
+  "logSHA256": "eec6e483f79b0c07c224e3f47029466513780575d4f546014cff77fc2a5d2d2c"
+}

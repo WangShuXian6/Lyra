@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "startedAt": "2026-09-13T20:59:50.6534585Z",
-  "finishedAt": "2026-09-13T21:00:08.2059137Z",
+  "startedAt": "2026-09-13T21:24:42.2935678Z",
+  "finishedAt": "2026-09-13T21:25:16.1341472Z",
   "status": "passed-with-warnings",
   "passed": true,
   "releaseReady": false,
   "scope": "Read-only Git cached/non-ignored untracked working-tree candidates, indexed blobs, and in-memory tar.gz/zip members. This audit does not establish gameplay, builds, deployment or complete release acceptance.",
   "enumeration": "git ls-files --cached --others --exclude-standard -z",
-  "candidateCount": 724,
+  "candidateCount": 729,
   "candidateSetChangedDuringAudit": false,
   "assetInventory": {
     "path": "verification/mmorpg-assets.json",
@@ -23,12 +23,12 @@
     "valuesOrSecretHashesRecorded": false
   },
   "statistics": {
-    "archiveEntriesScanned": 322,
+    "indexBlobsScanned": 729,
+    "bytesScanned": 220999863,
+    "filesScanned": 729,
+    "archiveEntriesScanned": 644,
     "unreadable": 0,
-    "indexBlobsScanned": 0,
-    "assetsChecked": 62,
-    "filesScanned": 724,
-    "bytesScanned": 110478171
+    "assetsChecked": 124
   },
   "largeFileWarningMiB": 10,
   "largeFileErrorMiB": 100,
@@ -38,6 +38,12 @@
       "rule": "password-json-literal-requires-review",
       "severity": "warning",
       "version": "working-tree"
+    },
+    {
+      "path": "content/docs/10-backend/authentication.mdx",
+      "rule": "password-json-literal-requires-review",
+      "severity": "warning",
+      "version": "index"
     }
   ],
   "limitations": [

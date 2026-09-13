@@ -1,35 +1,20 @@
 {
   "schemaVersion": 1,
-  "startedAt": "2026-09-13T21:20:21.9768364Z",
+  "startedAt": "2026-09-13T20:55:30.4371902Z",
   "passed": true,
   "scope": "Final changed content and downloads on both real static exports; the earlier native browser report separately covers unchanged navigation, clipboard, themes and graph panning",
-  "testScriptSHA256": "1a0dd28bf50618e66515a016b4d1ac72151800316bb24b20f2f15c253f0eb8c4",
-  "exportReportSHA256": "aa7ce533a89be47c3e3c5f008e6a66e60827331f37744998bc9938e705868afd",
+  "testScriptSHA256": "cac2d8940840c3f00b2b4ad2d74932ffcdcc35800ca08259e3942723b208b4f4",
+  "exportReportSHA256": "83418b80e91f847b08c992cbf36d9e48ccc0cfb055b990f18f45d608fcf47a17",
   "runs": [
     {
       "label": "root",
       "passed": true,
       "exitCode": 0,
-      "rawResultSHA256": "dc51aa27020781de16863b4f8fe914a4de1cc88e7bfe5f25030c6e5570a196a6",
+      "rawResultSHA256": "0f3d05c7415ee78f894d3f024393607c048f97a9bf02aae33c0728cb98edb6f8",
       "browser": {
-        "at": "2026-09-13T21:20:28.809Z",
+        "at": "2026-09-13T20:55:36.905Z",
         "basePath": "/",
         "checks": [
-          {
-            "name": "Static search JSON is served at its exact file URL",
-            "passed": true,
-            "evidence": {
-              "status": 200,
-              "url": "http://127.0.0.1:3013/api/search.json"
-            }
-          },
-          {
-            "name": "A directory slash after the search JSON file is rejected",
-            "passed": true,
-            "evidence": {
-              "status": 404
-            }
-          },
           {
             "name": "Final tagged AbilitySet configuration image",
             "passed": true,
@@ -39,17 +24,13 @@
             ]
           },
           {
-            "name": "Chinese localization text is searchable",
-            "passed": true
-          },
-          {
             "name": "Final C++ input class is searchable",
             "passed": true
           },
           {
             "name": "Final symbol search deep refresh",
             "passed": true,
-            "evidence": "http://127.0.0.1:3013/docs/11-reference/publishing/#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81%E5%AF%BC%E5%87%BA"
+            "evidence": "http://127.0.0.1:3013/docs/08-mmorpg/character-gas/#%E4%B8%BA%E4%BB%80%E4%B9%88-asc-%E6%94%BE%E5%9C%A8-playerstate"
           },
           {
             "name": "Final cooked Chinese settings screenshot",
@@ -107,26 +88,11 @@
       "label": "pages",
       "passed": true,
       "exitCode": 0,
-      "rawResultSHA256": "3248e8dfcbf2d4825112ce0b19bf3fc7d2e77e6be167c709edfc44334ee1d461",
+      "rawResultSHA256": "1deb128dd16381758b7462f07228c18ce398feab8f88224deb9a7d932b73a08e",
       "browser": {
-        "at": "2026-09-13T21:20:43.806Z",
+        "at": "2026-09-13T20:55:51.37Z",
         "basePath": "/Lyra",
         "checks": [
-          {
-            "name": "Static search JSON is served at its exact file URL",
-            "passed": true,
-            "evidence": {
-              "status": 200,
-              "url": "http://127.0.0.1:3014/Lyra/api/search.json"
-            }
-          },
-          {
-            "name": "A directory slash after the search JSON file is rejected",
-            "passed": true,
-            "evidence": {
-              "status": 404
-            }
-          },
           {
             "name": "Final tagged AbilitySet configuration image",
             "passed": true,
@@ -136,17 +102,13 @@
             ]
           },
           {
-            "name": "Chinese localization text is searchable",
-            "passed": true
-          },
-          {
             "name": "Final C++ input class is searchable",
             "passed": true
           },
           {
             "name": "Final symbol search deep refresh",
             "passed": true,
-            "evidence": "http://127.0.0.1:3014/Lyra/docs/11-reference/publishing/#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E9%9D%99%E6%80%81%E5%AF%BC%E5%87%BA"
+            "evidence": "http://127.0.0.1:3014/Lyra/docs/08-mmorpg/character-gas/#%E4%B8%BA%E4%BB%80%E4%B9%88-asc-%E6%94%BE%E5%9C%A8-playerstate"
           },
           {
             "name": "Final cooked Chinese settings screenshot",
@@ -202,5 +164,5 @@
     }
   ],
   "error": null,
-  "completedAt": "2026-09-13T21:20:52.4805393Z"
+  "completedAt": "2026-09-13T20:55:59.9421988Z"
 }

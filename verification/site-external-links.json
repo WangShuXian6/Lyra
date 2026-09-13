@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-13T20:22:36.613661+00:00",
+  "checkedAt": "2026-09-13T21:07:55.027076+00:00",
   "scope": "Read-only external HTTP GET availability; response content and remote anchors are not validated.",
   "links": [
     {
@@ -178,8 +178,9 @@
       "documents": [
         "content/docs/11-reference/publishing.mdx"
       ],
-      "status": 404,
-      "finalUrl": "https://wangshuxian6.github.io/Lyra/"
+      "status": 200,
+      "finalUrl": "https://wangshuxian6.github.io/Lyra/",
+      "contentType": "text/html; charset=utf-8"
     },
     {
       "url": "https://www.fumadocs.dev/docs/deploying/static",

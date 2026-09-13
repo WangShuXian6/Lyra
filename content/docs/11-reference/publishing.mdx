@@ -26,7 +26,9 @@ description: 本地检查根路径和 Lyra 子路径，通过 main 自动部署�
 
 `next.config.ts` 设置 `output: 'export'`、`trailingSlash: true` 和不依赖服务器的图片处理。文档路由在构建时预生成，深层页面对应自己的 `index.html`，刷新后仍可直接访问。[Fumadocs 静态部署说明](https://www.fumadocs.dev/docs/deploying/static) 提供了这一部署方式和静态搜索入口。
 
-`app/api/search/route.ts` 的 `dynamic = 'force-static'` 与 `staticGET` 生成搜索索引；浏览器下载索引后执行中文及代码符号搜索。这里路径中虽有 `api`，线上仍是静态文件，不是运行中的后端接口。
+`app/api/search.json/route.ts` 的 `dynamic = 'force-static'` 与 `staticGET` 生成实际的 `out/api/search.json` 文件；浏览器下载索引后执行中文及代码符号搜索。`lib/search-config.json` 同时供搜索 Provider 和导出检查器读取，站点在 `/Lyra` 下请求 `/Lyra/api/search.json`。这是一个静态 JSON 文件，地址末尾不加 `/`；Pages 不运行后端接口。
+
+首次线上验收曾发现 `/api/search/` 返回 404：旧导出是无扩展名文件，本地 Windows 预览器先规范化路径、丢掉尾斜杠，误把目录式 URL 当作文件接受。现已使用明确的 `.json` 地址，本地预览器与导出检查也拒绝文件 URL 后的目录斜杠。复验时打开浏览器 Network，搜索 `UMMOAbilitySystemComponent` 或“国际化”，确认 `search.json` 请求为 200、响应是 JSON，再点击结果并刷新深层章节；不要仅检查磁盘上存在某份索引。
 
 生产路径通过构建环境设置为 `/Lyra`。此值在构建时进入 HTML 与 JavaScript；把根路径构建直接上传到 `/Lyra/`，可能出现首页文字可见但样式、图片、搜索或深层链接失败。更改路径后必须重新构建。
 

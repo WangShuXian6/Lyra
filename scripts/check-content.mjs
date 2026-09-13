@@ -4,6 +4,8 @@ import { verifyMedia } from './check-media.mjs';
 
 const root = process.cwd();
 const errors = [];
+const searchConfig = JSON.parse(await readFile(new URL('../lib/search-config.json', import.meta.url), 'utf8'));
+if (!/^\/[^?#]+\.json$/.test(searchConfig.indexPath)) throw new Error('The static search URL must name a JSON file without a trailing slash');
 async function files(dir, extension) {
   const result = [];
   for (const item of await readdir(dir, { withFileTypes: true })) {
@@ -64,7 +66,11 @@ if (process.argv.includes('--export')) {
       const pathname = decodeURIComponent(url.pathname.slice(base.length));
       let target = path.join(output, pathname);
       try {
-        if ((await stat(target)).isDirectory()) target = path.join(target, 'index.html');
+        const entry = await stat(target);
+        if (pathname.endsWith('/') && !entry.isDirectory()) {
+          errors.push(`${relative}: file URL has a directory slash: ${raw}`); continue;
+        }
+        if (entry.isDirectory()) target = path.join(target, 'index.html');
         await stat(target);
         if (url.hash && target.endsWith('.html')) {
           const targetHTML = cache.get(target) ?? await readFile(target, 'utf8');
@@ -74,7 +80,11 @@ if (process.argv.includes('--export')) {
       } catch { errors.push(`${relative}: missing exported target ${raw}`); }
     }
   }
-  const search = JSON.parse(await readFile(path.join(output, 'api/search'), 'utf8').catch(() => readFile(path.join(output, 'api/search/index.json'), 'utf8')).catch(() => readFile(path.join(output, 'api/search/index.html'), 'utf8')));
+  const searchFile = path.join(output, searchConfig.indexPath.slice(1));
+  if (!(await stat(searchFile)).isFile()) throw new Error('The configured search index is not an exported file');
+  const legacySearch = await stat(path.join(output, 'api/search')).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
+  if (legacySearch) errors.push('The obsolete extensionless search export is still present');
+  const search = JSON.parse(await readFile(searchFile, 'utf8'));
   if (!JSON.stringify(search).includes('Lyra')) errors.push('Search index does not contain Lyra');
   console.log(`Checked ${pages.length} exported HTML pages, local targets, anchors and search index (${base || '/'}).`);
 }

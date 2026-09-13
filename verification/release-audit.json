@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "auditedAt": "2026-09-13T21:00:25.291118+00:00",
+  "auditedAt": "2026-09-13T21:25:38.531508+00:00",
   "status": "ready-to-publish",
   "localAcceptancePassed": true,
   "releaseReady": false,
@@ -210,17 +210,25 @@
       "name": "Both final static export paths",
       "path": "verification/site-final-exports.json",
       "bytes": 3427,
-      "sha256": "83418b80e91f847b08c992cbf36d9e48ccc0cfb055b990f18f45d608fcf47a17",
+      "sha256": "aa7ce533a89be47c3e3c5f008e6a66e60827331f37744998bc9938e705868afd",
       "passed": true,
       "scope": "Final Fumadocs type/content checks and production static export for both root and /Lyra; no UE build is performed here"
     },
     {
       "name": "Final changed-content browser checks",
       "path": "verification/site-browser-final-content.json",
-      "bytes": 5756,
-      "sha256": "645640c84958d0a6f8cf1912f570bf33467b0e5847f0fb593975599e086b0818",
+      "bytes": 6984,
+      "sha256": "3c2a10fa9ab9ef05af39bb1c40312a9e34f9920f226cf1a5b29b715d78316797",
       "passed": true,
       "scope": "Final changed content and downloads on both real static exports; the earlier native browser report separately covers unchanged navigation, clipboard, themes and graph panning"
+    },
+    {
+      "name": "Static search file URL regression",
+      "path": "verification/site-search-url-issue.json",
+      "bytes": 2925,
+      "sha256": "ecf59ca7b519791a4ddf82ca1dd10b7decb458a8b876fdf248a0a12f52e68f49",
+      "passed": true,
+      "scope": "Actual first deployment search failure, its file-versus-directory cause, and subsequent correction. Local tests and CI success did not establish that the initial Pages search URL worked."
     },
     {
       "name": "Final tutorial archive dependency review",
@@ -231,10 +239,18 @@
       "scope": "Read-only validation of the exact published tar.gz byte snapshots, every internal MANIFEST member and its SHA-256/byte count, source-level repository helper/configuration/contract dependency completeness, and actual Training report-to-package plus native screenshot-to-public provenance links. Existing runtime results are read and linked; no experiment is rerun."
     },
     {
+      "name": "Archive publication regeneration",
+      "path": "verification/package-publication-regression.json",
+      "bytes": 3817,
+      "sha256": "a4ece3c87fb5a5138f5d5ab56c53cdf33c83dce8aa8968f4256321dca9ffbcf9",
+      "passed": true,
+      "scope": "Actual missing-destination archive publication branch: preserve a validated Training tar.gz, remove only that public pathname with a guarded single-file move, run the real packager, verify both generated/public archive bytes and temporary-file cleanup. No UE, database or gameplay execution."
+    },
+    {
       "name": "Final candidate and archive credential/asset audit",
       "path": "verification/release-files-audit.json",
-      "bytes": 2078,
-      "sha256": "5f87d806502c9d2f13dc35c3a9e5e0ed461f892b3c17d4426f1e383b0060d6dc",
+      "bytes": 2269,
+      "sha256": "8d78fe8ec4289164aa1f520fd9c860192981fd085ad8de1cd4e2456f31fad7fd",
       "passed": true,
       "scope": "Read-only Git cached/non-ignored untracked working-tree candidates, indexed blobs, and in-memory tar.gz/zip members. This audit does not establish gameplay, builds, deployment or complete release acceptance."
     }

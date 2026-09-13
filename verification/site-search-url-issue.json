@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-13T21:13:01.427833+00:00",
+  "passed": false,
+  "scope": "Actual first deployment search failure, its file-versus-directory cause, and subsequent correction. Local tests and CI success did not establish that the initial Pages search URL worked.",
+  "initialCommit": "b9329bb6180069245cc46215f9af27940116afc4",
+  "initialWorkflowRun": "https://github.com/WangShuXian6/Lyra/actions/runs/34782676444",
+  "observedRequest": "https://wangshuxian6.github.io/Lyra/api/search/",
+  "observedHttpStatus": 404,
+  "consoleEvidence": "Failed to load resource: the server responded with a status of 404 () @ https://wangshuxian6.github.io/Lyra/api/search/:0",
+  "initialBrowserOutcome": "Timed out waiting for the C++ symbol result after the index request returned 404.",
+  "initialExport": {
+    "path": "out/api/search",
+    "isFile": true,
+    "bytes": 4856048,
+    "sha256": "3e6a64f494aa5052e52a2d501e08eeac89c54275fa8e69342c58a1a355fef5f4"
+  },
+  "cause": "The Provider requested an extensionless file with a trailing directory slash. The local server normalized away that slash before stat and accepted it, while GitHub Pages rejected it.",
+  "correction": [
+    "The force-static route now exports api/search.json.",
+    "The Provider and export validator share the exact URL through lib/search-config.json.",
+    "The local server and internal-link validator preserve and reject a directory slash on a regular file.",
+    "Fresh-browser checks request the real JSON URL, require the slash variant to fail, and exercise Chinese and C++ symbol searches."
+  ],
+  "resolution": {
+    "localVerifiedAt": "2026-09-13T21:23:18.543781+00:00",
+    "localRegressionPassed": true,
+    "indexPath": "/api/search.json",
+    "exportedIndexSHA256": "edf70ea0f7f211a82a47407317eb6f964f139783db960802eba8a2d02eefddae",
+    "obsoleteExtensionlessExportAbsent": true,
+    "exportReport": "verification/site-final-exports.json",
+    "exportReportSHA256": "aa7ce533a89be47c3e3c5f008e6a66e60827331f37744998bc9938e705868afd",
+    "browserReport": "verification/site-browser-final-content.json",
+    "browserReportSHA256": "3c2a10fa9ab9ef05af39bb1c40312a9e34f9920f226cf1a5b29b715d78316797",
+    "checksPerBasePath": 12,
+    "onlineVerified": false,
+    "historicalLocalLogsDirectory": ".local/site-before-search-url-fix",
+    "buildRecoveries": [
+      "After renaming the route, an obsolete .next/dev/types validator still imported the removed route. The single generated file was preserved in .local as text; normal next typegen regenerated the current production validators.",
+      "A repeated Windows archive rename returned EPERM. Identical archives are still regenerated and validated but no longer replaced; changed output is staged outside public. The failed temporary archive was verified against its expected SHA and preserved in .local."
+    ]
+  }
+}

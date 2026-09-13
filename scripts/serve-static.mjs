@@ -10,9 +10,19 @@ createServer(async (req, res) => {
     const url = new URL(req.url, 'http://localhost');
     if (url.pathname === base && base) { res.writeHead(308, { Location: `${base}/` }); res.end(); return; }
     if (base && !url.pathname.startsWith(`${base}/`)) throw new Error('Outside base path');
-    let file = path.resolve(directory, `.${decodeURIComponent(url.pathname.slice(base.length))}`);
+    const pathname = decodeURIComponent(url.pathname.slice(base.length));
+    let file = path.resolve(directory, `.${pathname}`);
     if (!file.startsWith(`${directory}${path.sep}`) && file !== directory) throw new Error('Outside export');
-    if ((await stat(file)).isDirectory()) file = path.join(file, 'index.html');
+    const entry = await stat(file);
+    if (entry.isDirectory()) {
+      if (!url.pathname.endsWith('/')) {
+        res.writeHead(308, { Location: `${url.pathname}/${url.search}` }); res.end(); return;
+      }
+      file = path.join(file, 'index.html');
+    } else if (pathname.endsWith('/')) {
+      // path.resolve removes a trailing slash even for a file. Static hosts reject it.
+      throw new Error('A file URL cannot have a directory slash');
+    }
     const data = await readFile(file);
     res.writeHead(200, { 'Content-Type': types[path.extname(file)] || 'application/json', 'Cache-Control':'no-cache' });
     res.end(data);
