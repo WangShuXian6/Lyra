@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "inputConfig": "/Game/MMO/Input/DA_MMOInputConfig.DA_MMOInputConfig",
+  "mappingContext": "/Game/MMO/Input/IMC_MMOPlayer.IMC_MMOPlayer",
+  "inputActionCount": 7,
+  "physicalMappingCount": 17,
+  "date": "2026-09-13T13:05:28.202Z",
+  "experience": "/Game/MMO/Experiences/DA_MMOExperience.DA_MMOExperience",
+  "primaryAssetId": "MMOExperience:DA_MMOExperience",
+  "pawnData": "/Game/MMO/Pawns/DA_MMOPlayer.DA_MMOPlayer",
+  "pawnClass": "/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter_C",
+  "abilitySet": "/Game/MMO/Abilities/DA_MMOAbilities.DA_MMOAbilities",
+  "animationClass": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter_C",
+  "grantedAbilityCount": 2,
+  "saved": true,
+  "gameplayExecuted": false,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/mmorpg-experience-assets.json"
+}

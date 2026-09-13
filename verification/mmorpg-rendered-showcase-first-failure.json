@@ -1,0 +1,17 @@
+{
+  "date": "2026-09-13T13:58:27.4528479Z",
+  "passed": false,
+  "captureAPI": "FSlateApplication::TakeScreenshot(SViewport), game timer",
+  "physicalInputTested": false,
+  "programmaticCultureSwitch": true,
+  "clients": [],
+  "captures": [],
+  "error": "New process did not restore the saved culture and localized login UI",
+  "cleanupCompleted": true,
+  "completedAt": "2026-09-13T13:59:57.3563487Z",
+  "diagnosedCauses": [
+    "UE 5.8 ConfigCacheIni.cpp AreWritesAllowedGlobally blocks config writes under -Multiprocess unless -MultiprocessSaveConfig is supplied.",
+    "GameEngine.cpp DetermineGameWindowResolution clamps a window to offscreen display metrics unless -ForceRes is supplied; actual first-run captures were 888x500."
+  ],
+  "nativeCaptureDirectory": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/8f89f906df"
+}

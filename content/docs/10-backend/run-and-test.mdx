@@ -1,0 +1,217 @@
+---
+title: 构建、启动与接口验收
+description: 用 PowerShell 脚本复现独立 UE 后端，并区分构建、HTTP 与游戏联调的验证结果。
+---
+
+## 学习目标与前置条件
+
+从源码构建 `MMOBackendService`，启动真实进程，执行账号到角色重进的接口测试。需要 UE 5.8.1 源码引擎、Visual Studio C++ 工具链、PowerShell 7 和 PostgreSQL 18。默认引擎目录 `E:/UnrealEngine`，默认 PostgreSQL 目录 `D:/program/1-web/PostgreSQL/18`。
+
+## 一、固定目录与工具链
+
+后端直接在 `LyraDoc/examples/MMORPG` 构建；游戏客户端和服务器在 `LyraDocLabs/MMORPG` 构建。不要把后端 `.local` 凭据文件移到 Labs。脚本通过自己的位置寻找 `examples/MMORPG`，不是通过当前打开的 UE 工程寻找数据库配置。
+
+```powershell
+Set-Location 'F:/UE/LyraDoc'
+$mmoEngine = 'E:/UnrealEngine'
+$mmoProject = Join-Path (Get-Location) 'examples/MMORPG'
+$mmoPostgres = 'D:/program/1-web/PostgreSQL/18'
+$PSVersionTable.PSVersion
+Test-Path (Join-Path $mmoEngine 'Engine/Build/BatchFiles/Build.bat')
+Test-Path (Join-Path $mmoProject 'MMORPG.uproject')
+```
+
+预期 PowerShell 主版本为 7，两个路径检查都是 `True`。如果使用下载包，先解压并进入含 `examples`、`scripts` 的包根目录，再执行变量赋值；不必把解压目录改名为 LyraDoc。第一次获取和准备源码引擎见[环境篇](/docs/01-start/environment)，游戏插件复制见[MMORPG 迁移篇](/docs/08-mmorpg/migration)。
+
+Rider 是 IDE，Windows C++ 编译仍需要 MSVC 和 Windows SDK。在 **Visual Studio Installer → 已安装版本 → 修改 → 工作负载** 勾选“使用 C++ 的游戏开发”；在右侧安装详细信息及“单个组件”确认 x64/x86 MSVC 工具与 Windows SDK。使用 Visual Studio 调试 UE 时再选择 Visual Studio Tools for Unreal Engine、Blueprint 调试工具和 Test Adapter。[Microsoft 的安装说明](https://learn.microsoft.com/en-us/visualstudio/gamedev/unreal/get-started/vs-tools-unreal-install)给出了这些安装器入口；课程的具体编译器版本以本机 UBT 日志为准。
+
+本次 `verification/backend-rebuild.log` 实际使用 MSVC 工具链 **14.50.35737**（目录 `14.50.35717`）和 Windows SDK **10.0.22621.0**。这记录一个成功组合，不表示任意引擎分支都兼容任意 MSVC。UBT 若报 unsupported compiler/SDK，按当前引擎的工具链检查结果安装对应组件，再运行相同命令；不要通过关闭工具链检查隐藏错误。
+
+## 二、准备 libpq 与 libsodium
+
+尚未安装 PostgreSQL 时，从 [PostgreSQL Windows 下载页](https://www.postgresql.org/download/windows/)进入其链接的安装器，安装 PostgreSQL 18 x64 服务和命令行工具。课程机器为 18.3，初始化步骤使用本机 `postgres` 管理员、端口 5432；安装器中设置的管理员口令由读者自己保管。安装路径不同只修改 `$mmoPostgres`，先检查这些文件：
+
+```powershell
+$mmoPgFiles = @(
+  'bin/psql.exe', 'bin/pg_isready.exe',
+  'include/libpq-fe.h', 'lib/libpq.lib',
+  'bin/libpq.dll', 'bin/libcrypto-3-x64.dll', 'bin/libssl-3-x64.dll',
+  'bin/libintl-9.dll', 'bin/libiconv-2.dll'
+)
+foreach ($mmoFile in $mmoPgFiles) {
+  if (-not (Test-Path -LiteralPath (Join-Path $mmoPostgres $mmoFile))) {
+    throw "PostgreSQL file missing: $mmoFile"
+  }
+}
+& (Join-Path $mmoPostgres 'bin/psql.exe') --version
+& (Join-Path $mmoPostgres 'bin/pg_isready.exe') -h 127.0.0.1 -p 5432
+./scripts/backend/Prepare-Dependencies.ps1 -PostgresRoot $mmoPostgres
+```
+
+预期看到 PostgreSQL 版本、`127.0.0.1:5432 - accepting connections`，最后输出 `libpq headers/import library located; libsodium 1.0.22 archive hash verified.`。`pg_isready` 只说明监听接受连接，不能代替后面的密码、权限与迁移检查。缺少头文件/导入库时补齐同架构、同版本 PostgreSQL 分发包，不能拿另一个版本的 DLL 混装。
+
+依赖脚本从 libsodium 官方源下载固定的 **1.0.22 MSVC** 包，校验 SHA-256 `3E03A726FAC4BC09CB61D8F29D658EF7A5ECA0811DE59082130414F7CA2E4279`，展开到 `examples/MMORPG/.deps/sodium/libsodium`。这里选择 `x64/Release/v143/dynamic` 中的导入库和 DLL；没有使用 MinGW、x86 或静态库。分发包中不同编译器目录的含义可对照 [libsodium 官方安装文档](https://doc.libsodium.org/installation)。
+
+```powershell
+$mmoSodium = Join-Path $mmoProject '.deps/sodium/libsodium'
+foreach ($mmoFile in @('include/sodium.h',
+  'x64/Release/v143/dynamic/libsodium.lib',
+  'x64/Release/v143/dynamic/libsodium.dll')) {
+  if (-not (Test-Path -LiteralPath (Join-Path $mmoSodium $mmoFile))) {
+    throw "libsodium file missing: $mmoFile"
+  }
+}
+$env:MMO_POSTGRES_ROOT = $mmoPostgres
+$env:MMO_SODIUM_ROOT = $mmoSodium
+```
+
+成功时这个检查不输出内容。两个环境变量是构建时的**目录**，不含口令；UBT 的 `MMOThirdParty.Build.cs` 读取它们。请在同一个 PowerShell 进程继续构建；另开终端时重新执行这两条赋值。`Prepare-Dependencies.ps1` 同样会设置它们，但在另一个 `pwsh -File` 子进程运行脚本，不能把环境值带回父终端。哈希不一致时检查下载源与脚本版本，保留校验。
+
+## 三、初始化专用数据库
+
+```powershell
+./scripts/backend/Initialize-Database.ps1 -PostgresRoot $mmoPostgres
+```
+
+在 `PostgreSQL administrator password` 提示后输入安装 PostgreSQL 时设置的管理员口令，输入不回显。第一次应依次看到 `Applied 001_initial.sql`、`Applied 002_state_constraints.sql` 和 `Dedicated tutorial database is ready.`。再次执行只打印就绪信息；已存在且已应用的迁移不会重复执行。详细的只读检查命令见[数据库初始化篇](/docs/10-backend/database)。
+
+初始化创建 `lyra_mmo_tutorial`、运行角色 `lyra_mmo_service`，并把随机服务凭据加密保存在 `examples/MMORPG/.local/backend.secrets.clixml`。`config.example.ps1` 是字段说明，里面是占位符，**不要把它当成启动脚本执行**。`Start-Backend.ps1` 会自行读取上述 DPAPI 文件，后端不需要 UE Project Settings 中的数据库配置。
+
+## 四、构建 Program
+
+先保存并正常关闭使用同一源码引擎的编辑器。另一个项目的 Live Coding 会话也可能阻止 UBT，因此不能只检查当前工程窗口。
+
+```powershell
+./scripts/backend/Build-Backend.ps1 -EngineRoot $mmoEngine -ProjectRoot $mmoProject
+```
+
+脚本使用 `MMOBackendService Win64 Development` 目标和 MMORPG `.uproject`。后端程序依赖与 Editor Target 不同，第一次构建可能需要编译一批单独配置的 Engine Core 和 HTTPServer 文件。
+
+对应完整 UBT 命令是下面这一条，理解后选择脚本或直接命令之一执行即可：
+
+```powershell
+& (Join-Path $mmoEngine 'Engine/Build/BatchFiles/Build.bat') `
+  MMOBackendService Win64 Development `
+  "-Project=$mmoProject/MMORPG.uproject" -WaitMutex -NoHotReloadFromIDE
+```
+
+`Target.cs` 不会自动由创建一个 Actor 类生成。需要的目录、完整 Target 与模块注册步骤见 [Program 与模块篇](/docs/10-backend/program-and-workers)。UBT 输出应包含 `Result: Succeeded`；第二次没有源码变化时可能显示目标已是最新，不要求动作数与本机日志一致。
+
+预期产物是工程 `Binaries/Win64/MMOBackendService.exe`，旁边有 libpq、libsodium 和必要运行时 DLL。构建结果记录应包含目标、退出码和日志；仅通过代码阅读不能标成编译成功。
+
+```powershell
+foreach ($mmoFile in @('MMOBackendService.exe', 'libsodium.dll', 'libpq.dll',
+  'libcrypto-3-x64.dll', 'libssl-3-x64.dll', 'libintl-9.dll', 'libiconv-2.dll')) {
+  if (-not (Test-Path -LiteralPath (Join-Path $mmoProject "Binaries/Win64/$mmoFile"))) {
+    throw "Backend output missing: $mmoFile"
+  }
+}
+```
+
+## 五、启动和正常停止
+
+```powershell
+./scripts/backend/Start-Backend.ps1
+Invoke-RestMethod http://127.0.0.1:8088/health | ConvertTo-Json -Compress
+```
+
+启动脚本在隐藏窗口运行程序，保存 PID，检查进程是否提前退出，并轮询真实数据库健康接口。stdout、stderr、停止文件和测试结果位于工程 `.local`。停止脚本请求服务排空已接收操作，等待退出，不直接强杀进程。
+
+预期启动脚本打印 `Backend ready on 127.0.0.1:8088 (PID …).`，健康请求返回 `{"ok":true}`。重复启动前先检查原进程，避免让第二个服务竞争相同端口。需要查看日志时使用明确文件：
+
+```powershell
+Get-Content -LiteralPath (Join-Path $mmoProject '.local/backend.stdout.log') -Tail 30
+Get-Content -LiteralPath (Join-Path $mmoProject '.local/backend.stderr.log') -Tail 30
+```
+
+正常日志包含 `MMO backend listening on 127.0.0.1:8088; 2 workers, 32 request capacity.`。stderr 可能为空。保留服务运行，继续下一步；结束所有游戏客户端并确认最终保存后，再正常停止：
+
+```powershell
+./scripts/backend/Stop-Backend.ps1
+```
+
+预期脚本打印 `Backend stopped after draining accepted work.`，服务日志包含 `Accepted operations drained; backend shutdown complete.`。停止后 `/health` 连接失败是预期行为，PostgreSQL 服务仍继续运行。
+
+服务只绑定 `127.0.0.1`。本机游戏服务器通过这个地址访问；外部客户端需要部署章节中的 HTTPS 入口。运行期间不要把数据库密码或服务密钥复制到游戏客户端配置。
+
+## 六、把两个客户端连接到后端
+
+先按 [MMORPG 迁移与构建](/docs/08-mmorpg/migration)准备 Labs 工程，再按[双客户端实战](/docs/08-mmorpg/run-lab)构建 `MMORPGEditor` 并生成资产。确认后端健康后，在仓库根运行：
+
+```powershell
+./scripts/mmorpg/Start-Lab.ps1 `
+  -Project 'F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject' `
+  -Engine $mmoEngine -ClientCount 2
+```
+
+脚本先检查 8088，再从本机 DPAPI 文件取游戏服务器身份，等待 7777 监听和 `MMOCore: zone added`，最后打开两个客户端并输出 `Process manifest: …`。每个客户端单独填写账号/口令，按注册/登录按钮、创建角色、选择角色、进入服务器。第二个客户端使用另一个账号。服务登录令牌由 GameInstance 暂存，玩家不需要复制任何服务器密钥。
+
+| 配置位置 | 精确字段或参数 | 本机值与作用 |
+| --- | --- | --- |
+| `UMMOBackendClient::BaseURL`；`Initialize` 读取命令行 | `-MMOBackend=` | 默认 `http://127.0.0.1:8088`，账号/角色 HTTP 请求地址 |
+| `UMMOBackendServer::BaseURL`；`Initialize` 读取命令行 | `-MMOBackend=` | 默认同上，只用于服务器兑换票据和保存 |
+| `UMMOBackendServer::ServerID` | `-MMOServerID=` | 默认 `local-1`，须与票据绑定的服务器一致 |
+| Backend Program 进程环境 | `MMO_SERVER_ID`、`MMO_GAME_ADDRESS` | `local-1`、`127.0.0.1:7777`；后端向客户端返回的目标游戏服务器地址 |
+| Dedicated Server 进程环境 | `MMO_SERVER_SECRET` | 来自 `Import-MMOGameServerEnvironment`，与后端同一随机密钥 |
+| UE 游戏网络监听 | `-port=7777` | UDP 游戏流量；不同于 8088 的 HTTP 和 5432 的数据库连接 |
+
+这些字段目前没有对应的 UE Project Settings 面板。修改地址时应修改启动参数；不要在设置窗口寻找不存在的 Backend 类别。手工启动服务器前，在**服务器专用终端**依次执行 `. ./scripts/backend/Common.ps1` 和 `Import-MMOGameServerEnvironment`，之后运行 `UnrealEditor.exe <实验项目> /Engine/Maps/Entry -server -port=7777 -MMOServerID=local-1 -MMOBackend=http://127.0.0.1:8088`。手工客户端在干净终端运行同项目的 `-game -MMOBackend=http://127.0.0.1:8088`；完整分行命令见双客户端实战篇。推荐入口 `Start-Lab.ps1` 已处理进程环境隔离，其健康检查和启动配置按本机默认端口设计。
+
+结束时把启动输出的**实际进程清单路径**填入下列参数。脚本只处理这一轮创建的进程，并等待最终存档；不要直接关闭后端后再关闭游戏。
+
+```powershell
+./scripts/mmorpg/Stop-Lab.ps1 -Manifest 'F:/UE/LyraDocLabs/MMORPG/Saved/Logs/Interactive/processes-本轮编号.json'
+./scripts/backend/Stop-Backend.ps1
+```
+
+## 七、执行真实 HTTP 集成测试
+
+```powershell
+./scripts/backend/Start-Backend.ps1
+./scripts/backend/Test-Backend.ps1 -IncludeRestart
+./scripts/backend/Test-Backend-Concurrency.ps1
+./scripts/backend/Test-Backend-Faults.ps1
+```
+
+测试脚本创建随机前缀的临时账号，以真实 HTTP 请求验证：
+
+- 注册、重复注册、错误密码、登录和退出撤销。
+- 角色创建、重名、列表和跨账号访问。
+- 票据签发、错误服务器、错误调用方、重复消费和过期票据。
+- 原子入服、重复在线、心跳、过期租约和释放后拒绝保存。
+- 库存/经验快照、重复请求不增版本、旧版本冲突、请求 ID 误用和非法库存。
+- 重新入服，以及启用参数后的后端正常停止、重启和状态恢复。
+
+票据/租约过期测试只修改本次测试创建的行，避免等待实际 TTL。测试结束通过外键级联删除本次随机账号及关联数据。报告写入 `.local/backend-test-results.json`，不包含密码和令牌。
+
+`Test-Backend-Concurrency.ps1` 专门复现认证与票据的事务交错。它创建随机 `race_` 账号，通过独立连接暂时锁定这个账号行，再观察 `pg_blocking_pids` 确认两个真实 HTTP 请求已按顺序等待，最后释放锁并核对响应。测试覆盖退出与票据申请/建角/列表的竞争、替换登录撤销旧票据、申请与兑换的两种先后顺序，以及退出与兑换的竞争。它只操作自己的测试账号；锁辅助连接的超时仅对该连接生效，不改变数据库全局配置或重启服务。17 项检查结果写入 `.local/backend-concurrency-results.json`。本次通过的脱敏记录保存为 `examples/MMORPG/backend/concurrency-test-results.json`，只保留时间、断言名称和通过状态等白名单字段，不收录测试账号、密码、令牌或原始请求。
+
+`-IncludeRestart` 会停止并重启后端，因此双客户端实战正在使用服务时，执行 `./scripts/backend/Test-Backend.ps1` 即可复查其余 30 项接口检查；把带重启的测试安排在客户端退出之后。
+
+HTTP 测试验证后端接口；游戏端的入服、GAS 技能、复制和 UI 生命周期由 MMORPG 实战流程单独验收。汇总状态以 `examples/MMORPG/backend/validation.json` 为准，双客户端原始断言记录位于 `verification/mmorpg-smoke.json`。
+
+**本机实测结果（2026-09-13）：** 首轮 `MMOBackendService Win64 Development` 的 51 个构建动作成功，31 项 HTTP 检查全部通过，包含真实停止/重启后的状态恢复。事务修复后再次完成 3 个增量构建动作，于 10:52:56 UTC 通过 17 项并发检查，于 10:53:02 UTC 通过 30 项不含重启的接口回归。
+
+同一事务修复版本于 **13:55:54 UTC** 完成最新两个独立 Editor 游戏客户端和一个独立服务器的实战回归。`verification/mmorpg-smoke.json` 的 **8 项结果全部通过**，且 `backendRestarted=true`：客户端 A 验证施法消耗、冷却拒绝重复施法、药水消耗和经验增长；客户端 B 收到伤害与另一角色移动的复制。后端在战斗轮与恢复轮之间真正停止并重新启动；重新登录后 A 恢复经验 25、法力 80、药水 0、生命 50，位置 X 从离服前约 45.512 恢复为 45.5。两客户端随后经历死亡、Pawn 替换与生命恢复到 100，保留同一 PlayerState ASC、两项已授予技能和有效 MVVM 绑定；最后通过程序调用退出确认流程。31 项 HTTP 全套重启测试仍保留为首轮记录，不把游戏回归改称重复执行了 HTTP 全套。
+
+另一次 **13:57:26 UTC** 的 `Invoke-Smoke.ps1 -DeathLogoutOnly` 在死亡等待期间确认离服，`verification/mmorpg-death-logout.json` 的 **6 项结果全部通过**。后端实际保存 A 的生命 0、经验 25、法力 40、药剂 1，并完成最终保存和租约释放；重新入服在检查点恢复生命 100，保留其余进度和物品。该专用轮没有重启后端，与上面的重启恢复轮分别记录。
+
+这轮使用 `NullRHI`，只验证游戏逻辑、网络状态和程序调用的 UI 层栈结果，**没有验收渲染画面、实体键鼠/手柄导航或焦点恢复**。日志中的 `1920×1080` 与 Medium 是启动参数，不能作为实际画面质量证明。Editor 的 `-game` / `-server` 进程也不能替代独立 Client/Server 打包目标的构建验收。
+
+数据库故障脚本首轮另启一个指向关闭数据库端口的后端进程，验证 503、HTTP 主循环响应与退出码 0；它不会停止本机 PostgreSQL 服务。此故障测试在事务修复后未重跑，汇总记录保留了这一范围。
+
+客户端构建完成后，执行 `Test-ClientBoundaries.ps1 -ClientReceipt <MMORPGClient.target路径> -ClientBinary <MMORPGClient.exe路径>`。它检查 RuntimeDependencies 和二进制中的后端私有配置/API 标记；只做源码审查时，报告会明确保留产物验证为 pending。不要扫描共享 `Binaries` 目录中所有文件来判断客户端分发内容，因为独立后端可能也输出到这个开发目录，应以 Client Target 的 receipt 和实际打包目录为准。
+
+## 排障
+
+| 现象 | 优先检查 |
+| --- | --- |
+| UBT 提示 Live Coding 活动 | 所有使用同引擎的编辑器及 LiveCodingConsole |
+| 链接找不到 `libpq.lib` | PostgreSQL 安装目录和 `MMO_POSTGRES_ROOT` |
+| 启动即退出，缺少 DLL | Program 输出目录运行时依赖、libsodium 架构 |
+| `/health` 为 503 | 数据库运行状态、迁移版本、专用角色凭据 |
+| 401 服务端接口失败 | `MMO_SERVER_SECRET` 是否与可信游戏服务器一致 |
+| 重进显示已在线 | 上一个游戏服务器是否完成 release，租约是否到期 |
+| 保存 409 | 记录版本、未完成请求 ID 和串行保存状态 |
+
+练习：在 Rider 附加到后端进程，在 `Query` 下断点，再从 PowerShell 发起一次保存。观察游戏服务器 HTTP 请求和后端数据库工作线程属于不同进程与线程。

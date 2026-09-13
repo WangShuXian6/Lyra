@@ -1,0 +1,11 @@
+{
+  "type": "Junction",
+  "hddBackup": "F:/UE/LyraDocLabs/MMORPG/Intermediate.HDD-backup-20260913",
+  "date": "2026-09-13T12:11:49.9980365Z",
+  "files": 17308,
+  "source": "F:/UE/LyraDocLabs/MMORPG/Intermediate",
+  "target": "E:/LyraDocBuildCache/MMORPG/Intermediate",
+  "pchHashMatches": true,
+  "bytes": 16050980590.0,
+  "engineModified": false
+}

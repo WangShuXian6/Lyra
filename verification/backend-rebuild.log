@@ -1,0 +1,29 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" MMOBackendService Win64 Development -Project=F:\UE\LyraDoc\examples\MMORPG/MMORPG.uproject -WaitMutex -NoHotReloadFromIDE
+Log file: E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Log.txt
+Determining max actions to execute in parallel (6 physical cores, 12 logical cores)
+  Executing up to 6 processes, one per physical core
+Using 'git status' to determine working set for adaptive non-unity build (E:\UnrealEngine).
+UbaServer - Listening on 0.0.0.0:1345
+Invalidating makefile for MMOBackendService (MMOCore.uplugin modified)
+Building MMOBackendService...
+===== Toolchain Information =====
+Using ISPC compiler (E:\UnrealEngine\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.50.35737 toolchain (D:\program\0-editer\vs\VC\Tools\MSVC\14.50.35717) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 3 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 31.82 GB physical, 24.35 GB/49.82 GB committed
+  UBA Storage capacity 40 GB
+[1/3] Compile [x64] MMOPersistence.cpp
+[2/3] Link [x64] MMOBackendService.exe
+[3/3] WriteMetadata MMOBackendService.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 51.88 seconds
+Output binary: F:\UE\LyraDoc\examples\MMORPG\Binaries\Win64\MMOBackendService.exe
+
+Result: Succeeded
+Total execution time: 55.96 seconds
+Trace written to file E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Trace.uba with size 10.2kb

@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-13T14:59:15.505410+00:00",
+  "status": "static-semantics-checked",
+  "scope": "01–07 and 11 chapters. No UE/MCP/UBT, no public media or archive changes, no 08/09 chapter edits.",
+  "method": "Compare doc fields with existing native configuration manifest; directly inspect original Cooldown, component ActionSet and Dash-direction PNGs; read native clipboard links and current local C++/INI.",
+  "corrections": [
+    {
+      "file": "content/docs/02-architecture/experience.mdx",
+      "finding": "Candidate IsValid means syntactically valid ID, not asset existence. A missing URL override skips World Settings and fails into final fallback; component screenshot array index 1 is the second element."
+    },
+    {
+      "file": "content/docs/04-gas/ability-sets.mdx",
+      "finding": "The actual Blueprint variable label is Cooldown, not Cooldown Time. Its CDO value is distinct from runtime assignment and Gameplay Effect."
+    },
+    {
+      "file": "content/docs/04-gas/dash-blueprint.mdx",
+      "finding": "Delta A is movement, B is facing. abs yaw <45 selects forward/true; >135 backward/false; remaining negative left, otherwise right. Exact 45/135 boundaries go sideways."
+    },
+    {
+      "file": "content/docs/03-character/jump-blueprint.mdx",
+      "finding": "State Jumping with EndCurrentState true; WaitInputRelease TestAlreadyReleased true and OnRelease drives EndAbility; state end/interruption both stop jumping; UI ContextObject is ASC Owner, PlayerState in this Lyra character."
+    },
+    {
+      "file": "content/docs/03-character/enhanced-input.mdx",
+      "finding": "Input_Move X is right and Y forward, explaining W Swizzle YXZ. This differs from any independent BlendSpace axis contract."
+    },
+    {
+      "file": "content/docs/06-ui/extensions.mdx",
+      "finding": "Empty configured DataClasses still permits UUserWidget. Extension points also register global, LocalPlayer and PlayerState contexts, explaining owner-context Jump UI."
+    },
+    {
+      "file": "content/docs/06-ui/settings-mvvm.mdx",
+      "finding": "Official Lyra already has GameSettings language staging/application and localized Game resources; MMO Target, UI text and ViewModel refresh are tutorial additions. Editor language alone does not verify game language."
+    },
+    {
+      "file": "content/docs/11-reference/upgrades.mdx",
+      "finding": "Compilation cannot verify semantic ordering of same-type pins. Document separate static source, native graph, compile and runtime evidence."
+    }
+  ],
+  "sources": [
+    {
+      "path": "Source/LyraGame/GameModes/LyraGameMode.cpp",
+      "sha256": "3e431aa4068a5b0a540945fc00e3e80e171d75a9ac5d6054c53cfca5a8745095",
+      "bytes": 18466,
+      "origin": "local-Lyra-baseline",
+      "section": "02-architecture",
+      "symbols": [
+        {
+          "name": "ALyraGameMode::HandleMatchAssignmentIfNotExpectingOne",
+          "line": 88
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Character/LyraHeroComponent.cpp",
+      "sha256": "d036b6bbbf0fc8170cb31d0f3271d887d44f1b683db564f0e036f74b0e68d3e7",
+      "bytes": 17015,
+      "origin": "local-Lyra-baseline",
+      "section": "03-character",
+      "symbols": [
+        {
+          "name": "ULyraHeroComponent::Input_Move",
+          "line": 374
+        }
+      ]
+    },
+    {
+      "path": "Plugins/UIExtension/Source/Private/Widgets/UIExtensionPointWidget.cpp",
+      "sha256": "cd6b9b03d7e669870d7c50995d7a8c339b487691378212750d047cba35102930",
+      "bytes": 5345,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": [
+        {
+          "name": "UUIExtensionPointWidget::RegisterExtensionPoint()",
+          "line": 82
+        },
+        {
+          "name": "UUIExtensionPointWidget::RegisterExtensionPointForPlayerState",
+          "line": 39
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Settings/LyraGameSettingRegistry_Gameplay.cpp",
+      "sha256": "2c9fb038514937a2c075fa43463b019dbafbe63fd4e61a4dd8ba124abfab3294",
+      "bytes": 5379,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": [
+        {
+          "name": "ULyraGameSettingRegistry::InitializeGameplaySettings",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Language.cpp",
+      "sha256": "60d1e918a8c3cf6d4808b34ead6c47fefa9c49ee17c33da02034e03cf17a8c7b",
+      "bytes": 5298,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": [
+        {
+          "name": "ULyraSettingValueDiscrete_Language::OnInitialized",
+          "line": 22
+        },
+        {
+          "name": "ULyraSettingValueDiscrete_Language::OnApply",
+          "line": 43
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Settings/LyraSettingsShared.cpp",
+      "sha256": "d1f981635ee2cff638b196037bcdbc4013dac7033ed7ae67dcb7f080a5246925",
+      "bytes": 9145,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": [
+        {
+          "name": "ULyraSettingsShared::ApplyCultureSettings",
+          "line": 211
+        }
+      ]
+    },
+    {
+      "path": "Config/Localization/Game_Gather.ini",
+      "sha256": "766b85c94149afa59f9ad323f36c58601fa4fcf67ed33a14365d4a5a1ec1f4ec",
+      "bytes": 2163,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": []
+    },
+    {
+      "path": "Config/Localization/Game_Compile.ini",
+      "sha256": "693c7590dc1497c0666f7dbd6dc0109f6f707532a57ad4a18a24121ab670f190",
+      "bytes": 822,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": []
+    }
+  ],
+  "additionalSources": [
+    {
+      "path": "E:/UnrealEngine/Engine/Source/Runtime/Engine/Private/KismetMathLibrary.cpp",
+      "sha256": "d3c1bd2b7ca1c1ab67296545854535f1f31fbcb5799e0bfbcb9f143cf0f52217",
+      "bytes": 52439
+    },
+    {
+      "path": "F:/UE/LyraDoc/examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "sha256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "bytes": 29573
+    },
+    {
+      "path": "F:/UE/LyraDoc/examples/MMORPG/Config/Localization/MMO_Compile.ini",
+      "sha256": "c802c432b86c9093ba2f11514da7fad0a753f36025ef86f8766fe9aff4a8a59e",
+      "bytes": 383
+    }
+  ],
+  "blueprintLinks": [
+    {
+      "path": "F:/UE/LyraDoc/public/blueprints/lyra/jump-event-graph.txt",
+      "sha256": "9a79f714eea40aeab3a4d35aadc919839e85cbd22876db3b580fdee5ffe28c50",
+      "bytes": 59263,
+      "slug": "jump-event-graph",
+      "nodes": [
+        {
+          "name": "K2Node_Event_0",
+          "symbol": "K2_ActivateAbility",
+          "pins": [
+            {
+              "pin": "then",
+              "links": "K2Node_CallFunction_4 4F3958814D34AC339343E7A465F85533,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_4",
+          "symbol": "CharacterJumpStart",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_Event_0 E5B0112349F63058BE83D9AC5DAF4768,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_LatentAbilityCall_0 035F39024E88A15B16D734B4A5E956A5,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_LatentAbilityCall_0",
+          "symbol": "StartAbilityState",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_CallFunction_4 A4EF878A4F71B7001E6928871CC1178F,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_LatentAbilityCall_1 060251FD4CA6E547754500A7BC731FCE,"
+            },
+            {
+              "pin": "OnStateEnded",
+              "links": "K2Node_CallFunction_1 771ACB9041569473FEF9A4AC28B76D93,"
+            },
+            {
+              "pin": "OnStateInterrupted",
+              "links": "K2Node_CallFunction_1 771ACB9041569473FEF9A4AC28B76D93,"
+            },
+            {
+              "pin": "StateName",
+              "default": "Jumping"
+            },
+            {
+              "pin": "bEndCurrentState",
+              "default": "true"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_1",
+          "symbol": "CharacterJumpStop",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_LatentAbilityCall_0 6C472BE64F696B339AE59A9A43FA1AB5,K2Node_LatentAbilityCall_0 23B9EDD8418D64499BA4A8B2EBBB7CED,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_LatentAbilityCall_1",
+          "symbol": "WaitInputRelease",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_LatentAbilityCall_0 E5607381430EA07EACF9CB935406D6C6,"
+            },
+            {
+              "pin": "OnRelease",
+              "links": "K2Node_CallFunction_2 F9A92B244707E3C6E06EAEB18DB609AB,"
+            },
+            {
+              "pin": "bTestAlreadyReleased",
+              "default": "true"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_2",
+          "symbol": "K2_EndAbility",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_LatentAbilityCall_1 07A0992F408B1BF703FFCFA0EB96348C,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_1",
+          "symbol": "WidgetExtensionHandle",
+          "pins": [
+            {
+              "pin": "WidgetExtensionHandle",
+              "links": "K2Node_CallFunction_3 C3F1F4CA492C16FDB503079C76F6A20B,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_MacroInstance_1",
+          "symbol": "",
+          "pins": [
+            {
+              "pin": "exec",
+              "links": "K2Node_IfThenElse_0 548B72204EABE263FC1C92B37D50AF30,"
+            },
+            {
+              "pin": "InputObject",
+              "links": "K2Node_GetSubsystem_0 20DDE92848FF7D01DE1AD9A30AE336D0,"
+            },
+            {
+              "pin": "Is Valid",
+              "links": "K2Node_CallFunction_5 E36788694B8F236B216146949C179184,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_GetSubsystem_0",
+          "symbol": "",
+          "pins": [
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_MacroInstance_1 943EAA474C799CBA5C3080A0E53715FF,K2Node_CallFunction_5 3525077D46FDFD73532072BBEC4DFD54,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_3",
+          "symbol": "Unregister",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_Event_1 F2AD418B477FBCE32B75A983EBD8A019,"
+            },
+            {
+              "pin": "Handle",
+              "links": "K2Node_VariableGet_1 EF4330F54FE2B2331B09D0AE312D665D,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_5",
+          "symbol": "K2_RegisterExtensionAsWidgetForContext",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_MacroInstance_1 F3FEBE224D7C9BA44D3C11B15A78BDD2,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_VariableSet_2 D394D5BE47DF77C0768ADFA79F6EA26D,"
+            },
+            {
+              "pin": "ExtensionPointTag",
+              "links": "K2Node_VariableGet_5 7F749B254C9F2DA96625F4AE8F5E8223,"
+            },
+            {
+              "pin": "WidgetClass",
+              "links": "K2Node_VariableGet_0 DC772F4B4B2CFFDCB048BCA4C9D6075F,"
+            },
+            {
+              "pin": "ContextObject",
+              "links": "K2Node_CallFunction_11 F42E84BB4831D6E2754EEF91FA5C6943,"
+            },
+            {
+              "pin": "Priority",
+              "default": "-1"
+            },
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_VariableSet_2 9DFBAF5F4007DD6249EF848689E4BAC6,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_11",
+          "symbol": "GetOwningActorFromActorInfo",
+          "pins": [
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_CallFunction_5 C1BEFB0C48FCED4AF012EE94D2647238,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_0",
+          "symbol": "WidgetClass",
+          "pins": [
+            {
+              "pin": "WidgetClass",
+              "links": "K2Node_CallFunction_5 730B95B646B93BA0B5BA089AD9D0E62D,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_0",
+          "symbol": "IsValidClass",
+          "pins": [
+            {
+              "pin": "Class",
+              "links": "K2Node_VariableGet_4 DC772F4B4B2CFFDCB048BCA4C9D6075F,"
+            },
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_IfThenElse_0 E4835FA34E6A8D7DEB0C02AF3142E9AE,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_IfThenElse_0",
+          "symbol": "",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_Event_2 744C94394BBB56E7153FCDAB5D179631,"
+            },
+            {
+              "pin": "Condition",
+              "links": "K2Node_CallFunction_0 44CD091F47C1D3B690CABE90A54D902B,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_MacroInstance_1 8F7D3C354B8180928ED9888962E87F23,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_4",
+          "symbol": "WidgetClass",
+          "pins": [
+            {
+              "pin": "WidgetClass",
+              "links": "K2Node_CallFunction_0 8A13E1204575298913E4C59C730D8EBF,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_5",
+          "symbol": "WidgetExtensionPointTag",
+          "pins": [
+            {
+              "pin": "WidgetExtensionPointTag",
+              "links": "K2Node_CallFunction_5 F738E216449C18703FACB7949EEF8F0D,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableSet_2",
+          "symbol": "WidgetExtensionHandle",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_CallFunction_5 B2D7075F4D5C169C4410988391FAD5AF,"
+            },
+            {
+              "pin": "WidgetExtensionHandle",
+              "links": "K2Node_CallFunction_5 084C8DC34A3FF939E1EFEDA362BE275C,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_Event_1",
+          "symbol": "K2_OnAbilityRemoved",
+          "pins": [
+            {
+              "pin": "then",
+              "links": "K2Node_CallFunction_3 F1EE3FDF4A05C51C3B3C4BAD126C7EE2,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_Event_2",
+          "symbol": "K2_OnAbilityAdded",
+          "pins": [
+            {
+              "pin": "then",
+              "links": "K2Node_IfThenElse_0 72B96B3040721D488D0425B2714DADEC,"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "F:/UE/LyraDoc/public/blueprints/lyra/dash-direction.txt",
+      "sha256": "513d2f18c9feaefe4ed5db0b07e773884214312b0af6f6d914909fa1669e51f2",
+      "bytes": 74460,
+      "slug": "dash-direction",
+      "nodes": [
+        {
+          "name": "K2Node_FunctionEntry_0",
+          "symbol": "SelectDirectionalMontage",
+          "pins": [
+            {
+              "pin": "then",
+              "links": "K2Node_IfThenElse_1 301C532C40B71252CE027CAA14B49957,"
+            },
+            {
+              "pin": "FacingDirection",
+              "links": "K2Node_CallFunction_11 5F8807704C51B45E00714C8907470067,"
+            },
+            {
+              "pin": "MovementDirection",
+              "links": "K2Node_CallFunction_12 835C7F264165387997B2C3A1D2D29C5A,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_FunctionResult_0",
+          "symbol": "SelectDirectionalMontage",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_Knot_0 1F76449C432D5E64799D549197950A16,"
+            },
+            {
+              "pin": "DirectionalMontage",
+              "links": "K2Node_VariableGet_0 0A45DB3344AA1CB78C055D901104E84A,"
+            },
+            {
+              "pin": "BiasForwardMovement",
+              "links": "K2Node_VariableGet_5 F7B426CA45EA461E153230816970D2AA,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_11",
+          "symbol": "Conv_VectorToRotator",
+          "pins": [
+            {
+              "pin": "InVec",
+              "links": "K2Node_FunctionEntry_0 E1AC58464C800264B66FAEA6340DEDD4,"
+            },
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_CallFunction_14 B9CE846745FE8F53173F309CCD019EB2,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_12",
+          "symbol": "Conv_VectorToRotator",
+          "pins": [
+            {
+              "pin": "InVec",
+              "links": "K2Node_FunctionEntry_0 08EBE2AC40DB176D843E578F4A9A6C96,"
+            },
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_CallFunction_14 4C12EC8D4B9043FC40F100B074419CFE,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_14",
+          "symbol": "NormalizedDeltaRotator",
+          "pins": [
+            {
+              "pin": "A",
+              "links": "K2Node_CallFunction_12 180B52D24726E57617F2F8A1620C80BA,"
+            },
+            {
+              "pin": "B",
+              "links": "K2Node_CallFunction_11 2251EB394425642A3EE89DB984275622,"
+            },
+            {
+              "pin": "ReturnValue",
+              "default": "0, 0, 0"
+            },
+            {
+              "pin": "ReturnValue_Roll",
+              "default": "0.0"
+            },
+            {
+              "pin": "ReturnValue_Pitch",
+              "default": "0.0"
+            },
+            {
+              "pin": "ReturnValue_Yaw",
+              "links": "K2Node_CallFunction_1 9F52D38C401BCA74C4FCAEB5234CB09B,K2Node_PromotableOperator_4 6E95697346A75B0DAB6AE19EE615915A,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_IfThenElse_1",
+          "symbol": "",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_FunctionEntry_0 4DBB71524E9B746C7E7A658BC1133172,"
+            },
+            {
+              "pin": "Condition",
+              "links": "K2Node_PromotableOperator_1 E407A0954B99363870B2F198403D7EC0,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_VariableSet_1 EB4157EF43D501F27FDC50A71B65A391,"
+            },
+            {
+              "pin": "else",
+              "links": "K2Node_IfThenElse_2 301C532C40B71252CE027CAA14B49957,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_1",
+          "symbol": "Abs",
+          "pins": [
+            {
+              "pin": "A",
+              "links": "K2Node_CallFunction_14 8340DDBF46B4AD668A0899AFF14F7434,"
+            },
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_PromotableOperator_1 6DDA9E82476DE1E9549943A056904C1A,K2Node_PromotableOperator_2 1D1092044A182EAA2B565D9B8F65A094,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_PromotableOperator_1",
+          "symbol": "Less_DoubleDouble",
+          "pins": [
+            {
+              "pin": "A",
+              "links": "K2Node_CallFunction_1 BCC26D4E4BFC87505492DA866A68C1F0,"
+            },
+            {
+              "pin": "B",
+              "default": "45.000000"
+            },
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_IfThenElse_1 C66BC6B54DA730820B6D37A51FFC5271,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_0",
+          "symbol": "MontageToPick",
+          "pins": [
+            {
+              "pin": "MontageToPick",
+              "links": "K2Node_FunctionResult_0 DA1DD89A4135966C7C510B93E477B767,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableSet_1",
+          "symbol": "MontageToPick",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_IfThenElse_1 065C7C394CF480D6E2E3ACBFBE901878,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_VariableSet_5 9559F1804F4307E20D2E11B3BD83832B,"
+            },
+            {
+              "pin": "MontageToPick",
+              "links": "K2Node_VariableGet_1 B4288DF345B097B1C36AA186358AF49B,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_1",
+          "symbol": "Dash_Fwd Montage",
+          "pins": [
+            {
+              "pin": "Dash_Fwd Montage",
+              "links": "K2Node_VariableSet_1 1C9D74BB46D3FE60162A35AD7EB02218,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_PromotableOperator_2",
+          "symbol": "Greater_DoubleDouble",
+          "pins": [
+            {
+              "pin": "A",
+              "links": "K2Node_CallFunction_1 BCC26D4E4BFC87505492DA866A68C1F0,"
+            },
+            {
+              "pin": "B",
+              "default": "135.000000"
+            },
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_IfThenElse_2 C66BC6B54DA730820B6D37A51FFC5271,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_IfThenElse_2",
+          "symbol": "",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_IfThenElse_1 69A39AB447CCBBC2857399AD8BD67E5D,"
+            },
+            {
+              "pin": "Condition",
+              "links": "K2Node_PromotableOperator_2 FE335A814C09C03FBF18A5A62717C069,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_VariableSet_2 EB4157EF43D501F27FDC50A71B65A391,"
+            },
+            {
+              "pin": "else",
+              "links": "K2Node_IfThenElse_0 301C532C40B71252CE027CAA14B49957,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableSet_2",
+          "symbol": "MontageToPick",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_IfThenElse_2 065C7C394CF480D6E2E3ACBFBE901878,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_VariableSet_4 9559F1804F4307E20D2E11B3BD83832B,"
+            },
+            {
+              "pin": "MontageToPick",
+              "links": "K2Node_VariableGet_2 6EA9981944827DFC0282BEB61AA0D1DC,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_2",
+          "symbol": "Dash_Bwd Montage",
+          "pins": [
+            {
+              "pin": "Dash_Bwd Montage",
+              "links": "K2Node_VariableSet_2 1C9D74BB46D3FE60162A35AD7EB02218,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_Knot_0",
+          "symbol": "",
+          "pins": [
+            {
+              "pin": "InputPin",
+              "links": "K2Node_Knot_2 965B246A4D5646F9BFFC95802E163A44,K2Node_VariableSet_4 DCA7A967466C6D0C6843079E858C1C57,"
+            },
+            {
+              "pin": "OutputPin",
+              "links": "K2Node_FunctionResult_0 53E9820A4D441067A98B308C4E58336A,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_IfThenElse_0",
+          "symbol": "",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_IfThenElse_2 69A39AB447CCBBC2857399AD8BD67E5D,"
+            },
+            {
+              "pin": "Condition",
+              "links": "K2Node_PromotableOperator_4 678068704EF8223F7947B9916582D583,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_VariableSet_3 EB4157EF43D501F27FDC50A71B65A391,"
+            },
+            {
+              "pin": "else",
+              "links": "K2Node_VariableSet_0 EB4157EF43D501F27FDC50A71B65A391,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableSet_3",
+          "symbol": "MontageToPick",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_IfThenElse_0 065C7C394CF480D6E2E3ACBFBE901878,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_VariableSet_4 9559F1804F4307E20D2E11B3BD83832B,"
+            },
+            {
+              "pin": "MontageToPick",
+              "links": "K2Node_VariableGet_3 FEB3C2414B63527FB634FD99BE11C735,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_3",
+          "symbol": "Dash_Left Montage",
+          "pins": [
+            {
+              "pin": "Dash_Left Montage",
+              "links": "K2Node_VariableSet_3 1C9D74BB46D3FE60162A35AD7EB02218,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableSet_0",
+          "symbol": "MontageToPick",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_IfThenElse_0 69A39AB447CCBBC2857399AD8BD67E5D,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_VariableSet_4 9559F1804F4307E20D2E11B3BD83832B,"
+            },
+            {
+              "pin": "MontageToPick",
+              "links": "K2Node_VariableGet_4 BC61C9F040566DDDD3F4BAA6A73E7116,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_4",
+          "symbol": "Dash_Right Montage",
+          "pins": [
+            {
+              "pin": "Dash_Right Montage",
+              "links": "K2Node_VariableSet_0 1C9D74BB46D3FE60162A35AD7EB02218,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_PromotableOperator_4",
+          "symbol": "Less_DoubleDouble",
+          "pins": [
+            {
+              "pin": "A",
+              "links": "K2Node_CallFunction_14 8340DDBF46B4AD668A0899AFF14F7434,"
+            },
+            {
+              "pin": "ReturnValue",
+              "links": "K2Node_IfThenElse_0 C66BC6B54DA730820B6D37A51FFC5271,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_Knot_2",
+          "symbol": "",
+          "pins": [
+            {
+              "pin": "InputPin",
+              "links": "K2Node_VariableSet_5 DCA7A967466C6D0C6843079E858C1C57,"
+            },
+            {
+              "pin": "OutputPin",
+              "links": "K2Node_Knot_0 92871F90440D91A6888DFC8244B57C1A,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableSet_5",
+          "symbol": "BiasForward",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_VariableSet_1 F39779BF423A58C174A57FB9198D0C13,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_Knot_2 0CA19B1A4EAE620F6EABDE9DC737F6CC,"
+            },
+            {
+              "pin": "BiasForward",
+              "default": "true"
+            },
+            {
+              "pin": "Output_Get",
+              "default": "false"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableSet_4",
+          "symbol": "BiasForward",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_VariableSet_2 F39779BF423A58C174A57FB9198D0C13,K2Node_VariableSet_3 F39779BF423A58C174A57FB9198D0C13,K2Node_VariableSet_0 F39779BF423A58C174A57FB9198D0C13,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_Knot_0 92871F90440D91A6888DFC8244B57C1A,"
+            },
+            {
+              "pin": "BiasForward",
+              "default": "false"
+            },
+            {
+              "pin": "Output_Get",
+              "default": "false"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_5",
+          "symbol": "BiasForward",
+          "pins": [
+            {
+              "pin": "BiasForward",
+              "links": "K2Node_FunctionResult_0 7552184249F59D5D4581B48EC59E42E9,"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "F:/UE/LyraDoc/public/blueprints/lyra/root-layout-registration.txt",
+      "sha256": "33f8c41b2cb64c24e405fbacaa4c662db1240b5c3404c41d383601bdbcf73b54",
+      "bytes": 26987,
+      "slug": "root-layout-registration",
+      "nodes": [
+        {
+          "name": "EdGraphNode_Comment_0",
+          "symbol": "",
+          "pins": []
+        },
+        {
+          "name": "K2Node_CallFunction_1",
+          "symbol": "RegisterLayer",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_Event_1 60883E734C744EF2A04921AE4777075E,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_CallFunction_2 D320935C4D4B58AE9D0A45BED4BC1A78,"
+            },
+            {
+              "pin": "LayerTag",
+              "default": "(TagName=\"UI.Layer.Game\")"
+            },
+            {
+              "pin": "LayerWidget",
+              "links": "K2Node_VariableGet_1 59B39BC443EAC4EDA5C7CB87E004A9B2,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_1",
+          "symbol": "GameLayer_Stack",
+          "pins": [
+            {
+              "pin": "GameLayer_Stack",
+              "links": "K2Node_CallFunction_1 E04A2F334F2246B6E469E8B088B25DB0,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_2",
+          "symbol": "RegisterLayer",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_CallFunction_1 726D9D1F49FED06270813E8FF104E7DA,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_CallFunction_3 D320935C4D4B58AE9D0A45BED4BC1A78,"
+            },
+            {
+              "pin": "LayerTag",
+              "default": "(TagName=\"UI.Layer.GameMenu\")"
+            },
+            {
+              "pin": "LayerWidget",
+              "links": "K2Node_VariableGet_2 59B39BC443EAC4EDA5C7CB87E004A9B2,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_2",
+          "symbol": "GameMenu_Stack",
+          "pins": [
+            {
+              "pin": "GameMenu_Stack",
+              "links": "K2Node_CallFunction_2 E04A2F334F2246B6E469E8B088B25DB0,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_3",
+          "symbol": "RegisterLayer",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_CallFunction_2 726D9D1F49FED06270813E8FF104E7DA,"
+            },
+            {
+              "pin": "then",
+              "links": "K2Node_CallFunction_0 D320935C4D4B58AE9D0A45BED4BC1A78,"
+            },
+            {
+              "pin": "LayerTag",
+              "default": "(TagName=\"UI.Layer.Menu\")"
+            },
+            {
+              "pin": "LayerWidget",
+              "links": "K2Node_VariableGet_3 59B39BC443EAC4EDA5C7CB87E004A9B2,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_3",
+          "symbol": "Menu_Stack",
+          "pins": [
+            {
+              "pin": "Menu_Stack",
+              "links": "K2Node_CallFunction_3 E04A2F334F2246B6E469E8B088B25DB0,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_CallFunction_0",
+          "symbol": "RegisterLayer",
+          "pins": [
+            {
+              "pin": "execute",
+              "links": "K2Node_CallFunction_3 726D9D1F49FED06270813E8FF104E7DA,"
+            },
+            {
+              "pin": "LayerTag",
+              "default": "(TagName=\"UI.Layer.Modal\")"
+            },
+            {
+              "pin": "LayerWidget",
+              "links": "K2Node_VariableGet_0 59B39BC443EAC4EDA5C7CB87E004A9B2,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_VariableGet_0",
+          "symbol": "Modal_Stack",
+          "pins": [
+            {
+              "pin": "Modal_Stack",
+              "links": "K2Node_CallFunction_0 E04A2F334F2246B6E469E8B088B25DB0,"
+            }
+          ]
+        },
+        {
+          "name": "K2Node_Event_1",
+          "symbol": "OnInitialized",
+          "pins": [
+            {
+              "pin": "then",
+              "links": "K2Node_CallFunction_1 D320935C4D4B58AE9D0A45BED4BC1A78,"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "existingRuntimeEvidenceUnchanged": [
+    "verification/training-play.json",
+    "verification/training-network.json",
+    "verification/training-lifecycle.json",
+    "verification/training-blueprint-roundtrip.json"
+  ],
+  "pendingTrainingDependencies": [
+    "Root releases current MMO native editor/capture window, all relevant same-engine editors saved/closed before UBT.",
+    "Fresh native prepare plus same-process repeated prepare must validate the current source fix and generated navigation report.",
+    "Root layout full graph selected-node ZoomAmount1 export with real focus and PNG inspection; current 1210x743 Zoom-3 attempt is not 1:1.",
+    "Recapture first-preview from final navigation map at native 1920x1080 and all ten sg quality groups=1; existing historical viewport is1920x1082 and must not be relabeled.",
+    "Recook after the saved native navigation build; existing successful Cook predates this map update.",
+    "Training Game/Client/Server build window coordinated with MMO; stage/package and launch the actual packaged executable to validate runtime assets/input/HUD/weapon/lifecycle."
+  ],
+  "newRuntimeClaims": false
+}

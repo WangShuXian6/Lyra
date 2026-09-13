@@ -1,0 +1,190 @@
+{
+  "checkedAt": "2026-09-13T14:01:44.652672+00:00",
+  "passed": true,
+  "count": 26,
+  "method": "PNG IHDR dimensions and SHA-256 equality against original native file and recorded manifest; no pixel transformation.",
+  "checks": [
+    {
+      "slug": "training-pawn",
+      "passed": true,
+      "sha256": "3fb42b44993b49dc06590d56595b90308f374afbc2877f866c444d51d185aa77",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "pawn-data",
+      "passed": true,
+      "sha256": "7414b3ffb04f3d4995e122a24e20cedac1d47686a9cd6857a301977c7c21bbc6",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "ability-set",
+      "passed": true,
+      "sha256": "b83a05e3f3d537cefc21552c8e64d0c74d32794628a9b14eb94ca0ac57512805",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "training-ability-set",
+      "passed": true,
+      "sha256": "38e311ae3468310911ae5f965e0571b8b77b28e0cd68552e39ad8bf4d30ce101",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "input-config",
+      "passed": true,
+      "sha256": "90d02225439e29277b83c885364541b871e12d12d56653d33d551080c883a664",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "input-mapping-buttons",
+      "passed": true,
+      "sha256": "d121caed53eebe109b5e01391250a966961c6028dcb82467e2525d4742fc4e29",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "input-mapping-movement",
+      "passed": true,
+      "sha256": "714f798c30758642cf9c4be2ddf34000975492b0b060e012d16e739949042abb",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "training-feature-experience",
+      "passed": true,
+      "sha256": "9a6fe9e25bba1a37a060af074c5857ae596528fa4bcac72ceeb046b33b68f5ab",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "training-feature-map",
+      "passed": true,
+      "sha256": "572ac924acaf4d1f15cd58d780695d637b7655b9652c9c3305d978dc59093ace",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "training-experience",
+      "passed": true,
+      "sha256": "d6b164627b4c597152ed2b5a50e2cdb63f804b04ce72a120f3ec7d75b184ab74",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "experience",
+      "passed": true,
+      "sha256": "11310e4c6cad42b44e6d8bf712a240093e20b1e6c1704d79f55d5282ff0b3536",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "components-actionset",
+      "passed": true,
+      "sha256": "06b6240f3e4d8179aff5e88a0b43e53f30c58036c3df0464586dcc87e6d2911c",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "hud-actionset",
+      "passed": true,
+      "sha256": "731c2ccf8754eaf42bacef137f7f3a88c8c047fc2dd3deeb23c24ab3638b12e5",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "ui-policy",
+      "passed": true,
+      "sha256": "23d7b915454a77feecee5057f087c923ed58846eafd1e77d09366d563e1355fb",
+      "width": 1100,
+      "height": 440
+    },
+    {
+      "slug": "inventory-definition",
+      "passed": true,
+      "sha256": "057a4deef78eef1e8495dd040c3711be7be9eaecaeb88ac5ab8113c25d6037b0",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "equipment-definition",
+      "passed": true,
+      "sha256": "084e54ffefc4c387f2027e2e38215d04651a11898a792aa69df299c0fdaf664f",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "dash-defaults-policy",
+      "passed": true,
+      "sha256": "6cff0457c1ca925fb54b221d83db1bfbb49964a8ea3b3d466e7e2a6d77f6209e",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "dash-defaults-activation",
+      "passed": true,
+      "sha256": "eed3e2c3fec634645df82ca24eefe256b57766e3dbfe99bd0109e12700ede03f",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "dash-defaults-cooldown",
+      "passed": true,
+      "sha256": "8653bb644ee35c071d2f2a5fb3442c852f591424497846fbc46e6bd2eefc0968",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "training-world",
+      "passed": true,
+      "sha256": "d0fb51199c18738a7a5faa27f6f6730ce8cd922cca0244f374537931aa211e9a",
+      "width": 1716,
+      "height": 1315
+    },
+    {
+      "slug": "maps-modes",
+      "passed": true,
+      "sha256": "13119e9b1358c3c7c5e62a588a349a6be0ad4911eda292d412912558f21d86de",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "asset-manager",
+      "passed": true,
+      "sha256": "aace86b205414b33fe168731ac285e20e5c8bfe6ffd4f2869d249cb02285bd7b",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "asset-manager-actionset",
+      "passed": true,
+      "sha256": "219fdc670d47f9d5825bae56dacdb1b95ef9173d023bc9d00d3de69418ee5539",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "root-layout-designer",
+      "passed": true,
+      "sha256": "4b2c3a0b1067d0534d441477e80b6a5447fb13d4f39976702dc4d258a8f4636f",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "root-layout-registration",
+      "passed": true,
+      "sha256": "edf27cf2f6eb9e9e2515eb94ce9b880924b322c79839531527948ea27944e204",
+      "width": 1494,
+      "height": 912
+    },
+    {
+      "slug": "hud-extension",
+      "passed": true,
+      "sha256": "8a1143e16699980b9f363b01764691a24f59daeb01505300421ebd903e0bc570",
+      "width": 2100,
+      "height": 1000
+    }
+  ]
+}

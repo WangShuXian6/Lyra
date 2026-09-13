@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-09-13T16:34:25.4732059Z",
+  "target": "MMORPGEditor Win64 Development",
+  "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+  "engine": "E:/UnrealEngine",
+  "passed": true,
+  "maxParallelActions": 3,
+  "arguments": [
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-MaxParallelActions=3",
+    "-NoUBA"
+  ],
+  "firstAttempt": {
+    "log": "verification/mmorpg-final-editor-build.log",
+    "exitCode": 6,
+    "actions": 22,
+    "error": "MMOAnimationValidation used the private non-const GetLinkedAnimInstances overload"
+  },
+  "finalAttempt": {
+    "log": "verification/mmorpg-final-editor-build-retry.log",
+    "exitCode": 0,
+    "actions": 5,
+    "seconds": 8.51
+  },
+  "fix": "Read the public const GetLinkedAnimInstances overload through a const USkeletalMeshComponent pointer",
+  "binaries": [
+    {
+      "bytes": 863232,
+      "sha256": "fdef853722d1023a8d20e463d5ed53d52db31c7446e1077ff198e9115bf33833",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Binaries\\Win64\\UnrealEditor-MMORPG.dll"
+    },
+    {
+      "bytes": 390144,
+      "sha256": "f3c54ed20bb6005be1a6eb71d4efc5b6ed6b1162d85d8a266ab89ab69b9e1f5b",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Plugins\\MMODocTools\\Binaries\\Win64\\UnrealEditor-MMODocTools.dll"
+    },
+    {
+      "bytes": 106496,
+      "sha256": "926e5646fc66bbc56fc2bd464d1eca87a96016f1ac379075cf3e56dea87f3c6b",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Plugins\\GameFeatures\\MMOCore\\Binaries\\Win64\\UnrealEditor-MMOCore.dll"
+    }
+  ]
+}

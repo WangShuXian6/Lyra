@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-13T15:34:22.8048797Z",
+  "status": "implementation-ready-native-build-and-runtime-pending",
+  "engine": "UE 5.8.1 local source",
+  "scope": "Training packaged single-player verifier implementation",
+  "noRuntimeExecutionThisReview": true,
+  "module": "TrainingRangeVerification",
+  "activation": "Development Game/Client, non-Editor, non-Server, explicit -LyraTrainingVerify -LyraTrainingVerifyOutput=<unique directory>",
+  "nativeTickerTimeoutSeconds": 90,
+  "screenshotTimeoutSeconds": 10,
+  "launcherDefaultTimeoutSeconds": 150,
+  "expectedCheckCount": 11,
+  "nativeApi": [
+    {
+      "symbol": "FScreenshotRequest six-argument RequestScreenshot and OnScreenshotRequestProcessed",
+      "file": "E:\\UnrealEngine\\Engine\\Source\\Runtime\\Engine\\Public\\UnrealClient.h",
+      "sha256": "ddff2acd146d534452042ed415461798fa0bfa4df5cad752e3d08d8582af10d9"
+    },
+    {
+      "symbol": "ProcessScreenShots: restrict Slate capture to game viewport; SaveImageByExtension before processed broadcast",
+      "file": "E:\\UnrealEngine\\Engine\\Source\\Runtime\\Engine\\Private\\GameViewportClient.cpp",
+      "sha256": "0a40e1dad8b045298bf9f8d1bc9845c59e21bf3e5acc8a93b64f19f4956a2a2b"
+    },
+    {
+      "symbol": "Native UFunction parameter storage",
+      "file": "E:\\UnrealEngine\\Engine\\Source\\Runtime\\CoreUObject\\Public\\UObject\\StructOnScope.h",
+      "sha256": "65ced73f229236ec173139ef1e32ab11552572fe2696bcaab75ccf269e5388cb"
+    },
+    {
+      "symbol": "Input.+key and Input.-key: ApplyForcedInput/RemoveForcedInput",
+      "file": "E:\\UnrealEngine\\Engine\\Plugins\\EnhancedInput\\Source\\EnhancedInput\\Private\\EnhancedInputModule.cpp",
+      "sha256": "0603b4f78a38e9a790146d4ae2f287dbda9b377bed4b1bbb350033458514bb53"
+    },
+    {
+      "symbol": "SetOverallScalabilityLevel/ApplyResolutionSettings/ApplyNonResolutionSettings",
+      "file": "E:\\UnrealEngine\\Engine\\Source\\Runtime\\Engine\\Classes\\GameFramework\\GameUserSettings.h",
+      "sha256": "1b1bc92514c05b54d325af8249111f6768741b34eafd4c209cbf1977584a6c44"
+    },
+    {
+      "symbol": "AdditionalCookerOptions/UbtArgs parsing",
+      "file": "E:\\UnrealEngine\\Engine\\Source\\Programs\\AutomationTool\\AutomationUtils\\ProjectParams.cs",
+      "sha256": "18503d50c19a46350803e7b18d8afafaec1f3ecc4dac6e5469b5eaf63f99fb4e"
+    },
+    {
+      "symbol": "NoUBA and MaxParallelActions flags",
+      "file": "E:\\UnrealEngine\\Engine\\Source\\Programs\\UnrealBuildTool\\Configuration\\BuildConfiguration.cs",
+      "sha256": "ff191de3ad22c6827ffcd07295eb71713f447c8a9282b7dec3827349e68ddf28"
+    },
+    {
+      "symbol": "TargetConfigurationAllowList/TargetAllowList",
+      "file": "E:\\UnrealEngine\\Engine\\Source\\Programs\\UnrealBuildTool\\Configuration\\Descriptors\\ModuleDescriptor.cs",
+      "sha256": "0f90dfc5bec03fa2ac1a6d7f1e1cee6d41cf19994cebca3f1c6965150062ee0c"
+    },
+    {
+      "file": "E:/UnrealEngine/Engine/Plugins/EnhancedInput/Source/EnhancedInput/Private/EnhancedInputSubsystemInterface.cpp",
+      "symbol": "TickForcedInput/RemoveForcedInput: real Controller InputKey and release/flush path",
+      "sha256": "f15c8d26b5df2e4e51f94a7de68c367961c8e8adebfd37ac7515fde89d482b32"
+    },
+    {
+      "file": "E:/UnrealEngine/Engine/Source/Runtime/Engine/Private/GameEngine.cpp",
+      "symbol": "UGameEngine::Tick: global TickObjects after per-world ticking",
+      "sha256": "77aff954f359b59aae7d209094b8730b7685a4a3e03f507dc09312e72eceaada"
+    },
+    {
+      "file": "E:/UnrealEngine/Engine/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/Abilities/GameplayAbility.cpp",
+      "symbol": "PreActivate installs CurrentInfo then NotifyAbilityActivated before Spec active count increment",
+      "sha256": "35a7ed37540c7080e8e8e03aa80294b8f832f7bc9d2b280273e69ea043e20d53"
+    },
+    {
+      "file": "E:/UnrealEngine/Engine/Plugins/Runtime/GameplayAbilities/Source/GameplayAbilities/Private/AbilitySystemComponent_Abilities.cpp",
+      "symbol": "NotifyAbilityActivated broadcasts native public delegate",
+      "sha256": "6c8a27c357d22f951fe51e9631619720874cdd46ea04c6e777d0aea5a5b26a7a"
+    },
+    {
+      "file": "E:/UnrealEngine/Engine/Source/Runtime/Projects/Private/PluginManager.cpp",
+      "symbol": "MountExplicitlyLoadedPlugin/MountPluginFromExternalSource loads plugin code modules",
+      "sha256": "8cdd54a4330ae6d65ec56e376c77fe71dd3e2ad0d3ea26c297ce440f8e811391"
+    },
+    {
+      "file": "E:/UnrealEngine/Engine/Plugins/Runtime/GameFeatures/Source/GameFeatures/Private/GameFeaturesSubsystem.cpp",
+      "symbol": "Cook raises builtin feature initial state to at least Registered; AddGameFeatureToAssetManager",
+      "sha256": "713cea61299f658ed5fff54a51036802b2602c45fddc77ef6017e6d31a0d3a10"
+    },
+    {
+      "file": "F:/UE/LyraStarterGame/Source/LyraGame/Character/LyraHeroComponent.cpp",
+      "symbol": "IsReadyToBindInputs and yaw-only Input_Move",
+      "sha256": "d036b6bbbf0fc8170cb31d0f3271d887d44f1b683db564f0e036f74b0e68d3e7"
+    },
+    {
+      "file": "F:/UE/LyraStarterGame/Plugins/CommonLoadingScreen/Source/CommonLoadingScreen/Private/LoadingScreenManager.cpp",
+      "symbol": "HoldLoadingScreenAdditionalSecs=2.0 and actual overlay dismissal",
+      "sha256": "c2853644e70e3145a195981c70631f5bb04eba36b929737c9e75776008ff7c25"
+    },
+    {
+      "file": "F:/UE/LyraStarterGame/Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp",
+      "symbol": "Loaded set after action execution, readiness delegates and scalability",
+      "sha256": "87695e320d66175e03bc47315e6272ecdc5826fc2e7095c1290cac44061ea6c4"
+    },
+    {
+      "file": "F:/UE/LyraStarterGame/Source/LyraGame/Character/LyraPawnData.h",
+      "symbol": "Hard UObject AbilitySets and InputConfig dependencies",
+      "sha256": "a56a5b0504247cbf041e24de1ff9828ec6e0deffb1a1c60ff8c9a451ba47f76c"
+    },
+    {
+      "file": "F:/UE/LyraStarterGame/Source/LyraGame/AbilitySystem/LyraAbilitySet.h",
+      "symbol": "TSubclassOf granted ability hard references",
+      "sha256": "3478b5ca7223b0a575fb0bb5a61ba7b62b85f2c3dbdf7b2a243aefc9a7c78d04"
+    }
+  ],
+  "implementation": [
+    {
+      "file": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/TrainingRange.uplugin",
+      "sha256": "45edfe58ba451893d0b9e32e23d5f2a096ec19821434c0792efbd1ffd256c6c5"
+    },
+    {
+      "file": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/TrainingRangeVerification.Build.cs",
+      "sha256": "117d8c57db6c3a4b39ea319546e68271e244ce66b64f4d5a0b585dbde81f8957"
+    },
+    {
+      "file": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/Private/TrainingRangeVerification.cpp",
+      "sha256": "65afc633f5437d852411337b67251195d5427b09cdb066e4a64eab2c8d88ce68"
+    },
+    {
+      "file": "scripts/package-training.ps1",
+      "sha256": "6cffe8dfe7fcc11d3882861db00db34867d8baba3bea29e34f2690a22aef1f1f"
+    },
+    {
+      "file": "scripts/verify-training-package.ps1",
+      "sha256": "4a9db83f82336dc9ca478c0aae6c70d81f0867858516130b4c85c97de17a0d28"
+    }
+  ],
+  "staticValidation": [
+    "PowerShell Parser: package-training.ps1 and verify-training-package.ps1, zero errors",
+    "Cook -ShowCommand previously printed only; no output directory, UE process or runtime report",
+    "pnpm run check:content latest review: 64 MDX, 106 public files SHA-256/native dimensions passed",
+    "Package -ShowCommand after exact lab source synchronization passed; no UAT/UBT/UE execution"
+  ],
+  "pending": [
+    "Full LyraEditor and LyraGame Development builds",
+    "Fresh and repeated prepare_training.py native verification",
+    "Final root layout selected-node Zoom1 export and final 1920x1080 first-preview capture",
+    "Re-Cook final navigation map, Package, then run actual archived executable with verifier"
+  ],
+  "limitations": [
+    "This record establishes implementation and static checks only; no packaged runtime pass is asserted",
+    "Existing PIE 9/9, network5/5 and lifecycle4/4 retain separate scope"
+  ],
+  "compilation": "Development Game/Client/Editor compile the observer body; Editor/PIE execution is rejected by GIsEditor or !RequiresCookedData before any ticker/delegate registration",
+  "selfReviewFixes": [
+    {
+      "change": "Compile observer in Development Editor; retain GIsEditor, cooked-data and explicit-switch runtime gates",
+      "nativeBuildStatus": "pending",
+      "issue": "The original !WITH_EDITOR preprocessor branch made Editor compile only an empty stub"
+    },
+    {
+      "issue": "An ability can activate/end between ticker observations, especially during a slow rendered frame",
+      "change": "Record exact-class AbilityActivatedCallbacks from the sampled ASC and Avatar, separately from spec IsActive observations; reject a Dash already active before Shift"
+    },
+    {
+      "issue": "Wall-clock-only key release may occur before the next PlayerController consumes globally injected input",
+      "change": "Allow at least three frames in addition to hold duration; native EnhancedInput global Tick follows per-world ticking"
+    },
+    {
+      "issue": "3D movement distance could count falling as successful W movement",
+      "change": "Assert positive displacement along controller yaw-only forward vector; record horizontal and vertical distances separately"
+    },
+    {
+      "issue": "World cleanup or lost viewport could leave callbacks registered or produce incomplete native success",
+      "change": "Remove ASC and world cleanup delegates on finish/shutdown; fail on premature sampled-world cleanup and unavailable capture viewport"
+    },
+    {
+      "issue": "A processed screenshot callback fires after both successful and failed save attempts",
+      "change": "Require fresh file, PNG signature, IHDR, complete IEND, dimensions 1920x1080 and native callback before success"
+    },
+    {
+      "issue": "Experience Loaded does not establish input bindings or loading-overlay dismissal",
+      "change": "Require Hero.IsReadyToBindInputs, PlayerInput, registered forced-key commands and hidden LoadingScreenManager when present"
+    }
+  ],
+  "historicalCookAssets": [
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked\\LyraStarterGame\\Plugins\\GameFeatures\\TrainingRange\\Content\\Experiences\\B_TrainingRange.uasset",
+      "bytes": 4895,
+      "sha256": "940da86e6913ec555744b47d7a49bb3b4d69a5a1898df2dcc5c0c4d301132ba0"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked\\LyraStarterGame\\Plugins\\GameFeatures\\TrainingRange\\Content\\Game\\HeroData_Training.uasset",
+      "bytes": 3104,
+      "sha256": "5e023ddde6cd2d4aca99777800715b848e77371372c310289862d8d1a44595c4"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked\\LyraStarterGame\\Plugins\\GameFeatures\\TrainingRange\\Content\\Game\\AbilitySet_TrainingHero.uasset",
+      "bytes": 4178,
+      "sha256": "98eb38d628f93c0f372dac8e77e865f97b05d4fc7fbe8403123662da934e4430"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked\\LyraStarterGame\\Plugins\\GameFeatures\\TrainingRange\\Content\\Game\\GA_TrainingDash.uasset",
+      "bytes": 13775,
+      "sha256": "2246a32c7643bebfd301a458d29ef042d6206ed099e1ea44ea7e8d637e047dc6"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked\\LyraStarterGame\\Plugins\\GameFeatures\\TrainingRange\\Content\\TrainingRange.uasset",
+      "bytes": 1513,
+      "sha256": "79580b59efcd46f99d58e7be6532e5198ddbd5894dc9975aeab51ed14d8fbce0"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked\\LyraStarterGame\\Plugins\\GameFeatures\\ShooterCore\\Content\\UserInterface\\W_ShooterHUDLayout.uasset",
+      "bytes": 15601,
+      "sha256": "90c1a3f27187ce86180fe92a3155b17df024f3abfebf240e57018d438294ed02"
+    }
+  ],
+  "cookScope": "The six files prove the previous pre-navigation Cook included the referenced graph; they do not establish the final map, new module build, current Package or packaged gameplay.",
+  "remainingRisk": [
+    "No LyraGame executable currently found in the training lab Binaries/Win64; final Game target build and cache reuse still need native UBT assessment",
+    "First packaged graphics/input run is unexecuted. Window focus, actual raw screenshot size and bot interruption must be observed, not inferred from source",
+    "The final navigation map needs a new Cook/Package. Historical cooked asset presence is not a current-package pass"
+  ],
+  "labSourceSynchronization": {
+    "filesMatched": 5,
+    "nativeBuildExecuted": false,
+    "report": "source-evidence/training-lab-source-sync.json",
+    "unchangedFiles": 1,
+    "completed": true,
+    "copiedFiles": 4
+  }
+}

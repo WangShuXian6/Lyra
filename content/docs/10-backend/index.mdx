@@ -1,0 +1,52 @@
+---
+title: 用 UE 模块实现独立后端
+description: 明确游戏服务器、账号服务和数据库的边界，并理解 UE Program 的适用范围。
+---
+
+## 学习目标与前置条件
+
+完成本篇后，你能解释游戏客户端、UE Dedicated Server、账号/持久化服务和 PostgreSQL 各负责什么。先完成 C++ 工程创建，了解 `Target.cs` 与 `Build.cs` 的区别；本课程使用本机 **UE 5.8.1 源码构建**和 PostgreSQL 18，源码核对日期为 **2026-09-13**。
+
+我们在新 MMORPG 工程的 `Source` 下管理后端模块，通过 `MMOBackendService.Target.cs` 生成独立控制台进程。它与游戏共享协议层，拥有自己的 HTTP 监听器、线程和数据库连接。关掉游戏客户端不会关掉后端，重启后端也不会清空数据库。
+
+## 后端适合直接做成 UE 模块吗
+
+**可以；是否合适取决于团队和部署目标。** 本课程采用它，是为了让熟悉 Unreal C++ 的读者用同一套 UBT、模块边界和调试工具打通完整链路。这是一条可运行的工程选择，并不意味着所有商业 MMORPG 都应把账号服务写成 UE Program。
+
+| 系统 | 本课程职责 | 直接依赖 |
+| --- | --- | --- |
+| 游戏客户端 | 登录、选角、申请票据、显示复制后的角色状态 | HTTP、MMOContracts |
+| Dedicated Server | 权威战斗、角色生成、复制、保存角色快照 | Engine、GAS、HTTP、MMOContracts |
+| Backend Program | 密码认证、会话、票据、租约、角色事务 | Core、Json、HTTPServer、libpq、libsodium |
+| PostgreSQL | 账号、角色状态、版本和幂等记录 | 独立数据库服务 |
+
+小型 UE 团队可以减少语言切换和重复协议代码。代价是要自己管理服务主循环、连接池、进程部署、监控和网络入口；UBT Program 也比常见后端框架更少提供现成 Web 中间件。账号服务需要大量第三方支付、风控、运营接口，或团队已有成熟后端平台时，应保留这里的 HTTP 协议，将服务实现替换成团队已有技术栈。
+
+**独立进程边界是关键。** 把 `libpq` 放进客户端模块会分发数据库能力和凭据；把慢查询直接放进 `GameMode::Tick` 会影响所有玩家帧时间。这里通过 `MMOThirdParty.Build.cs` 限制它只能进入 Win64 Program，游戏层只消费 JSON。
+
+## 从请求到角色进入世界
+
+1. 客户端注册/登录，获得随机登录令牌。
+2. 客户端查询或创建角色，申请绑定角色与 `local-1` 服务器的短期票据。
+3. 客户端把票据交给游戏服务器；游戏服务器用自己的服务凭据兑换。
+4. 后端原子地消耗票据、获取角色租约、返回持久化状态。
+5. 游戏服务器加载状态后才生成可操作 Pawn；之后战斗走 UE RPC 与属性复制。
+6. 游戏服务器定期保存快照并续租，玩家离开时先保存再释放租约。
+
+登录令牌、一次性票据和游戏租约承担三种不同任务。不要把账号密码带进游戏 URL，也不要让客户端直接调用存档接口。
+
+## 源码定位
+
+教学增量位于仓库 `examples/MMORPG`：`Source/MMOContracts` 是纯 C++ JSON 合同，`Source/MMOPersistence` 管理 SQL，`Source/MMOBackendService` 管理监听与调度。`backend/openapi.json` 是机器可读协议，`backend/migrations` 是数据库演进记录，`backend/source-manifest.json` 保存实际构建的教学源文件 SHA-256。
+
+本机对照源：`Engine/Source/Programs/BlankProgram`、`Engine/Source/Runtime/Online/HTTPServer`。本课程使用 UE 原生 `HTTPServer`，没有引入额外 Web 框架。
+
+## 预期结果、排障与练习
+
+阅读完后应能画出四个进程/系统之间的连接，并说明客户端为什么看不到数据库连接串。如果一个游戏模块出现 `MMOPersistence` 依赖，请先纠正依赖方向，再继续实现功能。
+
+练习：新增一个“领取任务奖励”的需求，列出客户端请求、游戏服务器验证和数据库保存各自应处理的内容。奖励数量应由权威玩法逻辑确定，再进入完整快照。
+
+## 来源与验证边界
+
+UE Target 的能力以本机 `BlankProgram.Target.cs` 为准，并参考 [Epic UBT Target 文档](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-build-tool-target-reference)。服务源码、构建、HTTP 测试与游戏联调是不同验证层级；实际状态记录在 `examples/MMORPG/backend/validation.json`，不要把源码文件存在当作运行通过。

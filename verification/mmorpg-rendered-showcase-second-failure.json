@@ -1,0 +1,14 @@
+{
+  "date": "2026-09-13T14:01:00.5364248Z",
+  "passed": false,
+  "captureAPI": "FSlateApplication::TakeScreenshot(SViewport), game timer",
+  "physicalInputTested": false,
+  "programmaticCultureSwitch": true,
+  "clients": [],
+  "captures": [],
+  "error": "New process did not restore the saved culture and localized login UI",
+  "cleanupCompleted": true,
+  "completedAt": "2026-09-13T14:02:24.718922Z",
+  "diagnosedCause": "MMO LocalizationPaths was declared in DefaultEngine.ini. InitGameTextLocalization validates only game culture paths from GGameIni, so it read saved zh-Hans but fell back to en. The final configuration declares the project path in DefaultGame.ini.",
+  "nativeCaptureDirectory": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/97f193e82b"
+}

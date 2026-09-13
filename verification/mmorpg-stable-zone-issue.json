@@ -1,0 +1,89 @@
+{
+  "recordedAt": "2026-09-13T19:23:08.346780+00:00",
+  "scope": "Full raw-log review after the first cooked eight-result gameplay run.",
+  "firstGameplayAssertionsPassed": true,
+  "firstGameplayReport": "verification/mmorpg-packaged-smoke-before-stable-zone.json",
+  "overallNetworkAcceptancePassed": false,
+  "reason": "Automatically suffixed Movable geometry actors had different names on cooked peers; movement-base references could not resolve.",
+  "observations": [
+    {
+      "file": "combat-A-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 0,
+      "unresolvedRelativeBase": 263
+    },
+    {
+      "file": "combat-B-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 0,
+      "unresolvedRelativeBase": 263
+    },
+    {
+      "file": "death-respawn-A-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 0,
+      "unresolvedRelativeBase": 144
+    },
+    {
+      "file": "death-respawn-B-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 0,
+      "unresolvedRelativeBase": 168
+    },
+    {
+      "file": "restore-A-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 0,
+      "unresolvedRelativeBase": 61
+    },
+    {
+      "file": "restore-B-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 0,
+      "unresolvedRelativeBase": 60
+    },
+    {
+      "file": "server-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 3387,
+      "unresolvedRelativeBase": 0
+    },
+    {
+      "file": "ui-return-A-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 0,
+      "unresolvedRelativeBase": 61
+    },
+    {
+      "file": "ui-return-B-9ca316af8e.log",
+      "unresolvedStaticMeshGUID": 0,
+      "unresolvedRelativeBase": 56
+    }
+  ],
+  "correction": {
+    "file": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+    "sha256": "219795347b82ce98b8c2cd3a66616cb08096c9b6de8c5a491958677bf110475a",
+    "scope": "BeginPlay fixed geometry names, pre-FinishSpawning network addressability and Static mobility. No reflected type, CDO mesh reference, original asset or game config change.",
+    "builds": [
+      "verification/mmorpg-stable-zone-editor-toolsets-build.json",
+      "verification/mmorpg-stable-zone-client-build.json",
+      "verification/mmorpg-stable-zone-server-build.json"
+    ]
+  },
+  "newValidation": "Test-MovementBaseLogs.ps1 requires all six native stable geometry names and rejects unresolved base/GUID messages in clients and server.",
+  "finalResolution": {
+    "recordedAt": "2026-09-13T19:39:12.810594+00:00",
+    "passed": true,
+    "scope": "Final cooked Client/Server eight-result, six-result and rendered 22-capture regressions; original failed acceptance above remains historical.",
+    "logSnapshotsChecked": 19,
+    "allSixStableGeometryNamesObservedInEveryLog": true,
+    "unresolvedBaseMessages": 0,
+    "readAndHashSameSnapshot": true,
+    "evidence": [
+      {
+        "path": "verification/mmorpg-packaged-smoke.json",
+        "sha256": "99c3b43ef84be8b09674b78db44f0af4fcf92d23ea2412eb0bb465dd2092e81d"
+      },
+      {
+        "path": "verification/mmorpg-packaged-death-logout.json",
+        "sha256": "9fd8095703f335f1008a9c30e1333066058b632701f7265162144edbba3bc9f7"
+      },
+      {
+        "path": "verification/mmorpg-packaged-rendered-showcase.json",
+        "sha256": "57329a5410a60f744ee58c237c7dafd264fde50f3c4b2f863e7548c19f7d756c"
+      }
+    ]
+  }
+}

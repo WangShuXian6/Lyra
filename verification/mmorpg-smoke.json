@@ -1,0 +1,111 @@
+{
+  "releaseCallbacksVerified": true,
+  "results": [
+    {
+      "role": "A",
+      "restore": false,
+      "passed": true,
+      "xp": 25,
+      "mana": 80,
+      "potions": 0,
+      "health": 50,
+      "deadCheckpointRestore": false,
+      "cooldown": true,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 45.51208225444401,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "B",
+      "restore": false,
+      "passed": true,
+      "xp": 0,
+      "mana": 100,
+      "potions": 0,
+      "health": 100,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": true,
+      "sawOtherMovement": true,
+      "positionX": 0,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "A",
+      "restore": true,
+      "passed": true,
+      "xp": 25,
+      "mana": 80,
+      "potions": 0,
+      "health": 50,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 45.5,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "B",
+      "restore": true,
+      "passed": true,
+      "xp": 0,
+      "mana": 100,
+      "potions": 0,
+      "health": 100,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 0,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "A",
+      "deathRespawn": true,
+      "passed": true,
+      "deathObserved": true,
+      "pawnReplaced": true,
+      "sameASC": true,
+      "abilityCount": 2,
+      "health": 100,
+      "mana": 80,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "B",
+      "deathRespawn": true,
+      "passed": true,
+      "deathObserved": true,
+      "pawnReplaced": true,
+      "sameASC": true,
+      "abilityCount": 2,
+      "health": 100,
+      "mana": 100,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "A",
+      "uiReturn": true,
+      "passed": true
+    },
+    {
+      "role": "B",
+      "uiReturn": true,
+      "passed": true
+    }
+  ],
+  "mode": "Two independent editor game clients + dedicated server",
+  "deathLogout": false,
+  "clientExecutable": "E:\\UnrealEngine\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "finalSaveCallbacksVerified": true,
+  "passed": true,
+  "rendering": "NullRHI headless gameplay validation",
+  "requestedResolution": "1920x1080",
+  "date": "2026-09-13T13:55:54.4719314Z",
+  "scalability": "Medium (1)",
+  "backendRestarted": true,
+  "persistedDeaths": [],
+  "serverExecutable": "E:\\UnrealEngine\\Engine\\Binaries\\Win64\\UnrealEditor.exe"
+}

@@ -1,0 +1,73 @@
+---
+title: Asset Manager、软引用与 Cook
+description: 解释编辑器中找得到资产、打包后却加载失败的根本区别。
+---
+
+## 学习目标与前置条件
+
+前置：能识别包路径和 Experience。目标是把“引用关系”“扫描登记”“异步加载”“打包保留”四件事分开检查。依据本机配置和 `ULyraAssetManager`，核对于 2026-09-13，UE 5.8.1。
+
+## 配置入口
+
+`Config/DefaultEngine.ini` 的 `AssetManagerClassName` 设为 `/Script/LyraGame.LyraAssetManager`。`ULyraAssetManager::Get()` 对此有明确检查；迁移时漏掉配置，会在代码仍然要求 LyraAssetManager 时失败。
+
+`Config/DefaultGame.ini` 为 `LyraExperienceDefinition` 配置了蓝图类扫描，目录是 `/Game/System/Experiences`，并显式包含前端 Experience。插件内容的扫描还应检查其 GameFeatureData；不能把基础目录规则当成所有插件内容的兜底。
+
+## 操作步骤
+
+1. 打开 Project Settings → Asset Manager，找到 `LyraExperienceDefinition`，核对 `Has Blueprint Classes`、扫描目录和 Cook Rule。
+2. 对比 `LyraExperienceActionSet`：它是数据资产，不是 Experience 蓝图生成类。扫描规则的类型必须与资产形式一致。
+3. 在复制的训练场 Feature 中新建资产后，先查看 Asset Manager 是否能按 Primary Asset ID 找到它，再检查 Experience 是否实际引用它。
+4. 打开 Reference Viewer 区分硬引用与软引用。对于以字符串拼出来的路径，另行建立可被 Cook 发现的管理引用。
+5. 最后做一次实际 Cook/打包运行，用日志确认相同包路径可以解析。PIE 成功只说明编辑器能够访问源资产。
+
+### 第一次展开扫描规则
+
+从 **Edit → Project Settings** 打开设置，在左侧选择 **Game → Asset Manager**。展开 `Primary Asset Types to Scan`，按条目的 **Primary Asset Type 名字** 找到 `LyraExperienceDefinition`，不要依赖数组下标。展开该条目的 Directories、Specific Assets 和 Rules。官方基础规则在本机 `DefaultGame.ini` 中如下：
+
+| 字段 | 应核对的配置 |
+| --- | --- |
+| Primary Asset Type | `LyraExperienceDefinition` |
+| Asset Base Class | `LyraExperienceDefinition` |
+| Has Blueprint Classes | 勾选 |
+| Is Editor Only | 不勾选 |
+| Directories | `/Game/System/Experiences` |
+| Specific Assets | 包含 `/Game/System/FrontEnd/B_LyraFrontEnd_Experience` |
+| Rules → Cook Rule | `Always Cook` |
+
+然后找到 `LyraExperienceActionSet` 条目：它的 Has Blueprint Classes **不勾选**。Project Settings 属于配置编辑，没有蓝图 Compile 按钮；此处先只读对照。修改实验工程配置后，检查 `Config/DefaultGame.ini` 的实际差异并重新打开设置确认。Feature 内的目录在对应 GameFeatureData 里登记，不能简单把表中的 `/Game` 替换成插件目录后覆盖官方规则。
+
+![Experience 的项目级 Asset Manager 扫描，真实原生配置面板](/media/configuration/training/asset-manager.png)
+
+图源：`Project Settings / Game / Asset Manager`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。项目 Asset Manager 的 LyraExperienceDefinition 条目：蓝图类、非 Editor Only、扫描 /Game/System/Experiences、Always Cook。
+
+![ActionSet 扫描类型对照，真实原生配置面板](/media/configuration/training/asset-manager-actionset.png)
+
+图源：`Project Settings / Game / Asset Manager`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。LyraExperienceActionSet 为普通 Data Asset，不勾选 Has Blueprint Classes；本机项目级条目的 Directories 为 0，插件目录由 GameFeatureData 扫描配置负责。
+
+这里的项目级 Directories 为 0 项，不能据此判断插件中没有 ActionSet；Game Feature 还会提交自己的扫描信息。普通 ActionSet 数据资产与 Experience 蓝图生成类使用不同的 Has Blueprint Classes 设置。
+
+## 初始化原理与源码节选
+
+`Source/LyraGame/System/LyraAssetManager.cpp` 的启动过程先调用父类扫描，再排队加载基础数据与 Cue：
+
+```cpp
+Super::StartInitialLoading();
+STARTUP_JOB(InitializeGameplayCueManager());
+STARTUP_JOB_WEIGHTED(GetGameData(), 25.f);
+DoAllStartupJobs();
+```
+
+上面 `STARTUP_JOB` 是该 `.cpp` 文件中的宏，并非引擎提供给所有模块的全局 API。阅读示例时同时向上查看宏定义。`GetGameData()` 加载 `ULyraGameData`；它和 Experience 的每局加载是不同阶段。
+
+Asset Bundle 能让服务器只加载需要的数据，客户端加载展示所需数据。软引用把“资产名字已知”与“对象已在内存”分开；异步回调完成前不能把软引用当有效 UObject 使用。
+
+## 实用定位
+
+本机注册了 `Lyra.DumpLoadedAssets` 控制台命令，用于打印经该管理器保留的已加载资产池；它不是世界里所有 UObject 的完整列表。启动参数 `-LogAssetLoads` 可帮助观察管理器同步加载耗时。结合日志中的具体包路径看问题，比笼统地“清理缓存”更有效。
+
+## 预期结果、排障与练习
+
+你应能回答某个新 Experience 是否已登记、是否加载成功、是否被 Cook。打包后只缺插件 UI 时，检查插件启用、GameFeatureData 扫描、软类引用和 Client Bundle，而不是把全部 Content 强制打包作为长期方案。
+
+练习：画一张只有五个节点的引用图：地图、Experience、ActionSet、HUD 类、纹理。标注其中哪条为软引用，并写出负责让纹理进入构建产物的引用链。

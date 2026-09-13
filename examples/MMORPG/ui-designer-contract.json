@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "runtimeRule": "C++ contains BindWidget references, business callbacks, MVVM lifetime and CommonUI routing. Every visual tree is authored in these real WidgetBlueprint Designer assets. No runtime ConstructWidget layout.",
+  "viewModel": {
+    "class": "/Script/MMORPG.MMOPlayerViewModel",
+    "name": "PlayerVM",
+    "creationType": "Manual",
+    "direction": "OneWayToDestination",
+    "execution": "Immediate"
+  },
+  "assets": [
+    {
+      "name": "WBP_MMOLayout",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMORootLayout",
+      "widgets": {
+        "GameLayer": "CommonActivatableWidgetStack",
+        "MenuLayer": "CommonActivatableWidgetStack",
+        "ModalLayer": "CommonActivatableWidgetStack"
+      },
+      "layout": "Overlay root with Game/Menu/Modal stacks added in that order, all Fill horizontal/vertical"
+    },
+    {
+      "name": "WBP_Login",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOLoginPanel",
+      "widgets": {
+        "Form": "VerticalBox",
+        "Username": "EditableTextBox",
+        "Password": "EditableTextBox",
+        "CharacterName": "EditableTextBox",
+        "CharacterList": "ComboBoxString",
+        "Message": "TextBlock",
+        "LoginButton": "Button",
+        "RegisterButton": "Button",
+        "RefreshButton": "Button",
+        "CreateButton": "Button",
+        "JoinButton": "Button"
+      },
+      "layout": "Centered opaque navy panel; persistent account/password/name labels; two visibly separated sections Account and Character selection; password masked, min12 label, controls readable dark text/light inputs"
+    },
+    {
+      "name": "WBP_ManaStatus",
+      "path": "/Game/UI",
+      "parent": "/Script/UMG.UserWidget",
+      "widgets": {
+        "ManaText": "TextBlock",
+        "ManaBar": "ProgressBar"
+      },
+      "bindings": {
+        "ManaText.Text": "ManaLabel",
+        "ManaBar.Percent": "ManaFraction"
+      },
+      "layout": "VerticalBox, label18pt then progress bar height14"
+    },
+    {
+      "name": "WBP_PlayerHUD",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOHUDPanel",
+      "widgets": {
+        "Values": "TextBlock",
+        "ManaStatus": "WBP_ManaStatus",
+        "TargetText": "TextBlock",
+        "TargetHealthBar": "ProgressBar",
+        "CooldownText": "TextBlock",
+        "InputHintText": "TextBlock",
+        "TargetButton": "Button",
+        "AttackButton": "Button",
+        "SpellButton": "Button",
+        "InventoryButton": "Button",
+        "SettingsButton": "Button"
+      },
+      "bindings": {
+        "Values.Text": "StatusText",
+        "TargetText.Text": "TargetLabel",
+        "TargetHealthBar.Percent": "TargetFraction",
+        "CooldownText.Text": "CooldownLabel",
+        "InputHintText.Text": "InputHint"
+      },
+      "layout": "Top-left opaque navy player panel, nested actual WBP_ManaStatus; target block; action/menu controls; FieldNotify InputHintText changes with keyboard/gamepad input type. A 1920x1080 viewport is the baseline.",
+      "focusPolicy": "All five HUD Buttons have IsFocusable=false. Native HUD selects Game input with no desired focus target and no automatic focus restoration, while retaining activation support for the input router. I/View opens inventory; P/Menu opens settings; Escape/B returns from menus. Login and menu Buttons remain focusable."
+    },
+    {
+      "name": "WBP_Inventory",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOInventoryPanel",
+      "widgets": {
+        "Message": "TextBlock",
+        "PotionButton": "Button",
+        "CloseButton": "Button"
+      },
+      "bindings": {
+        "Message.Text": "InventoryLabel"
+      },
+      "layout": "Centered opaque panel with title, inventory list text, use potion and return"
+    },
+    {
+      "name": "WBP_Settings",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOSettingsPanel",
+      "widgets": {
+        "LowQualityButton": "Button",
+        "MediumQualityButton": "Button",
+        "HighQualityButton": "Button",
+        "LogoutButton": "Button",
+        "CloseButton": "Button",
+        "ChineseButton": "Button",
+        "EnglishButton": "Button"
+      },
+      "layout": "Centered opaque panel with title, explanation; Low/Medium/High, logout and return; Medium is default"
+    },
+    {
+      "name": "WBP_Confirm",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOConfirmPanel",
+      "widgets": {
+        "ConfirmButton": "Button",
+        "CancelButton": "Button"
+      },
+      "layout": "Centered opaque modal panel, heading and save-on-disconnect explanation, confirm logout and continue buttons"
+    }
+  ],
+  "policy": {
+    "asset": "/Game/UI/BP_MMOUIPolicy",
+    "LayoutClass": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout_C"
+  },
+  "nativeRouting": "MMORootLayout owns configurable EditDefaultsOnly TSoftClassPtr fields LoginClass/HUDClass/InventoryClass/SettingsClass/ConfirmClass, default paths to listed assets. ShowInventory/ShowSettings/ShowConfirm resolve and push those classes.",
+  "notes": [
+    "All named widgets must have IsVariable=true and exact case for BindWidget.",
+    "Do not set Button OnClicked graph callbacks; native parent binds business callbacks in NativeConstruct and removes in NativeDestruct.",
+    "Parent MMO Panel optional Message supports runtime backend feedback. Static titles/captions/style live only in Designer.",
+    "Builder must create ManaStatus before HUD so nested Widget class is available; build root and all panels before setting Policy LayoutClass.",
+    "MVVM bindings are actual UMVVMBlueprintView configuration compiled with the WBP, not event-graph text."
+  ],
+  "localization": {
+    "namespace": "MMOUI",
+    "sourceCulture": "en",
+    "supportedCultures": [
+      "en",
+      "zh-Hans"
+    ],
+    "staticText": "FText referencing the original /Game/Localization/ST_MMO StringTable and stable MMOUI namespace/key",
+    "dynamicText": "FText::Format; character/account names remain culture invariant"
+  }
+}

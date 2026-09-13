@@ -1,0 +1,112 @@
+---
+title: 部署、故障处理与后续演进
+description: 将教学服务转成可运维进程，明确 HTTPS 入口、密钥、备份与单区域限制。
+---
+
+## 学习目标与前置条件
+
+区分本地演示与服务部署，能安排进程启动、凭据注入、健康检查和数据库恢复。先完成构建与 HTTP 验收。本篇是教学后端的部署操作说明，源码核对日期 2026-09-13；它不声明已经完成公网负载测试或商业级安全评审。
+
+## 三个独立部署产物
+
+Fumadocs 站点导出为静态文件，由 GitHub Pages 托管。GitHub Pages 不运行 UE 进程，也不连接数据库。
+
+游戏服务器是 `MMORPGServer` 可执行程序和 Cook 后的游戏内容，负责地图、角色与网络复制。账号后端是 `MMOBackendService` 及其运行时 DLL，负责 HTTP 与持久化。PostgreSQL 按数据库服务独立运行。
+
+因此推送 `main` 自动部署的是文档站，完整操作见 [文档站构建与 Pages 发布](/docs/11-reference/publishing)。后端发布需要构建、测试、配置服务管理器和数据库迁移流程，不能塞进静态站点的浏览器 JavaScript。
+
+## HTTPS 入口与服务身份
+
+后端默认监听 `127.0.0.1:8088`，公开入口放在同机 HTTPS 反向代理之后。代理负责证书、请求体限制、连接数和认证速率限制。服务器专用路径 `/v1/server/` 应只允许受信网络访问，再叠加服务密钥校验；不要向公开客户端分发 `MMO_SERVER_SECRET`。
+
+服务使用独立操作系统账户运行，把环境变量作为服务配置注入。`PGSSLMODE=verify-full` 用于具有可信证书的远程 PostgreSQL 连接；本地脚本的 `prefer` 只用于本机教学。密码、票据、租约和登录令牌不能出现在访问日志、URL 查询串或错误上报中。
+
+`backend/config.example.ps1` 列出了配置名，实际配置时逐项确认：
+
+| 后端进程字段 | 本机教学值 / 正式环境含义 |
+| --- | --- |
+| `PGHOST`、`PGPORT` | `127.0.0.1`、`5432`；迁到独立数据库主机时改为实际主机与端口 |
+| `PGDATABASE`、`PGUSER` | `lyra_mmo_tutorial`、`lyra_mmo_service`；正式运行身份与迁移身份可拆分 |
+| `PGPASSWORD` | 由本机 DPAPI 或部署环境的密钥管理注入，无仓库默认口令 |
+| `PGSSLMODE` | 本机 `prefer`；远程验证证书使用 `verify-full`，同时准备可信根证书 |
+| `MMO_SERVER_SECRET` | 至少 32 个随机字符；后端与受信 Dedicated Server 匹配，客户端不持有 |
+| `MMO_SERVER_ID` | 首版保留 `local-1`；与 Dedicated Server 的 `-MMOServerID` 及客户端票据请求中的 `serverId` 三方一致 |
+| `MMO_GAME_ADDRESS` | 本机 `127.0.0.1:7777`；部署时必须是玩家可达的游戏服务器地址 |
+| `-Port=` | Backend Program 的 HTTP 端口，默认 `8088`，仍绑定 loopback |
+| `-ShutdownFile=` | 服务可写目录中的停止信号文件，由运维启动/停止器一致管理 |
+
+客户端和游戏服务器通过 `-MMOBackend=https://你的后端域名` 切换 HTTP 入口；这不会改变 UE 的 UDP 监听端口。不要把 `MMO_GAME_ADDRESS` 填成 HTTP 地址，也不要把外部客户端配置成 `127.0.0.1`，那会指向玩家自己的机器。当前 `Start-Lab.ps1` 是本机默认端口启动器；正式部署按上述进程字段配置独立启动命令，并单独验证服务管理器的启动、重启与停止行为。
+
+当前实现只有一个配置的 `serverId` 和服务密钥。这符合单区域、一个 Dedicated Server 的课程范围。多服务器时应新增服务器身份注册表和每服务器凭据，保留票据绑定与租约检查，不能简单让整个集群共享一份客户端可见配置。
+
+**首版部署继续使用 `local-1` 作为逻辑服务器 ID。** 后端从 `MMO_SERVER_ID` 读取它，Dedicated Server 从 `-MMOServerID=` 读取它；客户端 `Source/MMORPG/Private/MMOUI.cpp` 的 `UMMOLoginPanel::JoinClicked` 则把票据请求的 `serverId` 固定写成 `local-1`，没有对应的客户端启动参数或设置面板。只修改后端与 Dedicated Server 的 ID，会让客户端申请票据返回 HTTP 400。更换服务器地址只修改 `MMO_GAME_ADDRESS`，无需改这个逻辑 ID。确需使用其他 ID 时，还必须修改客户端 `JoinClicked` 的取值，或新增明确的服务器选择配置让该函数读取，再重新构建、Cook 并核对三方一致；修改 `-MMOBackend=` 只改变 HTTP 地址，不会修改请求中的 `serverId`。
+
+## 正常发布与回滚
+
+1. 从固定提交构建 Program，保存构建日志、依赖版本和测试报告。
+2. 对数据库做备份，在兼容旧版服务的前提下应用新增迁移。
+3. 暂停新入服流量，等待游戏服务器完成必要保存。
+4. 正常停止后端，替换程序与依赖，在原服务身份下重新启动。
+5. 检查 `/health`，再验证登录、角色读取、入服和一轮保存。
+
+回滚程序之前检查新迁移是否兼容旧版本。生产迁移优先使用新增列、兼容读取和分阶段切换，避免发布时直接删除旧版本仍使用的字段。当前教学迁移脚本是本地初始化工具，正式服务应将 DDL 迁移凭据与运行时 DML 凭据分开。
+
+## 故障行为
+
+| 故障 | 当前实现行为 | 运维动作 |
+| --- | --- | --- |
+| 数据库连接失败 | 请求返回 503，后续工作尝试重连 | 检查数据库和服务凭据；保留原保存 ID 重试 |
+| SQL 锁等待过久 | 超时，未提交事务回滚 | 定位阻塞事务和慢查询 |
+| 后端进程崩溃 | 未提交事务回滚，已提交快照仍在 | 重启服务并检查健康；客户端重新验证操作结果 |
+| 游戏服务器崩溃 | 租约在 120 秒后失效 | 恢复到最后成功存档，再重新入服 |
+| HTTP 队列满 | 503 `busy` | 退避、限流、观察密码 KDF 和数据库耗时 |
+| 保存响应丢失 | 相同请求 ID 重试返回原版本 | 不重新生成请求 ID 或重复增加版本 |
+
+最低限度监控包括健康检查、HTTP 状态分布、队列等待、SQL 耗时、失败保存数量、活动租约数、进程重启次数和数据库空间。现有日志提供启动与正常停止记录；生产级指标导出需要接入团队现有监控系统。
+
+## 备份与恢复练习
+
+用 PostgreSQL `pg_dump` 创建自定义格式备份，在一个新的恢复数据库中用 `pg_restore` 验证账号、角色和迁移版本。确认备份可恢复之前，不应把“备份文件存在”记为验收成功。含账号凭据摘要的数据文件同样需要限制访问。
+
+本机 **PostgreSQL 18.3 / 2026-09-13 15:25:11–15:25:14 UTC** 已完成一次真实演练：`pg_dump` 导出教学库，`createdb` 创建全新恢复库，`pg_restore --single-transaction` 还原；七张表的行数和完整内容 SHA-256、列/约束/索引定义、迁移版本 `1,2` 与 UTF-8 编码共 **10 项检查通过**。其中包含 1 个教学账号、2 个角色和 41 条保存幂等记录。原库在前后比对中保持一致，临时恢复库在核验数据库 OID 后删除，17,761 字节备份保留在忽略目录。报告为 `verification/backend-backup-restore.json`，不包含账号明细或密码摘要。
+
+复验运行 `./scripts/backend/Test-BackupRestore.ps1`，按提示输入本机 PostgreSQL 管理员口令；它仅用管理员创建、删除本次随机命名的恢复库，导出和还原使用专用角色。若源库在采样期间发生写入，脚本会失败，先让游戏正常保存退出再重试。这项演练验证逻辑备份可恢复，不包含生产切换或时间点恢复。
+
+下面拆开说明相同操作，便于手工理解和检查。[PostgreSQL pg_dump](https://www.postgresql.org/docs/18/app-pgdump.html) 的 custom 格式由 [pg_restore](https://www.postgresql.org/docs/18/app-pgrestore.html) 读取。先让客户端退出并确认最终保存，再在专用 PowerShell 7 终端备份；路径沿用初始化篇，备份保存在被 Git 忽略的 `.local`。
+
+```powershell
+Set-Location 'F:/UE/LyraDoc'
+. ./scripts/backend/Common.ps1
+Import-MMOEnvironment
+$mmoPostgres = 'D:/program/1-web/PostgreSQL/18'
+$mmoBackupDir = Join-Path (Get-MMOProjectRoot) '.local/backups'
+New-Item -ItemType Directory -Path $mmoBackupDir -Force | Out-Null
+$mmoBackup = Join-Path $mmoBackupDir ('tutorial-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.dump')
+& (Join-Path $mmoPostgres 'bin/pg_dump.exe') `
+  -h 127.0.0.1 -p 5432 -U lyra_mmo_service -d lyra_mmo_tutorial `
+  --format=custom --file=$mmoBackup
+if ($LASTEXITCODE -ne 0) { throw 'pg_dump failed; keep the source database unchanged.' }
+Get-Item -LiteralPath $mmoBackup | Select-Object Name, Length
+```
+
+恢复目标使用独立名称，不覆盖教学库。创建数据库需要管理员权限，所以 `createdb` 的 `-W` 会再次提示管理员口令；恢复则使用专用角色。若 `lyra_mmo_restore_check` 已存在，创建步骤会报错，此时选择新的恢复库名重新执行，不要删除正在使用的数据库。
+
+```powershell
+$mmoRestoreDb = 'lyra_mmo_restore_check'
+& (Join-Path $mmoPostgres 'bin/createdb.exe') `
+  -h 127.0.0.1 -p 5432 -U postgres -W -O lyra_mmo_service $mmoRestoreDb
+if ($LASTEXITCODE -ne 0) { throw 'Restore target must be a newly created database.' }
+& (Join-Path $mmoPostgres 'bin/pg_restore.exe') `
+  -h 127.0.0.1 -p 5432 -U lyra_mmo_service -d $mmoRestoreDb `
+  --no-owner --no-acl --exit-on-error $mmoBackup
+if ($LASTEXITCODE -ne 0) { throw 'pg_restore failed; inspect the separate restore database.' }
+Invoke-MMOPsql 'SELECT version FROM schema_migrations ORDER BY version;' $mmoRestoreDb $mmoPostgres
+Invoke-MMOPsql 'SELECT count(*) FROM accounts;' $mmoRestoreDb $mmoPostgres
+Invoke-MMOPsql 'SELECT count(*) FROM characters;' $mmoRestoreDb $mmoPostgres
+```
+
+预期迁移为 1、2，账号与角色数量应与备份时的源库一致。最后在本机查询角色 `version`、`state` 并与备份前的记录比对；对账号与角色明细的结果只在本地检查。这里没有修改运行服务的 `PGDATABASE`，恢复库也不会自动替代生产库。校验完成后保留备份来源、时间和结果，终端退出后清除这次临时进程环境。
+
+过期会话和票据可以按到期时间清理；保存幂等记录的保留期必须长于客户端/服务器允许的重试窗口。当前教学不会自动删除幂等记录，以便观察保存历史；长期运行需要新增有明确保留策略的维护任务。
+
+练习：写一份服务停止后 10 分钟内恢复的演练记录，包含备份来源、恢复目标、健康请求、角色版本和库存对比。跨服、交易、公会、邮件、运营封禁、密码找回与大规模并发属于后续系统，不能通过这一单区演示推断它们已经实现。

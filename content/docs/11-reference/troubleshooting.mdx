@@ -1,0 +1,75 @@
+---
+title: 按现象排障：从日志定位到调用链
+description: 将加载、输入、技能、UI 与打包问题映射到可验证的检查点。
+---
+
+本表基于 2026-09-13 核对的 UE 5.8.1 Lyra 源码。每次排障先记下工程、地图、Experience、网络实例和最后一次改动；对照同一版本基准副本复现。没有复现记录时，缓存、网络和蓝图都可能成为被误判的对象。
+
+## 常见症状与第一检查点
+
+| 症状 | 先检查 | 源码入口 |
+|---|---|---|
+| 一直显示加载界面 | Experience 实际来源、插件加载错误、LoadState | ExperienceManager::ShouldShowLoadingScreen |
+| 地图里没有角色 | Experience 是否完成、PawnData/PawnClass、出生点 | GameMode::OnExperienceLoaded / SpawnDefaultPawnAtTransform |
+| 角色有模型但不动 | Hero 初始化、LocalPlayer、InputComponent 类型 | HeroComponent::CanChangeInitState |
+| 改 IMC 没效果 | 当前 PawnData、当前 InputConfig、上下文是否添加 | HeroComponent::InitializePlayerInput |
+| 技能完全找不到 | AbilitySet 是否由服务器授予 | AbilitySet::GiveToAbilitySystem |
+| 技能存在但不激活 | 精确输入标签、费用/冷却/标签/激活组 | ASC::ProcessAbilityInput / GameplayAbility::CanActivateAbility |
+| 武器有模型但不能打 | 装备实例、SourceObject、武器 AbilitySet | EquipmentManager::EquipItem / RangedWeapon::CanActivateAbility |
+| 受击有特效但不掉血 | EffectSpec、目标 ASC、免伤、队伍与阶段 | HealthSet::PostGameplayEffectExecute |
+| HUD 叠加或切换后残留 | 重复 Push、扩展句柄和注销路径 | AddWidgets::RemoveWidgets |
+| 菜单回来输入异常 | 激活层、期望焦点、输入模式与捕获 | LyraActivatableWidget::GetDesiredInputConfig |
+| 新根布局完全没生效 | Policy.LayoutClass、DefaultUIPolicyClass 的生成类路径、重新创建本地玩家 UI | GameUIPolicy::CreateLayoutWidget |
+| Cue 标签存在但插件表现不出现 | 路径动作是否在 GameFeatureData.Actions、目录是否经注册扫描 | LyraGameFeature_AddGameplayCuePaths::OnGameFeatureRegistering |
+| 复制地图后 AI 或路径拾取不动 | NavMeshBoundsVolume 覆盖、原生导航投影、Build Paths 后保存 | FEditorBuildUtils::EditorBuild / BuildAIPaths |
+| 设置截图 ZoomAmount=1 仍导出缩小图 | 实际 Graph 焦点、Ctrl+A 后选择描边、原始 PNG 的比例 | BlueprintScreenshotToolHandler::CaptureGraphEditor |
+| PIE 正常，打包缺资产 | 扫描类型、插件挂载、Cook 与软引用 | AssetManager 与 GameFeatureData |
+| 构建被 Live Coding 阻止 | 所有同引擎编辑器的会话 | 正常保存关闭后完整构建 |
+| 刚编译成功，工具插件却提示模块不兼容 | Engine、项目和插件的实际 `.modules` BuildId，以及 UBT 是否启用了该插件 | 完整 Editor 目标的插件选择与 WriteMetadata |
+
+## 引擎更新后工具插件的 BuildId 不匹配
+
+**编辑器启动参数与 UBT 构建参数是两次独立的选择。** 只在 `UnrealEditor.exe` 命令行使用 `-EnablePlugins=...` 启用工具，不会自动把这个列表带入下一次 `Build.bat`。引擎共享模块重新编译后，这类插件可能仍保留上一轮 `Binaries/Win64/UnrealEditor.modules`，导致新编辑器在真正执行 Python 或打开资产之前就拒绝加载。
+
+本机在 **2026-09-13 18:42 UTC** 更新 MMORPG 的标签输入时重新构建了共享 Engine 模块，随后首次启动遇到 MCP 工具的旧 metadata。这次通过同一个 `MMORPGEditor` 完整目标，明确加入实际工具插件列表修复：
+
+```powershell title="本次文档自动化工具的完整目标修复"
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  MMORPGEditor Win64 Development `
+  -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject `
+  -EnablePlugin=ModelContextProtocol+ToolsetRegistry+AllToolsets `
+  -WaitMutex -NoHotReloadFromIDE -NoUBA -MaxParallelActions=3
+```
+
+执行前保存未保存工作，正常关闭使用该引擎的相关编辑器和 Live Coding 会话，并等待其他构建完成。这里的插件名是 **ModelContextProtocol**；`ModelContextProtocolEngine` 是模块名，不能代替插件名。普通读者按自己实际启用的插件和 Editor 目标调整，不必为了运行 Lyra 安装这套文档采集工具。
+
+本次原生 UBT 于 **18:46:09 UTC** 成功，5 个动作、10.89 秒，记录为 `verification/mmorpg-tagged-editor-toolsets-build.json`。随后新进程才执行了资产保存。每次仍应比较当前 Engine、项目和相关插件的 `.modules`；**不要手工复制或修改 BuildId，也不要照填教程中的历史 GUID**。只有正常构建产生匹配 metadata 才能证明这组目标已被 UBT 处理。训练场的 `LyraDocTools`、`TrainingRange` 和截图工具也要在自己的完整目标中启用；打包脚本的 `-skipbuildeditor` 不会替你修复过期的 Editor 模块。
+
+## 调试操作顺序
+
+1. 在实验副本只保留一个要验证的变化，重新进入相同地图和 Experience。
+2. Output Log 按 `LogLyraExperience`、`LogLyraAbilitySystem` 等实际日志类别过滤。保留首个错误及上下文，不只复制最后一行。
+3. 在 Rider 设置条件断点，区分服务器、所属客户端和模拟代理。观察对象路径与 LocalRole，避免断在错误 World。
+4. 在蓝图编辑器 Debug Filter 选择运行中的正确对象。只看节点默认值不能说明这次执行值。
+5. 确认修复后再做反例：缺配置、断开连接、取消能力、重复进出界面。成功一次不说明清理路径正确。
+
+## 已核对的本机调试入口
+
+`DefaultInput.ini` 绑定了 `CycleAbilitySystemDebug`、`PreviousDebugTarget`、`NextDebugTarget` 等调试命令；具体键可能与你的键盘布局或用户设置冲突，优先从配置核对。开发者功能受构建配置影响，不要依赖 Shipping 中存在它们。
+
+本机 RangedWeapon 注册了：
+
+```text
+lyra.Weapon.DrawBulletTraceDuration 2
+lyra.Weapon.DrawBulletHitDuration 2
+```
+
+用于在支持调试绘制的构建中观察射线与命中。完成后设为 0，避免影响性能观察。
+
+ExperienceManager 注册 `lyra.chaos.ExperienceDelayLoad.MinSecs` 与 `lyra.chaos.ExperienceDelayLoad.RandomSecs`，可以在实验环境验证慢加载时初始化是否仍正确。它们提供故障注入，不是优化手段。
+
+## 本机源码中的明确限制
+
+Inventory 的已有实例 AddEntry 重载为 `unimplemented()`；Hero 的 RemoveAdditionalInputConfig 未完整实现；Experience 结束时对某些异步停用还有未完全支持的日志。这些都应纳入扩展设计，不因类公开存在就承诺运行能力。
+
+练习：挑一个“输入没反应”问题，写出从 IMC 到 ASC 的每个证据点。最终报告应是“某个具体条件不满足”，而不是“Lyra 太复杂”。

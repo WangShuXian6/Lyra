@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-13T19:31:53.620905+00:00",
+  "passed": true,
+  "method": "Root assistant visually inspected eight actual native PNG files using view_image, then checked the same bytes against the successful packaged showcase report.",
+  "scope": "Representative Chinese/English glyph and layout review of eight of the 22 captures; runtime behavior is established by the separate native showcase, smoke and input reports.",
+  "renderedEvidence": "verification/mmorpg-packaged-rendered-showcase.json",
+  "renderedEvidenceSha256AtReview": "57329a5410a60f744ee58c237c7dafd264fde50f3c4b2f863e7548c19f7d756c",
+  "run": "2e331e23dd",
+  "imagesEditedOrResized": false,
+  "physicalInputVerifiedByThisReview": false,
+  "captures": [
+    {
+      "sourcePath": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-inventory.png",
+      "bytes": 2084640,
+      "sha256": "1ed2d75b4eb2cb89c01e726ea914b21fdc2bafb77d60b4c815753dca4717c753",
+      "width": 1920,
+      "height": 1080,
+      "passed": true,
+      "observation": "English inventory: one mana potion, full action label and Back button; the two-line Arcane Bolt label fits its HUD button."
+    },
+    {
+      "sourcePath": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-language-final-hud.png",
+      "bytes": 2383316,
+      "sha256": "eb9bad0a264d8e3d7e394dbf2fb4ac81d0ccfab0becd4d9b850e7b28a653dad3",
+      "width": 1920,
+      "height": 1080,
+      "passed": true,
+      "observation": "Chinese HUD: glyphs, numerical attributes, ability labels and input hints are visible; both Manny characters are rendered."
+    },
+    {
+      "sourcePath": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-language-first-settings.png",
+      "bytes": 2056406,
+      "sha256": "b46111a11345df87c054958b18223a7d3fc14e43302dc632914f4881463618d0",
+      "width": 1920,
+      "height": 1080,
+      "passed": true,
+      "observation": "Chinese settings: all quality, language, sign-out and return labels are visible without clipping."
+    },
+    {
+      "sourcePath": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-modal.png",
+      "bytes": 1015130,
+      "sha256": "7aa60d1cb24fd3dddae0633626a265e658aefe9ced2359b88b16ba69387d3980",
+      "width": 1920,
+      "height": 1080,
+      "passed": true,
+      "observation": "English modal: complete wrapped explanation and both actions; the underlying settings and HUD are dimmed."
+    },
+    {
+      "sourcePath": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-language-final-hud.png",
+      "bytes": 2329310,
+      "sha256": "2137ffd016730094a10d14d2f91c25d3d6f5bb06d233408386fb752a747987c4",
+      "width": 1920,
+      "height": 1080,
+      "passed": true,
+      "observation": "English HUD: independent player attributes, complete input hints and both Manny characters are visible."
+    },
+    {
+      "sourcePath": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-language-first-settings.png",
+      "bytes": 2071648,
+      "sha256": "5e8f9219b0e4237cb96edf4a76ca30de8cabbf728b82bbc1adf85b1602bc94d6",
+      "width": 1920,
+      "height": 1080,
+      "passed": true,
+      "observation": "English settings: Simplified Chinese, Medium, sign-out and return labels fit their controls."
+    },
+    {
+      "sourcePath": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-login.png",
+      "bytes": 2198210,
+      "sha256": "1926e4a505ba145aa1aa5e61de817994497dda7a22d658b611f97ea8c8ce8bf5",
+      "width": 1920,
+      "height": 1080,
+      "passed": true,
+      "observation": "Chinese login and character controls: labels, placeholders and buttons fit the form."
+    },
+    {
+      "sourcePath": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-modal.png",
+      "bytes": 1043970,
+      "sha256": "c81b2df0419714f8103d82bade24042fc059728a6a5c14b027f12ef8c763d463",
+      "width": 1920,
+      "height": 1080,
+      "passed": true,
+      "observation": "Chinese modal: readable glyphs, explanation and both actions; the underlying settings and HUD are dimmed."
+    }
+  ]
+}

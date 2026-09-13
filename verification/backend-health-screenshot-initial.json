@@ -1,0 +1,24 @@
+{
+  "verifiedAt": "2026-09-13T11:44:20.180Z",
+  "engine": "5.8.1 source build",
+  "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+  "editorPid": 24772,
+  "asset": "/Game/Tutorial/BP_BackendHealth.BP_BackendHealth",
+  "graph": "EventGraph",
+  "nodeCount": 4,
+  "capture": {
+    "tool": "BlueprintScreenshotTool 1.1.7 with UE 5.8 compatibility patch",
+    "action": "Native Slate Click graph node; Ctrl+A; Ctrl+F7",
+    "zoomAmount": 1,
+    "maxScreenshotSize": 15360,
+    "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/WindowsEditor/BP_BackendHealth_EventGraph_00000.png",
+    "capturedAt": "2026-09-13T11:43:33.410Z",
+    "output": "public/media/mmorpg/backend-health-graph.png",
+    "width": 1262,
+    "height": 564,
+    "sha256": "780497d2333849f9123d9dadd0258bdf5a3f8d5e79e20b7908306ced99882ae2",
+    "postProcessing": false
+  },
+  "compilationReport": "verification/backend-health-roundtrip.json",
+  "runtimeReport": "verification/mmorpg-rendered-showcase.json"
+}

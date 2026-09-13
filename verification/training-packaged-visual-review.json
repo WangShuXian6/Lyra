@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "reviewedAt": "2026-09-13T20:50:34.200911+00:00",
+  "scope": "Root viewed the actual first packaged Training screenshot with view_image at original detail, then checked its untouched published bytes against the first-run runtime report. This is a visual and provenance check, not audio or performance acceptance.",
+  "sourceRun": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be",
+  "runtimeReport": "verification/training-package-runtime-first-run.json",
+  "runtimeReportSHA256": "7f30123b873f2df96099b527a352b12ecd016739b6c76ce431f876dd61185c40",
+  "publicPath": "public/media/training/packaged-preview.png",
+  "originalPath": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be\\training-package.png",
+  "bytes": 2774573,
+  "sha256": "7f352785906d4a002f5bf34bbbbdd6e90459c7aa749c09326dde9a1460b6e3ab",
+  "width": 1920,
+  "height": 1080,
+  "imageEdited": false,
+  "observations": [
+    "The native scene, red player character, reticle and weapon HUD are visible.",
+    "Health reads 100; the post-reload HUD reads 12 rounds and 47 spare rounds.",
+    "The original single-player capture retains the waiting-for-other-players overlay and score timer at 0:00.",
+    "The upper-left MoviePlayer window handoff warning remains visible. The image is not described as warning-free."
+  ],
+  "limitations": [
+    "This public screenshot belongs to the first run; the second-run wrapper is a separate runtime result.",
+    "The first-run AudioMixer diagnostic and the second-run comparison are recorded separately; a still image cannot certify sound quality or frame-time performance."
+  ]
+}

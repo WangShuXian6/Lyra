@@ -1,0 +1,21 @@
+{
+  "logicalPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Intermediate",
+  "backupPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Intermediate.hdd-backup-20260913-171737",
+  "verifiedBytes": 169353735.0,
+  "inventorySha256": "5dc588436798481413532fc399fc3ebe13bce253e4a85b4f1768446d247ab7a8",
+  "finishedAt": "2026-09-13T17:17:41.1425357Z",
+  "inventoryPath": "F:/UE/LyraDoc/.local/training-cache-file-verification.json",
+  "sourceTrainingProcessesAtStart": 0,
+  "ssdFreeBytesAfter": 109283463168,
+  "passed": true,
+  "physicalPath": "E:\\LyraDocBuildCache\\LyraTraining\\Intermediate",
+  "rationale": "Low-cost 0.158 GiB copy preserves existing generated metadata and objects while placing new LyraGame project intermediates on SSD; shared engine PCH already resides on SSD",
+  "schemaVersion": 1,
+  "ssdFreeBytesBefore": 109455327232,
+  "verifiedFileCount": 593,
+  "linkType": "Junction",
+  "verification": "Each file compared by SHA-256, byte length and LastWriteTimeUtc before moving the original directory; no deletion performed",
+  "scope": "Only the Training project Intermediate cache; engine and plugin Intermediate directories were not moved",
+  "buildExecuted": false,
+  "startedAt": "2026-09-13T17:17:38.0735427Z"
+}

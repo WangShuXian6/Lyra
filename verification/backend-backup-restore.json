@@ -1,0 +1,76 @@
+{
+  "startedAt": "2026-09-13T15:25:11.8666055Z",
+  "passed": true,
+  "sourceDatabase": "lyra_mmo_tutorial",
+  "restoreDatabase": "lyra_mmo_restore_6051a86a48fc4d01",
+  "checks": [
+    {
+      "sha256": "275ede840223b379769fe4a522c4c0fcf11d98e4684b11a74c301d925945567f",
+      "name": "accounts",
+      "passed": true,
+      "rows": 1
+    },
+    {
+      "sha256": "aecf04a67efd46d6864c88e8aa1a2df8fc9a8b2f0acc4868cba2eb3128360bbd",
+      "name": "characters",
+      "passed": true,
+      "rows": 2
+    },
+    {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "name": "game_leases",
+      "passed": true,
+      "rows": 0
+    },
+    {
+      "sha256": "9f4896f4857fcea6350c3ec9fcdd16a5ac40693c138f4caf094055f742427ab3",
+      "name": "join_tickets",
+      "passed": true,
+      "rows": 2
+    },
+    {
+      "sha256": "ae4d16d3e91abfd5f364033931b7919a44f94fe44c2d50b920308dc80ff72e0b",
+      "name": "save_requests",
+      "passed": true,
+      "rows": 41
+    },
+    {
+      "sha256": "8a3c3b785631c4de8b6b58b4319ed0e075804928acf7190bd96da577e8f22829",
+      "name": "schema_migrations",
+      "passed": true,
+      "rows": 2
+    },
+    {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "name": "sessions",
+      "passed": true,
+      "rows": 0
+    },
+    {
+      "name": "schemaDigest",
+      "passed": true,
+      "value": "bfdbda300b2113e8b13f1a858ea41692df8cc44aef9c58901ada2f83447ff08c"
+    },
+    {
+      "name": "migrations",
+      "passed": true,
+      "value": "1,2"
+    },
+    {
+      "name": "encoding",
+      "passed": true,
+      "value": "UTF8"
+    }
+  ],
+  "scope": "Local logical backup/restore into a newly created database. Source is read-only. No service failover or point-in-time recovery is claimed.",
+  "postgresVersion": "18.3",
+  "sourceStableDuringTest": true,
+  "backup": {
+    "sha256": "3d9b91bd45d57964f05c97dd1a915d51e4e31fa589b5eed9b2abe6e34b8b29dd",
+    "tracked": false,
+    "path": "F:\\UE\\LyraDoc\\examples\\MMORPG\\.local\\backups\\lyra_mmo_restore_6051a86a48fc4d01.dump",
+    "bytes": 17761
+  },
+  "restoreDatabaseRemoved": true,
+  "completedAt": "2026-09-13T15:25:14.2393078Z"
+}

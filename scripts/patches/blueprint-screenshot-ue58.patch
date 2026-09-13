@@ -1,0 +1,12 @@
+--- a/BlueprintScreenshotTool.uplugin
++++ b/BlueprintScreenshotTool.uplugin
+@@ -12,1 +12,1 @@
+-	"EngineVersion": "5.6.0",
++	"EngineVersion": "5.8.0",
+--- a/Source/BlueprintScreenshotTool/Private/BlueprintScreenshotToolHandler.cpp
++++ b/Source/BlueprintScreenshotTool/Private/BlueprintScreenshotToolHandler.cpp
+@@ -111,2 +111,2 @@
+-	FVector2D CachedViewLocation;
+-	FVector2D NewViewLocation;
++	FVector2f CachedViewLocation;
++	FVector2f NewViewLocation;

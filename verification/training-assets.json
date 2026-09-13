@@ -1,0 +1,27 @@
+{
+  "project": "F:/UE/LyraDocLabs/LyraTraining",
+  "engine": "5.8.1-0+UE5",
+  "created": [
+    {
+      "source": "/ShooterCore/Experiences/B_ShooterGame_Elimination",
+      "destination": "/TrainingRange/Experiences/B_TrainingRange"
+    },
+    {
+      "source": "/ShooterCore/Game/HeroData_ShooterGame",
+      "destination": "/TrainingRange/Game/HeroData_Training"
+    },
+    {
+      "source": "/ShooterCore/Game/AbilitySet_ShooterHero",
+      "destination": "/TrainingRange/Game/AbilitySet_TrainingHero"
+    },
+    {
+      "source": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "destination": "/TrainingRange/Game/GA_TrainingDash"
+    },
+    {
+      "source": "/ShooterCore/Maps/L_ShooterGym",
+      "destination": "/TrainingRange/Maps/L_TrainingRange"
+    }
+  ],
+  "dash_replacements": 1
+}

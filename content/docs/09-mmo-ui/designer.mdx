@@ -1,0 +1,321 @@
+---
+title: 在 UMG Designer 中制作全部游戏界面
+description: 用真实 Widget Blueprint、CommonUI 层栈、字符串表和 FieldNotify 绑定完成可编辑、可本地化的 MMORPG 界面。
+---
+
+## 学习目标与前置条件
+
+本篇把界面的布局、颜色、字体、间距和固定文案全部放进可编辑资产。C++ 父类保留登录请求、按钮业务、CommonUI 激活/焦点、UIExtension 和 ViewModel 生命周期；游戏运行时不调用 `ConstructWidget` 拼装画面。
+
+先完成 MMORPGEditor 构建并启用 CommonUI、Model View ViewModel 和教学 Editor 工具。实际资产契约是 `examples/MMORPG/ui-designer-contract.json`；固定文案契约是 `ui-designer-strings.json`。所有控件名称区分大小写，下面的名字直接对应 C++ `BindWidget` 或真实 MVVM 绑定，不能为了显示中文而重命名它们。
+
+资产生成器 `prepare_content.py` 在 Editor 中执行与本篇等价的写资产操作，便于复现和检查；它不是游戏运行时的 UI 实现。已有资产可以直接打开 Designer 修改。再次执行生成器会按教学定义重建这些资产的 WidgetTree，因此保留自己的布局改动时应先复制到独立实验目录。
+
+## 一、先建立字符串表
+
+1. Content Browser 中建立 `/Game/Localization` 目录，在创建资产菜单搜索 **String Table**；本机版本属于 Data 分类。命名为 `ST_MMO`。
+2. 双击字符串表，将 Namespace 设为 `MMOUI`。
+3. 按 `ui-designer-strings.json` 的 `entries` 逐项添加 Key 和 Source String。Source 使用英文，Key 保持稳定；例如 `Login.Title` → `Begin your journey`、`Action.SignIn` → `Sign in`、`Language.Chinese` → `Simplified Chinese`。
+4. 保存字符串表。完整对象路径为 `/Game/Localization/ST_MMO.ST_MMO`。
+5. 后面编辑 TextBlock.Text、EditableTextBox.Hint Text 时，打开文本字段的本地化/字符串表选择器，选择 ST_MMO 再选择 Key。不要把中文直接写成不参与收集的运行时字符串。
+
+| 文案位置 | 字符串表 Key 示例 | 中文翻译 |
+| --- | --- | --- |
+| 登录标题 | `Login.Title` | 开启旅程 |
+| 账号标签与提示 | `Account.Username`、`Account.UsernameHint` | 账号名称；3–32 位字母、数字或下划线 |
+| 密码提示 | `Account.PasswordHint` | 12–128 个字符 |
+| 登录 / 注册 | `Action.SignIn`、`Action.Register` | 登录 / 注册账号 |
+| 进入世界 | `Action.Enter` | 进入世界 |
+| 背包 / 设置 | `Action.Inventory`、`Action.Settings` | 背包 / 设置 |
+| 语言按钮 | `Language.Chinese`、`Language.English` | 简体中文 / English |
+| 退出确认 | `Confirm.Accept`、`Confirm.Cancel` | 保存并退出 / 继续游戏 |
+
+45 条固定文案都在同一份表中维护。中文属于 `zh-Hans` 翻译，原生文化为 `en`；切换文化会让表引用重新求值。角色名称和账号输入是用户数据，不能拿它们当字符串表 Key。等级、法力、冷却等动态文案由 ViewModel 的 `FText` 格式化后通过 FieldNotify 更新。
+
+
+![ST_MMO 原生编辑器：MMOUI namespace 与英文 Key/Source 行](/media/configuration/mmorpg/string-table-source-data.png)
+
+图：`/Game/Localization/ST_MMO` 的真实源表，当前窗口显示部分条目，后续条目继续向下滚动；完整 45 个 Key 以表资产和审核 JSON 为准。
+
+![LoginButtonLabel.Text 的 String Table 引用弹窗：ST_MMO、MMOUI、Action.SignIn](/media/configuration/mmorpg/designer-text-string-table-reference.png)
+
+图：选中 `WBP_Login/LoginButtonLabel`，打开 Text 字段右侧的本地化菜单后显示这张原生弹窗。Table ID、Namespace 与 Key 是三个独立值；本图是登录按钮的实际文本引用，没有另建名为 Action.SignIn 的资产。
+
+## 二、创建七个 Widget Blueprint，并选对父类
+
+在 `/Game/UI` 的创建菜单选择 **User Interface → Widget Blueprint**，在父类选择中展开 All Classes，按下表选择。创建后打开 **Designer**，不要先在空树上 Compile：带必需 `BindWidget` 的父类会在控件缺失时报告错误。先放齐控件并命名，再编译。
+
+| 资产名称 | 原生父类 | 用途 |
+| --- | --- | --- |
+| `WBP_MMOLayout` | `MMORootLayout` | Game/Menu/Modal 三层容器 |
+| `WBP_Login` | `MMOLoginPanel` | 账号表单和角色创建/选择 |
+| `WBP_ManaStatus` | `UserWidget` | 可复用的法力文本与进度条 |
+| `WBP_PlayerHUD` | `MMOHUDPanel` | 玩家状态、目标、技能与菜单入口 |
+| `WBP_Inventory` | `MMOInventoryPanel` | 背包内容与药剂操作 |
+| `WBP_Settings` | `MMOSettingsPanel` | 画质、语言、退出入口 |
+| `WBP_Confirm` | `MMOConfirmPanel` | 退出确认模态框 |
+
+如果已经有同名蓝图，打开 Class Settings 核对 Parent Class。Native Parent 不负责 WidgetTree，Designer 中的布局就是最终布局。`WBP_ManaStatus` 要先编译保存，随后才能从 Palette 搜索并放进 HUD。
+
+## 三、建立根布局的 CommonUI 三层
+
+1. 打开 `WBP_MMOLayout` 的 Designer。如果模板有 Canvas Panel，选中并删除。
+2. 从 Palette 拖入 **Overlay** 作为根，命名 `LayerLayout`，Visibility 选择 **Not Hit-Testable (Self Only)**。
+3. 依次向 Overlay 放入三个 **Common Activatable Widget Stack**，命名 `GameLayer`、`MenuLayer`、`ModalLayer`，全部勾选 Is Variable。
+4. 选中每个 Stack，在 Overlay Slot 中把 Horizontal/Vertical Alignment 都设为 Fill，Padding 为 0。顺序决定叠放层级：Game 在底部，Modal 在顶部。
+5. 教学资产保存的 Stack **Transition Duration = `0.16`**，但这不是本项目运行时的转场时长：下一步注册层时，所复用的 `UPrimaryGameLayout::RegisterLayer` 会将它设为 **`0.0`**，以保留 Lyra 的手柄焦点行为。因此只修改 Designer 的这个字段不会改变游戏内切换效果。需要淡入淡出时先用页面内部的 UMG Animation，再单独验证返回、快速开关与焦点；不要在角色 Tick 中更新界面透明度。
+6. Compile，确认没有缺少 GameLayer/MenuLayer/ModalLayer 的错误，再 Save。
+
+```text
+LayerLayout (Overlay)
+├─ GameLayer  (CommonActivatableWidgetStack)
+├─ MenuLayer  (CommonActivatableWidgetStack)
+└─ ModalLayer (CommonActivatableWidgetStack)
+```
+
+`UMMORootLayout::NativeOnInitialized` 只把这三个已存在的容器注册到 `UI.Layer.Game`、`UI.Layer.Menu`、`UI.Layer.Modal`。构造、停用与返回仍使用 CommonUI 生命周期；Root 不手工 AddToViewport 每个弹窗。
+
+
+![WBP_MMOLayout：三个真实 CommonUI Stack 的 Overlay Slot 水平垂直 Fill](/media/configuration/mmorpg/designer-root-stacks-fill.png)
+
+图：按住 Ctrl 多选 GameLayer、MenuLayer、ModalLayer 后的共同属性。空容器尚未 Push 页面时可显示 Collapsed；运行时由 CommonUI 根据页面激活状态处理可见性，不用在 Tick 中强制 Visible。
+
+![根布局 Stack 在 Designer 中保存 Fade Only 和 0.16 Transition Duration](/media/configuration/mmorpg/designer-root-stacks-transition.png)
+
+图：这张配置图显示资产值 `0.16`。本项目所复用的 CommonGame `RegisterLayer` 在运行时将其覆盖为 `0`，详见 `verification/mmorpg-layer-transition-review.json`；图片不代表游戏里实际播放了 0.16 秒转场。
+
+## 四、统一面板布局和样式
+
+Login、Inventory、Settings、Confirm 使用相同层次，HUD 使用左上对齐版本。先把每个资产的共同结构建好，再放业务控件：
+
+1. 根用 Overlay，名为 `ScreenLayout`，Visibility 选 Self Only 不参与命中。
+2. 在根中放 SizeBox `PanelWidth`，Overlay Slot Padding=`24`；普通面板居中，HUD 选择 Left/Top。
+3. SizeBox 内放 Border `PanelBackground`，Padding=`24`，Brush Color 使用不透明深蓝；再把 VerticalBox 放入 Border。
+4. Login 的 VerticalBox 必须叫 `Form`；其他分别叫 `HUDLayout`、`InventoryLayout`、`SettingsLayout`、`ConfirmLayout`。
+5. 每个业务控件在父 VerticalBox Slot 中水平 Fill、底部 Padding 默认 `12`；标签与输入框之间可用 `5`，同一行按钮的 HorizontalBox Slot 使用 Fill，按钮间距 `10`。
+
+| 属性 | 教学默认值 | 编辑位置 |
+| --- | --- | --- |
+| PanelWidth | Login `680`；HUD `540`；其他 `600` | SizeBox → Width Override |
+| 面板色（线性 RGBA） | `(0.035, 0.052, 0.09, 1)` | Border → Brush Color |
+| 正文色 | `(0.90, 0.94, 1, 1)` | TextBlock → Color and Opacity |
+| 次要文字色 | `(0.62, 0.73, 0.87, 1)` | TextBlock → Color and Opacity |
+| 字体 | 正文 `18`，分区 `22`，标题 `28–30` | TextBlock → Font → Size |
+| 文本换行 | Auto Wrap Text=true | TextBlock → Wrapping |
+| 输入行最小高度 | `44` | 包裹输入框的 SizeBox → Min Desired Height |
+| 按钮行最小高度 | `46` | 包裹 Button 的 SizeBox → Min Desired Height |
+| 法力/生命进度条高度 | `14` | 包裹 ProgressBar 的 SizeBox |
+
+按钮内部放 TextBlock，文案引用 ST_MMO。选中这个 TextBlock，在 **Slot (Button Slot) → Horizontal Alignment** 选择 **Fill**，再把 TextBlock 的 **Justification** 设为 **Center**，保留 Auto Wrap Text。Fill 让文本取得按钮实际可用宽度，Center 负责文字居中；只把 Slot 设为 Center 会把文本限制在期望尺寸，切换文化后可能出现宽按钮中的额外换行。HUD 的窄动作按钮仍可按实际宽度合理换行。
+
+
+![登录按钮的子 TextBlock：Button Slot 水平 Fill、垂直 Center](/media/configuration/mmorpg/designer-button-label-slot.png)
+
+图：选中的是 `LoginButtonLabel` 子控件，其 Details 展示 Button Slot。先让 Slot 分配实际宽度，再由 TextBlock Justification 居中文字；不要把 Button 自己的 HorizontalBox Slot 和这里的 Button Slot 混淆。
+
+Button 的 Normal/Hovered/Pressed 样式都在 Designer 的 Style 中编辑。输入框用浅色背景、深色文字，提示与标签分开，避免密码输入后读者看不出哪个字段是什么。没有为每个控件添加 Canvas Slot，也没有 RetainerBox、循环动画或每帧绑定函数。
+
+## 五、制作登录和角色选择界面
+
+![实际 WBP_Login 在独立游戏客户端显示账号表单与角色选择，默认输入框为空](/media/mmorpg/mmo-A-login.png)
+
+`/Game/UI/WBP_Login` 的 Designer 布局在游戏中的结果。2026-09-13 19:27–19:28 UTC，实际已 Cook Client 原生 SViewport 采集，1920×1080、中等画质；原图时间与哈希见 `source-evidence/mmorpg-references.json`。这里展示运行结果，后续 Hierarchy、父类与字段仍需按下面步骤逐项设置。
+
+在 `WBP_Login/Form` 依次添加以下控件。表中的控件名字全部勾选 Is Variable；标题、标签和装饰容器也可以在 Designer 中命名管理。
+
+| 顺序 | 控件与精确名称 | 关键设置 |
+| --- | --- | --- |
+| 1 | TextBlock `Title`、`AccountTitle` | Key 为 `Login.Title`、`Account.Title` |
+| 2 | 标签 + EditableTextBox `Username` | 标签 `Account.Username`，Hint `Account.UsernameHint` |
+| 3 | 标签 + EditableTextBox `Password` | 标签 `Account.Password`，Hint `Account.PasswordHint`；Is Password=true |
+| 4 | HorizontalBox `AccountActions` | 内含 Button `LoginButton`、`RegisterButton`，按钮各包 SizeBox |
+| 5 | TextBlock `CharacterTitle` | Key `Character.Title`，用间距与账号区分开 |
+| 6 | 标签 + EditableTextBox `CharacterName` | `Character.Name` / `Character.NameHint` |
+| 7 | Button `CreateButton` | Key `Action.CreateCharacter` |
+| 8 | 标签 + ComboBoxString `CharacterList` | 标签 `Character.Select`，Max List Height=`240`；不添加虚假的默认角色 |
+| 9 | HorizontalBox `CharacterActions` | Button `RefreshButton`、`JoinButton`，Key `Action.Refresh` / `Action.Enter` |
+| 10 | TextBlock `Message` | 初始 Key `Login.Status`，Auto Wrap=true，显示后端反馈 |
+
+
+![WBP_Login Designer 账号区：Password 控件和 Is Password 属性](/media/configuration/mmorpg/designer-login-account.png)
+
+图：账号区使用真实 EditableTextBox，选中 Password 可核对 Is Variable 与 Is Password。输入值为空，提示文本来自字符串表。
+
+![WBP_Login Designer 角色区：CharacterList、创建、刷新和进入按钮](/media/configuration/mmorpg/designer-login-character.png)
+
+图：展开 Hierarchy 后选择 CharacterList，可核对 ComboBoxString 与焦点设置。角色列表由后端结果填充，Designer 中不放测试角色。
+
+用户名、密码和角色名称的 Text 默认留空，不将测试账号写进资产。按钮的 Graph 中无需再连接 OnClicked：原生父类在 NativeConstruct 绑定业务，在 NativeDestruct 对称解绑。重复连接蓝图事件会使一次点击发送两次请求。
+
+放齐控件后 Compile、Save，重开检查 Is Password、Form 和每个 Button 名称。运行时先登录，再刷新/创建角色，选择角色后进入世界；账号服务仍走 HTTP，布局不承担鉴权。
+
+## 六、制作可复用法力控件和真实 MVVM 绑定
+
+先做 `WBP_ManaStatus`：
+
+1. 根为 VerticalBox `ManaLayout`。
+2. 第一行 TextBlock 命名 `ManaText`、Is Variable=true，18 pt，初始文本引用 `Mana.Preview`。
+3. 下一行 SizeBox `ManaBarSize` 高度 14，里面放 ProgressBar `ManaBar`、Is Variable=true，Percent 默认 1，Fill Color 使用蓝色。
+4. 在 Widget Blueprint 的 **Window → Viewmodels** 添加 `MMOPlayerViewModel`，实例名必须为 `PlayerVM`。选中这个来源，把 Creation Type 设为 **Manual**，允许它在运行时注入。
+5. 打开 **Window → View Bindings**，添加 `PlayerVM.ManaLabel → ManaText.Text` 和 `PlayerVM.ManaFraction → ManaBar.Percent`。
+6. 两条都设为 **One Way to Destination**，Execution Mode 覆盖为 **Immediate**。不要使用每 Tick 的 UMG 函数绑定，也不要把 ManaText.Text 反向写回服务器属性。
+7. Compile、Save；View Bindings 中不应有红色字段或找不到来源的错误。
+
+
+![WBP_ManaStatus 的完整 Designer 层级：ManaLayout、ManaText、ManaBarSize、ManaBar](/media/configuration/mmorpg/designer-mana-layout.png)
+
+图：父类为 UserWidget。左侧 ManaBarSize 已展开，里面是唯一的 ManaBar；Designer 预览宽度来自所选预览画布，运行大小由 HUD 的嵌套 Slot 约束。
+
+![ManaStatus 的 PlayerVM 来源：MMOPlayerViewModel，Creation Type Manual](/media/configuration/mmorpg/mvvm-mana-source.png)
+
+图：Window → Viewmodels 打开后，点击已有 PlayerVM 行；来源属性会显示在主 Widget Blueprint 的 Details 中。工具栏 Add 用于新增来源，不能用它核对已有来源。
+
+![ManaStatus 的两条真实 View Bindings，ManaLabel 到 Text、ManaFraction 到 Percent](/media/configuration/mmorpg/mvvm-mana-bindings.png)
+
+图：Window → View Bindings 打开底部面板。两条均启用、单向到目标，Execution Mode 为 Immediate；不是普通 UMG 的每帧 getter 绑定。
+
+Manual 表示 Widget 不创建一个与游戏状态无关的新 ViewModel。HUD 的父类在收到玩家上下文后，分别给 HUD 和嵌套 `ManaStatus` 注入**同一个** PlayerVM；断开或销毁时清除引用。
+
+## 七、制作 HUD、目标与技能快捷入口
+
+![实际 WBP_PlayerHUD 使用中文状态文字和嵌套法力控件，Manny 出现在游戏场景中](/media/mmorpg/mmo-A-language-final-hud.png)
+
+该轮中文 HUD 使用 `/Game/UI/WBP_PlayerHUD`，其中 `ManaStatus` 是独立 `/Game/UI/WBP_ManaStatus` 的实例。玩家 A 为经验 25、法力 40；画面来自 2026-09-13 19:27–19:28 UTC 的实际打包渲染回归，1920×1080、中等画质。右侧 Manny 的动画配置见[角色动画章节](/docs/08-mmorpg/animation)。
+
+打开 `WBP_PlayerHUD`，按第四节建立左上面板，在 `HUDLayout` 放置：
+
+| 控件 | 名称 | 内容或用途 |
+| --- | --- | --- |
+| TextBlock | `Title` | `HUD.Title` |
+| TextBlock | `Values` | 玩家等级、经验与状态，随后绑定 StatusText |
+| 嵌套 Widget | `ManaStatus` | 从 Palette 搜索并拖入已编译的 WBP_ManaStatus，不重新复制两条控件 |
+| TextBlock | `TargetHeading`、`TargetText` | 固定目标标题与动态目标状态 |
+| ProgressBar + SizeBox | `TargetHealthBar` | 目标生命比例，红色 Fill，高度 14 |
+| TextBlock | `CooldownText` | 动态冷却文本 |
+| HorizontalBox | `AbilityActions` | `TargetButton`、`AttackButton`、`SpellButton` |
+| HorizontalBox | `MenuActions` | `InventoryButton`、`SettingsButton` |
+| TextBlock | `InputHintText` | 15 pt，允许换行；初始预览引用 `HUD.Controls`，运行绑定 InputHint |
+
+
+![HUD Designer 层级与实际嵌套 WBP_ManaStatus 控件](/media/configuration/mmorpg/designer-hud-layout.png)
+
+图：在 Hierarchy 选中 ManaStatus，确认它是可复用的 WBP_ManaStatus 实例；目标栏、技能按钮、菜单按钮和输入提示仍可以直接在 Designer 修改布局。
+
+按钮文案分别引用 `Action.Target`、`Action.Attack`、`Action.Spell`、`Action.Inventory`、`Action.Settings`，只显示动作名。按键放在 InputHintText 中：CommonInput 的输入类型变化委托更新 ViewModel 的 InputHint，键鼠与手柄分别显示对应操作提示。键位业务由输入映射处理，不能以改提示文本替代改映射。
+
+逐个选中 HUD 的五个 Button，在 **Details → Interaction → Is Focusable** 取消勾选；登录、背包、设置与确认面板的按钮保持勾选。HUD 由输入路由选择 Game 模式，不把手柄 A 的攻击交给某个已聚焦的 UI 按钮。玩家按 **I / 手柄 View** 打开背包，按 **P / 手柄 Menu** 打开设置，菜单中 **Escape / B** 返回；这些输入入口在 InputConfig 中配置。HUD 仍支持鼠标点击。
+
+
+![多选 HUD 的五个 Button 后，Is Focusable 未勾选](/media/configuration/mmorpg/designer-hud-focus.png)
+
+图：仅对 Target/Attack/Spell/Inventory/Settings 这五个 HUD 按钮关闭焦点；菜单页面需要键鼠与手柄焦点导航，不能复制这个值到所有面板。
+
+像 ManaStatus 一样添加 Manual 来源 `PlayerVM`，再建立五条真实 View Bindings：
+
+| 来源 | 目标 | 模式 |
+| --- | --- | --- |
+| `PlayerVM.StatusText` | `Values.Text` | One Way to Destination / Immediate |
+| `PlayerVM.TargetLabel` | `TargetText.Text` | 同上 |
+| `PlayerVM.TargetFraction` | `TargetHealthBar.Percent` | 同上 |
+| `PlayerVM.CooldownLabel` | `CooldownText.Text` | 同上 |
+| `PlayerVM.InputHint` | `InputHintText.Text` | 同上 |
+
+
+![HUD 的 PlayerVM 为 Manual，类是 MMOPlayerViewModel](/media/configuration/mmorpg/mvvm-hud-source.png)
+
+图：HUD 与嵌套 ManaStatus 分别保存来源定义，运行时接收同一个玩家上下文中的 ViewModel 对象。
+
+![HUD 的五条真实 MVVM 绑定完整列表](/media/configuration/mmorpg/mvvm-hud-bindings.png)
+
+图：Values、TargetText、TargetHealthBar、CooldownText、InputHintText 五个目标分别绑定到表中的字段；每条执行模式都是 Immediate。
+
+Compile、Save。HUD 本身 5 条，加嵌套 ManaStatus 的 2 条，是不同资产里的 7 条绑定。PlayerVM 通过 UIExtension 的 `UI.Slot.Status` 和当前 LocalPlayer 上下文连接，不能让客户端 B 的 Widget 寻找客户端 A 的 PlayerState。
+
+## 八、制作背包、设置与模态确认
+
+三个资产都使用第四节的居中面板。按下面控件表完成后再 Compile、Save。
+
+| 资产 | 必须存在的变量控件 | 文案与绑定 |
+| --- | --- | --- |
+| WBP_Inventory | TextBlock `Message`；Button `PotionButton`、`CloseButton` | 标题 `Inventory.Title`；`Message.Text ← PlayerVM.InventoryLabel`；按钮 `Action.Potion`、`Action.Back` |
+| WBP_Settings | Button `LowQualityButton`、`MediumQualityButton`、`HighQualityButton`；`ChineseButton`、`EnglishButton`；`LogoutButton`、`CloseButton` | 画质行用 `Quality.Low/Medium/High`；语言行用 `Language.Chinese/English`；退出与返回用 `Action.Logout/Back` |
+| WBP_Confirm | Button `ConfirmButton`、`CancelButton` | 标题 `Confirm.Title`，说明 `Confirm.Explanation`，按钮 `Confirm.Accept/Cancel` |
+
+背包添加与 HUD 相同的 Manual PlayerVM，但只有 `InventoryLabel → Message.Text` 一条绑定。设置与确认不创建无用 ViewModel，也不在 Event Tick 中检查背包。
+
+
+![WBP_Inventory Designer：背包说明、药剂与返回按钮的真实层级](/media/configuration/mmorpg/designer-inventory-layout.png)
+
+图：Message 是用于绑定的 TextBlock，PotionButton/CloseButton 是原生父类绑定业务的两个变量控件。
+
+![背包的 Manual PlayerVM 来源](/media/configuration/mmorpg/mvvm-inventory-source.png)
+
+图：与 HUD 相同的 MMOPlayerViewModel 类，创建方式为 Manual；打开背包时注入当前玩家 VM，关闭时清理引用。
+
+![背包唯一 View Binding：InventoryLabel 到 Message.Text](/media/configuration/mmorpg/mvvm-inventory-binding.png)
+
+图：单向、Immediate、启用；没有创建重复的 Text getter 或无意义的每帧轮询。
+
+![WBP_Settings Designer：画质、语言、退出和返回分组](/media/configuration/mmorpg/designer-settings-layout.png)
+
+图：七个按钮都保存在 Designer 资产里。画质业务调用 ApplyNonResolutionSettings，只改变画质；文化按钮更新当前 FText，页面层栈保持原有生命周期。
+
+Settings 的画质按钮放在一行 HorizontalBox，语言按钮放在下一行；与退出/返回之间用 VerticalBox 间距分组。`ChineseButton` 请求文化 `zh-Hans`，`EnglishButton` 请求 `en`，由原生业务保存选择并更新本地化文本；切换语言无需重建整个 CommonUI 栈。
+
+Confirm 的根 Overlay 先放一层全屏 Border `ModalScrim`，颜色 `(0,0,0,0.62)`、Hit-Testable 关闭；再放居中的 PanelWidth。模态接管输入由 CommonUI 的 Modal 层处理，背景 Border 只负责视觉遮罩。确认后由原生逻辑保存/离服，取消通过 `DeactivateWidget` 返回前层。
+
+
+![WBP_Confirm Designer：ModalScrim、确认和取消控件](/media/configuration/mmorpg/designer-confirm-layout.png)
+
+图：遮罩与居中面板都是可编辑的资产控件。ModalScrim 只提供暗化效果，输入接管与返回由 CommonUI Modal 层处理。
+
+![实际 WBP_Confirm 显示退出确认和遮罩，设置面板与 HUD 保留在下层](/media/mmorpg/mmo-A-modal.png)
+
+`/Game/UI/WBP_Confirm` 在 `UI.Layer.Modal` 中显示；下层分别为 WBP_Settings 和 WBP_PlayerHUD。2026-09-13 本轮原生 1920×1080、中等画质截图；文字换行、遮罩与间距均来自 Designer 资产。
+
+## 九、把实际资产接到 UI Policy 和层栈
+
+1. 打开 `WBP_MMOLayout` 的 Class Defaults，展开 **UI → Screens**，核对 LoginClass/HUDClass/InventoryClass/SettingsClass/ConfirmClass 分别指向刚制作的五个界面资产。
+2. 这些字段是软类引用，保存的是 Widget Blueprint 生成类路径；Picker 显示资产名，完整引用例如 `/Game/UI/WBP_Login.WBP_Login_C`。
+3. 打开 `/Game/UI/BP_MMOUIPolicy`，Class Defaults 的 **Layout Class 改为 WBP_MMOLayout**，Compile、Save。最终不再指向没有 Designer 树的原生 MMORootLayout。
+4. 核对 `DefaultGame.ini` 的 MMOUIManager 仍引用 `/Game/UI/BP_MMOUIPolicy.BP_MMOUIPolicy_C`。
+5. 保存全部，正常关闭并重新打开 MMORPG，确保新实例加载的是保存后的蓝图类。
+
+
+![WBP_MMOLayout Class Defaults 的五个 Screen 软类引用](/media/configuration/mmorpg/designer-root-screen-classes.png)
+
+图：原生 Details 已加宽，Login/HUD/Inventory/Settings/Confirm 五个完整类名均可见。先制作并编译相应 WBP，再在这些字段选择生成类。
+
+![BP_MMOUIPolicy 的 Layout Class 指向 WBP_MMOLayout](/media/configuration/mmorpg/ui-policy-final-layout.png)
+
+图：实际 Policy 创建保存三层 Stack 的根布局资产；单独创建 WBP_MMOLayout 不会自动替换这个入口。
+
+CommonUI 管理激活/返回/池化，UIExtension 传递当前玩家的状态上下文，FieldNotify 更新显示。用户可以派生或替换某个 Panel 蓝图，在 Root 的软类字段中更换实现，业务不需要重新写一套 Slate 树。
+
+## 十、生成、编译与验收
+
+已构建含 Editor bridge 的 MMORPGEditor 后，可以在编辑器 **Tools → Execute Python Script** 选择实验根的 `prepare_content.py`。完整脚本先验证动画和角色默认值，再配置 Experience 数据；UI 部分的顺序为 ST_MMO → 七个 Designer 资产 → UI Policy。WBP_ManaStatus 在 HUD 之前编译，必需控件在 Compile 之前全部写入。
+
+生成记录在实验工程 `Saved/Evidence/ui-designer-assets.json`，每个 WBP 另有 `WBP_…-designer.json`，记录控件类/名称/IsVariable、Canvas 数量、真实绑定数量和编译错误/警告。`saved=true` 与 `gameplayExecuted=false` 分别说明保存完成和该步骤尚未运行游戏，不能混为运行通过。
+
+| 层级 | 验证方法 | 预期结果 |
+| --- | --- | --- |
+| Designer | 重开 7 个 WBP，选择任一控件调整 Padding/Font | 修改保存在资产中，C++ 不重建覆盖 |
+| 编译 | 检查 BindWidget 与 View Bindings | 名称/类型一致，所有必要绑定编译成功 |
+| 本地化 | 打开设置切换 zh-Hans/en | 固定文案、提示与动态 FText 改变，玩家输入名称不变 |
+| 返回/焦点 | 背包返回、设置→确认→取消 | 栈层正确，焦点恢复到前层可操作控件 |
+| MVVM | 施法、用药、选择目标、重进角色 | 法力/背包/目标立即更新，没有旧角色委托残留 |
+| 性能 | Widget Reflector / Slate Insights 观察首次打开、重复开关与冷却 | 核对布局/绘制耗时和通知次数；本实现没有自定义 Widget Tick 或逐帧函数绑定，实际设备预算仍须测量 |
+
+本页游戏截图使用最终已 Cook Client/Server 的真实 Widget Blueprint，`verification/mmorpg-packaged-rendered-showcase.json` 记录两客户端程序触发的 22 张界面采集、文化切换、Manual PlayerVM 绑定与新进程语言恢复，全部通过。它还确认 Medium 按钮前后实际视口均为 1920×1080，短按钮采用 Fill 槽位，中文退出文字不再被窄内容槽挤成多行。本页配置图另由 `source-evidence/configuration-mmorpg.json` 逐图登记；`verification/mmorpg-native-ui-input.json` 独立记录原生 Slate 输入与焦点（手柄事件注入不等于实体设备兼容性验收）。新增样式、语言或布局后，应从修改后的实际资产重新采集对应游戏画面。
+
+遇到 `field ... exists but not accessible at runtime`，先区分两层配置：Designer 的 **Is Variable** 使控件可以被查找；C++ 中已声明的同名 BindWidget 属性还需要允许蓝图读取，MVVM 才能编译到目标控件的字段路径。例如 HUD 的 Values 声明如下，Text 的赋值仍由真实 View Binding 完成：
+
+```cpp title="MMOUI.h：供 MVVM 访问的 BindWidget 控件引用"
+UPROPERTY(BlueprintReadOnly, meta=(BindWidget, AllowPrivateAccess="true"))
+TObjectPtr<UTextBlock> Values;
+```
+
+仅改 WBP 的 Is Variable 不能替代原生属性的访问权限。修改头文件后正常关闭编辑器，重新构建 Editor，再打开 WBP 编译。首次加载早期空 WBP 时出现缺 BindWidget 错误，也应先填齐 Designer 并保存，再重开验证；不能把加载旧资产时的失败日志当成本次新树已编译成功。
+
+练习：复制 WBP_Inventory 制作自己的主题，只改 Designer 的颜色、字体和 Padding，再在 Root 的 InventoryClass 中选择新资产。保持 Message/PotionButton/CloseButton 的契约，检查原生业务和 ViewModel 仍可直接复用。

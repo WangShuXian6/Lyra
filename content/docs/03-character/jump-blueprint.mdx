@@ -1,0 +1,51 @@
+---
+title: 蓝图阅读实战：跳跃技能的完整事件图
+description: 使用真实导出的节点文本与全图截图，对照 C++ 理解技能激活、释放和清理。
+---
+
+## 学习目标与前置条件
+
+前置：输入链和 ASC Owner/Avatar。目标是读懂一张同时包含玩法与 UI 生命周期的实际蓝图。资产 `/Game/Characters/Heroes/Abilities/GA_Hero_Jump`；原生父类逻辑见 `Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility_Jump.cpp`。源码与导出文本核对于 2026-09-13，UE 5.8.1。
+
+<BlueprintGraph src="/media/lyra/jump-event-graph.png" alt="GA_Hero_Jump 的完整 EventGraph，包含跳跃、等待松键、技能状态和 UI 扩展注册清理" download="/blueprints/lyra/jump-event-graph.txt" caption="GA_Hero_Jump · EventGraph · 本机编辑器原生节点导出；可查看原始比例并下载文本。" />
+
+## 先顺着白色执行线读
+
+1. 从 `ActivateAbility` 找到 `CharacterJumpStart`。这是 Lyra 原生父类暴露的方法，不是直接在蓝图里修改 Z 坐标。
+2. 找到 `WaitInputRelease` 的能力任务和 `EndAbility`。松开输入后的结束路径用于控制跳跃保持行为。
+3. 找到 `StartAbilityState` 及其结束/中断输出，观察 `CharacterJumpStop` 如何接入清理。
+4. 另读 `OnAbilityAdded` 与 `OnAbilityRemoved` 两条事件线。它们负责 WidgetClass 的有效性检查、UIExtension 注册与句柄注销，与“每次按下跳跃”是不同生命周期。
+
+节点显示名称可能加空格；下载文本中的 `FunctionReference` 和 `ProxyFactoryFunctionName` 可以准确对应 C++ 符号。引脚颜色表达类型，白线表达执行顺序，纯函数节点按消费者需要求值。
+
+这张原图还有三个不能省略的参数与连线：`StartAbilityState.StateName=Jumping`、`bEndCurrentState=true`；`WaitInputRelease.bTestAlreadyReleased=true`，任务开始时也检查输入是否已经松开。`OnStateEnded` 与 `OnStateInterrupted` 都接 `CharacterJumpStop`，而 `WaitInputRelease.OnRelease` 接 `EndAbility`，不能把任务的普通 Then 输出误接成“已经松开”。
+
+UI 注册的 **ContextObject** 实际接 `GetOwningActorFromActorInfo`，不是 Avatar Pawn 或直接硬编码 LocalPlayer。当前 Lyra 的 ASC Owner 是 PlayerState，所以该上下文随 PlayerState；注册返回值写入 `WidgetExtensionHandle`，由 OnAbilityRemoved 调用 Unregister。它能与界面配对的原因见[UIExtension 上下文](/docs/06-ui/extensions#匹配的三个维度)，不能把所有 ContextObject 都改成玩家 0。
+
+## C++ 对照
+
+`CharacterJumpStart` 只有在角色本地控制且尚未按下跳跃时调用角色运动：
+
+```cpp
+if (LyraCharacter->IsLocallyControlled() && !LyraCharacter->bPressedJump)
+{
+    LyraCharacter->UnCrouch();
+    LyraCharacter->Jump();
+}
+```
+
+`CanActivateAbility` 先检查 Avatar 是有效 LyraCharacter 且 `CanJump()`，再调用父类检查。`EndAbility` 还会调用 `CharacterJumpStop()` 作为收尾。这说明蓝图图表只是实现的一层；不读父类会漏掉失败条件和兜底清理。
+
+## 蓝图文本如何使用
+
+下载的是 UE 原生复制文本，开头为 `Begin Object Class=/Script/BlueprintGraph...`。它保留节点类型、引脚与链接，不包含完整蓝图的类声明、默认值、变量和引用资源。
+
+在实验副本中先复制原 `GA_Hero_Jump` 资产，再在该副本中对照导出文本。若试验粘贴，使用相同父类并确保 `WidgetClass`、`WidgetExtensionPointTag`、`WidgetExtensionHandle` 等成员存在；不要把整段文本粘进任意 Actor 蓝图后期待自动生成全部依赖。新增事件可能与既有事件冲突，先保留副本再操作。
+
+推荐先按[训练场原生复制验证](/docs/07-training/feature-and-experience#五验证真实蓝图复制文本)运行工具，再打开报告指定的 `/TrainingRange/Tests/GA_JumpClipboardTest_*`。工具保留完整资产的成员与依赖，只清空测试 EventGraph，导入这份 20 节点文本后编译并保存；本机此项已实际通过且没有编译警告。手工重新试验时也要使用独立副本，避免把整图叠加到已有事件上。
+
+## 预期结果、排障与练习
+
+按下跳跃、保持、松开三种操作应能沿不同任务阶段解释；取消技能同样需要停止跳跃。文本导出可用于阅读与重建辅助，其本身不构成粘贴编译或联网运行已经通过的证明；运行验收记录以实验报告为准。
+
+练习：回答 UI 扩展应在技能结束还是技能移除时注销，以及为什么。再测试死亡打断跳跃时的清理路径；记录蓝图任务回调与 C++ EndAbility 的实际调用顺序。

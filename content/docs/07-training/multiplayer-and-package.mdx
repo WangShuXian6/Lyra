@@ -1,0 +1,259 @@
+---
+title: 联机、Cook 与训练场验收
+description: 用可复现的步骤分别检查初始化、输入、能力、装备、HUD、机器人及 Cook 后的资产。
+---
+
+## 学习目标与前置条件
+
+识别单机 PIE、单进程多玩家、独立服务器和打包产物之间的差异。训练场入口已经能够被本地 Asset Manager 找到。预览统一为 **1920 × 1080、中等画质**；构建前保存并正常关闭使用同一源引擎的编辑器，检查 Live Coding。
+
+## 一、先做本地功能检查
+
+在 PIE 中逐项检查移动、跳跃、四方向冲刺、开火、换弹、切换武器、拾取交互、HUD、Bot 和重生。每项只改变一个条件，并写下当前 Experience 名称。出现异常时记录日志，而不是只截取正常的一帧。
+
+下面是官方对照地图的实际游戏截图。它证明官方基线能够运行，训练副本需要单独完成同样的检查。
+
+![官方 L_ShooterGym 中的角色、手枪、Bot 射线、生命与弹药 HUD](/media/lyra/shooter-gym.png)
+
+图源：本机 `/ShooterCore/Maps/L_ShooterGym`，UE 5.8.1，2026-09-13，Unreal 原生 Slate 视口采集。此图采集于调整中等画质要求之前，后续实验按照中等画质进行。
+
+### 用真实输入执行单机检查
+
+在训练地图启动 PIE，打开 Output Log 并执行：
+
+```python
+py exec(open(r'F:/UE/LyraDoc/scripts/verify-training-play.py', encoding='utf-8').read())
+```
+
+执行后立即切回 **PIE 预览窗口**，让它保持输入焦点。当前脚本在启动后保留 1.5 秒不发送按键，供操作窗口；之后通过 Slate 逐帧回调推进，最多 20 秒结束。Output Log 保持前台时，键盘移动可能仍有反应，鼠标开火却不消耗弹药；不能据此认定开火链损坏。脚本结束或失败都会释放自身使用的强制输入并注销回调。
+
+`verification/training-play.json` 记录了本机 **2026-09-13 11:25:06–11:25:11 UTC 的 9/9 通过**。这是保留游戏窗口焦点取得的实际结果；后加的 1.5 秒窗口切换等待不改写这份既有记录。
+
+| 检查 | 本次观测 |
+| --- | --- |
+| 训练 PIE 身份 | `/TrainingRange/Maps/UEDPIE_0_L_TrainingRange` |
+| 训练能力授予 | 1 个 `GA_TrainingDash_C`，来自 `/TrainingRange/Game` |
+| 武器初始化 | 手枪装备实例与 `B_Pistol` Actor 存在，初始弹匣 12 |
+| HUD 初始化 | LyraHUD 与可见的 `W_ShooterHUDLayout` |
+| Bot 初始化 | 3 个 Bot Controller，分别持有 3 个 Pawn |
+| W 移动 | 约 1.20 秒移动 **560.34 cm** |
+| SpaceBar 跳跃 | 最高点比起点高 **127.52 cm** |
+| LeftShift 冲刺 | 实际采到 `GA_TrainingDash` 激活，位移 **617.40 cm** |
+| 鼠标开火 | 同一物品实例的弹匣标签计数 **12 → 11** |
+
+这里的通过范围是单个本地 PIE 的真实输入、能力与初始化状态。它没有验证四方向冲刺、换弹、拾取、伤害数值、Bot 决策、重生或 UI 导航；这些项目不能从 9/9 推断通过。脚本通过 `unreal.AbilitySystemLibrary` 和 `unreal.WidgetLibrary` 调用原生函数，名称来自类上的 `ScriptName`，不直接沿用 C++ 类名。
+
+### 换弹、拾取与重生的补充实测
+
+在[武器与生命周期操作步骤](/docs/07-training/weapons-hud-bots)中的单人 PIE 执行 `verify-training-lifecycle.py`。`verification/training-lifecycle.json` 记录 **2026-09-13 13:46:39–13:46:51 UTC，12.125 秒，4/4 通过、无错误**：
+
+| 检查 | 实际观测 |
+| --- | --- |
+| 换弹消耗备用弹药 | 开火 12/48 → 11/48；按 R 后弹匣/备用为 12/47 |
+| 真实重叠拾取 | 沿导航路径以 AddMovementInput 行走，B_WeaponSpawner_C_1 授予步枪；快捷栏由 Pistol/空/空 变为 Pistol/Rifle/空，拾取点变为不可用 |
+| 重生绑定同一 ASC | 原生 DamageSelfDestruct 后 Pawn 从后缀 C_5 变为 C_7，LyraPlayerState_0 与其 ASC 未更换，新 Avatar 匹配 |
+| 技能与 HUD 唯一 | 重生后 GA_TrainingDash 为 1 份，可见且激活的 W_ShooterHUDLayout 为 1 个 |
+
+此轮使用地图已有拾取点，没有添加新的 Spawner，也没有直接写背包、生命值、弹药或 Actor Transform。拾取路径成功依赖复制地图后原生构建并保存的导航数据；准备步骤见[构建导航](/docs/07-training/feature-and-experience#复制地图后构建导航并保存)。这份补充报告不覆盖拾取按键、联机竞争或归档程序运行，不能将它与下面的联机输入检查合并成这些场景的通过声明。
+
+## 二、两个客户端
+
+先在 Play 设置中把 Number of Players 设为 2，Net Mode 选择 Play As Client，并启用独立的服务器实例。两个玩家窗口都选择 1920 × 1080。关闭不需要的蓝图和材质编辑器，以减少预览期间占用。
+
+观察另一名玩家的移动、冲刺和开火；对同一拾取点竞争，确认服务器只接受合法结果；击杀后观察双方计分和重生。服务端断点会暂停所有客户端，因此不要把断点造成的停顿归因于网络故障。
+
+下面两张图来自同一次训练场联机 PIE，包含两个客户端和一个 Dedicated Server 世界。
+
+![训练场联机客户端 1：红色角色持手枪，界面显示比分、生命值和弹药](/media/training/client-1.png)
+
+客户端 1，`/TrainingRange/Maps/L_TrainingRange`，Experience 为 `B_TrainingRange`；2026-09-13 11:35:53 UTC，通过 Unreal 原生 SlateInspector 采集预览窗口 `w34`。
+
+![训练场联机客户端 2：蓝色角色持手枪，界面显示比分、生命值和弹药](/media/training/client-2.png)
+
+客户端 2，同一地图与 Experience；2026-09-13 11:35:56 UTC，原生采集窗口 `w35`。两份原始 PNG 均为 **1926 × 1118**，保留标题栏和边框，未裁剪或重采样；两个游戏视口实际读取值均为 **1920 × 1080**，十个 `sg.*Quality` 画质组的原生读取值均为 **1（Medium）**。地图是官方 `L_ShooterGym` 的本地训练副本，官方美术、角色和基础玩法依赖仍需从本机 Lyra 准备；来源与文件哈希见 `source-evidence/training-references.json`。
+
+本机执行 `scripts/verify-training-network.py` 得到 `verification/training-network.json` 的 **5/5 通过**：两个客户端与服务器身份、两个视口分辨率、角色移动在三个世界中的复制、实际 `GA_TrainingDash` 激活，以及客户端开火后服务器确认弹匣从 12 减到 11。脚本通过 Enhanced Input 强制按键并采样复制状态；此报告覆盖本地 PIE 联机，拾取竞争、计分重生和独立打包产物仍需各自验收。
+
+需要独立进程时，可以使用已编译的编辑器可执行程序运行未 Cook 游戏：
+
+```powershell
+# 独立服务器进程。这里只用于本机教学。
+& E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe `
+  F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject `
+  /TrainingRange/Maps/L_TrainingRange -server -log -port=7777
+
+# 在另一个终端启动客户端；再执行一次得到第二个客户端。
+& E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe `
+  F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject `
+  127.0.0.1:7777 -game -windowed -ResX=1920 -ResY=1080 `
+  '-ExecCmds=Scalability 1' -LiveCoding=false
+```
+
+这里的 `-server` 是独立进程运行方式，不等同于已经验证 `LyraServer` Target 的打包产物。发布服务器时仍要构建对应 Target 并测试 Cook 后的内容。
+
+## 三、打包与资产发现
+
+在 Project Settings → Packaging 中将 `/TrainingRange/Maps/L_TrainingRange` 加入需要 Cook 的地图。检查 TrainingRange GameFeatureData 的 Experience 扫描和 Cook Rule。仅在编辑器内容浏览器中可见，不保证资产进入包。
+
+使用项目的 Game/Client/Server Targets 构建所需平台。开发阶段先选择 Development，保留日志。若包中报找不到 Experience，检查 Primary Asset ID、插件是否进入构建、地图是否 Cook、软引用资产是否被规则收集。不要直接把整个项目目录作为 Additional Non-Asset Directory 打入包来规避扫描问题。
+
+训练地图直接引用 `LyraExampleContent` 美术。`TrainingRange.uplugin` 必须同时声明 `ShooterCore` 与 `LyraExampleContent` 依赖；编辑器中偶然已经加载资源，不能代替插件依赖声明。配套脚本检查这两项依赖以及已保存的地图、Experience 和 GameFeatureData：
+
+本教程的 Windows 构建选择 **D3D12 / Shader Model 6**，要求支持该渲染路径的显卡和驱动。官方配置同时包含 DX11 SM5、DX12 SM6 与 Vulkan SM6；训练包先不交付另外两条渲染路径。`examples/LyraTraining/Config/TutorialWindowsSM6.ini` 是原创增量配置，脚本把它追加到**实验副本**的 `Config/Windows/WindowsEngine.ini`，保留文件中原有 DPI、动态分辨率等设置：
+
+```ini
+[/Script/WindowsTargetPlatform.WindowsTargetSettings]
+DefaultGraphicsRHI=DefaultGraphicsRHI_DX12
+!TargetedRHIs=ClearArray
+!D3D11TargetedShaderFormats=ClearArray
+!D3D12TargetedShaderFormats=ClearArray
++D3D12TargetedShaderFormats=PCD3D_SM6
+!VulkanTargetedShaderFormats=ClearArray
+```
+
+`!` 清空继承数组，`+` 再加入唯一目标；仅更改 Default Graphics RHI 不会从 Cook 列表删除其他 Shader Formats。需要交付 DX11 或 Vulkan 时，在自己的平台配置恢复对应格式，重新 Cook 并分别运行验证。此裁剪不修改官方分析基线。
+
+源码引擎首次打包还要准备两个 **Engine Program** 目标。`UnrealPak Win64 Development` 提供 Pak/IoStore 工具；`BootstrapPackagedGame Win64 Shipping` 提供 Windows 归档顶层的启动程序模板。它们不是训练场插件，也不是 `LyraEditor` 构建产物。保存并正常关闭使用同一引擎的编辑器，等待其他 UBT 构建结束，再在 PowerShell 中依次执行：
+
+```powershell title="源码引擎的 Windows 打包工具"
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  UnrealPak Win64 Development `
+  -WaitMutex -NoHotReloadFromIDE -NoUBA -MaxParallelActions=3
+if ($LASTEXITCODE -ne 0) { throw 'UnrealPak 构建失败，先处理构建日志。' }
+
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  BootstrapPackagedGame Win64 Shipping `
+  -WaitMutex -NoHotReloadFromIDE -NoUBA -MaxParallelActions=3
+if ($LASTEXITCODE -ne 0) { throw 'Windows Bootstrap 构建失败，先处理构建日志。' }
+```
+
+每次确认 `Result: Succeeded`，再核对 `E:/UnrealEngine/Engine/Binaries/Win64/UnrealPak.exe` 与 `BootstrapPackagedGame-Win64-Shipping.exe` 存在。`package-training.ps1` 的 Package 分支会先检查这两个文件；缺失时停止并打印对应的显式构建命令。两条命令不传 `-Project`，同一引擎下的实验工程可复用这些工具；引擎源码或配置变化后仍需由 UBT 核对是否过期。
+
+本机 5.8.1 的 `BuildProjectCommand.Automation.cs` 在 source engine 的 `-build` 阶段还会核对这两个工具目标，`-skipbuildeditor` 只跳过 Editor。先按上面的命令完成首次工具构建，能把这一阶段的并行度也明确限制为 3。UAT 的 `-ubtargs` 传给 cooked 游戏目标，不是所有 Engine Program 的统一限流参数。`WinPlatform.Automation.cs::StageBootstrapExecutable` 使用上面的 Shipping 模板创建顶层启动程序；验收脚本则直接运行归档内的 `Binaries/Win64/LyraGame.exe`，报告会记录实际进程路径。
+
+```powershell
+# 只显示将执行的参数，不启动 UAT、UBT 或 Cook。
+./scripts/package-training.ps1 -Mode Package -ShowCommand
+
+# 先完成完整 Editor 构建并正常关闭编辑器。
+# Cook 模式使用已有 Editor，不构建游戏可执行文件。
+./scripts/package-training.ps1 -Mode Cook
+
+# 构建 LyraGame Development，Cook、Stage、Pak/IoStore 并归档。
+./scripts/package-training.ps1 -Mode Package
+```
+
+脚本显式指定 `/TrainingRange/Maps/L_TrainingRange`，不依赖默认前端地图。默认产物位于 `LyraDocLabs/Artifacts/LyraTraining` 的本次唯一目录，日志与退出码记录到 `verification/training-cook.json` 或 `training-package.json`，各次目录还保留自己的 `report.json`。`Package` 模式会调用 UBT，需与其他共享引擎的构建错开；脚本发现同引擎编辑器、Live Coding 或 UBT 进程时会停止并列出 PID，不自动关闭进程。`Cook` 模式只要求训练工程编辑器关闭且没有同引擎 Live Coding，不会因另一个项目的 C++ 构建而拒绝执行。
+
+Cook 直接调用已有 `UnrealEditor-Cmd.exe -run=Cook -TargetPlatform=Windows`，不通过 UAT。`-Multiprocess` 在本机 `TargetPlatformManagerModule.cpp` 跳过自动 SDK 验证的 UBT 启动；它与 `-CookProcessCount=1` 同时使用，日志明确显示 Cook 自身仍为单进程。`-corelimit=3` 配合 Shaders INI 覆盖，把本机 `ShaderCompiler.cpp` 的低核心分支限制为 2 个 ShaderCompileWorker，减少与其他任务同时运行时的内存压力。
+
+`Package` 分支也通过 UAT 的 `-AdditionalCookerOptions` 传递同一套单进程 Cook、3 个可用核心与 2 个 SCW 参数；通过 `-ubtargs=-NoUBA -MaxParallelActions=3` 禁用 LyraGame 构建的 UBA，并把该游戏目标限制为最多 3 个并行动作。工具目标先按前面的独立命令完成构建。这两个限制分别控制 C++ 构建与 Shader 编译，不能只设置其中一个。脚本记录实际 worker 日志，若出现超过 2 个本地 worker 则报告失败；缓存完全命中时，参数记录与原生日志仍保留供核查。
+
+打包前还需已构建的 `Engine/Binaries/DotNET/AutomationTool/AutomationTool.dll` 和 `AutomationUtils/net10.0/AutomationUtils.Automation.dll`，以及本机可用的 Windows SDK。脚本先检查这两个工具文件，并传入本机 UAT 原生支持的 `-NoCompileUAT -NoCompile -NoAutoSDK`，避免打包时隐式重编译 UAT/脚本模块或启动 AutoSDK 安装。它们不跳过下面的 LyraGame C++ 构建、Cook、Shader 编译、Stage 或归档。若工具缺失，先正常关闭共享引擎的编辑器、等待其他构建结束，再单独执行 `E:/UnrealEngine/Engine/Build/BatchFiles/RunUAT.bat -CompileOnly` 完成源引擎 AutomationTool 和脚本模块前置构建，确认退出码为 0 后重试。该准备命令允许构建工具自身，不能与教程中的禁止重编译参数组合使用。
+
+若本机使用 HTTP 代理，UAT 的本地 Zen 就绪检查也可能受到影响。本机 5.8.1 的 `ZenUtils.cs::CreateHttpClientInternal` 使用默认 .NET `HttpClient`；实测只有 `NO_PROXY=...::1` 时，对 `http://[::1]:8558` 仍可能走代理并收到 502，而 Zen 本身已经正常提供 Cook 内容。Package 调用会临时在当前进程的 `NO_PROXY` 保留已有条目并加入 `localhost`、`127.0.0.1`、`::1`、`[::1]`，让 UAT 子进程直接连接本地服务；成功或异常结束都在 `finally` 恢复原值。脚本不修改系统代理，不输出代理地址或凭据，也不因为这个连接问题更换 Cook 存储方式。遇到 Zen 超时时，应先区分实际服务未就绪与代理误路由，不要立即重做全部 Cook。
+
+**单独的 Cook 模式**使用 `-SkipZenStore`，把 Cook 后的地图和资产包写入独立目录，便于检查真实文件；**Package 模式**沿用 UAT 的 Zen Cook/Stage 流程，再生成 Pak/IoStore 与归档。两种模式均用 MCP 的 `EditorPerProjectUserSettings` 命令行覆盖关闭本次自动服务启动，避免占用另一个编辑器的 8000 端口。进程参数只作用于该命令，渲染路径增量保存在实验副本，官方项目配置保持原样。Cook 会继续遵守 Asset Manager 的 Always Cook 和依赖规则，指定一张地图不代表只处理该地图文件。
+
+参数已按本机 5.8.1 `CookCommandlet.cpp`、`TargetPlatformManagerModule.cpp`、`ShaderCompiler.cpp` 以及 UAT 的 `ProjectParams.cs`、`BuildProjectCommand.Automation.cs` 核对；运行结果以验证目录实际报告为准。UAT 成功后还要启动归档内可执行文件，传入训练地图路径，并重新检查 Experience、输入、HUD 和武器。本次已完成下文的 Package 与两次归档运行验收。`training-package.json` 的 `runtimeVerification: pending` 是 **UAT 结束时**的快照；实际后续结果在独立的 `training-package-runtime*.json`，其中保存了该包报告的 SHA256。保留包报告原字节，避免事后修改使来源哈希失配。
+
+### 本次 Windows Cook 的实际结果
+
+`verification/training-cook.json` 保存 **2026-09-13 12:11:50–12:34:45 UTC** 的原生执行结果，退出码为 **0**。日志记录 `Success - 0 error(s), 299 warning(s)`，其中 297 条来自文本翻译资源冲突，另 2 条是手柄扬声器与震动音频端点不可用时切换到默认端点。本次成功不意味着这些警告已经消除；逐类统计和日志哈希记录于 `verification/training-cook-log-analysis.json`。
+
+| 检查 | 实际记录 |
+| --- | --- |
+| Cook 平台 / Shader Format | Windows / `PCD3D_SM6` |
+| 最终包队列 | 4087 项，剩余 0 |
+| 真正写出的包 | 3867；另外 220 项按平台跳过，增量跳过 0 |
+| ShaderCompileWorker | 原生日志明确为 2 个本地工作进程 |
+| 训练地图产物 | `Cooked/LyraStarterGame/Plugins/GameFeatures/TrainingRange/Content/Maps/L_TrainingRange.umap`，39,513 字节 |
+| 独立可执行文件 | 此次历史 Cook 未构建；后续最终 Package 与运行结果见下文 |
+
+此后在 **13:42 UTC** 为训练副本执行了原生 Build Paths，并于 **13:45 UTC** 保存带导航数据的地图。因此上表是导航更新之前的历史 Cook 结果；最终 Package 必须重新 Cook 最新地图，不能把旧的 39,513 字节产物作为当前地图的发布结果。导航证据见 `verification/training-navigation.json`。
+
+完整日志和 Cook 内容位于 `LyraDocLabs/Artifacts/LyraTraining/20260913-121150-a249eb/`。结束时确认命令行编辑器已正常退出，再重新打开训练工程；不要在同一个实验工程仍 Cook 时同时修改待 Cook 资产。
+
+### 归档程序的原生运行验收
+
+新增的原创源码位于 `examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification`。先把插件 `.uplugin` 和 `Source` 一起复制到训练实验工程，再构建完整 Editor 目标；完成并保存最新导航地图后执行上面的 `-Mode Package`。脚本会检查实验工程的验收源码与文档仓库一致，并记录本次地图、插件描述和验收源码 SHA256。
+
+使用 PowerShell 7.2 或更新版本，在文档仓库执行：
+
+```powershell
+# 先确认成功的 training-package.json 已存在；该命令只显示即将启动的参数。
+./scripts/verify-training-package.ps1 -ShowCommand
+
+# 运行实际归档内 Binaries/Win64/LyraGame.exe。
+./scripts/verify-training-package.ps1
+```
+
+启动器从成功的 `Package` 报告选择游戏可执行文件，显式打开 `/TrainingRange/Maps/L_TrainingRange`。游戏窗口出现后保持焦点，不切到终端或编辑器操作；原生 Enhanced Input 强制键与之前 PIE 实测使用相同命令路径。程序完成后正常退出，原始 PNG 和两层 JSON 报告保存在本次唯一目录，最新总报告位于 `verification/training-package-runtime.json`。需要复验旧归档，传入 `-PackageReport <那次归档目录的 report.json>`。
+
+执行检查要求 **Development、非 Editor、非 Server、使用 Cook 内容**，并且显式收到 `-LyraTrainingVerify` 与输出目录参数。Development Editor 也编译同一主体以提前发现 API 错误，但启动门槛禁止它在 Editor/PIE 中执行。模块不会在普通游戏中注册 ticker，也不增加界面。检查最多运行 90 秒，截图另外等待最多 10 秒；启动器默认 150 秒超时。前置条件缺失、角色在本次采样期间死亡或窗口没有实际消费输入，都会产生失败或超时报告，需要按实际日志排查。
+
+| 观察对象 | 通过条件 |
+| --- | --- |
+| Cook 世界与玩法 | `RequiresCookedData`、Game/Standalone 世界、训练地图完整包名与实际 `B_TrainingRange_C` |
+| 角色和 UI | 当前角色为本地 Controller 的 Pawn；同一 PlayerState 拥有 ASC、当前 Pawn 是 Avatar；Hero 输入绑定就绪；Dash 恰好 1 份；当前玩家可见且激活的 Shooter HUD 恰好 1 个 |
+| 显示设置 | 先调用 GameUserSettings 设置 Medium，再读取实际 1920×1080 视口和十个 `sg.*Quality = 1` |
+| W 与 LeftShift | W 沿控制器水平前向实际移动超过 20 cm，下落不计入；Shift 前 Dash 未激活，输入后记录准确 Spec 活跃或当前 ASC/Avatar 的原生激活回调，单有位移不算冲刺通过 |
+| 开火与换弹 | 左键后同一活动物品弹匣下降；释放开火后按 R，弹匣增加、备用减少且数量相等 |
+| 原生截图 | `FScreenshotRequest` 包含 UI 并限定游戏视口，处理回调后 PNG 真正落盘，原始尺寸为 1920×1080 |
+
+QuickBar 与 InventoryItem 在本机 Lyra 中未导出完整 C++ 类；教学模块使用它们已公开的 `GetActiveSlotItem`、`GetStatTagStackCount` 蓝图函数，经 `ProcessEvent` 读取实际状态，不修改官方类导出宏或受保护字段。没有直接写弹药、生命值、技能授予或角色位置。截图由 UE 保存，启动器只检查文件、尺寸和哈希，不做图像裁切或重采样。
+
+存在 LoadingScreenManager 时还要等待加载屏幕真正隐藏；本机默认的纹理流送额外显示时间为 2 秒，不能只看 Experience Loaded。移动、冲刺与输入间隔同时等待持续时间与至少 3 帧，让 Enhanced Input 的强制键经过后续 Controller Tick 消费；开火和换弹可在读到实际弹药变化时提前判定成功，因此两次开火报告均记录 2 个采样帧。原生 ASC 激活回调用于补足两次 ticker 之间结束的短技能，报告将回调与 Spec 活跃采样分开记录；它不证明四方向蒙太奇或命中伤害。世界提前清理时本次检查失败并解绑委托。截图处理回调在保存尝试后触发，保存失败也会触发，因此还要读取原始 PNG 的 IHDR 和完整 IEND，不能只等回调就退出。
+
+### 本次 Package 与两次归档运行结果
+
+`verification/training-package.json` 记录 **2026-09-13 19:34:46–20:39:46 UTC，UAT 退出码 0**。最终导航地图源文件为 193,375 字节，SHA256 为 `59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3`；本次重新 Cook 了该地图，没有复用导航构建前的历史结果。
+
+| 阶段 | 本机实际结果 |
+| --- | --- |
+| LyraGame Development 首次完整构建 | 1021 个动作，3678.09 秒，最多 3 个并行动作，包含 TrainingRangeVerification 编译与链接 |
+| Cook | 单次原生进程 96.34 秒，4087 项处理完毕、剩余 0，0 error / 299 warning，2 个本地 ShaderCompileWorker |
+| Stage / Archive | 90.84 / 27.91 秒，Pak/IoStore 与 Windows 归档成功 |
+| 实际游戏程序 | 归档内 `LyraStarterGame/Binaries/Win64/LyraGame.exe`，350,006,784 字节 |
+
+这台机器的首次游戏 C++ 构建约 61 分钟，不能用它预测其他机器或增量构建时长。Cook 中的翻译冲突与音频端点警告仍保留；完整统计、日志路径、SHA 与正常日志归档说明见 `verification/training-package-log-analysis.json`。UAT 从运行时 `Saved/Cook-...` 复制为完成时 `Saved/Logs/Cook-...` 是原生归档行为，本次没有因文件名变化重跑 Cook。
+
+同一归档可执行文件在 **20:40:13–20:41:23 UTC** 与 **20:45:31–20:45:51 UTC** 各运行一次，两个进程都完成 **11/11 检查、1920×1080 原生 PNG 落盘，并以退出码 0 正常结束**。首轮报告为 `verification/training-package-runtime-first-run.json`，复测报告为 `verification/training-package-runtime.json`；两者指向同一包报告与 exe SHA。
+
+| 观测 | 首轮 | 同一归档复测 |
+| --- | --- | --- |
+| Experience、Pawn/ASC、Hero 输入、Dash、HUD | B_TrainingRange 就绪；ASC Owner 为当前 PlayerState、Avatar 为当前 Pawn；Dash 1 份、可见激活 HUD 1 个 | 相同条件全部通过 |
+| 显示 | 实际 1920×1080，视口持有焦点，十个质量组均为 Medium 1 | 同样通过 |
+| W 移动 | 212.10 cm，0.611 秒 | 213.21 cm，0.610 秒 |
+| Shift 冲刺 | Spec 活跃与原生激活回调均采到；位移 773.08 cm | 两种激活证据均采到；位移 1003.70 cm |
+| 开火 / R 换弹 | 弹匣 12→11；换弹 11/48→12/47 | 开火阶段弹匣 11→10；换弹 10/48→12/46 |
+| 原生检查耗时 | 23.303 秒 | 10.399 秒 |
+| 音频日志 | 1 条队列积压 Error、1 条释放阶段 Stall、3 次 Underrun Display | 无 Error / Stall，仍有 1 次 Underrun Display |
+
+开火判定比较本阶段同一物品实例的前后计数，不要求每轮进入采样时弹匣都固定为 12。以上是真实观测值，没有直接改弹药、背包、技能或角色位置。冲刺位移受起点、阻挡和实际帧时影响；这项验收用准确能力的激活证据判断输入链，不用位移数值证明四方向动画正确。
+
+![首轮实际打包训练场：红色角色、100 生命、手枪换弹后 12 与 47 弹药、等待玩家提示以及原生启动警告](/media/training/packaged-preview.png)
+
+图源：首轮 PID 6700，`/TrainingRange/Maps/L_TrainingRange`、`B_TrainingRange`，2026-09-13 20:40:41 UTC；UE `FScreenshotRequest` 保留 UI、限定游戏视口，原始 **1920×1080**、Medium，未裁剪、重采样或移除警告。画面可见 100 生命、换弹后的 12/47 手枪 HUD 与 Hubert 名称。中间“等待其他玩家加入”来自复用的官方 Warmup 阶段，不能据此认定 Experience 未加载；本次单人验收不宣称回合计分完成。图片绑定的是**首轮**报告，复测的 12/46 原图另存于该次运行目录；来源与各自 SHA 见 `source-evidence/training-references.json`。
+
+左上黄色 `PassLoadingScreenWindowBackToGame failed. No Window` 是本机引擎 `DefaultGameMoviePlayer.cpp::PassLoadingScreenWindowBackToGame` 的启动窗口交接警告：保存的 MainWindow 无效或 GEngine 尚不匹配 GameEngine 时记录该消息。`LaunchEngineLoop.cpp` 在 `GEngine->Init` 前调用它。它与后续 CommonLoadingScreen 生命周期不同；本次实际读取到加载屏幕已隐藏、Hero 输入就绪、视口有焦点，随后移动、技能、开火与换弹完成。截图保留该警告，不能称为无警告画面，也不要用 `DisableAllScreenMessages` 代替诊断。
+
+首轮音频队列超过初始 1 MiB 告警阈值，记录距最后一次 pump 为 1.24113 秒；抓取的音频线程栈在释放 SourceBuffer 时进入 MetaSound 图生成器析构，等待 `BuilderTask::EnsureCompletion`。20:40:29.820–20:40:38.167 的日志间隔还包含原生同步抓栈与符号化开销，**不能全部解释为 8 秒音频构建**。复测没有禁用音频、改阈值或抑制日志，没有再现该 Error/Stall，但仍有缓冲区欠载。首次加载负载与任务时序只是可能因素，根因没有被两次运行唯一证明；功能检查通过不等于音频质量或性能验收通过。进一步取证方法见[性能定位](/docs/11-reference/performance)。
+
+这里的运行范围是单个 packaged 游戏进程，不包含 packaged 联机、拾取、重生、四方向蒙太奇、命中伤害、Bot 决策或手柄 UI 导航。前面的 PIE 单人 9/9、联机 5/5、生命周期 4/4 各自保留原有范围。
+
+## 四、留下可复核记录
+
+| 检查 | 需要保留的证据 |
+| --- | --- |
+| 地图与 Experience | 地图路径、实际加载的 Experience、时间 |
+| 蓝图粘贴 | 目标资产、图名、原生文本哈希、编译结果 |
+| 联机 | 服务器与两个客户端日志、画面、端口与启动方式 |
+| Cook 后运行 | Target、构建退出码、启动日志、资产加载结果 |
+| 重生与退出 | 能力移除、UI 句柄清理、是否残留旧 Pawn 引用 |
+
+配套验证记录保存在仓库 `verification/`。未执行的检查必须保留待验收状态，不能从截图或编译成功推断通过。
+
+## 排障与练习
+
+两窗口能看到相同地图却看不到彼此时，检查是否连接同一服务器；两个 Standalone 窗口不是联机。打包后按键无效时，先检查 Input Mapping Context 与相关插件资产是否 Cook。练习给网络加上延迟，记录冲刺响应、服务器校正和伤害确认的变化，再恢复正常网络设置。

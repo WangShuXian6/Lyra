@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-09-13T17:12:11.4822292Z",
+  "passed": true,
+  "target": "MMORPGClient",
+  "configuration": "Development",
+  "platform": "Win64",
+  "engine": "E:/UnrealEngine",
+  "arguments": [
+    "MMORPGClient",
+    "Win64",
+    "Development",
+    "-Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-MaxParallelActions=3",
+    "-NoUBA"
+  ],
+  "normalBuild": true,
+  "activeEditorsAtStart": 0,
+  "liveCoding": false,
+  "parallelActions": 3,
+  "ubaRemoteExecution": false,
+  "log": "F:\\UE\\LyraDoc\\verification\\mmorpgclient-final-build.log",
+  "outputs": [
+    {
+      "bytes": 336411648,
+      "sha256": "f158a9efc8b20596eb9faefbe7457893a826b1fa6cf677d96978b711baa412db",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Binaries/Win64/MMORPGClient.exe"
+    },
+    {
+      "bytes": 126471,
+      "sha256": "1429c325e3bf43ce06e9a39571e2d70d6d1db6bc44eb5f943e397df80ca2a845",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Binaries/Win64/MMORPGClient.target"
+    }
+  ],
+  "exitCode": 0,
+  "finishedAt": "2026-09-13T17:50:19.2684065Z"
+}

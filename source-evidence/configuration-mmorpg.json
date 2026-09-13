@@ -1,0 +1,3312 @@
+{
+  "schemaVersion": 1,
+  "captures": [
+    {
+      "title": "Project Settings → Game → Common Input Settings",
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+      ],
+      "fields": {
+        "bEnableEnhancedInputSupport": true,
+        "InputData": "MMOInputData"
+      },
+      "caption": "CommonUI 使用 Enhanced Input，并从 MMOInputData 取得返回动作。Escape 与手柄 B 的映射由 MMORootLayout 创建。",
+      "slug": "common-input",
+      "ref": "w8",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T11:58:27.214Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/common-input.png",
+      "publicPath": "public/media/configuration/mmorpg/common-input.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "2fb7032a582cfd8f7b2c0c446a3539faa69e88f097467756197e9234183ed182"
+    },
+    {
+      "title": "Project Settings → Project → Maps & Modes",
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEngine.ini"
+      ],
+      "fields": {
+        "EditorStartupMap": "/Engine/Maps/Entry",
+        "GameDefaultMap": "/Engine/Maps/Entry",
+        "GlobalDefaultGameMode": "MMOGameMode",
+        "GameInstanceClass": "MMOGameInstance"
+      },
+      "caption": "编辑器和游戏从 Entry 开始；MMOGameInstance 启用 MMOCore，MMOGameMode 负责入服和角色初始化。Server Default Map 在 Default Maps 的 Advanced 中查看。",
+      "slug": "maps-modes",
+      "ref": "w8",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T11:58:43.711Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/maps-modes.png",
+      "publicPath": "public/media/configuration/mmorpg/maps-modes.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "91a7f6f5e446446a249d24633b7622c957927a9b5cbc574edcfdbe7133543124"
+    },
+    {
+      "title": "Project Settings → Game → Asset Manager → Primary Asset Types to Scan → GameFeatureData",
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "fields": {
+        "PrimaryAssetType": "GameFeatureData",
+        "AssetBaseClass": "GameFeatureData",
+        "bHasBlueprintClasses": false,
+        "bIsEditorOnly": false,
+        "Directories": [
+          "/MMOCore"
+        ],
+        "CookRule": "AlwaysCook"
+      },
+      "caption": "展开 GameFeatureData、Directories 和 Rules；这是 Data Asset 扫描，Has Blueprint Classes 不勾选。MMOCore 必须在 Cook 中保留。",
+      "slug": "asset-manager",
+      "ref": "w8",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T11:59:44.267Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/asset-manager.png",
+      "publicPath": "public/media/configuration/mmorpg/asset-manager.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "57de38ddddbedc07e376fd320761aef9539d1c7de425339fb539f1b96a54b9af"
+    },
+    {
+      "title": "Project Settings → All Settings → search GameViewportClient",
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEngine.ini"
+      ],
+      "fields": {
+        "GameViewportClientClass": "CommonGameViewportClient"
+      },
+      "caption": "将 Game Viewport Client Class 设为 CommonGameViewportClient；CommonUI 的输入路由通过它接入引擎视口。修改原项目配置后需要重启编辑器。",
+      "slug": "engine-viewport-class",
+      "ref": "w8",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:01:10.267Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/engine-viewport-class.png",
+      "publicPath": "public/media/configuration/mmorpg/engine-viewport-class.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "78a083ce9f5709380a0738dc1b955b694a706b0588588c37f7ea06bb823964b3"
+    },
+    {
+      "title": "Project Settings → All Settings → search LocalPlayerClass",
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEngine.ini"
+      ],
+      "fields": {
+        "LocalPlayerClass": "CommonLocalPlayer"
+      },
+      "caption": "CommonLocalPlayer 向 UI 提供当前 PlayerController、PlayerState 和 Pawn 变化通知；重生时用这些通知更新 ViewModel 绑定。",
+      "slug": "local-player-class",
+      "ref": "w8",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:01:24.924Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/local-player-class.png",
+      "publicPath": "public/media/configuration/mmorpg/local-player-class.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "ab1b382fb15ee4b73e75514d0566ed59c1ea4bd4d39bf7c4ad202cda3fd9a947"
+    },
+    {
+      "title": "Project Settings → All Settings → search DefaultPlayerInputClass",
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultInput.ini"
+      ],
+      "fields": {
+        "DefaultPlayerInputClass": "EnhancedPlayerInput"
+      },
+      "caption": "在 Input 的 Default Classes 中选择 EnhancedPlayerInput；启用插件与选用输入类是两个步骤。",
+      "slug": "enhanced-player-input",
+      "ref": "w8",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:01:57.818Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/enhanced-player-input.png",
+      "publicPath": "public/media/configuration/mmorpg/enhanced-player-input.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "1584a3f0295fb00dafcd084846c5da9a13c48d9b10011b1f7319c2bb73ec3201"
+    },
+    {
+      "title": "Project Settings → All Settings → search DefaultInputComponentClass",
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultInput.ini"
+      ],
+      "fields": {
+        "DefaultInputComponentClass": "EnhancedInputComponent"
+      },
+      "caption": "选择 EnhancedInputComponent，角色的 SetupPlayerInputComponent 才能绑定 Enhanced Input Actions。保存配置并重启后核对该字段。",
+      "slug": "enhanced-input-component",
+      "ref": "w8",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:02:13.623Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/enhanced-input-component.png",
+      "publicPath": "public/media/configuration/mmorpg/enhanced-input-component.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "d66bbef578469c73c8abbfc40f0809c2b4a9aa34eefc0f507c52b664819f7f6e"
+    },
+    {
+      "title": "/Game/UI/BP_MMOUIPolicy → Class Defaults",
+      "asset": "/Game/UI/BP_MMOUIPolicy.BP_MMOUIPolicy",
+      "sourceFiles": [
+        "examples/MMORPG/prepare_content.py",
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "fields": {
+        "ParentClass": "MMOUIPolicy",
+        "LayoutClass": "MMORootLayout"
+      },
+      "caption": "这是实际使用的纯数据蓝图。Layout Class 指向 MMORootLayout；DefaultGame.ini 中 MMOUIManager 的 DefaultUIPolicyClass 指向此蓝图生成类。",
+      "slug": "ui-policy",
+      "ref": "w9",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:02:33.292Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/ui-policy.png",
+      "publicPath": "public/media/configuration/mmorpg/ui-policy.png",
+      "width": 1958,
+      "height": 1178,
+      "sha256": "e60da61b4da69a576064d9396cee117a5dd9079068568b7f89392be59f634f9d"
+    },
+    {
+      "title": "/MMOCore/MMOCore → Actions → Add Components → Component List[0]",
+      "asset": "/MMOCore/MMOCore.MMOCore",
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+        "examples/MMORPG/prepare_content.py"
+      ],
+      "fields": {
+        "ActorClass": "ModularGameStateBase",
+        "ComponentClass": "MMOZoneComponent",
+        "bClientComponent": true,
+        "bServerComponent": true,
+        "FeatureState": "Active"
+      },
+      "caption": "逐层展开 Actions[0] → Add Components → Component List[0]。MMOZoneComponent 同时加到客户端和服务器的 ModularGameStateBase，用于创建区域；Active 状态的字段只读。",
+      "slug": "feature-data",
+      "ref": "w9",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:05:34.399Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/feature-data.png",
+      "publicPath": "public/media/configuration/mmorpg/feature-data.png",
+      "width": 1958,
+      "height": 1178,
+      "sha256": "9176f52f9666f302fd076ac36b5b37ba78a05e5c503a378160406d9fd8384cb6"
+    },
+    {
+      "title": "/Game/Tutorial/GA_ArcaneBolt → Class Defaults",
+      "asset": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt",
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp",
+        "examples/MMORPG/prepare_content.py"
+      ],
+      "fields": {
+        "ParentClass": "MMOSpellAbility",
+        "InstancingPolicy": "Instanced Per Actor",
+        "NetExecutionPolicy": "Server Only",
+        "CostGameplayEffectClass": "MMOSpellCost",
+        "CooldownGameplayEffectClass": "MMOSpellCooldown"
+      },
+      "caption": "查看从 MMOSpellAbility 继承的实例化策略、服务器执行、消耗和冷却 GE。该蓝图用于教学检查；当前运行时授予的是原生 MMOSpellAbility。",
+      "slug": "ability-defaults",
+      "ref": "w9",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:06:12.732Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/ability-defaults.png",
+      "publicPath": "public/media/configuration/mmorpg/ability-defaults.png",
+      "width": 1958,
+      "height": 1178,
+      "sha256": "e6c32b1a2147a48e507aa996fbcf67e9ea46f15427c2dd18b1ea2bc93999ddac"
+    },
+    {
+      "title": "/Game/Tutorial/BP_MMOCharacter → Open Full Blueprint Editor → Components and Class Defaults",
+      "asset": "/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter",
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp"
+      ],
+      "fields": {
+        "ParentClass": "MMOCharacter",
+        "InheritedComponents": [
+          "CollisionCylinder",
+          "Body",
+          "CameraArm",
+          "Camera",
+          "CharacterMovement"
+        ]
+      },
+      "caption": "父类 MMOCharacter 的原生组件在左侧标记为继承组件。蓝图用于观察和扩展；当前 GameMode 默认生成原生 MMOCharacter。右侧搜索 Replicates 核对复制开关。",
+      "slug": "character-components",
+      "ref": "w9",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:07:30.813Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/character-components.png",
+      "publicPath": "public/media/configuration/mmorpg/character-components.png",
+      "width": 1958,
+      "height": 1178,
+      "sha256": "3037c78660679906964e421d71a6ed4d4d1e4854211832b0421e560ec73f859d"
+    },
+    {
+      "title": "/Game/Tutorial/BP_MMOTrainingTarget → Class Defaults → search Replicates",
+      "asset": "/Game/Tutorial/BP_MMOTrainingTarget.BP_MMOTrainingTarget",
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Public/MMOGameplay.h",
+        "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp"
+      ],
+      "fields": {
+        "ParentClass": "MMOTarget",
+        "Replicates": true
+      },
+      "caption": "Replicates 来自原生 MMOTarget 构造函数。Health=100 定义在 C++ 中，其 UPROPERTY 只有 BlueprintReadOnly 而没有 EditDefaultsOnly，不能要求读者在 Details 填写生命值。",
+      "slug": "target-replication",
+      "ref": "w9",
+      "editorPid": 38352,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:08:17.704Z",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/target-replication.png",
+      "publicPath": "public/media/configuration/mmorpg/target-replication.png",
+      "width": 1958,
+      "height": 1178,
+      "sha256": "ed9d79959089ecf6ff6eaefa18ff18c6a29b668f67b6aed06b5273c033f5243f"
+    },
+    {
+      "ref": "w13",
+      "planId": "animation-main-class-settings",
+      "visibleValues": {
+        "parentClass": "MMOAnim Instance",
+        "implementedInterface": "ALI MMOCharacter",
+        "animationLayer": "Locomotion"
+      },
+      "coverage": "Class Settings; preview mesh property requires another capture",
+      "slug": "animation-main-class-settings",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOCharacter",
+      "title": "Animation Blueprint Editor → Class Settings / Preview Scene Settings",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建主动画蓝图"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-animation-assets.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:00:00.685919+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/animation-main-class-settings.png",
+      "publicPath": "public/media/configuration/mmorpg/animation-main-class-settings.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "155272e038515f837da7bea7efb6da2d27ede8a7bf010d374e11307d2457b838",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ABP_MMOCharacter.uasset",
+      "sourceAssetSHA256": "a931a3540237e4a54938ce77789014ef6af107de43ff853af817f01f17e23300"
+    },
+    {
+      "ref": "w13",
+      "planId": "animation-linked-layer-settings",
+      "visibleValues": {
+        "layer": "Locomotion",
+        "instanceClass": "ABP_MMOUnarmed"
+      },
+      "slug": "animation-linked-layer-settings",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOCharacter",
+      "title": "AnimGraph → select Linked Anim Layer → Details",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建主动画蓝图"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:00:22.703828+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/animation-linked-layer-settings.png",
+      "publicPath": "public/media/configuration/mmorpg/animation-linked-layer-settings.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "dffc41f3e92c1f24c3cdd811921efb140dcdbb23507eedc2956879d32821ba03",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ABP_MMOCharacter.uasset",
+      "sourceAssetSHA256": "a931a3540237e4a54938ce77789014ef6af107de43ff853af817f01f17e23300"
+    },
+    {
+      "ref": "w13",
+      "planId": "animation-slot-settings",
+      "visibleValues": {
+        "slotName": "DefaultGroup.DefaultSlot"
+      },
+      "slug": "animation-slot-settings",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOCharacter",
+      "title": "AnimGraph → select Slot → Details",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建主动画蓝图"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:00:41.032623+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/animation-slot-settings.png",
+      "publicPath": "public/media/configuration/mmorpg/animation-slot-settings.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "222d3ccf88ac93f966735914180e9997b85bdf6240efe47d514a94d84e381ce0",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ABP_MMOCharacter.uasset",
+      "sourceAssetSHA256": "a931a3540237e4a54938ce77789014ef6af107de43ff853af817f01f17e23300"
+    },
+    {
+      "ref": "w13",
+      "planId": "animation-unarmed-class-settings",
+      "visibleValues": {
+        "parentClass": "MMOAnim Instance",
+        "implementedInterface": "ALI MMOCharacter",
+        "animationLayer": "Locomotion"
+      },
+      "slug": "animation-unarmed-class-settings",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOUnarmed",
+      "title": "Animation Blueprint Editor → Class Settings / Preview Scene Settings",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建无武器层实现"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-animation-assets.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:02:17.738210+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/animation-unarmed-class-settings.png",
+      "publicPath": "public/media/configuration/mmorpg/animation-unarmed-class-settings.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "7cb00c85e58ab7403adfdedfccf037807f714ce383e943cfdfdc6d49f15baaef",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ABP_MMOUnarmed.uasset",
+      "sourceAssetSHA256": "c0b77d8ad6e9928f4f8aafac4505860c5ce9f28df78e2a405d30261789766b76"
+    },
+    {
+      "ref": "w13",
+      "planId": "animation-unarmed-node-assets",
+      "slug": "animation-unarmed-blendspace-details",
+      "visibleValues": {
+        "blendSpace": "BS_Idle_Walk_Run",
+        "direction": "0.0",
+        "speedInput": "Ground Speed connected to Speed"
+      },
+      "assetPath": "/Game/Characters/MMO/ABP_MMOUnarmed",
+      "title": "Locomotion graph → selected BlendSpace / Sequence nodes → Details",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建无武器层实现"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:03:26.916962+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/animation-unarmed-blendspace-details.png",
+      "publicPath": "public/media/configuration/mmorpg/animation-unarmed-blendspace-details.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "cc1fd2f18cd11e135a9bf27763dff28ce366df0c368c0d226684c4fa7fec85d4",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ABP_MMOUnarmed.uasset",
+      "sourceAssetSHA256": "c0b77d8ad6e9928f4f8aafac4505860c5ce9f28df78e2a405d30261789766b76"
+    },
+    {
+      "ref": "w13",
+      "planId": "animation-unarmed-node-assets",
+      "slug": "animation-unarmed-fall-details",
+      "visibleValues": {
+        "sequence": "MM_Fall_Loop",
+        "loopAnimation": true
+      },
+      "assetPath": "/Game/Characters/MMO/ABP_MMOUnarmed",
+      "title": "Locomotion graph → selected BlendSpace / Sequence nodes → Details",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建无武器层实现"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:03:56.231693+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/animation-unarmed-fall-details.png",
+      "publicPath": "public/media/configuration/mmorpg/animation-unarmed-fall-details.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "5a6ad8efecad151522a151c84e3f99d1ee10b739ab12a1b8e867a360f5c535a6",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ABP_MMOUnarmed.uasset",
+      "sourceAssetSHA256": "c0b77d8ad6e9928f4f8aafac4505860c5ce9f28df78e2a405d30261789766b76"
+    },
+    {
+      "ref": "w13",
+      "planId": "experience-default-pawn-feature",
+      "visibleValues": {
+        "defaultPawnData": "DA_MMOPlayer",
+        "gameFeaturesToEnable": [
+          "MMOCore"
+        ],
+        "actionSets": 0,
+        "actions": 0
+      },
+      "slug": "experience-default-pawn-feature",
+      "assetPath": "/Game/MMO/Experiences/DA_MMOExperience",
+      "title": "Data Asset Editor → Details",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "逐项创建 Experience、PawnData 与 AbilitySet"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "verification/mmorpg-experience-assets.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:04:38.914625+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/experience-default-pawn-feature.png",
+      "publicPath": "public/media/configuration/mmorpg/experience-default-pawn-feature.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "06186bfc813a4b74ab65bd15e9460d5ed3d250cd11e30b1d4dcc7327d732bb5b",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Experiences/DA_MMOExperience.uasset",
+      "sourceAssetSHA256": "0745c819a9bcf8748da76510a2b0837d683a4f796e75c51e0df209ee048ea249"
+    },
+    {
+      "ref": "w13",
+      "planId": "pawn-data-class-input-animation",
+      "visibleValues": {
+        "pawnClass": "BP_MMOCharacter",
+        "abilitySets": [
+          "DA_MMOAbilities"
+        ],
+        "inputMappingContext": "IMC_MMOPlayer",
+        "inputConfig": "DA_MMOInputConfig",
+        "animInstanceClass": "ABP_MMOCharacter"
+      },
+      "slug": "pawn-data-class-input-animation",
+      "assetPath": "/Game/MMO/Pawns/DA_MMOPlayer",
+      "title": "Data Asset Editor → Pawn / Abilities / Input / Animation",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "逐项创建 Experience、PawnData 与 AbilitySet"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:05:13.566024+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/pawn-data-class-input-animation.png",
+      "publicPath": "public/media/configuration/mmorpg/pawn-data-class-input-animation.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "2f6243f53958b2e50d58f353a19d0453a7993ef1f41033af68e907827686a4df",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Pawns/DA_MMOPlayer.uasset",
+      "sourceAssetSHA256": "e48b6eaef7e49bf6366e6e5f4eb4b64a47085656b728a4700273f5e29a3bd2dd"
+    },
+    {
+      "ref": "w7",
+      "planId": "ability-set-grants",
+      "visibleValues": {
+        "abilities": [
+          {
+            "class": "MMOAttackAbility",
+            "level": 1,
+            "inputID": -1,
+            "inputTag": "InputTag.MMO.Attack"
+          },
+          {
+            "class": "GA_ArcaneBolt",
+            "level": 1,
+            "inputID": -1,
+            "inputTag": "InputTag.MMO.Spell"
+          }
+        ],
+        "effects": 0,
+        "attributes": 0
+      },
+      "slug": "ability-set-grants",
+      "assetPath": "/Game/MMO/Abilities/DA_MMOAbilities",
+      "title": "Data Asset Editor → Abilities",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "逐项创建 Experience、PawnData 与 AbilitySet"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp"
+      ],
+      "editorPid": 37960,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T18:58:22.427769+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/ability-set-grants.png",
+      "publicPath": "public/media/configuration/mmorpg/ability-set-grants.png",
+      "width": 2560,
+      "height": 1200,
+      "sha256": "00864a4bd2b196247f44fd8fb3d4ed0c80a98ab0d022729375446632c5468029",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+      "sourceAssetSHA256": "2d9f46939392876b3b038ecb39ebaebccbc9f77dcf0c0434b7451ce299ef3626",
+      "bytes": 120339,
+      "caption": "原生 Details 同屏展开两条技能：MMOAttackAbility 与 GA_ArcaneBolt 的 Level 均为 1，Input ID 均为 -1，Input Tag 分别为 InputTag.MMO.Attack 与 InputTag.MMO.Spell；Granted Effects 和 Granted Attributes 为空。",
+      "nativeValidation": "verification/mmorpg-tagged-ability-input-assets.json",
+      "supersedesCaptureSHA256": "0d6ad95ef0006d98e17602ad0e94f36eaa1d89897986fdbf838f1e6f8462b487"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-config-semantic-tags",
+      "slug": "input-config-move-look-combat",
+      "visibleValues": {
+        "IA_Move": "InputTag.MMO.Move",
+        "IA_Look": "InputTag.MMO.Look",
+        "IA_Target": "InputTag.MMO.Target",
+        "IA_Attack": "InputTag.MMO.Attack"
+      },
+      "assetPath": "/Game/MMO/Input/DA_MMOInputConfig",
+      "title": "Data Asset Editor → Native Input Actions",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "examples/MMORPG/Config/DefaultGameplayTags.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:07:51.833765+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-config-move-look-combat.png",
+      "publicPath": "public/media/configuration/mmorpg/input-config-move-look-combat.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "a322a737358e49be3e55f51597cf7260ff743594799862cdfc81fb3b40fe7be5",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/DA_MMOInputConfig.uasset",
+      "sourceAssetSHA256": "664152a805b206a25600683011b7c1bae997bb2b0537846d67bce3dc8ac70a52"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-config-semantic-tags",
+      "slug": "input-config-spell-inventory-settings",
+      "visibleValues": {
+        "IA_Spell": "InputTag.MMO.Spell",
+        "IA_Inventory": "InputTag.MMO.Inventory",
+        "IA_Settings": "InputTag.MMO.Settings"
+      },
+      "assetPath": "/Game/MMO/Input/DA_MMOInputConfig",
+      "title": "Data Asset Editor → Native Input Actions",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "examples/MMORPG/Config/DefaultGameplayTags.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:08:42.137380+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-config-spell-inventory-settings.png",
+      "publicPath": "public/media/configuration/mmorpg/input-config-spell-inventory-settings.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "8fb85c43b54a3999efd4314e8cf263080da94e9a321750f89d8244da013e9c0b",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/DA_MMOInputConfig.uasset",
+      "sourceAssetSHA256": "664152a805b206a25600683011b7c1bae997bb2b0537846d67bce3dc8ac70a52"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-action-value-types",
+      "slug": "input-action-move",
+      "assetPath": "/Game/MMO/Input/IA_Move",
+      "visibleValues": {
+        "valueType": "Axis2D (Vector2D)"
+      },
+      "title": "Input Action Editor → Action → Value Type",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:09:15.686105+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-action-move.png",
+      "publicPath": "public/media/configuration/mmorpg/input-action-move.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "a87135b05954167d69bb9493cb4ee6f599886da988c7bd43c119e0a8877f56c8",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IA_Move.uasset",
+      "sourceAssetSHA256": "84d8c482bc473ae308271742735ef7b5e0bf4d25e5a6f5e3c16c631cb30511f1"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-action-value-types",
+      "slug": "input-action-look",
+      "assetPath": "/Game/MMO/Input/IA_Look",
+      "visibleValues": {
+        "valueType": "Axis2D (Vector2D)"
+      },
+      "title": "Input Action Editor → Action → Value Type",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:09:21.602702+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-action-look.png",
+      "publicPath": "public/media/configuration/mmorpg/input-action-look.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "fbd01b2f644b9f280ec79044a98ab1b83a4a1decd013637bd3834ac4eba975cc",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IA_Look.uasset",
+      "sourceAssetSHA256": "b41789429b40a8bb5f1352f09e7ad7493a981c881cced3e2b43d8808eb8b9a18"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-action-value-types",
+      "slug": "input-action-target",
+      "assetPath": "/Game/MMO/Input/IA_Target",
+      "visibleValues": {
+        "valueType": "Digital (bool)"
+      },
+      "title": "Input Action Editor → Action → Value Type",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:09:27.541850+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-action-target.png",
+      "publicPath": "public/media/configuration/mmorpg/input-action-target.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "9972b0fa1c3fe4315190e7dad1222c90bbad038bf355b3834865ecad92e0ee7e",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IA_Target.uasset",
+      "sourceAssetSHA256": "9069d955c5b2778d9808ffe5e17d11f43bdb659463d8cb9d0ca04b8eb2924437"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-action-value-types",
+      "slug": "input-action-attack",
+      "assetPath": "/Game/MMO/Input/IA_Attack",
+      "visibleValues": {
+        "valueType": "Digital (bool)"
+      },
+      "title": "Input Action Editor → Action → Value Type",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:09:33.391354+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-action-attack.png",
+      "publicPath": "public/media/configuration/mmorpg/input-action-attack.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "aebf2edcb5af2f89045d6565a36587d221df98b54885858b90628994dfe05252",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IA_Attack.uasset",
+      "sourceAssetSHA256": "655eeaf81af1cdb472c9d9a5fec9409bce7f66279b3a8ceae151ac6d20812df1"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-action-value-types",
+      "slug": "input-action-spell",
+      "assetPath": "/Game/MMO/Input/IA_Spell",
+      "visibleValues": {
+        "valueType": "Digital (bool)"
+      },
+      "title": "Input Action Editor → Action → Value Type",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:09:39.296810+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-action-spell.png",
+      "publicPath": "public/media/configuration/mmorpg/input-action-spell.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "54c86062458c2756aeaab47062990414828de918fcdb9a9569f7fe0959c65a08",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IA_Spell.uasset",
+      "sourceAssetSHA256": "f09003b352f9f41c7a2c1d1337ea70524b0cf5e9dfc99851245a657fe87680b2"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-action-value-types",
+      "slug": "input-action-inventory",
+      "assetPath": "/Game/MMO/Input/IA_Inventory",
+      "visibleValues": {
+        "valueType": "Digital (bool)"
+      },
+      "title": "Input Action Editor → Action → Value Type",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:09:45.503514+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-action-inventory.png",
+      "publicPath": "public/media/configuration/mmorpg/input-action-inventory.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "29ecc352a341a9a82b7f147ebf2834126b4c0fe7978094f0e288bb3a5be6066b",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IA_Inventory.uasset",
+      "sourceAssetSHA256": "c8bfe9508dae165de34cf99cda740a4fb6b26dbe54b39c745dd4e6de9f1707a7"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-action-value-types",
+      "slug": "input-action-settings",
+      "assetPath": "/Game/MMO/Input/IA_Settings",
+      "visibleValues": {
+        "valueType": "Digital (bool)"
+      },
+      "title": "Input Action Editor → Action → Value Type",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:09:51.676271+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-action-settings.png",
+      "publicPath": "public/media/configuration/mmorpg/input-action-settings.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "8f17a8ddfa16041b88f2549fc878b7037dc179a7c7dd931e427b18b19495bfa8",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IA_Settings.uasset",
+      "sourceAssetSHA256": "32e5934f9cbb680a0eaf07997cfc3ef3933c289bba3f925035c1c447b796e9be"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-mapping-look",
+      "slug": "input-mapping-all-17",
+      "alsoCovers": [
+        "input-mapping-combat",
+        "input-mapping-menus"
+      ],
+      "visibleValues": {
+        "Move": [
+          "D",
+          "A",
+          "W",
+          "S",
+          "Gamepad_Left2D"
+        ],
+        "Look": [
+          "Mouse2D",
+          "Gamepad_Right2D"
+        ],
+        "Target": [
+          "Tab",
+          "Gamepad_FaceButton_Top"
+        ],
+        "Attack": [
+          "One",
+          "Gamepad_FaceButton_Bottom"
+        ],
+        "Spell": [
+          "Two",
+          "Gamepad_FaceButton_Left"
+        ],
+        "Inventory": [
+          "I",
+          "Gamepad_Special_Left"
+        ],
+        "Settings": [
+          "P",
+          "Gamepad_Special_Right"
+        ]
+      },
+      "assetPath": "/Game/MMO/Input/IMC_MMOPlayer",
+      "title": "Input Mapping Context Editor → Mappings → Look: 2 physical mappings",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:12:14.191789+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-mapping-all-17.png",
+      "publicPath": "public/media/configuration/mmorpg/input-mapping-all-17.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "093f8d526238c10db103d797f439710a70e72f6e91c0cdf9ce8b7c2a41531cb1",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IMC_MMOPlayer.uasset",
+      "sourceAssetSHA256": "0e38b92b5983e7f2bdde9548307400bff156900d3a2add1cb84b4b579c921c2c"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-mapping-move",
+      "slug": "input-mapping-s-modifiers",
+      "visibleValues": {
+        "key": "S",
+        "modifiers": [
+          {
+            "type": "Negate",
+            "X": true,
+            "Y": true,
+            "Z": true
+          },
+          {
+            "type": "Swizzle Input Axis Values",
+            "order": "YXZ"
+          }
+        ]
+      },
+      "assetPath": "/Game/MMO/Input/IMC_MMOPlayer",
+      "title": "Input Mapping Context Editor → Mappings → Move: 5 physical mappings",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:14:01.060286+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-mapping-s-modifiers.png",
+      "publicPath": "public/media/configuration/mmorpg/input-mapping-s-modifiers.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "4a35a23dfaced43e6cd8669ff761b6845d08273be067a6ec24ecc8b0b5cf18fc",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IMC_MMOPlayer.uasset",
+      "sourceAssetSHA256": "0e38b92b5983e7f2bdde9548307400bff156900d3a2add1cb84b4b579c921c2c"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-mapping-move",
+      "slug": "input-mapping-a-negate",
+      "visibleValues": {
+        "key": "A",
+        "modifiers": [
+          {
+            "type": "Negate",
+            "X": true,
+            "Y": true,
+            "Z": true
+          }
+        ]
+      },
+      "assetPath": "/Game/MMO/Input/IMC_MMOPlayer",
+      "title": "Input Mapping Context Editor → Mappings → Move: 5 physical mappings",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:15:03.332587+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-mapping-a-negate.png",
+      "publicPath": "public/media/configuration/mmorpg/input-mapping-a-negate.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "7bf3327683283c533f05dfc9f840fa7c0163c0e254516f1e30423cb99c74e89d",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IMC_MMOPlayer.uasset",
+      "sourceAssetSHA256": "0e38b92b5983e7f2bdde9548307400bff156900d3a2add1cb84b4b579c921c2c"
+    },
+    {
+      "ref": "w13",
+      "planId": "input-mapping-move",
+      "slug": "input-mapping-w-swizzle",
+      "visibleValues": {
+        "key": "W",
+        "modifiers": [
+          {
+            "type": "Swizzle Input Axis Values",
+            "order": "YXZ"
+          }
+        ]
+      },
+      "assetPath": "/Game/MMO/Input/IMC_MMOPlayer",
+      "title": "Input Mapping Context Editor → Mappings → Move: 5 physical mappings",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:16:14.436537+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/input-mapping-w-swizzle.png",
+      "publicPath": "public/media/configuration/mmorpg/input-mapping-w-swizzle.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "6bd73a20b2d967964d7a64e02c82e5f8195958ecd945e0dca6aef40741c6dfe4",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Input/IMC_MMOPlayer.uasset",
+      "sourceAssetSHA256": "0e38b92b5983e7f2bdde9548307400bff156900d3a2add1cb84b4b579c921c2c"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-root-stacks",
+      "slug": "designer-root-stacks-fill",
+      "visibleValues": {
+        "hierarchy": [
+          "LayerLayout",
+          "GameLayer",
+          "MenuLayer",
+          "ModalLayer"
+        ],
+        "isVariable": true,
+        "slot": "Overlay Slot",
+        "horizontalAlignment": "Fill",
+        "verticalAlignment": "Fill",
+        "padding": 0,
+        "visibility": "Collapsed"
+      },
+      "note": "Empty stacks are collapsed before runtime screens are pushed.",
+      "assetPath": "/Game/UI/WBP_MMOLayout",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "三、建立根布局的 CommonUI 三层"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_MMOLayout-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:17:46.634767+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-root-stacks-fill.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-root-stacks-fill.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "661fb70a8f3a57a977737c024df16bf3c8615bcad0af4b3d4dcd331c8614b722",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_MMOLayout.uasset",
+      "sourceAssetSHA256": "d2fc169b9b1bc2b539985879986a2de62c7775cea99a37e629bf4f09ee73f086"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-root-stacks",
+      "slug": "designer-root-stacks-transition",
+      "visibleValues": {
+        "selected": [
+          "GameLayer",
+          "MenuLayer",
+          "ModalLayer"
+        ],
+        "transitionType": "Fade Only",
+        "curve": "Linear",
+        "duration": 0.16
+      },
+      "note": "Designer asset value is 0.16; CommonGame RegisterLayer explicitly overrides runtime duration to 0. See mmorpg-layer-transition-review.json.",
+      "assetPath": "/Game/UI/WBP_MMOLayout",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "三、建立根布局的 CommonUI 三层"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_MMOLayout-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:18:29.071571+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-root-stacks-transition.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-root-stacks-transition.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "09ef21cbf4cdfc52515b25bc6987782e553ca97f7fb7eda8cb094dd79a31e1d7",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_MMOLayout.uasset",
+      "sourceAssetSHA256": "d2fc169b9b1bc2b539985879986a2de62c7775cea99a37e629bf4f09ee73f086"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-login-account",
+      "visibleValues": {
+        "parentClass": "MMOLoginPanel",
+        "Username": "EditableTextBox",
+        "Password": "EditableTextBox",
+        "passwordIsVariable": true,
+        "isPassword": true,
+        "LoginButton": "Button",
+        "RegisterButton": "Button"
+      },
+      "slug": "designer-login-account",
+      "assetPath": "/Game/UI/WBP_Login",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "五、制作登录和角色选择界面"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Login-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:27:15.939285+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-login-account.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-login-account.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "10e3d19c22eade1ee98170ac38b75c01d2dd02e7858d47588cae03aa0acd6702",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Login.uasset",
+      "sourceAssetSHA256": "62b8ccb02cf456c278a1da8f7e5e80df1f5255c7cfef33c636117a1b2d902dff"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-login-character",
+      "visibleValues": {
+        "CharacterList": "ComboBoxString",
+        "isVariable": true,
+        "isFocusable": true,
+        "CharacterName": "EditableTextBox",
+        "CreateButton": "Button",
+        "RefreshButton": "Button",
+        "JoinButton": "Button"
+      },
+      "slug": "designer-login-character",
+      "assetPath": "/Game/UI/WBP_Login",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "五、制作登录和角色选择界面"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Login-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:28:37.473306+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-login-character.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-login-character.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "451adb7d356e36ea3978b8d7844d4bc4499c405a360ed36cc065ff0f53ee0997",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Login.uasset",
+      "sourceAssetSHA256": "62b8ccb02cf456c278a1da8f7e5e80df1f5255c7cfef33c636117a1b2d902dff"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-common-style",
+      "slug": "designer-button-label-slot",
+      "visibleValues": {
+        "widget": "LoginButtonLabel",
+        "slot": "ButtonSlot",
+        "padding": "4.0, 2.0",
+        "horizontalAlignment": "Fill",
+        "verticalAlignment": "Center"
+      },
+      "assetPath": "/Game/UI/WBP_Login",
+      "title": "Designer → Details → Slot / Appearance / Style",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "四、统一面板布局和样式"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "verification/mmorpg-button-slots.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:29:22.303471+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-button-label-slot.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-button-label-slot.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "08ac8034adb3156d9f4969a1405e944b50d7313c0407b9eac68b58a320003d3f",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Login.uasset",
+      "sourceAssetSHA256": "62b8ccb02cf456c278a1da8f7e5e80df1f5255c7cfef33c636117a1b2d902dff"
+    },
+    {
+      "ref": "w27",
+      "planId": "designer-text-string-table-reference",
+      "assetPath": "/Game/UI/WBP_Login",
+      "visibleValues": {
+        "widget": "LoginButtonLabel",
+        "table": "ST_MMO.ST_MMO",
+        "namespace": "MMOUI",
+        "key": "Action.SignIn"
+      },
+      "note": "Native FText reference popup opened from LoginButtonLabel.Text; linked to designer-login-account.png for asset context.",
+      "slug": "designer-text-string-table-reference",
+      "title": "Designer → Title TextBlock → Content → Text → advanced text/string-table selector",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "创建字符串表并在 Designer 引用"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-strings.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:30:25.668024+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-text-string-table-reference.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-text-string-table-reference.png",
+      "width": 340,
+      "height": 247,
+      "sha256": "625bce17933763094a2c74176ca8a9b2dfebb024acbb62e41bed6406d3c3eb7c",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Login.uasset",
+      "sourceAssetSHA256": "62b8ccb02cf456c278a1da8f7e5e80df1f5255c7cfef33c636117a1b2d902dff"
+    },
+    {
+      "ref": "w13",
+      "planId": "mvvm-mana-bindings",
+      "alsoCovers": [
+        "designer-mana-layout"
+      ],
+      "visibleValues": {
+        "bindings": [
+          "ManaText.Text <- PlayerVM.ManaLabel",
+          "ManaBar.Percent <- PlayerVM.ManaFraction"
+        ],
+        "execution": "Immediate",
+        "enabled": true
+      },
+      "slug": "mvvm-mana-bindings",
+      "assetPath": "/Game/UI/WBP_ManaStatus",
+      "title": "Widget Blueprint Editor → Window → View Bindings",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "六、制作可复用法力控件和真实 MVVM 绑定"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_ManaStatus-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:31:12.809838+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/mvvm-mana-bindings.png",
+      "publicPath": "public/media/configuration/mmorpg/mvvm-mana-bindings.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "9a481de6ff5832770e0255e2750a43b68427f020cadc8141aa96a63523061184",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_ManaStatus.uasset",
+      "sourceAssetSHA256": "319820ddfa2cd6063b0f6c581eaa6124bf017fb627daca26f2b6543b702f619b"
+    },
+    {
+      "ref": "w13",
+      "planId": "mvvm-mana-source",
+      "visibleValues": {
+        "ViewModelName": "PlayerVM",
+        "Class": "MMOPlayerViewModel",
+        "CreationType": "Manual"
+      },
+      "note": "点击独立 Viewmodels 面板中的 PlayerVM 行，主 Widget Blueprint Details 显示源配置；浮动面板本身不在此图中。",
+      "slug": "mvvm-mana-source",
+      "assetPath": "/Game/UI/WBP_ManaStatus",
+      "title": "Widget Blueprint Editor → Window → Viewmodels",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "六、制作可复用法力控件和真实 MVVM 绑定"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_ManaStatus-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:38:45.900298+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/mvvm-mana-source.png",
+      "publicPath": "public/media/configuration/mmorpg/mvvm-mana-source.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "5ce8d50d1623ed752d5e2b5db2b2e9419aee2dd6c0404f6db7d0b71db7d73551",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_ManaStatus.uasset",
+      "sourceAssetSHA256": "319820ddfa2cd6063b0f6c581eaa6124bf017fb627daca26f2b6543b702f619b"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-hud-layout",
+      "visibleValues": {
+        "nestedWidget": "ManaStatus : WBP_ManaStatus",
+        "hierarchy": "Overlay / Border / VerticalBox / HorizontalBox / SizeBox"
+      },
+      "slug": "designer-hud-layout",
+      "assetPath": "/Game/UI/WBP_PlayerHUD",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "七、制作 HUD、目标与技能快捷入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_PlayerHUD-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:40:08.233450+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-hud-layout.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-hud-layout.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "3d127e5a3812d4302fa21d0707bf8fb460e5e51644a64a7e8b0a5e9469160c74",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_PlayerHUD.uasset",
+      "sourceAssetSHA256": "9658d23da3c535bee3218cb799cd57b691cbe0ee2c3664fc7be215f4e6d7df0f"
+    },
+    {
+      "ref": "w13",
+      "planId": "mvvm-hud-bindings",
+      "visibleValues": {
+        "sources": [
+          "Values.Text <- PlayerVM.StatusText",
+          "TargetText.Text <- PlayerVM.TargetLabel",
+          "TargetHealthBar.Percent <- PlayerVM.TargetFraction",
+          "CooldownText.Text <- PlayerVM.CooldownLabel",
+          "InputHintText.Text <- PlayerVM.InputHint"
+        ],
+        "execution": "Immediate",
+        "enabled": true
+      },
+      "slug": "mvvm-hud-bindings",
+      "assetPath": "/Game/UI/WBP_PlayerHUD",
+      "title": "Widget Blueprint Editor → Window → View Bindings",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "七、制作 HUD、目标与技能快捷入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_PlayerHUD-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:41:20.669346+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/mvvm-hud-bindings.png",
+      "publicPath": "public/media/configuration/mmorpg/mvvm-hud-bindings.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "fce0bbaf9ad29693cc038e900993091248a4a30a3af788b94569e0d7b79f62b0",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_PlayerHUD.uasset",
+      "sourceAssetSHA256": "9658d23da3c535bee3218cb799cd57b691cbe0ee2c3664fc7be215f4e6d7df0f"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-hud-focus",
+      "visibleValues": {
+        "selectedButtons": [
+          "TargetButton",
+          "AttackButton",
+          "SpellButton",
+          "InventoryButton",
+          "SettingsButton"
+        ],
+        "IsFocusable": false
+      },
+      "slug": "designer-hud-focus",
+      "assetPath": "/Game/UI/WBP_PlayerHUD",
+      "title": "Designer → Details → Interaction → Is Focusable",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "七、制作 HUD、目标与技能快捷入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:41:25.525873+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-hud-focus.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-hud-focus.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "99da92da4a467a2a882429097429d5bbe6d6ca6ea3bff76faa1c459ebab0762a",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_PlayerHUD.uasset",
+      "sourceAssetSHA256": "9658d23da3c535bee3218cb799cd57b691cbe0ee2c3664fc7be215f4e6d7df0f"
+    },
+    {
+      "ref": "w13",
+      "planId": "mvvm-hud-source",
+      "visibleValues": {
+        "ViewModelName": "PlayerVM",
+        "Class": "MMOPlayerViewModel",
+        "CreationType": "Manual"
+      },
+      "slug": "mvvm-hud-source",
+      "assetPath": "/Game/UI/WBP_PlayerHUD",
+      "title": "Widget Blueprint Editor → Window → Viewmodels",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "七、制作 HUD、目标与技能快捷入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_PlayerHUD-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:42:09.292675+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/mvvm-hud-source.png",
+      "publicPath": "public/media/configuration/mmorpg/mvvm-hud-source.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "a849fa518277c1a98f4b4e64d0234f653b4c6ce16aa9dd4fafb77eceedb10378",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_PlayerHUD.uasset",
+      "sourceAssetSHA256": "9658d23da3c535bee3218cb799cd57b691cbe0ee2c3664fc7be215f4e6d7df0f"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-inventory-layout",
+      "visibleValues": {
+        "treeExpanded": true,
+        "layoutEditableInDesigner": true
+      },
+      "slug": "designer-inventory-layout",
+      "assetPath": "/Game/UI/WBP_Inventory",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Inventory-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:43:11.524419+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-inventory-layout.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-inventory-layout.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "c4b4a01705d23ce096f2be577ea578896f67dadeed31918c0c3c42b5e052f83c",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Inventory.uasset",
+      "sourceAssetSHA256": "e8718ad26b29401c3117475f680d5eeda900452c00505730a9188f88b720fd27"
+    },
+    {
+      "ref": "w13",
+      "planId": "mvvm-inventory-source",
+      "visibleValues": {
+        "ViewModelName": "PlayerVM",
+        "Class": "MMOPlayerViewModel",
+        "CreationType": "Manual"
+      },
+      "slug": "mvvm-inventory-source",
+      "assetPath": "/Game/UI/WBP_Inventory",
+      "title": "Widget Blueprint Editor → Window → Viewmodels",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_Inventory-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:43:27.036664+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/mvvm-inventory-source.png",
+      "publicPath": "public/media/configuration/mmorpg/mvvm-inventory-source.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "3d089c896bd5f9a4a03cd72c4fcf54866032cdd9a09e3556d7124dcc251c1edd",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Inventory.uasset",
+      "sourceAssetSHA256": "e8718ad26b29401c3117475f680d5eeda900452c00505730a9188f88b720fd27"
+    },
+    {
+      "ref": "w13",
+      "planId": "mvvm-inventory-binding",
+      "visibleValues": {
+        "binding": "Message.Text <- PlayerVM.InventoryLabel",
+        "execution": "Immediate",
+        "enabled": true
+      },
+      "slug": "mvvm-inventory-binding",
+      "assetPath": "/Game/UI/WBP_Inventory",
+      "title": "Widget Blueprint Editor → Window → View Bindings",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_Inventory-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:43:57.803930+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/mvvm-inventory-binding.png",
+      "publicPath": "public/media/configuration/mmorpg/mvvm-inventory-binding.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "3820bef31385e341b8d0802feb6ae1fe9857dbb875d41b276eceba59b31b5752",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Inventory.uasset",
+      "sourceAssetSHA256": "e8718ad26b29401c3117475f680d5eeda900452c00505730a9188f88b720fd27"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-settings-layout",
+      "visibleValues": {
+        "treeExpanded": true,
+        "layoutEditableInDesigner": true
+      },
+      "note": "画质、语言、返回和退出按钮均为真实 Designer 控件；业务由父类处理。",
+      "slug": "designer-settings-layout",
+      "assetPath": "/Game/UI/WBP_Settings",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Settings-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:44:12.872309+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-settings-layout.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-settings-layout.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "1f5d6f0c0ef751711160462b117cb659333e121f4fa286658b756836fe615dd4",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Settings.uasset",
+      "sourceAssetSHA256": "1d1762341018bfb0c8d5459cf6eb2bf4b928729b2f0e20d6516aa3151278bab8"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-confirm-layout",
+      "visibleValues": {
+        "treeExpanded": true,
+        "layoutEditableInDesigner": true
+      },
+      "slug": "designer-confirm-layout",
+      "assetPath": "/Game/UI/WBP_Confirm",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Confirm-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:44:28.071370+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-confirm-layout.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-confirm-layout.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "adbc454e0641a825b271d427d8f14b4cc6286aa33ab10903dbd22729486c8591",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_Confirm.uasset",
+      "sourceAssetSHA256": "3feaae16a58be1232e0cebb370a7befeda3029609f9e6e4fde3dadb375216a8f"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-root-screen-classes",
+      "visibleValues": {
+        "LoginClass": "WBP_Login",
+        "HUDClass": "WBP_PlayerHUD",
+        "InventoryClass": "WBP_Inventory",
+        "SettingsClass": "WBP_Settings",
+        "ConfirmClass": "WBP_Confirm"
+      },
+      "note": "加宽原生 Details 后完整显示五个软类引用；根布局父类 MMORootLayout，画面无运行时 C++ 控件构造。",
+      "slug": "designer-root-screen-classes",
+      "assetPath": "/Game/UI/WBP_MMOLayout",
+      "title": "Widget Blueprint Editor → Class Defaults → UI → Screens",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "九、把实际资产接到 UI Policy 和层栈"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+        "examples/MMORPG/ui-designer-contract.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:45:46.777420+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-root-screen-classes.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-root-screen-classes.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "97871d67a9ea5504e7d4749e7638cfe0ff0aaeb369ddeccef6c9da4f0187a673",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_MMOLayout.uasset",
+      "sourceAssetSHA256": "d2fc169b9b1bc2b539985879986a2de62c7775cea99a37e629bf4f09ee73f086"
+    },
+    {
+      "ref": "w13",
+      "planId": "string-table-source-data",
+      "visibleValues": {
+        "namespace": "MMOUI",
+        "rows": "Visible source rows include Account, Action, HUD, Inventory and Login; the remaining keys continue below the fold."
+      },
+      "slug": "string-table-source-data",
+      "assetPath": "/Game/Localization/ST_MMO",
+      "title": "String Table Editor",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "创建字符串表并在 Designer 引用"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-strings.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:46:05.952780+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/string-table-source-data.png",
+      "publicPath": "public/media/configuration/mmorpg/string-table-source-data.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "dd39d57df4373860a8cf1dd64eed15df8cd9600821f0d0169243333414a94e36",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Localization/ST_MMO.uasset",
+      "sourceAssetSHA256": "4fd52a5e5307bd098f53764c358e63bd752835f7cb32f5a574338477c77a56e4"
+    },
+    {
+      "ref": "w13",
+      "planId": "health-explicit-cook-label",
+      "visibleValues": {
+        "Priority": 1,
+        "ChunkId": -1,
+        "ApplyRecursively": true,
+        "CookRule": "Always Cook",
+        "ExplicitBlueprints": [
+          "BP_BackendHealth"
+        ],
+        "ExplicitAssets": [],
+        "LabelAssetsInMyDirectory": false,
+        "IsRuntimeLabel": false
+      },
+      "note": "这是标签资产自己的规则；本次已开编辑器的 AssetManager 缓存仍为旧 EditorOnly=true，必须重启读取 DefaultGame.ini 的新扫描规则再执行 Cook。",
+      "slug": "health-explicit-cook-label",
+      "assetPath": "/Game/MMO/Labels/DA_TutorialExamples",
+      "title": "PrimaryAssetLabel Editor → Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/blueprint-workflow.mdx",
+        "heading": "为健康检查蓝图声明 Cook 依赖"
+      },
+      "sourceFiles": [
+        "scripts/mmorpg/prepare-health-cook-label.py",
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:49:05.569153+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/health-explicit-cook-label.png",
+      "publicPath": "public/media/configuration/mmorpg/health-explicit-cook-label.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "ee3f030cab6794a8b98f6a3c7a26b574e2915d519e6ec94bd8e11b1f9b36062d",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Labels/DA_TutorialExamples.uasset",
+      "sourceAssetSHA256": "1db58affde2f7321e37837e8f1d3bb10b53838d85f9aa9291bbd6541c6ff9560"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-maps-modes",
+      "visibleValues": {
+        "DefaultGameMode": "BP_MMOGameMode",
+        "EditorStartupMap": "Entry",
+        "GameDefaultMap": "Entry",
+        "ServerDefaultMap": "Entry",
+        "GameInstanceClass": "MMOGameInstance"
+      },
+      "slug": "project-maps-modes",
+      "assetPath": null,
+      "title": "Edit → Project Settings → Project → Maps & Modes",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "一、设置地图、GameMode 与 GameInstance"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEngine.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:51:13.443316+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-maps-modes.png",
+      "publicPath": "public/media/configuration/mmorpg/project-maps-modes.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "4e20dab92d0567317aeb370de89678d46ab466a346f6ab9e60f80e57bb39d5e1"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-common-input",
+      "visibleValues": {
+        "InputData": "MMOInputData",
+        "EnableEnhancedInputSupport": true
+      },
+      "slug": "project-common-input",
+      "assetPath": null,
+      "title": "Project Settings → Game → Common Input Settings",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "五、接通 CommonInput 的返回动作"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini",
+        "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:51:38.270873+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-common-input.png",
+      "publicPath": "public/media/configuration/mmorpg/project-common-input.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "5c42f7b8eec6e19f41346aded89ebfcd2d7e990183df8b0e4bc969bf48cdab98"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-common-default-classes",
+      "slug": "project-common-local-player",
+      "visibleValues": {
+        "LocalPlayerClassName": "CommonLocalPlayer"
+      },
+      "assetPath": null,
+      "title": "Project Settings → Engine → General Settings → Default Classes",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "二、选择 CommonUI 的视口类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEngine.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:52:11.010338+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-common-local-player.png",
+      "publicPath": "public/media/configuration/mmorpg/project-common-local-player.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "8e018001f03932e5005faed16b41150b937046b8d6164ebd5afadb2f6e4f46a4"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-common-default-classes",
+      "slug": "project-common-viewport-client",
+      "visibleValues": {
+        "GameViewportClientClassName": "CommonGameViewportClient"
+      },
+      "assetPath": null,
+      "title": "Project Settings → Engine → General Settings → Default Classes",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "二、选择 CommonUI 的视口类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEngine.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:52:23.231822+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-common-viewport-client.png",
+      "publicPath": "public/media/configuration/mmorpg/project-common-viewport-client.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "9f13e6d188f5525008be2cd5e66cfc6de3f5f8b5c7633bc6edb647f66c651e97"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-enhanced-default-classes",
+      "slug": "project-enhanced-player-input",
+      "visibleValues": {
+        "DefaultPlayerInputClass": "EnhancedPlayerInput"
+      },
+      "assetPath": null,
+      "title": "Project Settings → Engine → Input → Default Classes",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "四、设置 Enhanced Input 的两个默认类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultInput.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:52:55.370558+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-enhanced-player-input.png",
+      "publicPath": "public/media/configuration/mmorpg/project-enhanced-player-input.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "a653c941841531bac0fd94e6dda016a4e67ee86355acc9f98a04789866e6df2f"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-enhanced-default-classes",
+      "slug": "project-enhanced-input-component",
+      "visibleValues": {
+        "DefaultInputComponentClass": "EnhancedInputComponent"
+      },
+      "assetPath": null,
+      "title": "Project Settings → Engine → Input → Default Classes",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "四、设置 Enhanced Input 的两个默认类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultInput.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:53:07.961205+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-enhanced-input-component.png",
+      "publicPath": "public/media/configuration/mmorpg/project-enhanced-input-component.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "5c0b54f6e2ae70f62354ec8aefeaac148087436582757abd2047d4aa178fa5b6"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-packaging-cultures",
+      "slug": "project-packaging-internationalization",
+      "visibleValues": {
+        "InternationalizationPreset": "EFIGSCJK"
+      },
+      "assetPath": null,
+      "title": "Project Settings → Project → Packaging → Internationalization",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "配置加载路径、字体和打包"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:54:51.160905+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-packaging-internationalization.png",
+      "publicPath": "public/media/configuration/mmorpg/project-packaging-internationalization.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "6e35869c9da2ac2bd6a0586d9818e7e398e3ed2da6bb591c96aaa0a7193eccf5"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-packaging-cultures",
+      "slug": "project-packaging-english",
+      "visibleValues": {
+        "English": "checked"
+      },
+      "note": "仅勾选无地区后缀的英语 en；显示本地化文本是列表过滤器。",
+      "assetPath": null,
+      "title": "Project Settings → Project → Packaging → Internationalization",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "配置加载路径、字体和打包"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:56:24.548374+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-packaging-english.png",
+      "publicPath": "public/media/configuration/mmorpg/project-packaging-english.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "5da80a1e0acdeb0b9d028ac59bfcb8aea71c4c1bc6071675135477f7ead5983d"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-packaging-cultures",
+      "slug": "project-packaging-chinese",
+      "visibleValues": {
+        "ChineseSimplified": "checked",
+        "culture": "zh-Hans"
+      },
+      "note": "选择中文（简体）而非带地区的 zh-Hans-CN；上图英语 en 也已勾选。",
+      "assetPath": null,
+      "title": "Project Settings → Project → Packaging → Internationalization",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "配置加载路径、字体和打包"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:57:12.646423+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-packaging-chinese.png",
+      "publicPath": "public/media/configuration/mmorpg/project-packaging-chinese.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "47324b04ae798b9abd1b9ed3cbe47bf9b55e9ed1b8f60ed63d0de74b8d8301f9"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-packaging-content",
+      "slug": "project-packaging-always-cook",
+      "visibleValues": {
+        "DirectoriesToAlwaysCook": [
+          "/MMOCore",
+          "/Game/UI",
+          "/Game/Localization",
+          "/Game/MMO",
+          "/NNEDenoiser"
+        ]
+      },
+      "note": "MMOCore 与三个 /Game 教学目录来自项目配置；/NNEDenoiser 是本机插件注入项，不要求手工添加。Tutorial 测试目录未整目录加入。",
+      "assetPath": null,
+      "title": "Project Settings → Project → Packaging → Advanced",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:57:51.258665+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-packaging-always-cook.png",
+      "publicPath": "public/media/configuration/mmorpg/project-packaging-always-cook.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "779d70cb70924f4a0061435d87a85cd4bbc19bd0f35c7f3a6b21dffd24bd8c96"
+    },
+    {
+      "ref": "w46",
+      "planId": "project-packaging-content",
+      "slug": "project-packaging-map",
+      "visibleValues": {
+        "MapsToCook": [
+          "/Engine/Maps/Entry"
+        ]
+      },
+      "assetPath": null,
+      "title": "Project Settings → Project → Packaging → Advanced",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T15:58:32.849502+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-packaging-map.png",
+      "publicPath": "public/media/configuration/mmorpg/project-packaging-map.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "b60e01025baf7d610712761d4b5640f91751646bbd7b19250291e8c041e6a34d"
+    },
+    {
+      "ref": "w46",
+      "planId": "asset-manager-types",
+      "slug": "asset-scan-mmoinputconfig",
+      "visibleValues": {
+        "PrimaryAssetType": "MMOInputConfig",
+        "detailsExpanded": [
+          "AssetBaseClass",
+          "HasBlueprintClasses",
+          "IsEditorOnly",
+          "Directories",
+          "Rules"
+        ]
+      },
+      "assetPath": null,
+      "title": "Project Settings → Game → Asset Manager → Primary Asset Types to Scan",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "六、让 Asset Manager 扫描 GameFeatureData"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:01:08.586944+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/asset-scan-mmoinputconfig.png",
+      "publicPath": "public/media/configuration/mmorpg/asset-scan-mmoinputconfig.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "ee50d9b1df1d25882583d0507ca01d019cdc1638f72447528b057c1694a9fff8"
+    },
+    {
+      "ref": "w46",
+      "planId": "asset-manager-types",
+      "slug": "asset-scan-mmoexperience",
+      "visibleValues": {
+        "PrimaryAssetType": "MMOExperience",
+        "detailsExpanded": [
+          "AssetBaseClass",
+          "HasBlueprintClasses",
+          "IsEditorOnly",
+          "Directories",
+          "Rules"
+        ]
+      },
+      "assetPath": null,
+      "title": "Project Settings → Game → Asset Manager → Primary Asset Types to Scan",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "六、让 Asset Manager 扫描 GameFeatureData"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:01:25.573971+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/asset-scan-mmoexperience.png",
+      "publicPath": "public/media/configuration/mmorpg/asset-scan-mmoexperience.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "6f8f3916805d3db7fccbab9faad9ed0607001bfc5d7b54ceb580d012a64eec18"
+    },
+    {
+      "ref": "w46",
+      "planId": "asset-manager-types",
+      "slug": "asset-scan-mmopawndata",
+      "visibleValues": {
+        "PrimaryAssetType": "MMOPawnData",
+        "detailsExpanded": [
+          "AssetBaseClass",
+          "HasBlueprintClasses",
+          "IsEditorOnly",
+          "Directories",
+          "Rules"
+        ]
+      },
+      "assetPath": null,
+      "title": "Project Settings → Game → Asset Manager → Primary Asset Types to Scan",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "六、让 Asset Manager 扫描 GameFeatureData"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:01:42.407687+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/asset-scan-mmopawndata.png",
+      "publicPath": "public/media/configuration/mmorpg/asset-scan-mmopawndata.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "b16f56e959cc7a4eec16e0cbd89054f8afb49d32ff4aa0bf1695ffb3e8373710"
+    },
+    {
+      "ref": "w46",
+      "planId": "asset-manager-types",
+      "slug": "asset-scan-mmoabilityset",
+      "visibleValues": {
+        "PrimaryAssetType": "MMOAbilitySet",
+        "detailsExpanded": [
+          "AssetBaseClass",
+          "HasBlueprintClasses",
+          "IsEditorOnly",
+          "Directories",
+          "Rules"
+        ]
+      },
+      "assetPath": null,
+      "title": "Project Settings → Game → Asset Manager → Primary Asset Types to Scan",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "六、让 Asset Manager 扫描 GameFeatureData"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:01:59.289432+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/asset-scan-mmoabilityset.png",
+      "publicPath": "public/media/configuration/mmorpg/asset-scan-mmoabilityset.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "fd04f92325d783e7a8ae0fb95d6c98772efe0dbf9bc5056d38df104f393588ed"
+    },
+    {
+      "ref": "w46",
+      "planId": "asset-manager-types",
+      "slug": "asset-scan-gamefeaturedata",
+      "visibleValues": {
+        "PrimaryAssetType": "GameFeatureData",
+        "detailsExpanded": [
+          "AssetBaseClass",
+          "HasBlueprintClasses",
+          "IsEditorOnly",
+          "Directories",
+          "Rules"
+        ]
+      },
+      "assetPath": null,
+      "title": "Project Settings → Game → Asset Manager → Primary Asset Types to Scan",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "六、让 Asset Manager 扫描 GameFeatureData"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:02:16.418499+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/asset-scan-gamefeaturedata.png",
+      "publicPath": "public/media/configuration/mmorpg/asset-scan-gamefeaturedata.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "c9272f389b77bad5e1b04330786135e942a36838cec176ed387e03026034a6c6"
+    },
+    {
+      "ref": "w47",
+      "planId": "project-layer-input-tags",
+      "slug": "project-ui-layer-tags",
+      "visibleValues": {
+        "filter": "UI.Layer",
+        "source": "DefaultGameplayTags.ini"
+      },
+      "assetPath": null,
+      "title": "Project Settings → Project → Gameplay Tags → Gameplay Tag List",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/layers-input.mdx",
+        "heading": "配置入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGameplayTags.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:04:02.404771+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-ui-layer-tags.png",
+      "publicPath": "public/media/configuration/mmorpg/project-ui-layer-tags.png",
+      "width": 806,
+      "height": 840,
+      "sha256": "49c5146ef63c5a6d04b5175fb690b089e3150d067b6919b3bd809ed50eb15021"
+    },
+    {
+      "ref": "w47",
+      "planId": "project-layer-input-tags",
+      "slug": "project-input-tags",
+      "visibleValues": {
+        "filter": "InputTag",
+        "source": "DefaultGameplayTags.ini"
+      },
+      "assetPath": null,
+      "title": "Project Settings → Project → Gameplay Tags → Gameplay Tag List",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/layers-input.mdx",
+        "heading": "配置入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGameplayTags.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:04:14.446215+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-input-tags.png",
+      "publicPath": "public/media/configuration/mmorpg/project-input-tags.png",
+      "width": 806,
+      "height": 840,
+      "sha256": "1fc29c25013480f61861c9f0d6321f7bdcda13e8dce7dcb4933fe60452f6c9f2"
+    },
+    {
+      "ref": "w49",
+      "planId": "project-plugins",
+      "slug": "project-plugins-common",
+      "visibleValues": {
+        "search": "Common"
+      },
+      "note": "本机启用状态；只按课程依赖选择必要插件，搜索结果中附带的其他引擎插件不是额外教学要求。",
+      "assetPath": null,
+      "title": "Edit → Plugins",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/MMORPG.uproject",
+        "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:05:55.478305+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-plugins-common.png",
+      "publicPath": "public/media/configuration/mmorpg/project-plugins-common.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "a59bb42910e3a39a8a076fc7ea4294a0858369833e528b11bad763350f32a97e"
+    },
+    {
+      "ref": "w49",
+      "planId": "project-plugins",
+      "slug": "project-plugins-mvvm",
+      "visibleValues": {
+        "search": "Model View ViewModel"
+      },
+      "note": "本机启用状态；只按课程依赖选择必要插件，搜索结果中附带的其他引擎插件不是额外教学要求。",
+      "assetPath": null,
+      "title": "Edit → Plugins",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/MMORPG.uproject",
+        "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:06:05.539541+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-plugins-mvvm.png",
+      "publicPath": "public/media/configuration/mmorpg/project-plugins-mvvm.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "056eb75b702fff110993a0741f8a9511ea31050ca45bf25208be1fedeb2f8b38"
+    },
+    {
+      "ref": "w49",
+      "planId": "project-plugins",
+      "slug": "project-plugins-enhanced-input",
+      "visibleValues": {
+        "search": "Enhanced Input"
+      },
+      "note": "本机启用状态；只按课程依赖选择必要插件，搜索结果中附带的其他引擎插件不是额外教学要求。",
+      "assetPath": null,
+      "title": "Edit → Plugins",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/MMORPG.uproject",
+        "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:06:15.959963+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-plugins-enhanced-input.png",
+      "publicPath": "public/media/configuration/mmorpg/project-plugins-enhanced-input.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "e5a4cb968a9bdef7865ef0a9aa55e7dd2a001f198b473fa7c4871808c8d3fbd7"
+    },
+    {
+      "ref": "w49",
+      "planId": "project-plugins",
+      "slug": "project-plugins-game-features",
+      "visibleValues": {
+        "search": "Game Features"
+      },
+      "note": "本机启用状态；只按课程依赖选择必要插件，搜索结果中附带的其他引擎插件不是额外教学要求。",
+      "assetPath": null,
+      "title": "Edit → Plugins",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/MMORPG.uproject",
+        "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:06:25.866147+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-plugins-game-features.png",
+      "publicPath": "public/media/configuration/mmorpg/project-plugins-game-features.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "a0f32cd009a27ff2a297c697cfb2018db2ad7c38ecebdfaf5f998abb03e5ccb2"
+    },
+    {
+      "ref": "w49",
+      "planId": "project-plugins",
+      "slug": "project-plugins-modular-gameplay",
+      "visibleValues": {
+        "search": "Modular Gameplay"
+      },
+      "note": "本机启用状态；只按课程依赖选择必要插件，搜索结果中附带的其他引擎插件不是额外教学要求。",
+      "assetPath": null,
+      "title": "Edit → Plugins",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/MMORPG.uproject",
+        "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:06:36.046004+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-plugins-modular-gameplay.png",
+      "publicPath": "public/media/configuration/mmorpg/project-plugins-modular-gameplay.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "b74467215419c0287e1e8a316ec934457e791ce4f90671d48c02a2edbd1d535d"
+    },
+    {
+      "ref": "w49",
+      "planId": "project-plugins",
+      "slug": "project-plugins-ui-extension",
+      "visibleValues": {
+        "search": "UI Extension"
+      },
+      "note": "本机启用状态；只按课程依赖选择必要插件，搜索结果中附带的其他引擎插件不是额外教学要求。",
+      "assetPath": null,
+      "title": "Edit → Plugins",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/MMORPG.uproject",
+        "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:06:56.732831+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-plugins-ui-extension.png",
+      "publicPath": "public/media/configuration/mmorpg/project-plugins-ui-extension.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "81dcc1da905704b58e3272f07806359374d0aa287fca09279023c59b34b1c71d"
+    },
+    {
+      "ref": "w51",
+      "planId": "localization-dashboard-target",
+      "visibleValues": {
+        "target": "MMO",
+        "LoadingPolicy": "Game",
+        "Cultures": [
+          "en",
+          "zh-Hans"
+        ],
+        "wordCountsShown": 0
+      },
+      "note": "本轮命令行完成84keys编译但未生成Dashboard字数CSV，所以原生面板字数显示0；不把统计空值解释为locres缺失，也不为截图重跑收集。",
+      "slug": "localization-dashboard-target",
+      "assetPath": null,
+      "title": "Tools → Localization Dashboard → Game Targets → MMO",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "在 Localization Dashboard 配置目标"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEditor.ini",
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:08:38.475602+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/localization-dashboard-target.png",
+      "publicPath": "public/media/configuration/mmorpg/localization-dashboard-target.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "4abbf017e1ebb0f98ecb7b64bb3920a4fa87c25cea7729dd300360f917e5e74d"
+    },
+    {
+      "ref": "w51",
+      "planId": "localization-dashboard-text-gather",
+      "visibleValues": {
+        "enabled": true,
+        "SearchDirectories": [
+          "Source/MMORPG",
+          "Plugins/MMOFramework/Source"
+        ],
+        "FileExtensions": [
+          "h",
+          "cpp"
+        ],
+        "GatherEditorOnly": false
+      },
+      "slug": "localization-dashboard-text-gather",
+      "assetPath": null,
+      "title": "Localization Dashboard → MMO → Gather Text → From Text Files",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "在 Localization Dashboard 配置目标"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEditor.ini",
+        "examples/MMORPG/Config/Localization/MMO_Gather.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:09:37.842451+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/localization-dashboard-text-gather.png",
+      "publicPath": "public/media/configuration/mmorpg/localization-dashboard-text-gather.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "a42d4b045307ade60fb0cf0eeeefc6923fbd0353f545342bacbedfdff220d9c7"
+    },
+    {
+      "ref": "w51",
+      "planId": "localization-dashboard-package-gather",
+      "visibleValues": {
+        "enabled": true,
+        "IncludePathWildcards": [
+          "Content/UI/*",
+          "Content/Localization/ST_MMO.uasset"
+        ],
+        "FileExtensions": [
+          "uasset"
+        ],
+        "GatherEditorOnly": false
+      },
+      "slug": "localization-dashboard-package-gather",
+      "assetPath": null,
+      "title": "Localization Dashboard → MMO → Gather Text → From Packages",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "在 Localization Dashboard 配置目标"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEditor.ini",
+        "examples/MMORPG/Config/Localization/MMO_Compile.ini"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:10:33.537459+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/localization-dashboard-package-gather.png",
+      "publicPath": "public/media/configuration/mmorpg/localization-dashboard-package-gather.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "a5be640c37724104d9d82418d1e8b35997db06e61372e0e51c18a912e84ee3ed"
+    },
+    {
+      "ref": "w13",
+      "planId": "game-mode-experience",
+      "visibleValues": {
+        "DefaultExperience": "MMOExperience:DA_MMOExperience",
+        "PlayerControllerClass": "MMOPlayerController",
+        "PlayerStateClass": "MMOPlayerState",
+        "GameStateClass": "MMOGameState"
+      },
+      "note": "GameMode 的 DefaultPawnClass 仍为原生 MMOCharacter；Experience 完成后实际角色由 DA_MMOPlayer.PawnClass 的 BP_MMOCharacter 选择。",
+      "slug": "game-mode-experience",
+      "assetPath": "/Game/MMO/BP_MMOGameMode",
+      "title": "Blueprint Editor → Class Settings / Class Defaults",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "一、设置地图、GameMode 与 GameInstance"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/prepare_content.py",
+        "verification/mmorpg-game-mode.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:16:02.185475+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/game-mode-experience.png",
+      "publicPath": "public/media/configuration/mmorpg/game-mode-experience.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "4e8d37a22edaac8eee6d0b9473741710bc29fb5ef1c897be96520ed382d54b3b",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/BP_MMOGameMode.uasset",
+      "sourceAssetSHA256": "2c8ab68f6c5ac96724aa52987d2828f5c5e525d5c94bbd7fa86356e3a8b8034e"
+    },
+    {
+      "ref": "w13",
+      "planId": "ui-policy-final-layout",
+      "visibleValues": {
+        "LayoutClass": "WBP_MMOLayout"
+      },
+      "slug": "ui-policy-final-layout",
+      "assetPath": "/Game/UI/BP_MMOUIPolicy",
+      "title": "Blueprint Editor → Class Defaults → Layout Class",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "八、配置实际使用的 UI Policy"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini",
+        "examples/MMORPG/ui-designer-contract.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:16:09.679736+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/ui-policy-final-layout.png",
+      "publicPath": "public/media/configuration/mmorpg/ui-policy-final-layout.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "338b968f7c07f259b1534cf99b8e36454e77c5f2a5a42274ba641c61c3e6a5e5",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/BP_MMOUIPolicy.uasset",
+      "sourceAssetSHA256": "f0b68b996ea0862929373a14cf393e6f9a12ec0e32b7978a692d947a5e3492a2"
+    },
+    {
+      "ref": "w13",
+      "planId": "feature-data-actions",
+      "visibleValues": {
+        "action": "Add Components",
+        "ActorClass": "ModularGameStateBase",
+        "ComponentClass": "MMOZoneComponent",
+        "ClientComponent": true,
+        "ServerComponent": true,
+        "currentState": "Registered"
+      },
+      "note": "PIE 已停止，本次先把 MMOCore 从 Loaded 切回 Registered 查看配置；Experience 在下一次游戏进入时负责激活。",
+      "slug": "feature-data-actions",
+      "assetPath": "/MMOCore/MMOCore",
+      "title": "Game Feature Data Editor → Actions",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "七、配置并激活 MMOCore 数据资产"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/prepare_content.py",
+        "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+        "examples/MMORPG/Plugins/GameFeatures/MMOCore/MMOCore.uplugin"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:20:40.051200+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/feature-data-actions.png",
+      "publicPath": "public/media/configuration/mmorpg/feature-data-actions.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "6884362a007a939c7de415c90bc1539ce58a93a718fca785a7b1da597956fd02",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Plugins/GameFeatures/MMOCore/Content/MMOCore.uasset",
+      "sourceAssetSHA256": "ba1f464ea665ab7cb6dc273c74df2e07c056f3c88e59ffd51e3b62620c0269f0"
+    },
+    {
+      "ref": "w13",
+      "planId": "character-manny-mesh-animation",
+      "visibleValues": {
+        "SkeletalMesh": "SKM_Manny_Simple",
+        "AnimationMode": "Use Animation Blueprint",
+        "AnimClass": "ABP_MMOCharacter_C",
+        "MeshLocation": [
+          0,
+          0,
+          -88
+        ],
+        "MeshRotationXYZ": [
+          0,
+          0,
+          -90
+        ]
+      },
+      "note": "实际数据蓝图 Class Defaults 同屏显示 Mesh 的位置/旋转、动画模式、动画类及 Manny 网格引用。旋转字段按编辑器 X/Y/Z 显示，Z 是 Yaw。",
+      "slug": "character-manny-mesh-animation",
+      "assetPath": "/Game/Tutorial/BP_MMOCharacter",
+      "title": "Blueprint Editor → Components → inherited Mesh → Details",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "在角色蓝图设置模型与动画类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-character-defaults.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:24:40.101846+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/character-manny-mesh-animation.png",
+      "publicPath": "public/media/configuration/mmorpg/character-manny-mesh-animation.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "3f33339786ad69f1d1d73faef1db6ab6ffa2b45adbc0c51289dbfa85d73a65d6",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/BP_MMOCharacter.uasset",
+      "sourceAssetSHA256": "1f210c44e56fbcd2efe6202e33707fbee4d371fff569296e5d9b321f626f459e"
+    },
+    {
+      "ref": "w13",
+      "planId": "character-manny-mesh-animation",
+      "slug": "character-manny-component-preview",
+      "visibleValues": {
+        "SelectedComponent": "Mesh (CharacterMesh0)",
+        "SkeletalMesh": "SKM_Manny_Simple",
+        "AnimClass": "ABP_MMOCharacter_C",
+        "AnimationMode": "Use Animation Blueprint",
+        "Location": [
+          0,
+          0,
+          -88
+        ],
+        "RotationXYZ": [
+          0,
+          0,
+          -90
+        ]
+      },
+      "note": "完整 Blueprint Editor 中选择继承 Mesh；左侧组件树、中间 Manny 原生 Viewport 预览与右侧变换/动画/骨骼网格字段同屏。",
+      "assetPath": "/Game/Tutorial/BP_MMOCharacter",
+      "title": "Blueprint Editor → Components → inherited Mesh → Details",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "在角色蓝图设置模型与动画类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-character-defaults.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:26:51.897625+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/character-manny-component-preview.png",
+      "publicPath": "public/media/configuration/mmorpg/character-manny-component-preview.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "bb816270f9659a7e27ca23e585f6e626f52ac5bc9a99089e8e71d149907635ef",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/BP_MMOCharacter.uasset",
+      "sourceAssetSHA256": "1f210c44e56fbcd2efe6202e33707fbee4d371fff569296e5d9b321f626f459e"
+    },
+    {
+      "ref": "w13",
+      "planId": "character-mesh-transform-collision",
+      "visibleValues": {
+        "CollisionPreset": "CharacterMesh",
+        "CollisionEnabled": "Query Only (No Physics Collision)",
+        "Filter": "Collision"
+      },
+      "note": "Mesh 继承组件，Details 搜索 Collision 后展示实际 CharacterMesh 预设。变换位置与旋转见同组 character-manny-component-preview 原图。",
+      "slug": "character-mesh-transform-collision",
+      "assetPath": "/Game/Tutorial/BP_MMOCharacter",
+      "title": "Blueprint Editor → inherited Mesh → Transform / Collision",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "在角色蓝图设置模型与动画类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-character-defaults.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:27:43.564618+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/character-mesh-transform-collision.png",
+      "publicPath": "public/media/configuration/mmorpg/character-mesh-transform-collision.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "2cc9761210a0904255092c0b916faf44a3b38106b63f185dd7e742326cb4e196",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/BP_MMOCharacter.uasset",
+      "sourceAssetSHA256": "1f210c44e56fbcd2efe6202e33707fbee4d371fff569296e5d9b321f626f459e"
+    },
+    {
+      "ref": "w13",
+      "planId": "animation-layer-interface",
+      "visibleValues": {
+        "AssetType": "Animation Layer Interface",
+        "Function": "Locomotion"
+      },
+      "note": "真实动画层接口 ALI_MMOCharacter 的 Locomotion 签名；实现图位于 ABP_MMOUnarmed，接口本身不实现混合动画逻辑。",
+      "slug": "animation-layer-interface",
+      "assetPath": "/Game/Characters/MMO/ALI_MMOCharacter",
+      "title": "Animation Layer Interface Editor → My Blueprint → Animation Layers",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "手动创建动画层接口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-animation-assets.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:28:21.023816+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/animation-layer-interface.png",
+      "publicPath": "public/media/configuration/mmorpg/animation-layer-interface.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "4cb57da46f723cb6146a73ba13e65ed46469d63f4cb60d8560de4882e4050649",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ALI_MMOCharacter.uasset",
+      "sourceAssetSHA256": "fd1fe74b22c4f2b431e9664f41affffac04bb5b16519f7b1569f7e7e8ff0fc7b"
+    },
+    {
+      "ref": "w13",
+      "planId": "spell-blueprint-defaults",
+      "visibleValues": {
+        "Parent": "MMOSpellAbility",
+        "InstancingPolicy": "Instanced Per Actor",
+        "NetExecutionPolicy": "Server Only",
+        "CostGameplayEffectClass": "MMOSpellCost",
+        "CooldownGameplayEffectClass": "MMOSpellCooldown"
+      },
+      "note": "GA_ArcaneBolt 实际 Class Defaults。伤害/距离/资源扣除数值由相应原生技能与 GameplayEffect 类负责，本图只声明可见策略和类引用。",
+      "slug": "spell-blueprint-defaults",
+      "assetPath": "/Game/Tutorial/GA_ArcaneBolt",
+      "title": "Blueprint Editor → Class Defaults",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "十、观察技能的执行、消耗与冷却配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:28:54.708190+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/spell-blueprint-defaults.png",
+      "publicPath": "public/media/configuration/mmorpg/spell-blueprint-defaults.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "8721edd2d870615b1fd2e00538dc0133eca6fb81ecc3701310a24205bb41d342",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/GA_ArcaneBolt.uasset",
+      "sourceAssetSHA256": "bcb500cf04eb436d4a80d90097c9f3cd974391955d90f049f2641e84f1fb13b5"
+    },
+    {
+      "ref": "w13",
+      "planId": "target-replication-defaults",
+      "visibleValues": {
+        "Parent": "MMOTarget",
+        "Replicates": true,
+        "ReplicateMovement": false
+      },
+      "note": "训练目标蓝图的实际 Replication 默认值；运行目标由 UMMOZoneComponent 的服务器路径生成，本示例蓝图用来查看可扩展的继承默认值。",
+      "slug": "target-replication-defaults",
+      "assetPath": "/Game/Tutorial/BP_MMOTrainingTarget",
+      "title": "Blueprint Editor → Class Defaults → Replication",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "十一、核对训练目标复制"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:29:20.600305+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/target-replication-defaults.png",
+      "publicPath": "public/media/configuration/mmorpg/target-replication-defaults.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "9da7eb56b13f945f0c482f3ebf91af87d9fe7061dcefb181c4236cf3ae534bf4",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/BP_MMOTrainingTarget.uasset",
+      "sourceAssetSHA256": "dae9278da5c0d8e43234ec6981d2d07c2dbe3f233051284eb9b79e032e1599f9"
+    },
+    {
+      "ref": "w13",
+      "planId": "designer-mana-layout",
+      "visibleValues": {
+        "Parent": "UserWidget",
+        "Hierarchy": [
+          "ManaLayout",
+          "ManaText",
+          "ManaBarSize",
+          "ManaBar"
+        ]
+      },
+      "note": "真实 Designer 展开全部控件层级，ManaLayout 为 VerticalBox、ManaBarSize 为 SizeBox；两条真实 MVVM 绑定与手动 PlayerVM source 见相邻原图。",
+      "slug": "designer-mana-layout",
+      "assetPath": "/Game/UI/WBP_ManaStatus",
+      "title": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "六、制作可复用法力控件和真实 MVVM 绑定"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_ManaStatus-designer.json"
+      ],
+      "editorPid": 37428,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:30:17.095391+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/designer-mana-layout.png",
+      "publicPath": "public/media/configuration/mmorpg/designer-mana-layout.png",
+      "width": 2580,
+      "height": 1200,
+      "sha256": "2c4f378b9e00e4860187cb29a8abdaeebcb9d367439e128237c74d36e2999864",
+      "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/UI/WBP_ManaStatus.uasset",
+      "sourceAssetSHA256": "319820ddfa2cd6063b0f6c581eaa6124bf017fb627daca26f2b6543b702f619b"
+    },
+    {
+      "ref": "w9",
+      "planId": "project-windows-dx12-sm6",
+      "slug": "project-windows-default-dx12",
+      "visibleValues": {
+        "DefaultGraphicsRHI": "DirectX 12"
+      },
+      "note": "重启后的 MMORPG 编辑器，Windows 平台设置实际加载 Config/Windows/WindowsEngine.ini；默认 RHI 已为 DirectX 12。",
+      "assetPath": null,
+      "title": "Project Settings → Platforms → Windows → Targeted RHIs / D3D12 Targeted Shader Formats",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/run-lab.mdx",
+        "heading": "独立目标、Cook 与实际产物启动"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/Windows/WindowsEngine.ini"
+      ],
+      "editorPid": 30180,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:47:37.524094+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-windows-default-dx12.png",
+      "publicPath": "public/media/configuration/mmorpg/project-windows-default-dx12.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "72c3c7fdd8667a606628f3547af8aca71977ed72df3e71f90d42decd66ddf4f3"
+    },
+    {
+      "ref": "w9",
+      "planId": "project-windows-dx12-sm6",
+      "slug": "project-windows-d3d12-sm6",
+      "visibleValues": {
+        "D3D12SM5": false,
+        "D3D12SM6": true,
+        "D3D12Mobile": false
+      },
+      "note": "重启后实际 D3D12 Targeted Shader Formats：仅 SM6 勾选，SM5 与 Mobile 未选；默认 DirectX 12 在相邻原图。",
+      "assetPath": null,
+      "title": "Project Settings → Platforms → Windows → Targeted RHIs / D3D12 Targeted Shader Formats",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/run-lab.mdx",
+        "heading": "独立目标、Cook 与实际产物启动"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/Windows/WindowsEngine.ini"
+      ],
+      "editorPid": 30180,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:48:06.860021+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-windows-d3d12-sm6.png",
+      "publicPath": "public/media/configuration/mmorpg/project-windows-d3d12-sm6.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "19f87ca8dac719f603afad7e33cb2ad67d9743aea019a4c68445f1889f2966e1"
+    },
+    {
+      "ref": "w9",
+      "planId": "project-windows-dx12-sm6",
+      "slug": "project-windows-targeted-formats",
+      "visibleValues": {
+        "D3D12SM6": true,
+        "D3D12SM5": false,
+        "D3D12Mobile": false,
+        "D3D11SM5": false,
+        "D3D11Mobile": false,
+        "VulkanSM5": false,
+        "VulkanSM6": false
+      },
+      "note": "重启后 Windows 三类 Targeted Shader Formats 同屏完整展开；首版仅 D3D12/SM6，所有其他可见格式未勾选。",
+      "assetPath": null,
+      "title": "Project Settings → Platforms → Windows → Targeted RHIs / D3D12 Targeted Shader Formats",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/run-lab.mdx",
+        "heading": "独立目标、Cook 与实际产物启动"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/Windows/WindowsEngine.ini"
+      ],
+      "editorPid": 30180,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:48:39.527481+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-windows-targeted-formats.png",
+      "publicPath": "public/media/configuration/mmorpg/project-windows-targeted-formats.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "e50157b85784335732ba4dd4e7f62a163fb9280a885d32959de9f2c0d380352c"
+    },
+    {
+      "ref": "w9",
+      "planId": "asset-manager-types",
+      "slug": "asset-scan-primaryassetlabel-fresh",
+      "assetPath": null,
+      "visibleValues": {
+        "PrimaryAssetType": "PrimaryAssetLabel",
+        "AssetBaseClass": "PrimaryAssetLabel",
+        "HasBlueprintClasses": false,
+        "IsEditorOnly": false,
+        "Directory": "/Game/MMO/Labels",
+        "Priority": -1,
+        "ChunkId": -1,
+        "ApplyRecursively": true,
+        "CookRule": "Always Cook"
+      },
+      "note": "fresh Editor 已加载 DefaultGame.ini 的实际标签扫描规则，Is Editor Only 未勾选；与 earlier Label asset 本身规则分开核对。保存标签本身不能替代这个类型扫描设置。只读扫描报告 verification/mmorpg-health-cook-label-scan.json 已通过，Cook 仍需独立证据。",
+      "title": "Project Settings → Game → Asset Manager → Primary Asset Types to Scan",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "六、让 Asset Manager 扫描 GameFeatureData"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 30180,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:49:55.864394+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/asset-scan-primaryassetlabel-fresh.png",
+      "publicPath": "public/media/configuration/mmorpg/asset-scan-primaryassetlabel-fresh.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "40b2ab2bc8093002405a8fe52e6597feb720262878761c78b8ca4cce52af3318"
+    },
+    {
+      "ref": "w11",
+      "planId": "localization-dashboard-target",
+      "slug": "localization-dashboard-target-final",
+      "visibleValues": {
+        "Target": "MMO",
+        "LoadingPolicy": "Game",
+        "NativeCulture": "en",
+        "SourceWords": 404,
+        "en": "404 (100%)",
+        "zh-Hans": "404 (100%)",
+        "ConflictStatus": "Clear"
+      },
+      "note": "重启后真实 Dashboard 读取原生 MMO.csv 与同 Gather 进程产生的空 MMO_Conflicts.txt。两文化404源词/100%，并非84文案key；未通过点击Count Words生成或修改此帧数据。",
+      "assetPath": null,
+      "title": "Tools → Localization Dashboard → Game Targets → MMO",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "在 Localization Dashboard 配置目标"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEditor.ini",
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "editorPid": 30180,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:51:17.191171+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/localization-dashboard-target-final.png",
+      "publicPath": "public/media/configuration/mmorpg/localization-dashboard-target-final.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "4e30400c161664b84df1fc77173b9ec7c3a5a771769a5e26d4b0e4d82476392b"
+    },
+    {
+      "ref": "w13",
+      "planId": "project-plugins",
+      "slug": "project-plugins-mmo",
+      "visibleValues": {
+        "category": "Project",
+        "search": "MMO",
+        "enabled": [
+          "MMO Blueprint Documentation Tools",
+          "MMO Core Training Zone",
+          "MMO Integration",
+          "MMO Tutorial Framework"
+        ]
+      },
+      "note": "先选择 Project 类别再搜索 MMO，使四个原创项目插件完整入画；CommonGame/CommonUser 也匹配子串且均启用。没有更改任何插件复选框。",
+      "assetPath": null,
+      "title": "Edit → Plugins",
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/MMORPG.uproject",
+        "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin"
+      ],
+      "editorPid": 30180,
+      "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T16:52:44.861549+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/project-plugins-mmo.png",
+      "publicPath": "public/media/configuration/mmorpg/project-plugins-mmo.png",
+      "width": 2100,
+      "height": 1100,
+      "sha256": "cc450f8bb64ddec51df3f8b570ad7364710764553056da842f3fddf0b5a6f8b1"
+    }
+  ],
+  "historicalCaptures": [
+    {
+      "reason": "Replaced after native migration from fixed Input IDs to Gameplay Tags. Original capture metadata below remains unchanged.",
+      "replacedAt": "2026-09-13T18:58:22.427769+00:00",
+      "privateArchive": ".local/capture-history/ability-set-tagged-20260913/previous-input-id.png",
+      "publicImageAvailable": false,
+      "capture": {
+        "ref": "w13",
+        "planId": "ability-set-grants",
+        "visibleValues": {
+          "abilities": [
+            {
+              "class": "MMOAttackAbility",
+              "level": 1,
+              "inputID": 0,
+              "inputTag": "None"
+            },
+            {
+              "class": "GA_ArcaneBolt",
+              "level": 1,
+              "inputID": 1,
+              "inputTag": "None"
+            }
+          ],
+          "effects": 0,
+          "attributes": 0
+        },
+        "slug": "ability-set-grants",
+        "assetPath": "/Game/MMO/Abilities/DA_MMOAbilities",
+        "title": "Data Asset Editor → Abilities",
+        "teachingLocation": {
+          "file": "content/docs/08-mmorpg/character-gas.mdx",
+          "heading": "逐项创建 Experience、PawnData 与 AbilitySet"
+        },
+        "sourceFiles": [
+          "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+          "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h"
+        ],
+        "editorPid": 37428,
+        "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+        "engine": "UE 5.8.1 source build",
+        "capturedAt": "2026-09-13T15:06:32.911479+00:00",
+        "method": "Native SlateInspectorToolset.Screenshot",
+        "postProcessing": false,
+        "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/ability-set-grants.png",
+        "publicPath": "public/media/configuration/mmorpg/ability-set-grants.png",
+        "width": 2100,
+        "height": 1000,
+        "sha256": "0d6ad95ef0006d98e17602ad0e94f36eaa1d89897986fdbf838f1e6f8462b487",
+        "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+        "sourceAssetSHA256": "7c0ec7a3f3b5b2c5d781e6ac27619c0b7e1ade793808303514bae612be4c83d2"
+      }
+    }
+  ]
+}

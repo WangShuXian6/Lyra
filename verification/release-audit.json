@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 2,
+  "auditedAt": "2026-09-13T21:00:25.291118+00:00",
+  "status": "ready-to-publish",
+  "localAcceptancePassed": true,
+  "releaseReady": false,
+  "scope": "Root integration review linking actual local, build, runtime, browser, archive and deployment evidence. Each linked report retains its original scope and date.",
+  "evidence": [
+    {
+      "name": "Backend HTTP integration",
+      "path": "examples/MMORPG/backend/http-test-results.json",
+      "bytes": 2849,
+      "sha256": "37411702d5de3c76a7bc9b0bc30e4b1e03329189e16503f1e67f726b14b92f19",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "Backend concurrency",
+      "path": "examples/MMORPG/backend/concurrency-test-results.json",
+      "bytes": 2069,
+      "sha256": "8629ebec2a0b2bb7b4225868e857f9c833526ffcca2548a1380cb90678a8a48e",
+      "passed": true,
+      "scope": "Observed account-row lock waiters; no PostgreSQL global changes"
+    },
+    {
+      "name": "Backend database fault and normal shutdown",
+      "path": "examples/MMORPG/backend/fault-test-results.json",
+      "bytes": 131,
+      "sha256": "feecd52c11956fcd6e74927f985641f3b763a7d6f2cfcad4aa5f9912ee46e4ca",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "Backend Unicode data",
+      "path": "verification/backend-internationalized-data.json",
+      "bytes": 813,
+      "sha256": "7aff25ed1971f31ec21eb75483f5db609f5874028158fba218bd463286aaa9a4",
+      "passed": true,
+      "scope": "Actual UTF-8 HTTP/JSON and PostgreSQL round trip; does not claim glyph rendering, IME input or Unicode normalization."
+    },
+    {
+      "name": "PostgreSQL backup and restore",
+      "path": "verification/backend-backup-restore.json",
+      "bytes": 2273,
+      "sha256": "11928bbe574c70944a7f4743858ca16e07fe02614aaeb4173ea6c24a5303fb31",
+      "passed": true,
+      "scope": "Local logical backup/restore into a newly created database. Source is read-only. No service failover or point-in-time recovery is claimed."
+    },
+    {
+      "name": "Native Blueprint clipboard round trips",
+      "path": "verification/training-blueprint-roundtrip.json",
+      "bytes": 4210,
+      "sha256": "94a6904f33c96bc63703f97885a1c8c8331171692fe65f7ba88d59117b504951",
+      "passed": true,
+      "scope": "Native clipboard import and compilation in complete Blueprint duplicates; gameplay is not tested here."
+    },
+    {
+      "name": "Training single-player PIE",
+      "path": "verification/training-play.json",
+      "bytes": 8498,
+      "sha256": "06ef23a1b705c4378ffe1f1ccd93bd27aee7cab0d0426e8936c8bf26a5e058cc",
+      "passed": true,
+      "scope": "Single local training PIE: movement, jump, granted Dash activation, ammo, and initialization only."
+    },
+    {
+      "name": "Training two-client PIE",
+      "path": "verification/training-network.json",
+      "bytes": 2221,
+      "sha256": "911f91ce614b89acad46eb0afb7340fb2320700f464126a6006d64719be4f8b7",
+      "passed": true,
+      "scope": "Local PIE networking; separate packaged executables are checked independently."
+    },
+    {
+      "name": "Training reload, pickup and respawn PIE",
+      "path": "verification/training-lifecycle.json",
+      "bytes": 2576,
+      "sha256": "dc15f625e869f55e2c133988a7ec10dd6e60d9c63e813b4b7c4d53b19d1cc8be",
+      "passed": true,
+      "scope": "Native fire/reload input, navigation-guided AddMovementInput, Lyra DamageSelfDestruct"
+    },
+    {
+      "name": "Training preparation and same-process repeat",
+      "path": "verification/training-prepare-rerun.json",
+      "bytes": 10351,
+      "sha256": "1f64a437c1d24643022bab5f5160902dc8f4493a0494952ac6745a80160d67d5",
+      "passed": true,
+      "scope": "Fresh native Python commandlet process using existing lab assets, then same-process preparation while retaining the first Training World reference."
+    },
+    {
+      "name": "Training final Editor metadata",
+      "path": "verification/training-package-editor-refresh.json",
+      "bytes": 7306,
+      "sha256": "a6f81c895ab0e5c200953a7423366e33f6ef8f65cc6e6a35723d18602fc2978b",
+      "passed": true,
+      "scope": "Pre-package full Editor target refresh after shared engine BuildId changed; no asset generation, Editor launch, Cook or gameplay performed by this script"
+    },
+    {
+      "name": "Training Build/Cook/Stage/Archive",
+      "path": "verification/training-package.json",
+      "bytes": 20815,
+      "sha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "Training packaged runtime",
+      "path": "verification/training-package-runtime.json",
+      "bytes": 6232,
+      "sha256": "b4d1ccf47ce5316ed8d90e50f146231fabe1c111d3771e51a533ddb990039e6a",
+      "passed": true,
+      "scope": "packaged-single-player"
+    },
+    {
+      "name": "Training packaged visual review",
+      "path": "verification/training-packaged-visual-review.json",
+      "bytes": 1685,
+      "sha256": "977011bba72f6720666ffb60b572b8ec9743cdf90562923df2c7feef18323a56",
+      "passed": true,
+      "scope": "Root viewed the actual first packaged Training screenshot with view_image at original detail, then checked its untouched published bytes against the first-run runtime report. This is a visual and provenance check, not audio or performance acceptance."
+    },
+    {
+      "name": "Training package logs and two-run comparison",
+      "path": "verification/training-package-log-analysis.json",
+      "bytes": 11463,
+      "sha256": "d3e67ce028c50a6bd4c6b1e071da4cd556e7a6587734254499a9e6818dbbd813",
+      "passed": true,
+      "scope": "Training Development package and two sequential native single-player runs of the same executable; not an audio performance qualification."
+    },
+    {
+      "name": "MMORPG Cook and final Stage",
+      "path": "verification/mmorpg-package.json",
+      "bytes": 3932,
+      "sha256": "af8bc0a799bc4a87386b1f6bacc09689b7c8572d103a8b1f209c93d5e04c930b",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "MMORPG final tag grants and activation",
+      "path": "verification/mmorpg-tagged-ability-input-runtime.json",
+      "bytes": 3162,
+      "sha256": "9886f71805324324f2b00c19a21635a8d2ac1bb4d1cafc8969518615d30383bc",
+      "passed": true,
+      "scope": "Actual cooked Development Client/Server: tag-based Spec grants and authoritative activation, including respawn and logout/restore."
+    },
+    {
+      "name": "MMORPG packaged gameplay and persistence",
+      "path": "verification/mmorpg-packaged-smoke.json",
+      "bytes": 20284,
+      "sha256": "99c3b43ef84be8b09674b78db44f0af4fcf92d23ea2412eb0bb465dd2092e81d",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "MMORPG packaged death and logout",
+      "path": "verification/mmorpg-packaged-death-logout.json",
+      "bytes": 17455,
+      "sha256": "9fd8095703f335f1008a9c30e1333066058b632701f7265162144edbba3bc9f7",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "MMORPG native localization pipeline",
+      "path": "verification/mmorpg-localization.json",
+      "bytes": 3843,
+      "sha256": "e6f4f55acf2ef1a6cecaaf21ffa63197b5db4dad259050914c4d10f933d0fa85",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "MMORPG packaged containers and fonts",
+      "path": "verification/mmorpg-staged-presentation.json",
+      "bytes": 4814,
+      "sha256": "78d6f263a8108690d853ea1a66c8b893f561434e9b1a05b22f38111691e7e9a3",
+      "passed": true,
+      "scope": "Native UnrealPak -List and -ListContainer plus exact loose-file checks in the staged directory"
+    },
+    {
+      "name": "MMORPG packaged rendering and culture persistence",
+      "path": "verification/mmorpg-packaged-rendered-showcase.json",
+      "bytes": 28147,
+      "sha256": "57329a5410a60f744ee58c237c7dafd264fde50f3c4b2f863e7548c19f7d756c",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "MMORPG representative glyph and layout review",
+      "path": "verification/mmorpg-packaged-visual-review.json",
+      "bytes": 4327,
+      "sha256": "392583bf8ff37469a17163258972b76005a2e2802092ebaa796f03a8d9d314b5",
+      "passed": true,
+      "scope": "Representative Chinese/English glyph and layout review of eight of the 22 captures; runtime behavior is established by the separate native showcase, smoke and input reports."
+    },
+    {
+      "name": "MMORPG final published native images",
+      "path": "verification/mmorpg-packaged-media-sync.json",
+      "bytes": 22446,
+      "sha256": "edc5c80eedd3f3192e0bde910ae80e0394714fd66cc49a48ff99e0bde98cccf1",
+      "passed": true,
+      "scope": "See the original report for its exact scope."
+    },
+    {
+      "name": "Native Slate/UMG keyboard and gamepad event injection",
+      "path": "verification/mmorpg-native-ui-input.json",
+      "bytes": 11374,
+      "sha256": "73a5ca77c8dbfdddd8026d95914ce2958f899ce89b505a5de0a1b3fe1c172dad",
+      "passed": true,
+      "scope": "Native SlateInspector key/mouse dispatch followed by read-only native UObject/UMG observations in the real MMORPG PIE client connected to a dedicated server."
+    },
+    {
+      "name": "Both final static export paths",
+      "path": "verification/site-final-exports.json",
+      "bytes": 3427,
+      "sha256": "83418b80e91f847b08c992cbf36d9e48ccc0cfb055b990f18f45d608fcf47a17",
+      "passed": true,
+      "scope": "Final Fumadocs type/content checks and production static export for both root and /Lyra; no UE build is performed here"
+    },
+    {
+      "name": "Final changed-content browser checks",
+      "path": "verification/site-browser-final-content.json",
+      "bytes": 5756,
+      "sha256": "645640c84958d0a6f8cf1912f570bf33467b0e5847f0fb593975599e086b0818",
+      "passed": true,
+      "scope": "Final changed content and downloads on both real static exports; the earlier native browser report separately covers unchanged navigation, clipboard, themes and graph panning"
+    },
+    {
+      "name": "Final tutorial archive dependency review",
+      "path": "verification/package-dependency-final.json",
+      "bytes": 142268,
+      "sha256": "3d0efcab423e8ae183e4c4df7af6a1808e77a2d36b5f478a965a0fc911b0ccac",
+      "passed": true,
+      "scope": "Read-only validation of the exact published tar.gz byte snapshots, every internal MANIFEST member and its SHA-256/byte count, source-level repository helper/configuration/contract dependency completeness, and actual Training report-to-package plus native screenshot-to-public provenance links. Existing runtime results are read and linked; no experiment is rerun."
+    },
+    {
+      "name": "Final candidate and archive credential/asset audit",
+      "path": "verification/release-files-audit.json",
+      "bytes": 2078,
+      "sha256": "5f87d806502c9d2f13dc35c3a9e5e0ed461f892b3c17d4426f1e383b0060d6dc",
+      "passed": true,
+      "scope": "Read-only Git cached/non-ignored untracked working-tree candidates, indexed blobs, and in-memory tar.gz/zip members. This audit does not establish gameplay, builds, deployment or complete release acceptance."
+    }
+  ],
+  "pending": [
+    "GitHub Pages deployment and online verification"
+  ],
+  "reviewedFileAuditWarnings": [
+    {
+      "path": "content/docs/10-backend/authentication.mdx",
+      "line": 15,
+      "sourceSha256": "029873d4ee90e73469c2a45b8b27a811c7cb98821c82677ec5717356cf49a2b0",
+      "decision": "The registration JSON contains an intentional illustrative unique-password instruction, not a local credential. Known local database/service/GitHub credentials were separately compared in memory by the file audit."
+    }
+  ],
+  "boundaries": [
+    "Native Slate event injection is not physical USB gamepad hardware certification.",
+    "The two MMORPG tutorial abilities use ServerOnly instant activation; the reusable ASC matches dynamic spec tags, while held/released queues and local prediction remain an explained extension.",
+    "Training packaged acceptance covers its eleven single-player checks. Two-player networking, overlap pickup and respawn have separately recorded native PIE evidence.",
+    "The first Training packaged run logged an AudioMixer queue diagnostic. A second run of the same executable passed without Error/Stall and retained one underrun Display. First-run task timing is a hypothesis, not a proven root cause; sound quality and frame-time performance are not certified. The untouched published screenshot belongs to the first run and retains its startup warning.",
+    "The first MMORPG slice is one region, one dedicated server and two clients, not a production sharded MMO or load-test certification.",
+    "Official Lyra/template content and third-party binaries are prepared locally from the recorded sources; they are not bundled as original tutorial assets.",
+    "A full installation and replay on a second clean Windows host was not performed."
+  ]
+}

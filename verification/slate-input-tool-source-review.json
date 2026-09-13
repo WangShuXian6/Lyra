@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-13T14:30:32.550272Z",
+  "engine": "UE 5.8.1 local source",
+  "scope": "Read-only source review of native input tooling. This is not an input acceptance result.",
+  "sources": [
+    {
+      "symbols": [
+        "USlateInspectorToolset::GetWidgetScreenCenter",
+        "USlateInspectorToolset::SimulateClick",
+        "USlateInspectorToolset::Type"
+      ],
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/Toolsets/SlateInspectorToolset/Source/SlateInspectorToolset/Private/SlateInspectorToolset.cpp",
+      "sha256": "87F1AFA62DD2A380A13E470358E87B6737855C4CF2AF862E92A4825149CBA939"
+    },
+    {
+      "symbols": [
+        "FActivatableTreeRoot::FocusLeafmostNode"
+      ],
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/CommonUI/Source/CommonUI/Private/Input/UIActionRouterTypes.cpp",
+      "sha256": "F13194461CD8A9CA0F8D3F3B25DBE180922B697FD7987AB55E1B93DB000A7B3C"
+    },
+    {
+      "path": "E:/UnrealEngine/Engine/Source/Runtime/UMG/Private/Components/Widget.cpp",
+      "sha256": "458B299E162C2854C4D86E6A46164B9906FBA8111A8DF8D4FF30215E90D81D03",
+      "symbols": [
+        "UWidget::HasAnyUserFocus",
+        "UWidget::HasFocusedDescendants"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "fact": "The tool computes click coordinates from GetTickSpaceGeometry().GetAbsolutePositionAtCoordinates(0.5,0.5).",
+      "implication": "An unresolved, zero, or stale widget geometry can produce a click at the wrong location.",
+      "line": 66,
+      "symbol": "GetWidgetScreenCenter"
+    },
+    {
+      "fact": "The tool dispatches native mouse move/down/up and returns true without checking that the intended button handled the events.",
+      "implication": "Click=true proves dispatch, not OnClicked or the expected game result.",
+      "line": 86,
+      "symbol": "SimulateClick"
+    },
+    {
+      "fact": "Type calls SetKeyboardFocus directly before entering text.",
+      "implication": "Even Type with empty text changes focus. It must be recorded as a focus intervention, not as natural focus restoration.",
+      "line": 330,
+      "symbol": "Type"
+    },
+    {
+      "fact": "The Focused desired target log is emitted before UWidget::SetFocus.",
+      "implication": "Confirm actual focus from Slate or UWidget observations; the log alone is not sufficient.",
+      "line": 1871,
+      "symbol": "FocusLeafmostNode"
+    },
+    {
+      "symbol": "HasAnyUserFocus / HasFocusedDescendants",
+      "implication": "EditableTextBox can contain a focused SEditableText while its own HasAnyUserFocus is false. Observe both and retain the actual Slate focused node.",
+      "fact": "HasAnyUserFocus tests the cached widget itself; HasFocusedDescendants is a separate query.",
+      "line": 650
+    }
+  ],
+  "runtimeStatus": "Parent observed natural second logout followed by native Tab focusing the inner Password SEditableText and then SignIn, without OutputLog intervention. Initial failure was not reproduced through this natural input path; no runtime code changed.",
+  "relatedObservations": [
+    "verification/mmorpg-ui-observations/changed-character-joined.json",
+    "verification/mmorpg-ui-observations/natural-second-logout-tab.json"
+  ]
+}

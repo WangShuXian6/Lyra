@@ -1,0 +1,754 @@
+{
+  "schemaVersion": 1,
+  "captures": [
+    {
+      "slug": "training-pawn",
+      "ref": "w6",
+      "title": "HeroData_Training · PawnData Details",
+      "assetPath": "/TrainingRange/Game/HeroData_Training",
+      "chapter": "07-training/feature-and-experience",
+      "fields": {
+        "PawnClass": "B_Hero_ShooterMannequin",
+        "AbilitySets": [
+          "AbilitySet_TrainingHero"
+        ],
+        "TagRelationshipMapping": "TagRelationships_ShooterHero",
+        "InputConfig": "InputData_Hero",
+        "DefaultCameraMode": "CM_ThirdPerson"
+      },
+      "caption": "训练 PawnData 只把默认技能集改为 AbilitySet_TrainingHero，角色、输入配置、标签关系与相机引用均可在同页核对。",
+      "editorPid": 22108,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:49:31.268187+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/training-pawn.png",
+      "publicPath": "public/media/configuration/training/training-pawn.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "3fb42b44993b49dc06590d56595b90308f374afbc2877f866c444d51d185aa77"
+    },
+    {
+      "slug": "pawn-data",
+      "ref": "w6",
+      "title": "HeroData_ShooterGame · PawnData Details",
+      "assetPath": "/ShooterCore/Game/HeroData_ShooterGame",
+      "chapter": "03-character/player-pawn",
+      "fields": {
+        "PawnClass": "B_Hero_ShooterMannequin",
+        "AbilitySets": [
+          "AbilitySet_ShooterHero"
+        ],
+        "TagRelationshipMapping": "TagRelationships_ShooterHero",
+        "InputConfig": "InputData_Hero",
+        "DefaultCameraMode": "CM_ThirdPerson"
+      },
+      "caption": "展开 Pawn、Abilities、Input、Camera 和 Ability Sets；依次确认角色类、默认技能集、标签关系、输入配置与第三人称相机。",
+      "editorPid": 22108,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:49:54.778047+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/pawn-data.png",
+      "publicPath": "public/media/configuration/training/pawn-data.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "7414b3ffb04f3d4995e122a24e20cedac1d47686a9cd6857a301977c7c21bbc6"
+    },
+    {
+      "slug": "ability-set",
+      "ref": "w6",
+      "title": "AbilitySet_ShooterHero · Dash grant",
+      "assetPath": "/ShooterCore/Game/AbilitySet_ShooterHero",
+      "chapter": "04-gas/ability-sets",
+      "fields": {
+        "GrantedGameplayAbilitiesCount": 11,
+        "DashIndex": 2,
+        "Ability": "GA_Hero_Dash",
+        "AbilityLevel": 1,
+        "InputTag": "InputTag.Ability.Dash",
+        "GrantedGameplayEffectsCount": 1,
+        "GrantedAttributesCount": 0
+      },
+      "caption": "展开 Granted Gameplay Abilities 的索引2：Ability=GA_Hero_Dash、Ability Level=1、Input Tag=InputTag.Ability.Dash；标签负责输入匹配，能力类负责实际行为。",
+      "editorPid": 22108,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:50:38.796180+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/ability-set.png",
+      "publicPath": "public/media/configuration/training/ability-set.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "b83a05e3f3d537cefc21552c8e64d0c74d32794628a9b14eb94ca0ac57512805"
+    },
+    {
+      "slug": "training-ability-set",
+      "ref": "w6",
+      "title": "AbilitySet_TrainingHero · Dash replacement",
+      "assetPath": "/TrainingRange/Game/AbilitySet_TrainingHero",
+      "chapter": "07-training/feature-and-experience",
+      "fields": {
+        "GrantedGameplayAbilitiesCount": 11,
+        "DashIndex": 2,
+        "Ability": "GA_TrainingDash",
+        "AbilityLevel": 1,
+        "InputTag": "InputTag.Ability.Dash"
+      },
+      "caption": "训练技能集仍为11项；索引2的能力类换成GA_TrainingDash，等级1与InputTag.Ability.Dash保留。",
+      "editorPid": 22108,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:51:37.141059+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/training-ability-set.png",
+      "publicPath": "public/media/configuration/training/training-ability-set.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "38e311ae3468310911ae5f965e0571b8b77b28e0cd68552e39ad8bf4d30ce101"
+    },
+    {
+      "slug": "input-config",
+      "ref": "w6",
+      "title": "InputData_Hero · Native and Ability inputs",
+      "assetPath": "/Game/Input/InputData_Hero",
+      "chapter": "03-character/enhanced-input",
+      "fields": {
+        "NativeInputActionsCount": 5,
+        "NativeMove": {
+          "InputAction": "IA_Move",
+          "InputTag": "InputTag.Move"
+        },
+        "AbilityInputActionsCount": 6,
+        "AbilityJump": {
+          "InputAction": "IA_Jump",
+          "InputTag": "InputTag.Jump"
+        }
+      },
+      "caption": "Native Input Actions第0行是IA_Move/InputTag.Move；Ability Input Actions第0行是IA_Jump/InputTag.Jump。两组配置用不同绑定入口，不能把所有输入都当作Gameplay Ability。",
+      "editorPid": 22108,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:52:51.526191+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/input-config.png",
+      "publicPath": "public/media/configuration/training/input-config.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "90d02225439e29277b83c885364541b871e12d12d56653d33d551080c883a664"
+    },
+    {
+      "slug": "input-mapping-buttons",
+      "ref": "w6",
+      "title": "IMC_Default · Fire and Jump key settings",
+      "assetPath": "/Game/Input/Mappings/IMC_Default",
+      "chapter": "03-character/enhanced-input",
+      "fields": {
+        "FireKeys": [
+          "LeftMouseButton",
+          "Gamepad_RightTrigger"
+        ],
+        "JumpKeys": [
+          "SpaceBar",
+          "Gamepad_FaceButton_Bottom"
+        ],
+        "FireMappingTriggers": 0,
+        "FireActionInheritedTriggers": 1,
+        "JumpMappingTriggers": 0,
+        "MappingModifiers": 0,
+        "SettingBehavior": "Inherit Settings from Action"
+      },
+      "caption": "UE5.8的入口为Default Key Mappings→Mappings。开火为鼠标左键/手柄右扳机，跳跃为空格/手柄底部面键；按键行的Trigger为0，但开火显示另有1个来自InputAction的Trigger。",
+      "editorPid": 22108,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:54:47.250390+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/input-mapping-buttons.png",
+      "publicPath": "public/media/configuration/training/input-mapping-buttons.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "d121caed53eebe109b5e01391250a966961c6028dcb82467e2525d4742fc4e29"
+    },
+    {
+      "slug": "input-mapping-movement",
+      "ref": "w6",
+      "title": "IMC_Default · Move W Swizzle",
+      "assetPath": "/Game/Input/Mappings/IMC_Default",
+      "chapter": "03-character/enhanced-input",
+      "fields": {
+        "MoveKeys": [
+          "W",
+          "S",
+          "A",
+          "D",
+          "Gamepad_Left2D"
+        ],
+        "WMappingTriggers": 0,
+        "WMappingModifiers": [
+          {
+            "class": "InputModifierSwizzleAxis",
+            "Order": "YXZ"
+          }
+        ],
+        "ActionInheritedModifiersCount": 1,
+        "WSettingBehavior": "Override Settings"
+      },
+      "caption": "展开IA_Move→W→修改器→索引0：Swizzle Input Axis Values的Order为YXZ，将按键产生的X值送入移动的Y轴。S/A/D和手柄左摇杆2D在同组；每个按键仍需分别检查自己的Modifiers。",
+      "editorPid": 22108,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T12:56:16.981501+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/input-mapping-movement.png",
+      "publicPath": "public/media/configuration/training/input-mapping-movement.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "714f798c30758642cf9c4be2ddf34000975492b0b060e012d16e739949042abb"
+    },
+    {
+      "slug": "training-feature-experience",
+      "ref": "w5",
+      "title": "TrainingRange Experience 扫描规则",
+      "assetPath": "/TrainingRange/TrainingRange",
+      "chapter": "07-training/feature-and-experience",
+      "fields": {
+        "InitialState": "Registered",
+        "PrimaryAssetType": "LyraExperienceDefinition",
+        "AssetBaseClass": "LyraExperienceDefinition",
+        "HasBlueprintClasses": true,
+        "IsEditorOnly": false,
+        "Directories": [
+          "/TrainingRange/Experiences"
+        ],
+        "CookRule": "AlwaysCook"
+      },
+      "caption": "TrainingRange 的 Experience 扫描使用蓝图类，目录 /TrainingRange/Experiences，Cook Rule 为 Always Cook。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:19:55.181193+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/training-feature-experience.png",
+      "publicPath": "public/media/configuration/training/training-feature-experience.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "9a6fe9e25bba1a37a060af074c5857ae596528fa4bcac72ceeb046b33b68f5ab"
+    },
+    {
+      "slug": "training-feature-map",
+      "ref": "w5",
+      "title": "TrainingRange 地图扫描规则",
+      "assetPath": "/TrainingRange/TrainingRange",
+      "chapter": "07-training/feature-and-experience",
+      "fields": {
+        "PrimaryAssetType": "Map",
+        "AssetBaseClass": "World",
+        "HasBlueprintClasses": false,
+        "IsEditorOnly": false,
+        "Directories": [
+          "/TrainingRange/Maps"
+        ],
+        "CookRule": "AlwaysCook"
+      },
+      "caption": "同一 GameFeatureData 的 Map 条目使用 World 类，不勾选蓝图类，扫描 /TrainingRange/Maps 并 Always Cook。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:20:22.869145+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/training-feature-map.png",
+      "publicPath": "public/media/configuration/training/training-feature-map.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "572ac924acaf4d1f15cd58d780695d637b7655b9652c9c3305d978dc59093ace"
+    },
+    {
+      "slug": "training-experience",
+      "ref": "w5",
+      "title": "训练场 Experience 类默认值",
+      "assetPath": "/TrainingRange/Experiences/B_TrainingRange",
+      "chapter": "07-training/feature-and-experience",
+      "fields": {
+        "GameFeaturesToEnable": [
+          "ShooterCore",
+          "TrainingRange"
+        ],
+        "DefaultPawnData": "HeroData_Training",
+        "ActionSets": [
+          "LAS_ShooterGame_SharedInput",
+          "LAS_ShooterGame_StandardComponents",
+          "LAS_ShooterGame_StandardHUD",
+          "EAS_BasicShooterAccolades"
+        ],
+        "ActionsCount": 3
+      },
+      "caption": "B_TrainingRange 使用 HeroData_Training，启用 ShooterCore 与 TrainingRange，保留四个输入、组件、HUD 和 Accolades ActionSet。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:20:59.357022+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/training-experience.png",
+      "publicPath": "public/media/configuration/training/training-experience.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "d6b164627b4c597152ed2b5a50e2cdb63f804b04ce72a120f3ec7d75b184ab74"
+    },
+    {
+      "slug": "experience",
+      "ref": "w5",
+      "title": "官方 Elimination Experience 类默认值",
+      "assetPath": "/ShooterCore/Experiences/B_ShooterGame_Elimination",
+      "chapter": "02-architecture/experience",
+      "fields": {
+        "GameFeaturesToEnable": [
+          "ShooterCore"
+        ],
+        "DefaultPawnData": "HeroData_ShooterGame",
+        "ActionSets": [
+          "LAS_ShooterGame_SharedInput",
+          "LAS_ShooterGame_StandardComponents",
+          "LAS_ShooterGame_StandardHUD",
+          "EAS_BasicShooterAccolades"
+        ],
+        "ActionsCount": 3
+      },
+      "caption": "官方 Elimination 默认使用 HeroData_ShooterGame；四个 ActionSet 负责共享输入、组件、HUD 和 Accolades。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:21:34.712352+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/experience.png",
+      "publicPath": "public/media/configuration/training/experience.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "11310e4c6cad42b44e6d8bf712a240093e20b1e6c1704d79f55d5282ff0b3536"
+    },
+    {
+      "slug": "components-actionset",
+      "ref": "w5",
+      "title": "组件 ActionSet 的客户端与服务器条件",
+      "assetPath": "/ShooterCore/Experiences/LAS_ShooterGame_StandardComponents",
+      "chapter": "02-architecture/experience",
+      "fields": {
+        "ActionsCount": 1,
+        "ActionClass": "GameFeatureAction_AddComponents",
+        "ComponentListCount": 4,
+        "InspectedIndex": 1,
+        "ActorClass": "Controller",
+        "ComponentClass": "B_QuickBarComponent",
+        "ClientComponent": true,
+        "ServerComponent": true
+      },
+      "caption": "Add Components 的索引 1（第 2 个元素）将 B_QuickBarComponent 添加到 Controller，客户端与服务器两个开关均勾选。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:22:34.102453+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/components-actionset.png",
+      "publicPath": "public/media/configuration/training/components-actionset.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "06b6240f3e4d8179aff5e88a0b43e53f30c58036c3df0464586dcc87e6d2911c"
+    },
+    {
+      "slug": "hud-actionset",
+      "ref": "w5",
+      "title": "HUD ActionSet 的层与扩展点配置",
+      "assetPath": "/ShooterCore/Experiences/LAS_ShooterGame_StandardHUD",
+      "chapter": "06-ui/extensions",
+      "fields": {
+        "ActionClass": "GameFeatureAction_AddWidgets",
+        "LayoutClass": "W_ShooterHUDLayout",
+        "LayerID": "UI.Layer.Game",
+        "WidgetsCount": 11,
+        "InspectedWidgets": {
+          "W_EliminationFeed": "HUD.Slot.EliminationFeed",
+          "W_QuickBar": "HUD.Slot.Equipment",
+          "W_AccoladeHostWidget": "HUD.Slot.TopAccolades",
+          "W_WeaponReticleHost": "HUD.Slot.Reticle"
+        }
+      },
+      "caption": "一个 Layout 进入 UI.Layer.Game；11 个 Widget 扩展项按 HUD.Slot.* 插入布局，图中展开了前五项。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:23:18.306656+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/hud-actionset.png",
+      "publicPath": "public/media/configuration/training/hud-actionset.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "731c2ccf8754eaf42bacef137f7f3a88c8c047fc2dd3deeb23c24ab3638b12e5"
+    },
+    {
+      "slug": "ui-policy",
+      "ref": "w11",
+      "title": "CommonGame UI Policy 根布局配置",
+      "assetPath": "/Game/UI/B_LyraUIPolicy",
+      "chapter": "06-ui/common-game",
+      "fields": {
+        "ParentClass": "GameUIPolicy",
+        "LayoutClass": "W_OverallUILayout"
+      },
+      "caption": "B_LyraUIPolicy 的 Layout Class 指向 W_OverallUILayout；这是 LocalPlayer 根布局的资产入口。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:24:04.244562+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/ui-policy.png",
+      "publicPath": "public/media/configuration/training/ui-policy.png",
+      "width": 1100,
+      "height": 440,
+      "sha256": "23d7b915454a77feecee5057f087c923ed58846eafd1e77d09366d563e1355fb"
+    },
+    {
+      "slug": "inventory-definition",
+      "ref": "w11",
+      "title": "步枪库存定义与初始弹药",
+      "assetPath": "/ShooterCore/Weapons/Rifle/ID_Rifle",
+      "chapter": "05-gameplay/inventory-equipment",
+      "fields": {
+        "DisplayName": "Rifle",
+        "FragmentsCount": 5,
+        "EquipmentDefinition": "WID_Rifle",
+        "InitialItemStats": {
+          "Lyra.ShooterGame.Weapon.MagazineSize": 30,
+          "Lyra.ShooterGame.Weapon.MagazineAmmo": 30,
+          "Lyra.ShooterGame.Weapon.SpareAmmo": 60
+        }
+      },
+      "caption": "ID_Rifle 的 Equippable Fragment 引用 WID_Rifle；Set Stats Fragment 定义 30 发容量、30 发初始弹匣与 60 发备用弹药。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:24:41.637283+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/inventory-definition.png",
+      "publicPath": "public/media/configuration/training/inventory-definition.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "057a4deef78eef1e8495dd040c3711be7be9eaecaeb88ac5ab8113c25d6037b0"
+    },
+    {
+      "slug": "equipment-definition",
+      "ref": "w11",
+      "title": "步枪装备定义与生成挂点",
+      "assetPath": "/ShooterCore/Weapons/Rifle/WID_Rifle",
+      "chapter": "05-gameplay/inventory-equipment",
+      "fields": {
+        "InstanceType": "B_WeaponInstance_Rifle",
+        "AbilitySetsToGrant": [
+          "AbilitySet_ShooterRifle"
+        ],
+        "ActorToSpawn": "B_Rifle",
+        "AttachSocket": "weapon_r",
+        "AttachLocation": [
+          0,
+          0,
+          0
+        ],
+        "AttachYawDisplayed": -89.999988,
+        "AttachScale": [
+          1,
+          1,
+          1
+        ]
+      },
+      "caption": "WID_Rifle 授予 AbilitySet_ShooterRifle，生成 B_Rifle 并挂接 weapon_r；图中同时展开相对挂接变换。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:25:15.032750+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/equipment-definition.png",
+      "publicPath": "public/media/configuration/training/equipment-definition.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "084e54ffefc4c387f2027e2e38215d04651a11898a792aa69df299c0fdaf664f"
+    },
+    {
+      "slug": "dash-defaults-policy",
+      "ref": "w11",
+      "title": "Dash 的激活、实例化与网络策略",
+      "assetPath": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "chapter": "04-gas/ability-sets",
+      "fields": {
+        "ActivationPolicy": "OnInputTriggered",
+        "InstancingPolicy": "InstancedPerActor",
+        "NetExecutionPolicy": "LocalPredicted",
+        "ReplicationPolicy": "Replicate",
+        "NetSecurityPolicy": "ClientOrServer"
+      },
+      "caption": "GA_Hero_Dash 的类默认值按 Policy 过滤：输入触发、每 Actor 一个实例、Local Predicted。Replication Policy 和网络执行策略是不同字段。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:26:35.606244+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/dash-defaults-policy.png",
+      "publicPath": "public/media/configuration/training/dash-defaults-policy.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "6cff0457c1ca925fb54b221d83db1bfbb49964a8ea3b3d466e7e2a6d77f6209e"
+    },
+    {
+      "slug": "dash-defaults-activation",
+      "ref": "w11",
+      "title": "Dash 的 Activation Group",
+      "assetPath": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "chapter": "04-gas/ability-sets",
+      "fields": {
+        "ActivationPolicy": "OnInputTriggered",
+        "ActivationGroup": "Independent"
+      },
+      "caption": "按 Activation 过滤后可核对 Activation Group = Independent；不要把输入触发策略与能力互斥分组混为一谈。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:27:08.619454+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/dash-defaults-activation.png",
+      "publicPath": "public/media/configuration/training/dash-defaults-activation.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "eed3e2c3fec634645df82ca24eefe256b57766e3dbfe99bd0109e12700ede03f"
+    },
+    {
+      "slug": "dash-defaults-cooldown",
+      "ref": "w11",
+      "title": "Dash 的冷却效果配置",
+      "assetPath": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "chapter": "04-gas/ability-sets",
+      "fields": {
+        "CooldownVariableDefault": 0,
+        "CooldownGameplayEffectClass": "GE_HeroDash_Cooldown"
+      },
+      "caption": "类默认值的 Cooldown 变量为 0.0，冷却 Gameplay Effect 引用 GE_HeroDash_Cooldown；实际冷却流程须结合 Commit 与效果逻辑阅读。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:27:35.956333+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/dash-defaults-cooldown.png",
+      "publicPath": "public/media/configuration/training/dash-defaults-cooldown.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "8653bb644ee35c071d2f2a5fb3442c852f591424497846fbc46e6bd2eefc0968"
+    },
+    {
+      "slug": "training-world",
+      "ref": "w1",
+      "title": "训练地图的 World Settings",
+      "assetPath": "/TrainingRange/Maps/L_TrainingRange",
+      "chapter": "07-training/feature-and-experience",
+      "fields": {
+        "GameModeOverride": "None",
+        "DefaultGameplayExperience": "B_TrainingRange"
+      },
+      "caption": "L_TrainingRange 的 World Settings：GameMode Override 保持 None，Default Gameplay Experience 指向 B_TrainingRange。右侧面板在编辑器中实际拉宽以完整显示资产名。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:28:21.122183+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/training-world.png",
+      "publicPath": "public/media/configuration/training/training-world.png",
+      "width": 1716,
+      "height": 1315,
+      "sha256": "d0fb51199c18738a7a5faa27f6f6730ce8cd922cca0244f374537931aa211e9a"
+    },
+    {
+      "slug": "maps-modes",
+      "ref": "w17",
+      "title": "项目地图、GameMode 与 GameInstance",
+      "assetPath": "Project Settings / Project / Maps & Modes",
+      "chapter": "01-start/first-session",
+      "fields": {
+        "GlobalDefaultGameMode": "B_LyraGameMode",
+        "EditorStartupMap": "L_DefaultEditorOverview",
+        "GameDefaultMap": "L_LyraFrontEnd",
+        "GameInstanceClass": "B_LyraGameInstance"
+      },
+      "caption": "项目设置 → 地图和模式：默认 GameMode、编辑器开始地图、游戏默认地图与 GameInstance 是四个不同入口。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:29:11.314906+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/maps-modes.png",
+      "publicPath": "public/media/configuration/training/maps-modes.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "13119e9b1358c3c7c5e62a588a349a6be0ad4911eda292d412912558f21d86de"
+    },
+    {
+      "slug": "asset-manager",
+      "ref": "w17",
+      "title": "Experience 的项目级 Asset Manager 扫描",
+      "assetPath": "Project Settings / Game / Asset Manager",
+      "chapter": "02-architecture/asset-manager",
+      "fields": {
+        "PrimaryAssetTypesCount": 8,
+        "InspectedIndex": 4,
+        "PrimaryAssetType": "LyraExperienceDefinition",
+        "AssetBaseClass": "LyraExperienceDefinition",
+        "HasBlueprintClasses": true,
+        "IsEditorOnly": false,
+        "Directories": [
+          "/Game/System/Experiences"
+        ],
+        "CookRule": "AlwaysCook"
+      },
+      "caption": "项目 Asset Manager 的 LyraExperienceDefinition 条目：蓝图类、非 Editor Only、扫描 /Game/System/Experiences、Always Cook。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:30:11.127199+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/asset-manager.png",
+      "publicPath": "public/media/configuration/training/asset-manager.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "aace86b205414b33fe168731ac285e20e5c8bfe6ffd4f2869d249cb02285bd7b"
+    },
+    {
+      "slug": "asset-manager-actionset",
+      "ref": "w17",
+      "title": "ActionSet 扫描类型对照",
+      "assetPath": "Project Settings / Game / Asset Manager",
+      "chapter": "02-architecture/asset-manager",
+      "fields": {
+        "InspectedIndex": 7,
+        "PrimaryAssetType": "LyraExperienceActionSet",
+        "AssetBaseClass": "LyraExperienceActionSet",
+        "HasBlueprintClasses": false,
+        "IsEditorOnly": false,
+        "DirectoriesCount": 0
+      },
+      "caption": "LyraExperienceActionSet 为普通 Data Asset，不勾选 Has Blueprint Classes；本机项目级条目的 Directories 为 0，插件目录由 GameFeatureData 扫描配置负责。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:30:43.970714+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/asset-manager-actionset.png",
+      "publicPath": "public/media/configuration/training/asset-manager-actionset.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "219fdc670d47f9d5825bae56dacdb1b95ef9173d023bc9d00d3de69418ee5539"
+    },
+    {
+      "slug": "root-layout-designer",
+      "ref": "w18",
+      "title": "根 UI 的四个 CommonUI 层栈",
+      "assetPath": "/Game/UI/W_OverallUILayout",
+      "chapter": "06-ui/common-game",
+      "fields": {
+        "ParentClass": "PrimaryGameLayout",
+        "Root": "MainOverlay",
+        "Children": [
+          "GameLayer_Stack",
+          "GameMenu_Stack",
+          "Menu_Stack",
+          "Modal_Stack"
+        ],
+        "SelectedWidget": "GameLayer_Stack",
+        "Visibility": "Collapsed",
+        "IsVariable": true
+      },
+      "caption": "W_OverallUILayout 的 Designer 层级包含四个独立层栈；图中选中 GameLayer_Stack，设计时 Visibility 为 Collapsed。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:31:06.367730+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/root-layout-designer.png",
+      "publicPath": "public/media/configuration/training/root-layout-designer.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "4b2c3a0b1067d0534d441477e80b6a5447fb13d4f39976702dc4d258a8f4636f"
+    },
+    {
+      "slug": "root-layout-registration",
+      "ref": "w18",
+      "title": "根布局的 Register Layer 连接",
+      "assetPath": "/Game/UI/W_OverallUILayout",
+      "chapter": "06-ui/common-game",
+      "fields": {
+        "Event": "OnInitialized",
+        "Bindings": {
+          "GameLayer_Stack": "UI.Layer.Game",
+          "GameMenu_Stack": "UI.Layer.GameMenu",
+          "Menu_Stack": "UI.Layer.Menu",
+          "Modal_Stack": "UI.Layer.Modal"
+        }
+      },
+      "caption": "Event OnInitialized 顺序调用四次 Register Layer，将 Designer 中的栈变量与 UI.Layer.* 标签对应。此图是编辑器上下文，完整节点原图另行提供。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:31:40.819993+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/root-layout-registration.png",
+      "publicPath": "public/media/configuration/training/root-layout-registration.png",
+      "width": 1494,
+      "height": 912,
+      "sha256": "edf27cf2f6eb9e9e2515eb94ce9b880924b322c79839531527948ea27944e204"
+    },
+    {
+      "slug": "hud-extension",
+      "ref": "w18",
+      "title": "HUD 装备扩展点的真实 Designer 配置",
+      "assetPath": "/ShooterCore/UserInterface/W_ShooterHUDLayout",
+      "chapter": "06-ui/extensions",
+      "fields": {
+        "SelectedWidget": "ExtensionPoint_Equipment",
+        "ExtensionPointTag": "HUD.Slot.Equipment",
+        "ExtensionPointTagMatch": "ExactMatch",
+        "DataClassesCount": 0
+      },
+      "caption": "Designer 中选择 ExtensionPoint_Equipment，按 Extension 过滤 Details：标签 HUD.Slot.Equipment，Exact Match，Data Classes 为空。画布上的扩展占位框不是最终运行时 HUD 内容。",
+      "editorPid": 2324,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "engine": "UE 5.8.1 source build",
+      "capturedAt": "2026-09-13T13:33:58.645340+00:00",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "postProcessing": false,
+      "original": "F:/UE/LyraDocLabs/LyraTraining/Saved/Screenshots/ConfigurationTraining/hud-extension.png",
+      "publicPath": "public/media/configuration/training/hud-extension.png",
+      "width": 2100,
+      "height": 1000,
+      "sha256": "8a1143e16699980b9f363b01764691a24f59daeb01505300421ebd903e0bc570"
+    }
+  ]
+}

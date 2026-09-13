@@ -1,0 +1,93 @@
+---
+title: GAS、复制通知与 FieldNotify
+description: 用事件驱动的 ViewModel 代替每帧读取，正确处理 Pawn 和目标更换时的解绑。
+---
+
+## 学习目标与前置条件
+
+本篇实现一个可在 C++ 和 UMG 中消费的 ViewModel，解释为什么仅在 BeginPlay 取一次 PlayerState 不够。需要先完成 GAS 属性复制与 UI 层栈。核对基准为 **UE 5.8.1 / 2026-09-13**，本机引擎提供 `MVVMViewModelBase.h` 和 FieldNotification 接口。
+
+## 字段声明与单向数据流
+
+![真实 Designer 背包显示一瓶 Mana potion，HUD 经验为 25、法力为 40、生命为 50](/media/mmorpg/mmo-A-inventory.png)
+
+图：`/Game/UI/WBP_Inventory` 的 PlayerVM → InventoryText 绑定与 `/Game/UI/WBP_PlayerHUD`、`WBP_ManaStatus` 同时运行，来自 2026-09-13 19:27–19:28 UTC 已 Cook Client 的 1920×1080、Medium 视口采集。界面中的数量来自所属 PlayerState 的复制通知，截图轮次保留了战斗获得的药剂。
+
+`UMMOInventoryPanel` 消费与 HUD 相同的 ViewModel 实例。服务器奖励更新复制背包，RepNotify 推动 InventoryText 通知，面板收到变化后刷新。真实游戏视口，UE 5.8.1，2026-09-13，1920×1080。
+
+`UMMOPlayerViewModel` 派生 `UMVVMViewModelBase`，数值字段包括 Health、Mana、Cooldown、TargetHealth、ManaFraction、TargetFraction；显示字段包括 StatusText、ManaLabel、InventoryLabel、TargetLabel、CooldownLabel、InputHint，全部文本使用 `FText`。Gameplay 数据流向 ViewModel，再流向 Widget；技能按钮则发送请求给 Pawn，服务器确认后更新权威状态。
+
+```cpp title="MMOUI.h：可绑定字段"
+UPROPERTY(BlueprintReadOnly, FieldNotify, Category="Player")
+float Mana = 0;
+
+UPROPERTY(BlueprintReadOnly, FieldNotify, Category="Player")
+FText InventoryLabel;
+```
+
+字段变化时使用通知宏，而不是给成员直接赋值。下面是 `UMMOPlayerViewModel::RefreshMana` 的开头，`Player` 是该类保存的弱 PlayerState 引用；宏在这个 ViewModel 的成员函数内使用：
+
+```cpp title="MMOUI.cpp：RefreshMana 函数体节选"
+auto* State = Player.Get();
+UE_MVVM_SET_PROPERTY_VALUE(
+    Mana,
+    State ? State->Attributes->GetMana() : 0.f);
+```
+
+宏位于 `MVVMViewModelBase.h`。模块需要 ModelViewViewModel 和 FieldNotification；UHT 会为 FieldNotify 字段生成描述符。BlueprintReadOnly 限制普通蓝图直接写入 UI 的投影字段，避免界面伪造权威 Mana。
+
+## 绑定谁、何时绑定
+
+根布局监听 CommonLocalPlayer 的 PlayerStateSet/PawnSet，并观察角色准入状态。调用 `BindPlayer(State, Pawn)` 时，如果两个对象与当前绑定都相同就直接返回；任一对象改变时，先 Unbind，再建立以下订阅：
+
+| 来源 | 通知 | 更新内容 |
+| --- | --- | --- |
+| ASC | Health/Mana 属性变化委托 | 当前生命与法力 |
+| PlayerState | OnProgressChanged，由复制通知或服务器逻辑触发 | 等级、经验、背包 |
+| Character | OnTargetChanged | 移除旧目标订阅，连接新目标 |
+| Target Actor | OnHealthChanged | 所选目标生命 |
+| ASC | GameplayEffect 添加与移除 | 启动或停止冷却倒数 |
+| 世界计时器 | 仅冷却存在时每 0.1 秒调用 RefreshCooldown | 只计算剩余秒数与 CooldownLabel |
+| CommonInputSubsystem | OnInputMethodChangedNative | 键鼠或手柄 InputHint |
+
+生命和背包依赖事件；冷却显示需要时钟，所以使用低频计时器。计时器只调用 `RefreshCooldown`，不能调用重建所有 FText、遍历背包的 `Refresh`。剩余时间为零即清除计时器，下一次效果委托再启动；初次绑定与语言切换才主动完整刷新。GAS active effect 提供剩余时间，UI 不维护另一个“技能是否能用”的权威布尔值。
+
+这里避免的是自定义 Widget Tick 和每帧属性绑定函数。Slate 的输入、布局、绘制以及 CommonUI 的有限转场仍由引擎更新；控件数量少、Canvas 为零也不能单独证明帧耗时达标。需要在目标设备用 Slate Insights/Widget Reflector 实测首次打开、重复开关和长时间冷却后的更新次数。
+
+## 真实 Designer 绑定消费 FieldNotify
+
+最终界面的控件树、样式与绑定全部在 Widget Blueprint 中。HUD 五条绑定、嵌套 ManaStatus 两条绑定、Inventory 一条绑定共享同一个 Manual `PlayerVM`。完整人工步骤见[Designer 界面制作](/docs/09-mmo-ui/designer)，嵌套法力控件见[蓝图与 UMG 工作流](/docs/09-mmo-ui/blueprint-workflow)。
+
+```cpp title="MMOUI.cpp：把同一实例交给 Designer 编译后的 View"
+if (UMVVMView* View = UMVVMSubsystem::GetViewFromUserWidget(Widget);
+    View && View->IsConstructed())
+{
+    TScriptInterface<INotifyFieldValueChanged> Source;
+    Source.SetObject(Model);
+    Source.SetInterface(Model);
+    View->SetViewModel(TEXT("PlayerVM"), Source);
+}
+```
+
+这是共享 `AssignViewModel` 帮助函数内部赋源操作的展开写法：外层先检查 Widget 非空，Model 参数类型为 `UMMOPlayerViewModel*`，解除源时允许为 nullptr。完整帮助函数见[蓝图工作流](/docs/09-mmo-ui/blueprint-workflow#将同一个-viewmodel-交给-widget)。头文件为 `MMOUI.h`、`MVVMSubsystem.h`、`View/MVVMView.h`，模块需要 ModelViewViewModel、FieldNotification、UMG。控件完成 Construct 后赋源，Destruct 前以空实例解除源。控件树中控件必须 Is Variable=true；若控件同名字段来自 C++ `BindWidget`，还要加 `BlueprintReadOnly`，否则 MVVM 编译器会报字段运行时不可访问。业务格式集中在 ViewModel，Widget 不再搜索 PlayerState、读取后端 JSON 或自行拼接状态文本。
+
+## 必须对称的清理
+
+`Unbind` 移除 ASC 属性和效果委托、PlayerState 进度委托、Character 目标委托、旧目标生命委托，并清除计时器。Widget NativeDestruct 清空 Manual ViewModel 源并解绑按钮委托；根布局释放 UIExtension、LocalPlayer 和 CommonInput 句柄，清空三层栈及 HUD/Login 缓存。ViewModel 的 BeginDestroy 作为最后一道清理入口。
+
+弱对象引用解决“回调持有已销毁对象”的一部分问题，不会自动替你删除所有业务订阅。Pawn 被替换时，旧对象可能仍存在；如果没有主动解绑，HUD 会同时接收新旧角色消息。
+
+## 操作与预期结果
+
+1. 给 `UMMOPlayerViewModel::RefreshMana`、`RefreshCooldown` 和 `UMMOAttributes::OnRep_Mana` 下断点，施放奥术箭，观察通知顺序；冷却计时不应进入 RefreshInventory。
+2. 打开背包，使用药剂，确认 InventoryText 和 Mana 分别变化。
+3. 切换目标，检查旧目标的委托句柄被移除，新目标生命变化可显示。
+4. 退出并重新进入角色，确认没有重复回调、旧名字或旧背包残留。
+5. 按[玩家死亡与重生步骤](/docs/08-mmorpg/character-gas#玩家受伤死亡与检查点重生)让 GAS Health 归零。确认死亡状态文字更新，三秒后新 Pawn 出现，法力和背包保留、生命恢复 100，旧目标解绑。2026-09-13 最终 `mmorpg-packaged-smoke.json` 的两客户端自动回归已实际验证同 ASC、两项能力及重生后的嵌套法力和状态文本绑定；`mmorpg-packaged-death-logout.json` 另覆盖死亡等待中离服与新进程恢复。
+
+如果字段值正确却文本不变，检查是否使用通知宏以及 Widget 是否订阅了正确字段；若属性委托不触发，回到 GAS RepNotify 检查。对象切换后的错误通常要先检查解绑与重绑次序。
+
+练习：拆出 `UMMOTargetViewModel`，增加目标名称、生命比例和“无目标”状态。让 HUD 的主 ViewModel 不再负责目标格式化，并验证销毁目标时状态被清空。
+
+官方概念参考：[Epic UMG Viewmodel](https://dev.epicgames.com/documentation/en-us/unreal-engine/umg-viewmodel-for-unreal-engine)。具体 C++ API 以本机 5.8.1 头文件为准。
+

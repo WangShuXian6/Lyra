@@ -1,0 +1,51 @@
+---
+title: 性能定位：先测量，再选择优化层
+description: 分开客户端帧时间、服务器 Tick、网络复制和 UI 更新成本，避免盲目切换复制方案。
+---
+
+## 学习目标与前置条件
+
+前置：能稳定运行实验地图和联机流程。目标是建立有基线的性能观察，并找到本机 Lyra 已有的观测入口。源码与配置核对于 2026-09-13，UE 5.8.1；本文不声称当前工程达到任何 FPS 或并发指标。
+
+## 先固定实验条件
+
+记录构建配置、分辨率、画质、地图、机器人/玩家数量、摄像机位置和测试时长。编辑器视口、PIE、新窗口与打包客户端的额外成本不同，不能混成一组数据。对首次加载/着色器准备与稳定运行分别测量。
+
+## 操作步骤
+
+1. 选固定路线或固定镜头，使用本教程的 **1920×1080、中等画质（Scalability 1）** 记录 Game、Draw、GPU 帧时间，而不只看平均 FPS。
+2. 通过 Unreal Insights 采集 CPU 时间线，针对最慢的帧检查 Game Thread、任务和资源加载。调试截图和高频日志在测量期间关闭。
+3. 对比一个客户端与两个客户端，单独观察服务器 Tick 和发送的数据量。客户端 GPU 忙不等于服务器逻辑慢。
+4. 在同一场景切换隐藏/显示 HUD，检查 UI 是否有大量每帧属性绑定或重复 Tick；再看 Slate/UMG 性能数据。
+5. 每次只调整一个系统，用相同场景复测中位数和慢帧。保留改变前后的设置与采样文件。
+
+## Lyra 已有入口
+
+`Source/LyraGame/Performance/LyraPerformanceStatSubsystem` 采集性能统计，`UI/PerformanceStats` 提供相应展示，`LyraGameSettingRegistry_PerfStats` 和画面设置关联用户选择。
+
+`Config/DefaultEngine.ini` 使用 `LyraSignificanceManager`；相关意义分级可以帮助按对象重要性安排表现成本。启用某个管理器不代表全部自定义 Actor 自动做了预算控制，新增对象仍要明确接入策略。
+
+动画成本应从网格数量、动画蓝图执行、更新频率和外观部件数检查。`ULyraAnimInstance` 使用 GameplayTagPropertyMap 和 GroundInfo，不意味着可无代价增加大量纯函数绑定或每帧世界查询。
+
+## 复制方案不要按文件名猜
+
+本机有 LyraReplicationGraph 源码和插件，但 `DefaultGame.ini` 的 `LyraReplicationGraphSettings` 明确配置 `bDisableReplicationGraph=True`，同时 DefaultEngine.ini 有 Iris 相关配置。**存在某套实现，不代表本次运行正在使用它。** 实际启用情况还要结合构建、配置覆盖和运行日志确认。
+
+MMORPG 大范围对象复制需要围绕可见范围、更新频率和数据量设计。切到 ReplicationGraph 或 Iris 不会自动解决数据库访问阻塞、每帧全量遍历和无界 RPC。
+
+## 预期结果、排障与练习
+
+交付一次优化时应能给出相同条件下的前后帧时间、最慢调用链与行为验证。若数据波动大，先延长稳定采样或排除后台编译，而不是继续加更多优化。
+
+练习：为 1、10、50 个机器人设计测量表，分别记录客户端 CPU/GPU、服务器 Tick、内存和网络流量。不把此实验当作 MMO 最大并发证明；它只回答所选场景随对象数量变化的成本。
+
+
+## 实例：功能通过之后继续检查音频日志
+
+最终 Training Development 归档的两次原生运行都完成 11 项功能检查，但首轮 `game.log` 出现 AudioMixer 队列积压。`verification/training-package-log-analysis.json` 保留同一 exe 的两次日志 SHA、时序和实际计数；[打包验收章节](/docs/07-training/multiplayer-and-package#本次-package-与两次归档运行结果)保留首轮原图与准确范围。
+
+本机 `AudioMixerSourceManager.cpp` 在命令队列扩容超过初始 **1 MiB** 阈值时记录 Error，并调用 `DoStallDiagnostics`；这不等于已经达到硬件重置阈值或发生崩溃。首轮抓到 `UpdatePendingReleaseData` 移除 SourceBuffer，继而在 `FMetasoundConstGraphGenerator` 析构中等待 `BuilderTask->EnsureCompletion`。已完成的音频解码任务与生成器内部图构建任务不是同一个完成条件，因此释放阶段仍可能等待。
+
+诊断本身调用同步 `ThreadStackWalkAndDump`，Windows 实现会暂停被采样线程并进行取栈、符号化，之后恢复。两条日志之间约 8 秒的空白不能全部算成原始音频停顿；同时打印的 `Lyra_RingLoop_03` 是所有在途解码任务的枚举，不能直接断言该音效就是等待来源。第二轮同一归档无队列 Error/Stall，仍有一次 Underrun Display。首启负载或任务调度只是推测，尚不能据此宣布根因已经修复。
+
+复现时保留声音与原设置，先用同一归档重复执行并对齐输入、资源加载和音频时间线。若继续出现，使用 Unreal Insights 的音频与任务轨迹核对等待中的 BuilderTask 及工作线程；记录诊断开销，分开评价功能结果与听感/帧时间。不要提高告警阈值、关闭声音或隐藏屏幕消息来制造“无错误”记录。

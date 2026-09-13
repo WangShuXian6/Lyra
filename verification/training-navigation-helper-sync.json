@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "lab": "F:\\UE\\LyraDocLabs\\LyraTraining\\prepare_training.py",
+      "relative": "prepare_training.py",
+      "sha256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823",
+      "repo": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\prepare_training.py"
+    },
+    {
+      "lab": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraDocTools\\Source\\LyraDocTools\\Public\\LyraDocToolsLibrary.h",
+      "relative": "Plugins/LyraDocTools/Source/LyraDocTools/Public/LyraDocToolsLibrary.h",
+      "sha256": "7987e87aaea293e25749698e60e77e0c5302ac09b4c5bcb8ab41dd1ddd4ce965",
+      "repo": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\Plugins\\LyraDocTools\\Source\\LyraDocTools\\Public\\LyraDocToolsLibrary.h"
+    },
+    {
+      "lab": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraDocTools\\Source\\LyraDocTools\\Private\\LyraDocToolsLibrary.cpp",
+      "relative": "Plugins/LyraDocTools/Source/LyraDocTools/Private/LyraDocToolsLibrary.cpp",
+      "sha256": "d785b027c689eda406d1c9c927bf7c6c975d23f4f2b522336e914273b04b2f39",
+      "repo": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\Plugins\\LyraDocTools\\Source\\LyraDocTools\\Private\\LyraDocToolsLibrary.cpp"
+    },
+    {
+      "lab": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraDocTools\\Source\\LyraDocTools\\LyraDocTools.Build.cs",
+      "relative": "Plugins/LyraDocTools/Source/LyraDocTools/LyraDocTools.Build.cs",
+      "sha256": "2452da0fe8fbe5e515bd1956caa4d7742d5a7703fe6abdb7c8e283a4ba3fd13f",
+      "repo": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\Plugins\\LyraDocTools\\Source\\LyraDocTools\\LyraDocTools.Build.cs"
+    }
+  ],
+  "syncedAt": "2026-09-13T16:59:10.4499226Z"
+}

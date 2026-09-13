@@ -1,0 +1,217 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" LyraEditor Win64 Development F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -EnablePlugin=LyraDocTools
+Log file: E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Log.txt
+Executing up to 3 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (E:\UnrealEngine).
+UbaServer - Listening on 0.0.0.0:1345
+Creating makefile for LyraEditor (no existing makefile)
+Compiling GameFeaturePlugins in branch UE5
+UHT compiled-in object format Default
+Building LyraEditor...
+===== Toolchain Information =====
+Using ISPC compiler (E:\UnrealEngine\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.50.35737 toolchain (D:\program\0-editer\vs\VC\Tools\MSVC\14.50.35717) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 161 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 31.82 GB physical, 25.19 GB/49.82 GB committed
+  UBA Storage capacity 40 GB
+[1/161] Compile [x64] Module.LyraGame.1.cpp
+[2/161] Compile [x64] Module.LyraGame.2.cpp
+[3/161] Compile [x64] Module.GameplayMessageRuntime.cpp
+[4/161] Link [x64] UnrealEditor-GameplayMessageRuntime.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameplayMessageRouter/Intermediate/Build/Win64/x64/UnrealEditor/Development/GameplayMessageRuntime/UnrealEditor-GameplayMessageRuntime.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameplayMessageRouter/Intermediate/Build/Win64/x64/UnrealEditor/Development/GameplayMessageRuntime/UnrealEditor-GameplayMessageRuntime.exp
+[5/161] Link [x64] UnrealEditor-GameplayMessageRuntime.dll
+[6/161] Compile [x64] Module.CommonGame.cpp
+[7/161] Link [x64] UnrealEditor-CommonGame.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/CommonGame/Intermediate/Build/Win64/x64/UnrealEditor/Development/CommonGame/UnrealEditor-CommonGame.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/CommonGame/Intermediate/Build/Win64/x64/UnrealEditor/Development/CommonGame/UnrealEditor-CommonGame.exp
+[8/161] Compile [x64] Module.LyraGame.3.cpp
+[9/161] Link [x64] UnrealEditor-LyraGame.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraGame/UnrealEditor-LyraGame.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraGame/UnrealEditor-LyraGame.exp
+[10/161] Compile [x64] Module.AsyncMixin.cpp
+[11/161] Link [x64] UnrealEditor-AsyncMixin.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/AsyncMixin/Intermediate/Build/Win64/x64/UnrealEditor/Development/AsyncMixin/UnrealEditor-AsyncMixin.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/AsyncMixin/Intermediate/Build/Win64/x64/UnrealEditor/Development/AsyncMixin/UnrealEditor-AsyncMixin.exp
+[12/161] Link [x64] UnrealEditor-AsyncMixin.dll
+[13/161] Compile [x64] Module.NetCore.cpp
+[14/161] Link [x64] UnrealEditor-NetCore.lib
+  正在创建库 ../Intermediate/Build/Win64/x64/UnrealEditor/Development/NetCore/UnrealEditor-NetCore.lib 和对象 ../Intermediate/Build/Win64/x64/UnrealEditor/Development/NetCore/UnrealEditor-NetCore.exp
+[15/161] Link [x64] UnrealEditor-NetCore.dll
+[16/161] WriteMetadata UnrealEditor.version (LyraEditor) [NoUba]
+[17/161] Compile [x64] Module.CommonLoadingScreen.cpp
+[18/161] Link [x64] UnrealEditor-CommonLoadingScreen.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/CommonLoadingScreen/Intermediate/Build/Win64/x64/UnrealEditor/Development/CommonLoadingScreen/UnrealEditor-CommonLoadingScreen.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/CommonLoadingScreen/Intermediate/Build/Win64/x64/UnrealEditor/Development/CommonLoadingScreen/UnrealEditor-CommonLoadingScreen.exp
+[19/161] Link [x64] UnrealEditor-CommonLoadingScreen.dll
+[20/161] Compile [x64] Module.GameSubtitles.cpp
+[21/161] Link [x64] UnrealEditor-GameSubtitles.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameSubtitles/Intermediate/Build/Win64/x64/UnrealEditor/Development/GameSubtitles/UnrealEditor-GameSubtitles.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameSubtitles/Intermediate/Build/Win64/x64/UnrealEditor/Development/GameSubtitles/UnrealEditor-GameSubtitles.exp
+[22/161] Compile [x64] Module.CommonUser.cpp
+[23/161] Link [x64] UnrealEditor-CommonUser.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/CommonUser/Intermediate/Build/Win64/x64/UnrealEditor/Development/CommonUser/UnrealEditor-CommonUser.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/CommonUser/Intermediate/Build/Win64/x64/UnrealEditor/Development/CommonUser/UnrealEditor-CommonUser.exp
+[24/161] Compile [x64] Module.ModularGameplayActors.cpp
+[25/161] Link [x64] UnrealEditor-ModularGameplayActors.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/ModularGameplayActors/Intermediate/Build/Win64/x64/UnrealEditor/Development/ModularGameplayActors/UnrealEditor-ModularGameplayActors.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/ModularGameplayActors/Intermediate/Build/Win64/x64/UnrealEditor/Development/ModularGameplayActors/UnrealEditor-ModularGameplayActors.exp
+[26/161] Link [x64] UnrealEditor-GameSubtitles.dll
+[27/161] Link [x64] UnrealEditor-CommonUser.dll
+[28/161] Link [x64] UnrealEditor-ModularGameplayActors.dll
+[29/161] Link [x64] UnrealEditor-CommonGame.dll
+[30/161] Compile [x64] AssetTypeActions_LyraContextEffectsLibrary.cpp
+[31/161] Compile [x64] Module.UIExtension.cpp
+[32/161] Link [x64] UnrealEditor-UIExtension.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/UIExtension/Intermediate/Build/Win64/x64/UnrealEditor/Development/UIExtension/UnrealEditor-UIExtension.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/UIExtension/Intermediate/Build/Win64/x64/UnrealEditor/Development/UIExtension/UnrealEditor-UIExtension.exp
+[33/161] Link [x64] UnrealEditor-UIExtension.dll
+[34/161] Compile [x64] Module.GameSettings.cpp
+[35/161] Link [x64] UnrealEditor-GameSettings.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameSettings/Intermediate/Build/Win64/x64/UnrealEditor/Development/GameSettings/UnrealEditor-GameSettings.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameSettings/Intermediate/Build/Win64/x64/UnrealEditor/Development/GameSettings/UnrealEditor-GameSettings.exp
+[36/161] Compile [x64] CheckChaosMeshCollision.cpp
+[37/161] Compile [x64] ContentValidationCommandlet.cpp
+[38/161] Link [x64] UnrealEditor-GameSettings.dll
+[39/161] Link [x64] UnrealEditor-LyraGame.dll
+[40/161] Compile [x64] CreateRedirectorPackage.cpp
+[41/161] Compile [x64] DiffCollectionReferenceSupport.cpp
+[42/161] Compile [x64] EditorValidator_Blueprints.cpp
+[43/161] Compile [x64] EditorValidator.cpp
+[44/161] Compile [x64] EditorValidator_Load.cpp
+[45/161] Compile [x64] EditorValidator_MaterialFunctions.cpp
+[46/161] Compile [x64] EditorValidator_SourceControl.cpp
+[47/161] Compile [x64] GameEditorStyle.cpp
+[48/161] Compile [x64] LyraContextEffectsLibraryFactory.cpp
+[49/161] Compile [x64] LyraEditorEngine.cpp
+[50/161] Compile [x64] Module.LyraEditor.gen.cpp
+[51/161] Compile [x64] LyraEditor.cpp
+[52/161] Compile [x64] PerModuleInline.gen.cpp
+[53/161] Link [x64] UnrealEditor-LyraEditor.dll
+[54/161] Link [x64] UnrealEditor-LyraEditor.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraEditor/UnrealEditor-LyraEditor.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraEditor/UnrealEditor-LyraEditor.exp
+[55/161] Compile [x64] Module.CommonStartupLoadingScreen.cpp
+[56/161] Link [x64] UnrealEditor-CommonStartupLoadingScreen.dll
+[57/161] Link [x64] UnrealEditor-CommonStartupLoadingScreen.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/CommonStartupLoadingScreen/Intermediate/Build/Win64/x64/UnrealEditor/Development/CommonStartupLoadingScreen/UnrealEditor-CommonStartupLoadingScreen.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/CommonStartupLoadingScreen/Intermediate/Build/Win64/x64/UnrealEditor/Development/CommonStartupLoadingScreen/UnrealEditor-CommonStartupLoadingScreen.exp
+[58/161] Compile [x64] Module.BlueprintScreenshotTool.cpp
+[59/161] Link [x64] UnrealEditor-BlueprintScreenshotTool.dll
+[60/161] Link [x64] UnrealEditor-BlueprintScreenshotTool.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/BlueprintScreenshotTool/Intermediate/Build/Win64/x64/UnrealEditor/Development/BlueprintScreenshotTool/UnrealEditor-BlueprintScreenshotTool.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/BlueprintScreenshotTool/Intermediate/Build/Win64/x64/UnrealEditor/Development/BlueprintScreenshotTool/UnrealEditor-BlueprintScreenshotTool.exp
+[61/161] Compile [x64] Module.TopDownArenaRuntime.cpp
+[62/161] Compile [x64] Module.ShooterCoreRuntime.cpp
+[63/161] Link [x64] UnrealEditor-TopDownArenaRuntime.dll
+[64/161] Link [x64] UnrealEditor-ShooterCoreRuntime.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/ShooterCore/Intermediate/Build/Win64/x64/UnrealEditor/Development/ShooterCoreRuntime/UnrealEditor-ShooterCoreRuntime.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/ShooterCore/Intermediate/Build/Win64/x64/UnrealEditor/Development/ShooterCoreRuntime/UnrealEditor-ShooterCoreRuntime.exp
+[65/161] Link [x64] UnrealEditor-TopDownArenaRuntime.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/TopDownArena/Intermediate/Build/Win64/x64/UnrealEditor/Development/TopDownArenaRuntime/UnrealEditor-TopDownArenaRuntime.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/TopDownArena/Intermediate/Build/Win64/x64/UnrealEditor/Development/TopDownArenaRuntime/UnrealEditor-TopDownArenaRuntime.exp
+[66/161] Link [x64] UnrealEditor-ShooterCoreRuntime.dll
+[67/161] Compile [x64] Module.ShooterTestsRuntime.cpp
+[68/161] Compile [x64] Module.GameplayMessageNodes.cpp
+[69/161] Link [x64] UnrealEditor-ShooterTestsRuntime.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/ShooterTests/Intermediate/Build/Win64/x64/UnrealEditor/Development/ShooterTestsRuntime/UnrealEditor-ShooterTestsRuntime.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/ShooterTests/Intermediate/Build/Win64/x64/UnrealEditor/Development/ShooterTestsRuntime/UnrealEditor-ShooterTestsRuntime.exp
+[70/161] Link [x64] UnrealEditor-ShooterTestsRuntime.dll
+[71/161] Link [x64] UnrealEditor-GameplayMessageNodes.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameplayMessageRouter/Intermediate/Build/Win64/x64/UnrealEditor/Development/GameplayMessageNodes/UnrealEditor-GameplayMessageNodes.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/GameplayMessageRouter/Intermediate/Build/Win64/x64/UnrealEditor/Development/GameplayMessageNodes/UnrealEditor-GameplayMessageNodes.exp
+[72/161] Link [x64] UnrealEditor-GameplayMessageNodes.dll
+[73/161] Compile [x64] Module.LyraDocTools.cpp
+[74/161] Compile [x64] Module.LyraExtTool.cpp
+[75/161] Link [x64] UnrealEditor-LyraDocTools.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/LyraDocTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraDocTools/UnrealEditor-LyraDocTools.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/LyraDocTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraDocTools/UnrealEditor-LyraDocTools.exp
+[76/161] Link [x64] UnrealEditor-LyraDocTools.dll
+[77/161] Link [x64] UnrealEditor-LyraExtTool.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/LyraExtTool/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraExtTool/UnrealEditor-LyraExtTool.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/LyraExtTool/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraExtTool/UnrealEditor-LyraExtTool.exp
+[78/161] Link [x64] UnrealEditor-LyraExtTool.dll
+[79/161] Compile [x64] ActiveSocket.cpp
+[80/161] Compile [x64] Module.PocketWorlds.cpp
+[81/161] Link [x64] UnrealEditor-PocketWorlds.dll
+[82/161] Link [x64] UnrealEditor-PocketWorlds.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/PocketWorlds/Intermediate/Build/Win64/x64/UnrealEditor/Development/PocketWorlds/UnrealEditor-PocketWorlds.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/PocketWorlds/Intermediate/Build/Win64/x64/UnrealEditor/Development/PocketWorlds/UnrealEditor-PocketWorlds.exp
+[83/161] Compile [x64] DateTime.cpp
+[84/161] Compile [x64] Buffer.cpp
+[85/161] Compile [x64] ByteBufferAsyncProcessor.cpp
+[86/161] Compile [x64] DefaultAbstractDeclaration.cpp
+[87/161] Compile [x64] ExtWire.cpp
+[88/161] Compile [x64] IProtocol.cpp
+[89/161] Compile [x64] ISerializable.cpp
+[90/161] Compile [x64] ISerializersOwner.cpp
+[91/161] Compile [x64] IScheduler.cpp
+[92/161] Compile [x64] IRdWireable.cpp
+[93/161] Compile [x64] IUnknownInstance.cpp
+[94/161] Compile [x64] Identities.cpp
+[95/161] Compile [x64] InternScheduler.cpp
+[96/161] Compile [x64] InternRoot.cpp
+[97/161] Compile [x64] Lifetime.cpp
+[98/161] Compile [x64] LifetimeDefinition.cpp
+[99/161] Compile [x64] PassiveSocket.cpp
+[100/161] Compile [x64] LifetimeImpl.cpp
+[101/161] Compile [x64] PerModuleInline.gen.cpp
+[102/161] Compile [x64] PkgInputStream.cpp
+[103/161] Compile [x64] MessageBroker.cpp
+[104/161] Compile [x64] Polymorphic.cpp
+[105/161] Compile [x64] RD.cpp
+[106/161] Compile [x64] Protocol.cpp
+[107/161] Compile [x64] PumpScheduler.cpp
+[108/161] Compile [x64] RName.cpp
+[109/161] Compile [x64] RdAny.cpp
+[110/161] Compile [x64] RdBindableBase.cpp
+[111/161] Compile [x64] RdExtBase.cpp
+[112/161] Compile [x64] RdTextBuffer.cpp
+[113/161] Compile [x64] RdId.cpp
+[114/161] Compile [x64] SequentialLifetimes.cpp
+[115/161] Compile [x64] RdReactiveBase.cpp
+[116/161] Compile [x64] SignalCookie.cpp
+[117/161] Compile [x64] SimpleScheduler.cpp
+[118/161] Compile [x64] SimpleSocket.cpp
+[119/161] Compile [x64] SerializationCtx.cpp
+[120/161] Compile [x64] Serializers.cpp
+[121/161] Compile [x64] SingleThreadScheduler.cpp
+[122/161] Compile [x64] SynchronousScheduler.cpp
+[123/161] Compile [x64] SingleThreadSchedulerBase.cpp
+[124/161] Compile [x64] SocketWire.cpp
+[125/161] Compile [x64] WireBase.cpp
+[126/161] Compile [x64] WireUtil.cpp
+[127/161] Compile [x64] async.cpp
+[128/161] Compile [x64] countdownlatch.cpp
+[129/161] Compile [x64] cfg.cpp
+[130/161] Compile [x64] color_sinks.cpp
+[131/161] Compile [x64] hashing.cpp
+[132/161] Compile [x64] fmt.cpp
+[133/161] Compile [x64] file_sinks.cpp
+[134/161] Compile [x64] thirdparty.cpp
+[135/161] Compile [x64] thread_util.cpp
+[136/161] Compile [x64] stdout_sinks.cpp
+[137/161] Compile [x64] spdlog.cpp
+[138/161] Link [x64] UnrealEditor-RD.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RD/UnrealEditor-RD.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RD/UnrealEditor-RD.exp
+[139/161] Link [x64] UnrealEditor-RD.dll
+[140/161] Compile [x64] Module.RiderDebuggerSupport.cpp
+[141/161] Link [x64] UnrealEditor-RiderDebuggerSupport.dll
+[142/161] Link [x64] UnrealEditor-RiderDebuggerSupport.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderDebuggerSupport/UnrealEditor-RiderDebuggerSupport.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderDebuggerSupport/UnrealEditor-RiderDebuggerSupport.exp
+[143/161] Compile [x64] Module.RiderLink.cpp
+[144/161] Link [x64] UnrealEditor-RiderLink.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderLink/UnrealEditor-RiderLink.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderLink/UnrealEditor-RiderLink.exp
+[145/161] Link [x64] UnrealEditor-RiderLink.dll
+[146/161] Compile [x64] Module.RiderLC.cpp
+[147/161] Link [x64] UnrealEditor-RiderLC.dll
+[148/161] Link [x64] UnrealEditor-RiderLC.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderLC/UnrealEditor-RiderLC.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderLC/UnrealEditor-RiderLC.exp
+[149/161] Compile [x64] Module.RiderBlueprint.cpp
+[150/161] Link [x64] UnrealEditor-RiderBlueprint.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderBlueprint/UnrealEditor-RiderBlueprint.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderBlueprint/UnrealEditor-RiderBlueprint.exp
+[151/161] Link [x64] UnrealEditor-RiderBlueprint.dll
+[152/161] Compile [x64] Module.RiderLogging.cpp
+[153/161] Link [x64] UnrealEditor-RiderLogging.dll
+[154/161] Link [x64] UnrealEditor-RiderLogging.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderLogging/UnrealEditor-RiderLogging.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderLogging/UnrealEditor-RiderLogging.exp
+[155/161] Compile [x64] Module.RiderShaderInfo.cpp
+[156/161] Link [x64] UnrealEditor-RiderShaderInfo.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderShaderInfo/UnrealEditor-RiderShaderInfo.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderShaderInfo/UnrealEditor-RiderShaderInfo.exp
+[157/161] Link [x64] UnrealEditor-RiderShaderInfo.dll
+[158/161] Compile [x64] Module.RiderGameControl.cpp
+[159/161] Link [x64] UnrealEditor-RiderGameControl.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderGameControl/UnrealEditor-RiderGameControl.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/Developer/RiderLink/Intermediate/Build/Win64/x64/UnrealEditor/Development/RiderGameControl/UnrealEditor-RiderGameControl.exp
+[160/161] Link [x64] UnrealEditor-RiderGameControl.dll
+[161/161] WriteMetadata LyraEditor.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 150.86 seconds
+Output binary: E:\UnrealEngine\Engine\Binaries\Win64\UnrealEditor.exe
+
+Result: Succeeded
+Total execution time: 159.74 seconds
+Trace written to file E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Trace.uba with size 60.9kb

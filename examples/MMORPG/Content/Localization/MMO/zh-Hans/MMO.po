@@ -1,0 +1,647 @@
+# MMO Chinese (Simplified) translation.
+# Fill out your copyright notice in the Description page of Project Settings.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: MMO\n"
+"POT-Creation-Date: 2026-09-13 16:36\n"
+"PO-Revision-Date: 2026-09-13 16:36\n"
+"Language-Team: \n"
+"Language: zh-Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Key:	Account.Password
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.Password"
+msgid "Password"
+msgstr "密码"
+
+#. Key:	Account.PasswordHint
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.PasswordHint"
+msgid "12-128 characters"
+msgstr "12-128 个字符"
+
+#. Key:	Account.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.Title"
+msgid "Account"
+msgstr "账号"
+
+#. Key:	Account.Username
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.Username"
+msgid "Username"
+msgstr "账号名称"
+
+#. Key:	Account.UsernameHint
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.UsernameHint"
+msgid "3-32 letters, numbers or _"
+msgstr "3-32 位字母、数字或下划线"
+
+#. Key:	Action.Attack
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Attack"
+msgid "Attack"
+msgstr "普通攻击"
+
+#. Key:	Action.Back
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Back"
+msgid "Back"
+msgstr "返回"
+
+#. Key:	Action.CreateCharacter
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.CreateCharacter"
+msgid "Create character"
+msgstr "创建角色"
+
+#. Key:	Action.Enter
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Enter"
+msgid "Enter world"
+msgstr "进入世界"
+
+#. Key:	Action.Inventory
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Inventory"
+msgid "Inventory"
+msgstr "背包"
+
+#. Key:	Action.Logout
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Logout"
+msgid "Sign out"
+msgstr "退出登录"
+
+#. Key:	Action.Potion
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Potion"
+msgid "Use mana potion"
+msgstr "使用法力药剂"
+
+#. Key:	Action.Refresh
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Refresh"
+msgid "Refresh"
+msgstr "刷新角色"
+
+#. Key:	Action.Register
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Register"
+msgid "Create account"
+msgstr "注册账号"
+
+#. Key:	Action.Settings
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Settings"
+msgid "Settings"
+msgstr "设置"
+
+#. Key:	Action.SignIn
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.SignIn"
+msgid "Sign in"
+msgstr "登录"
+
+#. Key:	Action.Spell
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Spell"
+msgid "Arcane Bolt"
+msgstr "奥术箭"
+
+#. Key:	Action.Target
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Target"
+msgid "Target"
+msgstr "选择目标"
+
+#. Key:	Character.Name
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Character.Name"
+msgid "Character name"
+msgstr "角色名称"
+
+#. Key:	Character.NameHint
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Character.NameHint"
+msgid "2-24 characters"
+msgstr "2-24 个字符"
+
+#. Key:	Character.Select
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Character.Select"
+msgid "Choose a character"
+msgstr "选择角色"
+
+#. Key:	Character.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Character.Title"
+msgid "Your characters"
+msgstr "你的角色"
+
+#. Key:	Confirm.Accept
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Confirm.Accept"
+msgid "Save and sign out"
+msgstr "保存并退出"
+
+#. Key:	Confirm.Cancel
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Confirm.Cancel"
+msgid "Continue playing"
+msgstr "继续游戏"
+
+#. Key:	Confirm.Explanation
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Confirm.Explanation"
+msgid "Your character is saved before you return to sign in."
+msgstr "返回登录界面前将保存你的角色。"
+
+#. Key:	Confirm.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Confirm.Title"
+msgid "Leave this world?"
+msgstr "离开当前世界？"
+
+#. Key:	Cooldown.Preview
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Cooldown.Preview"
+msgid "Arcane Bolt ready"
+msgstr "奥术箭已就绪"
+
+#. Key:	HUD.Controls
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,HUD.Controls"
+msgid "WASD Move | Right mouse Look"
+msgstr "WASD 移动 | 鼠标右键转动视角"
+
+#. Key:	HUD.StatusPreview
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,HUD.StatusPreview"
+msgid "Level 1 | XP 0"
+msgstr "等级 1 | 经验 0"
+
+#. Key:	HUD.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,HUD.Title"
+msgid "Traveler"
+msgstr "旅者"
+
+#. Key:	Inventory.Empty
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Inventory.Empty"
+msgid "No items."
+msgstr "背包为空。"
+
+#. Key:	Inventory.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Inventory.Title"
+msgid "Inventory"
+msgstr "背包"
+
+#. Key:	Language.Chinese
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Language.Chinese"
+msgid "Simplified Chinese"
+msgstr "简体中文"
+
+#. Key:	Language.English
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Language.English"
+msgid "English"
+msgstr "English"
+
+#. Key:	Login.Status
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Login.Status"
+msgid "Sign in to choose your character."
+msgstr "登录后选择你的角色。"
+
+#. Key:	Login.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Login.Title"
+msgid "Begin your journey"
+msgstr "开启旅程"
+
+#. Key:	Mana.Preview
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Mana.Preview"
+msgid "Mana 100 / 100"
+msgstr "法力 100 / 100"
+
+#. Key:	Quality.High
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Quality.High"
+msgid "High"
+msgstr "高"
+
+#. Key:	Quality.Low
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Quality.Low"
+msgid "Low"
+msgstr "低"
+
+#. Key:	Quality.Medium
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Quality.Medium"
+msgid "Medium"
+msgstr "中"
+
+#. Key:	Settings.Language
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Settings.Language"
+msgid "Language"
+msgstr "语言"
+
+#. Key:	Settings.Quality
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Settings.Quality"
+msgid "Graphics quality"
+msgstr "画质"
+
+#. Key:	Settings.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Settings.Title"
+msgid "Settings"
+msgstr "设置"
+
+#. Key:	Target.Preview
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Target.Preview"
+msgid "No target selected"
+msgstr "尚未选择目标"
+
+#. Key:	Target.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Target.Title"
+msgid "Target"
+msgstr "目标"
+
+#. Key:	Session.ConnectionFailed
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(587)
+#: Source/MMORPG/Private/MMOGameplay.cpp(587)
+msgctxt "MMOUI,Session.ConnectionFailed"
+msgid "Connection failed. Please try joining again."
+msgstr "连接失败，请重新尝试入服。"
+
+#. Key:	Session.ExperienceUnavailable
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(588)
+#: Source/MMORPG/Private/MMOGameplay.cpp(588)
+msgctxt "MMOUI,Session.ExperienceUnavailable"
+msgid "The game world is unavailable. Please try again later."
+msgstr "游戏世界暂时不可用，请稍后重试。"
+
+#. Key:	Session.CharacterInitializationFailed
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(589)
+#: Source/MMORPG/Private/MMOGameplay.cpp(589)
+msgctxt "MMOUI,Session.CharacterInitializationFailed"
+msgid "Your character could not be initialized. Please try joining again."
+msgstr "角色初始化失败，请重新尝试入服。"
+
+#. Key:	Session.ServerUnavailable
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(590)
+#: Source/MMORPG/Private/MMOGameplay.cpp(590)
+msgctxt "MMOUI,Session.ServerUnavailable"
+msgid "The game server is unavailable. Please try again later."
+msgstr "游戏服务器暂时不可用，请稍后重试。"
+
+#. Key:	Session.TicketRejected
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(591)
+#: Source/MMORPG/Private/MMOGameplay.cpp(591)
+msgctxt "MMOUI,Session.TicketRejected"
+msgid "Your entry ticket was rejected or expired. Select your character and join again."
+msgstr "入服票据被拒绝或已过期，请重新选择角色并入服。"
+
+#. Key:	Session.PersistenceLost
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(592)
+#: Source/MMORPG/Private/MMOGameplay.cpp(592)
+msgctxt "MMOUI,Session.PersistenceLost"
+msgid "Your character session has ended. Join again to reload your saved progress."
+msgstr "角色会话已结束，请重新入服以加载已保存的进度。"
+
+#. Key:	GamepadInputHint
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(103)
+#: Source/MMORPG/Private/MMOUI.cpp(103)
+msgctxt "MMOUI,GamepadInputHint"
+msgid "Left stick: move · Right stick: look\nY: target · A: attack · X: arcane bolt\nView: inventory · Menu: settings"
+msgstr "左摇杆：移动 · 右摇杆：视角\nY：选择目标 · A：普通攻击 · X：奥术箭\nView：背包 · Menu：设置"
+
+#. Key:	KeyboardInputHint
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(104)
+#: Source/MMORPG/Private/MMOUI.cpp(104)
+msgctxt "MMOUI,KeyboardInputHint"
+msgid "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings"
+msgstr "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置"
+
+#. Key:	PlayerDead
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(112)
+#: Source/MMORPG/Private/MMOUI.cpp(112)
+msgctxt "MMOUI,PlayerDead"
+msgid "You died. Respawning at the checkpoint…"
+msgstr "你已死亡，正在检查点重生…"
+
+#. Key:	PlayerStatusValue
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(112)
+#: Source/MMORPG/Private/MMOUI.cpp(112)
+msgctxt "MMOUI,PlayerStatusValue"
+msgid "{0} · Level {1} · XP {2}\nHealth {3} / 100"
+msgstr "{0} · 等级 {1} · 经验 {2}\n生命 {3} / 100"
+
+#. Key:	WaitingForCharacter
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(113)
+#: Source/MMORPG/Private/MMOUI.cpp(113)
+msgctxt "MMOUI,WaitingForCharacter"
+msgid "Waiting for the server to load your character…"
+msgstr "正在等待服务器加载角色…"
+
+#. Key:	ManaValue
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(122)
+#: Source/MMORPG/Private/MMOUI.cpp(122)
+msgctxt "MMOUI,ManaValue"
+msgid "Mana {0} / 100"
+msgstr "法力 {0} / 100"
+
+#. Key:	TargetHealthValue
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(129)
+#: Source/MMORPG/Private/MMOUI.cpp(129)
+msgctxt "MMOUI,TargetHealthValue"
+msgid "Training target · Health {0} / 100"
+msgstr "训练目标 · 生命 {0} / 100"
+
+#. Key:	NoTarget
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(130)
+#: Source/MMORPG/Private/MMOUI.cpp(130)
+msgctxt "MMOUI,NoTarget"
+msgid "No target selected"
+msgstr "尚未选择目标"
+
+#. Key:	SpellCooldownValue
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(143)
+#: Source/MMORPG/Private/MMOUI.cpp(143)
+msgctxt "MMOUI,SpellCooldownValue"
+msgid "Arcane bolt: {0}s cooldown · costs 20 mana"
+msgstr "奥术箭：冷却 {0} 秒 · 消耗 20 法力"
+
+#. Key:	InventoryItemQuantity
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(156)
+#: Source/MMORPG/Private/MMOUI.cpp(156)
+msgctxt "MMOUI,InventoryItemQuantity"
+msgid "{0} × {1}"
+msgstr "{0} × {1}"
+
+#. Key:	ManaPotion
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(156)
+#: Source/MMORPG/Private/MMOUI.cpp(156)
+msgctxt "MMOUI,ManaPotion"
+msgid "Mana potion"
+msgstr "法力药剂"
+
+#. Key:	InventoryEmpty
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(157)
+#: Source/MMORPG/Private/MMOUI.cpp(157)
+msgctxt "MMOUI,InventoryEmpty"
+msgid "Your inventory is empty. Defeat a training target to earn a potion."
+msgstr "背包为空。击败训练目标可获得药剂。"
+
+#. Key:	Registering
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(303)
+#: Source/MMORPG/Private/MMOUI.cpp(303)
+msgctxt "MMOUI,Registering"
+msgid "Creating account…"
+msgstr "正在创建账号…"
+
+#. Key:	SigningIn
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(303)
+#: Source/MMORPG/Private/MMOUI.cpp(303)
+msgctxt "MMOUI,SigningIn"
+msgid "Signing in…"
+msgstr "正在登录…"
+
+#. Key:	AccountCreated
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(309)
+#: Source/MMORPG/Private/MMOUI.cpp(309)
+msgctxt "MMOUI,AccountCreated"
+msgid "Account created. Please sign in."
+msgstr "账号已创建，请登录。"
+
+#. Key:	SignedIn
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(309)
+#: Source/MMORPG/Private/MMOUI.cpp(309)
+msgctxt "MMOUI,SignedIn"
+msgid "Signed in."
+msgstr "登录成功。"
+
+#. Key:	LoadingCharacters
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(316)
+#: Source/MMORPG/Private/MMOUI.cpp(316)
+msgctxt "MMOUI,LoadingCharacters"
+msgid "Loading characters…"
+msgstr "正在加载角色…"
+
+#. Key:	ChooseCharacter
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(321)
+#: Source/MMORPG/Private/MMOUI.cpp(321)
+msgctxt "MMOUI,ChooseCharacter"
+msgid "Choose a character to enter the zone."
+msgstr "请选择角色进入区域。"
+
+#. Key:	CreatingCharacter
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(331)
+#: Source/MMORPG/Private/MMOUI.cpp(331)
+msgctxt "MMOUI,CreatingCharacter"
+msgid "Creating character…"
+msgstr "正在创建角色…"
+
+#. Key:	CharacterCreated
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(333)
+#: Source/MMORPG/Private/MMOUI.cpp(333)
+msgctxt "MMOUI,CharacterCreated"
+msgid "Character created."
+msgstr "角色已创建。"
+
+#. Key:	RequestingTicket
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(338)
+#: Source/MMORPG/Private/MMOUI.cpp(338)
+msgctxt "MMOUI,RequestingTicket"
+msgid "Requesting a one-time join ticket…"
+msgstr "正在申请一次性入服票据…"
+
+#. Key:	ConnectingServer
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(343)
+#: Source/MMORPG/Private/MMOUI.cpp(343)
+msgctxt "MMOUI,ConnectingServer"
+msgid "Connecting to the game server…"
+msgstr "正在连接游戏服务器…"
+
+#. Key:	UsernameTaken
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(39)
+#: Source/MMORPG/Private/MMOUI.cpp(39)
+msgctxt "MMOUI,UsernameTaken"
+msgid "That account name is already registered."
+msgstr "该账号名称已被注册。"
+
+#. Key:	CharacterNameTaken
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(40)
+#: Source/MMORPG/Private/MMOUI.cpp(40)
+msgctxt "MMOUI,CharacterNameTaken"
+msgid "That character name is already in use."
+msgstr "该角色名称已被使用。"
+
+#. Key:	AlreadyOnline
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(41)
+#: Source/MMORPG/Private/MMOUI.cpp(41)
+msgctxt "MMOUI,AlreadyOnline"
+msgid "This account already has an active character. Exit that session first."
+msgstr "该账号已有在线角色，请先退出当前会话。"
+
+#. Key:	CharacterLimit
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(42)
+#: Source/MMORPG/Private/MMOUI.cpp(42)
+msgctxt "MMOUI,CharacterLimit"
+msgid "This account has reached the character limit."
+msgstr "该账号的角色数量已达上限。"
+
+#. Key:	InvalidTicket
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(43)
+#: Source/MMORPG/Private/MMOUI.cpp(43)
+msgctxt "MMOUI,InvalidTicket"
+msgid "The join ticket expired or was already used. Request a new ticket."
+msgstr "入服票据已过期或已使用，请重新申请。"
+
+#. Key:	InvalidInput
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(44)
+#: Source/MMORPG/Private/MMOUI.cpp(44)
+msgctxt "MMOUI,InvalidInput"
+msgid "Check the account name, password (12 or more characters), and character name."
+msgstr "请检查账号名称、密码（至少 12 个字符）和角色名称。"
+
+#. Key:	Unauthorized
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(45)
+#: Source/MMORPG/Private/MMOUI.cpp(45)
+msgctxt "MMOUI,Unauthorized"
+msgid "The account or password is incorrect, or your session expired. Sign in again."
+msgstr "账号或密码不正确，或登录已过期，请重新登录。"
+
+#. Key:	Forbidden
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(46)
+#: Source/MMORPG/Private/MMOUI.cpp(46)
+msgctxt "MMOUI,Forbidden"
+msgid "You do not have permission to perform this operation."
+msgstr "你没有执行此操作的权限。"
+
+#. Key:	CharacterUnavailable
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(47)
+#: Source/MMORPG/Private/MMOUI.cpp(47)
+msgctxt "MMOUI,CharacterUnavailable"
+msgid "This character or service resource is unavailable."
+msgstr "该角色或服务资源不可用。"
+
+#. Key:	BackendUnavailable
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(48)
+#: Source/MMORPG/Private/MMOUI.cpp(48)
+msgctxt "MMOUI,BackendUnavailable"
+msgid "The backend is unavailable. Check that the service and database are running."
+msgstr "后端服务不可用，请检查服务与数据库是否正在运行。"
+
+#. Key:	BackendRequestFailed
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(49)
+#: Source/MMORPG/Private/MMOUI.cpp(49)
+msgctxt "MMOUI,BackendRequestFailed"
+msgid "Request failed (HTTP {0}). Please try again."
+msgstr "请求失败（HTTP {0}），请重试。"

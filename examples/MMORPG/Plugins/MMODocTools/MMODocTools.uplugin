@@ -1,0 +1,19 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0.0",
+  "FriendlyName": "MMO Blueprint Documentation Tools",
+  "Description": "Editor-only construction and native clipboard verification of the backend health tutorial Blueprint.",
+  "Category": "Editor",
+  "CanContainContent": false,
+  "EnabledByDefault": true,
+  "Modules": [{ "Name": "MMODocTools", "Type": "Editor", "LoadingPhase": "Default" }],
+  "Plugins": [
+    { "Name": "MMOIntegration", "Enabled": true },
+    { "Name": "MMOFramework", "Enabled": true },
+    { "Name": "EnhancedInput", "Enabled": true },
+    { "Name": "CommonUI", "Enabled": true },
+    { "Name": "ModelViewViewModel", "Enabled": true },
+    { "Name": "PythonScriptPlugin", "Enabled": true, "TargetAllowList": ["Editor"] }
+  ]
+}

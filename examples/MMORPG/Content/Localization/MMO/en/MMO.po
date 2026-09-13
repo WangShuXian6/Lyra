@@ -1,0 +1,648 @@
+﻿# MMO English translation.
+# Fill out your copyright notice in the Description page of Project Settings.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: MMO\n"
+"POT-Creation-Date: 2026-09-13 16:36\n"
+"PO-Revision-Date: 2026-09-13 16:36\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Key:	Account.Password
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.Password"
+msgid "Password"
+msgstr "Password"
+
+#. Key:	Account.PasswordHint
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.PasswordHint"
+msgid "12-128 characters"
+msgstr "12-128 characters"
+
+#. Key:	Account.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.Title"
+msgid "Account"
+msgstr "Account"
+
+#. Key:	Account.Username
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.Username"
+msgid "Username"
+msgstr "Username"
+
+#. Key:	Account.UsernameHint
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Account.UsernameHint"
+msgid "3-32 letters, numbers or _"
+msgstr "3-32 letters, numbers or _"
+
+#. Key:	Action.Attack
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Attack"
+msgid "Attack"
+msgstr "Attack"
+
+#. Key:	Action.Back
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Back"
+msgid "Back"
+msgstr "Back"
+
+#. Key:	Action.CreateCharacter
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.CreateCharacter"
+msgid "Create character"
+msgstr "Create character"
+
+#. Key:	Action.Enter
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Enter"
+msgid "Enter world"
+msgstr "Enter world"
+
+#. Key:	Action.Inventory
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Inventory"
+msgid "Inventory"
+msgstr "Inventory"
+
+#. Key:	Action.Logout
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Logout"
+msgid "Sign out"
+msgstr "Sign out"
+
+#. Key:	Action.Potion
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Potion"
+msgid "Use mana potion"
+msgstr "Use mana potion"
+
+#. Key:	Action.Refresh
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Refresh"
+msgid "Refresh"
+msgstr "Refresh"
+
+#. Key:	Action.Register
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Register"
+msgid "Create account"
+msgstr "Create account"
+
+#. Key:	Action.Settings
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Settings"
+msgid "Settings"
+msgstr "Settings"
+
+#. Key:	Action.SignIn
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.SignIn"
+msgid "Sign in"
+msgstr "Sign in"
+
+#. Key:	Action.Spell
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Spell"
+msgid "Arcane Bolt"
+msgstr "Arcane Bolt"
+
+#. Key:	Action.Target
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Action.Target"
+msgid "Target"
+msgstr "Target"
+
+#. Key:	Character.Name
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Character.Name"
+msgid "Character name"
+msgstr "Character name"
+
+#. Key:	Character.NameHint
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Character.NameHint"
+msgid "2-24 characters"
+msgstr "2-24 characters"
+
+#. Key:	Character.Select
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Character.Select"
+msgid "Choose a character"
+msgstr "Choose a character"
+
+#. Key:	Character.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Character.Title"
+msgid "Your characters"
+msgstr "Your characters"
+
+#. Key:	Confirm.Accept
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Confirm.Accept"
+msgid "Save and sign out"
+msgstr "Save and sign out"
+
+#. Key:	Confirm.Cancel
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Confirm.Cancel"
+msgid "Continue playing"
+msgstr "Continue playing"
+
+#. Key:	Confirm.Explanation
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Confirm.Explanation"
+msgid "Your character is saved before you return to sign in."
+msgstr "Your character is saved before you return to sign in."
+
+#. Key:	Confirm.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Confirm.Title"
+msgid "Leave this world?"
+msgstr "Leave this world?"
+
+#. Key:	Cooldown.Preview
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Cooldown.Preview"
+msgid "Arcane Bolt ready"
+msgstr "Arcane Bolt ready"
+
+#. Key:	HUD.Controls
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,HUD.Controls"
+msgid "WASD Move | Right mouse Look"
+msgstr "WASD Move | Right mouse Look"
+
+#. Key:	HUD.StatusPreview
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,HUD.StatusPreview"
+msgid "Level 1 | XP 0"
+msgstr "Level 1 | XP 0"
+
+#. Key:	HUD.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,HUD.Title"
+msgid "Traveler"
+msgstr "Traveler"
+
+#. Key:	Inventory.Empty
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Inventory.Empty"
+msgid "No items."
+msgstr "No items."
+
+#. Key:	Inventory.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Inventory.Title"
+msgid "Inventory"
+msgstr "Inventory"
+
+#. Key:	Language.Chinese
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Language.Chinese"
+msgid "Simplified Chinese"
+msgstr "Simplified Chinese"
+
+#. Key:	Language.English
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Language.English"
+msgid "English"
+msgstr "English"
+
+#. Key:	Login.Status
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Login.Status"
+msgid "Sign in to choose your character."
+msgstr "Sign in to choose your character."
+
+#. Key:	Login.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Login.Title"
+msgid "Begin your journey"
+msgstr "Begin your journey"
+
+#. Key:	Mana.Preview
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Mana.Preview"
+msgid "Mana 100 / 100"
+msgstr "Mana 100 / 100"
+
+#. Key:	Quality.High
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Quality.High"
+msgid "High"
+msgstr "High"
+
+#. Key:	Quality.Low
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Quality.Low"
+msgid "Low"
+msgstr "Low"
+
+#. Key:	Quality.Medium
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Quality.Medium"
+msgid "Medium"
+msgstr "Medium"
+
+#. Key:	Settings.Language
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Settings.Language"
+msgid "Language"
+msgstr "Language"
+
+#. Key:	Settings.Quality
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Settings.Quality"
+msgid "Graphics quality"
+msgstr "Graphics quality"
+
+#. Key:	Settings.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Settings.Title"
+msgid "Settings"
+msgstr "Settings"
+
+#. Key:	Target.Preview
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Target.Preview"
+msgid "No target selected"
+msgstr "No target selected"
+
+#. Key:	Target.Title
+#. SourceLocation:	/Game/Localization/ST_MMO.ST_MMO
+#. DevNotes:	MMORPG Designer fixed UI text; edit the matching reviewed manifest entry.
+#: /Game/Localization/ST_MMO.ST_MMO
+msgctxt "MMOUI,Target.Title"
+msgid "Target"
+msgstr "Target"
+
+#. Key:	Session.ConnectionFailed
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(587)
+#: Source/MMORPG/Private/MMOGameplay.cpp(587)
+msgctxt "MMOUI,Session.ConnectionFailed"
+msgid "Connection failed. Please try joining again."
+msgstr "Connection failed. Please try joining again."
+
+#. Key:	Session.ExperienceUnavailable
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(588)
+#: Source/MMORPG/Private/MMOGameplay.cpp(588)
+msgctxt "MMOUI,Session.ExperienceUnavailable"
+msgid "The game world is unavailable. Please try again later."
+msgstr "The game world is unavailable. Please try again later."
+
+#. Key:	Session.CharacterInitializationFailed
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(589)
+#: Source/MMORPG/Private/MMOGameplay.cpp(589)
+msgctxt "MMOUI,Session.CharacterInitializationFailed"
+msgid "Your character could not be initialized. Please try joining again."
+msgstr "Your character could not be initialized. Please try joining again."
+
+#. Key:	Session.ServerUnavailable
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(590)
+#: Source/MMORPG/Private/MMOGameplay.cpp(590)
+msgctxt "MMOUI,Session.ServerUnavailable"
+msgid "The game server is unavailable. Please try again later."
+msgstr "The game server is unavailable. Please try again later."
+
+#. Key:	Session.TicketRejected
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(591)
+#: Source/MMORPG/Private/MMOGameplay.cpp(591)
+msgctxt "MMOUI,Session.TicketRejected"
+msgid "Your entry ticket was rejected or expired. Select your character and join again."
+msgstr "Your entry ticket was rejected or expired. Select your character and join again."
+
+#. Key:	Session.PersistenceLost
+#. SourceLocation:	Source/MMORPG/Private/MMOGameplay.cpp(592)
+#: Source/MMORPG/Private/MMOGameplay.cpp(592)
+msgctxt "MMOUI,Session.PersistenceLost"
+msgid "Your character session has ended. Join again to reload your saved progress."
+msgstr "Your character session has ended. Join again to reload your saved progress."
+
+#. Key:	GamepadInputHint
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(103)
+#: Source/MMORPG/Private/MMOUI.cpp(103)
+msgctxt "MMOUI,GamepadInputHint"
+msgid "Left stick: move · Right stick: look\nY: target · A: attack · X: arcane bolt\nView: inventory · Menu: settings"
+msgstr "Left stick: move · Right stick: look\nY: target · A: attack · X: arcane bolt\nView: inventory · Menu: settings"
+
+#. Key:	KeyboardInputHint
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(104)
+#: Source/MMORPG/Private/MMOUI.cpp(104)
+msgctxt "MMOUI,KeyboardInputHint"
+msgid "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings"
+msgstr "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings"
+
+#. Key:	PlayerDead
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(112)
+#: Source/MMORPG/Private/MMOUI.cpp(112)
+msgctxt "MMOUI,PlayerDead"
+msgid "You died. Respawning at the checkpoint…"
+msgstr "You died. Respawning at the checkpoint…"
+
+#. Key:	PlayerStatusValue
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(112)
+#: Source/MMORPG/Private/MMOUI.cpp(112)
+msgctxt "MMOUI,PlayerStatusValue"
+msgid "{0} · Level {1} · XP {2}\nHealth {3} / 100"
+msgstr "{0} · Level {1} · XP {2}\nHealth {3} / 100"
+
+#. Key:	WaitingForCharacter
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(113)
+#: Source/MMORPG/Private/MMOUI.cpp(113)
+msgctxt "MMOUI,WaitingForCharacter"
+msgid "Waiting for the server to load your character…"
+msgstr "Waiting for the server to load your character…"
+
+#. Key:	ManaValue
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(122)
+#: Source/MMORPG/Private/MMOUI.cpp(122)
+msgctxt "MMOUI,ManaValue"
+msgid "Mana {0} / 100"
+msgstr "Mana {0} / 100"
+
+#. Key:	TargetHealthValue
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(129)
+#: Source/MMORPG/Private/MMOUI.cpp(129)
+msgctxt "MMOUI,TargetHealthValue"
+msgid "Training target · Health {0} / 100"
+msgstr "Training target · Health {0} / 100"
+
+#. Key:	NoTarget
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(130)
+#: Source/MMORPG/Private/MMOUI.cpp(130)
+msgctxt "MMOUI,NoTarget"
+msgid "No target selected"
+msgstr "No target selected"
+
+#. Key:	SpellCooldownValue
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(143)
+#: Source/MMORPG/Private/MMOUI.cpp(143)
+msgctxt "MMOUI,SpellCooldownValue"
+msgid "Arcane bolt: {0}s cooldown · costs 20 mana"
+msgstr "Arcane bolt: {0}s cooldown · costs 20 mana"
+
+#. Key:	InventoryItemQuantity
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(156)
+#: Source/MMORPG/Private/MMOUI.cpp(156)
+msgctxt "MMOUI,InventoryItemQuantity"
+msgid "{0} × {1}"
+msgstr "{0} × {1}"
+
+#. Key:	ManaPotion
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(156)
+#: Source/MMORPG/Private/MMOUI.cpp(156)
+msgctxt "MMOUI,ManaPotion"
+msgid "Mana potion"
+msgstr "Mana potion"
+
+#. Key:	InventoryEmpty
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(157)
+#: Source/MMORPG/Private/MMOUI.cpp(157)
+msgctxt "MMOUI,InventoryEmpty"
+msgid "Your inventory is empty. Defeat a training target to earn a potion."
+msgstr "Your inventory is empty. Defeat a training target to earn a potion."
+
+#. Key:	Registering
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(303)
+#: Source/MMORPG/Private/MMOUI.cpp(303)
+msgctxt "MMOUI,Registering"
+msgid "Creating account…"
+msgstr "Creating account…"
+
+#. Key:	SigningIn
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(303)
+#: Source/MMORPG/Private/MMOUI.cpp(303)
+msgctxt "MMOUI,SigningIn"
+msgid "Signing in…"
+msgstr "Signing in…"
+
+#. Key:	AccountCreated
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(309)
+#: Source/MMORPG/Private/MMOUI.cpp(309)
+msgctxt "MMOUI,AccountCreated"
+msgid "Account created. Please sign in."
+msgstr "Account created. Please sign in."
+
+#. Key:	SignedIn
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(309)
+#: Source/MMORPG/Private/MMOUI.cpp(309)
+msgctxt "MMOUI,SignedIn"
+msgid "Signed in."
+msgstr "Signed in."
+
+#. Key:	LoadingCharacters
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(316)
+#: Source/MMORPG/Private/MMOUI.cpp(316)
+msgctxt "MMOUI,LoadingCharacters"
+msgid "Loading characters…"
+msgstr "Loading characters…"
+
+#. Key:	ChooseCharacter
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(321)
+#: Source/MMORPG/Private/MMOUI.cpp(321)
+msgctxt "MMOUI,ChooseCharacter"
+msgid "Choose a character to enter the zone."
+msgstr "Choose a character to enter the zone."
+
+#. Key:	CreatingCharacter
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(331)
+#: Source/MMORPG/Private/MMOUI.cpp(331)
+msgctxt "MMOUI,CreatingCharacter"
+msgid "Creating character…"
+msgstr "Creating character…"
+
+#. Key:	CharacterCreated
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(333)
+#: Source/MMORPG/Private/MMOUI.cpp(333)
+msgctxt "MMOUI,CharacterCreated"
+msgid "Character created."
+msgstr "Character created."
+
+#. Key:	RequestingTicket
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(338)
+#: Source/MMORPG/Private/MMOUI.cpp(338)
+msgctxt "MMOUI,RequestingTicket"
+msgid "Requesting a one-time join ticket…"
+msgstr "Requesting a one-time join ticket…"
+
+#. Key:	ConnectingServer
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(343)
+#: Source/MMORPG/Private/MMOUI.cpp(343)
+msgctxt "MMOUI,ConnectingServer"
+msgid "Connecting to the game server…"
+msgstr "Connecting to the game server…"
+
+#. Key:	UsernameTaken
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(39)
+#: Source/MMORPG/Private/MMOUI.cpp(39)
+msgctxt "MMOUI,UsernameTaken"
+msgid "That account name is already registered."
+msgstr "That account name is already registered."
+
+#. Key:	CharacterNameTaken
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(40)
+#: Source/MMORPG/Private/MMOUI.cpp(40)
+msgctxt "MMOUI,CharacterNameTaken"
+msgid "That character name is already in use."
+msgstr "That character name is already in use."
+
+#. Key:	AlreadyOnline
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(41)
+#: Source/MMORPG/Private/MMOUI.cpp(41)
+msgctxt "MMOUI,AlreadyOnline"
+msgid "This account already has an active character. Exit that session first."
+msgstr "This account already has an active character. Exit that session first."
+
+#. Key:	CharacterLimit
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(42)
+#: Source/MMORPG/Private/MMOUI.cpp(42)
+msgctxt "MMOUI,CharacterLimit"
+msgid "This account has reached the character limit."
+msgstr "This account has reached the character limit."
+
+#. Key:	InvalidTicket
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(43)
+#: Source/MMORPG/Private/MMOUI.cpp(43)
+msgctxt "MMOUI,InvalidTicket"
+msgid "The join ticket expired or was already used. Request a new ticket."
+msgstr "The join ticket expired or was already used. Request a new ticket."
+
+#. Key:	InvalidInput
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(44)
+#: Source/MMORPG/Private/MMOUI.cpp(44)
+msgctxt "MMOUI,InvalidInput"
+msgid "Check the account name, password (12 or more characters), and character name."
+msgstr "Check the account name, password (12 or more characters), and character name."
+
+#. Key:	Unauthorized
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(45)
+#: Source/MMORPG/Private/MMOUI.cpp(45)
+msgctxt "MMOUI,Unauthorized"
+msgid "The account or password is incorrect, or your session expired. Sign in again."
+msgstr "The account or password is incorrect, or your session expired. Sign in again."
+
+#. Key:	Forbidden
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(46)
+#: Source/MMORPG/Private/MMOUI.cpp(46)
+msgctxt "MMOUI,Forbidden"
+msgid "You do not have permission to perform this operation."
+msgstr "You do not have permission to perform this operation."
+
+#. Key:	CharacterUnavailable
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(47)
+#: Source/MMORPG/Private/MMOUI.cpp(47)
+msgctxt "MMOUI,CharacterUnavailable"
+msgid "This character or service resource is unavailable."
+msgstr "This character or service resource is unavailable."
+
+#. Key:	BackendUnavailable
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(48)
+#: Source/MMORPG/Private/MMOUI.cpp(48)
+msgctxt "MMOUI,BackendUnavailable"
+msgid "The backend is unavailable. Check that the service and database are running."
+msgstr "The backend is unavailable. Check that the service and database are running."
+
+#. Key:	BackendRequestFailed
+#. SourceLocation:	Source/MMORPG/Private/MMOUI.cpp(49)
+#: Source/MMORPG/Private/MMOUI.cpp(49)
+msgctxt "MMOUI,BackendRequestFailed"
+msgid "Request failed (HTTP {0}). Please try again."
+msgstr "Request failed (HTTP {0}). Please try again."
+

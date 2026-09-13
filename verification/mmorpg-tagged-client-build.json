@@ -1,0 +1,211 @@
+{
+  "startedAt": "2026-09-13T18:59:32.8528848Z",
+  "passed": true,
+  "scope": "Tag-driven input integration after frozen Client/Server/tool cold builds",
+  "target": "MMORPGClient",
+  "configuration": "Development",
+  "platform": "Win64",
+  "arguments": [
+    "MMORPGClient",
+    "Win64",
+    "Development",
+    "-Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-MaxParallelActions=3",
+    "-NoUBA"
+  ],
+  "normalBuild": true,
+  "activeEditorsAtStart": 0,
+  "liveCoding": false,
+  "parallelActions": 3,
+  "log": "F:/UE/LyraDoc/verification/mmorpg-tagged-client-build.log",
+  "sourceInputs": [
+    {
+      "sha256": "c48bb1f00be0635d0006a042247d31bd51bee6837836c5a90de96352b2098afb",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/MMORPG.Build.cs"
+    },
+    {
+      "sha256": "094cb85f5653d6e42e3c79f7f90d6375151632072bf888e2190cd263b405ef2d",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/MMORPG.cpp"
+    },
+    {
+      "sha256": "0633c1826ff740445af3e369bf77be03bb30a3da9e596c813be144022b296225",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOAbilityInputValidation.cpp"
+    },
+    {
+      "sha256": "bf8610103261de9e951d8d9899690b75de242a9af8066d3cb836999836b98d04",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOAnimationValidation.cpp"
+    },
+    {
+      "sha256": "95c090adf38bddb85d6bf77fbc2bd9ce4d917a7c8c9d9738e023930bebfee793",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp"
+    },
+    {
+      "sha256": "e8e2a08db27bc46dd9b3868ea08e293662aea00f9b0ded09e85feaf7a89edcca",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMODeathValidation.cpp"
+    },
+    {
+      "sha256": "4a7a439feb65acadd7bad4f279aae819e34e50ac19ccf44720dd057001a352d0",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOExperienceGameplay.cpp"
+    },
+    {
+      "sha256": "5deb3fc0c3c192877dc84fde7bbb5c3fedbd607abfc27a904fafeda038c92450",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp"
+    },
+    {
+      "sha256": "9ce7cd9193ab660eb3fb2aa7bbdbf0fdf32489beae6ef4d55e6d68326b4f0b2e",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOHealthComponent.cpp"
+    },
+    {
+      "sha256": "16360d6546ddeb3c20574cf7dd4583d58465acc2f9dbef6df69586981c980491",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOInputGameplay.cpp"
+    },
+    {
+      "sha256": "b52d75180d83bfaabf2227795a77c3ee743a5e22029caee95226bea6163a8867",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOLocalizationValidation.cpp"
+    },
+    {
+      "sha256": "65d1cbad6e3f55b1ac605b9d007f00c55a470046213067a6240ee3e5477fdcc0",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMORespawnGameplay.cpp"
+    },
+    {
+      "sha256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+    },
+    {
+      "sha256": "4fe7ecb6676eb3eed8c9ab439f38cd786783e4d945cd26f31ceeb513944f1463",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Public/MMOAnimInstance.h"
+    },
+    {
+      "sha256": "6c461c19eb8381a23b5b907d68c57b29d5e9fd53193ea68f7d80b697a68ebf63",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Public/MMOGameplay.h"
+    },
+    {
+      "sha256": "0e17db149b32c7d2fb075be8baca4971ceae6af5bf782c1ba629a31450076500",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Public/MMOHealthComponent.h"
+    },
+    {
+      "sha256": "5e61e24ed46045ad2bc260c07dbc1480d7e9cd1ce3dc500ed4df36c610d0f228",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Source/MMORPG/Public/MMOUI.h"
+    },
+    {
+      "sha256": "7a73a22ae37991b8bc140ac25a054d9a7937973df5fecbe2ec9766c4ca6b7ec3",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs"
+    },
+    {
+      "sha256": "11c19b4b83b58e0ed40a60224d4257c566c8ae5d270a4e1de8a24742639206cf",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp"
+    },
+    {
+      "sha256": "54c263096a0f5d219184b96a37f1e395fba56397e0ee5bd19bdfbb357ab2e7a1",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp"
+    },
+    {
+      "sha256": "acd5b47909ce2180353a7f4396dd00d10af9e13aa4540071d55182226b4663f1",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp"
+    },
+    {
+      "sha256": "94971a9db02ba3e70dd00cb208788d2a84f9daeaa18630c5131d4586c24e2ff0",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp"
+    },
+    {
+      "sha256": "5d5ac362450b8eb6bf2bea54d66782fcff181f08fa19c51b76244350a4fce8b8",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp"
+    },
+    {
+      "sha256": "83a8827e7eacfdaeceb278457a7b8c69c1c7946a16d6e4403ffd0176c5e63c5b",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp"
+    },
+    {
+      "sha256": "c1626ad34db0166bee05d52a1672816af74e311d4ea989e85c65540d0f8f56c9",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h"
+    },
+    {
+      "sha256": "687a4fc81eebea503be604d4485e21953ed37213607f220bb97c29196268c021",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h"
+    },
+    {
+      "sha256": "389e23f345316642295d29bcf0762f5a43593c463c42a677e9428242cafdbcd8",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h"
+    },
+    {
+      "sha256": "4e832c535db10a8d2a63f3798c959786c516996159860926aacee637a635811c",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h"
+    },
+    {
+      "sha256": "a11c7eb03dc92c47311587740ac7240e38d8bc521c5c89dfa3307fa08955ed73",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h"
+    },
+    {
+      "sha256": "ffdbb326b26bb9b5751b278e07ce71c647cec249330d4319c2fa8ff351ab83c6",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h"
+    },
+    {
+      "sha256": "aecbe35a36c2a741f6ed6a4ab16374abc37fd82327fb9dcea1e288a95fc33c84",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h"
+    },
+    {
+      "sha256": "2693b6bb4d5991bb96fecb4739cce18a5927f5737c3f72990b9f09d735f3e8a7",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h"
+    },
+    {
+      "sha256": "081dc5a6b2ffc92dd581185508d0fa467b56640e79398ef8fc31ddf84db57fdb",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs"
+    },
+    {
+      "sha256": "f19d675dbd7bafaa5bc5565396d3c02321fe0cf378c5c9dc36c0bbe1d680f6c0",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+    },
+    {
+      "sha256": "17f3aaeafb7dae8d37db857b1f65b7f9a84a99eb14b2c84b46dc4afbfc2d459a",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp"
+    },
+    {
+      "sha256": "7181808cc424cbf8279776fb77585a9d48e6cf97f1e1a483e847020205edbe4e",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+    },
+    {
+      "sha256": "801203ee392914d5e46960304b268ca499ec99c7607312b08cf6883ea8dd5062",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp"
+    },
+    {
+      "sha256": "a7177ee94f6af2da4974ecee8692049ea8ba3a93c0ae742da04a3f591ee79c3b",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp"
+    },
+    {
+      "sha256": "ca6b9ec7bc20c65e5d69a5a8fdef0492ff32f3c313acaee1569e26fd92a3fde1",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp"
+    },
+    {
+      "sha256": "fff2096fb8d3f8ca78dacb545b6e744b8b4cc01db24fa9116e11d727511b5ce1",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp"
+    },
+    {
+      "sha256": "e6626d17f9413e8009c5c1a3167ae2e6801023cda592be04ba057c94fa14b03b",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h"
+    },
+    {
+      "sha256": "eb0c832deb70a3ef8457a6b8bd97cc5a34f138bc3860aff66cb1dc093ac86d09",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h"
+    },
+    {
+      "sha256": "4f08ad2eeac2720db576a32709596532653deaeda1ab41a30fefcd1fc41eb3ca",
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "F:/UE/LyraDocLabs/MMORPG/Binaries/Win64/MMORPGClient.exe",
+      "sha256": "ad06c9be78c3d10ac20b7dedb01ffdd0ab6184fb627f21093ee75ccf692869ba",
+      "bytes": 336424960
+    },
+    {
+      "path": "F:/UE/LyraDocLabs/MMORPG/Binaries/Win64/MMORPGClient.target",
+      "sha256": "abc1ed3bd43b5f5bc24066ffc6a08600fbc643a83fe6108028cdfa13413427a6",
+      "bytes": 126471
+    }
+  ],
+  "exitCode": 0,
+  "finishedAt": "2026-09-13T19:00:50.6209935Z"
+}

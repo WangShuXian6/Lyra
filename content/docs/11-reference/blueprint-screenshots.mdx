@@ -1,0 +1,79 @@
+---
+title: 蓝图 1:1 全图截图：安装、修复与导出
+description: 使用本机 Gradess Blueprint Screenshot Tool 1.1.7，在 UE 5.8.1 导出清晰的完整蓝图图表。
+---
+
+本教程中的蓝图截图来自真实编辑器图。整图导出保持节点原始比例，网页再提供平移和适配视图，避免先把大型图缩成一张看不清文字的截图。
+
+## 先核对插件身份
+
+本机位置为 `F:/UE/LyraStarterGame/Plugins/BlueprintScreenshotTool`。描述符实际显示：作者 **Gradess Games**、VersionName **1.1.7**、Editor 模块、LoadingPhase 为 PostEngineInit。文档指向 [Gradess2019/BlueprintScreenshotTool](https://github.com/Gradess2019/BlueprintScreenshotTool)，其工具栏按钮名为 Take Screenshot，并支持 Ctrl+F7。
+
+它与名字相近的 YeHaike **Blueprint Graph Screenshot** 是不同产品；不要仅凭中文名称或 Fab 页面相似就把安装步骤、补丁和版本声明混用。本文只记录当前本机插件的修复与使用，不分发第三方插件完整源码。
+
+## 安装与本次兼容修复
+
+1. 将自己合法取得的插件放入工程 Plugins 目录，核对目录中直接包含 `.uplugin` 与 Source，避免多套一层文件夹。
+2. 保存所有未保存资产，正常关闭使用同一源码引擎且可能存在 Live Coding 会话的编辑器。
+3. 当前安装包声明原引擎版本 5.6.0；本机修复把 `.uplugin` 的 EngineVersion 改为兼容基线 `5.8.0`，并改用当前 Slate 接口的 `FVector2f`。实际验证引擎是 **5.8.1**，但 `PluginManager.cpp` 使用 `FEngineVersion::CompatibleWith()` 检查，本机返回 `5.8.0-0+UE5`；填 5.8.1 会导致无人值守启动跳过插件。仅改版本字符串不能替代重新编译。
+4. 在 `Source/BlueprintScreenshotTool/Private/BlueprintScreenshotToolHandler.cpp` 的 `CaptureGraphEditor` 中，将视图位置变量改为本机 GraphEditor API 使用的 float 向量：
+
+```diff
+- FVector2D CachedViewLocation;
+- FVector2D NewViewLocation;
++ FVector2f CachedViewLocation;
++ FVector2f NewViewLocation;
+```
+
+只改这两个视图位置变量，WindowSize 保持原类型。原因是 GetViewLocation 使用输出引用，类型不匹配不能靠普通数值转换解决。
+
+5. 构建完整编辑器目标并显式启用插件：
+
+```powershell
+& 'E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat' `
+  LyraEditor Win64 Development `
+  '-Project=F:/UE/LyraStarterGame/LyraStarterGame.uproject' `
+  -EnablePlugin=BlueprintScreenshotTool -WaitMutex
+```
+
+本机完整目标构建已成功。只用 `-Module` 编译曾出现 DLL 更新但模块 manifest 未同步的问题；随后完整目标的 metadata 写入步骤生成了匹配信息。首次修复时插件与引擎 manifest 的 BuildId 为 `f13cdf4b-3431-474f-9acf-db7de1089774`；后来共享引擎模块重新链接后，训练目标又通过原生 WriteMetadata 更新为另一组匹配 ID，记录于 `verification/training-editor-manifests.json`。**历史 ID 不是当前安装的固定值**。每次比较实际引擎、项目及插件的 `Binaries/Win64/UnrealEditor.modules`，不在另一台机器手工照填 ID 绕过模块兼容检查。
+
+## 导出完整图
+
+1. 重新打开 Lyra，在 Plugins 确认该插件已启用，并在蓝图编辑器确认 Take Screenshot 按钮可见。
+2. 打开 Editor Preferences → Plugins → Blueprint Screenshot Tool。将 **ZoomAmount 设为 1**，**MaxScreenshotSize 设为 15360**。本次通过原生属性读取确认了这两个运行中的默认对象值。
+3. 打开要导出的具体图，单击**实际节点主体或图画布**获得焦点，按 **Ctrl+A** 后先确认所有节点出现选择描边，再按 **Ctrl+F7**。只点 Graph 标签页或 My Blueprint 列表不保证键盘焦点在图上。插件以选中节点包围盒导出，不受当前窗口只显示一小部分图的限制。
+4. 等待成功通知，从通知入口或 Ctrl+F8 打开输出目录，核对本次新文件的写入时间，并直接查看原始 PNG：应为 **Zoom 1:1**、节点与连线完整。文件存在或通知成功只证明生成了图片，不能代替比例与选择范围检查。
+5. 把原始 PNG 放到网站媒体目录，另从编辑器复制相同图的节点文本。不要用图片 OCR 伪造蓝图文本。
+
+本机插件源码中，选中节点时使用 Settings.ZoomAmount；没有选中节点时使用当前视口缩放。因此“已经设置 ZoomAmount=1”还不够，必须选中待捕获节点。超过最大尺寸的大图需要分为有标题和接口说明的多个图；单纯提高网页缩放无法补回截图阶段丢失的信息。
+
+## 配置也要截取真实面板
+
+图表截图用于阅读节点与连线；完整教学还需要资产配置。数据资产打开后截 **Details**，普通蓝图的类配置先单击 **Class Defaults**，Widget 布局切到 **Designer** 并在 Hierarchy 选中对应控件，地图设置打开 **World Settings**，项目级配置打开 **Edit → Project Settings**。这些视图不能由节点导出工具替代，应使用 Unreal 原生 Slate 窗口或控件捕获。
+
+每张配置图先清空不相关搜索，展开需要的数组元素和内嵌结构，保留资产标题、当前选择、字段名与完整值。以 AbilitySet 为例，要同时看见 Ability、Ability Level 和 Input Tag；只看到折叠的数组无法指导新手复现。HUD 插槽图应同时显示 Hierarchy 高亮与 Extension Point Tag，才能知道字段属于哪一个控件。
+
+图下注释按“入口 → 字段 → 值的作用 → 保存方式 → 预期结果”排列。只读官方资产无需保存；自己修改的 Blueprint 要 Compile 并查看 Compiler Results 后 Save，Data Asset 只需 Save，World Settings 则保存地图。保存后重开核对配置，截图本身不证明修改已写入磁盘。
+
+采集计划位于 `source-evidence/configuration-capture-plan.json`，其中 **19/19 个配置视图**已经由 **26 张原生 PNG**覆盖，包括 Asset Manager、Experience、ActionSet、PawnData、AbilitySet、输入、装备和 UI 层栈。实际时间、连接 PID、字段值、原图路径、尺寸与 SHA-256 单独记录于 `source-evidence/configuration-training.json`。UI 根布局的配置上下文已取得，选中节点的 1:1 导出仍单独标为待补采；计划和已有缩放视图不能替代它。
+
+## 已取得的蓝图图表结果
+
+2026-09-13，UE 5.8.1，插件 DLL 已加载，工具栏可见，以下截图均通过 Ctrl+A → Ctrl+F7 实际导出并保留原始尺寸：
+
+| 图 | PNG 像素尺寸 | 阅读入口 |
+|---|---|---|
+| GA_Hero_Dash / SelectDirectionalMontage | 3417 × 966 | [冲刺方向课](/docs/04-gas/dash-blueprint) |
+| GA_Hero_Dash / EventGraph | 9392 × 2514 | [原始事件全图](/media/lyra/dash-event-graph.png) |
+| GA_Hero_Jump / EventGraph | 2385 × 1172 | [跳跃课](/docs/03-character/jump-blueprint) |
+
+导出成功说明捕获管线可用，仍不代表节点文本已在另一工程粘贴编译。蓝图资源依赖、父类、变量和函数签名需要单独验证。
+
+本机已在独立 `LyraDocLabs/LyraTraining` 工程中完成后续验证：将 Jump 的 `EventGraph`（20 节点）、Dash 的 `SelectDirectionalMontage`（26 节点）以及 W_OverallUILayout 的 `EventGraph`（10 节点）原生文本导入完整蓝图测试副本，保留函数签名与 Widget Designer 树，三图均编译成功且无编译警告。记录位于 `verification/training-blueprint-roundtrip.json`，包含文本 SHA-256、目标资产和真实编译结果。运行复现见[训练场准备步骤](/docs/07-training/feature-and-experience)。
+
+## 排障与练习
+
+按钮不存在时检查插件是否启用、Editor 模块是否加载以及重启后的实际工程；DLL 报版本不兼容时先核对引擎路径与完整构建日志；截图只是一小块时确认画布有焦点且节点已选中。
+
+练习：分别在图缩小状态下导出“未选择节点”和“全部选择节点”两张图片，对比节点尺寸、图范围与像素大小，解释为什么全图阅读应同时提供 1:1 与适配视图。

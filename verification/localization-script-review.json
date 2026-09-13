@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-13T13:03:46.114060+00:00",
+  "passed": true,
+  "scope": "Synthetic PO translation tests and read-only comparison with local UE 5.8.1 source; not native Gather/Import/Compile or runtime proof.",
+  "nativeGatherExecuted": false,
+  "runtimeCultureSwitchExecuted": false,
+  "packagedResourcesVerified": false,
+  "checks": [
+    {
+      "name": "multiline-PO-LOCTEXT-and-NSLOCTEXT-plugin-header-coverage",
+      "passed": true
+    },
+    {
+      "name": "changed-source-rejected",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "missing-gather-key-rejected",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "format-arguments-protected",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "changed-CPP-source-requires-translation-review",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "legacy-key-only-runtime-translation-rejected",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "empty-translation-rejected",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "duplicate-table-key-rejected",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "conflicting-table-runtime-identity-rejected",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "unreviewed-context-rejected",
+      "passed": true,
+      "failureLeftPOUnchanged": true
+    },
+    {
+      "name": "UE-escaped-comma-identity",
+      "passed": true
+    },
+    {
+      "name": "UE-package-namespace-suffix",
+      "passed": true
+    }
+  ],
+  "engineReferences": [
+    {
+      "file": "Engine/Source/Developer/Localization/Private/PortableObjectPipeline.cpp",
+      "symbols": [
+        "ConditionIdentityForPO",
+        "ParseIdentityFromPO",
+        "PopulateBasicPOFileEntry"
+      ]
+    },
+    {
+      "file": "Engine/Source/Runtime/Engine/Private/KismetInternationalizationLibrary.cpp",
+      "symbol": "SetCurrentCulture",
+      "finding": "SaveToConfig writes GGameUserSettingsIni only when !GIsEditor."
+    },
+    {
+      "file": "Engine/Source/Programs/AutomationTool/Scripts/CopyBuildToStagingDirectory.Automation.cs",
+      "symbol": "StageLocalizationDataForTarget",
+      "finding": "UFS stages target locmeta and configured culture locres; /Game/Localization AlwaysCook separately includes the StringTable asset."
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "scripts/mmorpg/Build-Localization.ps1",
+      "sha256": "274e45621151d5cc54b41913fb66613b31207c3198f3134ccd820adfaca7e3f6"
+    },
+    {
+      "path": "scripts/mmorpg/translate-localization.py",
+      "sha256": "4ba7a1afcf17acc5d0fab64922bc038e5c1c0861c06b1796c4d4ae02ece2d6bc"
+    },
+    {
+      "path": "examples/MMORPG/ui-designer-strings.json",
+      "sha256": "b5fe340009b6fa462d4f224d6c8d80783cbb14ad0bc48f99434b61efacb94468"
+    },
+    {
+      "path": "examples/MMORPG/localization-runtime-zh-Hans.json",
+      "sha256": "a4a1e09a4c7160f148bcfb815519c3316a709205f5aefae947e7dc19d7f2306a"
+    },
+    {
+      "path": "examples/MMORPG/Config/Localization/MMO_Gather.ini",
+      "sha256": "b0d8c564d8b43dc3c6f2b891c282392a237a6af385b35d870a4db697ab7187bb"
+    },
+    {
+      "path": "examples/MMORPG/Config/Localization/MMO_Export.ini",
+      "sha256": "571b4da469aeb674333fcb6cd104c57c854dd2608f72078cfcd4d14cab7148b5"
+    },
+    {
+      "path": "examples/MMORPG/Config/Localization/MMO_Import.ini",
+      "sha256": "ad8e5ab131dcacbd2ce3d47fbe6905fc3f02d3d6b1f7caa5c9dab8640807b65a"
+    },
+    {
+      "path": "examples/MMORPG/Config/Localization/MMO_Compile.ini",
+      "sha256": "c802c432b86c9093ba2f11514da7fad0a753f36025ef86f8766fe9aff4a8a59e"
+    }
+  ]
+}

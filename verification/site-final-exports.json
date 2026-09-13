@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T20:53:31.2615298Z",
+  "passed": true,
+  "scope": "Final Fumadocs type/content checks and production static export for both root and /Lyra; no UE build is performed here",
+  "rootSnapshot": "F:\\UE\\LyraDoc\\.local\\site-final-root-20260913-205331-0a103335",
+  "typecheck": {
+    "log": "F:\\UE\\LyraDoc\\.local\\site-final-check.log",
+    "sha256": "7b10b73e75301506924d9c867d32fbf826c8b811251862d1b33a49adc55cc98c",
+    "exitCode": 0,
+    "command": "pnpm check"
+  },
+  "exports": [
+    {
+      "basePath": "",
+      "startedAt": "2026-09-13T20:53:45.1771999Z",
+      "completedAt": "2026-09-13T20:55:02.3158441Z",
+      "passed": true,
+      "buildExitCode": 0,
+      "contentExitCode": 0,
+      "htmlPages": 68,
+      "mdxDocuments": 64,
+      "log": "F:\\UE\\LyraDoc\\.local\\site-final-root-build.log",
+      "logSHA256": "962ab10c9c398212f7901c6eac627304fa8af2bc94f745df933474d4e4546b79",
+      "indexSHA256": "ab0730e88c380e5917a3aaf456fd35b1cd59f5875ceac4574398f15ae633d8c0",
+      "packages": [
+        {
+          "id": "lyra-mmorpg-examples",
+          "title": "MMORPG 原创教学工程与 UE 后端",
+          "filename": "lyra-mmorpg-examples.tar.gz",
+          "bytes": 481882,
+          "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
+          "fileCount": 265,
+          "originalAssetCount": 31,
+          "manifest": "lyra-mmorpg-examples.manifest.json"
+        },
+        {
+          "id": "lyra-training-examples",
+          "title": "Lyra 射击训练场原创教学增量",
+          "filename": "lyra-training-examples.tar.gz",
+          "bytes": 105559,
+          "sha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a",
+          "fileCount": 58,
+          "originalAssetCount": 0,
+          "manifest": "lyra-training-examples.manifest.json"
+        }
+      ]
+    },
+    {
+      "basePath": "/Lyra",
+      "startedAt": "2026-09-13T20:55:04.4672936Z",
+      "completedAt": "2026-09-13T20:55:19.5650645Z",
+      "passed": true,
+      "buildExitCode": 0,
+      "contentExitCode": 0,
+      "htmlPages": 68,
+      "mdxDocuments": 64,
+      "log": "F:\\UE\\LyraDoc\\.local\\site-final-pages-build.log",
+      "logSHA256": "d319231b486431a65684ccd22c894341361a9ffae2663c6ef1631749fe418722",
+      "indexSHA256": "45641727b9df05a338085baff9f74906b57e30b90d49297daec86244ea47bbb0",
+      "packages": [
+        {
+          "id": "lyra-mmorpg-examples",
+          "title": "MMORPG 原创教学工程与 UE 后端",
+          "filename": "lyra-mmorpg-examples.tar.gz",
+          "bytes": 481882,
+          "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
+          "fileCount": 265,
+          "originalAssetCount": 31,
+          "manifest": "lyra-mmorpg-examples.manifest.json"
+        },
+        {
+          "id": "lyra-training-examples",
+          "title": "Lyra 射击训练场原创教学增量",
+          "filename": "lyra-training-examples.tar.gz",
+          "bytes": 105559,
+          "sha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a",
+          "fileCount": 58,
+          "originalAssetCount": 0,
+          "manifest": "lyra-training-examples.manifest.json"
+        }
+      ]
+    }
+  ],
+  "error": null,
+  "completedAt": "2026-09-13T20:55:19.5825311Z"
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T13:38:29.872453+00:00",
+  "passed": false,
+  "status": "failed",
+  "checks": {
+    "reload_consumes_spare": true
+  },
+  "errors": [
+    "No available different weapon has a complete navigation path."
+  ],
+  "method": "Native fire/reload input, navigation-guided AddMovementInput, Lyra DamageSelfDestruct",
+  "notCovered": [
+    "packaged runtime",
+    "network replication",
+    "pickup input bindings"
+  ],
+  "project": "F:/UE/LyraDocLabs/LyraTraining",
+  "world": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange",
+  "engine": "5.8.1-0+UE5",
+  "oldPawn": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_0",
+  "playerState": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerState_0",
+  "abilitySystem": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerState_0.AbilitySystemComponent",
+  "ammoBeforeFire": {
+    "magazine": 12,
+    "spare": 48
+  },
+  "ammoAfterFire": {
+    "magazine": 11,
+    "spare": 48
+  },
+  "ammoAfterReload": {
+    "magazine": 12,
+    "spare": 47
+  },
+  "completedAt": "2026-09-13T13:38:35.928505+00:00",
+  "elapsedSeconds": 6.046999999998661
+}

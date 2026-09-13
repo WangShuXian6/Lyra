@@ -1,0 +1,39 @@
+{
+  "startedAt": "2026-09-13T16:34:07.2666151Z",
+  "passed": true,
+  "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+  "target": "LyraEditor Win64 Development",
+  "engine": "E:/UnrealEngine",
+  "inputs": [
+    {
+      "labPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\TrainingRange.uplugin",
+      "repoPath": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/TrainingRange.uplugin",
+      "sha256": "45edfe58ba451893d0b9e32e23d5f2a096ec19821434c0792efbd1ffd256c6c5"
+    },
+    {
+      "labPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Source\\TrainingRangeVerification\\TrainingRangeVerification.Build.cs",
+      "repoPath": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/TrainingRangeVerification.Build.cs",
+      "sha256": "117d8c57db6c3a4b39ea319546e68271e244ce66b64f4d5a0b585dbde81f8957"
+    },
+    {
+      "labPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Source\\TrainingRangeVerification\\Private\\TrainingRangeVerification.cpp",
+      "repoPath": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/Private/TrainingRangeVerification.cpp",
+      "sha256": "65afc633f5437d852411337b67251195d5427b09cdb066e4a64eab2c8d88ce68"
+    }
+  ],
+  "log": "F:\\UE\\LyraDoc\\verification\\training-editor-final-build.log",
+  "normalEditorBuild": true,
+  "activeEditorsAtStart": 0,
+  "liveCoding": false,
+  "ubtParallelActions": 3,
+  "ubaAccelerationRequested": false,
+  "observedExecutor": "Unreal Build Accelerator local executor; all four compile/link/metadata actions were marked [NoUba] in the native log",
+  "exitCode": 0,
+  "runtimeVerificationDLL": {
+    "bytes": 167936,
+    "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Binaries\\Win64\\UnrealEditor-TrainingRangeVerification.dll",
+    "sha256": "a76b96e11cf441f8732b2b802d29debede4ff37c146c06813b96bb5b5e2abb00",
+    "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+  },
+  "finishedAt": "2026-09-13T16:34:22.6181019Z"
+}

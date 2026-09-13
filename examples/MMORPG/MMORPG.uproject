@@ -1,0 +1,25 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "",
+  "Category": "Education",
+  "Description": "Lyra patterns rebuilt as a small authenticated multiplayer RPG.",
+  "Modules": [{"Name":"MMORPG","Type":"Runtime","LoadingPhase":"Default"}],
+  "Plugins": [
+    {"Name":"GameplayAbilities","Enabled":true},
+    {"Name":"EnhancedInput","Enabled":true},
+    {"Name":"ModularGameplay","Enabled":true},
+    {"Name":"ModularGameplayActors","Enabled":true},
+    {"Name":"GameFeatures","Enabled":true},
+    {"Name":"CommonUI","Enabled":true},
+    {"Name":"CommonGame","Enabled":true},
+    {"Name":"CommonUser","Enabled":true},
+    {"Name":"UIExtension","Enabled":true},
+    {"Name":"ModelViewViewModel","Enabled":true},
+    {"Name":"MMOIntegration","Enabled":true},
+    {"Name":"MMOFramework","Enabled":true},
+    {"Name":"MMOCore","Enabled":true},
+    {"Name":"MMODocTools","Enabled":true,"TargetAllowList":["Editor"]},
+    {"Name":"PythonScriptPlugin","Enabled":true,"TargetAllowList":["Editor"]},
+    {"Name":"EditorScriptingUtilities","Enabled":true,"TargetAllowList":["Editor"]}
+  ]
+}

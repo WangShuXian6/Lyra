@@ -1,0 +1,363 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-13T13:10:02.670365+00:00",
+  "passed": true,
+  "scope": "Final native asset compilation/saving and explicit original-asset copy/hash verification; no gameplay, localization or packaging claim.",
+  "assetCount": 31,
+  "officialBinaryAssetsIncluded": 0,
+  "widgets": [
+    {
+      "asset": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout",
+      "widgets": 4,
+      "bindings": 0,
+      "canvasCount": 0,
+      "buttons": 0,
+      "focusableButtons": 0,
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "saved": true
+    },
+    {
+      "asset": "/Game/UI/WBP_Login.WBP_Login",
+      "widgets": 37,
+      "bindings": 0,
+      "canvasCount": 0,
+      "buttons": 5,
+      "focusableButtons": 5,
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "saved": true
+    },
+    {
+      "asset": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus",
+      "widgets": 4,
+      "bindings": 2,
+      "canvasCount": 0,
+      "buttons": 0,
+      "focusableButtons": 0,
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "saved": true
+    },
+    {
+      "asset": "/Game/UI/WBP_PlayerHUD.WBP_PlayerHUD",
+      "widgets": 30,
+      "bindings": 5,
+      "canvasCount": 0,
+      "buttons": 5,
+      "focusableButtons": 0,
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "saved": true
+    },
+    {
+      "asset": "/Game/UI/WBP_Inventory.WBP_Inventory",
+      "widgets": 12,
+      "bindings": 1,
+      "canvasCount": 0,
+      "buttons": 2,
+      "focusableButtons": 2,
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "saved": true
+    },
+    {
+      "asset": "/Game/UI/WBP_Settings.WBP_Settings",
+      "widgets": 30,
+      "bindings": 0,
+      "canvasCount": 0,
+      "buttons": 7,
+      "focusableButtons": 7,
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "saved": true
+    },
+    {
+      "asset": "/Game/UI/WBP_Confirm.WBP_Confirm",
+      "widgets": 13,
+      "bindings": 0,
+      "canvasCount": 0,
+      "buttons": 2,
+      "focusableButtons": 2,
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "saved": true
+    }
+  ],
+  "stringTableEntries": 45,
+  "inputActions": 7,
+  "physicalInputMappings": 17,
+  "experience": "MMOExperience:DA_MMOExperience",
+  "characterDefaultsRetained": true,
+  "animationBlueprintCompiles": 3,
+  "animationClipboardRoundTrips": 2,
+  "copiedEvidence": [
+    "ui-designer-assets.json",
+    "mana-status-bindings.json",
+    "mmorpg-animation-assets.json",
+    "mmorpg-character-defaults.json",
+    "mmorpg-experience-assets.json",
+    "mmorpg-game-mode.json",
+    "backend-health-roundtrip.json",
+    "WBP_MMOLayout-designer.json",
+    "WBP_Login-designer.json",
+    "WBP_ManaStatus-designer.json",
+    "WBP_PlayerHUD-designer.json",
+    "WBP_Inventory-designer.json",
+    "WBP_Settings-designer.json",
+    "WBP_Confirm-designer.json"
+  ],
+  "nativeGraphs": [
+    {
+      "source": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/backend-health.txt",
+      "publicPath": "/blueprints/mmorpg/backend-health.txt",
+      "sourceAsset": "/Game/Tutorial/BP_BackendHealth.BP_BackendHealth",
+      "graph": "EventGraph",
+      "nodes": 4,
+      "evidence": "verification/backend-health-roundtrip.json",
+      "kind": "native-node-text",
+      "origin": "Original tutorial graph authored and exported with UE native APIs",
+      "bytes": 17581,
+      "sha256": "16fb6cdc9f0cc761f08cd1b25926aedbbc9394b335b7e7ae130f1e98588c4c7a"
+    },
+    {
+      "source": "F:/UE/LyraDocLabs/MMORPG/Saved/TutorialBlueprints/mmo-character-animgraph.txt",
+      "publicPath": "/blueprints/mmorpg/mmo-character-animgraph.txt",
+      "sourceAsset": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter",
+      "graph": "AnimGraph",
+      "nodes": 2,
+      "totalGraphNodes": 3,
+      "preservedOutputPoseNode": true,
+      "evidence": "verification/mmorpg-animation-assets.json",
+      "kind": "native-node-text",
+      "origin": "Original tutorial graph authored and exported with UE native APIs",
+      "bytes": 7080,
+      "sha256": "8bd5f8e10f913bfa1f25b7e2bc23f5de1fbed0885bcba7985e59f3a4b64d565c",
+      "validatedAt": "2026-09-13T16:45:11.334Z",
+      "validationProcessId": 30180,
+      "originalNodeGuidsPreserved": true
+    },
+    {
+      "source": "F:/UE/LyraDocLabs/MMORPG/Saved/TutorialBlueprints/mmo-unarmed-locomotion.txt",
+      "publicPath": "/blueprints/mmorpg/mmo-unarmed-locomotion.txt",
+      "sourceAsset": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed",
+      "graph": "Locomotion",
+      "nodes": 5,
+      "totalGraphNodes": 6,
+      "preservedOutputPoseNode": true,
+      "evidence": "verification/mmorpg-animation-assets.json",
+      "kind": "native-node-text",
+      "origin": "Original tutorial graph authored and exported with UE native APIs",
+      "bytes": 27287,
+      "sha256": "38f3c92510d1c81e9af59694a82e45c69db2738e54ea6525fdd9031aed69293b",
+      "validatedAt": "2026-09-13T16:45:11.334Z",
+      "validationProcessId": 30180,
+      "originalNodeGuidsPreserved": true
+    }
+  ],
+  "latestPreciseUpdate": {
+    "recordedAt": "2026-09-13T14:05:15.803142+00:00",
+    "nativeCompileAt": "2026-09-13T13:53:00.818Z",
+    "evidence": "verification/mmorpg-death-blueprints.json",
+    "evidenceSha256": "c1422019c2071deb93346fe18d258d28da63e903cc4ce0816bb90a2c26ed60bf",
+    "graphsReconstructed": false,
+    "assets": [
+      {
+        "repoPath": "examples/MMORPG/Content/MMO/BP_MMOGameMode.uasset",
+        "source": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/BP_MMOGameMode.uasset",
+        "previousSha256": "2c8ab68f6c5ac96724aa52987d2828f5c5e525d5c94bbd7fa86356e3a8b8034e",
+        "sha256": "2c8ab68f6c5ac96724aa52987d2828f5c5e525d5c94bbd7fa86356e3a8b8034e",
+        "bytes": 20817,
+        "bytesChanged": false
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/Tutorial/BP_MMOCharacter.uasset",
+        "source": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/BP_MMOCharacter.uasset",
+        "previousSha256": "5ebe7f4b9fda87e4b7c3d606bdf671050a22e51fea6778428f96c21e890ed44f",
+        "sha256": "1f210c44e56fbcd2efe6202e33707fbee4d371fff569296e5d9b321f626f459e",
+        "bytes": 26625,
+        "bytesChanged": true
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/Tutorial/GA_ArcaneBolt.uasset",
+        "source": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/GA_ArcaneBolt.uasset",
+        "previousSha256": "bcb500cf04eb436d4a80d90097c9f3cd974391955d90f049f2641e84f1fb13b5",
+        "sha256": "bcb500cf04eb436d4a80d90097c9f3cd974391955d90f049f2641e84f1fb13b5",
+        "bytes": 15625,
+        "bytesChanged": false
+      }
+    ]
+  },
+  "latestAllAssetHashCheck": {
+    "checkedAt": "2026-09-13T15:50:37.896873+00:00",
+    "passed": true,
+    "originalAssets": 31,
+    "copiedAllowlistedAssets": 1,
+    "unchangedAssetsVerified": 30,
+    "officialBinaryAssetsIncluded": 0,
+    "scope": "Verified the native label copy and all 30 pre-existing repo/lab byte identities; no other asset or screenshot metadata rewritten."
+  },
+  "buttonSlotUpdate": {
+    "recordedAt": "2026-09-13T14:37:14.662599+00:00",
+    "nativeCompileAt": "2026-09-13T14:34:26.961587+00:00",
+    "evidence": "verification/mmorpg-button-slots.json",
+    "evidenceSha256": "b07de629e332b24f8f210eae2566b8c81d3e9131186be22bff71282271c6c318",
+    "widgetTreesReconstructed": false,
+    "bindingsReconstructed": false,
+    "buttonContentSlots": 21,
+    "assets": [
+      {
+        "repoPath": "examples/MMORPG/Content/UI/WBP_Confirm.uasset",
+        "previousSha256": "2a6b050a7427a2bb01612488f81cfb728683cb4b00ef7a42f90892e0bf95e770",
+        "sha256": "3feaae16a58be1232e0cebb370a7befeda3029609f9e6e4fde3dadb375216a8f",
+        "bytes": 60710
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/UI/WBP_Inventory.uasset",
+        "previousSha256": "388c66d203989b8dfb9103df85fee718ddfadee3c77d71e711183a169a42918b",
+        "sha256": "e8718ad26b29401c3117475f680d5eeda900452c00505730a9188f88b720fd27",
+        "bytes": 69605
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/UI/WBP_Login.uasset",
+        "previousSha256": "31ecd23c5a2761005cd690092b7f522c2433234ee4e2aec3fe020dfd91748fd0",
+        "sha256": "62b8ccb02cf456c278a1da8f7e5e80df1f5255c7cfef33c636117a1b2d902dff",
+        "bytes": 135401
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/UI/WBP_MMOLayout.uasset",
+        "previousSha256": "afbdf118de496e2e3039ebde279a17a26365f63400743ecc27332a47a0ad28a2",
+        "sha256": "d2fc169b9b1bc2b539985879986a2de62c7775cea99a37e629bf4f09ee73f086",
+        "bytes": 30674
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/UI/WBP_ManaStatus.uasset",
+        "previousSha256": "ab38b41170355e83dbc289a331ff3c89ad15682d33b77b78403b4189cf962126",
+        "sha256": "319820ddfa2cd6063b0f6c581eaa6124bf017fb627daca26f2b6543b702f619b",
+        "bytes": 48787
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/UI/WBP_PlayerHUD.uasset",
+        "previousSha256": "e3b2fa21e4e3104e3d6d5faff04a99d27bf86a1d866526c0ea61eca3126ba31f",
+        "sha256": "9658d23da3c535bee3218cb799cd57b691cbe0ee2c3664fc7be215f4e6d7df0f",
+        "bytes": 127597
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/UI/WBP_Settings.uasset",
+        "previousSha256": "a2a7734008c63150508352c71726e40c885f073522b1fa7fcf3a1f0d460fccad",
+        "sha256": "1d1762341018bfb0c8d5459cf6eb2bf4b928729b2f0e20d6516aa3151278bab8",
+        "bytes": 112341
+      }
+    ]
+  },
+  "animationSpeedAxisUpdate": {
+    "recordedAt": "2026-09-13T14:52:35.950277+00:00",
+    "nativeCompileAt": "2026-09-13T14:48:11.656337+00:00",
+    "evidence": "verification/mmorpg-animation-speed-axis.json",
+    "evidenceSha256": "d2222fef72e0a45f43fc93bcb163bcfd6f4ed0f6773de4c80bddfdc734accc7e",
+    "sourceGraphsReconstructed": false,
+    "speedAxis": "Y",
+    "assets": [
+      {
+        "repoPath": "examples/MMORPG/Content/Characters/MMO/ABP_MMOUnarmed.uasset",
+        "source": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ABP_MMOUnarmed.uasset",
+        "previousSha256": "7947569b77afa7eb0336b48d458bb79a98138deaf627fae446f5d9d3d49163aa",
+        "sha256": "c0b77d8ad6e9928f4f8aafac4505860c5ce9f28df78e2a405d30261789766b76",
+        "bytes": 91441
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/Characters/MMO/ABP_MMOCharacter.uasset",
+        "source": "F:/UE/LyraDocLabs/MMORPG/Content/Characters/MMO/ABP_MMOCharacter.uasset",
+        "previousSha256": "c58840db7b7c720c35ae4dc71b49d04913222e8f73568f12ad89d4fcef5752ef",
+        "sha256": "a931a3540237e4a54938ce77789014ef6af107de43ff853af817f01f17e23300",
+        "bytes": 101556
+      }
+    ],
+    "clipboardRoundTripStatus": "Pending non-reconstructing ValidateCharacterAnimation after the next Editor build; previous native text is preserved."
+  },
+  "healthCookLabelAddition": {
+    "recordedAt": "2026-09-13T15:50:37.896873+00:00",
+    "nativeSavedAt": "2026-09-13T15:48:35.231202+00:00",
+    "evidence": "verification/mmorpg-health-cook-label.json",
+    "evidenceSha256": "12ed73a276ddf7251d1906a9d3483d212dce9b8076b98e7be47ee7fcbd5a7cf2",
+    "assets": [
+      {
+        "path": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Labels/DA_TutorialExamples.uasset",
+        "repoPath": "examples/MMORPG/Content/MMO/Labels/DA_TutorialExamples.uasset",
+        "bytes": 2732,
+        "sha256": "1db58affde2f7321e37837e8f1d3bb10b53838d85f9aa9291bbd6541c6ff9560",
+        "origin": "Original tutorial PrimaryAssetLabel authored and saved with native UE editor APIs; no Blueprint graph reconstruction.",
+        "nativeEvidence": "verification/mmorpg-health-cook-label.json"
+      }
+    ],
+    "compileRequired": false,
+    "class": "PrimaryAssetLabel",
+    "cookExecuted": false,
+    "editorRestartRequired": true
+  },
+  "lastVerifiedAt": "2026-09-13T16:47:19.710993+00:00",
+  "currentAnimationValidation": {
+    "recordedAt": "2026-09-13T16:47:19.710993+00:00",
+    "evidence": "verification/mmorpg-animation-assets.json",
+    "evidenceSha256": "04563c656c5e605d448a61cc8d2f35a20a428d65f45b4f58fc1c118753ab354c",
+    "processId": 30180,
+    "originalNodeGuidsPreserved": true,
+    "sourceGraphsReconstructed": false,
+    "speedAxis": "Y",
+    "groundSpeedBindings": 2,
+    "roundTripsPassed": 2,
+    "assets": [
+      {
+        "repoPath": "examples/MMORPG/Content/Characters/MMO/ALI_MMOCharacter.uasset",
+        "source": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Characters\\MMO\\ALI_MMOCharacter.uasset",
+        "previousSha256": "fd1fe74b22c4f2b431e9664f41affffac04bb5b16519f7b1569f7e7e8ff0fc7b",
+        "sha256": "fd1fe74b22c4f2b431e9664f41affffac04bb5b16519f7b1569f7e7e8ff0fc7b",
+        "bytes": 12797
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/Characters/MMO/ABP_MMOCharacter.uasset",
+        "source": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Characters\\MMO\\ABP_MMOCharacter.uasset",
+        "previousSha256": "a931a3540237e4a54938ce77789014ef6af107de43ff853af817f01f17e23300",
+        "sha256": "b1dd79def4b1c690332055588b6c981bcb54cc28c922a342d74c8ee99092c2b5",
+        "bytes": 101490
+      },
+      {
+        "repoPath": "examples/MMORPG/Content/Characters/MMO/ABP_MMOUnarmed.uasset",
+        "source": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Characters\\MMO\\ABP_MMOUnarmed.uasset",
+        "previousSha256": "c0b77d8ad6e9928f4f8aafac4505860c5ce9f28df78e2a405d30261789766b76",
+        "sha256": "ae34c136b7b2db128228ac1d68a48c5c14dc937f521b85690238ad5b97c63dd7",
+        "bytes": 91377
+      }
+    ]
+  },
+  "currentHealthCookLabelScan": {
+    "evidence": "verification/mmorpg-health-cook-label-scan.json",
+    "passed": true,
+    "processId": 30180,
+    "assetsModified": false,
+    "cookExecuted": false
+  },
+  "currentTaggedAbilityInputValidation": {
+    "recordedAt": "2026-09-13T18:49:48.030492+00:00",
+    "report": "verification/mmorpg-tagged-ability-input-assets.json",
+    "scope": "Only existing AbilitySet InputTag/InputID; no Blueprint or animation graph reconstructed.",
+    "nativeExecutedAt": "2026-09-13T18:46:48.645031+00:00",
+    "nativeSaved": true,
+    "before": {
+      "path": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+      "repoPath": "examples/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+      "bytes": 3350,
+      "sha256": "7c0ec7a3f3b5b2c5d781e6ac27619c0b7e1ade793808303514bae612be4c83d2",
+      "origin": "Original tutorial asset authored with UE native editor APIs; official referenced dependencies are prepared locally."
+    },
+    "after": {
+      "path": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+      "repoPath": "examples/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+      "bytes": 3588,
+      "sha256": "2d9f46939392876b3b038ecb39ebaebccbc9f77dcf0c0434b7451ce299ef3626",
+      "origin": "Original tutorial asset authored with UE native editor APIs; official referenced dependencies are prepared locally."
+    },
+    "all31RepoAndLabHashesMatch": true,
+    "gameplayExecuted": false
+  }
+}

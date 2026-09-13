@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-13T14:05:15.803142+00:00",
+  "passed": true,
+  "scope": "Native three-Blueprint compile/save evidence and binary copy/hash verification only; no editor invocation, runtime, localization or packaging claim.",
+  "nativeReport": "verification/mmorpg-death-blueprints.json",
+  "nativeReportSha256": "c1422019c2071deb93346fe18d258d28da63e903cc4ce0816bb90a2c26ed60bf",
+  "copiedAssets": [
+    {
+      "repoPath": "examples/MMORPG/Content/MMO/BP_MMOGameMode.uasset",
+      "source": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/BP_MMOGameMode.uasset",
+      "previousSha256": "2c8ab68f6c5ac96724aa52987d2828f5c5e525d5c94bbd7fa86356e3a8b8034e",
+      "sha256": "2c8ab68f6c5ac96724aa52987d2828f5c5e525d5c94bbd7fa86356e3a8b8034e",
+      "bytes": 20817,
+      "bytesChanged": false
+    },
+    {
+      "repoPath": "examples/MMORPG/Content/Tutorial/BP_MMOCharacter.uasset",
+      "source": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/BP_MMOCharacter.uasset",
+      "previousSha256": "5ebe7f4b9fda87e4b7c3d606bdf671050a22e51fea6778428f96c21e890ed44f",
+      "sha256": "1f210c44e56fbcd2efe6202e33707fbee4d371fff569296e5d9b321f626f459e",
+      "bytes": 26625,
+      "bytesChanged": true
+    },
+    {
+      "repoPath": "examples/MMORPG/Content/Tutorial/GA_ArcaneBolt.uasset",
+      "source": "F:/UE/LyraDocLabs/MMORPG/Content/Tutorial/GA_ArcaneBolt.uasset",
+      "previousSha256": "bcb500cf04eb436d4a80d90097c9f3cd974391955d90f049f2641e84f1fb13b5",
+      "sha256": "bcb500cf04eb436d4a80d90097c9f3cd974391955d90f049f2641e84f1fb13b5",
+      "bytes": 15625,
+      "bytesChanged": false
+    }
+  ],
+  "allOriginalAssetHashesVerified": 30,
+  "otherOriginalAssetsUnchanged": 27,
+  "healthAndAnimationGraphsUnchanged": true,
+  "officialBinaryAssetsCopied": 0
+}

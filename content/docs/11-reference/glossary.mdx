@@ -1,0 +1,42 @@
+---
+title: 术语表与源码速查
+description: 用中文解释关键英文符号，并指向对应学习章节。
+---
+
+本表保留实际类名，方便在 Rider 和 Content Browser 搜索。解释基于 2026-09-13 的 UE 5.8.1 工作副本；它是阅读索引，具体前置条件与运行边界见各章。
+
+| 术语 | 在本课程中的含义 | 继续阅读 |
+|---|---|---|
+| Experience | 一局玩法的装配配置，选择 Feature、PawnData 与 Actions | [启动过程](/docs/02-architecture/experience) |
+| ActionSet | 可被多个 Experience 复用的动作与 Feature 依赖集合 | [Game Features](/docs/02-architecture/game-features) |
+| Primary Asset ID | Asset Manager 识别主要资产的类型与名字 | [资产管理](/docs/02-architecture/asset-manager) |
+| CDO | 类默认对象，提供蓝图类配置的默认数据 | [工程地图](/docs/01-start/project-map) |
+| PawnData | 角色类、技能集、输入、相机等不可变角色配置 | [初始化](/docs/02-architecture/initialization) |
+| InitState | 组件协调数据就绪和初始化的标签状态 | [初始化](/docs/02-architecture/initialization) |
+| LocalPlayer | 本地玩家上下文，与远端玩家实体不同 | [玩家对象](/docs/03-character/player-pawn) |
+| ASC | AbilitySystemComponent，持有技能、属性和效果状态 | [技能授予](/docs/04-gas/ability-sets) |
+| Owner / Avatar | ASC 的逻辑拥有者与当前身体；Lyra 常是 PlayerState / Pawn | [玩家对象](/docs/03-character/player-pawn) |
+| AbilitySpec | 某个 ASC 获得某项技能的记录与句柄 | [技能授予](/docs/04-gas/ability-sets) |
+| EffectSpec | 一次 GameplayEffect 应用的运行参数与上下文 | [属性和伤害](/docs/04-gas/effects-health) |
+| InputTag | 将 InputAction 与能力输入匹配的标签 | [输入链](/docs/03-character/enhanced-input) |
+| PredictionKey | 协调 GAS 本地预测与服务器确认的标识 | [网络预测](/docs/04-gas/prediction) |
+| TargetData | 技能传递的目标信息，如命中结果 | [开火链](/docs/05-gameplay/weapons) |
+| Authority | 该实例执行权威游戏逻辑的权限角色 | [网络预测](/docs/04-gas/prediction) |
+| Inventory Fragment | 给物品定义组合图标、装备或数值等数据片段 | [背包装备](/docs/05-gameplay/inventory-equipment) |
+| EquipmentInstance | 当前装备的运行实例，与背包定义不同 | [背包装备](/docs/05-gameplay/inventory-equipment) |
+| FastArray | 面向变化条目的数组复制机制 | [背包装备](/docs/05-gameplay/inventory-equipment) |
+| Gameplay Message | 游戏实例内按标签和类型分发的消息，本身不是 RPC | [消息与音效](/docs/05-gameplay/messages-audio) |
+| Gameplay Cue | GAS 的视听表现入口，不是唯一权威伤害入口 | [消息与音效](/docs/05-gameplay/messages-audio) |
+| GamePhase | 使用能力和标签管理对局阶段 | [队伍与机器人](/docs/05-gameplay/teams-bots) |
+| Activatable Widget | 可激活、停用并参与输入路由的 CommonUI 页面 | [CommonUI](/docs/06-ui/commonui-input) |
+| UI Policy | 为本地玩家管理根布局的策略 | [CommonGame](/docs/06-ui/common-game) |
+| UI Layer | 根布局中按标签注册的界面容器 | [CommonGame](/docs/06-ui/common-game) |
+| UIExtension | 按标签、上下文和类型向插槽提供内容 | [UIExtension](/docs/06-ui/extensions) |
+| MVVM | 用 ViewModel 整理展示状态，通过通知更新 View | [设置与 MVVM](/docs/06-ui/settings-mvvm) |
+| Cook | 将源资产处理并收集为目标平台运行数据 | [资产管理](/docs/02-architecture/asset-manager) |
+
+## 用术语反查行为
+
+看到“按键没反应”，先区分 InputAction、InputTag 和 AbilitySpec；看到“物品丢了”，先区分 InventoryInstance、EquipmentInstance 和后端持久记录；看到“界面消失”，先区分 UI Layer、UIExtension 和 ViewModel 生命周期。
+
+练习：用自己的话写五组容易混淆的名词，每组附一个可实际观察的例子。只背英文展开无法帮助定位运行问题，必须同时知道对象存在在哪里、谁创建它、谁清理它。

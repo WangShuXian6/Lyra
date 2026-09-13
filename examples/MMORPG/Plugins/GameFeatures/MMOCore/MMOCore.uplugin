@@ -1,0 +1,7 @@
+{
+  "FileVersion":3,"Version":1,"VersionName":"1.0","FriendlyName":"MMO Core Training Zone",
+  "Category":"Game Features","CanContainContent":true,"ExplicitlyLoaded":true,"EnabledByDefault":false,
+  "BuiltInInitialFeatureState":"Registered",
+  "Modules":[{"Name":"MMOCore","Type":"Runtime","LoadingPhase":"Default"}],
+  "Plugins":[{"Name":"GameFeatures","Enabled":true},{"Name":"ModularGameplay","Enabled":true},{"Name":"ModularGameplayActors","Enabled":true}]
+}

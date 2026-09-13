@@ -1,0 +1,66 @@
+---
+title: 相机模式、动画层与角色外观
+description: 分清 gameplay Pawn、装饰角色、动画状态与武器动画层的组合关系。
+---
+
+## 学习目标与前置条件
+
+前置：PawnData、输入。目标是替换相机或外观时，能找到正确扩展点。证据来自 Camera、Animation、Cosmetics、Weapons 源码和资产路径，核对于 2026-09-13，UE 5.8.1。
+
+## 相机从哪里选择
+
+`ULyraHeroComponent::DetermineCameraMode` 优先返回技能设置的相机模式，未设置时读取 PawnData 的 `DefaultCameraMode`。`ULyraCameraComponent::UpdateCameraModes` 通过委托获得模式，并压入 `ULyraCameraModeStack`；相机组件计算并填充最终视图。
+
+```cpp
+if (AbilityCameraMode)
+{
+    return AbilityCameraMode;
+}
+```
+
+这是实际函数的优先级节选，不是完整实现。技能调用 LyraGameplayAbility 的 `SetCameraMode` / `ClearCameraMode`；Hero 使用拥有该设置的 AbilitySpecHandle，防止一个技能错误清除另一个技能的相机。
+
+## 操作步骤：先改相机，再改外观
+
+1. 在当前 PawnData 找到 DefaultCameraMode，打开其原生或蓝图父类。只在实验副本中调整 FOV 或偏移。
+2. 查看 `Source/LyraGame/Camera/LyraCameraMode_ThirdPerson.cpp`，区分第三人称穿透处理与简单相机位置插值。
+3. 打开 `/Game/Characters/Heroes/B_Hero_Default` 和 `/ShooterCore/Game/B_Hero_ShooterMannequin`，查看组件与继承。不要把看见的美术模型直接等同于负责移动的 Pawn。
+4. 查看 `ULyraPawnComponent_CharacterParts` 与 `ULyraControllerComponent_CharacterParts`，沿外观部件的添加、复制及生成路径查找模型来源。
+5. 打开 `/Game/Characters/Heroes/Mannequin/Animations/ABP_Mannequin_Base` 和 `LinkedLayers/ABP_ItemAnimLayersBase`，在编辑器检查 Linked Anim Layers。
+
+## 动画和装备怎样合作
+
+`ULyraAnimInstance::InitializeWithAbilitySystem` 调用 `GameplayTagPropertyMap.Initialize(this, ASC)`，让标签状态参与动画变量更新。它与动画蓝图自己的速度、方向和地面状态计算共同工作。
+
+`ULyraWeaponInstance::PickBestAnimLayer` 根据是否装备和 CosmeticTags 选择动画层集合。已核对资产包括 `ABP_RifleAnimLayers`、`ABP_PistolAnimLayers`、`ABP_ShotgunAnimLayers` 和 `ABP_UnarmedAnimLayers`，都位于 Mannequin 的 `Animations/Locomotion` 下相应武器目录。
+
+更换武器后的持枪姿势因此不应通过大量 Character 蓝图分支硬编码。新增武器先查装备实例选择的动画层，再检查 Skeleton、Linked Layer 接口和相关 Montage 的兼容性。
+
+### 在编辑器逐级检查装备动画配置
+
+先用已经存在的步枪做只读追踪，按这个顺序打开资产：
+
+1. `/ShooterCore/Weapons/Rifle/ID_Rifle` → **Class Defaults → Fragments**，找到 Equippable Item 的 **Equipment Definition**，定位 `WID_Rifle`。物品图标和初始弹药不决定人物姿势。
+2. `/ShooterCore/Weapons/Rifle/WID_Rifle` → **Class Defaults → Instance Type**，定位 `B_WeaponInstance_Rifle`；同页的 **Actors To Spawn** 决定生成的枪械外观及 `weapon_r` 插槽，不能替代人物动画层。
+3. 打开 `/ShooterCore/Weapons/Rifle/B_WeaponInstance_Rifle` → **Class Defaults → Animation**，展开 **Equipped Anim Set** 和 **Uneuipped Anim Set**。后者在本机 C++ 确实拼写为 `UneuippedAnimSet`。每组展开 **Layer Rules → Layer / Required Tags**，并记录 **Default Layer**。不要只看一个折叠的 Anim Set 标题就开始替换。
+4. 按字段中实际类引用打开对应 Anim Blueprint。可对照 `/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Rifle/ABP_RifleAnimLayers`、`Pistol/ABP_PistolAnimLayers` 和 `Unarmed/ABP_UnarmedAnimLayers`。在 **Class Settings** 对照动画层接口，并打开 `/Game/Characters/Heroes/Mannequin/Animations/LinkedLayers/ALI_ItemAnimLayers`；接口定义层的签名，`ABP_ItemAnimLayersBase` 提供共用实现，具体武器层再提供其动画逻辑。
+5. 返回 `/ShooterCore/Weapons/B_WeaponInstance_Base` 的 Graph，通过蓝图查找定位装备/卸装事件、**Pick Best Anim Layer** 与动画层连接逻辑，沿引用确认实际操作的是哪个 Skeletal Mesh。`PickBestAnimLayer` 的 C++ 只返回类，并不会自行把类安装到 Mesh；引擎执行连接的公开接口是 `USkeletalMeshComponent::LinkAnimClassLayers`。
+
+选择规则来自 `Cosmetics/LyraCosmeticAnimationTypes.cpp`：按 **Layer Rules** 从上到下查找，第一条同时满足非空 Layer 和 `CosmeticTags.HasAll(RequiredTags)` 的规则胜出；没有匹配才使用 Default Layer。因此规则顺序会改变结果，空 Required Tags 的有效规则会抢先匹配所有外观。
+
+```cpp
+if ((Rule.Layer != nullptr) && CosmeticTags.HasAll(Rule.RequiredTags))
+{
+    return Rule.Layer;
+}
+```
+
+练习修改时先复制完整的武器实例与相关 Anim Blueprint，只在自己的 WID 副本中替换 **Instance Type**，沿调用链保持接口与 Skeleton 兼容。先编译动画层，再编译武器实例和 WID，逐一 Save；重新拾取并装备该武器，预期姿势切换，卸装后恢复对应未装备层。这里提供的是可复现的检查与修改顺序，当前训练场验收没有单独比较每一类动画层或外观标签组合，不将它们列为已通过。
+
+## 服务器上的外观
+
+`FLyraCharacterPartList::SpawnActorForEntry` 明确排除 `NM_DedicatedServer`。外观部件不能承担只有它自己才知道的关键战斗状态；独立服务器可能根本不生成该装饰 Actor。伤害、交互和装备权威数据应来自游戏逻辑对象。
+
+## 预期结果、排障与练习
+
+改变相机数据应改变观察视图，同时角色运动保持可解释。武器姿势错误时查动画层选择与资源兼容；重生后外观丢失时查 Controller 到新 Pawn 的部件应用。练习：列出一次步枪切手枪涉及的装备、动画、UI 和输入设备反馈四条路径，标注哪些仅在客户端执行。

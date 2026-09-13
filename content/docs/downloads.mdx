@@ -1,0 +1,66 @@
+---
+title: 配套资料与复现
+description: 获取原生蓝图节点文本、教学增量源码，以及本地工程的准备与验证方法。
+---
+
+## 原生蓝图文本
+
+前三份文本来自本机 Epic Lyra 蓝图，其余来自本教程原创 MMORPG 蓝图，均通过 Unreal 原生节点复制格式导出。文件中的对象路径用于连接原有变量、函数与资产；它们不是可以独立运行的完整插件。
+
+| 资产与图表 | 文件 | 准备条件 |
+| --- | --- | --- |
+| GA_Hero_Jump / EventGraph | [下载节点文本](/blueprints/lyra/jump-event-graph.txt) | 在 Lyra 实验副本中使用同父类蓝图，准备原图成员变量与 UIExtension 依赖 |
+| GA_Hero_Dash / SelectDirectionalMontage | [下载节点文本](/blueprints/lyra/dash-direction.txt) | 使用 GA_Hero_Dash 的副本，保留方向蒙太奇变量与函数签名 |
+| W_OverallUILayout / EventGraph | [下载节点文本](/blueprints/lyra/root-layout-registration.txt) | 使用完整 Widget Blueprint 副本，保留四个 Designer 层栈、变量与 CommonGame 依赖；10 个节点已原生导入、编译和保存验证 |
+| BP_BackendHealth / EventGraph（原创） | [下载节点文本](/blueprints/mmorpg/backend-health.txt) | MMORPG 实验工程启用 MMOBackendClient；Actor 蓝图事件图使用 `UMMORequestAction`，本地服务的 `/health` 可访问 |
+| ABP_MMOCharacter / AnimGraph（原创） | [下载节点文本](/blueprints/mmorpg/mmo-character-animgraph.txt) | 准备 MMOAnimInstance、ALI_MMOCharacter 与无武器层；复制的 2 个节点接回目标图保留的 Output Pose |
+| ABP_MMOUnarmed / Locomotion（原创） | [下载节点文本](/blueprints/mmorpg/mmo-unarmed-locomotion.txt) | 准备本地引擎模板动画依赖与 ALI 接口；复制的 5 个节点接回目标图保留的 Output Pose |
+
+请在实验副本中验证粘贴，避免把重复事件直接加入仍在使用的原图。函数入口和输出签名、成员变量、委托以及引用资产需同时匹配。蓝图编译成功后，再运行对应技能检查效果。
+
+## 教学源码
+
+下载包在每次网站构建时从当前教学源文件重新生成，保留 `examples/` 与 `scripts/` 的相对层次。它们包含本手册的原创增量；官方 Lyra、源码引擎和第三方二进制依赖仍需按教程在本机准备。
+
+{/* package-table:start */}
+| 下载包 | 包含内容 | 文件数 | 文件清单 |
+| --- | --- | --- | --- |
+| [MMORPG 原创教学工程与 UE 后端（tar.gz）](/downloads/lyra-mmorpg-examples.tar.gz) | C++、Config、31 个原创教学资产、Designer/MVVM、动画与输入增量、MMOFramework/MMODocTools 插件、后端 Program、SQL 迁移和验证脚本 | 265 | [逐文件 SHA-256 清单](/downloads/lyra-mmorpg-examples.manifest.json) |
+| [Lyra 射击训练场原创教学增量（tar.gz）](/downloads/lyra-training-examples.tar.gz) | TrainingRange 及 Development 打包运行验收模块、LyraDocTools Editor 插件、原生资产准备、蓝图导入/玩法/联机验证与记录；另附注明 Epic 来源的三份原生节点文本 | 58 | [逐文件 SHA-256 清单](/downloads/lyra-training-examples.manifest.json) |
+{/* package-table:end */}
+
+整个压缩包的校验值见 [SHA256SUMS.txt](/downloads/SHA256SUMS.txt)，体积、文件数和下载文件名见 [下载清单](/downloads/packages.json)。表中的文件数包括包内生成的 `README.md` 和 `MANIFEST.json`，由同一打包脚本更新。截图来源与运行结果以 JSON 记录随包提供，完整 PNG 在教程网页查看。打包脚本只读取列入白名单的源码目录和明确的文件路径，不包含 `.deps`、`.local`、`Intermediate`、`Binaries`、`Saved`、`.env`、数据库密码或服务凭据。
+
+在 Windows PowerShell 7 中校验并解压：
+
+```powershell
+Get-FileHash ./lyra-mmorpg-examples.tar.gz -Algorithm SHA256
+tar -xzf ./lyra-mmorpg-examples.tar.gz
+Set-Location ./lyra-mmorpg-examples
+./scripts/prepare-labs.ps1 -LyraRoot 'F:/UE/LyraStarterGame' -LabsRoot 'F:/UE/LyraDocLabs' -Lab MMORPG
+```
+
+先将输出哈希与下载的 `SHA256SUMS.txt` 对照。训练场包使用同样的解压方式，并将最后一个参数改为 `-Lab Training`。解压得到的是教学增量，不要把文件直接覆盖到原始 Lyra 基准工程中；继续依照包内 README 和对应实战章节构建、生成资产与运行验证。
+
+完整源码位于 [GitHub 仓库](https://github.com/WangShuXian6/Lyra)。`examples/MMORPG` 保存 MMORPG 与独立后端的教学实现；教程站与课程内容位于仓库根目录及 `content/docs`。
+
+官方 Lyra 项目及其大型美术资产由读者从 Epic 获取。复现脚本从指定的本地 Lyra 路径准备实验依赖，避免在教学仓库重复存储整套官方资产。
+
+## 文档站本地运行
+
+安装 Node.js 24 和 pnpm 后，在仓库根目录运行：
+
+```powershell
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+访问终端显示的本地地址。检查静态产物：
+
+```powershell
+pnpm check
+pnpm build
+pnpm serve
+```
+
+GitHub Pages 使用 `/Lyra` 子路径，发布构建会设置 `NEXT_PUBLIC_BASE_PATH=/Lyra`。开发环境默认使用根路径。

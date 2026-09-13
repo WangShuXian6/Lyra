@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "saved": true,
+  "sourceGraphsReconstructed": false,
+  "checkedAt": "2026-09-13T16:45:11.334Z",
+  "compiles": [
+    {
+      "asset": "/Game/Characters/MMO/ALI_MMOCharacter.ALI_MMOCharacter",
+      "errors": 0,
+      "warnings": 0,
+      "messages": [],
+      "passed": true
+    },
+    {
+      "asset": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed",
+      "errors": 0,
+      "warnings": 0,
+      "messages": [],
+      "passed": true
+    },
+    {
+      "asset": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter",
+      "errors": 0,
+      "warnings": 0,
+      "messages": [],
+      "passed": true
+    }
+  ],
+  "speedAxis": "Y",
+  "groundSpeedBindings": 2,
+  "roundTrips": [
+    {
+      "source": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter",
+      "graph": "AnimGraph",
+      "nativeText": "F:/UE/LyraDocLabs/MMORPG/Saved/TutorialBlueprints/mmo-character-animgraph.txt",
+      "totalGraphNodes": 3,
+      "sourceNodes": 2,
+      "importedNodes": 2,
+      "preservedOutputPoseNode": true,
+      "reconnectedOutputPose": true,
+      "compile": {
+        "asset": "/Game/Tutorial/Tests/RoundTrip_ABP_MMOCharacter_F4982BA5463EBEB1BB404BA1606BDCA7.RoundTrip_ABP_MMOCharacter_F4982BA5463EBEB1BB404BA1606BDCA7",
+        "errors": 0,
+        "warnings": 0,
+        "messages": [],
+        "passed": true
+      },
+      "passed": true
+    },
+    {
+      "source": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed",
+      "graph": "Locomotion",
+      "nativeText": "F:/UE/LyraDocLabs/MMORPG/Saved/TutorialBlueprints/mmo-unarmed-locomotion.txt",
+      "totalGraphNodes": 6,
+      "sourceNodes": 5,
+      "importedNodes": 5,
+      "preservedOutputPoseNode": true,
+      "reconnectedOutputPose": true,
+      "compile": {
+        "asset": "/Game/Tutorial/Tests/RoundTrip_ABP_MMOUnarmed_88B315884FF514105F5088B54C2AA0C4.RoundTrip_ABP_MMOUnarmed_88B315884FF514105F5088B54C2AA0C4",
+        "errors": 0,
+        "warnings": 0,
+        "messages": [],
+        "passed": true
+      },
+      "passed": true
+    }
+  ],
+  "originalNodeGuidsPreserved": true,
+  "validationProcessId": 30180,
+  "validationStartedAt": "2026-09-13T16:45:11.332816+00:00",
+  "validationCompletedAt": "2026-09-13T16:45:12.187248+00:00"
+}

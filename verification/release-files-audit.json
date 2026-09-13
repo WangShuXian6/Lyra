@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T20:59:50.6534585Z",
+  "finishedAt": "2026-09-13T21:00:08.2059137Z",
+  "status": "passed-with-warnings",
+  "passed": true,
+  "releaseReady": false,
+  "scope": "Read-only Git cached/non-ignored untracked working-tree candidates, indexed blobs, and in-memory tar.gz/zip members. This audit does not establish gameplay, builds, deployment or complete release acceptance.",
+  "enumeration": "git ls-files --cached --others --exclude-standard -z",
+  "candidateCount": 724,
+  "candidateSetChangedDuringAudit": false,
+  "assetInventory": {
+    "path": "verification/mmorpg-assets.json",
+    "declaredCount": 31,
+    "recordCount": 31,
+    "candidateAssetCount": 31,
+    "status": "snapshot-read"
+  },
+  "credentials": {
+    "dpapiDatabase": "available-in-memory",
+    "dpapiServerSecret": "available-in-memory",
+    "githubGcm": "available-in-memory",
+    "valuesOrSecretHashesRecorded": false
+  },
+  "statistics": {
+    "archiveEntriesScanned": 322,
+    "unreadable": 0,
+    "indexBlobsScanned": 0,
+    "assetsChecked": 62,
+    "filesScanned": 724,
+    "bytesScanned": 110478171
+  },
+  "largeFileWarningMiB": 10,
+  "largeFileErrorMiB": 100,
+  "findings": [
+    {
+      "path": "content/docs/10-backend/authentication.mdx",
+      "rule": "password-json-literal-requires-review",
+      "severity": "warning",
+      "version": "working-tree"
+    }
+  ],
+  "limitations": [
+    "Known local credentials are compared only in memory; unavailable noninteractive GCM credentials cannot be compared.",
+    "Pattern rules cover selected credential formats and do not prove absence of every secret.",
+    "Binary asset originality is established only against the inventory snapshot and matching bytes; compilation alone is not provenance.",
+    "Archives are read without extraction, with 256 MiB per-member and 1 GiB expanded limits; nested archives are flagged for separate review.",
+    "This is a snapshot while other work may continue; re-run once final files and inventories settle."
+  ]
+}

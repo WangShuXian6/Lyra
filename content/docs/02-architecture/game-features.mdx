@@ -1,0 +1,48 @@
+---
+title: Game Features 与 ActionSet 的职责
+description: 区分插件加载、世界内组件注入、输入和 UI 动作，以及退出时的清理。
+---
+
+## 学习目标与前置条件
+
+目标是知道“把功能放进插件”之后还缺哪些运行步骤。前置：[Experience](/docs/02-architecture/experience)。本文依据本机 GameFeatures 源码与插件描述符，核对于 2026-09-13，适用 UE 5.8.1。
+
+普通 C++ 模块解决编译与链接边界；Game Feature 额外提供注册、加载、激活和停用的生命周期。一个 Feature 可以包含 C++、蓝图、输入、UI 和地图，但不必把所有内容都放进同一 Feature。
+
+## 操作步骤
+
+1. 查看 `Plugins/GameFeatures/ShooterCore/ShooterCore.uplugin`，区分模块声明、插件依赖和内容能力。
+2. 在编辑器打开 ShooterCore 的 GameFeatureData，查看 Actions 和 Primary Asset 扫描设置。不要把文件存在当作已经 Active。
+3. 打开 `/ShooterCore/Experiences/LAS_ShooterGame_StandardComponents`，逐行记录 Actor Class、Component Class 以及客户端/服务器添加条件。
+4. 打开 `LAS_ShooterGame_SharedInput` 和 `LAS_ShooterGame_StandardHUD`，比较输入上下文、输入绑定和 UI 注册的作用对象。
+5. 在运行中的 Pawn、PlayerController、GameState 上查看组件。注入的组件可能没有出现在它们的蓝图 Components 面板。
+
+## ActionSet 是复用配方
+
+`ULyraExperienceActionSet` 是 `BlueprintType, NotBlueprintable` 的 PrimaryDataAsset，声明在 `GameModes/LyraExperienceActionSet.h`。它有 `Actions` 和 `GameFeaturesToEnable`，没有 DefaultPawnData。这让淘汰和控制点 Experience 可以共享 HUD、输入及通用组件，却保留不同规则。
+
+本机自定义动作集中在 `Source/LyraGame/GameFeatures`：
+
+| 动作 | 需要理解的运行职责 |
+|---|---|
+| `GameFeatureAction_AddAbilities` | 对符合条件的 Actor 授予技能/属性并保存回收句柄 |
+| `GameFeatureAction_AddInputContextMapping` | 为本地玩家添加按键映射上下文 |
+| `GameFeatureAction_AddInputBinding` | 等待输入就绪后绑定 InputConfig |
+| `GameFeatureAction_AddWidget` | 向界面层添加布局，并注册 UIExtension |
+| `GameFeatureAction_AddGameplayCuePath` | 把插件 Cue 路径纳入加载管理 |
+
+注意文件名是 `AddWidget`，类名可在文件中确认；不要根据旧文章猜复数路径。
+
+Cue 路径动作还有一项特殊放置条件：`Add Gameplay Cue Path` 要放在 **GameFeatureData 的 Actions** 中。Lyra 的 Policy Observer 在 **Registering / Unregistering** 回调中扫描这组动作来增删目录；它不是依靠 Experience 激活时遍历 ActionSet 来完成路径注册。具体目录字段与首次操作见[Gameplay Cue 配置](/docs/05-gameplay/messages-audio#为自己的-game-feature-注册-cue-目录)。
+
+## 世界隔离与生命周期
+
+Experience 激活动作时会设置 `FGameFeatureActivatingContext` 的世界上下文。一次 PIE 可能在同一进程中有多个 World；插件注册是进程层面的事，给哪个 Pawn 添加组件却必须按 World 区分。
+
+`GameFeatureAction_WorldActionBase` 提供世界开始相关的入口；派生动作保存组件请求、扩展句柄和委托，以便停用时回收。新功能实现必须同时设计“进入”和“离开”，否则反复 PIE 或切换世界会出现重复 HUD、重复输入、残留技能。
+
+## 预期结果、排障与练习
+
+你应该能够指出一个运行时组件来自哪个 ActionSet。组件不出现时依次查 Feature 激活、目标 Actor 基类、世界条件、客户端/服务器标记以及组件扩展事件。
+
+练习：为“只在训练场显示靶场计分面板”写依赖清单。面板资产和注册动作放训练场 Feature，共用 UI 根布局留在基础层；停用时保存并注销扩展句柄。此练习是新增界面的设计任务；当前训练场实战验证已有 Shooter HUD 的装配与重生唯一性，未生成这块自定义计分面板。

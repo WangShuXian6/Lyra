@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T18:46:48.583771+00:00",
+  "finishedAt": "2026-09-13T18:46:48.645031+00:00",
+  "processId": 37960,
+  "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+  "engine": "5.8.1-0+UE5",
+  "asset": "/Game/MMO/Abilities/DA_MMOAbilities.DA_MMOAbilities",
+  "passed": true,
+  "saved": true,
+  "graphsReconstructed": false,
+  "gameplayExecuted": false,
+  "scope": "Only InputTag and InputID of the two existing DA_MMOAbilities grants.",
+  "errors": [],
+  "beforeAssetFile": {
+    "path": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+    "bytes": 3350,
+    "sha256": "7c0ec7a3f3b5b2c5d781e6ac27619c0b7e1ade793808303514bae612be4c83d2"
+  },
+  "native": {
+    "passed": true,
+    "saved": false,
+    "assetsModified": true,
+    "graphsReconstructed": false,
+    "gameplayExecuted": false,
+    "date": "2026-09-13T18:46:48.585Z",
+    "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+    "asset": "/Game/MMO/Abilities/DA_MMOAbilities.DA_MMOAbilities",
+    "before": {
+      "grantedAbilities": [
+        {
+          "ability": "/Script/MMORPG.MMOAttackAbility",
+          "level": 1,
+          "inputID": 0,
+          "inputTag": "None"
+        },
+        {
+          "ability": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+          "level": 1,
+          "inputID": 1,
+          "inputTag": "None"
+        }
+      ],
+      "grantedEffects": [],
+      "grantedAttributes": []
+    },
+    "after": {
+      "grantedAbilities": [
+        {
+          "ability": "/Script/MMORPG.MMOAttackAbility",
+          "level": 1,
+          "inputID": -1,
+          "inputTag": "InputTag.MMO.Attack"
+        },
+        {
+          "ability": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+          "level": 1,
+          "inputID": -1,
+          "inputTag": "InputTag.MMO.Spell"
+        }
+      ],
+      "grantedEffects": [],
+      "grantedAttributes": []
+    },
+    "onlyInputFieldsChanged": true,
+    "uniqueInputTags": true,
+    "inputIDsAreNone": true,
+    "modifiedAssetCount": 1
+  },
+  "savedAssetCount": 1,
+  "afterAssetFile": {
+    "path": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+    "bytes": 3588,
+    "sha256": "2d9f46939392876b3b038ecb39ebaebccbc9f77dcf0c0434b7451ce299ef3626"
+  }
+}

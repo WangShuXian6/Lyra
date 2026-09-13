@@ -1,0 +1,12 @@
+{
+  "finishedAt": "2026-09-13T17:11:34.1662113Z",
+  "normalCloseRequested": true,
+  "editorPid": 19024,
+  "log": "verification/training-final-editor.log",
+  "tcp8000Listeners": 0,
+  "mapSaveReport": "verification/training-final-map-save.json",
+  "finalSavedMapBytes": 193375,
+  "exited": true,
+  "exitCode": 0,
+  "finalSavedMapSha256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3"
+}

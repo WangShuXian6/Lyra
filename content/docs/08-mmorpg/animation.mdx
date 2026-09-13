@@ -1,0 +1,197 @@
+---
+title: UE 自带角色与模块化动画
+description: 用 Manny、PawnData、主动画蓝图和 Linked Animation Layers，把角色外观与 Lyra 风格的初始化、GAS 和动画职责连接起来。
+---
+
+## 学习目标与前置条件
+
+把空白 MMORPG 的角色配置成 UE 自带的 Manny，并理解如何切换 Quinn。角色类处理网络与玩法，PawnData 选择角色蓝图，角色蓝图设置 Mesh 与 Anim Class，主动画蓝图组织可替换的动画层。运动数据由 C++ 提供，具体姿态混合在 Anim Blueprint 中编辑。
+
+前置条件：完成 [依赖迁移](/docs/08-mmorpg/migration)，编译 MMORPGEditor，理解 [角色与 GAS](/docs/08-mmorpg/character-gas)。本篇基于本机 UE 5.8.1，核对日期 **2026-09-13**。动画层的组织方式参考 Lyra；原始 Lyra 的全部射击动画与项目类依赖没有直接搬入新工程。
+
+## 从引擎模板准备 Manny 和 Quinn
+
+本机角色资源在：
+
+~~~text
+E:/UnrealEngine/Templates/TemplateResources/High/Characters/Content/Mannequins
+~~~
+
+1. 保存未保存工作，正常关闭正在使用 MMORPG 项目内容的编辑器、客户端和独立服务器。运行中的游戏进程可能持有资源文件，导致后续资产保存失败；先等待服务器最终存档完成再结束它。
+2. 在资源管理器打开上面的目录。确认有 Meshes、Anims、Materials、Textures 与 Rigs。
+3. 打开 `F:/UE/LyraDocLabs/MMORPG/Content`，新建 Characters 文件夹。
+4. 将整个 Mannequins 文件夹复制到 Characters 下。目标是 `Content/Characters/Mannequins`，不要变成 `Content/Mannequins` 或多套一层 Content。
+5. 打开 MMORPG 编辑器，在 Content Browser 的 `Characters/Mannequins/Meshes` 找到 `SKM_Manny_Simple`、`SKM_Quinn_Simple` 和 `SK_Mannequin`。
+6. 双击 Manny 网格，确认模型、材质与骨骼正常。此处若贴图缺失，先检查复制路径与 Materials/Textures 文件夹。
+
+脚本 `scripts/prepare-labs.ps1 -Lab MMORPG` 按 `dependencies.json` 做相同本地复制，`-EngineRoot` 可更换引擎目录。若模板目录不存在，先安装引擎的 Templates and Feature Packs。文档仓库提供清单与自制增量，官方角色资产从用户自己的引擎安装准备。`source-evidence/engine-mannequin.json` 记录本机复制的 128 个文件、大小和 SHA-256。
+
+## 明确资产职责
+
+| 资产或类 | 职责 | 后续替换位置 |
+| --- | --- | --- |
+| `DA_MMOExperience` | 选择本区域玩法与 PawnData | Experience 数据资产 |
+| `DA_MMOPlayer` | 选择 PawnClass、输入与 AbilitySet | PawnData 数据资产 |
+| `BP_MMOCharacter` | 设置继承 Mesh 的模型、偏移和动画类 | Blueprint Components / Details |
+| `UMMOAnimInstance` | 游戏线程采集运动状态，管理 ASC 标签委托 | C++ 基类 |
+| `ALI_MMOCharacter` | 定义 Locomotion 动画层接口 | Animation Layer Interface |
+| `ABP_MMOUnarmed` | 实现无武器运动与空中姿态 | Locomotion 层图 |
+| `ABP_MMOCharacter` | 组合 Linked Layer、Montage Slot、最终姿态 | 主 AnimGraph |
+
+Lyra 的主图、Linked Layers 和线程安全更新分别承担不同职责。新实验保留这些边界：可以替换动作集合，同时继续使用相同 Pawn 初始化与动画数据接口。[Epic 的 Lyra 动画说明](https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine)可对照官方复杂射击图；本篇先把这些机制落到较小的可编辑图中。
+
+## 建立 C++ 动画数据接口
+
+`Source/MMORPG/Public/MMOAnimInstance.h` 与 Private 中同名 cpp 属于 MMORPG 模块。依赖 Engine 与 GameplayAbilities。两个 Anim Blueprint 都以 `MMOAnimInstance` 为父类：
+
+~~~cpp title="MMOAnimInstance.h：动画图读取的状态"
+UPROPERTY(BlueprintReadOnly, Category="MMO|Locomotion")
+float GroundSpeed = 0.f;
+
+UPROPERTY(BlueprintReadOnly, Category="MMO|Locomotion")
+bool bIsFalling = false;
+~~~
+
+`NativeUpdateAnimation` 在游戏线程读取 Character 的 Velocity 与 CharacterMovement，再写入上述快照。动画图使用变量读取节点处理数值与混合，工作线程不查询世界或调用 HTTP。启用多线程动画更新后，也不能把任意 UObject 调用移动到 Blueprint Thread Safe Update 中；需要通过 Property Access 或已准备好的数据访问。
+
+`GameplayTagPropertyMap` 沿用 Lyra 的标签到 Blueprint 属性映射思路，保存地址稳定的结构。ASC 位于 PlayerState，Avatar 是当前 Pawn；PlayerState 复制晚于 Mesh 初始化时，动画实例检查弱引用身份并重新绑定。`NativeUninitializeAnimation` 显式解除委托，使旧 Mesh 销毁、重生或切换角色后不再接收旧状态。
+
+## 手动创建动画层接口
+
+1. 在 Content Browser 新建 `Content/Characters/MMO` 文件夹。
+2. 右键选择 **Animation → Animation Layer Interface**，命名 `ALI_MMOCharacter`。
+3. 双击打开，在 My Blueprint 的 **Animation Layers** 点击添加，命名 `Locomotion`。
+4. 此层不添加输入参数，保留输出 Pose。
+5. 编译并保存。接口只约定层名与输入输出，不在接口里实现动画资产混合。
+
+![ALI_MMOCharacter 原生接口编辑器：My Blueprint 中定义 Locomotion 动画层](/media/configuration/mmorpg/animation-layer-interface.png)
+
+图：`/Game/Characters/MMO/ALI_MMOCharacter`。先在左侧定位 **Locomotion** 签名，再核对它属于 Animation Layers。此接口不放 BlendSpace 或角色运动逻辑；这些节点在下一步的实现类中配置。
+
+## 创建无武器层实现
+
+1. 在 Characters/MMO 右键创建 **Animation Blueprint**。
+2. Parent Class 选择 **MMOAnimInstance**，Target Skeleton 选择 `SK_Mannequin`，命名 `ABP_MMOUnarmed`。
+3. 打开 Class Settings，在 **Implemented Interfaces** 添加 `ALI_MMOCharacter`，编译。
+4. 在 My Blueprint 打开 **Locomotion** 层图。
+5. 从 Asset Browser 将 `/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run` 拖入图中，创建 BlendSpace Player。
+6. 双击 Blend Space，在 Asset Details 核对 **Horizontal Axis = Direction**、**Vertical Axis = Speed**。回到层图读取 **Ground Speed**，连接节点显示的 **Speed** 输入（原生引脚名 **Y**）；**Direction**（原生引脚名 **X**）保留 `0.0`。不要根据引脚顺序猜测速度轴：把速度接到 Direction 仍能编译，但 Speed 会一直为零，移动时仍采样 Idle。
+7. 拖入 `/Game/Characters/Mannequins/Anims/Unarmed/Jump/MM_Fall_Loop`，创建 Sequence Player，在 Details 启用 **Loop Animation**。
+8. 添加 **Blend Poses by bool**，读取 **Is Falling**，接到 **Active Value**。
+9. 将 Fall Loop 的 Pose 接 **True Pose**，BlendSpace 的 Pose 接 **False Pose**。
+10. 将混合输出接到该层 Output Pose。保留短混合时间，避免状态变化时瞬间跳姿势。
+11. 在 ABP_MMOUnarmed 的主 AnimGraph 中添加 **Local Space Ref Pose**，连 Output Pose。外部链接时使用的是 Locomotion 层；此默认主图给独立预览提供合法输出。
+12. 编译、保存，查看 Compiler Results。修改某条连线后立即检查，不要带着报错继续配置主图。
+
+![ABP_MMOUnarmed 的 Class Settings：父类 MMOAnimInstance，实现 ALI_MMOCharacter](/media/configuration/mmorpg/animation-unarmed-class-settings.png)
+
+图：`/Game/Characters/MMO/ABP_MMOUnarmed`，步骤 2–4 的类设置。**Parent Class** 选择 `MMOAnimInstance`，**Implemented Interfaces** 添加 `ALI_MMOCharacter`；左侧出现 Locomotion 后，双击进入该层图。
+
+![无武器层中选中 BlendSpace Player 后的节点 Details：BS_Idle_Walk_Run，速度进入 Speed，Direction 为零](/media/configuration/mmorpg/animation-unarmed-blendspace-details.png)
+
+图：步骤 5–6，在图中单击 **BlendSpace Player 节点本体**，右侧 Details 显示它实际引用的 `BS_Idle_Walk_Run`。绿色线连接 **Speed**，未接线的 **Direction** 保持 `0.0`。这张配置图用于定位节点属性；下方的原生 1:1 完整图可逐条查看连线。
+
+![无武器层中选中 Fall Sequence Player 后的 Details：MM_Fall_Loop 与已启用的 Loop Animation](/media/configuration/mmorpg/animation-unarmed-fall-details.png)
+
+图：步骤 7，改选 **Sequence Player**，核对动画资产为 `MM_Fall_Loop`，并勾选 **Loop Animation**。播放一次后停止的 Sequence Player 不适合保持持续的空中姿态。
+
+本阶段验证站立、步行/跑动和空中姿态。Fall Loop 用于空中状态，后续可在该层中扩展 Jump Start、Apex、Land、停步与转向状态；它们都应留在动画图，保持主角色类的职责。
+
+<BlueprintGraph src="/media/mmorpg/mmo-unarmed-locomotion.png" alt="ABP_MMOUnarmed 的完整 Locomotion 层：Ground Speed 接 Speed，Direction 为零，Is Falling 控制 Fall Loop 与地面 Blend Space 的混合" caption="/Game/Characters/MMO/ABP_MMOUnarmed:Locomotion；UE 5.8.1，2026-09-13 14:49 UTC；BlueprintScreenshotTool 原生 1:1、1717×947。图中包含 Output Pose 的六个节点；Speed 对应原生 Y 引脚。" download="/blueprints/mmorpg/mmo-unarmed-locomotion.txt" />
+
+对照原图逐条检查：绿色速度线进入 **Speed**；红色布尔线进入 **Active Value**；上方 Fall Loop 接 **True Pose**，下方地面 Blend Space 接 **False Pose**；混合结果接最后的 **Result**。True/False Blend Time 均为 `0.1`，这是动画姿态的混合时间，与 CommonUI 菜单层栈的过渡无关。
+
+## 创建主动画蓝图
+
+1. 用相同父类和骨骼新建 `ABP_MMOCharacter`。
+2. Class Settings 添加 `ALI_MMOCharacter`。
+3. 在该 Blueprint 的 Locomotion 层建立相同的运动混合，作为未覆盖层时的默认实现；编译。
+4. 打开主 **AnimGraph**，添加 **Linked Anim Layer**。
+5. 在节点 Details 中选择 **Layer = Locomotion**，**Instance Class = ABP_MMOUnarmed**。确认指向 ALI_MMOCharacter 对应接口。
+6. 添加 **Slot** 节点，Slot Name 设为 **DefaultSlot**。
+7. 将 Linked Layer 的 Pose 接 Slot 的 Source，再将 Slot 输出接 Output Pose。
+8. 在 Class Defaults 确认 **Use Multi Threaded Animation Update** 开启，编译保存。
+
+![主动画蓝图 Class Settings：MMOAnimInstance 父类、ALI_MMOCharacter 接口及 Locomotion 层](/media/configuration/mmorpg/animation-main-class-settings.png)
+
+图：`/Game/Characters/MMO/ABP_MMOCharacter`。主图与无武器层都实现同一个接口，并以 `MMOAnimInstance` 为父类；不要只给其中一个 Blueprint 添加接口。
+
+![主 AnimGraph 的 Linked Anim Layer 节点 Details：Layer 为 Locomotion，Instance Class 为 ABP_MMOUnarmed](/media/configuration/mmorpg/animation-linked-layer-settings.png)
+
+图：步骤 4–5，选中 **Linked Anim Layer** 后，在 Details 配置 **Layer = Locomotion**、**Instance Class = ABP_MMOUnarmed**。节点名称相同不代表类引用相同，必须检查右侧选择器。
+
+![主 AnimGraph 的 Slot 节点 Details：Slot Name 为 DefaultGroup.DefaultSlot](/media/configuration/mmorpg/animation-slot-settings.png)
+
+图：步骤 6，选中 **Slot**，确认实际名称是 **DefaultGroup.DefaultSlot**。以后设置技能 Montage 时，在 Montage 的 Slot Track 中选择这个槽；只把节点连到 Output Pose，并不会自动播放技能 Montage。
+
+主图负责组合，层负责动作集合。以后装备一种武器时，可让新的 Anim Blueprint 实现相同接口，再由玩法的装备/能力生命周期调用 `Link Anim Class Layers` 切换；卸下时恢复默认层。Montage Slot 是能力动画的接入位置，接入技能 Montage 时还要处理 GAS 取消、中断与结束回调，不应在动画通知里直接决定服务器伤害。
+
+<BlueprintGraph src="/media/mmorpg/mmo-character-animgraph.png" alt="ABP_MMOCharacter 主 AnimGraph 的三个节点：ABP_MMOUnarmed Locomotion 链接层、DefaultSlot 与最终 Output Pose" caption="/Game/Characters/MMO/ABP_MMOCharacter:AnimGraph；UE 5.8.1，2026-09-13 14:50 UTC；原生 1:1、1417×437。姿态先经可替换的 Locomotion 层，再进入 DefaultGroup.DefaultSlot，最后输出。" download="/blueprints/mmorpg/mmo-character-animgraph.txt" />
+
+## 在角色蓝图设置模型与动画类
+
+1. 打开 `/Game/Tutorial/BP_MMOCharacter`；若打开的是 Data Only 视图，点击 **Open Full Blueprint Editor**。
+2. 在 **Components** 选继承的 **Mesh**，不要另添加一套临时 Static Mesh。
+3. 在 Details 的 **Skeletal Mesh Asset** 选 `SKM_Manny_Simple`。
+4. **Animation Mode = Use Animation Blueprint**，**Anim Class = ABP_MMOCharacter**。
+5. 选 Capsule Component 读取 **Capsule Half Height**。回 Mesh 将 Location X/Y 设 0、Z 设为该半高的负值；Rotation Yaw 设 -90，Pitch/Roll 设 0。视口确认双脚位于胶囊底部、正面与角色前方一致。
+6. Mesh Collision Profile 选 **CharacterMesh**。主移动碰撞继续由 Capsule 负责。
+7. 编译保存，再选 Mesh，确认模型、动画类和偏移仍保留。
+8. 打开 `/Game/MMO/Pawns/DA_MMOPlayer`，确认 Pawn Class 指向此 BP_MMOCharacter；保存。
+9. 打开 `DA_MMOExperience`，确认 Default Pawn Data 指向 DA_MMOPlayer；保存。
+
+![BP_MMOCharacter 完整编辑器：选中继承的 Mesh，Manny 预览与模型、动画类和相对变换同屏](/media/configuration/mmorpg/character-manny-component-preview.png)
+
+图：`/Game/Tutorial/BP_MMOCharacter`，原生 **2580×1200** 配置窗口。左侧选中继承的 **Mesh (CharacterMesh0)**；右侧核对 `SKM_Manny_Simple`、**Use Animation Blueprint** 和 `ABP_MMOCharacter_C`。本实验的相对位置为 `(0, 0, -88)`，相对旋转为 `(0, 0, -90)`；`-88` 来自当前胶囊半高，换模型或胶囊尺寸时重新核对。
+
+![同一 Mesh 的碰撞属性：CharacterMesh 预设和 Query Only，无物理碰撞](/media/configuration/mmorpg/character-mesh-transform-collision.png)
+
+图：保持 Mesh 选中，在 Details 搜索 **Collision**，核对 **Collision Presets = CharacterMesh**、**Collision Enabled = Query Only (No Physics Collision)**。这不是关闭角色的全部碰撞：胶囊仍处理移动碰撞，Mesh 保留所需查询。检查完清空搜索框，避免下次误以为动画或变换字段消失。
+
+以上配置图由 UE 5.8.1 原生 Slate 窗口直接采集，保留完整像素。素材路径、采集时间与当时的资产 SHA-256 在 `source-evidence/configuration-mmorpg.json`；配置窗口尺寸与游戏预览的 1920×1080 分开记录。
+
+替换 Quinn 时复制角色 Blueprint，修改 Skeletal Mesh Asset 为 SKM_Quinn_Simple，再检查 Skeleton 兼容、材质和脚部偏移。将新的 Blueprint 配到另一份 PawnData 中，保持角色选择与外观配置分离。
+
+## 生成脚本与蓝图文本验证
+
+`prepare_content.py` 依次调用 Editor-only 的 `MMOAnimationTools.prepare_character_animation()` 和 `configure_character()`。这些方法通过原生 AnimGraph/Blueprint API 创建、连接、编译和保存上述资产，游戏 Runtime 不包含此编辑器模块。
+
+生成器还导出主图与 Locomotion 的原生节点文本，在独立 Blueprint 副本中导入再编译。报告包含源图/导入节点数、编译错误和警告。模型默认值在编译后重新检查，避免只修改了临时实例而没有保存 Blueprint Defaults。
+
+下载 [主 AnimGraph 的原生节点文本](/blueprints/mmorpg/mmo-character-animgraph.txt) 和 [Locomotion 层的原生节点文本](/blueprints/mmorpg/mmo-unarmed-locomotion.txt)。粘贴前需要本节创建的 ALI_MMOCharacter、UMMOAnimInstance、ABP_MMOUnarmed，以及模板 Blend Space 和 Fall Loop；节点文本不会自动安装这些依赖。
+
+**2026-09-13 16:45 UTC / UE 5.8.1 新进程复验：** 三个已有动画资产严格编译为 0 errors / 0 warnings，两处运动层都确认 **GroundSpeed → Speed/Y**。主图的两个可复制节点、层图的五个可复制节点在独立副本中原生导入、连接输出并重新编译，均为 0 errors / 0 warnings；原资产的 Graph/Node GUID 保持不变。`verification/mmorpg-animation-assets.json` 记录过程，`source-evidence/mmorpg-native-graphs.json` 记录本次重新导出的两份下载文本的 SHA-256。角色默认值报告另确认 Mesh=Manny、Anim Class=ABP_MMOCharacter、Z=-88、Yaw=-90 在编译后仍保留。运行时动作与重生验证另行记录。
+
+对已编辑过的实验资产，使用 `scripts/mmorpg/validate-existing-content.py` 调用原生严格验证即可；它顺序执行动画复验与标签扫描，汇总进程 ID、报告时间和哈希到 `verification/mmorpg-existing-content-validation.json`。这条维护路径保留原图，适合在 C++ 编译或配置更新后复查。
+
+先保存并关闭旧 MMORPG 编辑器，再在 **PowerShell 7** 执行：
+
+```powershell
+& 'E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe' `
+  'F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject' `
+  '-ExecutePythonScript=F:/UE/LyraDoc/scripts/mmorpg/validate-existing-content.py' `
+  '-LiveCoding=false' '-corelimit=3'
+```
+
+入口会让完成脚本的编辑器保持打开。先在实验项目的 `Saved/Evidence/mmorpg-existing-content-validation.json` 检查 `passed=true`、当前进程 ID 和本次时间，再打开两个子报告核对编译与扫描结果。仓库 `verification/` 是发布时复制的验收记录，不会因为你本地重跑而自动代表本次结果。
+
+**下载文件保留目标图已有的 Output Pose。** 导出器按原生 `CanDuplicateNode()` 筛选节点，主图导出 Linked Layer 和 Slot 两个节点；层图导出速度、空中状态、BlendSpace、Fall Loop 与布尔混合五个节点。在目标 AnimGraph 或 Locomotion 层中保留现有 Output Pose，粘贴后将末端 Pose 重新接入它的 Result 输入，再编译保存。不要把编辑器全选后剪贴板中的对象总数直接当成可导入节点数；本机 Ctrl+A/Ctrl+C 还会序列化 Output Pose。截图展示包含 Output Pose 的完整图，验证报告分别记录完整图和实际导入的节点数。
+
+## 预期结果、排障与练习
+
+以 1920×1080、中等画质启动客户端。站立时播放 Idle，移动时速度驱动 Blend Space，离地时切空中姿态；第二个客户端应看到同一角色的复制移动与本地动画。重生和切换角色后，检查 Pawn、AnimInstance 与 ASC Avatar 指向新对象。
+
+**2026-09-13 19:27–19:28 UTC，实际打包 Client 移动验证：** 在客户端 A 完成并行动画求值后，读取真正运行的 `ABP_MMOUnarmed` Linked Layer 中 BlendSpace Player。两次移动采样的 Direction/X 均为 0、Speed/Y 与 filteredY 均为 125、节点权重为 1，播放时间由约 4.190 秒推进到 6.651 秒（动画长度约 7.567 秒）。这项记录来自实际节点输入和求值结果，不只是 C++ 的 GroundSpeed 变量；详见 `verification/mmorpg-packaged-rendered-showcase.json` 的 client-1.locomotion。客户端 B 留作同场观察，此报告不声称对 B 做过相同移动采样。两个客户端的死亡重生另由 `mmorpg-packaged-smoke.json` 验证 Pawn 替换、ASC 保留和 Designer 绑定。
+
+| 现象 | 检查位置 |
+| --- | --- |
+| 角色为参考姿势 | Mesh Anim Class、主 Linked Layer Instance Class、编译结果 |
+| 有模型但没有材质 | 模板复制路径与依赖，是否保留 Characters/Mannequins |
+| 地面一直播放空中姿态 | 胶囊落地、CharacterMovement IsFalling、场景地面碰撞 |
+| 角色位置在移动但双腿仍站立 | Blend Space 的 Speed/Y 是否接 GroundSpeed；Direction/X 保持 0；运行中检查当前样本播放时间是否推进 |
+| 移动方向与模型朝向差 90 度 | Mesh 相对 Yaw，而不是随意改 Actor Rotation |
+| 重生后标签状态不更新 | PlayerState ASC 身份、动画实例解绑、Pawn InitState 完成次序 |
+| Interface 不可选或 Layer 无效 | ALI 已编译，两个 ABP 都实现相同接口，层名一致 |
+| PIE 正常但包内丢模型 | PawnData 引用链、Cook 清单、模板资源是否复制进项目 Content |
+
+练习：复制 ABP_MMOUnarmed，在相同 Locomotion 接口下制作慢走动作集合；通过替换 Linked Layer 验证主 AnimGraph 无需改线，再记录层资产、设置字段与实际游戏截图。

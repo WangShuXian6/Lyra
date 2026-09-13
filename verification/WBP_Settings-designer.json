@@ -1,0 +1,179 @@
+{
+  "date": "2026-09-13T13:05:28.543Z",
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "asset": "/Game/UI/WBP_Settings.WBP_Settings",
+  "parent": "/Script/MMORPG.MMOSettingsPanel",
+  "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+  "localizationNamespace": "MMOUI",
+  "nativeCulture": "en",
+  "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+  "widgets": [
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "isVariable": true
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "isVariable": true
+    },
+    {
+      "name": "SettingsLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "isVariable": true
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "QualityHeading",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "QualityActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "isVariable": true
+    },
+    {
+      "name": "LowQualityButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "LowQualityButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "LowQualityButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "MediumQualityButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "MediumQualityButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "MediumQualityButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "HighQualityButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "HighQualityButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "HighQualityButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "LanguageHeading",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "LanguageActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "isVariable": true
+    },
+    {
+      "name": "ChineseButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "ChineseButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "ChineseButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "EnglishButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "EnglishButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "EnglishButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "LogoutButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "LogoutButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "LogoutButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "CloseButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "CloseButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "CloseButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    }
+  ],
+  "bindings": [],
+  "widgetCount": 30,
+  "canvasCount": 0,
+  "bindingCount": 0,
+  "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+  "compilerErrors": 0,
+  "compilerWarnings": 0,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_Settings-designer.json"
+}

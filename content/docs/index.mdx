@@ -1,0 +1,36 @@
+---
+title: 学习路线
+description: 从第一次运行官方示例，到构建自己的射击训练场与 MMORPG。先选择路线，再跟着实际工程验证。
+---
+
+这份手册面向会使用 UE 编辑器、尚未系统学习 Lyra 的开发者。代码与资产以 **UE 5.8.1 的本机 Lyra 项目**为依据，教程会补充读懂相关代码所需的 C++、蓝图、GAS 与网络概念。
+
+## 路线 A：从 Lyra 开始
+
+1. [环境与第一次运行](/docs/01-start)：确认引擎、项目和构建目标，运行官方体验。
+2. [启动与架构](/docs/02-architecture)：追踪 Experience 如何加载，再跟到角色和输入初始化。
+3. [Gameplay Ability System](/docs/04-gas)：把输入、技能、效果、属性和网络状态连接起来。
+4. [UI 系统](/docs/06-ui)：学习界面如何被创建、插入、激活，以及如何接收数据。
+5. [射击训练场](/docs/07-training)：用一个独立 Game Feature 组合自己的玩法。
+
+## 路线 B：从自己的项目开始
+
+1. [空白 MMORPG 工程](/docs/08-mmorpg)：从一个新 C++ 项目逐步接入必要系统。
+2. [MMORPG UI 与 MVVM](/docs/09-mmo-ui)：构建登录、角色、HUD、技能栏和背包界面。
+3. [UE 独立后端 Program](/docs/10-backend)：用 UE 模块体系构建账号与角色存档服务。
+4. 联调客户端、独立游戏服务器、后端和数据库，验证退出再进入时的状态恢复。
+
+两条路线可以交叉阅读。遇到 Experience、PawnData、AbilitySet 等名词时，先回到架构篇找到它们在初始化流程中的位置。
+
+## 怎样使用代码与蓝图
+
+- **源码位置**用于在自己的 Lyra 副本中定位实现，阅读前先确认版本。
+- **蓝图原图**保留完整节点细节。点击“1:1 查看”后拖动或滚动查看大图，点击“适应宽度”返回总览。
+- **节点文本**是 UE 原生复制格式。先准备相同父类、变量和依赖，再粘贴到指定图表；它不包含依赖资产本体。
+- **预期结果**告诉你操作完成后应该观察到什么；它与记录实际执行结果的验证记录是两个不同概念。
+
+## 版本与来源
+
+本手册是独立教学项目。Lyra、Unreal Engine 及其官方示例内容来自 Epic Games；本地截图工具是额外的编辑器工具，不属于 Lyra 玩法架构。
+
+官方入口：[Lyra Sample Game](https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-sample-game-in-unreal-engine)。配套文件与复现方式见[配套资料](/docs/downloads)。

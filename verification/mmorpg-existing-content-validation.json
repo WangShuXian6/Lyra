@@ -1,0 +1,22 @@
+{
+  "processId": 30180,
+  "startedAt": "2026-09-13T16:45:11.329816+00:00",
+  "project": "F:/UE/LyraDocLabs/MMORPG",
+  "passed": true,
+  "sourceGraphsReconstructed": false,
+  "steps": [
+    {
+      "script": "validate-animation.py",
+      "report": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/mmorpg-animation-assets.json",
+      "passed": true,
+      "sha256": "04563c656c5e605d448a61cc8d2f35a20a428d65f45b4f58fc1c118753ab354c"
+    },
+    {
+      "script": "validate-health-cook-label.py",
+      "report": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/mmorpg-health-cook-label-scan.json",
+      "passed": true,
+      "sha256": "c83a7e1d384dda7b55420fac6c4550d9487eb178565a6682a1ff4a3c0dbb7d1b"
+    }
+  ],
+  "completedAt": "2026-09-13T16:45:12.202742+00:00"
+}

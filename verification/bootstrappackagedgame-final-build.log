@@ -1,0 +1,31 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" BootstrapPackagedGame Win64 Shipping -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+Log file: E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Log.txt
+Executing up to 3 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (E:\UnrealEngine).
+Creating makefile for BootstrapPackagedGame (no existing makefile)
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+Building BootstrapPackagedGame...
+===== Toolchain Information =====
+Using ISPC compiler (E:\UnrealEngine\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.50.35737 toolchain (D:\program\0-editer\vs\VC\Tools\MSVC\14.50.35717) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 6 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 31.82 GB physical, 30.48 GB/49.82 GB committed
+  UBA Storage capacity 40 GB
+[1/6] Copy BootstrapPackagedGame-Win64-Shipping-Default.rc2 [NoUba]
+[2/6] Copy AutoRTFM.natvis [NoUba]
+[3/6] Compile Resource [x64] BootstrapPackagedGame-Win64-Shipping-Default.rc2 [NoUba]
+[4/6] Compile [x64] Module.BootstrapPackagedGame.cpp [NoUba]
+[5/6] Link [x64] BootstrapPackagedGame-Win64-Shipping.exe [NoUba]
+[6/6] WriteMetadata BootstrapPackagedGame-Win64-Shipping.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 1.38 seconds
+Output binary: E:\UnrealEngine\Engine\Binaries\Win64\BootstrapPackagedGame-Win64-Shipping.exe
+
+Result: Succeeded
+Total execution time: 4.31 seconds
+Trace written to file E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Trace.uba with size 4.1kb

@@ -1,0 +1,44 @@
+---
+title: 交互：发现目标、显示提示、执行能力
+description: 通过 InteractionOption 和 LyraGameplayAbility_Interact 理解两种交互能力归属。
+---
+
+## 学习目标与前置条件
+
+前置：GAS 和 UI 的基本概念。目标是解释“看见交互提示”和“有权执行交互”为什么是不同阶段。源码与资产核对于 2026-09-13，UE 5.8.1。
+
+交互目标实现 `IInteractableTarget`，返回 `FInteractionOption`。选项既可指定临时授予交互者的能力，也可指定目标自己 ASC 上已有的能力句柄。按钮控制远处的门时，目标还可以自定义事件 Payload，让真正的作用对象与按钮 Actor 不同。
+
+## 操作步骤
+
+1. 在插件内容中打开 `/ShooterExplorer/Maps/L_InteractionTestMap`，查看其中实际交互对象和对应 Experience。该内容属于额外示例 Feature，先确认插件可用。
+2. 打开 `/ShooterExplorer/Interact/GA_Interaction_Collect` 或 `GA_Interaction_Sit`，查看父类、事件参数和目标对象。
+3. Rider 查看 `Source/LyraGame/Interaction/InteractionOption.h`，对照文本、子文本、能力类、目标 ASC、句柄和 UI 类字段。
+4. 在 `ULyraGameplayAbility_Interact::UpdateInteractions` 设置断点，观察指示器先移除再按新选项创建。
+5. 在 `TriggerInteraction` 查看 CurrentOptions、Payload.Instigator、Payload.Target 和 TargetAbilitySystem。
+
+## 原生能力的默认策略
+
+`LyraGameplayAbility_Interact.cpp` 构造函数中：
+
+```cpp
+ActivationPolicy = ELyraAbilityActivationPolicy::OnSpawn;
+InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
+```
+
+激活后，服务器侧创建 `UAbilityTask_GrantNearbyInteraction` 任务，按范围和扫描频率检查附近可交互项。用于视线选中的任务 `AbilityTask_WaitForInteractableTargets_SingleLineTrace` 是另一条职责，不要把附近授予和视线提示混为一次 Trace。
+
+`TriggerInteraction` 当前从 `CurrentOptions[0]` 选择选项。若你的游戏需要轮盘或多选菜单，必须明确新增选择状态；示例不会自动替你选择最重要的一项。
+
+## 提示 UI 与执行条件
+
+提示通过 `ULyraIndicatorManagerComponent` 和 IndicatorDescriptor 关联目标场景组件。看得到 Widget 只说明本地发现并展示了选项；正式执行时仍要验证目标有效、距离、能力句柄和游戏规则。
+
+宝箱领取物品还需要服务器检查是否已被领取，后端持久化时要有幂等键或对应事务。交互接口降低对象耦合，不负责数据库一致性。
+
+## 预期结果、排障与练习
+
+视线或距离变化时提示更新，按键触发正确目标能力；离开范围后旧提示和临时状态被清理。提示不显示时查 IndicatorManager 是否存在；能显示不能执行时查 TargetAbilitySystem 和能力句柄。
+
+练习：设计“门锁需要钥匙”的两种实现，分别把执行能力放玩家或门上。写出钥匙消费、开门复制与失败提示的权限边界。官方补充见 [Lyra Interaction System](https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-interaction-system-in-unreal-engine?lang=en-US)。

@@ -1,0 +1,37 @@
+---
+title: 从零认识 Lyra
+description: 先跑通一次官方玩法，再学会用游戏行为导航源码和资产。
+---
+
+Lyra 是一个可研究的完整示例。第一次打开时，先回答“我在运行哪个地图、哪个 Experience、哪个角色”，比从任意大类的第一行开始通读更容易建立联系。
+
+本课程以本机 UE 5.8.1 工作副本为依据，源码和配置核对日期为 2026-09-13。学习时保留英文类型和资产名字，以便直接搜索。教程区分静态源码结论、真实编辑器素材与实际运行验收；尚未运行的步骤不会当作已通过。
+
+## 这一篇的三次练习
+
+1. [环境与构建](/docs/01-start/environment)：确认引擎、工程和 Editor 目标，识别 Live Coding 与完整构建的边界。
+2. [第一次进入游戏](/docs/01-start/first-session)：找到官方地图、记录 Experience，观察移动、跳跃、开火和返回菜单。
+3. [工程地图](/docs/01-start/project-map)：以一把步枪为例，从资产找到原生父类、运行实例和拥有者组件。
+
+## 开始前准备
+
+你应会打开蓝图、使用 Content Browser、运行和停止 PIE。C++ 不熟悉也可以先沿字段和函数名字阅读，再回到解释；编写实战增量前，需要理解头文件、模块依赖和 UObject 基础。
+
+本机基准在 `F:/UE/LyraStarterGame`，文档在 `F:/UE/LyraDoc`，实验工程使用 `F:/UE/LyraDocLabs`。不要在基准中直接改官方资产后，又把变化当作默认行为讲给下一位读者。
+
+前六章可以先在官方项目中**只读查看**。凡是要求修改 `/TrainingRange/...` 的练习，都需要先完成[训练工程准备](/docs/07-training)与[插件、地图和资产生成](/docs/07-training/feature-and-experience)；官方 Lyra 初始安装中没有这个包根。也可以先读完原理，到第七章再返回做修改练习。
+
+## 先分清命令在哪里执行
+
+| 本文标记 | 操作位置 | 示例与注意事项 |
+| --- | --- | --- |
+| `powershell` | Windows Terminal 的 PowerShell 7，先切到文档仓库 | `Set-Location F:/UE/LyraDoc`；`./scripts/...` 相对此目录 |
+| `py exec(...)` | Unreal 编辑器底部的 **输出日志（Output Log）**，输入模式选 **Cmd** | 原样输入整行；不要把 `py` 前缀粘到 Python 模式或系统 Python 中 |
+| `DamageSelfDestruct`、`stat unit` 等游戏命令 | 获得焦点的游戏窗口控制台 | 本机 Console Keys 包含波浪号键；输入后回车，再关闭控制台回到游戏 |
+| C++ / INI / JSON 节选 | Rider 或文本编辑器中查看所列文件 | 节选用于定位；注明新增文件时才按完整文件创建，不覆盖整个原文件 |
+
+`Source/LyraGame/...` 相对当前 Lyra 工程，`examples/...`、`scripts/...`、`verification/...` 相对文档仓库；`/Game/...`、`/ShooterCore/...` 是 Unreal 包路径。磁盘目录可以换盘，但要一起调整命令中的完整路径。训练生成脚本还校验目标目录结尾为 **LyraDocLabs/LyraTraining**，因此不能只把示例改成任意工程名字就运行。
+
+## 完成标准
+
+能够画出地图 → Experience → PawnData → 角色 → 输入/能力 → UI 的简图，并为其中至少一个箭头提供真实资产引用或 C++ 调用。接着进入[启动架构](/docs/02-architecture)。

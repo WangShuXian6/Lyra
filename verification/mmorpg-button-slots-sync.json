@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-13T14:37:14.662599+00:00",
+  "passed": true,
+  "sourceReport": "verification/mmorpg-button-slots.json",
+  "sourceReportSha256": "b07de629e332b24f8f210eae2566b8c81d3e9131186be22bff71282271c6c318",
+  "copiedAssets": [
+    {
+      "repoPath": "examples/MMORPG/Content/UI/WBP_Confirm.uasset",
+      "previousSha256": "2a6b050a7427a2bb01612488f81cfb728683cb4b00ef7a42f90892e0bf95e770",
+      "sha256": "3feaae16a58be1232e0cebb370a7befeda3029609f9e6e4fde3dadb375216a8f",
+      "bytes": 60710
+    },
+    {
+      "repoPath": "examples/MMORPG/Content/UI/WBP_Inventory.uasset",
+      "previousSha256": "388c66d203989b8dfb9103df85fee718ddfadee3c77d71e711183a169a42918b",
+      "sha256": "e8718ad26b29401c3117475f680d5eeda900452c00505730a9188f88b720fd27",
+      "bytes": 69605
+    },
+    {
+      "repoPath": "examples/MMORPG/Content/UI/WBP_Login.uasset",
+      "previousSha256": "31ecd23c5a2761005cd690092b7f522c2433234ee4e2aec3fe020dfd91748fd0",
+      "sha256": "62b8ccb02cf456c278a1da8f7e5e80df1f5255c7cfef33c636117a1b2d902dff",
+      "bytes": 135401
+    },
+    {
+      "repoPath": "examples/MMORPG/Content/UI/WBP_MMOLayout.uasset",
+      "previousSha256": "afbdf118de496e2e3039ebde279a17a26365f63400743ecc27332a47a0ad28a2",
+      "sha256": "d2fc169b9b1bc2b539985879986a2de62c7775cea99a37e629bf4f09ee73f086",
+      "bytes": 30674
+    },
+    {
+      "repoPath": "examples/MMORPG/Content/UI/WBP_ManaStatus.uasset",
+      "previousSha256": "ab38b41170355e83dbc289a331ff3c89ad15682d33b77b78403b4189cf962126",
+      "sha256": "319820ddfa2cd6063b0f6c581eaa6124bf017fb627daca26f2b6543b702f619b",
+      "bytes": 48787
+    },
+    {
+      "repoPath": "examples/MMORPG/Content/UI/WBP_PlayerHUD.uasset",
+      "previousSha256": "e3b2fa21e4e3104e3d6d5faff04a99d27bf86a1d866526c0ea61eca3126ba31f",
+      "sha256": "9658d23da3c535bee3218cb799cd57b691cbe0ee2c3664fc7be215f4e6d7df0f",
+      "bytes": 127597
+    },
+    {
+      "repoPath": "examples/MMORPG/Content/UI/WBP_Settings.uasset",
+      "previousSha256": "a2a7734008c63150508352c71726e40c885f073522b1fa7fcf3a1f0d460fccad",
+      "sha256": "1d1762341018bfb0c8d5459cf6eb2bf4b928729b2f0e20d6516aa3151278bab8",
+      "bytes": 112341
+    }
+  ],
+  "allOriginalAssetHashesVerified": 30,
+  "otherOriginalAssetsUnchanged": 23,
+  "renderedCapturesRetainPreviousAssetHashes": true,
+  "newRenderedRunRequiredAfterThisChange": true
+}

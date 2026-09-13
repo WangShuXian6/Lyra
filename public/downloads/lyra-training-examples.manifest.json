@@ -1,0 +1,321 @@
+{
+  "schemaVersion": 1,
+  "id": "lyra-training-examples",
+  "title": "Lyra 射击训练场原创教学增量",
+  "engine": "UE 5.8.1",
+  "originalAssetCount": 0,
+  "externalMaterials": [
+    {
+      "path": "public/blueprints/lyra/jump-event-graph.txt",
+      "origin": "Epic Lyra local baseline; not original tutorial content",
+      "sourceAsset": "/Game/Characters/Heroes/Abilities/GA_Hero_Jump",
+      "graph": "EventGraph",
+      "sha256": "9a79f714eea40aeab3a4d35aadc919839e85cbd22876db3b580fdee5ffe28c50",
+      "notice": "NOTICE.md"
+    },
+    {
+      "path": "public/blueprints/lyra/dash-direction.txt",
+      "origin": "Epic Lyra local baseline; not original tutorial content",
+      "sourceAsset": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "graph": "SelectDirectionalMontage",
+      "sha256": "513d2f18c9feaefe4ed5db0b07e773884214312b0af6f6d914909fa1669e51f2",
+      "notice": "NOTICE.md"
+    },
+    {
+      "path": "public/blueprints/lyra/root-layout-registration.txt",
+      "origin": "Epic Lyra local baseline; not original tutorial content",
+      "sourceAsset": "/Game/UI/W_OverallUILayout",
+      "graph": "EventGraph",
+      "sha256": "33f8c41b2cb64c24e405fbacaa4c662db1240b5c3404c41d383601bdbcf73b54",
+      "notice": "NOTICE.md"
+    }
+  ],
+  "policy": "Explicit original-source roots and script/config/asset paths; separately attributed official Blueprint node text; no official Lyra binary assets, third-party binaries, build output or populated credentials.",
+  "files": [
+    {
+      "path": "examples/LyraTraining/Config/TutorialWindowsSM6.ini",
+      "bytes": 517,
+      "sha256": "ca393f58cc8a233cb88ba841c9d55b3e39ea1a91d018d16d9a06e7c62594fea8"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/README.md",
+      "bytes": 6393,
+      "sha256": "00e8f3eee8abaf4f78f0d604cb4783281e2c7c33865055743e4e920f1270cf53"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/Private/TrainingRangeVerification.cpp",
+      "bytes": 31239,
+      "sha256": "65afc633f5437d852411337b67251195d5427b09cdb066e4a64eab2c8d88ce68"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/TrainingRangeVerification.Build.cs",
+      "bytes": 639,
+      "sha256": "117d8c57db6c3a4b39ea319546e68271e244ce66b64f4d5a0b585dbde81f8957"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/TrainingRange.uplugin",
+      "bytes": 879,
+      "sha256": "45edfe58ba451893d0b9e32e23d5f2a096ec19821434c0792efbd1ffd256c6c5"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/LyraDocTools/LyraDocTools.uplugin",
+      "bytes": 614,
+      "sha256": "e97c6ca00257d24cbf140a6505ff9320dfe546e79c9329da551cba5004975b66"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/LyraDocTools/README.md",
+      "bytes": 10303,
+      "sha256": "8230844cd6eaa4be820273af1961239742924a5774d36cc5800a92261a6f92da"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/LyraDocTools.Build.cs",
+      "bytes": 552,
+      "sha256": "2452da0fe8fbe5e515bd1956caa4d7742d5a7703fe6abdb7c8e283a4ba3fd13f"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/Private/LyraDocToolsLibrary.cpp",
+      "bytes": 17668,
+      "sha256": "d785b027c689eda406d1c9c927bf7c6c975d23f4f2b522336e914273b04b2f39"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/Private/LyraDocToolsModule.cpp",
+      "bytes": 87,
+      "sha256": "1d2d59463d80c4163f2ad065b5c7e05d8884380a7b717a4a1593be04afc1e0c8"
+    },
+    {
+      "path": "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/Public/LyraDocToolsLibrary.h",
+      "bytes": 2199,
+      "sha256": "7987e87aaea293e25749698e60e77e0c5302ac09b4c5bcb8ab41dd1ddd4ce965"
+    },
+    {
+      "path": "examples/LyraTraining/prepare_training.py",
+      "bytes": 6572,
+      "sha256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823"
+    },
+    {
+      "path": "NOTICE.md",
+      "bytes": 1342,
+      "sha256": "a5e282c8c6f6a3fcaf327a95b5d0891f6adbfbdda23eccbff0652770c983a391"
+    },
+    {
+      "path": "public/blueprints/lyra/dash-direction.txt",
+      "bytes": 74460,
+      "sha256": "513d2f18c9feaefe4ed5db0b07e773884214312b0af6f6d914909fa1669e51f2"
+    },
+    {
+      "path": "public/blueprints/lyra/jump-event-graph.txt",
+      "bytes": 59263,
+      "sha256": "9a79f714eea40aeab3a4d35aadc919839e85cbd22876db3b580fdee5ffe28c50"
+    },
+    {
+      "path": "public/blueprints/lyra/root-layout-registration.txt",
+      "bytes": 26987,
+      "sha256": "33f8c41b2cb64c24e405fbacaa4c662db1240b5c3404c41d383601bdbcf73b54"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1507,
+      "sha256": "ecad55bb47468283d361fae82db87952afcdc1e40828dae3bffecf52d8d9cf78"
+    },
+    {
+      "path": "scripts/package-training.ps1",
+      "bytes": 14609,
+      "sha256": "99436796825d9b09cd553e3ffe540553cf4a2034bf3a1827c4aae9a52157eeee"
+    },
+    {
+      "path": "scripts/patches/blueprint-screenshot-ue58.patch",
+      "bytes": 452,
+      "sha256": "f8d8edba58acef7187b938ca84ee1e3d6d00e9db0af885777b28feac01c8042a"
+    },
+    {
+      "path": "scripts/patches/README.md",
+      "bytes": 1530,
+      "sha256": "182bb348aeb48c4fcea6f3660aa9e211abaa4c42027da7533054cacac7a7a7ab"
+    },
+    {
+      "path": "scripts/prepare-labs.ps1",
+      "bytes": 3196,
+      "sha256": "0c19814f0cd84c81df82e451ba6eddbd53d4726249db6417d8795af5d2c2ba8d"
+    },
+    {
+      "path": "scripts/set-preview-quality.ps1",
+      "bytes": 3242,
+      "sha256": "469d7eba472d664a912becdf805a29540094cfd32594627dd8dbd299a3c007f3"
+    },
+    {
+      "path": "scripts/verify-training-blueprints.py",
+      "bytes": 7822,
+      "sha256": "fa9c4bb727ebc7c45b70f9dbd7a5e6a54ac0078bd2f06bd3dbb5087f8462075a"
+    },
+    {
+      "path": "scripts/verify-training-lifecycle.py",
+      "bytes": 15976,
+      "sha256": "53447524d860d3b7588452023066d5cd9f5f22cb1560c42ed51f8eaa0930ea09"
+    },
+    {
+      "path": "scripts/verify-training-network.py",
+      "bytes": 8001,
+      "sha256": "31d398b28043329d3e4f814440f17709577bff0e9068e075dbd007abc2383486"
+    },
+    {
+      "path": "scripts/verify-training-package.ps1",
+      "bytes": 8300,
+      "sha256": "4a9db83f82336dc9ca478c0aae6c70d81f0867858516130b4c85c97de17a0d28"
+    },
+    {
+      "path": "scripts/verify-training-play.py",
+      "bytes": 17714,
+      "sha256": "90314f6bcf369d76c32476a6b2a24fb7ff49bcdef9672bd8cebcea153ea670ec"
+    },
+    {
+      "path": "scripts/verify-training-prepare.py",
+      "bytes": 11211,
+      "sha256": "138df9585204047219ef94c9f28a0692c79b947d7b5f2b43c58b06145d4da49d"
+    },
+    {
+      "path": "source-evidence/configuration-training.json",
+      "bytes": 34635,
+      "sha256": "dc5f12569cb4ecf4d2f594bfa8ff527ef5f341bdb681b3184f441d1856f56e5b"
+    },
+    {
+      "path": "source-evidence/root-layout-blueprint.json",
+      "bytes": 3285,
+      "sha256": "dd333fcc96ec7b5a2aeb68991f8a5d5d3fcbfc1c199b231c2cc4c0da8a5f2928"
+    },
+    {
+      "path": "source-evidence/training-packaged-runtime-implementation.json",
+      "bytes": 13154,
+      "sha256": "3759cd214a25cfdca78d20304fac025a8eb4cea04d453782faea078716bca82e"
+    },
+    {
+      "path": "source-evidence/training-references.json",
+      "bytes": 15819,
+      "sha256": "3c49bffed3b822dc91cb94fbee97dcf08da8eb370a3a6cb79d44c5f2792b72cc"
+    },
+    {
+      "path": "verification/blueprint-screenshot.json",
+      "bytes": 1558,
+      "sha256": "7188443272843a96e3e199ada88457c0058b158b9f40bde9683d8575c755ac7d"
+    },
+    {
+      "path": "verification/bootstrappackagedgame-final-build.json",
+      "bytes": 899,
+      "sha256": "bbb4311f264bfbe45f38d00fffda7bd0bdbbb5df26723512221e1caa211cfe6d"
+    },
+    {
+      "path": "verification/root-layout-graph-export.json",
+      "bytes": 336,
+      "sha256": "4ef7147daf75429a590b267359e0db4ea6303304d4ee6fb213b3db8428622ae8"
+    },
+    {
+      "path": "verification/training-assets.json",
+      "bytes": 817,
+      "sha256": "348d9659c7d276c6dbf6c47803c7e7e2fe7c4adab8996e4fdab979078d15d37f"
+    },
+    {
+      "path": "verification/training-blueprint-roundtrip.json",
+      "bytes": 4210,
+      "sha256": "94a6904f33c96bc63703f97885a1c8c8331171692fe65f7ba88d59117b504951"
+    },
+    {
+      "path": "verification/training-configuration-files.json",
+      "bytes": 5507,
+      "sha256": "e4c9a96c118651dad5dcc81d5beb922c63de3f76eb2f4f2b9e7589e1d28a2b02"
+    },
+    {
+      "path": "verification/training-cook.json",
+      "bytes": 2559,
+      "sha256": "c9e7a65b49c21339d81eabe3dc2cd3daa5e148c683f221c2382879d727a44509"
+    },
+    {
+      "path": "verification/training-editor-final-build.json",
+      "bytes": 2166,
+      "sha256": "a0360e0b7fa945ca8466184a4565822b950c10614e17cad254546586a4558019"
+    },
+    {
+      "path": "verification/training-final-capture-settings.json",
+      "bytes": 459,
+      "sha256": "b53d972316644920e9b87eefbf367ac27de3f6b9e700528a9bd68ff4e7ef502a"
+    },
+    {
+      "path": "verification/training-final-editor-closure.json",
+      "bytes": 417,
+      "sha256": "c26f0c98330ca05fdcedaf4dcf2235b7b5168bbac5b61a0e88d5adf2a1ffad67"
+    },
+    {
+      "path": "verification/training-final-preview-state.json",
+      "bytes": 1085,
+      "sha256": "0b01a8d4b0d245f46b80aa68ad59d353a4166ba2fdff9c799f983ea76e2562bf"
+    },
+    {
+      "path": "verification/training-lifecycle.json",
+      "bytes": 2576,
+      "sha256": "dc15f625e869f55e2c133988a7ec10dd6e60d9c63e813b4b7c4d53b19d1cc8be"
+    },
+    {
+      "path": "verification/training-navigation-helper-build.json",
+      "bytes": 317,
+      "sha256": "c5e016a7ab49e5bd1eaa1fa12682914efa8f8021f06412464b529afda8ad7500"
+    },
+    {
+      "path": "verification/training-navigation-helper-sync.json",
+      "bytes": 1705,
+      "sha256": "fafbf425619e180c43fe2e3b344e55f411d880f1c9fe3bc8a196fdada0628f03"
+    },
+    {
+      "path": "verification/training-navigation.json",
+      "bytes": 5125,
+      "sha256": "37ae98ce0e016be1163e540fde557682b76e97a94ffc35ea133262ea450256f4"
+    },
+    {
+      "path": "verification/training-network.json",
+      "bytes": 2221,
+      "sha256": "911f91ce614b89acad46eb0afb7340fb2320700f464126a6006d64719be4f8b7"
+    },
+    {
+      "path": "verification/training-package-editor-refresh.json",
+      "bytes": 7306,
+      "sha256": "a6f81c895ab0e5c200953a7423366e33f6ef8f65cc6e6a35723d18602fc2978b"
+    },
+    {
+      "path": "verification/training-package-log-analysis.json",
+      "bytes": 11463,
+      "sha256": "d3e67ce028c50a6bd4c6b1e071da4cd556e7a6587734254499a9e6818dbbd813"
+    },
+    {
+      "path": "verification/training-package-runtime-first-run.json",
+      "bytes": 6224,
+      "sha256": "7f30123b873f2df96099b527a352b12ecd016739b6c76ce431f876dd61185c40"
+    },
+    {
+      "path": "verification/training-package-runtime.json",
+      "bytes": 6232,
+      "sha256": "b4d1ccf47ce5316ed8d90e50f146231fabe1c111d3771e51a533ddb990039e6a"
+    },
+    {
+      "path": "verification/training-package.json",
+      "bytes": 20815,
+      "sha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b"
+    },
+    {
+      "path": "verification/training-packaged-visual-review.json",
+      "bytes": 1685,
+      "sha256": "977011bba72f6720666ffb60b572b8ec9743cdf90562923df2c7feef18323a56"
+    },
+    {
+      "path": "verification/training-play.json",
+      "bytes": 8498,
+      "sha256": "06ef23a1b705c4378ffe1f1ccd93bd27aee7cab0d0426e8936c8bf26a5e058cc"
+    },
+    {
+      "path": "verification/training-prepare-rerun.json",
+      "bytes": 10351,
+      "sha256": "1f64a437c1d24643022bab5f5160902dc8f4493a0494952ac6745a80160d67d5"
+    },
+    {
+      "path": "verification/unrealpak-final-build.json",
+      "bytes": 842,
+      "sha256": "3d771cd5cc632efd36cc48aa43255afdbade059351cb20459d41658a804f2d96"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" MMORPGClient Win64 Development -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=2
+Log file: E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Log.txt
+Executing up to 2 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (E:\UnrealEngine).
+Creating makefile for MMORPGClient (.uproject file is newer)
+UbaServer - Listening on 0.0.0.0:1345
+UHT compiled-in object format Default
+Waiting for 'git status' command to complete
+UHT processed MMORPGClient in 20.799772 seconds (7 generated files written)
+Building MMORPGClient...
+===== Toolchain Information =====
+Using ISPC compiler (E:\UnrealEngine\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.50.35737 toolchain (D:\program\0-editer\vs\VC\Tools\MSVC\14.50.35717) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 879 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 31.82 GB physical, 46.27 GB/49.82 GB committed
+  UBA Storage capacity 40 GB
+[1/879] Compile [x64] Module.AssetRegistry.1.cpp
+[2/879] Compile [x64] Module.AssetRegistry.2.cpp
+[3/879] Compile [x64] Module.AssetRegistry.3.cpp
+[4/879] Compile [x64] Module.AssetRegistry.4.cpp
+[5/879] Compile [x64] Module.AssetTags.cpp
+[6/879] Compile [x64] Module.AudioAnalyzer.cpp
+[7/879] Compile [x64] Module.AudioCaptureCore.cpp
+[8/879] Compile [x64] Module.AudioCaptureWasapi.cpp
+[9/879] Compile [x64] Module.AudioCaptureRtAudio.cpp
+[10/879] Compile [x64] Module.AudioChannelAgnosticCore.cpp
+[11/879] Compile [x64] Module.AudioCapture.cpp
+[12/879] Compile [x64] Module.AudioInsightsRuntime.cpp
+[13/879] Compile [x64] Module.AudioLinkCore.cpp
+[14/879] Compile [x64] Module.AudioLinkEngine.cpp
+[15/879] Compile [x64] Module.AudioMixerCore.cpp
+[16/879] Compile [x64] Module.AudioMixerPlatformAudioLink.cpp
+[17/879] Compile [x64] Module.AudioMixerWasapi.cpp

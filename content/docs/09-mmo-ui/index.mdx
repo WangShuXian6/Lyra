@@ -1,0 +1,53 @@
+---
+title: MMORPG 界面的数据与交互边界
+description: 用 CommonUI 管理交互生命周期，用 FieldNotify ViewModel 显示服务器状态。
+---
+
+## 学习目标与前置条件
+
+完成这条路线后，可以为登录、选角、HUD、目标、技能栏、背包、设置和模态窗口分配清楚的职责，并在重生、切换角色和断线时清理绑定。前置条件是熟悉 UMG 与 CommonUI，已经运行 [MMORPG 实验](/docs/08-mmorpg/run-lab)。核对基准为本机 **UE 5.8.1 / 2026-09-13**。
+
+官方 Lyra 的 UI 已经包含 CommonUI、CommonGame、UIExtension 和大量消息/属性监听。本实验的 `UMMOPlayerViewModel` 是新增教学实现；不要把它当作 Lyra 原有的 MVVM 类。迁移时先识别原项目的数据来源和生命周期，再决定哪些 Widget 需要 ViewModel。
+
+![MMORPG 的真实中文 Designer 登录与角色选择界面，包含注册、登录、创建角色、角色列表和入服入口](/media/mmorpg/mmo-B-login.png)
+
+图：`/Game/UI/WBP_Login` 的实际游戏画面，2026-09-13 最终运行轮次，原生 1920×1080、Medium。输入框、按钮、布局和固定文案都来自 Designer 与 String Table；原生父类负责 HTTP 请求、按钮业务与生命周期。
+
+`UMMOLoginPanel` 的真实 UMG 运行画面，UE 5.8.1，2026-09-13，1920×1080、中等画质。输入框未填入账号或密码；账号与角色操作通过 8088 HTTP 服务完成。
+
+## 五项职责
+
+| 层 | 回答的问题 | 实验实现 |
+| --- | --- | --- |
+| 游戏数据 | 当前真实生命、法力、背包和经验是多少？ | 服务器 PlayerState、AttributeSet、目标 Actor |
+| ViewModel | 当前玩家界面需要显示什么？ | `UMMOPlayerViewModel`、FieldNotify 字段 |
+| View | 如何布局和显示字段？ | 七个实际运行的 Widget Blueprint Designer 资产及编译后的 MVVM 绑定 |
+| 输入与激活 | 当前哪一层响应按键、返回、鼠标？ | CommonActivatableWidget、CommonUI layer stack |
+| 玩家与扩展 | 这个 ViewModel 属于哪个本地玩家？ | CommonLocalPlayer、CommonGame UIPolicy、UIExtension context |
+
+把这些职责分开后，换 HUD 皮肤不必改后端协议；新增模态框不必从每个 Widget 手动恢复输入；切换 Pawn 时能在单一位置解绑旧对象。
+
+## 实验界面地图
+
+登录面板包含账号、密码、角色创建和角色选择，是进入游戏前的一套流程。成功登录后，HTTP session 保留在 GameInstance 中，角色列表来自后端。选中角色时申请一次性票据，然后 ClientTravel。
+
+进入游戏后，HUD 显示名字、等级、经验、生命、法力、所选目标和奥术箭剩余冷却。技能按钮调用 Pawn 的能力请求，背包按钮打开 Menu 层。设置面板控制本机画质；退出按钮再打开 Modal 层确认。
+
+实验的布局、样式与固定文案引用保存在七个 Widget Blueprint Designer 资产中。`prepare_content.py` 调用 Editor-only 生成器制作并保存这些资产，游戏运行时加载它们；原生父类处理业务、激活、焦点与 ViewModel 生命周期。替换某个界面时，在 WBP_MMOLayout 的对应软类字段选择新 WBP；替换整个根布局时修改 BP_MMOUIPolicy 的 Layout Class。
+
+## 学习顺序
+
+1. [层栈、焦点与输入](/docs/09-mmo-ui/layers-input)：建立 Game/Menu/Modal 三层和 LocalPlayer UI Policy。
+2. [Designer 界面制作](/docs/09-mmo-ui/designer)：从父类、控件名称、布局与样式开始，配置真实 MVVM 绑定。
+3. [ViewModel 的绑定与清理](/docs/09-mmo-ui/viewmodels)：订阅 GAS、复制通知与目标变化，使用 FieldNotify 更新控件。
+4. [C++ 与蓝图协作](/docs/09-mmo-ui/blueprint-workflow)：嵌套 ManaStatus、传递已有 ViewModel，并使用真实异步蓝图节点。
+5. [国际化](/docs/09-mmo-ui/localization)：用字符串表与 FText 完成英文、简体中文和资源编译。
+
+## 预期结果、排障与练习
+
+读完后应能沿“服务器属性 → ASC 委托 → ViewModel 字段 → Widget 文本”的路径找到每个连接点。如果 HUD 只显示初始数值，先检查通知路径，而不是给所有控件加 Tick。若鼠标点击菜单时角色仍执行技能，检查最高激活层的输入配置。
+
+本机已完成 17 项原生 Slate 输入验证，覆盖菜单导航、模态返回、药剂属性更新，以及退出重登和角色切换后的新 ViewModel；原始操作与观察汇总于 `verification/mmorpg-native-ui-input.json`。手柄部分使用引擎原生按键事件注入，物理设备兼容性仍应在目标硬件上检查。具体入口与焦点观察方法见[层栈与输入](/docs/09-mmo-ui/layers-input)。
+
+练习：设计一个目标状态卡，列出它需要的字段、来源、解绑时机，以及没有目标、目标死亡和目标被销毁时的显示规则。
+

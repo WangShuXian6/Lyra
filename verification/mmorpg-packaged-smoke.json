@@ -1,0 +1,650 @@
+{
+  "clientExecutable": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Binaries\\Win64\\MMORPGClient.exe",
+  "serverExecutable": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsServer\\MMORPG\\Binaries\\Win64\\MMORPGServer.exe",
+  "date": "2026-09-13T19:26:04.7779436Z",
+  "deathLogout": false,
+  "backendRestarted": true,
+  "passed": true,
+  "results": [
+    {
+      "role": "A",
+      "restore": false,
+      "passed": true,
+      "xp": 25,
+      "mana": 80,
+      "potions": 0,
+      "health": 50,
+      "deadCheckpointRestore": false,
+      "cooldown": true,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 45.5140617480574,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "gameplay-result",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "movementBases": {
+        "passed": true,
+        "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+        "logs": [
+          {
+            "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\combat-A-324f7c43d5.log",
+            "unresolvedBaseMessages": 0,
+            "geometryObservationCount": 12,
+            "snapshotBytes": 97778,
+            "observedNames": [
+              "MMOZone_Floor",
+              "MMOZone_WallEast",
+              "MMOZone_WallWest",
+              "MMOZone_WallNorth",
+              "MMOZone_WallSouth",
+              "MMOZone_Obstacle"
+            ],
+            "snapshotSHA256": "fb00f6ce823191a6cf27de86d338a32ae6a4d34811d1a2095a5c33476d56b28c"
+          }
+        ]
+      }
+    },
+    {
+      "role": "B",
+      "restore": false,
+      "passed": true,
+      "xp": 0,
+      "mana": 100,
+      "potions": 0,
+      "health": 100,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": true,
+      "sawOtherMovement": true,
+      "positionX": 0,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "gameplay-result",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "movementBases": {
+        "passed": true,
+        "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+        "logs": [
+          {
+            "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\combat-B-324f7c43d5.log",
+            "unresolvedBaseMessages": 0,
+            "geometryObservationCount": 12,
+            "snapshotBytes": 97761,
+            "observedNames": [
+              "MMOZone_Floor",
+              "MMOZone_WallEast",
+              "MMOZone_WallWest",
+              "MMOZone_WallNorth",
+              "MMOZone_WallSouth",
+              "MMOZone_Obstacle"
+            ],
+            "snapshotSHA256": "3b5d7137c8a22eda77d41cc6e93bcf9f4a3fde2cd6fc37e34f3afb059f8afe60"
+          }
+        ]
+      }
+    },
+    {
+      "role": "A",
+      "restore": true,
+      "passed": true,
+      "xp": 25,
+      "mana": 80,
+      "potions": 0,
+      "health": 50,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 45.514279967173934,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "gameplay-result",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "movementBases": {
+        "passed": true,
+        "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+        "logs": [
+          {
+            "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\restore-A-324f7c43d5.log",
+            "unresolvedBaseMessages": 0,
+            "geometryObservationCount": 12,
+            "snapshotBytes": 97814,
+            "observedNames": [
+              "MMOZone_Floor",
+              "MMOZone_WallEast",
+              "MMOZone_WallWest",
+              "MMOZone_WallNorth",
+              "MMOZone_WallSouth",
+              "MMOZone_Obstacle"
+            ],
+            "snapshotSHA256": "a7d870b7fac052153e73e17f2079bad1a01b4536fa4849d15c39b97112243145"
+          }
+        ]
+      }
+    },
+    {
+      "role": "B",
+      "restore": true,
+      "passed": true,
+      "xp": 0,
+      "mana": 100,
+      "potions": 0,
+      "health": 100,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 0,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "gameplay-result",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "movementBases": {
+        "passed": true,
+        "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+        "logs": [
+          {
+            "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\restore-B-324f7c43d5.log",
+            "unresolvedBaseMessages": 0,
+            "geometryObservationCount": 12,
+            "snapshotBytes": 97829,
+            "observedNames": [
+              "MMOZone_Floor",
+              "MMOZone_WallEast",
+              "MMOZone_WallWest",
+              "MMOZone_WallNorth",
+              "MMOZone_WallSouth",
+              "MMOZone_Obstacle"
+            ],
+            "snapshotSHA256": "6b536f30aa62e8e6ac6b693139b0255ddcd638b1d2cd74233523406767177846"
+          }
+        ]
+      }
+    },
+    {
+      "role": "A",
+      "deathRespawn": true,
+      "passed": true,
+      "deathObserved": true,
+      "pawnReplaced": true,
+      "sameASC": true,
+      "abilityCount": 2,
+      "health": 100,
+      "mana": 80,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "death-respawn",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "movementBases": {
+        "passed": true,
+        "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+        "logs": [
+          {
+            "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\death-respawn-A-324f7c43d5.log",
+            "unresolvedBaseMessages": 0,
+            "geometryObservationCount": 12,
+            "snapshotBytes": 97923,
+            "observedNames": [
+              "MMOZone_Floor",
+              "MMOZone_WallEast",
+              "MMOZone_WallWest",
+              "MMOZone_WallNorth",
+              "MMOZone_WallSouth",
+              "MMOZone_Obstacle"
+            ],
+            "snapshotSHA256": "b54ff04cd55fd165d44ca10684689b5211997e2bfbf1f5be182d2bb8d4560fea"
+          }
+        ]
+      }
+    },
+    {
+      "role": "B",
+      "deathRespawn": true,
+      "passed": true,
+      "deathObserved": true,
+      "pawnReplaced": true,
+      "sameASC": true,
+      "abilityCount": 2,
+      "health": 100,
+      "mana": 100,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "death-respawn",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "movementBases": {
+        "passed": true,
+        "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+        "logs": [
+          {
+            "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\death-respawn-B-324f7c43d5.log",
+            "unresolvedBaseMessages": 0,
+            "geometryObservationCount": 12,
+            "snapshotBytes": 97924,
+            "observedNames": [
+              "MMOZone_Floor",
+              "MMOZone_WallEast",
+              "MMOZone_WallWest",
+              "MMOZone_WallNorth",
+              "MMOZone_WallSouth",
+              "MMOZone_Obstacle"
+            ],
+            "snapshotSHA256": "1bd0ca43a87a4352108caac9f56f23c526d6a8822b35197f3c15b4cf3b9232fd"
+          }
+        ]
+      }
+    },
+    {
+      "role": "A",
+      "uiReturn": true,
+      "passed": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "before-ui-return",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "movementBases": {
+        "passed": true,
+        "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+        "logs": [
+          {
+            "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\ui-return-A-324f7c43d5.log",
+            "unresolvedBaseMessages": 0,
+            "geometryObservationCount": 12,
+            "snapshotBytes": 99859,
+            "observedNames": [
+              "MMOZone_Floor",
+              "MMOZone_WallEast",
+              "MMOZone_WallWest",
+              "MMOZone_WallNorth",
+              "MMOZone_WallSouth",
+              "MMOZone_Obstacle"
+            ],
+            "snapshotSHA256": "8646c8b7b9c9b62e075fa8cb284e55ee50abc015ca2a721ab55a2bf84371e7b9"
+          }
+        ]
+      }
+    },
+    {
+      "role": "B",
+      "uiReturn": true,
+      "passed": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "before-ui-return",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "movementBases": {
+        "passed": true,
+        "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+        "logs": [
+          {
+            "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\ui-return-B-324f7c43d5.log",
+            "unresolvedBaseMessages": 0,
+            "geometryObservationCount": 12,
+            "snapshotBytes": 100308,
+            "observedNames": [
+              "MMOZone_Floor",
+              "MMOZone_WallEast",
+              "MMOZone_WallWest",
+              "MMOZone_WallNorth",
+              "MMOZone_WallSouth",
+              "MMOZone_Obstacle"
+            ],
+            "snapshotSHA256": "e93e266cbdbcf17dd2df30b6d23913223b7a4e63b272a4ac1b985ebe5ace55d3"
+          }
+        ]
+      }
+    }
+  ],
+  "finalSaveCallbacksVerified": true,
+  "scalability": "Medium (1)",
+  "requestedResolution": "1920x1080",
+  "rendering": "NullRHI headless gameplay validation",
+  "mode": "Two cooked Development MMORPGClient executables + MMORPGServer",
+  "tagDrivenDispatch": {
+    "passed": true,
+    "scope": "Actual server RPC dispatch and GAS activation by granted dynamic spec tag",
+    "requiredSuccessfulTags": [
+      "InputTag.MMO.Attack",
+      "InputTag.MMO.Spell"
+    ],
+    "events": [
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": false,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      }
+    ],
+    "movementBases": {
+      "passed": true,
+      "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+      "logs": [
+        {
+          "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Smoke\\server-324f7c43d5.log",
+          "unresolvedBaseMessages": 0,
+          "geometryObservationCount": 6,
+          "snapshotBytes": 121847,
+          "observedNames": [
+            "MMOZone_Floor",
+            "MMOZone_WallEast",
+            "MMOZone_WallWest",
+            "MMOZone_WallNorth",
+            "MMOZone_WallSouth",
+            "MMOZone_Obstacle"
+          ],
+          "snapshotSHA256": "f09ff4b6c08fa2f3125102c1cad21e0b809db0b66d0bb7a85f1a4589e84a68fd"
+        }
+      ]
+    }
+  },
+  "releaseCallbacksVerified": true,
+  "persistedDeaths": []
+}

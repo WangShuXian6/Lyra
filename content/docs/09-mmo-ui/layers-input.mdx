@@ -1,0 +1,116 @@
+---
+title: CommonUI 层栈、输入与焦点
+description: 复用 CommonGame 的 LocalPlayer 和 UI Policy，为玩法、菜单与模态框建立稳定生命周期。
+---
+
+## 学习目标与前置条件
+
+本篇让“打开背包再弹出确认窗口”的每一步都有明确的激活者、输入配置和返回目标。需要理解 UUserWidget 与 UCommonActivatableWidget 的区别。本机 **UE 5.8.1 / 2026-09-13** 对照源码为 CommonGame 的 `PrimaryGameLayout`、`GameUIPolicy`、`CommonLocalPlayer` 和 `CommonPlayerController`。
+
+## 配置入口
+
+第一次配置请先完成[项目与资产配置图解](/docs/08-mmorpg/configuration)：其中逐步展示 CommonGameViewportClient、CommonLocalPlayer、CommonInput 与 UI Policy 的真实面板和保存检查。
+
+新项目把 LocalPlayerClassName 设置为 `CommonLocalPlayer`，GameViewportClientClassName 设置为 `CommonGameViewportClient`，GameInstance 派生 `CommonGameInstance`。PlayerController 派生 `CommonPlayerController`，使 PlayerState/Pawn 更换能通过 LocalPlayer 通知界面层。
+
+`UMMOUIManager` 派生 `UGameUIManagerSubsystem`；配置的 DefaultUIPolicyClass 指向生成的 `BP_MMOUIPolicy`。该 Blueprint 的 LayoutClass 设置为 `WBP_MMOLayout`，父类才是 `MMORootLayout`。UIPolicy 为本地玩家创建根布局，Dedicated Server 不创建本地 UI。
+
+人工配置按下面顺序进行，避免 UI Policy 正确但 LocalPlayer 仍使用默认类：
+
+1. Edit → Project Settings → Maps & Modes，Game Instance Class 选择 **MMOGameInstance**；Engine → General Settings → Default Classes，Local Player Class 选择 **CommonLocalPlayer**，Game Viewport Client Class 选择 **CommonGameViewportClient**。
+2. 先完成[Designer 资产制作](/docs/09-mmo-ui/designer)，再打开 `/Game/UI/BP_MMOUIPolicy`，Class Defaults 的 Layout Class 选择 **WBP_MMOLayout**，Compile、Save；在 `DefaultGame.ini` 的 MMOUIManager 配置段填入 Policy 完整生成类路径。
+3. Project Settings 搜索 **Common Input**，勾选 Enable Enhanced Input Support，Input Data 选择原生 **MMOInputData**。它的 C++ 构造函数已经创建 Boolean 类型 UIBackAction，不需要再创建一个未被引用的 InputAction 资产。
+4. Project Settings → Gameplay Tags 核对三层 Tag 与 `UI.Slot.Status`。关闭设置后正常退出编辑器，重新打开项目，确认 Config 值仍在。
+5. 运行客户端应先看到登录表单，输入框可点击；成功入服才出现 HUD。若先看到世界却没有登录层，先检查 Policy 生成类路径、CommonLocalPlayer 和 CommonGameViewportClient，不要先在关卡 Blueprint 中 AddToViewport 另造一套根布局。
+
+## 三层布局
+
+![模态退出确认居中覆盖设置面板，左侧仍显示玩家 HUD，取消后应回到设置](/media/mmorpg/mmo-A-modal.png)
+
+图：2026-09-13 最终 Designer 运行画面，原生 1920×1080、Medium。三个可见资产分别是 Game 层的 `/Game/UI/WBP_PlayerHUD`、Menu 层的 `WBP_Settings` 和 Modal 层的 `WBP_Confirm`。它证明实际层叠布局；物理按键和焦点操作的通过情况以输入验证记录为准。
+
+实际游戏视口，`UMMOConfirmPanel` 位于 `UI.Layer.Modal`，`UMMOSettingsPanel` 位于 Menu，HUD 位于 Game。UE 5.8.1，2026-09-13，1920×1080、中等画质。
+
+| Gameplay Tag | 内容 | 输入配置 | 返回行为 |
+| --- | --- | --- | --- |
+| `UI.Layer.Game` | HUD、目标信息、技能入口 | Game、NoCapture，玩法控制与鼠标点击 | 保持常驻，无默认按钮焦点 |
+| `UI.Layer.Menu` | 登录、背包、设置 | Menu | 背包/设置退回前一层 |
+| `UI.Layer.Modal` | 退出确认 | Menu，最高层 | 取消回到设置 |
+
+`WBP_MMOLayout` 的 Designer 中创建 Overlay，依次添加三个 CommonActivatableWidgetStack，名称固定为 GameLayer、MenuLayer、ModalLayer。原生父类用 BindWidget 引用，并在 NativeOnInitialized 调用 `RegisterLayer` 关联标签。Layer tag 是查询键，不会自动创建 Widget；必须先有真实 Designer 容器再注册。
+
+本机复用的 CommonGame `PrimaryGameLayout.cpp:97` 在注册时把容器 Transition Duration 覆盖为 `0.0`，官方注释说明这是为处理手柄焦点转换。因此 Designer 里保存的 `0.16` 不代表游戏实际有该时长的转场；原生运行观察中三个层均为零，属于此实现的预期行为。
+
+```cpp title="MMOUI.cpp：打开背包"
+if (auto* Root = Cast<UMMORootLayout>(
+    UPrimaryGameLayout::GetPrimaryGameLayout(GetOwningPlayer())))
+{
+    Root->ShowInventory();
+}
+```
+
+`ShowInventory` 从根布局可配置的软类引用加载实际 `WBP_Inventory`，再推入 Menu；其他菜单使用同一入口。所需头文件为 `PrimaryGameLayout.h` 和 `MMOUI.h`；依赖 CommonGame、CommonUI、GameplayTags。使用 `GetOwningPlayer()` 选择本地玩家，避免所有界面都默认寻找 player 0。
+
+当前小型教学界面调用 `LoadSynchronous()`，首次打开尚未驻留的类时可能等待资源加载；软引用本身不等于异步加载。扩大界面资源后，应在加载阶段通过 Asset Manager/StreamableManager 预载所需软类，或使用异步压栈接口，并处理加载期间关闭界面的取消与生命周期。CommonUI 的 Widget 池也不保证所有面板资源已经预载。
+
+## 激活与构造不是一回事
+
+Widget 被构造后，可能反复激活和停用。CommonUI 的层栈负责激活顶层面板；关闭时调用 `DeactivateWidget`，由容器恢复下层。需要在每次打开时刷新焦点的逻辑放在激活路径；释放长期委托的逻辑放在 NativeDestruct 或显式解绑路径。
+
+CommonGame 也可能在 PlayerController 更换后复用根布局。容器释放 Slate 资源时会重建自己的条目；根布局保存的 HUD/Login 指针必须同步清空，否则指针仍非空，新的界面却没有重新推入容器。本实验在 NativeDestruct 清理三层并重置缓存引用，重新构造时重新连接 LocalPlayer 和 ViewModel。
+
+菜单提供 `NativeGetDesiredFocusTarget`，返回首个可操作控件；`bAutoRestoreFocus` 允许从模态框返回后恢复原焦点。HUD 则没有默认焦点、关闭 Auto Restore Focus，并把五个 Designer 按钮的 Is Focusable 取消：否则手柄 A 既是攻击又会确认已聚焦按钮。菜单的按钮保持可聚焦，A 只确认 UI，玩法入口会拒绝穿透输入。
+
+## 输入配置
+
+```cpp title="MMOUI.cpp：HUD 与菜单的输入配置"
+TOptional<FUIInputConfig> UMMOHUDPanel::GetDesiredInputConfig() const
+{
+    return FUIInputConfig(
+        ECommonInputMode::Game,
+        EMouseCaptureMode::NoCapture,
+        false);
+}
+```
+
+HUD 使用 Game/NoCapture，并保留 Activation Focus 支持，让 CommonUI 能从当前激活树选中这份输入配置；没有默认按钮目标，因此焦点回到游戏视口。鼠标仍可点击按钮。Menu 面板使用 `ECommonInputMode::Menu`。界面打开后不要从多个 Widget 同时调用 SetInputModeGameOnly；这会覆盖 CommonUI 根据激活树建立的配置。
+
+游戏的真实 `IA_Inventory` 映射 I / 手柄 View，`IA_Settings` 映射 P / 手柄 Menu，因此 HUD 没有按钮焦点时，手柄仍可打开菜单。Escape 保留给 CommonUI 返回，避免同一键在两个 Mapping Context 中竞争。Control Hint 由 CommonInput 的输入类型变化事件更新，只改提示，不改变实际映射。
+
+`DefaultGame.ini` 的 CommonInputSettings 指向原生 `UMMOInputData`，其中提供有效的 EnhancedInputBackAction。根布局为当前 LocalPlayer 安装独立 UI Mapping Context，把 Escape 和手柄 B 映射到该返回动作；NativeDestruct 对称移除。它不依附 Pawn 的移动映射，因此重生或更换角色不会使菜单的返回约定丢失。只设置 `bIsBackHandler=true` 而不配置 InputData，会在创建菜单时产生“no action provided”的绑定错误。
+
+实验在 Designer 中使用 UButton。后续可派生 CommonButtonBase 统一手柄提示、悬停、选中和样式。键盘/手柄导航必须在运行中验证，不能仅凭 Widget 类型或 InputHint 已切换判断已支持。
+
+## 画质按钮只修改画质
+
+`WBP_Settings` 的三个按钮分别调用 `LowQualityClicked`、`MediumQualityClicked`、`HighQualityClicked`，再由同一个 `ChangeQuality` 执行 `SetOverallScalabilityLevel(0/1/2)` 和 `ApplyNonResolutionSettings()`。独立游戏中再调用 `SaveSettings()`；PIE 不保存用户设置。画质按钮没有修改窗口尺寸的职责，因此这里不调用会同时重新应用分辨率的 `ApplySettings(false)`。预览保持 Medium（值为 1），选择 Medium 前后都应核对真实视口为 1920×1080。
+
+## 按 LocalPlayer 绑定 UIExtension
+
+根布局把 ViewModel 作为数据扩展注册到 `UI.Slot.Status`，ContextObject 为当前 LocalPlayer。HUD 注册同样 tag、同样 context 的扩展点，并允许 `UMMOPlayerViewModel` 类型。Added 回调绑定数据，Removed 回调清空它。
+
+这个示例证明 UIExtension 不仅能“添加某个 Widget 类”，也能在明确的数据契约下连接系统。退出界面时，扩展句柄和扩展点句柄都必须 Unregister，避免世界切换后持有旧对象。
+
+## 操作、结果与排障
+
+先打开背包，再返回；打开设置和退出确认，取消；用键盘 Tab 与手柄重复同样步骤。预期 Menu/Modal 按顺序覆盖输入，返回后焦点可见且可继续操作。
+
+若窗口存在却不能点击，检查 CommonGameViewportClient 和最高层输入配置；若关窗后玩法仍被冻结，检查是否有未停用的 ActivatableWidget；若根布局不存在，先核验 UI Policy 资产和类路径。
+
+在 PIE 中使用 Output Log 后，先确认输入焦点已回到游戏窗口。`EditableTextBox` 包含内部 Slate 编辑控件，`HasAnyUserFocus()` 为 false 并不等于内部文本没有焦点，还应检查 `HasFocusedDescendants()` 或实际 Slate 焦点节点。使用原生 SlateInspector 自动化时，`Click=true` 只表示已投递鼠标事件；它根据 Tick Space Geometry 计算坐标，仍需核对按钮回调与游戏结果。`Type` 即使传空文本也会主动设置焦点，不能用该操作证明自然焦点恢复。相关本机源码说明在 `verification/slate-input-tool-source-review.json`。
+
+本机 **2026-09-13 / UE 5.8.1** 的原生 Slate 输入与运行对象检查通过 **17/17**，记录在 `verification/mmorpg-native-ui-input.json`。操作后的真实层栈、焦点和 ViewModel 构成断言；手柄按键由原生 Slate 注入，尚不代表实体 USB/蓝牙手柄硬件兼容性已测试。
+
+| 可照做的操作 | 本次观察到的结果 |
+| --- | --- |
+| 按 P，点击退出，按 Esc，再按 Esc | 设置默认聚焦 Medium；确认默认聚焦 Cancel；返回设置恢复 LogoutButton；再返回仅保留 HUD |
+| 按手柄 Menu，用方向键选按钮，按 A 确认、B 返回 | 菜单与模态框按相同次序激活，返回恢复触发按钮 |
+| 按 View 打开背包，使用一瓶药水 | PotionButton 聚焦，服务器背包由 1 瓶变为空，Mana 由 40 变 80，实际 MVVM 绑定同步更新 |
+| 按 I 切回键盘背包操作 | 输入提示回到 WASD，背包按钮仍能操作 |
+| 保存退出，登录并选择另一名角色入服 | 旧 HUD、Pawn 与能力清理；新 ViewModel 显示新角色 XP 0、Mana 100、空背包，根布局仍只有一个 |
+| 第二次自然退出后按 Tab | 登录表单可继续键盘导航，旧角色能力数为零 |
+
+本次输入记录先于按钮槽与画质修复；最后一项曾受旧画质按钮影响，视口为 1914×1042。该项只验收输入和生命周期。1920×1080、中等画质、中英文排版，以及修复后的游戏画面由独立的双客户端截图验证记录负责。
+
+练习：新增一个任务面板，把它推入 Menu 层；从任务面板打开一个确认框，取消后恢复到触发按钮。记录键鼠和手柄各自的实际结果。
+

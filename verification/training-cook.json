@@ -1,0 +1,55 @@
+{
+  "startedAt": "2026-09-13T12:11:50.8735820Z",
+  "status": "passed",
+  "passed": true,
+  "mode": "Cook",
+  "project": "F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+  "engine": "E:\\UnrealEngine",
+  "target": "LyraGame",
+  "configuration": "Development",
+  "platform": "Win64",
+  "map": "/TrainingRange/Maps/L_TrainingRange",
+  "nativeBuildRequested": false,
+  "runner": "E:\\UnrealEngine\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+  "arguments": [
+    "F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+    "-run=Cook",
+    "-TargetPlatform=Windows",
+    "-Map=/TrainingRange/Maps/L_TrainingRange",
+    "-OutputDir=F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked",
+    "-SkipZenStore",
+    "-CookProcessCount=1",
+    "-corelimit=3",
+    "-Multiprocess",
+    "-ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0",
+    "-ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False",
+    "-unattended",
+    "-nop4",
+    "-NullRHI",
+    "-UTF8Output",
+    "-stdout",
+    "-FullStdOutLogOutput",
+    "-abslog=F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\training-cook.log"
+  ],
+  "log": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\training-cook.log",
+  "renderingProfile": "Windows D3D12 / PCD3D_SM6 only",
+  "renderingConfig": "F:\\UE\\LyraDocLabs\\LyraTraining\\Config\\Windows\\WindowsEngine.ini",
+  "renderingPatchSha256": "ca393f58cc8a233cb88ba841c9d55b3e39ea1a91d018d16d9a06e7c62594fea8",
+  "cookDirectory": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked",
+  "shaderWorkerLimit": 2,
+  "runDirectory": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb",
+  "archiveDirectory": null,
+  "exitCode": 0,
+  "runtimeVerification": "pending",
+  "artifacts": [
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\Cooked\\LyraStarterGame\\Plugins\\GameFeatures\\TrainingRange\\Content\\Maps\\L_TrainingRange.umap",
+      "bytes": 39513
+    }
+  ],
+  "error": null,
+  "shaderWorkerLog": [
+    "[2026.09.13-12.11.55:629][  0]LogShaderCompilers: Display: Using 2 local workers for shader compilation"
+  ],
+  "finishedAt": "2026-09-13T12:34:45.1210500Z"
+}

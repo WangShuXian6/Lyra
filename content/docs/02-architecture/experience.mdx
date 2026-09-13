@@ -1,0 +1,77 @@
+---
+title: Experience：一局游戏怎样被组装
+description: 沿 GameMode 和 ExperienceManager 的真实执行链理解配置、异步加载及玩家生成。
+---
+
+## 学习目标与前置条件
+
+读完应能解释“地图加载完成，但玩家还不能生成”的原因。前置：能打开地图 World Settings 和 Experience Class Defaults。源码核对：2026-09-13，UE 5.8.1。
+
+Experience 是 `ULyraExperienceDefinition` 的配置类，包含启用哪些 Game Features、默认 PawnData、直接 Actions 和共享 Action Sets。它本身没有每帧更新的战斗逻辑。
+
+## 操作步骤
+
+1. 打开 `/ShooterCore/Experiences/B_ShooterGame_Elimination`，记录四组字段。然后打开 `LAS_ShooterGame_StandardComponents` 和 `LAS_ShooterGame_StandardHUD` 对照。
+2. Rider 在 `ALyraGameMode::HandleMatchAssignmentIfNotExpectingOne`、`ULyraExperienceManagerComponent::StartExperienceLoad`、`ALyraGameMode::OnExperienceLoaded` 设置断点。
+3. 运行实验副本，查看 Output Log 的 `Identified experience`，记录来源。它比你记忆中的 World Settings 更能说明本次实际选择。
+4. 在 ExperienceLoaded 回调中查看控制器与 Pawn。对比 `HandleStartingNewPlayer_Implementation`：Experience 尚未完成时，游戏不会按通常时机立即生成玩家。
+
+### 资产编辑器中具体看哪里
+
+在 Content Browser 的 ShooterCore Content → Experiences 中双击 `B_ShooterGame_Elimination`，单击蓝图工具栏的 **Class Defaults**。若 Details 面板不可见，在该资产窗口的 Window 菜单重新打开 Details；清空搜索框后，展开 **Gameplay** 与 **Actions**。`Default Pawn Data` 是一条资产引用，`Game Features To Enable` 是字符串数组，`Action Sets` 是数据资产引用数组，`Actions` 是内嵌动作对象数组，四者的编辑控件不同。
+
+先展开 Action Sets 的每一行，记录 `LAS_ShooterGame_StandardComponents` 与 `LAS_ShooterGame_StandardHUD` 的引用位置。点击放大镜定位 StandardComponents 并双击打开；它是 **Data Asset**，直接在 Details 看 Actions，不需要寻找 Class Defaults。展开其中 Add Components 动作，再展开 Component List 的一行，同时读 `Actor Class`、`Component Class`、`Client Component` 和 `Server Component`。这才能判断组件被添加到哪个宿主以及哪一端，而不是只看组件名字。
+
+只读官方资产时关闭窗口即可。做本章移除 HUD 的练习时，先在 `/TrainingRange/Experiences` 复制 Experience；修改副本后 **Compile → 确认无错误 → Save**，关闭并重开 Class Defaults，确认引用仍是修改后的值。ActionSet 副本若有修改，只需要 Save。下一次 PIE 应从指向该副本的地图启动，否则运行结果不会对应本次修改。
+
+![官方 Elimination Experience 类默认值，真实原生配置面板](/media/configuration/training/experience.png)
+
+图源：`/ShooterCore/Experiences/B_ShooterGame_Elimination`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。官方 Elimination 默认使用 HeroData_ShooterGame；四个 ActionSet 负责共享输入、组件、HUD 和 Accolades。
+
+![组件 ActionSet 的客户端与服务器条件，真实原生配置面板](/media/configuration/training/components-actionset.png)
+
+图源：`/ShooterCore/Experiences/LAS_ShooterGame_StandardComponents`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。Add Components 的**索引 1（第 2 个元素）**将 B_QuickBarComponent 添加到 Controller，客户端与服务器两个开关均勾选。
+
+截图展开索引 1：Actor Class 为 Controller、Component Class 为 B_QuickBarComponent，Client Component 与 Server Component 都勾选。数组中共有 4 项，但未展开项的内部值不能从这张图推断。
+
+## 选择顺序
+
+本机实现按以下顺序选择第一个**格式有效的 Primary Asset ID**：URL 中 `?Experience=` → PIE 的开发者设置覆盖 → 命令行 `-Experience=` → World Settings。选完才通过 Asset Manager 检查该资产是否存在；这里不是逐项尝试加载，失败就继续尝试下一项。
+
+例如 URL 写了一个不存在但名字非空的 `?Experience=MissingExperience`，后面的 World Settings 会先被跳过；最终资产检查失败时清空 ID，直接进入最终回退，不会返回去使用地图的 B_TrainingRange。没有可用 ID 时，独立服务器可能走其登录/托管分支，否则使用 `B_LyraDefaultExperience`。这一点可在 `HandleMatchAssignmentIfNotExpectingOne` 的 `IsValid()` 条件和最后的 `GetPrimaryAssetData` 检查顺序中核对。
+
+这里的候选通常是 Primary Asset ID 的名字部分，不是把磁盘 `.uasset` 路径直接填进去。`-Experience=` 也支持代码解析的 `Type:Name` 形式。优先用 World Settings 完成第一次实验，再用参数测试覆盖规则。
+
+## 加载链与 C++
+
+```text
+GameMode 选择 PrimaryAssetId
+  → ExperienceManager 设置 CurrentExperience
+  → 加载 Experience / ActionSet 的资产包
+  → 加载并激活 Game Feature 插件
+  → 执行 Actions
+  → Loaded，广播高/普通/低优先级回调
+  → PlayerState 配置、玩家与机器人生成
+```
+
+本机 `LyraExperienceManagerComponent.cpp` 中，回调明确在 Actions 执行完成后广播：
+
+```cpp
+LoadState = ELyraExperienceLoadState::Loaded;
+OnExperienceLoaded_HighPriority.Broadcast(CurrentExperience);
+OnExperienceLoaded_HighPriority.Clear();
+OnExperienceLoaded.Broadcast(CurrentExperience);
+OnExperienceLoaded.Clear();
+OnExperienceLoaded_LowPriority.Broadcast(CurrentExperience);
+OnExperienceLoaded_LowPriority.Clear();
+```
+
+订阅使用 `CallOrRegister_OnExperienceLoaded` 系列：如果已经完成就立刻调用，尚未完成则注册。这解决了“组件晚于事件创建，永远等不到通知”的问题。不要用固定 `Delay(1.0)` 模拟这个契约。
+
+ExperienceManager 位于 GameState 一侧，`CurrentExperience` 参与复制，客户端的 `OnRep_CurrentExperience` 启动本地资源加载。因此服务器选定玩法，不意味着客户端美术和 UI 已经同步加载完。
+
+## 预期结果、排障与练习
+
+应能命中上述断点并解释加载顺序。错误 Experience 常来自 PIE 开发者设置覆盖；插件没激活时检查名字、描述符和日志；加载画面持续存在时检查 `ShouldShowLoadingScreen` 的原因，而不是手动隐藏 Loading Screen。
+
+练习：在实验副本中将 HUD ActionSet 暂时从复制出来的 Experience 移除，预测哪些系统应继续工作。记录结果后恢复。不要在基准资产上做此实验。

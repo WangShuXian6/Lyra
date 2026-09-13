@@ -1,0 +1,4310 @@
+{
+  "schemaVersion": 1,
+  "verifiedDate": "2026-09-13",
+  "engine": {
+    "MajorVersion": 5,
+    "MinorVersion": 8,
+    "PatchVersion": 1,
+    "Changelist": 0,
+    "CompatibleChangelist": 55116800,
+    "IsLicenseeVersion": 0,
+    "IsPromotedBuild": 0,
+    "BranchName": "UE5"
+  },
+  "baselineRoot": "F:/UE/LyraStarterGame",
+  "meaning": "Local source/configuration and asset evidence, not an assertion of byte identity to an official release. Runtime claims are explicitly scoped.",
+  "sourceFiles": [
+    {
+      "path": "LyraStarterGame.uproject",
+      "sha256": "fed6c1fc6cd78805ed50b0e8d0e81736e1949ad3ba3947cbfa8438f5c25394d2",
+      "bytes": 6270,
+      "section": "01-start",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Config/DefaultEngine.ini",
+      "sha256": "77c202017770056cd8a5c87b9bf225eaa72a1051e4fdc6f15b4275dbbee9ad2b",
+      "bytes": 33992,
+      "section": "01-start",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Config/DefaultGame.ini",
+      "sha256": "51d35e96c178084be25533f731d52a10f18fd5b24e589236df2d28a9808e37d5",
+      "bytes": 12991,
+      "section": "01-start",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Config/DefaultInput.ini",
+      "sha256": "255893d4d22a7418e9707e84934828952515c8ebd150e5eb2dc8e7edb1addb00",
+      "bytes": 4138,
+      "section": "01-start",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/LyraGame.Build.cs",
+      "sha256": "17a5933c1d34e3db571836370466c08eac1561399c4532f3f05df644570b6ba4",
+      "bytes": 2729,
+      "section": "01-start",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/GameModes/LyraGameMode.cpp",
+      "sha256": "3e431aa4068a5b0a540945fc00e3e80e171d75a9ac5d6054c53cfca5a8745095",
+      "bytes": 18466,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ALyraGameMode::ALyraGameMode",
+          "line": 33
+        },
+        {
+          "name": "ALyraGameMode::GetPawnDataForController",
+          "line": 45
+        },
+        {
+          "name": "ALyraGameMode::InitGame",
+          "line": 80
+        },
+        {
+          "name": "ALyraGameMode::HandleMatchAssignmentIfNotExpectingOne",
+          "line": 88
+        },
+        {
+          "name": "ALyraGameMode::TryDedicatedServerLogin",
+          "line": 167
+        },
+        {
+          "name": "ALyraGameMode::HostDedicatedServerMatch",
+          "line": 193
+        },
+        {
+          "name": "ALyraGameMode::OnUserInitializedForDedicatedServer",
+          "line": 266
+        },
+        {
+          "name": "ALyraGameMode::OnMatchAssignmentGiven",
+          "line": 289
+        },
+        {
+          "name": "ALyraGameMode::OnExperienceLoaded",
+          "line": 305
+        },
+        {
+          "name": "ALyraGameMode::IsExperienceLoaded",
+          "line": 323
+        },
+        {
+          "name": "ALyraGameMode::GetDefaultPawnClassForController_Implementation",
+          "line": 332
+        },
+        {
+          "name": "ALyraGameMode::SpawnDefaultPawnAtTransform_Implementation",
+          "line": 345
+        },
+        {
+          "name": "ALyraGameMode::ShouldSpawnAtStartSpot",
+          "line": 385
+        },
+        {
+          "name": "ALyraGameMode::HandleStartingNewPlayer_Implementation",
+          "line": 391
+        },
+        {
+          "name": "ALyraGameMode::ChoosePlayerStart_Implementation",
+          "line": 401
+        },
+        {
+          "name": "ALyraGameMode::FinishRestartPlayer",
+          "line": 411
+        },
+        {
+          "name": "ALyraGameMode::PlayerCanRestart_Implementation",
+          "line": 421
+        },
+        {
+          "name": "ALyraGameMode::ControllerCanRestart",
+          "line": 426
+        },
+        {
+          "name": "ALyraGameMode::InitGameState",
+          "line": 452
+        },
+        {
+          "name": "ALyraGameMode::GenericPlayerInitialization",
+          "line": 462
+        },
+        {
+          "name": "ALyraGameMode::RequestPlayerRestartNextFrame",
+          "line": 469
+        },
+        {
+          "name": "ALyraGameMode::UpdatePlayerStartSpot",
+          "line": 486
+        },
+        {
+          "name": "ALyraGameMode::FailedToRestartPlayer",
+          "line": 493
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameModes/LyraGameState.cpp",
+      "sha256": "0bd4837fa6ab7c6dd790186f7e5bbdf2b151e05b85e6b2be08066e7e208919d0",
+      "bytes": 4098,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ALyraGameState::ALyraGameState",
+          "line": 22
+        },
+        {
+          "name": "ALyraGameState::PreInitializeComponents",
+          "line": 37
+        },
+        {
+          "name": "ALyraGameState::PostInitializeComponents",
+          "line": 42
+        },
+        {
+          "name": "ALyraGameState::GetAbilitySystemComponent",
+          "line": 50
+        },
+        {
+          "name": "ALyraGameState::EndPlay",
+          "line": 55
+        },
+        {
+          "name": "ALyraGameState::AddPlayerState",
+          "line": 60
+        },
+        {
+          "name": "ALyraGameState::RemovePlayerState",
+          "line": 65
+        },
+        {
+          "name": "ALyraGameState::SeamlessTravelTransitionCheckpoint",
+          "line": 72
+        },
+        {
+          "name": "ALyraGameState::GetLifetimeReplicatedProps",
+          "line": 85
+        },
+        {
+          "name": "ALyraGameState::Tick",
+          "line": 93
+        },
+        {
+          "name": "ALyraGameState::MulticastMessageToClients_Implementation",
+          "line": 103
+        },
+        {
+          "name": "ALyraGameState::MulticastReliableMessageToClients_Implementation",
+          "line": 111
+        },
+        {
+          "name": "ALyraGameState::GetServerFPS",
+          "line": 116
+        },
+        {
+          "name": "ALyraGameState::SetRecorderPlayerState",
+          "line": 121
+        },
+        {
+          "name": "ALyraGameState::GetRecorderPlayerState",
+          "line": 135
+        },
+        {
+          "name": "ALyraGameState::OnRep_RecorderPlayerState",
+          "line": 142
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameModes/LyraWorldSettings.cpp",
+      "sha256": "ca45e38ae9a0b95ddbaedc1197390da468df0780eec8c41bb3048bf27b3ce002",
+      "bytes": 1833,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ALyraWorldSettings::ALyraWorldSettings",
+          "line": 13
+        },
+        {
+          "name": "ALyraWorldSettings::GetDefaultGameplayExperience",
+          "line": 18
+        },
+        {
+          "name": "ALyraWorldSettings::CheckForErrors",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameModes/LyraExperienceDefinition.h",
+      "sha256": "d44ec026b03f517bd85fbe730fd58f1eb0e958aee09f75bf0c0d86170018d564",
+      "bytes": 1506,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/GameModes/LyraExperienceActionSet.h",
+      "sha256": "d48195b30636e3e98bdc142251e620caea88df867ad5eff9e8b3518d1e539a11",
+      "bytes": 1167,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp",
+      "sha256": "87695e320d66175e03bc47315e6272ecdc5826fc2e7095c1290cac44061ea6c4",
+      "bytes": 15825,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraExperienceManagerComponent::ULyraExperienceManagerComponent",
+          "line": 50
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::SetCurrentExperience",
+          "line": 56
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::CallOrRegister_OnExperienceLoaded_HighPriority",
+          "line": 70
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::CallOrRegister_OnExperienceLoaded",
+          "line": 82
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::CallOrRegister_OnExperienceLoaded_LowPriority",
+          "line": 94
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::GetCurrentExperienceChecked",
+          "line": 106
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::IsExperienceLoaded",
+          "line": 113
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::OnRep_CurrentExperience",
+          "line": 118
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::StartExperienceLoad",
+          "line": 123
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::OnExperienceLoadComplete",
+          "line": 214
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::OnGameFeaturePluginLoadComplete",
+          "line": 278
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::OnExperienceFullLoadCompleted",
+          "line": 289
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::OnActionDeactivationCompleted",
+          "line": 362
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::GetLifetimeReplicatedProps",
+          "line": 373
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::EndPlay",
+          "line": 380
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::ShouldShowLoadingScreen",
+          "line": 447
+        },
+        {
+          "name": "ULyraExperienceManagerComponent::OnAllActionsDeactivated",
+          "line": 460
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Character/LyraPawnData.h",
+      "sha256": "a56a5b0504247cbf041e24de1ff9828ec6e0deffb1a1c60ff8c9a451ba47f76c",
+      "bytes": 1780,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Character/LyraPawnExtensionComponent.cpp",
+      "sha256": "f479c9bc242e93fdf82f3e94b6876a36ddc382448fead40781698fafc4522854",
+      "bytes": 9702,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraPawnExtensionComponent::NAME_ActorFeatureName",
+          "line": 20
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::ULyraPawnExtensionComponent",
+          "line": 22
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::GetLifetimeReplicatedProps",
+          "line": 34
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::OnRegister",
+          "line": 41
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::BeginPlay",
+          "line": 56
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::EndPlay",
+          "line": 68
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::SetPawnData",
+          "line": 76
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::OnRep_PawnData",
+          "line": 100
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::InitializeAbilitySystem",
+          "line": 105
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::UninitializeAbilitySystem",
+          "line": 152
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::HandleControllerChanged",
+          "line": 185
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::HandlePlayerStateReplicated",
+          "line": 203
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::SetupPlayerInputComponent",
+          "line": 208
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::CheckDefaultInitialization",
+          "line": 213
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::CanChangeInitState",
+          "line": 224
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::HandleChangeInitState",
+          "line": 272
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::OnActorInitStateChanged",
+          "line": 280
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::OnAbilitySystemInitialized_RegisterAndCall",
+          "line": 292
+        },
+        {
+          "name": "ULyraPawnExtensionComponent::OnAbilitySystemUninitialized_Register",
+          "line": 305
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Character/LyraHeroComponent.cpp",
+      "sha256": "d036b6bbbf0fc8170cb31d0f3271d887d44f1b683db564f0e036f74b0e68d3e7",
+      "bytes": 17015,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraHeroComponent::NAME_BindInputsNow",
+          "line": 37
+        },
+        {
+          "name": "ULyraHeroComponent::NAME_ActorFeatureName",
+          "line": 38
+        },
+        {
+          "name": "ULyraHeroComponent::ULyraHeroComponent",
+          "line": 40
+        },
+        {
+          "name": "ULyraHeroComponent::OnRegister",
+          "line": 47
+        },
+        {
+          "name": "ULyraHeroComponent::CanChangeInitState",
+          "line": 76
+        },
+        {
+          "name": "ULyraHeroComponent::HandleChangeInitState",
+          "line": 145
+        },
+        {
+          "name": "ULyraHeroComponent::OnActorInitStateChanged",
+          "line": 186
+        },
+        {
+          "name": "ULyraHeroComponent::CheckDefaultInitialization",
+          "line": 198
+        },
+        {
+          "name": "ULyraHeroComponent::BeginPlay",
+          "line": 206
+        },
+        {
+          "name": "ULyraHeroComponent::EndPlay",
+          "line": 218
+        },
+        {
+          "name": "ULyraHeroComponent::InitializePlayerInput",
+          "line": 225
+        },
+        {
+          "name": "ULyraHeroComponent::AddAdditionalInputConfig",
+          "line": 304
+        },
+        {
+          "name": "ULyraHeroComponent::RemoveAdditionalInputConfig",
+          "line": 333
+        },
+        {
+          "name": "ULyraHeroComponent::IsReadyToBindInputs",
+          "line": 338
+        },
+        {
+          "name": "ULyraHeroComponent::Input_AbilityInputTagPressed",
+          "line": 343
+        },
+        {
+          "name": "ULyraHeroComponent::Input_AbilityInputTagReleased",
+          "line": 357
+        },
+        {
+          "name": "ULyraHeroComponent::Input_Move",
+          "line": 374
+        },
+        {
+          "name": "ULyraHeroComponent::Input_LookMouse",
+          "line": 404
+        },
+        {
+          "name": "ULyraHeroComponent::Input_LookStick",
+          "line": 426
+        },
+        {
+          "name": "ULyraHeroComponent::Input_Crouch",
+          "line": 451
+        },
+        {
+          "name": "ULyraHeroComponent::Input_AutoRun",
+          "line": 459
+        },
+        {
+          "name": "ULyraHeroComponent::DetermineCameraMode",
+          "line": 471
+        },
+        {
+          "name": "ULyraHeroComponent::SetAbilityCameraMode",
+          "line": 495
+        },
+        {
+          "name": "ULyraHeroComponent::ClearAbilityCameraMode",
+          "line": 504
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/System/LyraAssetManager.cpp",
+      "sha256": "2ce174daa4e909f25e30f13bb049cf99825358c11fc44c32825269e39b31fb4a",
+      "bytes": 8688,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraBundles::Equipped",
+          "line": 18
+        },
+        {
+          "name": "ULyraAssetManager::ULyraAssetManager",
+          "line": 35
+        },
+        {
+          "name": "ULyraAssetManager::Get",
+          "line": 40
+        },
+        {
+          "name": "ULyraAssetManager::SynchronousLoadAsset",
+          "line": 55
+        },
+        {
+          "name": "ULyraAssetManager::ShouldLogAssetLoads",
+          "line": 78
+        },
+        {
+          "name": "ULyraAssetManager::AddLoadedAsset",
+          "line": 84
+        },
+        {
+          "name": "ULyraAssetManager::DumpLoadedAssets",
+          "line": 93
+        },
+        {
+          "name": "ULyraAssetManager::StartInitialLoading",
+          "line": 106
+        },
+        {
+          "name": "ULyraAssetManager::InitializeGameplayCueManager",
+          "line": 124
+        },
+        {
+          "name": "ULyraAssetManager::GetGameData",
+          "line": 134
+        },
+        {
+          "name": "ULyraAssetManager::GetDefaultPawnData",
+          "line": 139
+        },
+        {
+          "name": "ULyraAssetManager::LoadGameDataOfClass",
+          "line": 144
+        },
+        {
+          "name": "ULyraAssetManager::DoAllStartupJobs",
+          "line": 193
+        },
+        {
+          "name": "ULyraAssetManager::UpdateInitialGameContentLoadPercent",
+          "line": 248
+        },
+        {
+          "name": "ULyraAssetManager::PreBeginPIE",
+          "line": 254
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/LyraGameFeaturePolicy.cpp",
+      "sha256": "3238ce57bc6e4a49d106976fff567d164e3e47580c46487f4f662d9d584b9d71",
+      "bytes": 5562,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGameFeaturePolicy::ULyraGameFeaturePolicy",
+          "line": 9
+        },
+        {
+          "name": "ULyraGameFeaturePolicy::Get",
+          "line": 14
+        },
+        {
+          "name": "ULyraGameFeaturePolicy::InitGameFeatureManager",
+          "line": 19
+        },
+        {
+          "name": "ULyraGameFeaturePolicy::ShutdownGameFeatureManager",
+          "line": 33
+        },
+        {
+          "name": "ULyraGameFeaturePolicy::GetPreloadAssetListForGameFeature",
+          "line": 45
+        },
+        {
+          "name": "ULyraGameFeaturePolicy::GetPreloadBundleStateForGameFeature",
+          "line": 50
+        },
+        {
+          "name": "ULyraGameFeaturePolicy::GetGameFeatureLoadingMode",
+          "line": 55
+        },
+        {
+          "name": "ULyraGameFeaturePolicy::IsPluginAllowed",
+          "line": 62
+        },
+        {
+          "name": "ULyraGameFeature_HotfixManager::OnGameFeatureLoading",
+          "line": 72
+        },
+        {
+          "name": "ULyraGameFeature_AddGameplayCuePaths::OnGameFeatureRegistering",
+          "line": 91
+        },
+        {
+          "name": "ULyraGameFeature_AddGameplayCuePaths::OnGameFeatureUnregistering",
+          "line": 130
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_WorldActionBase.cpp",
+      "sha256": "2a10ebf232598ba8bd017b35e96f07f665e4a4771eb3da17e057a807096fd76f",
+      "bytes": 1482,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UGameFeatureAction_WorldActionBase::OnGameFeatureActivating",
+          "line": 10
+        },
+        {
+          "name": "UGameFeatureAction_WorldActionBase::OnGameFeatureDeactivating",
+          "line": 25
+        },
+        {
+          "name": "UGameFeatureAction_WorldActionBase::HandleGameInstanceStart",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_AddAbilities.cpp",
+      "sha256": "bc3fe99af72e0e6bd34b9af50104ce1c9e50f149e67ef9c2e01060dde226ab50",
+      "bytes": 11063,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UGameFeatureAction_AddAbilities::OnGameFeatureActivating",
+          "line": 22
+        },
+        {
+          "name": "UGameFeatureAction_AddAbilities::OnGameFeatureDeactivating",
+          "line": 34
+        },
+        {
+          "name": "UGameFeatureAction_AddAbilities::IsDataValid",
+          "line": 46
+        },
+        {
+          "name": "UGameFeatureAction_AddAbilities::AddToWorld",
+          "line": 104
+        },
+        {
+          "name": "UGameFeatureAction_AddAbilities::Reset",
+          "line": 131
+        },
+        {
+          "name": "UGameFeatureAction_AddAbilities::HandleActorExtension",
+          "line": 142
+        },
+        {
+          "name": "UGameFeatureAction_AddAbilities::AddActorAbilities",
+          "line": 159
+        },
+        {
+          "name": "UGameFeatureAction_AddAbilities::RemoveActorAbilities",
+          "line": 231
+        },
+        {
+          "name": "UGameFeatureAction_AddAbilities::FindOrAddComponentForActor",
+          "line": 258
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_AddInputBinding.cpp",
+      "sha256": "5f327e9b46db15f1e68312a5242a25a1cef639ecb2388f42d9c625bb25a4b459",
+      "bytes": 6042,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UGameFeatureAction_AddInputBinding::OnGameFeatureActivating",
+          "line": 26
+        },
+        {
+          "name": "UGameFeatureAction_AddInputBinding::OnGameFeatureDeactivating",
+          "line": 37
+        },
+        {
+          "name": "UGameFeatureAction_AddInputBinding::IsDataValid",
+          "line": 49
+        },
+        {
+          "name": "UGameFeatureAction_AddInputBinding::AddToWorld",
+          "line": 69
+        },
+        {
+          "name": "UGameFeatureAction_AddInputBinding::Reset",
+          "line": 89
+        },
+        {
+          "name": "UGameFeatureAction_AddInputBinding::HandlePawnExtension",
+          "line": 107
+        },
+        {
+          "name": "UGameFeatureAction_AddInputBinding::AddInputMappingForPlayer",
+          "line": 122
+        },
+        {
+          "name": "UGameFeatureAction_AddInputBinding::RemoveInputMapping",
+          "line": 150
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_AddInputContextMapping.cpp",
+      "sha256": "def5f7d6a47a2649758d270efd18d7440afdf5220389b113769208ebf90110a3",
+      "bytes": 10404,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::OnGameFeatureRegistering",
+          "line": 27
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::OnGameFeatureActivating",
+          "line": 34
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::OnGameFeatureDeactivating",
+          "line": 45
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::OnGameFeatureUnregistering",
+          "line": 56
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::RegisterInputMappingContexts",
+          "line": 63
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::RegisterInputContextMappingsForGameInstance",
+          "line": 74
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::RegisterInputMappingContextsForLocalPlayer",
+          "line": 88
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::UnregisterInputMappingContexts",
+          "line": 117
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::UnregisterInputContextMappingsForGameInstance",
+          "line": 129
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::UnregisterInputMappingContextsForLocalPlayer",
+          "line": 143
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::IsDataValid",
+          "line": 172
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::AddToWorld",
+          "line": 192
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::Reset",
+          "line": 212
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::HandleControllerExtension",
+          "line": 230
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::AddInputMappingForPlayer",
+          "line": 246
+        },
+        {
+          "name": "UGameFeatureAction_AddInputContextMapping::RemoveInputMapping",
+          "line": 267
+        }
+      ]
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/ShooterCore.uplugin",
+      "sha256": "5b7bbaebeeb4a93dafd0842418bcb0c99608dc88928dd53d0db7cd2fcc1881d2",
+      "bytes": 1230,
+      "section": "02-architecture",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Player/LyraPlayerController.cpp",
+      "sha256": "b727843247252cdc936a56d71d9da304a9231976bbb3edbf886e532f68a41d6a",
+      "bytes": 19712,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ALyraPlayerController::ALyraPlayerController",
+          "line": 45
+        },
+        {
+          "name": "ALyraPlayerController::PreInitializeComponents",
+          "line": 55
+        },
+        {
+          "name": "ALyraPlayerController::BeginPlay",
+          "line": 60
+        },
+        {
+          "name": "ALyraPlayerController::EndPlay",
+          "line": 78
+        },
+        {
+          "name": "ALyraPlayerController::GetLifetimeReplicatedProps",
+          "line": 83
+        },
+        {
+          "name": "ALyraPlayerController::ReceivedPlayer",
+          "line": 95
+        },
+        {
+          "name": "ALyraPlayerController::PlayerTick",
+          "line": 100
+        },
+        {
+          "name": "ALyraPlayerController::GetLyraPlayerState",
+          "line": 143
+        },
+        {
+          "name": "ALyraPlayerController::GetLyraAbilitySystemComponent",
+          "line": 148
+        },
+        {
+          "name": "ALyraPlayerController::GetLyraHUD",
+          "line": 154
+        },
+        {
+          "name": "ALyraPlayerController::TryToRecordClientReplay",
+          "line": 159
+        },
+        {
+          "name": "ALyraPlayerController::ShouldRecordClientReplay",
+          "line": 183
+        },
+        {
+          "name": "ALyraPlayerController::OnPlayerStateChangedTeam",
+          "line": 227
+        },
+        {
+          "name": "ALyraPlayerController::OnPlayerStateChanged",
+          "line": 232
+        },
+        {
+          "name": "ALyraPlayerController::BroadcastOnPlayerStateChanged",
+          "line": 237
+        },
+        {
+          "name": "ALyraPlayerController::InitPlayerState",
+          "line": 269
+        },
+        {
+          "name": "ALyraPlayerController::CleanupPlayerState",
+          "line": 275
+        },
+        {
+          "name": "ALyraPlayerController::OnRep_PlayerState",
+          "line": 281
+        },
+        {
+          "name": "ALyraPlayerController::SetPlayer",
+          "line": 304
+        },
+        {
+          "name": "ALyraPlayerController::OnSettingsChanged",
+          "line": 317
+        },
+        {
+          "name": "ALyraPlayerController::AddCheats",
+          "line": 322
+        },
+        {
+          "name": "ALyraPlayerController::ServerCheat_Implementation",
+          "line": 331
+        },
+        {
+          "name": "ALyraPlayerController::ServerCheat_Validate",
+          "line": 342
+        },
+        {
+          "name": "ALyraPlayerController::ServerCheatAll_Implementation",
+          "line": 347
+        },
+        {
+          "name": "ALyraPlayerController::ServerCheatAll_Validate",
+          "line": 365
+        },
+        {
+          "name": "ALyraPlayerController::PreProcessInput",
+          "line": 370
+        },
+        {
+          "name": "ALyraPlayerController::PostProcessInput",
+          "line": 375
+        },
+        {
+          "name": "ALyraPlayerController::OnCameraPenetratingTarget",
+          "line": 385
+        },
+        {
+          "name": "ALyraPlayerController::OnPossess",
+          "line": 390
+        },
+        {
+          "name": "ALyraPlayerController::SetIsAutoRunning",
+          "line": 410
+        },
+        {
+          "name": "ALyraPlayerController::GetIsAutoRunning",
+          "line": 426
+        },
+        {
+          "name": "ALyraPlayerController::OnStartAutoRun",
+          "line": 436
+        },
+        {
+          "name": "ALyraPlayerController::OnEndAutoRun",
+          "line": 445
+        },
+        {
+          "name": "ALyraPlayerController::UpdateForceFeedback",
+          "line": 454
+        },
+        {
+          "name": "ALyraPlayerController::UpdateHiddenComponents",
+          "line": 472
+        },
+        {
+          "name": "ALyraPlayerController::SetGenericTeamId",
+          "line": 526
+        },
+        {
+          "name": "ALyraPlayerController::GetGenericTeamId",
+          "line": 531
+        },
+        {
+          "name": "ALyraPlayerController::GetOnTeamIndexChangedDelegate",
+          "line": 540
+        },
+        {
+          "name": "ALyraPlayerController::OnUnPossess",
+          "line": 545
+        },
+        {
+          "name": "ALyraReplayPlayerController::Tick",
+          "line": 569
+        },
+        {
+          "name": "ALyraReplayPlayerController::SmoothTargetViewRotation",
+          "line": 593
+        },
+        {
+          "name": "ALyraReplayPlayerController::ShouldRecordClientReplay",
+          "line": 600
+        },
+        {
+          "name": "ALyraReplayPlayerController::RecorderPlayerStateUpdated",
+          "line": 605
+        },
+        {
+          "name": "ALyraReplayPlayerController::OnPlayerStatePawnSet",
+          "line": 617
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Player/LyraPlayerState.cpp",
+      "sha256": "9719ea5fd8a390e94601cf6290ba1f5d2b799e9960906213f43c5e1ee439a39b",
+      "bytes": 8926,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ALyraPlayerState::NAME_LyraAbilityReady",
+          "line": 28
+        },
+        {
+          "name": "ALyraPlayerState::ALyraPlayerState",
+          "line": 30
+        },
+        {
+          "name": "ALyraPlayerState::PreInitializeComponents",
+          "line": 49
+        },
+        {
+          "name": "ALyraPlayerState::Reset",
+          "line": 54
+        },
+        {
+          "name": "ALyraPlayerState::ClientInitialize",
+          "line": 59
+        },
+        {
+          "name": "ALyraPlayerState::CopyProperties",
+          "line": 69
+        },
+        {
+          "name": "ALyraPlayerState::OnDeactivated",
+          "line": 76
+        },
+        {
+          "name": "ALyraPlayerState::OnReactivated",
+          "line": 101
+        },
+        {
+          "name": "ALyraPlayerState::OnExperienceLoaded",
+          "line": 109
+        },
+        {
+          "name": "ALyraPlayerState::GetLifetimeReplicatedProps",
+          "line": 124
+        },
+        {
+          "name": "ALyraPlayerState::GetReplicatedViewRotation",
+          "line": 142
+        },
+        {
+          "name": "ALyraPlayerState::SetReplicatedViewRotation",
+          "line": 148
+        },
+        {
+          "name": "ALyraPlayerState::GetLyraPlayerController",
+          "line": 157
+        },
+        {
+          "name": "ALyraPlayerState::GetAbilitySystemComponent",
+          "line": 162
+        },
+        {
+          "name": "ALyraPlayerState::PostInitializeComponents",
+          "line": 167
+        },
+        {
+          "name": "ALyraPlayerState::SetPawnData",
+          "line": 185
+        },
+        {
+          "name": "ALyraPlayerState::OnRep_PawnData",
+          "line": 216
+        },
+        {
+          "name": "ALyraPlayerState::SetPlayerConnectionType",
+          "line": 220
+        },
+        {
+          "name": "ALyraPlayerState::SetSquadID",
+          "line": 226
+        },
+        {
+          "name": "ALyraPlayerState::SetGenericTeamId",
+          "line": 236
+        },
+        {
+          "name": "ALyraPlayerState::GetGenericTeamId",
+          "line": 252
+        },
+        {
+          "name": "ALyraPlayerState::GetOnTeamIndexChangedDelegate",
+          "line": 257
+        },
+        {
+          "name": "ALyraPlayerState::OnRep_MyTeamID",
+          "line": 262
+        },
+        {
+          "name": "ALyraPlayerState::OnRep_MySquadID",
+          "line": 267
+        },
+        {
+          "name": "ALyraPlayerState::AddStatTagStack",
+          "line": 272
+        },
+        {
+          "name": "ALyraPlayerState::RemoveStatTagStack",
+          "line": 277
+        },
+        {
+          "name": "ALyraPlayerState::GetStatTagStackCount",
+          "line": 282
+        },
+        {
+          "name": "ALyraPlayerState::HasStatTag",
+          "line": 287
+        },
+        {
+          "name": "ALyraPlayerState::ClientBroadcastMessage_Implementation",
+          "line": 292
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Player/LyraLocalPlayer.cpp",
+      "sha256": "4f24064679f1eda3f8eb16f7f471fc85819b7ec3f29f4b5b5e920db1dcd0c178",
+      "bytes": 5076,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraLocalPlayer::ULyraLocalPlayer",
+          "line": 16
+        },
+        {
+          "name": "ULyraLocalPlayer::PostInitProperties",
+          "line": 20
+        },
+        {
+          "name": "ULyraLocalPlayer::SwitchController",
+          "line": 30
+        },
+        {
+          "name": "ULyraLocalPlayer::SpawnPlayActor",
+          "line": 37
+        },
+        {
+          "name": "ULyraLocalPlayer::InitOnlineSession",
+          "line": 46
+        },
+        {
+          "name": "ULyraLocalPlayer::OnPlayerControllerChanged",
+          "line": 53
+        },
+        {
+          "name": "ULyraLocalPlayer::SetGenericTeamId",
+          "line": 75
+        },
+        {
+          "name": "ULyraLocalPlayer::GetGenericTeamId",
+          "line": 80
+        },
+        {
+          "name": "ULyraLocalPlayer::GetOnTeamIndexChangedDelegate",
+          "line": 92
+        },
+        {
+          "name": "ULyraLocalPlayer::GetLocalSettings",
+          "line": 97
+        },
+        {
+          "name": "ULyraLocalPlayer::GetSharedSettings",
+          "line": 102
+        },
+        {
+          "name": "ULyraLocalPlayer::LoadSharedSettingsFromDisk",
+          "line": 124
+        },
+        {
+          "name": "ULyraLocalPlayer::OnSharedSettingsLoaded",
+          "line": 136
+        },
+        {
+          "name": "ULyraLocalPlayer::OnAudioOutputDeviceChanged",
+          "line": 148
+        },
+        {
+          "name": "ULyraLocalPlayer::OnCompletedAudioDeviceSwap",
+          "line": 155
+        },
+        {
+          "name": "ULyraLocalPlayer::OnControllerChangedTeam",
+          "line": 162
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Character/LyraCharacter.cpp",
+      "sha256": "62a69ad6abdb9f67282326ec28709068b657878bfa32cade64002510c2ab36a5",
+      "bytes": 21427,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ALyraCharacter::ALyraCharacter",
+          "line": 30
+        },
+        {
+          "name": "ALyraCharacter::PreInitializeComponents",
+          "line": 83
+        },
+        {
+          "name": "ALyraCharacter::BeginPlay",
+          "line": 88
+        },
+        {
+          "name": "ALyraCharacter::EndPlay",
+          "line": 104
+        },
+        {
+          "name": "ALyraCharacter::Reset",
+          "line": 120
+        },
+        {
+          "name": "ALyraCharacter::GetLifetimeReplicatedProps",
+          "line": 129
+        },
+        {
+          "name": "ALyraCharacter::PreReplication",
+          "line": 137
+        },
+        {
+          "name": "ALyraCharacter::NotifyControllerChanged",
+          "line": 155
+        },
+        {
+          "name": "ALyraCharacter::GetLyraPlayerController",
+          "line": 172
+        },
+        {
+          "name": "ALyraCharacter::GetLyraPlayerState",
+          "line": 177
+        },
+        {
+          "name": "ALyraCharacter::GetLyraAbilitySystemComponent",
+          "line": 182
+        },
+        {
+          "name": "ALyraCharacter::GetAbilitySystemComponent",
+          "line": 187
+        },
+        {
+          "name": "ALyraCharacter::OnAbilitySystemInitialized",
+          "line": 197
+        },
+        {
+          "name": "ALyraCharacter::OnAbilitySystemUninitialized",
+          "line": 207
+        },
+        {
+          "name": "ALyraCharacter::PossessedBy",
+          "line": 212
+        },
+        {
+          "name": "ALyraCharacter::UnPossessed",
+          "line": 229
+        },
+        {
+          "name": "ALyraCharacter::OnRep_Controller",
+          "line": 249
+        },
+        {
+          "name": "ALyraCharacter::OnRep_PlayerState",
+          "line": 256
+        },
+        {
+          "name": "ALyraCharacter::SetupPlayerInputComponent",
+          "line": 263
+        },
+        {
+          "name": "ALyraCharacter::InitializeGameplayTags",
+          "line": 270
+        },
+        {
+          "name": "ALyraCharacter::GetOwnedGameplayTags",
+          "line": 296
+        },
+        {
+          "name": "ALyraCharacter::HasMatchingGameplayTag",
+          "line": 304
+        },
+        {
+          "name": "ALyraCharacter::HasAllMatchingGameplayTags",
+          "line": 314
+        },
+        {
+          "name": "ALyraCharacter::HasAnyMatchingGameplayTags",
+          "line": 324
+        },
+        {
+          "name": "ALyraCharacter::FellOutOfWorld",
+          "line": 334
+        },
+        {
+          "name": "ALyraCharacter::OnDeathStarted",
+          "line": 339
+        },
+        {
+          "name": "ALyraCharacter::OnDeathFinished",
+          "line": 344
+        },
+        {
+          "name": "ALyraCharacter::DisableMovementAndCollision",
+          "line": 350
+        },
+        {
+          "name": "ALyraCharacter::DestroyDueToDeath",
+          "line": 367
+        },
+        {
+          "name": "ALyraCharacter::UninitAndDestroy",
+          "line": 375
+        },
+        {
+          "name": "ALyraCharacter::OnMovementModeChanged",
+          "line": 395
+        },
+        {
+          "name": "ALyraCharacter::SetMovementModeTag",
+          "line": 405
+        },
+        {
+          "name": "ALyraCharacter::ToggleCrouch",
+          "line": 426
+        },
+        {
+          "name": "ALyraCharacter::OnStartCrouch",
+          "line": 440
+        },
+        {
+          "name": "ALyraCharacter::OnEndCrouch",
+          "line": 451
+        },
+        {
+          "name": "ALyraCharacter::CanJumpInternal_Implementation",
+          "line": 461
+        },
+        {
+          "name": "ALyraCharacter::OnRep_ReplicatedAcceleration",
+          "line": 467
+        },
+        {
+          "name": "ALyraCharacter::SetGenericTeamId",
+          "line": 484
+        },
+        {
+          "name": "ALyraCharacter::GetGenericTeamId",
+          "line": 505
+        },
+        {
+          "name": "ALyraCharacter::GetOnTeamIndexChangedDelegate",
+          "line": 510
+        },
+        {
+          "name": "ALyraCharacter::OnControllerChangedTeam",
+          "line": 515
+        },
+        {
+          "name": "ALyraCharacter::OnRep_MyTeamID",
+          "line": 522
+        },
+        {
+          "name": "ALyraCharacter::UpdateSharedReplication",
+          "line": 527
+        },
+        {
+          "name": "ALyraCharacter::FastSharedReplication_Implementation",
+          "line": 553
+        },
+        {
+          "name": "FSharedRepMovement::FSharedRepMovement",
+          "line": 593
+        },
+        {
+          "name": "FSharedRepMovement::FillForCharacter",
+          "line": 598
+        },
+        {
+          "name": "FSharedRepMovement::Equals",
+          "line": 626
+        },
+        {
+          "name": "FSharedRepMovement::NetSerialize",
+          "line": 661
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Input/LyraInputConfig.h",
+      "sha256": "7b313ba8157c2893b489e8cd4e77c827f5e4dcd94eb34d72bc2465d053d38e3e",
+      "bytes": 1838,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Input/LyraInputComponent.h",
+      "sha256": "24fca3cb31e5f510bae3133fed22d90e5958dd7bb8ef6273ca0c20640e65fcbb",
+      "bytes": 2570,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraInputComponent::BindNativeAction",
+          "line": 43
+        },
+        {
+          "name": "ULyraInputComponent::BindAbilityActions",
+          "line": 53
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Camera/LyraCameraComponent.cpp",
+      "sha256": "8a10b02eb19d4db8582fae93dfb8a682aef102f70d0575024d6074699b3a3764",
+      "bytes": 3926,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraCameraComponent::ULyraCameraComponent",
+          "line": 14
+        },
+        {
+          "name": "ULyraCameraComponent::OnRegister",
+          "line": 21
+        },
+        {
+          "name": "ULyraCameraComponent::GetCameraView",
+          "line": 32
+        },
+        {
+          "name": "ULyraCameraComponent::UpdateCameraModes",
+          "line": 85
+        },
+        {
+          "name": "ULyraCameraComponent::DrawDebug",
+          "line": 101
+        },
+        {
+          "name": "ULyraCameraComponent::GetBlendInfo",
+          "line": 120
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Camera/LyraCameraMode_ThirdPerson.cpp",
+      "sha256": "b6bd3e16e4ecf4e21cfa4a0e2f829f37a89d2b729f60aff0300f2c66f58e7a00",
+      "bytes": 13637,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraCameraMode_ThirdPerson::ULyraCameraMode_ThirdPerson",
+          "line": 22
+        },
+        {
+          "name": "ULyraCameraMode_ThirdPerson::UpdateView",
+          "line": 35
+        },
+        {
+          "name": "ULyraCameraMode_ThirdPerson::UpdateForTarget",
+          "line": 74
+        },
+        {
+          "name": "ULyraCameraMode_ThirdPerson::DrawDebug",
+          "line": 93
+        },
+        {
+          "name": "ULyraCameraMode_ThirdPerson::UpdatePreventPenetration",
+          "line": 111
+        },
+        {
+          "name": "ULyraCameraMode_ThirdPerson::PreventCameraPenetration",
+          "line": 173
+        },
+        {
+          "name": "ULyraCameraMode_ThirdPerson::SetTargetCrouchOffset",
+          "line": 352
+        },
+        {
+          "name": "ULyraCameraMode_ThirdPerson::UpdateCrouchOffset",
+          "line": 360
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Animation/LyraAnimInstance.cpp",
+      "sha256": "bb72c13f38a760e57bd2d9abaebb10bc41bf191cdc788609bd2540602ab97a55",
+      "bytes": 1755,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraAnimInstance::ULyraAnimInstance",
+          "line": 15
+        },
+        {
+          "name": "ULyraAnimInstance::InitializeWithAbilitySystem",
+          "line": 20
+        },
+        {
+          "name": "ULyraAnimInstance::IsDataValid",
+          "line": 28
+        },
+        {
+          "name": "ULyraAnimInstance::NativeInitializeAnimation",
+          "line": 38
+        },
+        {
+          "name": "ULyraAnimInstance::NativeUpdateAnimation",
+          "line": 51
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Cosmetics/LyraPawnComponent_CharacterParts.cpp",
+      "sha256": "975c2ae1c05df4cfbb31e47d75e3a2d2640db2d50a6aed014a7804d23ab8534d",
+      "bytes": 9975,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraAppliedCharacterPartEntry::GetDebugString",
+          "line": 20
+        },
+        {
+          "name": "FLyraCharacterPartList::PreReplicatedRemove",
+          "line": 27
+        },
+        {
+          "name": "FLyraCharacterPartList::PostReplicatedAdd",
+          "line": 42
+        },
+        {
+          "name": "FLyraCharacterPartList::PostReplicatedChange",
+          "line": 57
+        },
+        {
+          "name": "FLyraCharacterPartList::AddEntry",
+          "line": 76
+        },
+        {
+          "name": "FLyraCharacterPartList::RemoveEntry",
+          "line": 98
+        },
+        {
+          "name": "FLyraCharacterPartList::ClearAllEntries",
+          "line": 119
+        },
+        {
+          "name": "FLyraCharacterPartList::CollectCombinedTags",
+          "line": 135
+        },
+        {
+          "name": "FLyraCharacterPartList::SpawnActorForEntry",
+          "line": 153
+        },
+        {
+          "name": "FLyraCharacterPartList::DestroyActorForEntry",
+          "line": 202
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::ULyraPawnComponent_CharacterParts",
+          "line": 218
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::GetLifetimeReplicatedProps",
+          "line": 224
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::AddCharacterPart",
+          "line": 231
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::RemoveCharacterPart",
+          "line": 236
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::RemoveAllCharacterParts",
+          "line": 241
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::BeginPlay",
+          "line": 246
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::EndPlay",
+          "line": 251
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::OnRegister",
+          "line": 258
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::GetCharacterPartActors",
+          "line": 268
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::GetParentMeshComponent",
+          "line": 287
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::GetSceneComponentToAttachTo",
+          "line": 303
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::GetCombinedTags",
+          "line": 319
+        },
+        {
+          "name": "ULyraPawnComponent_CharacterParts::BroadcastChanged",
+          "line": 332
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Cosmetics/LyraControllerComponent_CharacterParts.cpp",
+      "sha256": "edf9cd5d49637061d6c378d1854d10cd4f4c83cc68ae76e5dfaa549feb9ebb9e",
+      "bytes": 6885,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraControllerComponent_CharacterParts::ULyraControllerComponent_CharacterParts",
+          "line": 14
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::BeginPlay",
+          "line": 19
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::EndPlay",
+          "line": 40
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::GetPawnCustomizer",
+          "line": 46
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::AddCharacterPart",
+          "line": 55
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::AddCharacterPartInternal",
+          "line": 60
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::RemoveCharacterPart",
+          "line": 76
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::RemoveAllCharacterParts",
+          "line": 93
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::OnPossessedPawnChanged",
+          "line": 106
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::ApplyDeveloperSettings",
+          "line": 132
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::AddCheatPart",
+          "line": 164
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::ClearCheatParts",
+          "line": 172
+        },
+        {
+          "name": "ULyraControllerComponent_CharacterParts::SetSuppressionOnNaturalParts",
+          "line": 194
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility_Jump.cpp",
+      "sha256": "ae85050e8de0c0bc0bd00782c1141ad76e96e138db8e71b3eb942a35b0e41c51",
+      "bytes": 2220,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGameplayAbility_Jump::ULyraGameplayAbility_Jump",
+          "line": 13
+        },
+        {
+          "name": "ULyraGameplayAbility_Jump::CanActivateAbility",
+          "line": 20
+        },
+        {
+          "name": "ULyraGameplayAbility_Jump::EndAbility",
+          "line": 41
+        },
+        {
+          "name": "ULyraGameplayAbility_Jump::CharacterJumpStart",
+          "line": 49
+        },
+        {
+          "name": "ULyraGameplayAbility_Jump::CharacterJumpStop",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/AbilitySystem/LyraAbilitySet.cpp",
+      "sha256": "5cc3801ede19551a9cde1534e75c41b2781ad5e06245ffa343d745aa303d76e8",
+      "bytes": 4358,
+      "section": "04-gas",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraAbilitySet_GrantedHandles::AddAbilitySpecHandle",
+          "line": 11
+        },
+        {
+          "name": "FLyraAbilitySet_GrantedHandles::AddGameplayEffectHandle",
+          "line": 19
+        },
+        {
+          "name": "FLyraAbilitySet_GrantedHandles::AddAttributeSet",
+          "line": 27
+        },
+        {
+          "name": "FLyraAbilitySet_GrantedHandles::TakeFromAbilitySystem",
+          "line": 32
+        },
+        {
+          "name": "ULyraAbilitySet::ULyraAbilitySet",
+          "line": 68
+        },
+        {
+          "name": "ULyraAbilitySet::GiveToAbilitySystem",
+          "line": 73
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/AbilitySystem/LyraAbilitySystemComponent.cpp",
+      "sha256": "f9019ab6219dd508dcfc37c81b2303a437034684f35d07d2231492fb5fce703f",
+      "bytes": 19604,
+      "section": "04-gas",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraAbilitySystemComponent::ULyraAbilitySystemComponent",
+          "line": 19
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::EndPlay",
+          "line": 29
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::InitAbilityActorInfo",
+          "line": 39
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::TryActivateAbilitiesOnSpawn",
+          "line": 85
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::CancelAbilitiesByFunc",
+          "line": 97
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::CancelInputActivatedAbilities",
+          "line": 139
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::AbilitySpecInputPressed",
+          "line": 150
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::AbilitySpecInputReleased",
+          "line": 168
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::AbilityInputTagPressed",
+          "line": 186
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::AbilityInputTagReleased",
+          "line": 201
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::ProcessAbilityInput",
+          "line": 216
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::ClearAbilityInput",
+          "line": 313
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::NotifyAbilityActivated",
+          "line": 320
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::NotifyAbilityFailed",
+          "line": 330
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::NotifyAbilityEnded",
+          "line": 346
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::ApplyAbilityBlockAndCancelTags",
+          "line": 356
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::HandleChangeAbilityCanBeCanceled",
+          "line": 372
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::GetAdditionalActivationTagRequirements",
+          "line": 379
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::SetTagRelationshipMapping",
+          "line": 387
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::ClientNotifyAbilityFailed_Implementation",
+          "line": 392
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::HandleAbilityFailed",
+          "line": 397
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::IsActivationGroupBlocked",
+          "line": 407
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::AddAbilityToActivationGroup",
+          "line": 432
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::RemoveAbilityFromActivationGroup",
+          "line": 464
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::CancelActivationGroupAbilities",
+          "line": 472
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::AddDynamicTagGameplayEffect",
+          "line": 482
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::RemoveDynamicTagGameplayEffect",
+          "line": 505
+        },
+        {
+          "name": "ULyraAbilitySystemComponent::GetAbilityTargetData",
+          "line": 520
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility.h",
+      "sha256": "ee1a90725aaedf6217947c95a848299b7ff61bd9becc2e29a4cf556cbcc7dbd2",
+      "bytes": 9547,
+      "section": "04-gas",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility.cpp",
+      "sha256": "91709a3ac50e55d92ebf1684165925c26bf4e29c0a6e356517721dfb2bb7e3ff",
+      "bytes": 18017,
+      "section": "04-gas",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGameplayAbility::ULyraGameplayAbility",
+          "line": 36
+        },
+        {
+          "name": "ULyraGameplayAbility::GetLyraAbilitySystemComponentFromActorInfo",
+          "line": 52
+        },
+        {
+          "name": "ULyraGameplayAbility::GetLyraPlayerControllerFromActorInfo",
+          "line": 57
+        },
+        {
+          "name": "ULyraGameplayAbility::GetControllerFromActorInfo",
+          "line": 62
+        },
+        {
+          "name": "ULyraGameplayAbility::GetLyraCharacterFromActorInfo",
+          "line": 92
+        },
+        {
+          "name": "ULyraGameplayAbility::GetHeroComponentFromActorInfo",
+          "line": 97
+        },
+        {
+          "name": "ULyraGameplayAbility::NativeOnAbilityFailedToActivate",
+          "line": 102
+        },
+        {
+          "name": "ULyraGameplayAbility::CanActivateAbility",
+          "line": 136
+        },
+        {
+          "name": "ULyraGameplayAbility::SetCanBeCanceled",
+          "line": 162
+        },
+        {
+          "name": "ULyraGameplayAbility::OnGiveAbility",
+          "line": 174
+        },
+        {
+          "name": "ULyraGameplayAbility::OnRemoveAbility",
+          "line": 183
+        },
+        {
+          "name": "ULyraGameplayAbility::ActivateAbility",
+          "line": 190
+        },
+        {
+          "name": "ULyraGameplayAbility::EndAbility",
+          "line": 195
+        },
+        {
+          "name": "ULyraGameplayAbility::CheckCost",
+          "line": 202
+        },
+        {
+          "name": "ULyraGameplayAbility::ApplyCost",
+          "line": 224
+        },
+        {
+          "name": "ULyraGameplayAbility::MakeEffectContext",
+          "line": 278
+        },
+        {
+          "name": "ULyraGameplayAbility::ApplyAbilityTagsToGameplayEffectSpec",
+          "line": 303
+        },
+        {
+          "name": "ULyraGameplayAbility::DoesAbilitySatisfyTagRequirements",
+          "line": 316
+        },
+        {
+          "name": "ULyraGameplayAbility::OnPawnAvatarSet",
+          "line": 423
+        },
+        {
+          "name": "ULyraGameplayAbility::GetAbilitySource",
+          "line": 428
+        },
+        {
+          "name": "ULyraGameplayAbility::TryActivateAbilityOnSpawn",
+          "line": 442
+        },
+        {
+          "name": "ULyraGameplayAbility::CanChangeActivationGroup",
+          "line": 467
+        },
+        {
+          "name": "ULyraGameplayAbility::ChangeActivationGroup",
+          "line": 497
+        },
+        {
+          "name": "ULyraGameplayAbility::SetCameraMode",
+          "line": 520
+        },
+        {
+          "name": "ULyraGameplayAbility::ClearCameraMode",
+          "line": 531
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/AbilitySystem/Attributes/LyraHealthSet.cpp",
+      "sha256": "01cb2996f6b1b27bd2c14e50f528c3005781ea10c31297ca3b5198768e4a69e6",
+      "bytes": 8438,
+      "section": "04-gas",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraHealthSet::ULyraHealthSet",
+          "line": 21
+        },
+        {
+          "name": "ULyraHealthSet::GetLifetimeReplicatedProps",
+          "line": 30
+        },
+        {
+          "name": "ULyraHealthSet::OnRep_Health",
+          "line": 38
+        },
+        {
+          "name": "ULyraHealthSet::OnRep_MaxHealth",
+          "line": 59
+        },
+        {
+          "name": "ULyraHealthSet::PreGameplayEffectExecute",
+          "line": 68
+        },
+        {
+          "name": "ULyraHealthSet::PostGameplayEffectExecute",
+          "line": 108
+        },
+        {
+          "name": "ULyraHealthSet::PreAttributeBaseChange",
+          "line": 185
+        },
+        {
+          "name": "ULyraHealthSet::PreAttributeChange",
+          "line": 192
+        },
+        {
+          "name": "ULyraHealthSet::PostAttributeChange",
+          "line": 199
+        },
+        {
+          "name": "ULyraHealthSet::ClampAttribute",
+          "line": 221
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Character/LyraHealthComponent.cpp",
+      "sha256": "f1178cf93578df02b8d30374023cf1d84d8d93999685f2d6f4e5a92c7334eb26",
+      "bytes": 10621,
+      "section": "04-gas",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraHealthComponent::ULyraHealthComponent",
+          "line": 25
+        },
+        {
+          "name": "ULyraHealthComponent::GetLifetimeReplicatedProps",
+          "line": 38
+        },
+        {
+          "name": "ULyraHealthComponent::OnUnregister",
+          "line": 45
+        },
+        {
+          "name": "ULyraHealthComponent::InitializeWithAbilitySystem",
+          "line": 52
+        },
+        {
+          "name": "ULyraHealthComponent::UninitializeFromAbilitySystem",
+          "line": 91
+        },
+        {
+          "name": "ULyraHealthComponent::ClearGameplayTags",
+          "line": 106
+        },
+        {
+          "name": "ULyraHealthComponent::GetHealth",
+          "line": 115
+        },
+        {
+          "name": "ULyraHealthComponent::GetMaxHealth",
+          "line": 120
+        },
+        {
+          "name": "ULyraHealthComponent::GetHealthNormalized",
+          "line": 125
+        },
+        {
+          "name": "ULyraHealthComponent::HandleHealthChanged",
+          "line": 138
+        },
+        {
+          "name": "ULyraHealthComponent::HandleMaxHealthChanged",
+          "line": 143
+        },
+        {
+          "name": "ULyraHealthComponent::HandleOutOfHealth",
+          "line": 148
+        },
+        {
+          "name": "ULyraHealthComponent::OnRep_DeathState",
+          "line": 190
+        },
+        {
+          "name": "ULyraHealthComponent::StartDeath",
+          "line": 235
+        },
+        {
+          "name": "ULyraHealthComponent::FinishDeath",
+          "line": 257
+        },
+        {
+          "name": "ULyraHealthComponent::DamageSelfDestruct",
+          "line": 279
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/LyraGameplayTags.cpp",
+      "sha256": "0361447153a11619a0628d8b5ad82e5442a14875207ccf8ad014a5cf173212ee",
+      "bytes": 6344,
+      "section": "04-gas",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/AbilitySystem/LyraAbilityTagRelationshipMapping.cpp",
+      "sha256": "a848bb3f753bd456a2c45462f783c3c2b370ea56f85f2bde5863e3b5961d453b",
+      "bytes": 1950,
+      "section": "04-gas",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraAbilityTagRelationshipMapping::GetAbilityTagsToBlockAndCancel",
+          "line": 8
+        },
+        {
+          "name": "ULyraAbilityTagRelationshipMapping::GetRequiredAndBlockedActivationTags",
+          "line": 28
+        },
+        {
+          "name": "ULyraAbilityTagRelationshipMapping::IsAbilityCancelledByTag",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Inventory/LyraInventoryItemDefinition.h",
+      "sha256": "faeca215ea622d5ea1956c3e78767d6b012a9682475f44af5ae376b9fac6ad0e",
+      "bytes": 1741,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Inventory/LyraInventoryManagerComponent.cpp",
+      "sha256": "e34238fd2261db1311e31c59fb58c1a5ab414e496eeb578bcc6f5bd42dd3ac81",
+      "bytes": 9237,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraInventoryEntry::GetDebugString",
+          "line": 23
+        },
+        {
+          "name": "FLyraInventoryList::PreReplicatedRemove",
+          "line": 37
+        },
+        {
+          "name": "FLyraInventoryList::PostReplicatedAdd",
+          "line": 47
+        },
+        {
+          "name": "FLyraInventoryList::PostReplicatedChange",
+          "line": 57
+        },
+        {
+          "name": "FLyraInventoryList::BroadcastChangeMessage",
+          "line": 68
+        },
+        {
+          "name": "FLyraInventoryList::AddEntry",
+          "line": 80
+        },
+        {
+          "name": "FLyraInventoryList::AddEntry",
+          "line": 110
+        },
+        {
+          "name": "FLyraInventoryList::RemoveEntry",
+          "line": 115
+        },
+        {
+          "name": "FLyraInventoryList::GetAllItems",
+          "line": 128
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::ULyraInventoryManagerComponent",
+          "line": 145
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::GetLifetimeReplicatedProps",
+          "line": 152
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::CanAddItemDefinition",
+          "line": 159
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::AddItemDefinition",
+          "line": 165
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::AddItemInstance",
+          "line": 180
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::RemoveItemInstance",
+          "line": 189
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::GetAllItems",
+          "line": 199
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::FindFirstItemStackByDefinition",
+          "line": 204
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::GetTotalItemCountByDefinition",
+          "line": 222
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::ConsumeItemsByDefinition",
+          "line": 241
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::ReadyForReplication",
+          "line": 267
+        },
+        {
+          "name": "ULyraInventoryManagerComponent::ReplicateSubobjects",
+          "line": 286
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Equipment/LyraEquipmentDefinition.h",
+      "sha256": "ca9bc1195557b46727cd04c1b7d2762887fba405664765ae65530c45a9cd1dad",
+      "bytes": 1386,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Equipment/LyraEquipmentManagerComponent.cpp",
+      "sha256": "f94a6c5c10469df7d53caf82aa330ba5f03bdc6f4716e2d0a27dfb52dd0d6b3e",
+      "bytes": 7499,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraAppliedEquipmentEntry::GetDebugString",
+          "line": 20
+        },
+        {
+          "name": "FLyraEquipmentList::PreReplicatedRemove",
+          "line": 28
+        },
+        {
+          "name": "FLyraEquipmentList::PostReplicatedAdd",
+          "line": 40
+        },
+        {
+          "name": "FLyraEquipmentList::PostReplicatedChange",
+          "line": 52
+        },
+        {
+          "name": "FLyraEquipmentList::GetAbilitySystemComponent",
+          "line": 61
+        },
+        {
+          "name": "FLyraEquipmentList::AddEntry",
+          "line": 68
+        },
+        {
+          "name": "FLyraEquipmentList::RemoveEntry",
+          "line": 109
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::ULyraEquipmentManagerComponent",
+          "line": 133
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::GetLifetimeReplicatedProps",
+          "line": 141
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::EquipItem",
+          "line": 148
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::UnequipItem",
+          "line": 167
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::ReplicateSubobjects",
+          "line": 181
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::InitializeComponent",
+          "line": 198
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::UninitializeComponent",
+          "line": 203
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::ReadyForReplication",
+          "line": 221
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::GetFirstInstanceOfType",
+          "line": 240
+        },
+        {
+          "name": "ULyraEquipmentManagerComponent::GetEquipmentInstancesOfType",
+          "line": 256
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Equipment/LyraQuickBarComponent.cpp",
+      "sha256": "3fd7904e3f174b1436423aa2ba7da5518c9d88cc9493bfa2d01e27b5396fe8b1",
+      "bytes": 5605,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraQuickBarComponent::ULyraQuickBarComponent",
+          "line": 22
+        },
+        {
+          "name": "ULyraQuickBarComponent::GetLifetimeReplicatedProps",
+          "line": 28
+        },
+        {
+          "name": "ULyraQuickBarComponent::BeginPlay",
+          "line": 36
+        },
+        {
+          "name": "ULyraQuickBarComponent::CycleActiveSlotForward",
+          "line": 46
+        },
+        {
+          "name": "ULyraQuickBarComponent::CycleActiveSlotBackward",
+          "line": 66
+        },
+        {
+          "name": "ULyraQuickBarComponent::EquipItemInSlot",
+          "line": 86
+        },
+        {
+          "name": "ULyraQuickBarComponent::UnequipItemInSlot",
+          "line": 111
+        },
+        {
+          "name": "ULyraQuickBarComponent::FindEquipmentManager",
+          "line": 123
+        },
+        {
+          "name": "ULyraQuickBarComponent::SetActiveSlotIndex_Implementation",
+          "line": 135
+        },
+        {
+          "name": "ULyraQuickBarComponent::GetActiveSlotItem",
+          "line": 149
+        },
+        {
+          "name": "ULyraQuickBarComponent::GetNextFreeItemSlot",
+          "line": 154
+        },
+        {
+          "name": "ULyraQuickBarComponent::AddItemToSlot",
+          "line": 169
+        },
+        {
+          "name": "ULyraQuickBarComponent::RemoveItemFromSlot",
+          "line": 181
+        },
+        {
+          "name": "ULyraQuickBarComponent::OnRep_Slots",
+          "line": 205
+        },
+        {
+          "name": "ULyraQuickBarComponent::OnRep_ActiveSlotIndex",
+          "line": 215
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Weapons/LyraGameplayAbility_RangedWeapon.cpp",
+      "sha256": "4bf81f22d1e3c0c31412b078f6a97fcfc20be347263b4b314b81d3084a8d48db",
+      "bytes": 21999,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::ULyraGameplayAbility_RangedWeapon",
+          "line": 73
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::GetWeaponInstance",
+          "line": 79
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::CanActivateAbility",
+          "line": 84
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::FindFirstPawnHitResult",
+          "line": 103
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::AddAdditionalTraceIgnoreActors",
+          "line": 127
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::DetermineTraceChannel",
+          "line": 138
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::WeaponTrace",
+          "line": 143
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::GetWeaponTargetingSourceLocation",
+          "line": 193
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::GetTargetingTransform",
+          "line": 209
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::DoSingleBulletTrace",
+          "line": 292
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::PerformLocalTargeting",
+          "line": 352
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::TraceBulletsInCartridge",
+          "line": 382
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::ActivateAbility",
+          "line": 440
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::EndAbility",
+          "line": 456
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::OnTargetDataReadyCallback",
+          "line": 477
+        },
+        {
+          "name": "ULyraGameplayAbility_RangedWeapon::StartRangedWeaponTargeting",
+          "line": 552
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Weapons/LyraWeaponInstance.cpp",
+      "sha256": "7b574b5355eea73f59a80f385e9883da9c335cb2ddf24b5a0590e4e2ec48b228",
+      "bytes": 4088,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraWeaponInstance::ULyraWeaponInstance",
+          "line": 18
+        },
+        {
+          "name": "ULyraWeaponInstance::OnEquipped",
+          "line": 36
+        },
+        {
+          "name": "ULyraWeaponInstance::OnUnequipped",
+          "line": 47
+        },
+        {
+          "name": "ULyraWeaponInstance::UpdateFiringTime",
+          "line": 54
+        },
+        {
+          "name": "ULyraWeaponInstance::GetTimeSinceLastInteractedWith",
+          "line": 61
+        },
+        {
+          "name": "ULyraWeaponInstance::PickBestAnimLayer",
+          "line": 78
+        },
+        {
+          "name": "ULyraWeaponInstance::GetOwningUserId",
+          "line": 84
+        },
+        {
+          "name": "ULyraWeaponInstance::ApplyDeviceProperties",
+          "line": 93
+        },
+        {
+          "name": "ULyraWeaponInstance::RemoveDeviceProperties",
+          "line": 120
+        },
+        {
+          "name": "ULyraWeaponInstance::OnDeathStarted",
+          "line": 135
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Weapons/LyraWeaponStateComponent.cpp",
+      "sha256": "54b2983175b787c115166e12a0533ec3c80d12a4d471255db5389cec7e03c173",
+      "bytes": 5430,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraWeaponStateComponent::ULyraWeaponStateComponent",
+          "line": 19
+        },
+        {
+          "name": "ULyraWeaponStateComponent::TickComponent",
+          "line": 28
+        },
+        {
+          "name": "ULyraWeaponStateComponent::ShouldShowHitAsSuccess",
+          "line": 44
+        },
+        {
+          "name": "ULyraWeaponStateComponent::ShouldUpdateDamageInstigatedTime",
+          "line": 58
+        },
+        {
+          "name": "ULyraWeaponStateComponent::ClientConfirmTargetData_Implementation",
+          "line": 66
+        },
+        {
+          "name": "ULyraWeaponStateComponent::AddUnconfirmedServerSideHitMarkers",
+          "line": 103
+        },
+        {
+          "name": "ULyraWeaponStateComponent::UpdateDamageInstigatedTime",
+          "line": 136
+        },
+        {
+          "name": "ULyraWeaponStateComponent::ActuallyUpdateDamageInstigatedTime",
+          "line": 144
+        },
+        {
+          "name": "ULyraWeaponStateComponent::GetTimeSinceLastHitNotification",
+          "line": 155
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Interaction/InteractionOption.h",
+      "sha256": "6db3ab0229039a6de66fa8e973e2ebf8d459fe08af2bce0cd4a723b92b7ea316",
+      "bytes": 2669,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Interaction/Abilities/LyraGameplayAbility_Interact.cpp",
+      "sha256": "e76f50302e918522684d09b0090bc8ec7c15ccab20d9fff1748ed7efc74237d8",
+      "bytes": 5163,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGameplayAbility_Interact::ULyraGameplayAbility_Interact",
+          "line": 21
+        },
+        {
+          "name": "ULyraGameplayAbility_Interact::ActivateAbility",
+          "line": 29
+        },
+        {
+          "name": "ULyraGameplayAbility_Interact::UpdateInteractions",
+          "line": 41
+        },
+        {
+          "name": "ULyraGameplayAbility_Interact::TriggerInteraction",
+          "line": 78
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Interaction/Tasks/AbilityTask_GrantNearbyInteraction.cpp",
+      "sha256": "da039185eedab332b01eed743beff620e46b20660cea876ff37fbe5ab3cb6328",
+      "bytes": 3537,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UAbilityTask_GrantNearbyInteraction::UAbilityTask_GrantNearbyInteraction",
+          "line": 18
+        },
+        {
+          "name": "UAbilityTask_GrantNearbyInteraction::GrantAbilitiesForNearbyInteractors",
+          "line": 23
+        },
+        {
+          "name": "UAbilityTask_GrantNearbyInteraction::Activate",
+          "line": 31
+        },
+        {
+          "name": "UAbilityTask_GrantNearbyInteraction::OnDestroy",
+          "line": 39
+        },
+        {
+          "name": "UAbilityTask_GrantNearbyInteraction::QueryInteractables",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Teams/LyraTeamCreationComponent.cpp",
+      "sha256": "895041a4e4cdc39388657a716ad12854b04b899d9900dbc9a31bd1e9de006a66",
+      "bytes": 5721,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraTeamCreationComponent::ULyraTeamCreationComponent",
+          "line": 17
+        },
+        {
+          "name": "ULyraTeamCreationComponent::IsDataValid",
+          "line": 25
+        },
+        {
+          "name": "ULyraTeamCreationComponent::BeginPlay",
+          "line": 35
+        },
+        {
+          "name": "ULyraTeamCreationComponent::OnExperienceLoaded",
+          "line": 46
+        },
+        {
+          "name": "ULyraTeamCreationComponent::ServerCreateTeams",
+          "line": 59
+        },
+        {
+          "name": "ULyraTeamCreationComponent::ServerAssignPlayersToTeams",
+          "line": 68
+        },
+        {
+          "name": "ULyraTeamCreationComponent::ServerChooseTeamForPlayer",
+          "line": 87
+        },
+        {
+          "name": "ULyraTeamCreationComponent::OnPlayerInitialized",
+          "line": 100
+        },
+        {
+          "name": "ULyraTeamCreationComponent::ServerCreateTeam",
+          "line": 110
+        },
+        {
+          "name": "ULyraTeamCreationComponent::GetLeastPopulatedTeamID",
+          "line": 132
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Teams/LyraTeamSubsystem.cpp",
+      "sha256": "11679776c3c0b1c23a718362934182f1144f72fbb9e3cb173db6d2018ed69786",
+      "bytes": 11706,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraTeamTrackingInfo::SetTeamInfo",
+          "line": 23
+        },
+        {
+          "name": "FLyraTeamTrackingInfo::RemoveTeamInfo",
+          "line": 49
+        },
+        {
+          "name": "ULyraTeamSubsystem::ULyraTeamSubsystem",
+          "line": 68
+        },
+        {
+          "name": "ULyraTeamSubsystem::Initialize",
+          "line": 72
+        },
+        {
+          "name": "ULyraTeamSubsystem::Deinitialize",
+          "line": 84
+        },
+        {
+          "name": "ULyraTeamSubsystem::RegisterTeamInfo",
+          "line": 91
+        },
+        {
+          "name": "ULyraTeamSubsystem::UnregisterTeamInfo",
+          "line": 110
+        },
+        {
+          "name": "ULyraTeamSubsystem::ChangeTeamForActor",
+          "line": 134
+        },
+        {
+          "name": "ULyraTeamSubsystem::FindTeamFromObject",
+          "line": 153
+        },
+        {
+          "name": "ULyraTeamSubsystem::FindPlayerStateFromActor",
+          "line": 185
+        },
+        {
+          "name": "ULyraTeamSubsystem::CompareTeams",
+          "line": 222
+        },
+        {
+          "name": "ULyraTeamSubsystem::CompareTeams",
+          "line": 237
+        },
+        {
+          "name": "ULyraTeamSubsystem::FindTeamFromActor",
+          "line": 244
+        },
+        {
+          "name": "ULyraTeamSubsystem::AddTeamTagStack",
+          "line": 250
+        },
+        {
+          "name": "ULyraTeamSubsystem::RemoveTeamTagStack",
+          "line": 281
+        },
+        {
+          "name": "ULyraTeamSubsystem::GetTeamTagStackCount",
+          "line": 312
+        },
+        {
+          "name": "ULyraTeamSubsystem::TeamHasTag",
+          "line": 327
+        },
+        {
+          "name": "ULyraTeamSubsystem::DoesTeamExist",
+          "line": 332
+        },
+        {
+          "name": "ULyraTeamSubsystem::GetTeamIDs",
+          "line": 337
+        },
+        {
+          "name": "ULyraTeamSubsystem::CanCauseDamage",
+          "line": 345
+        },
+        {
+          "name": "ULyraTeamSubsystem::GetTeamDisplayAsset",
+          "line": 372
+        },
+        {
+          "name": "ULyraTeamSubsystem::GetEffectiveTeamDisplayAsset",
+          "line": 384
+        },
+        {
+          "name": "ULyraTeamSubsystem::NotifyTeamDisplayAssetModified",
+          "line": 389
+        },
+        {
+          "name": "ULyraTeamSubsystem::GetTeamDisplayAssetChangedDelegate",
+          "line": 401
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameModes/LyraBotCreationComponent.cpp",
+      "sha256": "aa25e329147d17914f44da98cee800e2a9f5bd26be2d2dedf6feb57d2b60caf1",
+      "bytes": 5528,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraBotCreationComponent::ULyraBotCreationComponent",
+          "line": 16
+        },
+        {
+          "name": "ULyraBotCreationComponent::BeginPlay",
+          "line": 21
+        },
+        {
+          "name": "ULyraBotCreationComponent::OnExperienceLoaded",
+          "line": 32
+        },
+        {
+          "name": "ULyraBotCreationComponent::ServerCreateBots_Implementation",
+          "line": 44
+        },
+        {
+          "name": "ULyraBotCreationComponent::CreateBotName",
+          "line": 80
+        },
+        {
+          "name": "ULyraBotCreationComponent::SpawnOneBot",
+          "line": 98
+        },
+        {
+          "name": "ULyraBotCreationComponent::RemoveOneBot",
+          "line": 131
+        },
+        {
+          "name": "ULyraBotCreationComponent::ServerCreateBots_Implementation",
+          "line": 167
+        },
+        {
+          "name": "ULyraBotCreationComponent::SpawnOneBot",
+          "line": 172
+        },
+        {
+          "name": "ULyraBotCreationComponent::RemoveOneBot",
+          "line": 177
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/AbilitySystem/Phases/LyraGamePhaseSubsystem.cpp",
+      "sha256": "32cdf489141d2eed230d3120fc18ae8cd2253bb508acfc6da65f7e506a5b13f1",
+      "bytes": 8034,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGamePhaseSubsystem::ULyraGamePhaseSubsystem",
+          "line": 21
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::PostInitialize",
+          "line": 25
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::ShouldCreateSubsystem",
+          "line": 30
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::DoesSupportWorldType",
+          "line": 45
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::StartPhase",
+          "line": 50
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::K2_StartPhase",
+          "line": 72
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::K2_WhenPhaseStartsOrIsActive",
+          "line": 81
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::K2_WhenPhaseEnds",
+          "line": 90
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::WhenPhaseStartsOrIsActive",
+          "line": 99
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::WhenPhaseEnds",
+          "line": 113
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::IsPhaseActive",
+          "line": 122
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::OnBeginPhase",
+          "line": 136
+        },
+        {
+          "name": "ULyraGamePhaseSubsystem::OnEndPhase",
+          "line": 193
+        },
+        {
+          "name": "FPhaseObserver::IsMatch",
+          "line": 213
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Messages/LyraVerbMessage.h",
+      "sha256": "bda0feffbb0666174d5ac3971bcae312b0022a27cfe5e190db88739491a81ec7",
+      "bytes": 1064,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Messages/LyraVerbMessageReplication.cpp",
+      "sha256": "57846a2bdb558d34c693b8eee752fdfd9efb9ec45b59878d09fa20bc72849d17",
+      "bytes": 1854,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraVerbMessageReplicationEntry::GetDebugString",
+          "line": 13
+        },
+        {
+          "name": "FLyraVerbMessageReplication::AddMessage",
+          "line": 21
+        },
+        {
+          "name": "FLyraVerbMessageReplication::PreReplicatedRemove",
+          "line": 27
+        },
+        {
+          "name": "FLyraVerbMessageReplication::PostReplicatedAdd",
+          "line": 36
+        },
+        {
+          "name": "FLyraVerbMessageReplication::PostReplicatedChange",
+          "line": 45
+        },
+        {
+          "name": "FLyraVerbMessageReplication::RebroadcastMessage",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsSubsystem.cpp",
+      "sha256": "54098d7fc82694c745d85bf0e349804c638d88b67b7797f43d91c754c3d6bf50",
+      "bytes": 5244,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraContextEffectsSubsystem::SpawnContextEffects",
+          "line": 20
+        },
+        {
+          "name": "ULyraContextEffectsSubsystem::GetContextFromSurfaceType",
+          "line": 91
+        },
+        {
+          "name": "ULyraContextEffectsSubsystem::LoadAndAddContextEffectsLibraries",
+          "line": 108
+        },
+        {
+          "name": "ULyraContextEffectsSubsystem::UnloadAndRemoveContextEffectsLibraries",
+          "line": 139
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Audio/LyraAudioMixEffectsSubsystem.cpp",
+      "sha256": "68b667500a45b68ca3279b2cca0e4750b164b582ceae4463918f29b604b716dd",
+      "bytes": 11729,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::Initialize",
+          "line": 21
+        },
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::Deinitialize",
+          "line": 26
+        },
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::ShouldCreateSubsystem",
+          "line": 37
+        },
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::PostInitialize",
+          "line": 52
+        },
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::OnWorldBeginPlay",
+          "line": 223
+        },
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::ApplyDynamicRangeEffectsChains",
+          "line": 267
+        },
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::OnLoadingScreenStatusChanged",
+          "line": 327
+        },
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::ApplyOrRemoveLoadingScreenMix",
+          "line": 332
+        },
+        {
+          "name": "ULyraAudioMixEffectsSubsystem::DoesSupportWorldType",
+          "line": 352
+        }
+      ]
+    },
+    {
+      "path": "Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Public/GameFramework/GameplayMessageSubsystem.h",
+      "sha256": "0aebc60cfab47ef08315ca110de2c7060115e8767c5cb74eb2988d86284ab82a",
+      "bytes": 9134,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/UI/LyraActivatableWidget.cpp",
+      "sha256": "35e875c49246dae32a4be15e018a46b852e861d910f94982f7522ca4f6dec3de",
+      "bytes": 1968,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraActivatableWidget::ULyraActivatableWidget",
+          "line": 11
+        },
+        {
+          "name": "ULyraActivatableWidget::GetDesiredInputConfig",
+          "line": 16
+        },
+        {
+          "name": "ULyraActivatableWidget::ValidateCompiledWidgetTree",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/UI/LyraHUDLayout.cpp",
+      "sha256": "b0746ba2ceaffdf07b25043c6bac5572b01d8baf1c503fe17159ef53ef204cf1",
+      "bytes": 7621,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraHUDLayout::ULyraHUDLayout",
+          "line": 27
+        },
+        {
+          "name": "ULyraHUDLayout::NativeOnInitialized",
+          "line": 35
+        },
+        {
+          "name": "ULyraHUDLayout::NativeDestruct",
+          "line": 51
+        },
+        {
+          "name": "ULyraHUDLayout::HandleEscapeAction",
+          "line": 67
+        },
+        {
+          "name": "ULyraHUDLayout::HandleInputDeviceConnectionChanged",
+          "line": 75
+        },
+        {
+          "name": "ULyraHUDLayout::HandleInputDevicePairingChanged",
+          "line": 90
+        },
+        {
+          "name": "ULyraHUDLayout::ShouldPlatformDisplayControllerDisconnectScreen",
+          "line": 103
+        },
+        {
+          "name": "ULyraHUDLayout::NotifyControllerStateChangeForDisconnectScreen",
+          "line": 117
+        },
+        {
+          "name": "ULyraHUDLayout::ProcessControllerDevicesHavingChangedForDisconnectScreen",
+          "line": 134
+        },
+        {
+          "name": "ULyraHUDLayout::DisplayControllerDisconnectedMenu_Implementation",
+          "line": 175
+        },
+        {
+          "name": "ULyraHUDLayout::HideControllerDisconnectedMenu_Implementation",
+          "line": 186
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/UI/Subsystem/LyraUIManagerSubsystem.cpp",
+      "sha256": "2b2e93a27d2ef5512e3b0e648a836417ec7101c4acbe064f5243cacf01673faf",
+      "bytes": 1780,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraUIManagerSubsystem::ULyraUIManagerSubsystem",
+          "line": 15
+        },
+        {
+          "name": "ULyraUIManagerSubsystem::Initialize",
+          "line": 19
+        },
+        {
+          "name": "ULyraUIManagerSubsystem::Deinitialize",
+          "line": 26
+        },
+        {
+          "name": "ULyraUIManagerSubsystem::Tick",
+          "line": 33
+        },
+        {
+          "name": "ULyraUIManagerSubsystem::SyncRootLayoutVisibilityToShowHUD",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_AddWidget.cpp",
+      "sha256": "f4a6230c1d874c898cb18a6ed89b4be992f12bd148c192ebb74183c7a46b09d0",
+      "bytes": 6293,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UGameFeatureAction_AddWidgets::OnGameFeatureDeactivating",
+          "line": 22
+        },
+        {
+          "name": "UGameFeatureAction_AddWidgets::AddAdditionalAssetBundleData",
+          "line": 34
+        },
+        {
+          "name": "UGameFeatureAction_AddWidgets::IsDataValid",
+          "line": 44
+        },
+        {
+          "name": "UGameFeatureAction_AddWidgets::AddToWorld",
+          "line": 91
+        },
+        {
+          "name": "UGameFeatureAction_AddWidgets::Reset",
+          "line": 111
+        },
+        {
+          "name": "UGameFeatureAction_AddWidgets::HandleActorExtension",
+          "line": 125
+        },
+        {
+          "name": "UGameFeatureAction_AddWidgets::AddWidgets",
+          "line": 138
+        },
+        {
+          "name": "UGameFeatureAction_AddWidgets::RemoveWidgets",
+          "line": 167
+        }
+      ]
+    },
+    {
+      "path": "Plugins/CommonGame/Source/Private/GameUIPolicy.cpp",
+      "sha256": "7c2e230d931503c2cf9f25d6f2db4ced1fde44b70aefcb242c162cb9c0a027ed",
+      "bytes": 6789,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UGameUIPolicy::GetGameUIPolicy",
+          "line": 15
+        },
+        {
+          "name": "UGameUIPolicy::GetOwningUIManager",
+          "line": 31
+        },
+        {
+          "name": "UGameUIPolicy::GetWorld",
+          "line": 36
+        },
+        {
+          "name": "UGameUIPolicy::GetRootLayout",
+          "line": 45
+        },
+        {
+          "name": "UGameUIPolicy::NotifyPlayerAdded",
+          "line": 51
+        },
+        {
+          "name": "UGameUIPolicy::NotifyPlayerRemoved",
+          "line": 79
+        },
+        {
+          "name": "UGameUIPolicy::NotifyPlayerDestroyed",
+          "line": 108
+        },
+        {
+          "name": "UGameUIPolicy::AddLayoutToViewport",
+          "line": 124
+        },
+        {
+          "name": "UGameUIPolicy::RemoveLayoutFromViewport",
+          "line": 134
+        },
+        {
+          "name": "UGameUIPolicy::OnRootLayoutAddedToViewport",
+          "line": 151
+        },
+        {
+          "name": "UGameUIPolicy::OnRootLayoutRemovedFromViewport",
+          "line": 162
+        },
+        {
+          "name": "UGameUIPolicy::OnRootLayoutReleased",
+          "line": 167
+        },
+        {
+          "name": "UGameUIPolicy::RequestPrimaryControl",
+          "line": 172
+        },
+        {
+          "name": "UGameUIPolicy::CreateLayoutWidget",
+          "line": 189
+        },
+        {
+          "name": "UGameUIPolicy::GetLayoutWidgetClass",
+          "line": 204
+        }
+      ]
+    },
+    {
+      "path": "Plugins/CommonGame/Source/Private/PrimaryGameLayout.cpp",
+      "sha256": "e2648c6dfdae8f3b0216190ca21ddff68749b7f0c270c2adf03597ba6ce28ca3",
+      "bytes": 4756,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UPrimaryGameLayout::GetPrimaryGameLayoutForPrimaryPlayer",
+          "line": 17
+        },
+        {
+          "name": "UPrimaryGameLayout::GetPrimaryGameLayout",
+          "line": 24
+        },
+        {
+          "name": "UPrimaryGameLayout::GetPrimaryGameLayout",
+          "line": 29
+        },
+        {
+          "name": "UPrimaryGameLayout::UPrimaryGameLayout",
+          "line": 52
+        },
+        {
+          "name": "UPrimaryGameLayout::SetIsDormant",
+          "line": 57
+        },
+        {
+          "name": "UPrimaryGameLayout::OnIsDormantChanged",
+          "line": 73
+        },
+        {
+          "name": "UPrimaryGameLayout::RegisterLayer",
+          "line": 89
+        },
+        {
+          "name": "UPrimaryGameLayout::OnWidgetStackTransitioning",
+          "line": 103
+        },
+        {
+          "name": "UPrimaryGameLayout::FindAndRemoveWidgetFromLayer",
+          "line": 120
+        },
+        {
+          "name": "UPrimaryGameLayout::GetLayerWidget",
+          "line": 129
+        }
+      ]
+    },
+    {
+      "path": "Plugins/UIExtension/Source/Public/UIExtensionSystem.h",
+      "sha256": "ae698b50c909f378b99cdc8d7ea3dec6478125c7afc74e329d95d96e732bca9c",
+      "bytes": 10146,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Plugins/UIExtension/Source/Private/Widgets/UIExtensionPointWidget.cpp",
+      "sha256": "cd6b9b03d7e669870d7c50995d7a8c339b487691378212750d047cba35102930",
+      "bytes": 5345,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UUIExtensionPointWidget::UUIExtensionPointWidget",
+          "line": 18
+        },
+        {
+          "name": "UUIExtensionPointWidget::ReleaseSlateResources",
+          "line": 24
+        },
+        {
+          "name": "UUIExtensionPointWidget::RebuildWidget",
+          "line": 31
+        },
+        {
+          "name": "UUIExtensionPointWidget::ResetExtensionPoint",
+          "line": 70
+        },
+        {
+          "name": "UUIExtensionPointWidget::RegisterExtensionPoint",
+          "line": 82
+        },
+        {
+          "name": "UUIExtensionPointWidget::RegisterExtensionPointForPlayerState",
+          "line": 102
+        },
+        {
+          "name": "UUIExtensionPointWidget::OnAddOrRemoveExtension",
+          "line": 117
+        },
+        {
+          "name": "UUIExtensionPointWidget::ValidateCompiledDefaults",
+          "line": 158
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Settings/LyraGameSettingRegistry.cpp",
+      "sha256": "06a9f5881a0bb1c85e8d201b980a9eb3ab415c305387db1254b92379055e10ed",
+      "bytes": 2570,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGameSettingRegistry::ULyraGameSettingRegistry",
+          "line": 20
+        },
+        {
+          "name": "ULyraGameSettingRegistry::Get",
+          "line": 24
+        },
+        {
+          "name": "ULyraGameSettingRegistry::IsFinishedInitializing",
+          "line": 36
+        },
+        {
+          "name": "ULyraGameSettingRegistry::OnInitialize",
+          "line": 54
+        },
+        {
+          "name": "ULyraGameSettingRegistry::SaveChanges",
+          "line": 75
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Settings/LyraGameSettingRegistry_Audio.cpp",
+      "sha256": "875cc5a73778a5044c098ba5f9122d383468767e08fb42599b1ded0fb4429a26",
+      "bytes": 17949,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGameSettingRegistry::InitializeAudioSettings",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Settings/LyraSettingsLocal.h",
+      "sha256": "c2b3226c92895aa3fd09d9070700e4c7c7126f534303000dffc7d4f2bbc9996a",
+      "bytes": 14315,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Settings/LyraSettingsShared.h",
+      "sha256": "db217b5ca90b52f71522bbe23592ec8cc5faedbb230a98c90214fad95619a697",
+      "bytes": 13225,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/Settings/LyraSettingsShared.cpp",
+      "sha256": "d1f981635ee2cff638b196037bcdbc4013dac7033ed7ae67dcb7f080a5246925",
+      "bytes": 9145,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraSettingsShared::ULyraSettingsShared",
+          "line": 37
+        },
+        {
+          "name": "ULyraSettingsShared::GetLatestDataVersion",
+          "line": 45
+        },
+        {
+          "name": "ULyraSettingsShared::CreateTemporarySettings",
+          "line": 52
+        },
+        {
+          "name": "ULyraSettingsShared::LoadOrCreateSettings",
+          "line": 62
+        },
+        {
+          "name": "ULyraSettingsShared::AsyncLoadOrCreateSettings",
+          "line": 72
+        },
+        {
+          "name": "ULyraSettingsShared::SaveSettings",
+          "line": 87
+        },
+        {
+          "name": "ULyraSettingsShared::ApplySettings",
+          "line": 102
+        },
+        {
+          "name": "ULyraSettingsShared::SetColorBlindStrength",
+          "line": 117
+        },
+        {
+          "name": "ULyraSettingsShared::SetGamepadInputAPIOption",
+          "line": 128
+        },
+        {
+          "name": "ULyraSettingsShared::GetColorBlindStrength",
+          "line": 157
+        },
+        {
+          "name": "ULyraSettingsShared::SetColorBlindMode",
+          "line": 162
+        },
+        {
+          "name": "ULyraSettingsShared::GetColorBlindMode",
+          "line": 172
+        },
+        {
+          "name": "ULyraSettingsShared::ApplySubtitleOptions",
+          "line": 177
+        },
+        {
+          "name": "ULyraSettingsShared::SetAllowAudioInBackgroundSetting",
+          "line": 193
+        },
+        {
+          "name": "ULyraSettingsShared::ApplyBackgroundAudioSettings",
+          "line": 201
+        },
+        {
+          "name": "ULyraSettingsShared::ApplyCultureSettings",
+          "line": 211
+        },
+        {
+          "name": "ULyraSettingsShared::ResetCultureToCurrentSettings",
+          "line": 242
+        },
+        {
+          "name": "ULyraSettingsShared::GetPendingCulture",
+          "line": 248
+        },
+        {
+          "name": "ULyraSettingsShared::SetPendingCulture",
+          "line": 253
+        },
+        {
+          "name": "ULyraSettingsShared::OnCultureChanged",
+          "line": 260
+        },
+        {
+          "name": "ULyraSettingsShared::ClearPendingCulture",
+          "line": 266
+        },
+        {
+          "name": "ULyraSettingsShared::IsUsingDefaultCulture",
+          "line": 271
+        },
+        {
+          "name": "ULyraSettingsShared::ResetToDefaultCulture",
+          "line": 279
+        },
+        {
+          "name": "ULyraSettingsShared::ApplyInputSensitivity",
+          "line": 288
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Performance/LyraPerformanceStatSubsystem.cpp",
+      "sha256": "f0624db16fce70e6508e31c333ba04907de7a73938742b0abc66938f8b0aa292",
+      "bytes": 7395,
+      "section": "11-reference",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraPerformanceStatCache::StartCharting",
+          "line": 24
+        },
+        {
+          "name": "FLyraPerformanceStatCache::ProcessFrame",
+          "line": 28
+        },
+        {
+          "name": "FLyraPerformanceStatCache::StopCharting",
+          "line": 127
+        },
+        {
+          "name": "FLyraPerformanceStatCache::RecordStat",
+          "line": 131
+        },
+        {
+          "name": "FLyraPerformanceStatCache::GetCachedStat",
+          "line": 136
+        },
+        {
+          "name": "FLyraPerformanceStatCache::GetCachedStatData",
+          "line": 148
+        },
+        {
+          "name": "ULyraPerformanceStatSubsystem::Initialize",
+          "line": 158
+        },
+        {
+          "name": "ULyraPerformanceStatSubsystem::Deinitialize",
+          "line": 164
+        },
+        {
+          "name": "ULyraPerformanceStatSubsystem::GetCachedStat",
+          "line": 170
+        },
+        {
+          "name": "ULyraPerformanceStatSubsystem::GetCachedStatData",
+          "line": 175
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/System/LyraReplicationGraphSettings.cpp",
+      "sha256": "8f62fe0efbf8b7e205c97e0abbf8c157db0866d2bed5028747c26c7d9df496f3",
+      "bytes": 410,
+      "section": "11-reference",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraReplicationGraphSettings::ULyraReplicationGraphSettings",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "path": "Plugins/BlueprintScreenshotTool/BlueprintScreenshotTool.uplugin",
+      "sha256": "736f39287c8f8aa67236a497b79369647de280b760541078905229d563e3265d",
+      "bytes": 774,
+      "section": "11-reference",
+      "origin": "local-editor-tool",
+      "symbols": []
+    },
+    {
+      "path": "Plugins/BlueprintScreenshotTool/Source/BlueprintScreenshotTool/Private/BlueprintScreenshotToolHandler.cpp",
+      "sha256": "735209ceed7cbb71211919a8ee2bde1ab4f4e7c49e7c984a77fe1bb8ff03f343",
+      "bytes": 10164,
+      "section": "11-reference",
+      "origin": "local-editor-tool",
+      "symbols": [
+        {
+          "name": "UBlueprintScreenshotToolHandler::TakeScreenshotWithPaths",
+          "line": 25
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::TakeScreenshotWithNotification",
+          "line": 54
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::TakeScreenshot",
+          "line": 66
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::SaveScreenshot",
+          "line": 78
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::SaveScreenshot",
+          "line": 83
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::CaptureGraphEditor",
+          "line": 107
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::OpenDirectory",
+          "line": 179
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::RestoreNodeSelection",
+          "line": 192
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::HasAnySelectedNodes",
+          "line": 203
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::ShowNotification",
+          "line": 216
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::ShowDirectoryErrorNotification",
+          "line": 249
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::DrawGraphEditor",
+          "line": 261
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::GetExtension",
+          "line": 305
+        },
+        {
+          "name": "UBlueprintScreenshotToolHandler::GenerateScreenshotName",
+          "line": 319
+        }
+      ]
+    },
+    {
+      "path": "Plugins/BlueprintScreenshotTool/Source/BlueprintScreenshotTool/Public/BlueprintScreenshotToolSettings.h",
+      "sha256": "9298da93d90c1a9c5560387726236b98382e7e6e2a3e5b890ee7f3acad3c27bc",
+      "bytes": 5042,
+      "section": "11-reference",
+      "origin": "local-editor-tool",
+      "symbols": []
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_AddGameplayCuePath.h",
+      "sha256": "00ab84cd4f789280a1b3e082a1c0e3874e67706591d581b332375786c2c1e1ac",
+      "bytes": 1161,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "DirectoryPathsToAdd",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_AddGameplayCuePath.cpp",
+      "sha256": "360d915afc97dfecff472a0e949dca39acb930576deb23f5d621cf2787bacbcd",
+      "bytes": 1215,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UGameFeatureAction_AddGameplayCuePath::UGameFeatureAction_AddGameplayCuePath",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Cosmetics/LyraCosmeticAnimationTypes.h",
+      "sha256": "82f1846d09fc12a30a8328abe8e5c65a35897938724f07bb041ebcbc8841a61a",
+      "bytes": 2559,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraAnimLayerSelectionEntry",
+          "line": 17
+        },
+        {
+          "name": "FLyraAnimLayerSelectionSet",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Cosmetics/LyraCosmeticAnimationTypes.cpp",
+      "sha256": "9b8829203278577cc5ecc3db6dd38f012f99e5947bc99e3b6843cd02f827cff0",
+      "bytes": 900,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraAnimLayerSelectionSet::SelectBestLayer",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Weapons/LyraWeaponInstance.h",
+      "sha256": "e4b8a0de4596cc2927f27661063810114d7d3ae55954b62d0c20c1f984db5c21",
+      "bytes": 3142,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "EquippedAnimSet",
+          "line": 46
+        },
+        {
+          "name": "UneuippedAnimSet",
+          "line": 49
+        },
+        {
+          "name": "PickBestAnimLayer",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Feedback/ContextEffects/AnimNotify_LyraContextEffects.h",
+      "sha256": "f86a540169d774fe2ca3c1563a7d959027b2b5a1a834f285f468d2f1a08397e5",
+      "bytes": 5903,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UAnimNotify_LyraContextEffects",
+          "line": 96
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsLibrary.h",
+      "sha256": "ec7aeb19975c91b75df8a2b12e69e450b3a50220504aa6a762e24aa4f46fd7c9",
+      "bytes": 2360,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraContextEffects",
+          "line": 31
+        },
+        {
+          "name": "ULyraContextEffectsLibrary",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectComponent.h",
+      "sha256": "91f9cc7a9ce199cc913555b190708018c0a4d3bdb8a59f6bfd4fa5bcc7d374f5",
+      "bytes": 2671,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "DefaultContextEffectsLibraries",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "path": "Plugins/CommonGame/Source/Public/PrimaryGameLayout.h",
+      "sha256": "8e5f19fecdd80bf8a41d1dd66897577310613b18bbae0478956b25c564494c1d",
+      "bytes": 6049,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "RegisterLayer",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Settings/LyraGameSettingRegistry_Gameplay.cpp",
+      "sha256": "2c9fb038514937a2c075fa43463b019dbafbe63fd4e61a4dd8ba124abfab3294",
+      "bytes": 5379,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": [
+        {
+          "name": "ULyraGameSettingRegistry::InitializeGameplaySettings",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Settings/CustomSettings/LyraSettingValueDiscrete_Language.cpp",
+      "sha256": "60d1e918a8c3cf6d4808b34ead6c47fefa9c49ee17c33da02034e03cf17a8c7b",
+      "bytes": 5298,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": [
+        {
+          "name": "ULyraSettingValueDiscrete_Language::OnInitialized",
+          "line": 22
+        },
+        {
+          "name": "ULyraSettingValueDiscrete_Language::OnApply",
+          "line": 43
+        }
+      ]
+    },
+    {
+      "path": "Config/Localization/Game_Gather.ini",
+      "sha256": "766b85c94149afa59f9ad323f36c58601fa4fcf67ed33a14365d4a5a1ec1f4ec",
+      "bytes": 2163,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": []
+    },
+    {
+      "path": "Config/Localization/Game_Compile.ini",
+      "sha256": "693c7590dc1497c0666f7dbd6dc0109f6f707532a57ad4a18a24121ab670f190",
+      "bytes": 822,
+      "origin": "local-Lyra-baseline",
+      "section": "06-ui",
+      "symbols": []
+    }
+  ],
+  "assets": [
+    {
+      "package": "/Game/System/DefaultEditorMap/L_DefaultEditorOverview",
+      "path": "Content/System/DefaultEditorMap/L_DefaultEditorOverview.umap",
+      "sha256": "0cab37571777572642627d02975b050ff8ce83ac623cd13936bbb38c9f5f2758",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/System/FrontEnd/Maps/L_LyraFrontEnd",
+      "path": "Content/System/FrontEnd/Maps/L_LyraFrontEnd.umap",
+      "sha256": "f3a4d17b8b2c622e03d39e271da130098ae69cc48042dd52d9654f102152f29a",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/System/FrontEnd/B_LyraFrontEnd_Experience",
+      "path": "Content/System/FrontEnd/B_LyraFrontEnd_Experience.uasset",
+      "sha256": "f2152ebe1cdaae84bdd374e10407053b66308a4944991954387404a3dd961437",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/System/Experiences/B_LyraDefaultExperience",
+      "path": "Content/System/Experiences/B_LyraDefaultExperience.uasset",
+      "sha256": "4f869ae02f422eb0a7888f94ff0f981829839ce9677203404aa1effb3db09160",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/B_LyraGameMode",
+      "path": "Content/B_LyraGameMode.uasset",
+      "sha256": "87e9646e2fdd6af817fd9d16d05470460271464d9e5329d3fb17f21ecc3bf267",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/B_LyraGameInstance",
+      "path": "Content/B_LyraGameInstance.uasset",
+      "sha256": "d8b8f1439e347b6a28ab6ee0542dd047ae2c96a15fe1e5ab651f432a6c7ba0ba",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Maps/L_ShooterGym",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Maps/L_ShooterGym.umap",
+      "sha256": "2332c677c086592d94c35e09b0e8e43364813f1f865e3091b2b0318efa1be25b",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterMaps/Maps/L_Expanse",
+      "path": "Plugins/GameFeatures/ShooterMaps/Content/Maps/L_Expanse.umap",
+      "sha256": "f61f72f56ca30acca18a494796c2f87bae8325744472061f6a21dd93b75ee780",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterMaps/Maps/L_FiringRange_WP",
+      "path": "Plugins/GameFeatures/ShooterMaps/Content/Maps/L_FiringRange_WP.umap",
+      "sha256": "49999f14525d2af497a0f60eb15d1eb494eeeff63ff226f46f83fe045f8c8b52",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/TopDownArena/Maps/L_TopDown_LocalMultiplayer",
+      "path": "Plugins/GameFeatures/TopDownArena/Content/Maps/L_TopDown_LocalMultiplayer.umap",
+      "sha256": "b475b40f8538c54481cbce5cf11695a9eaf63b17e9c774e7e40797fff0e6d4c3",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/B_ShooterGame_Elimination",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/B_ShooterGame_Elimination.uasset",
+      "sha256": "fe9e047562ad4645e4fc98696672ee1f8e9ff4a61e4a4b1cc440e6c1c30f0aab",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/B_LyraShooterGame_ControlPoints",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/B_LyraShooterGame_ControlPoints.uasset",
+      "sha256": "5fb6069e86e36f0ef2595456df07804c39033090c6a1a825b196372bc9922949",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/LAS_ShooterGame_StandardComponents",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/LAS_ShooterGame_StandardComponents.uasset",
+      "sha256": "1e7909769ff32a60cead0347ec482517da8de24bfbfb11334e0b6c8da99f25c8",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/LAS_ShooterGame_StandardHUD",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/LAS_ShooterGame_StandardHUD.uasset",
+      "sha256": "547db06be7d45391023eca16dd20e25d08f9f1003e562bd0710da0b040980313",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/LAS_ShooterGame_SharedInput",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/LAS_ShooterGame_SharedInput.uasset",
+      "sha256": "e0e0b9f792a4b521266de72fb8ed72bf2545d0396535919b02d994e777fb16f4",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Input/InputData_Hero",
+      "path": "Content/Input/InputData_Hero.uasset",
+      "sha256": "be3786a8a83bd0409711a90c4ee359b59e1e8e2e89557010c8a30d7b6c706633",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Input/Mappings/IMC_Default",
+      "path": "Content/Input/Mappings/IMC_Default.uasset",
+      "sha256": "de4af86e0f8a12fe250af245b4a9c934a38f8b2ae2e6517e8639684a75bc8c06",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Input/Actions/IA_Move",
+      "path": "Content/Input/Actions/IA_Move.uasset",
+      "sha256": "f555e40028d1a64bf1004df56c05dfbc7c987314c36eacc4ff0fbc62d62d0483",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Input/Actions/IA_Look_Mouse",
+      "path": "Content/Input/Actions/IA_Look_Mouse.uasset",
+      "sha256": "ff12f5ccb246c114b96e7f02dc73753da8c81acb681c9ccca40b72be73e621af",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Input/Actions/IA_Jump",
+      "path": "Content/Input/Actions/IA_Jump.uasset",
+      "sha256": "e05e29f818084d2b4ee17627116ec6a164f2b0e35951bb26b98e2e3e84c69079",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Input/Actions/IA_Weapon_Fire",
+      "path": "Content/Input/Actions/IA_Weapon_Fire.uasset",
+      "sha256": "5de476e4740f52aa57cf9d77f896d0094b0bb4a900f88e9ca8f4b9131264e113",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Characters/Heroes/B_Hero_Default",
+      "path": "Content/Characters/Heroes/B_Hero_Default.uasset",
+      "sha256": "d9e4cdbc1a02acdb4b1ed0196657783d83751065075a9613d89ffa8d674bd77f",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Game/B_Hero_ShooterMannequin",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Game/B_Hero_ShooterMannequin.uasset",
+      "sha256": "548922384df35659a76ed413af886d312211f55095b2331d03082feffb27034f",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Game/AbilitySet_ShooterHero",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Game/AbilitySet_ShooterHero.uasset",
+      "sha256": "27197f0e56db793e90ff3bb67740bf15e668e112db8c2897f268f3808c8cf62d",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Characters/Heroes/Abilities/GA_Hero_Jump",
+      "path": "Content/Characters/Heroes/Abilities/GA_Hero_Jump.uasset",
+      "sha256": "bda7fb5c276b1901865b44c99e7a9403484cf174ce6c120fcec5eb61a0454678",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Characters/Heroes/Abilities/GA_Hero_Death",
+      "path": "Content/Characters/Heroes/Abilities/GA_Hero_Death.uasset",
+      "sha256": "fa2e335f4203f2f0a292b401096924cf9b296d91b0c25542e4dd1907c5e1556e",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Game/Dash/GA_Hero_Dash.uasset",
+      "sha256": "d100361be84d617b751ca60718f6dacac8d02557c3b8d3f26981bf1a50609966",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/GameplayEffects/GE_HeroDash_Cooldown",
+      "path": "Content/GameplayEffects/GE_HeroDash_Cooldown.uasset",
+      "sha256": "491f4b4b2589d0828f14fed772f9aa84072efe440916b4e94098d3cf8d3cfbe0",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/GameplayEffects/Damage/GE_Damage_Basic_SetByCaller",
+      "path": "Content/GameplayEffects/Damage/GE_Damage_Basic_SetByCaller.uasset",
+      "sha256": "f94d3a94cf1b4a11c1b7f1019e2f1868cf1e8e0ecda5f40e37766f616e2f7b65",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/GameplayEffects/Heal/GE_Heal_Instant",
+      "path": "Content/GameplayEffects/Heal/GE_Heal_Instant.uasset",
+      "sha256": "c01312c852a6592d30cd3be784bc8764553482da30d94fdfeb42e0f51ab05fa8",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Weapons/GA_Weapon_Fire",
+      "path": "Content/Weapons/GA_Weapon_Fire.uasset",
+      "sha256": "bb8e9095568a28a265bce5a3167557cf13f4ce979c35e70622f2c451e529515a",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Weapons/Rifle/ID_Rifle",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Weapons/Rifle/ID_Rifle.uasset",
+      "sha256": "6ab61c5d966faf529443f66cb93c6820de4e27f4569c6c8bd74a9d25a81a342d",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Weapons/Rifle/WID_Rifle",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Weapons/Rifle/WID_Rifle.uasset",
+      "sha256": "9f97f00bd5d54e59a10cca9e98bb166d2047dfd1cce4454febba0bb331185f9d",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Weapons/Rifle/AbilitySet_ShooterRifle",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Weapons/Rifle/AbilitySet_ShooterRifle.uasset",
+      "sha256": "3daffc4f905e7db6c2d8baa11136a6a634295f1e28a85c80d774b97ee2f5b723",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterExplorer/Maps/L_InteractionTestMap",
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Maps/L_InteractionTestMap.umap",
+      "sha256": "a0406ec6fb0e8f349e3eb1de12bad826cca548190a65465af61edc8c05a541d9",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterExplorer/Interact/GA_Interaction_Collect",
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Interact/GA_Interaction_Collect.uasset",
+      "sha256": "0060dadae517d5c2fa05fca52c38cfa0d06639cedced7635d7b409cb3f8dab0e",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterExplorer/Interact/GA_Interaction_Sit",
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Interact/GA_Interaction_Sit.uasset",
+      "sha256": "129c7d59d41eb4a07ae6ec73348075cbfa817861540a28ff9ae86e007db6f33f",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Bot/B_ShooterBotSpawner",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Bot/B_ShooterBotSpawner.uasset",
+      "sha256": "7b9d8de5eb41e98d76be61269364f7d001c88595a19761e9eaba6cc157161d6f",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Bot/BT/BT_Lyra_Shooter_Bot",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Bot/BT/BT_Lyra_Shooter_Bot.uasset",
+      "sha256": "1ff9e2c37fc54c8889e6660b13c45b39ab7809aee18775d879d364dbf66cf3a6",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Bot/BT/BB_Lyra_Shooter_Bot",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Bot/BT/BB_Lyra_Shooter_Bot.uasset",
+      "sha256": "feeb1218ae5007f970aac4dea2af18c18b0791eb8c12911b7678cb7f4e79faa5",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/ControlPoint/AI/BT_Lyra_Shooter_ControlPoint_Bot",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/ControlPoint/AI/BT_Lyra_Shooter_ControlPoint_Bot.uasset",
+      "sha256": "8d7fefa64ba240910758823d8ef5f3959077bbfbccfc634bdb82041d7855783d",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/Phases/Phase_Warmup",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/Phases/Phase_Warmup.uasset",
+      "sha256": "d5173d2ffff4940750a44a54d4296196bb59cd4318e41e287919fdc008f0677e",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/Phases/Phase_Playing",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/Phases/Phase_Playing.uasset",
+      "sha256": "55bc8607ba0de6a3f10e6631cff851c773dbdc41288d17834a123687dbfd8d08",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/Phases/Phase_PostGame",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/Phases/Phase_PostGame.uasset",
+      "sha256": "a3cfa0a58207d63160e91cf47b747669f115eda71b9a8aa97e96775be5b4b560",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/Experiences/Phases/GE_DamageImmunity_FromGameMode",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Experiences/Phases/GE_DamageImmunity_FromGameMode.uasset",
+      "sha256": "68589ae2872d25db9626b8274a13e8db264b9994a3b1a589d02480c7392bb2ce",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/UI/B_LyraUIPolicy",
+      "path": "Content/UI/B_LyraUIPolicy.uasset",
+      "sha256": "8af4581c535a07d8afb44c7c2ca4e8b74d61ef59498b76245ae04e5d7453125d",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/UI/W_OverallUILayout",
+      "path": "Content/UI/W_OverallUILayout.uasset",
+      "sha256": "e794816030a3ac57a9512d28569fee04bbfdd384bf7614780e12dfc0d6293f21",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/UI/Settings/W_LyraSettingScreen",
+      "path": "Content/UI/Settings/W_LyraSettingScreen.uasset",
+      "sha256": "b1ebdac3a1102ca965322f7d68f1d9ff5e0f301b9b47556963de090eab240348",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/UI/Settings/W_SettingsPanel",
+      "path": "Content/UI/Settings/W_SettingsPanel.uasset",
+      "sha256": "9371958013559e24495852d0bfee4ec78119bce87f566d27dcebb5eab4a6d57e",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/ShooterCore/UserInterface/W_ShooterHUDLayout",
+      "path": "Plugins/GameFeatures/ShooterCore/Content/UserInterface/W_ShooterHUDLayout.uasset",
+      "sha256": "aa4620a0bb719fb554c5f759bbdc5f69ea683f9fc85cd67f6f8c6d893697c521",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Characters/Heroes/Mannequin/Animations/ABP_Mannequin_Base",
+      "path": "Content/Characters/Heroes/Mannequin/Animations/ABP_Mannequin_Base.uasset",
+      "sha256": "564b1a724a3527c3f2d0fa8b240ece1f6b509555d3708a8c3d6a78821c210233",
+      "verification": "file-exists; property values require editor inspection"
+    },
+    {
+      "package": "/Game/Characters/Heroes/Mannequin/Animations/LinkedLayers/ABP_ItemAnimLayersBase",
+      "path": "Content/Characters/Heroes/Mannequin/Animations/LinkedLayers/ABP_ItemAnimLayersBase.uasset",
+      "sha256": "a1cb052b6c87e8951eaa5c861fb1c18e7c6b76f668795ba1485ef0db9debda20",
+      "verification": "file-exists; property values require editor inspection"
+    }
+  ],
+  "media": [
+    {
+      "publicPath": "/media/lyra/jump-event-graph.png",
+      "sourceAsset": "/Game/Characters/Heroes/Abilities/GA_Hero_Jump",
+      "graph": "EventGraph",
+      "kind": "native-graph-capture",
+      "sha256": "8efaaa3f2909090eda7172141f176f05e79403c5b2074a1c5fbe33c52180c7fc",
+      "bytes": 374677,
+      "width": 2385,
+      "height": 1172
+    },
+    {
+      "publicPath": "/media/lyra/dash-direction.png",
+      "sourceAsset": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "graph": "SelectDirectionalMontage",
+      "kind": "native-graph-capture",
+      "sha256": "2946e45423c5c6ac754282268e96791360dedeb250ea237393bcdd094011f7a5",
+      "bytes": 418793,
+      "width": 3417,
+      "height": 966
+    },
+    {
+      "publicPath": "/media/lyra/dash-event-graph.png",
+      "sourceAsset": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "graph": "EventGraph",
+      "kind": "native-graph-capture",
+      "sha256": "97a0bc6b3a5916d165af5159d8c595060ec95ccbecb5b675b4af70f285621c0f",
+      "bytes": 1657487,
+      "width": 9392,
+      "height": 2514
+    },
+    {
+      "publicPath": "/media/lyra/shooter-gym.png",
+      "sourceAsset": "/ShooterCore/Maps/L_ShooterGym",
+      "graph": null,
+      "kind": "single-player-PIE-capture",
+      "sha256": "66adc2e94c235ffa1c69dbe0d3777214997ec2e628ae1118bb8a2ff02e1bb920",
+      "bytes": 1466951,
+      "width": 1275,
+      "height": 897
+    },
+    {
+      "publicPath": "/blueprints/lyra/jump-event-graph.txt",
+      "sourceAsset": "/Game/Characters/Heroes/Abilities/GA_Hero_Jump",
+      "graph": "EventGraph",
+      "kind": "native-node-text",
+      "sha256": "9a79f714eea40aeab3a4d35aadc919839e85cbd22876db3b580fdee5ffe28c50",
+      "bytes": 59263
+    },
+    {
+      "publicPath": "/blueprints/lyra/dash-direction.txt",
+      "sourceAsset": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "graph": "SelectDirectionalMontage",
+      "kind": "native-node-text",
+      "sha256": "513d2f18c9feaefe4ed5db0b07e773884214312b0af6f6d914909fa1669e51f2",
+      "bytes": 74460
+    },
+    {
+      "publicPath": "/blueprints/lyra/root-layout-registration.txt",
+      "sourceAsset": "/Game/UI/W_OverallUILayout",
+      "graph": "EventGraph",
+      "kind": "native-node-text",
+      "sha256": "33f8c41b2cb64c24e405fbacaa4c662db1240b5c3404c41d383601bdbcf73b54",
+      "bytes": 26987,
+      "nodeCount": 10,
+      "exportReport": "verification/root-layout-graph-export.json",
+      "roundTripReport": "verification/training-blueprint-roundtrip.json",
+      "provenance": "source-evidence/root-layout-blueprint.json"
+    },
+    {
+      "publicPath": "/media/lyra/root-layout-registration.png",
+      "sourceAsset": "/Game/UI/W_OverallUILayout",
+      "graph": "EventGraph",
+      "kind": "native-graph-capture",
+      "original": "F:\\UE\\LyraDocLabs\\LyraTraining\\Saved\\Screenshots\\WindowsEditor\\W_OverallUILayout_EventGraph_00001.png",
+      "captureTool": "Gradess Games Blueprint Screenshot Tool 1.1.7, Ctrl+A then Ctrl+F7",
+      "editorPid": 19024,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "selectedNodeCount": 10,
+      "selectionVerification": "All four Register Layer calls, four Designer variables, Event OnInitialized and comment selected; orange outlines visually checked before Ctrl+F7.",
+      "nativeScale": 1,
+      "actualGraphZoom": "1:1",
+      "zoomAmount": 1.0,
+      "maxScreenshotSize": 15360,
+      "width": 1648,
+      "height": 1264,
+      "bytes": 314070,
+      "sha256": "d6418c7a211a16aebca15a76e2306beb7b938bf51c75bda42b944c2ee10c886d",
+      "pixelsModified": false,
+      "capturedAt": "2026-09-13T17:05:51.455541+00:00",
+      "settingsEvidence": "verification/training-final-capture-settings.json"
+    }
+  ],
+  "runtimeVerification": {
+    "blueprintCapture": {
+      "status": "passed",
+      "plugin": "Gradess Games Blueprint Screenshot Tool 1.1.7",
+      "ZoomAmount": 1,
+      "MaxScreenshotSize": 15360,
+      "fullEditorBuild": "passed with -EnablePlugin=BlueprintScreenshotTool",
+      "buildId": "f13cdf4b-3431-474f-9acf-db7de1089774",
+      "graphs": [
+        "GA_Hero_Dash.SelectDirectionalMontage",
+        "GA_Hero_Dash.EventGraph",
+        "GA_Hero_Jump.EventGraph"
+      ]
+    },
+    "officialShooterGym": {
+      "status": "observed",
+      "mode": "single-player PIE",
+      "observed": [
+        "bots",
+        "weapon firing",
+        "HUD"
+      ],
+      "doesNotValidate": [
+        "two-client replication",
+        "packaged build"
+      ]
+    },
+    "blueprintPasteCompile": {
+      "status": "passed",
+      "finishedAt": "2026-09-13T13:48:39.232853+00:00",
+      "report": "verification/training-blueprint-roundtrip.json",
+      "cases": [
+        "jump-event-graph",
+        "dash-direction",
+        "root-layout-registration"
+      ],
+      "scope": "Native import and compile of complete Blueprint duplicates in TrainingRange/Tests, with original signatures and Widget Designer tree preserved; gameplay verified separately. Root layout 1:1 screenshot is still pending."
+    }
+  },
+  "upstreamSources": [
+    {
+      "title": "Lyra Sample Game",
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-in-unreal-engine"
+    },
+    {
+      "title": "Abilities in Lyra",
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/abilities-in-lyra-in-unreal-engine"
+    },
+    {
+      "title": "Lyra Inventory and Equipment",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-inventory-and-equipment-in-unreal-engine"
+    },
+    {
+      "title": "Gradess Blueprint Screenshot Tool",
+      "url": "https://github.com/Gradess2019/BlueprintScreenshotTool"
+    }
+  ]
+}

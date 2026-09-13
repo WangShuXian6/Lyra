@@ -1,0 +1,100 @@
+---
+title: 文档站构建与 GitHub Pages 发布
+description: 本地检查根路径和 Lyra 子路径，通过 main 自动部署，并根据提交记录验证与回退。
+---
+
+## 学习目标与前置条件
+
+能修改一篇课程，检查链接、截图、蓝图下载和搜索，再通过 `main` 更新文档站。本站使用 Next.js App Router、Fumadocs MDX/UI、TypeScript 和静态导出；构建使用固定的 Node.js **24.13.0**、pnpm **10.28.2**。版本及 `pnpm-lock.yaml` 随仓库管理。
+
+需要 Git、Node/pnpm 和 `WangShuXian6/Lyra` 的写权限。启用 Pages 发布源需要仓库设置权限。网站 CI 使用仓库内的原创增量、原始截图和来源记录，**不需要本机 UE 或 PostgreSQL**。游戏后端的部署见 [后端部署](/docs/10-backend/deployment)。
+
+## 从仓库启动本地阅读
+
+1. 首次获取仓库，在自己的工作目录执行 `git clone https://github.com/WangShuXian6/Lyra.git LyraDoc`。已有 `F:/UE/LyraDoc` 时进入现有目录，不要在里面再次克隆。
+2. 执行 `node --version`、`pnpm --version`，检查与上面版本一致。
+3. 执行 `pnpm install --frozen-lockfile`。锁文件不匹配时检查是否遗漏提交，不要直接删除锁文件。
+4. 执行 `pnpm dev`，打开 `http://127.0.0.1:3000`。
+5. 修改 `content/docs` 下的 MDX 正文；`meta.json` 决定章节顺序。新增文档填写 `title` 与 `description`，补充对应导航项。
+6. 在本地页面逐项检查操作步骤、代码、图片图注和英文符号。结束预览按 Ctrl+C 停止服务。
+
+普通站内链接写 `/docs/章节/文章`。MDX 图片写 `/media/...`，蓝图组件写 `/blueprints/...`。路径适配集中在站点组件，正文不要手动加第二个 `/Lyra`。新截图保存原始文件，并向 `source-evidence` 的 `media` 或 `captures` 登记公开路径、SHA-256、原生宽高、源资产、采集时间和所见字段；来源检查会阻止未登记或已被替换的图片发布。
+
+保留根目录的 `.gitattributes`。原生蓝图文本、PO、源码及截图的来源记录使用实际文件字节计算 SHA-256；Git 自动转换 CRLF/LF 会让同一份材料在 Windows 和 Linux CI 上出现不同哈希。本站关闭自动换行转换，文本仍可正常查看差异。不要对原生节点文本或已登记的本地化输出执行自动格式化。
+
+## 为什么使用静态导出
+
+`next.config.ts` 设置 `output: 'export'`、`trailingSlash: true` 和不依赖服务器的图片处理。文档路由在构建时预生成，深层页面对应自己的 `index.html`，刷新后仍可直接访问。[Fumadocs 静态部署说明](https://www.fumadocs.dev/docs/deploying/static) 提供了这一部署方式和静态搜索入口。
+
+`app/api/search/route.ts` 的 `dynamic = 'force-static'` 与 `staticGET` 生成搜索索引；浏览器下载索引后执行中文及代码符号搜索。这里路径中虽有 `api`，线上仍是静态文件，不是运行中的后端接口。
+
+生产路径通过构建环境设置为 `/Lyra`。此值在构建时进入 HTML 与 JavaScript；把根路径构建直接上传到 `/Lyra/`，可能出现首页文字可见但样式、图片、搜索或深层链接失败。更改路径后必须重新构建。
+
+## 检查根路径与子路径
+
+在 PowerShell 7 中进入文档仓库，先检查根路径：
+
+```powershell
+Remove-Item Env:NEXT_PUBLIC_BASE_PATH -ErrorAction SilentlyContinue
+pnpm check
+pnpm build
+node scripts/check-content.mjs --export
+pnpm serve
+```
+
+`pnpm check` 包含 TypeScript/MDX 和内容来源检查；`pnpm build` 先按白名单生成教学下载包，再导出网站。下载包只接受已登记的原创资产及明确注明来源的原生蓝图文本，不能包含本机密钥、UE 缓存或私自复制的官方插件。
+
+下载包使用固定文件顺序、权限、所有者与时间戳生成 POSIX ustar，再压缩为 `.tar.gz`。这些元数据不读取当前电脑的用户名或文件修改时间；原生文件内容、包内清单与整个压缩包分别记录哈希。修改已验证资产时，先完成 UE 编译和来源更新，再重建下载包。
+
+打开 `http://127.0.0.1:3000/`，检查首页和深层文章。按 Ctrl+C 停止静态服务器，再构建生产子路径：
+
+```powershell
+$env:NEXT_PUBLIC_BASE_PATH='/Lyra'
+pnpm build
+node scripts/check-content.mjs --export
+pnpm serve
+```
+
+现在打开 `http://127.0.0.1:3000/Lyra/`。至少完成下面一轮实际浏览：
+
+| 操作 | 预期结果 |
+| --- | --- |
+| 直接打开国际化文章，再刷新 | 正文、目录和截图仍加载 |
+| 搜索“国际化”及 `ULyraHeroComponent` | 找到对应文章，跳转保留 `/Lyra` |
+| 点击代码复制并粘贴到文本编辑器 | 与代码块内容一致 |
+| 打开蓝图原图并切到 1:1 | 节点文字可读，大图可在容器内平移 |
+| 下载蓝图文本和教学包 | 得到真实文件，包哈希与下载页一致 |
+| 将浏览器宽度调整到 375px | 正文可读，大图不会撑宽整页 |
+| 切换深浅主题 | 正文、代码、按钮和目录对比清晰 |
+
+`--export` 检查所有导出页的本地目标、锚点、路径前缀和搜索索引，但不模拟浏览器点击，因此保留这轮实际浏览。
+
+## 启用 Pages 并理解工作流
+
+1. 在 GitHub 打开仓库 **Settings → Pages → Build and deployment**。
+2. 将 **Source** 选为 **GitHub Actions**。
+3. 打开仓库 **Actions**，找到 **Check and deploy documentation**。对应文件为 `.github/workflows/pages.yml`。
+4. 检查 `check` 的两项矩阵任务：根路径与 `/Lyra` 均执行冻结安装、类型/内容检查、静态构建和导出检查；下载包重建后还要与提交的文件逐字节一致。
+5. `main` 的两个检查任务成功后，`/Lyra` 产物上传，`deploy` 发布到 `github-pages` 环境。
+6. 打开部署任务给出的真实 URL，核对首页、深层文章刷新、搜索跳转和下载。
+
+工作流的触发关系如下：
+
+| 事件 | 行为 |
+| --- | --- |
+| 打开或更新 PR | 执行两套构建检查 |
+| 推送到 `main` | 检查成功后自动部署 |
+| PR 合并使 `main` 更新 | 与普通 `main` 推送相同，自动部署 |
+| Actions 中 Run workflow，选择 `main` | 手动重建并部署 |
+
+`deploy` 通过 `needs: check` 等待检查任务，使用 `pages: write` 和 `id-token: write`，产物名由 Pages 官方 Actions 管理。这些设置与 [GitHub 自定义 Pages 工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) 的要求一致。网站地址为 `https://wangshuxian6.github.io/Lyra/`；工作流配置存在不等于这次提交已经成功部署，以运行结果和线上检查为准。
+
+## 日常更新、失败与回退
+
+日常修改先创建分支，提交 MDX、所需源文件、素材与来源记录，再打开 PR。合并前检查 Actions 的两个构建任务。在 GitHub 的提交详情记录提交 SHA 和成功运行链接，便于对应某一版课程与下载包。
+
+失败时打开第一个失败步骤：安装问题先检查锁文件及 Node/pnpm 版本；MDX 问题定位文件与行号；来源错误核对原始 PNG/TXT 和清单；404 或搜索问题检查构建时的 `NEXT_PUBLIC_BASE_PATH`。部署权限错误则回到 Pages 发布源与工作流权限。修复原因后提交更新，不要把失败的 `out/` 手工复制到另一个分支掩盖检查。
+
+已经发布的错误用 `git revert <需要撤销的提交SHA>` 生成新的回退提交，再按正常 PR 或 `main` 流程发布。若撤销的是合并提交，先核对主线 parent 再选择 `git revert -m 1 <合并SHA>`；不确定时直接提交修正文档更容易审核。部署历史保留，旧版本的 UE 资产与源码验证记录也不应被改称新版本验收。
+
+练习：为一篇文章添加一个真实配置字段说明与截图，完成两套静态构建，通过 PR 发布，再从部署记录找到对应提交和线上深层 URL。

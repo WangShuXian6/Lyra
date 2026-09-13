@@ -1,0 +1,162 @@
+{
+  "namespace": "MMOUI",
+  "translations": {
+    "Session.ConnectionFailed": {
+      "source": "Connection failed. Please try joining again.",
+      "zh-Hans": "连接失败，请重新尝试入服。"
+    },
+    "Session.ExperienceUnavailable": {
+      "source": "The game world is unavailable. Please try again later.",
+      "zh-Hans": "游戏世界暂时不可用，请稍后重试。"
+    },
+    "Session.CharacterInitializationFailed": {
+      "source": "Your character could not be initialized. Please try joining again.",
+      "zh-Hans": "角色初始化失败，请重新尝试入服。"
+    },
+    "Session.ServerUnavailable": {
+      "source": "The game server is unavailable. Please try again later.",
+      "zh-Hans": "游戏服务器暂时不可用，请稍后重试。"
+    },
+    "Session.TicketRejected": {
+      "source": "Your entry ticket was rejected or expired. Select your character and join again.",
+      "zh-Hans": "入服票据被拒绝或已过期，请重新选择角色并入服。"
+    },
+    "Session.PersistenceLost": {
+      "source": "Your character session has ended. Join again to reload your saved progress.",
+      "zh-Hans": "角色会话已结束，请重新入服以加载已保存的进度。"
+    },
+    "GamepadInputHint": {
+      "source": "Left stick: move · Right stick: look\nY: target · A: attack · X: arcane bolt\nView: inventory · Menu: settings",
+      "zh-Hans": "左摇杆：移动 · 右摇杆：视角\nY：选择目标 · A：普通攻击 · X：奥术箭\nView：背包 · Menu：设置"
+    },
+    "KeyboardInputHint": {
+      "source": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+      "zh-Hans": "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置"
+    },
+    "UsernameTaken": {
+      "source": "That account name is already registered.",
+      "zh-Hans": "该账号名称已被注册。"
+    },
+    "CharacterNameTaken": {
+      "source": "That character name is already in use.",
+      "zh-Hans": "该角色名称已被使用。"
+    },
+    "AlreadyOnline": {
+      "source": "This account already has an active character. Exit that session first.",
+      "zh-Hans": "该账号已有在线角色，请先退出当前会话。"
+    },
+    "CharacterLimit": {
+      "source": "This account has reached the character limit.",
+      "zh-Hans": "该账号的角色数量已达上限。"
+    },
+    "InvalidTicket": {
+      "source": "The join ticket expired or was already used. Request a new ticket.",
+      "zh-Hans": "入服票据已过期或已使用，请重新申请。"
+    },
+    "InvalidInput": {
+      "source": "Check the account name, password (12 or more characters), and character name.",
+      "zh-Hans": "请检查账号名称、密码（至少 12 个字符）和角色名称。"
+    },
+    "Unauthorized": {
+      "source": "The account or password is incorrect, or your session expired. Sign in again.",
+      "zh-Hans": "账号或密码不正确，或登录已过期，请重新登录。"
+    },
+    "Forbidden": {
+      "source": "You do not have permission to perform this operation.",
+      "zh-Hans": "你没有执行此操作的权限。"
+    },
+    "CharacterUnavailable": {
+      "source": "This character or service resource is unavailable.",
+      "zh-Hans": "该角色或服务资源不可用。"
+    },
+    "BackendUnavailable": {
+      "source": "The backend is unavailable. Check that the service and database are running.",
+      "zh-Hans": "后端服务不可用，请检查服务与数据库是否正在运行。"
+    },
+    "BackendRequestFailed": {
+      "source": "Request failed (HTTP {0}). Please try again.",
+      "zh-Hans": "请求失败（HTTP {0}），请重试。"
+    },
+    "ManaValue": {
+      "source": "Mana {0} / 100",
+      "zh-Hans": "法力 {0} / 100"
+    },
+    "TargetHealthValue": {
+      "source": "Training target · Health {0} / 100",
+      "zh-Hans": "训练目标 · 生命 {0} / 100"
+    },
+    "NoTarget": {
+      "source": "No target selected",
+      "zh-Hans": "尚未选择目标"
+    },
+    "SpellCooldownValue": {
+      "source": "Arcane bolt: {0}s cooldown · costs 20 mana",
+      "zh-Hans": "奥术箭：冷却 {0} 秒 · 消耗 20 法力"
+    },
+    "InventoryItemQuantity": {
+      "source": "{0} × {1}",
+      "zh-Hans": "{0} × {1}"
+    },
+    "ManaPotion": {
+      "source": "Mana potion",
+      "zh-Hans": "法力药剂"
+    },
+    "InventoryEmpty": {
+      "source": "Your inventory is empty. Defeat a training target to earn a potion.",
+      "zh-Hans": "背包为空。击败训练目标可获得药剂。"
+    },
+    "PlayerStatusValue": {
+      "source": "{0} · Level {1} · XP {2}\nHealth {3} / 100",
+      "zh-Hans": "{0} · 等级 {1} · 经验 {2}\n生命 {3} / 100"
+    },
+    "WaitingForCharacter": {
+      "source": "Waiting for the server to load your character…",
+      "zh-Hans": "正在等待服务器加载角色…"
+    },
+    "Registering": {
+      "source": "Creating account…",
+      "zh-Hans": "正在创建账号…"
+    },
+    "SigningIn": {
+      "source": "Signing in…",
+      "zh-Hans": "正在登录…"
+    },
+    "AccountCreated": {
+      "source": "Account created. Please sign in.",
+      "zh-Hans": "账号已创建，请登录。"
+    },
+    "SignedIn": {
+      "source": "Signed in.",
+      "zh-Hans": "登录成功。"
+    },
+    "LoadingCharacters": {
+      "source": "Loading characters…",
+      "zh-Hans": "正在加载角色…"
+    },
+    "ChooseCharacter": {
+      "source": "Choose a character to enter the zone.",
+      "zh-Hans": "请选择角色进入区域。"
+    },
+    "CreatingCharacter": {
+      "source": "Creating character…",
+      "zh-Hans": "正在创建角色…"
+    },
+    "CharacterCreated": {
+      "source": "Character created.",
+      "zh-Hans": "角色已创建。"
+    },
+    "RequestingTicket": {
+      "source": "Requesting a one-time join ticket…",
+      "zh-Hans": "正在申请一次性入服票据…"
+    },
+    "ConnectingServer": {
+      "source": "Connecting to the game server…",
+      "zh-Hans": "正在连接游戏服务器…"
+    },
+    "PlayerDead": {
+      "source": "You died. Respawning at the checkpoint…",
+      "zh-Hans": "你已死亡，正在检查点重生…"
+    }
+  },
+  "reviewPolicy": "English source is frozen with its reviewed Chinese translation. C++ and gathered PO source must both match; review and update both fields when changing the source."
+}

@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T11:25:06.239718+00:00",
+  "status": "passed",
+  "passed": true,
+  "timeoutSeconds": 20,
+  "method": "Slate post-tick sampling and Enhanced Input console forced keys",
+  "checks": {
+    "training_pie_identity": {
+      "status": "passed",
+      "passed": true,
+      "world": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange"
+    },
+    "training_dash_granted": {
+      "status": "passed",
+      "passed": true,
+      "matches": 1,
+      "expectedClass": "/TrainingRange/Game/GA_TrainingDash.GA_TrainingDash_C"
+    },
+    "weapon_initialized": {
+      "status": "passed",
+      "passed": true,
+      "activeItem": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerController_0.LyraInventoryItemInstance_0",
+      "equipment": [
+        "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_0.B_WeaponInstance_Pistol_C_0"
+      ],
+      "spawnedActors": [
+        "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Pistol_C_1"
+      ],
+      "magazineAmmo": 12
+    },
+    "hud_initialized": {
+      "status": "passed",
+      "passed": true,
+      "hudActor": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraHUD_0",
+      "visibleLayouts": [
+        "/Engine/Transient.LyraEditorEngine_0:B_LyraGameInstance_C_1.W_OverallUILayout_C_0.WidgetTree_0.W_ShooterHUDLayout_C_0"
+      ]
+    },
+    "bots_initialized": {
+      "status": "passed",
+      "passed": true,
+      "controllerCount": 3,
+      "possessedCount": 3,
+      "pawns": [
+        "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_1",
+        "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_2",
+        "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_3"
+      ]
+    },
+    "move_input": {
+      "status": "passed",
+      "passed": true,
+      "before": {
+        "x": -720.0,
+        "y": -550.0,
+        "z": 142.00010681152344
+      },
+      "after": {
+        "x": -159.6601996546459,
+        "y": -550.0,
+        "z": 142.00010681152344
+      },
+      "distanceXY": 560.3398003453541,
+      "input": "Input.+key W 1",
+      "seconds": 1.2029999999977008
+    },
+    "jump_input": {
+      "status": "passed",
+      "passed": true,
+      "before": {
+        "x": -85.21322803068031,
+        "y": -550.0,
+        "z": 142.00010681152344
+      },
+      "after": {
+        "x": -85.21322803068031,
+        "y": -550.0,
+        "z": 142.15000470528733
+      },
+      "maxZ": 269.524879866391,
+      "rise": 127.52477305486758,
+      "input": "Input.+key SpaceBar 1"
+    },
+    "dash_input_activation": {
+      "status": "passed",
+      "passed": true,
+      "grantedTrainingDash": true,
+      "activationObserved": true,
+      "before": {
+        "x": -85.21322803068031,
+        "y": -550.0,
+        "z": 142.15000470528733
+      },
+      "after": {
+        "x": 532.1853323388874,
+        "y": -550.0,
+        "z": 142.15000470528733
+      },
+      "distanceXY": 617.3985603695677,
+      "input": "Input.+key LeftShift 1",
+      "criterion": "The actual GA_TrainingDash instance was sampled active after input; movement alone is insufficient."
+    },
+    "fire_ammo_consumed": {
+      "status": "passed",
+      "passed": true,
+      "item": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerController_0.LyraInventoryItemInstance_0",
+      "before": 12,
+      "after": 11,
+      "minimum": 11,
+      "tag": "Lyra.ShooterGame.Weapon.MagazineAmmo",
+      "input": "Input.+key LeftMouseButton 1"
+    }
+  },
+  "errors": [],
+  "events": [
+    {
+      "seconds": 0.031,
+      "command": "Input.-key W"
+    },
+    {
+      "seconds": 0.031,
+      "command": "Input.-key LeftShift"
+    },
+    {
+      "seconds": 0.031,
+      "command": "Input.-key SpaceBar"
+    },
+    {
+      "seconds": 0.031,
+      "command": "Input.-key LeftMouseButton"
+    },
+    {
+      "seconds": 0.016,
+      "stage": "move",
+      "position": {
+        "x": -720.0,
+        "y": -550.0,
+        "z": 142.00010681152344
+      }
+    },
+    {
+      "seconds": 0.031,
+      "command": "Input.+key W 1"
+    },
+    {
+      "seconds": 1.219,
+      "command": "Input.-key W"
+    },
+    {
+      "seconds": 1.219,
+      "stage": "settle_before_jump",
+      "position": {
+        "x": -159.6601996546459,
+        "y": -550.0,
+        "z": 142.00010681152344
+      }
+    },
+    {
+      "seconds": 1.578,
+      "stage": "jump",
+      "position": {
+        "x": -85.21322803068031,
+        "y": -550.0,
+        "z": 142.00010681152344
+      }
+    },
+    {
+      "seconds": 1.578,
+      "command": "Input.+key SpaceBar 1"
+    },
+    {
+      "seconds": 1.766,
+      "command": "Input.-key SpaceBar"
+    },
+    {
+      "seconds": 3.281,
+      "stage": "dash",
+      "position": {
+        "x": -85.21322803068031,
+        "y": -550.0,
+        "z": 142.15000470528733
+      }
+    },
+    {
+      "seconds": 3.281,
+      "command": "Input.+key LeftShift 1"
+    },
+    {
+      "seconds": 3.484,
+      "command": "Input.-key LeftShift"
+    },
+    {
+      "seconds": 4.484,
+      "stage": "settle_before_fire",
+      "position": {
+        "x": 532.1853323388874,
+        "y": -550.0,
+        "z": 142.15000470528733
+      }
+    },
+    {
+      "seconds": 4.813,
+      "stage": "fire",
+      "position": {
+        "x": 532.1853323388874,
+        "y": -550.0,
+        "z": 142.15000470528733
+      }
+    },
+    {
+      "seconds": 4.813,
+      "command": "Input.+key LeftMouseButton 1"
+    },
+    {
+      "seconds": 5.719,
+      "command": "Input.-key LeftMouseButton"
+    },
+    {
+      "seconds": 5.719,
+      "command": "Input.-key W"
+    },
+    {
+      "seconds": 5.719,
+      "command": "Input.-key LeftShift"
+    },
+    {
+      "seconds": 5.719,
+      "command": "Input.-key SpaceBar"
+    },
+    {
+      "seconds": 5.719,
+      "command": "Input.-key LeftMouseButton"
+    }
+  ],
+  "scope": "Single local training PIE: movement, jump, granted Dash activation, ammo, and initialization only.",
+  "notCovered": [
+    "multiplayer replication",
+    "packaged build",
+    "damage correctness",
+    "bot decision making",
+    "UI navigation"
+  ],
+  "project": "F:/UE/LyraDocLabs/LyraTraining",
+  "engine": "5.8.1-0+UE5",
+  "world": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange",
+  "character": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_0",
+  "controller": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerController_0",
+  "abilitySystem": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerState_0.AbilitySystemComponent",
+  "grantedAbilityClasses": [
+    "/ShooterCore/Elimination/GA_ShowLeaderboard_TDM.GA_ShowLeaderboard_TDM_C",
+    "/ShooterCore/Game/Respawn/GA_AutoRespawn.GA_AutoRespawn_C",
+    "/Game/Characters/Heroes/Abilities/GA_Hero_Jump.GA_Hero_Jump_C",
+    "/Game/Characters/Heroes/Abilities/GA_Hero_Death.GA_Hero_Death_C",
+    "/TrainingRange/Game/GA_TrainingDash.GA_TrainingDash_C",
+    "/ShooterCore/Game/Emote/GA_Emote.GA_Emote_C",
+    "/ShooterCore/Game/GA_QuickbarSlots.GA_QuickbarSlots_C",
+    "/ShooterCore/Input/Abilities/GA_ADS.GA_ADS_C",
+    "/ShooterCore/Input/Abilities/GA_Grenade.GA_Grenade_C",
+    "/ShooterCore/Input/Abilities/GA_DropWeapon.GA_DropWeapon_C",
+    "/ShooterCore/Game/Melee/GA_Melee.GA_Melee_C",
+    "/ShooterCore/Game/Respawn/GA_SpawnEffect.GA_SpawnEffect_C",
+    "/Script/LyraGame.LyraGameplayAbility_Reset",
+    "/ShooterCore/Weapons/Pistol/GA_Weapon_Fire_Pistol.GA_Weapon_Fire_Pistol_C",
+    "/Game/Weapons/Pistol/GA_Weapon_Reload_Pistol.GA_Weapon_Reload_Pistol_C",
+    "/Game/Weapons/GA_Weapon_AutoReload.GA_Weapon_AutoReload_C"
+  ],
+  "positionBefore": {
+    "x": -720.0,
+    "y": -550.0,
+    "z": 142.00010681152344
+  },
+  "positionAfter": {
+    "x": 532.1853323388874,
+    "y": -550.0,
+    "z": 142.15000470528733
+  },
+  "finishedAt": "2026-09-13T11:25:11.957972+00:00",
+  "durationSeconds": 5.719
+}

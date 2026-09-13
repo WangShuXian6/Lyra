@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T17:00:07.168384+00:00",
+  "finishedAt": "2026-09-13T17:00:38.913103+00:00",
+  "status": "passed",
+  "passed": true,
+  "processId": 2000,
+  "scope": "Fresh native Python commandlet process using existing lab assets, then same-process preparation while retaining the first Training World reference.",
+  "notCovered": [
+    "empty-directory asset creation",
+    "PIE gameplay",
+    "Cook",
+    "packaged runtime"
+  ],
+  "historicalFailureReport": "verification/training-prepare-repeat.json",
+  "runs": [
+    {
+      "phase": "fresh-commandlet-process",
+      "startedAt": "2026-09-13T17:00:07.580631+00:00",
+      "passed": true,
+      "worldBefore": "/Temp/Untitled_0.Untitled",
+      "processId": 2000,
+      "generatedReport": {
+        "project": "F:/UE/LyraDocLabs/LyraTraining",
+        "engine": "5.8.1-0+UE5",
+        "created": [
+          {
+            "source": "/ShooterCore/Experiences/B_ShooterGame_Elimination",
+            "destination": "/TrainingRange/Experiences/B_TrainingRange"
+          },
+          {
+            "source": "/ShooterCore/Game/HeroData_ShooterGame",
+            "destination": "/TrainingRange/Game/HeroData_Training"
+          },
+          {
+            "source": "/ShooterCore/Game/AbilitySet_ShooterHero",
+            "destination": "/TrainingRange/Game/AbilitySet_TrainingHero"
+          },
+          {
+            "source": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+            "destination": "/TrainingRange/Game/GA_TrainingDash"
+          },
+          {
+            "source": "/ShooterCore/Maps/L_ShooterGym",
+            "destination": "/TrainingRange/Maps/L_TrainingRange"
+          }
+        ],
+        "dash_replacements": 1,
+        "navigation": {
+          "nativeOperation": "LyraDocTools.BuildTrainingNavigation / UNavigationSystemV1::Build",
+          "projectedPickupPoints": [
+            {
+              "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_2",
+              "projected": [
+                -1463.1043701171875,
+                -1070.30126953125,
+                60.0
+              ]
+            },
+            {
+              "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_0",
+              "projected": [
+                -1694.618408154774,
+                -1070.30126953125,
+                60.0
+              ]
+            },
+            {
+              "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_1",
+              "projected": [
+                -1217.49462890625,
+                -1070.30126953125,
+                60.0
+              ]
+            }
+          ]
+        }
+      },
+      "generatedReportFile": {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Saved\\training-assets.json",
+        "bytes": 1699,
+        "sha256": "7cd755c8d2fd08e1e99e155cdc9d921f80ba47461537743ecc2c36e76f1485e1"
+      },
+      "snapshot": {
+        "world": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange",
+        "signs": [
+          "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.TextRenderActor_0"
+        ],
+        "pawnData": "/TrainingRange/Game/HeroData_Training.HeroData_Training",
+        "abilitySets": [
+          "/TrainingRange/Game/AbilitySet_TrainingHero.AbilitySet_TrainingHero"
+        ],
+        "experienceClass": "/TrainingRange/Experiences/B_TrainingRange.B_TrainingRange_C",
+        "features": [
+          "ShooterCore",
+          "TrainingRange"
+        ],
+        "nativeProjectedPickupPoints": [
+          {
+            "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_2",
+            "projected": [
+              -1463.1043701171875,
+              -1070.30126953125,
+              60.0
+            ]
+          },
+          {
+            "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_0",
+            "projected": [
+              -1694.618408154774,
+              -1070.30126953125,
+              60.0
+            ]
+          },
+          {
+            "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_1",
+            "projected": [
+              -1217.49462890625,
+              -1070.30126953125,
+              60.0
+            ]
+          }
+        ]
+      },
+      "retainedWorldForRepeat": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange",
+      "savedMap": {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Content\\Maps\\L_TrainingRange.umap",
+        "bytes": 192121,
+        "sha256": "944d25713e04901524a139adbb800109ae7b567ebc073acdee468412f1f01535"
+      },
+      "finishedAt": "2026-09-13T17:00:33.097760+00:00"
+    },
+    {
+      "phase": "same-process-repeat",
+      "startedAt": "2026-09-13T17:00:33.098765+00:00",
+      "passed": true,
+      "worldBefore": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange",
+      "processId": 2000,
+      "generatedReport": {
+        "project": "F:/UE/LyraDocLabs/LyraTraining",
+        "engine": "5.8.1-0+UE5",
+        "created": [
+          {
+            "source": "/ShooterCore/Experiences/B_ShooterGame_Elimination",
+            "destination": "/TrainingRange/Experiences/B_TrainingRange"
+          },
+          {
+            "source": "/ShooterCore/Game/HeroData_ShooterGame",
+            "destination": "/TrainingRange/Game/HeroData_Training"
+          },
+          {
+            "source": "/ShooterCore/Game/AbilitySet_ShooterHero",
+            "destination": "/TrainingRange/Game/AbilitySet_TrainingHero"
+          },
+          {
+            "source": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+            "destination": "/TrainingRange/Game/GA_TrainingDash"
+          },
+          {
+            "source": "/ShooterCore/Maps/L_ShooterGym",
+            "destination": "/TrainingRange/Maps/L_TrainingRange"
+          }
+        ],
+        "dash_replacements": 1,
+        "navigation": {
+          "nativeOperation": "LyraDocTools.BuildTrainingNavigation / UNavigationSystemV1::Build",
+          "projectedPickupPoints": [
+            {
+              "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_2",
+              "projected": [
+                -1463.1043701171875,
+                -1070.30126953125,
+                60.0
+              ]
+            },
+            {
+              "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_0",
+              "projected": [
+                -1694.618408154774,
+                -1070.30126953125,
+                60.0
+              ]
+            },
+            {
+              "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_1",
+              "projected": [
+                -1217.49462890625,
+                -1070.30126953125,
+                60.0
+              ]
+            }
+          ]
+        }
+      },
+      "generatedReportFile": {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Saved\\training-assets.json",
+        "bytes": 1699,
+        "sha256": "7cd755c8d2fd08e1e99e155cdc9d921f80ba47461537743ecc2c36e76f1485e1"
+      },
+      "snapshot": {
+        "world": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange",
+        "signs": [
+          "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.TextRenderActor_0"
+        ],
+        "pawnData": "/TrainingRange/Game/HeroData_Training.HeroData_Training",
+        "abilitySets": [
+          "/TrainingRange/Game/AbilitySet_TrainingHero.AbilitySet_TrainingHero"
+        ],
+        "experienceClass": "/TrainingRange/Experiences/B_TrainingRange.B_TrainingRange_C",
+        "features": [
+          "ShooterCore",
+          "TrainingRange"
+        ],
+        "nativeProjectedPickupPoints": [
+          {
+            "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_2",
+            "projected": [
+              -1463.1043701171875,
+              -1070.30126953125,
+              60.0
+            ]
+          },
+          {
+            "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_0",
+            "projected": [
+              -1694.618408154774,
+              -1070.30126953125,
+              60.0
+            ]
+          },
+          {
+            "spawner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_1",
+            "projected": [
+              -1217.49462890625,
+              -1070.30126953125,
+              60.0
+            ]
+          }
+        ]
+      },
+      "sameNativeWorldObject": true,
+      "savedMap": {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Content\\Maps\\L_TrainingRange.umap",
+        "bytes": 192121,
+        "sha256": "8334a40e8118d1ef4d7a71152e7d5eb034ebb503e856f66a32ba491a223fb07f"
+      },
+      "finishedAt": "2026-09-13T17:00:38.901872+00:00"
+    }
+  ],
+  "errors": [],
+  "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+  "engine": "5.8.1-0+UE5",
+  "pythonCommandletArgumentVerified": true,
+  "labPreparationScript": {
+    "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\prepare_training.py",
+    "bytes": 6572,
+    "sha256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823"
+  },
+  "repositoryPreparationScript": {
+    "path": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\prepare_training.py",
+    "bytes": 6572,
+    "sha256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823"
+  },
+  "initialEditorWorld": "/Temp/Untitled_0.Untitled",
+  "initialAssets": {
+    "/TrainingRange/Experiences/B_TrainingRange": true,
+    "/TrainingRange/Game/HeroData_Training": true,
+    "/TrainingRange/Game/AbilitySet_TrainingHero": true,
+    "/TrainingRange/Game/GA_TrainingDash": true,
+    "/TrainingRange/TrainingRange": true,
+    "/TrainingRange/Maps/L_TrainingRange": true
+  }
+}

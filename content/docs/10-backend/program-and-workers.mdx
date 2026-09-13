@@ -1,0 +1,145 @@
+---
+title: Program 主循环与有界工作队列
+description: 从 BlankProgram 构建独立服务，把数据库和密码计算移出 HTTP 主线程。
+---
+
+## 学习目标与前置条件
+
+理解 Program Target、模块依赖、Ticker 与工作线程的关系，并能在 Rider 中分别给路由入口和 SQL 代码打断点。前置条件是完成后端职责分解。本篇核对 UE 5.8.1 本地源码，日期 2026-09-13。
+
+## 建立独立 Target
+
+在 Rider 的文件视图打开 `examples/MMORPG/Source`。如果使用下载包，下面目录已经存在；在自己的新工程移植时，以工程的 `Source` 为根保留相同相对路径，并复制完整 `Public`/`Private` 文件。Program 入口是普通 C++ 文件，不使用“新建 Actor 类”向导。
+
+```text
+Source/
+  MMOBackendService.Target.cs
+  MMOBackendService/
+    MMOBackendService.Build.cs
+    Private/MMOBackendService.cpp
+  MMOContracts/
+    MMOContracts.Build.cs
+    Public/MMOContracts.h
+    Private/MMOContracts.cpp
+  MMOPersistence/
+    MMOPersistence.Build.cs
+    Public/MMOPersistence.h
+    Private/MMOPersistence.cpp
+  ThirdParty/MMOThirdParty/
+    MMOThirdParty.Build.cs
+```
+
+先创建/核对完整的 `Source/MMOBackendService.Target.cs`：
+
+```csharp title="Source/MMOBackendService.Target.cs"
+using UnrealBuildTool;
+[SupportedPlatforms(UnrealPlatformClass.Desktop)]
+public class MMOBackendServiceTarget : TargetRules
+{
+    public MMOBackendServiceTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Program;
+        LinkType = TargetLinkType.Monolithic;
+        LaunchModuleName = "MMOBackendService";
+        DefaultBuildSettings = BuildSettingsVersion.Latest;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
+        bBuildDeveloperTools = false;
+        bBuildWithEditorOnlyData = false;
+        bCompileAgainstEngine = false;
+        bCompileAgainstCoreUObject = false;
+        bCompileAgainstApplicationCore = false;
+        bCompileICU = false;
+        bIsBuildingConsoleApplication = true;
+        bCompileWithPluginSupport = false;
+        DisablePlugins.AddRange(new[] {
+            "GameplayAbilities", "EnhancedInput", "ModularGameplay",
+            "ModularGameplayActors", "GameFeatures", "CommonUI", "CommonGame",
+            "CommonUser", "UIExtension", "ModelViewViewModel", "MMOIntegration",
+            "MMOCore", "PythonScriptPlugin", "EditorScriptingUtilities"
+        });
+    }
+}
+```
+
+文件名、类名 `MMOBackendServiceTarget`、构造函数名必须匹配；`LaunchModuleName` 则匹配下面模块的目录、规则类与应用名称。这里的“独立”意味着生成单独可执行程序，入口不需要 `UWorld`，没有 Actor 生命周期，也没有 `GameMode`。禁用列表针对本课程 `.uproject` 已启用的玩法插件；`MMODocTools` 等 Editor 工具另由项目的 `TargetAllowList: ["Editor"]` 排除。
+
+接着核对启动模块规则。这里的依赖列表就是它的完整内容：
+
+```csharp title="Source/MMOBackendService/MMOBackendService.Build.cs"
+using UnrealBuildTool;
+public class MMOBackendService : ModuleRules
+{
+    public MMOBackendService(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PublicIncludePathModuleNames.Add("Launch");
+        PrivateDependencyModuleNames.AddRange(new[] {
+            "Core", "Projects", "Json", "HTTPServer",
+            "MMOContracts", "MMOPersistence"
+        });
+    }
+}
+```
+
+其余模块规则在对应 `.Build.cs` 中按下面字段设置。规则类继承 `ModuleRules`，构造函数接收 `ReadOnlyTargetRules Target` 并调用 `base(Target)`，与上面的完整例子相同。
+
+| 规则文件 | 字段与值 | 用途 |
+| --- | --- | --- |
+| `Source/MMOContracts/MMOContracts.Build.cs` | `PublicDependencyModuleNames.AddRange(new[] { "Core", "Json" });` | 公开结构使用 FString 和 JSON，不依赖 Engine |
+| `Source/MMOPersistence/MMOPersistence.Build.cs` | Public 为 `Core`、`Json`、`MMOContracts`；Private 为 `MMOThirdParty` | SQL 实现使用第三方库，协议调用者不用直接链接 libpq |
+| `Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs` | `Type = ModuleType.External`；Program + Win64 检查 | 仅提供头文件、导入库和运行 DLL |
+
+`MMOThirdParty` 的具体路径映射如下，完整文件在下载包同路径；[构建篇](/docs/10-backend/run-and-test)提供逐文件存在性检查。`PublicSystemIncludePaths` 加头文件目录，`PublicAdditionalLibraries` 加 `.lib`，`RuntimeDependencies` 将 DLL 复制到 `$(TargetOutputDir)`，三者不能相互替代。
+
+| 来源根目录 | 编译使用的路径 | 运行时路径 |
+| --- | --- | --- |
+| `MMO_POSTGRES_ROOT` | `include`、`lib/libpq.lib` | `bin/libpq.dll`、`libcrypto-3-x64.dll`、`libssl-3-x64.dll`、`libintl-9.dll`、`libiconv-2.dll` |
+| `MMO_SODIUM_ROOT` | `include`、`x64/Release/v143/dynamic/libsodium.lib` | `x64/Release/v143/dynamic/libsodium.dll` |
+
+普通模块的 CPP 用 `IMPLEMENT_MODULE(FDefaultModuleImpl, MMOContracts)` / `IMPLEMENT_MODULE(FDefaultModuleImpl, MMOPersistence)` 注册；启动模块则保留下面的 `IMPLEMENT_APPLICATION`，不要再增加一个 `IMPLEMENT_PRIMARY_GAME_MODULE`。后端模块通过 `LaunchModuleName` 和依赖图被 UBT 发现，**不需要把它们作为 Runtime 模块加进 `.uproject` 的 Modules 列表**。当前列表只包含游戏模块 `MMORPG`。
+
+`RequiredProgramMainCPPInclude.h` 提供 UE 程序入口需要的启动声明；`IMPLEMENT_APPLICATION(MMOBackendService, "MMOBackendService")` 注册应用名称。入口使用 `INT32_MAIN_INT32_ARGC_TCHAR_ARGV()`，先调用 `GEngineLoop.PreInit(ArgC, ArgV)`，再初始化密码库、读取环境、绑定路由并启动监听。成功后进入主循环；启动返回 2 通常是凭据、密码库或端口参数检查失败，返回 3 是监听器创建失败，具体看本地日志。
+
+文件落地后保存 Rider 工程模型，按[构建篇](/docs/10-backend/run-and-test)的完整 `Build.bat MMOBackendService Win64 Development -Project=…` 命令执行。命令直接让 UBT 读取 Target，不依赖 IDE 的目标下拉框是否已经刷新。如果 IDE 暂未显示新目标，重新加载 `.uproject` 的工程模型后再选取；不要用 `MMORPGEditor` 构建成功替代 Program 产物检查。
+
+## 主循环为什么必须存在
+
+调用 `StartAllListeners()` 只启动监听；服务仍要不断驱动 `FTSTicker`，让 HTTPServer 接收请求并发送响应。主循环也必须接收已完成的数据库操作：
+
+```cpp
+while (!IsEngineExitRequested())
+{
+    const double Now = FPlatformTime::Seconds();
+    FTSTicker::GetCoreTicker().Tick(static_cast<float>(Now - Previous));
+    Previous = Now;
+    Work.Pump();
+    FPlatformProcess::Sleep(0.005f);
+}
+```
+
+这段摘录省略了仓库实现中的正常停止文件检查。HTTP 绑定、主循环和关停代码都在 `MMOBackendService.cpp`。路由回调返回 `true` 时，UE 约定它最终必须调用完成回调；返回后仍在后台执行 SQL 是允许的，但必须保留回调并在完成时交还响应。
+
+## 两个工作线程、最多 32 个未完成请求
+
+每个 `FWorker` 在自己的线程内创建一个 `FMMOPersistence`，因此每条 PostgreSQL 连接只有一个使用者。主线程只负责解析有大小上限的 JSON，并将任务放入队列。
+
+数据库查询、事务和 Argon2id 密码计算全部在这两个工作线程中执行。完成结果写入多生产者队列 `TQueue<FCompleted, EQueueMode::Mpsc>`，由主线程的 `Work.Pump()` 调用 `FHttpResultCallback`。
+
+32 的上限统计排队、运行中和等待回调的请求。超过容量立即返回 HTTP 503 `busy`，避免高峰请求无限累积内存。SQL 语句超时为 5 秒，锁等待为 3 秒，建立连接超时为 3 秒。这个规模服务于本课程单区域演示；真实容量应根据密码哈希内存、连接数和压测结果调整。
+
+注意，应用在路由层检查 64 KiB 请求体，不能代替公开入口的流量控制，因为 HTTPServer 已经接收了请求数据。公网入口必须另外设置请求大小、连接和认证速率限制。
+
+## 模块间传递什么
+
+`MMOContracts/Public/MMOContracts.h` 中的 `FRequest` 只有路径、方法、Bearer 和 JSON 对象；`FReply` 只有状态码和 JSON 对象。没有 `UCLASS`、`AActor*` 或 `FHttpServerRequest` 穿透到 SQL 层。数据库代码因此可以在不加载 Engine 的进程中运行。
+
+队列转交 JSON 对象后，原线程不再修改它。不要把游戏世界对象或由主线程随时修改的数据指针直接捕获进数据库任务。
+
+## 正常停止
+
+启动脚本提供 `-ShutdownFile`。停止脚本创建这个文件后，服务先拒绝新请求，再等待已经接收的操作完成，发送剩余响应，最后关闭监听器和线程。退出流程调用 `AppPreExit`、模块卸载和 `AppExit`。关闭进程窗口或硬杀进程不具备同样的排空保证；未提交 PostgreSQL 事务会回滚，已提交但响应丢失的保存应以相同 `requestId` 重试。
+
+## 预期结果、排障与练习
+
+在 HTTP 路由和 `FMMOPersistence::Execute` 下断点，观察它们的线程 ID 不同。数据库暂时不可用时，服务应返回 503，主循环仍能处理其他请求和退出信号。
+
+端口不响应时先检查是否持续 Tick；收到请求却一直等不到回复时检查是否遗漏完成回调。练习：记录队列等待时间和 SQL 执行时间，但不要记录密码、票据和 Bearer 值。可参考本机 `HttpRequestHandler.h` 对返回值和完成回调的约定。

@@ -1,0 +1,864 @@
+{
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "stringTable": {
+    "passed": true,
+    "saved": true,
+    "asset": "/Game/Localization/ST_MMO.ST_MMO",
+    "namespace": "MMOUI",
+    "nativeCulture": "en",
+    "entries": 45
+  },
+  "widgets": [
+    {
+      "date": "2026-09-13T13:05:28.270Z",
+      "passed": true,
+      "saved": true,
+      "gameplayExecuted": false,
+      "asset": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout",
+      "parent": "/Script/MMORPG.MMORootLayout",
+      "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+      "localizationNamespace": "MMOUI",
+      "nativeCulture": "en",
+      "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+      "widgets": [
+        {
+          "name": "LayerLayout",
+          "class": "/Script/UMG.Overlay",
+          "isVariable": true
+        },
+        {
+          "name": "GameLayer",
+          "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+          "isVariable": true
+        },
+        {
+          "name": "MenuLayer",
+          "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+          "isVariable": true
+        },
+        {
+          "name": "ModalLayer",
+          "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+          "isVariable": true
+        }
+      ],
+      "bindings": [],
+      "widgetCount": 4,
+      "canvasCount": 0,
+      "bindingCount": 0,
+      "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_MMOLayout-designer.json"
+    },
+    {
+      "date": "2026-09-13T13:05:28.346Z",
+      "passed": true,
+      "saved": true,
+      "gameplayExecuted": false,
+      "asset": "/Game/UI/WBP_Login.WBP_Login",
+      "parent": "/Script/MMORPG.MMOLoginPanel",
+      "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+      "localizationNamespace": "MMOUI",
+      "nativeCulture": "en",
+      "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+      "widgets": [
+        {
+          "name": "ScreenLayout",
+          "class": "/Script/UMG.Overlay",
+          "isVariable": true
+        },
+        {
+          "name": "PanelWidth",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "PanelBackground",
+          "class": "/Script/UMG.Border",
+          "isVariable": true
+        },
+        {
+          "name": "Form",
+          "class": "/Script/UMG.VerticalBox",
+          "isVariable": true
+        },
+        {
+          "name": "Title",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "AccountTitle",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "UsernameLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "UsernameSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "Username",
+          "class": "/Script/UMG.EditableTextBox",
+          "isVariable": true
+        },
+        {
+          "name": "PasswordLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "PasswordSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "Password",
+          "class": "/Script/UMG.EditableTextBox",
+          "isVariable": true
+        },
+        {
+          "name": "AccountActions",
+          "class": "/Script/UMG.HorizontalBox",
+          "isVariable": true
+        },
+        {
+          "name": "LoginButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "LoginButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "LoginButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "RegisterButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "RegisterButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "RegisterButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "CharacterTitle",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "CharacterNameLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "CharacterNameSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "CharacterName",
+          "class": "/Script/UMG.EditableTextBox",
+          "isVariable": true
+        },
+        {
+          "name": "CreateButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "CreateButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "CreateButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "CharacterListLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "CharacterListSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "CharacterList",
+          "class": "/Script/UMG.ComboBoxString",
+          "isVariable": true
+        },
+        {
+          "name": "CharacterActions",
+          "class": "/Script/UMG.HorizontalBox",
+          "isVariable": true
+        },
+        {
+          "name": "RefreshButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "RefreshButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "RefreshButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "JoinButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "JoinButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "JoinButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "Message",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        }
+      ],
+      "bindings": [],
+      "widgetCount": 37,
+      "canvasCount": 0,
+      "bindingCount": 0,
+      "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_Login-designer.json"
+    },
+    {
+      "date": "2026-09-13T13:05:28.395Z",
+      "passed": true,
+      "saved": true,
+      "gameplayExecuted": false,
+      "asset": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus",
+      "parent": "/Script/UMG.UserWidget",
+      "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+      "localizationNamespace": "MMOUI",
+      "nativeCulture": "en",
+      "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+      "widgets": [
+        {
+          "name": "ManaLayout",
+          "class": "/Script/UMG.VerticalBox",
+          "isVariable": true
+        },
+        {
+          "name": "ManaText",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "ManaBarSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "ManaBar",
+          "class": "/Script/UMG.ProgressBar",
+          "isVariable": true
+        }
+      ],
+      "bindings": [
+        "PlayerVM.ManaLabel -> ManaText.Text",
+        "PlayerVM.ManaFraction -> ManaBar.Percent"
+      ],
+      "widgetCount": 4,
+      "canvasCount": 0,
+      "bindingCount": 2,
+      "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+      "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+      "viewModelName": "PlayerVM",
+      "creationType": "Manual",
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_ManaStatus-designer.json"
+    },
+    {
+      "date": "2026-09-13T13:05:28.437Z",
+      "passed": true,
+      "saved": true,
+      "gameplayExecuted": false,
+      "asset": "/Game/UI/WBP_PlayerHUD.WBP_PlayerHUD",
+      "parent": "/Script/MMORPG.MMOHUDPanel",
+      "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+      "localizationNamespace": "MMOUI",
+      "nativeCulture": "en",
+      "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+      "widgets": [
+        {
+          "name": "ScreenLayout",
+          "class": "/Script/UMG.Overlay",
+          "isVariable": true
+        },
+        {
+          "name": "PanelWidth",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "PanelBackground",
+          "class": "/Script/UMG.Border",
+          "isVariable": true
+        },
+        {
+          "name": "HUDLayout",
+          "class": "/Script/UMG.VerticalBox",
+          "isVariable": true
+        },
+        {
+          "name": "Title",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "Values",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "ManaStatus",
+          "class": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus_C",
+          "isVariable": true
+        },
+        {
+          "name": "TargetHeading",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "TargetText",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "TargetHealthBarSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "TargetHealthBar",
+          "class": "/Script/UMG.ProgressBar",
+          "isVariable": true
+        },
+        {
+          "name": "CooldownText",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "AbilityActions",
+          "class": "/Script/UMG.HorizontalBox",
+          "isVariable": true
+        },
+        {
+          "name": "TargetButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "TargetButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": false
+        },
+        {
+          "name": "TargetButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "AttackButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "AttackButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": false
+        },
+        {
+          "name": "AttackButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "SpellButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "SpellButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": false
+        },
+        {
+          "name": "SpellButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "MenuActions",
+          "class": "/Script/UMG.HorizontalBox",
+          "isVariable": true
+        },
+        {
+          "name": "InventoryButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "InventoryButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": false
+        },
+        {
+          "name": "InventoryButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "SettingsButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "SettingsButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": false
+        },
+        {
+          "name": "SettingsButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "InputHintText",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        }
+      ],
+      "bindings": [
+        "PlayerVM.StatusText -> Values.Text",
+        "PlayerVM.TargetLabel -> TargetText.Text",
+        "PlayerVM.TargetFraction -> TargetHealthBar.Percent",
+        "PlayerVM.CooldownLabel -> CooldownText.Text",
+        "PlayerVM.InputHint -> InputHintText.Text"
+      ],
+      "widgetCount": 30,
+      "canvasCount": 0,
+      "bindingCount": 5,
+      "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+      "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+      "viewModelName": "PlayerVM",
+      "creationType": "Manual",
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_PlayerHUD-designer.json"
+    },
+    {
+      "date": "2026-09-13T13:05:28.483Z",
+      "passed": true,
+      "saved": true,
+      "gameplayExecuted": false,
+      "asset": "/Game/UI/WBP_Inventory.WBP_Inventory",
+      "parent": "/Script/MMORPG.MMOInventoryPanel",
+      "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+      "localizationNamespace": "MMOUI",
+      "nativeCulture": "en",
+      "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+      "widgets": [
+        {
+          "name": "ScreenLayout",
+          "class": "/Script/UMG.Overlay",
+          "isVariable": true
+        },
+        {
+          "name": "PanelWidth",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "PanelBackground",
+          "class": "/Script/UMG.Border",
+          "isVariable": true
+        },
+        {
+          "name": "InventoryLayout",
+          "class": "/Script/UMG.VerticalBox",
+          "isVariable": true
+        },
+        {
+          "name": "Title",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "Message",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "PotionButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "PotionButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "PotionButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "CloseButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "CloseButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "CloseButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        }
+      ],
+      "bindings": [
+        "PlayerVM.InventoryLabel -> Message.Text"
+      ],
+      "widgetCount": 12,
+      "canvasCount": 0,
+      "bindingCount": 1,
+      "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+      "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+      "viewModelName": "PlayerVM",
+      "creationType": "Manual",
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_Inventory-designer.json"
+    },
+    {
+      "date": "2026-09-13T13:05:28.543Z",
+      "passed": true,
+      "saved": true,
+      "gameplayExecuted": false,
+      "asset": "/Game/UI/WBP_Settings.WBP_Settings",
+      "parent": "/Script/MMORPG.MMOSettingsPanel",
+      "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+      "localizationNamespace": "MMOUI",
+      "nativeCulture": "en",
+      "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+      "widgets": [
+        {
+          "name": "ScreenLayout",
+          "class": "/Script/UMG.Overlay",
+          "isVariable": true
+        },
+        {
+          "name": "PanelWidth",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "PanelBackground",
+          "class": "/Script/UMG.Border",
+          "isVariable": true
+        },
+        {
+          "name": "SettingsLayout",
+          "class": "/Script/UMG.VerticalBox",
+          "isVariable": true
+        },
+        {
+          "name": "Title",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "QualityHeading",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "QualityActions",
+          "class": "/Script/UMG.HorizontalBox",
+          "isVariable": true
+        },
+        {
+          "name": "LowQualityButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "LowQualityButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "LowQualityButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "MediumQualityButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "MediumQualityButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "MediumQualityButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "HighQualityButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "HighQualityButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "HighQualityButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "LanguageHeading",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "LanguageActions",
+          "class": "/Script/UMG.HorizontalBox",
+          "isVariable": true
+        },
+        {
+          "name": "ChineseButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "ChineseButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "ChineseButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "EnglishButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "EnglishButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "EnglishButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "LogoutButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "LogoutButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "LogoutButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "CloseButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "CloseButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "CloseButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        }
+      ],
+      "bindings": [],
+      "widgetCount": 30,
+      "canvasCount": 0,
+      "bindingCount": 0,
+      "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_Settings-designer.json"
+    },
+    {
+      "date": "2026-09-13T13:05:28.588Z",
+      "passed": true,
+      "saved": true,
+      "gameplayExecuted": false,
+      "asset": "/Game/UI/WBP_Confirm.WBP_Confirm",
+      "parent": "/Script/MMORPG.MMOConfirmPanel",
+      "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+      "localizationNamespace": "MMOUI",
+      "nativeCulture": "en",
+      "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+      "widgets": [
+        {
+          "name": "ScreenLayout",
+          "class": "/Script/UMG.Overlay",
+          "isVariable": true
+        },
+        {
+          "name": "ModalScrim",
+          "class": "/Script/UMG.Border",
+          "isVariable": true
+        },
+        {
+          "name": "PanelWidth",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "PanelBackground",
+          "class": "/Script/UMG.Border",
+          "isVariable": true
+        },
+        {
+          "name": "ConfirmLayout",
+          "class": "/Script/UMG.VerticalBox",
+          "isVariable": true
+        },
+        {
+          "name": "Title",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "Explanation",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "ConfirmButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "ConfirmButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "ConfirmButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        },
+        {
+          "name": "CancelButtonSize",
+          "class": "/Script/UMG.SizeBox",
+          "isVariable": true
+        },
+        {
+          "name": "CancelButton",
+          "class": "/Script/UMG.Button",
+          "isVariable": true,
+          "isFocusable": true
+        },
+        {
+          "name": "CancelButtonLabel",
+          "class": "/Script/UMG.TextBlock",
+          "isVariable": true
+        }
+      ],
+      "bindings": [],
+      "widgetCount": 13,
+      "canvasCount": 0,
+      "bindingCount": 0,
+      "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+      "compilerErrors": 0,
+      "compilerWarnings": 0,
+      "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_Confirm-designer.json"
+    }
+  ],
+  "policy": {
+    "asset": "/Game/UI/BP_MMOUIPolicy",
+    "layoutClass": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout_C"
+  }
+}

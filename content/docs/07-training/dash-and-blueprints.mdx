@@ -1,0 +1,50 @@
+---
+title: 读取、复制与调试训练冲刺蓝图
+description: 把原生节点文本、全尺寸截图与 AbilitySet 中的技能引用对应起来。
+---
+
+## 学习目标与前置条件
+
+本节从 `GA_TrainingDash` 追到对应的输入标签，并在实验资产中完成蓝图复制。先完成上一节的 PawnData 和 AbilitySet 替换。适用版本为本机 UE 5.8.1，源码与官方图核验于 2026-09-13。
+
+## 一、先看执行链
+
+打开 `GA_TrainingDash` 的 EventGraph。冲刺需要决定方向、选择动画、驱动位移，随后处理冷却提示和结束能力。下面是官方源图的真实 1:1 导出。它有 9392 像素宽，适合先看全貌，再切换原始尺寸沿执行引脚阅读。
+
+<BlueprintGraph src="/media/lyra/dash-event-graph.png" alt="GA_Hero_Dash 的完整事件图，包含方向选择、Root Motion、Gameplay Cue、冷却消息与能力结束" caption="官方 /ShooterCore/Game/Dash/GA_Hero_Dash:EventGraph；UE 5.8.1，2026-09-13，BlueprintScreenshotTool ZoomAmount=1，9392×2514。" />
+
+白色执行线表达动作顺序；Vector、Rotator 和布尔引脚表达数据。不要把动画播放完毕误认为能力一定已经结束。沿 `End Ability` 和任务取消的输出一起检查，才能解释角色死亡、被打断和松开输入时发生什么。
+
+复现截图时，将插件 **ZoomAmount=1**，点击实际图画布、**Ctrl+A 并确认节点选择描边**后再 **Ctrl+F7**。未选中节点时插件沿用当前视口缩放，即使设置为 1 也可能导出缩小图。完整安装、焦点与原图核查步骤见[蓝图 1:1 截图](/docs/11-reference/blueprint-screenshots#导出完整图)。
+
+## 二、读方向选择函数
+
+`SelectDirectionalMontage` 把朝向和移动方向转成旋转，计算归一化角度差，然后比较绝对角度。前后方向阈值与左右方向分支最终选择四份 Montage。
+
+<BlueprintGraph src="/media/lyra/dash-direction.png" alt="SelectDirectionalMontage 完整蓝图：方向向量、旋转差、45度与135度判断、四方向蒙太奇选择" caption="GA_Hero_Dash:SelectDirectionalMontage，3417×966；节点文本包含函数入口、返回和局部变量引用。" download="/blueprints/lyra/dash-direction.txt" />
+
+先记下输入 `Facing Direction` 和 `Movement Direction`，再观察输出 `Directional Montage` 和 `Bias Forward Movement`。零移动输入、反向移动和边界角度值得分别测试。
+
+## 三、正确粘贴原生蓝图文本
+
+下载文本后，用文本编辑器完整复制 `Begin Object` 至最后的 `End Object`。这个文件是 Unreal 剪贴板格式，需要父类、Montage 引用、成员变量和同名函数签名；它不是能在任意 Actor 蓝图中运行的独立程序。
+
+1. 按[上一节](/docs/07-training/feature-and-experience)构建 `LyraDocTools`，运行 `scripts/verify-training-blueprints.py`。
+2. 脚本将完整蓝图复制到 `/TrainingRange/Tests/` 的唯一测试包，保留父类、成员变量和其他函数。
+3. 原生工具先记录函数引脚签名，再清空测试图，通过 `FEdGraphUtilities::ImportNodesFromText` 导入下载文本。这样完整文本中的入口、返回节点不会与旧图重复。
+4. 工具比较节点数量、入口与返回引脚，再调用原生蓝图编译器；只有通过才由脚本保存。
+5. 在编辑器打开报告中记录的测试资产，查看 `SelectDirectionalMontage` 和 Compiler Results，把图中 Montage 成员引用与原副本对应起来。
+
+本机实际结果：Jump 的 EventGraph 为 20 个节点，Dash 方向函数为 26 个节点，两图均无编译错误或警告，函数签名保持一致。同一报告后来追加了 W_OverallUILayout 的 10 节点 EventGraph，完整 WidgetBlueprint 副本导入编译也已通过；报告共三项，不能把它误读为 Dash 整个 EventGraph 也已粘贴验证。证据在 `verification/training-blueprint-roundtrip.json`。手工粘贴局部选区也可用于练习，但本下载是完整图，不能直接叠加在保留旧入口和旧节点的函数里；新函数若被自动重命名，还要核对局部变量作用域。
+
+## 四、从 C++ 断点定位技能为何未触发
+
+Rider 中依次检查 `ULyraHeroComponent::Input_AbilityInputTagPressed`、`ULyraAbilitySystemComponent::AbilityInputTagPressed`、`ProcessAbilityInput`。完整定义分别位于 `Character/LyraHeroComponent.cpp` 和 `AbilitySystem/LyraAbilitySystemComponent.cpp`。
+
+观察 `FGameplayAbilitySpec` 的能力类是否已经变成 `GA_TrainingDash_C`，以及它的动态来源标签是否与 InputConfig 一致。UE 5.8.1 的读取接口为 `GetDynamicSpecSourceTags()`。若 AbilitySet 中仍引用官方类，修改训练蓝图不会改变运行结果。
+
+## 预期结果、排障与练习
+
+前后左右移动时冲刺动画和位移方向匹配；取消或死亡后不会永久卡住其他能力。若出现红色未知节点，优先检查复制文本中的类路径与父类依赖。若编译通过但从未触发，检查实际 Experience、PawnData 和授予的 AbilitySpec。
+
+练习：在训练副本中仅改变一个角度阈值，比较斜向移动的表现，再恢复。不要一次改变动画、输入标签和网络执行策略，否则无法知道是哪项修改导致问题。

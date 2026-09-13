@@ -1,0 +1,55 @@
+---
+title: 从空白工程到单区域 RPG
+description: 逐步迁入 Lyra 的架构能力，用可操作的网络训练区域验证每个边界。
+---
+
+## 学习目标
+
+这条路线回答一个具体问题：已经理解 Lyra，怎样在自己的项目中使用它的设计，而不是把整个射击游戏改名？最终实验包含两个客户端、一个 UE Dedicated Server、一个 UE Backend Program 和 PostgreSQL。读者可以注册、创建角色、进入同一区域、攻击目标、获得经验与药剂，再退出并恢复角色。
+
+前置条件是能创建 C++ 工程、理解 UObject 和 Actor、能够构建本机 UE 5.8.1 源码引擎。先完成角色初始化、GAS、CommonUI 三篇基础课程。分析基准为 `F:/UE/LyraStarterGame`，核对日期 **2026-09-13**；实验目标目录为 `F:/UE/LyraDocLabs/MMORPG`。
+
+## 先判断你的复用方式
+
+| 方式 | 适用情况 | 需要承担的工作 |
+| --- | --- | --- |
+| 直接基于 Lyra 派生 | 需要完整输入、相机、动画、设置、联网框架，玩法接近现有模式 | 理解并维护 Lyra 的既有依赖和 Experience 启动链 |
+| 在新项目中选择性迁移 | 项目类型差异大，希望每一项依赖都有明确用途 | 重建初始化次序、替换玩法假设、自己编写验收 |
+| 只借鉴模式 | 已有成熟工程，只想改进 ASC 生命周期或 UI 层栈 | 将 Lyra 的职责划分翻译成现有接口 |
+
+本路线采用第二种。**“从零使用 Lyra”不意味着拷贝几个类就得到完整 Lyra。** 本实验直接导入四个独立插件，重写 MMORPG 所需的角色与玩法，保留一份逐项迁移清单。完整 Lyra 路线仍由前面的训练场实战覆盖。
+
+## 实验工程的组成
+
+`examples/MMORPG/MMORPG.uproject` 是项目入口。`Plugins/MMOFramework` 提供 Experience、PawnData、AbilitySet、InputConfig 和 PawnExtension 初始化状态；`Source/MMORPG` 实现角色、GAS、后端准入与 UI 业务，Widget Blueprint 负责真实布局与绑定；`Plugins/GameFeatures/MMOCore` 用 Add Components action 将训练区域组件注入 ModularGameState。`Plugins/MMOIntegration` 负责 HTTP，后端 Program 及数据库依赖放在独立源码模块。
+
+```text
+客户端 GameInstance ── HTTP ── Backend Program ── PostgreSQL
+       │                              ▲
+       │ 一次性入服票据                 │ 票据兑换 / 角色快照
+       ▼                              │
+UE Dedicated Server ──────────────────┘
+       │
+       └── Pawn 移动 / 技能 RPC / 属性复制 ── 两个客户端
+```
+
+训练区域使用引擎基础几何体，MMOCore 创建地面、边界、遮挡物、灯光和三个训练目标；组件的安装与移除由 Game Feature 管理。角色使用 UE 模板 Manny，原创 AnimBP 主图链接可替换的 Unarmed 动画层。网格和动画类配置在实际 BP_MMOCharacter/PawnData 中，可在编辑器修改。
+
+## 按检查点推进
+
+1. [依赖与模块迁移](/docs/08-mmorpg/migration)：从四个插件开始，构建新工程，生成原始教学资产。
+2. [角色、GAS 与战斗](/docs/08-mmorpg/character-gas)：确定 ASC 的 Owner/Avatar，建立 Enhanced Input 到能力激活的链路。
+3. [网络准入与持久化](/docs/08-mmorpg/network-persistence)：仅在服务器加载存档后生成角色，使用带版本的快照保存。
+4. [运行与验收](/docs/08-mmorpg/run-lab)：运行两客户端，验证共享世界、角色隔离、存档和失败恢复。
+5. [MMORPG UI](/docs/09-mmo-ui)：把复制结果投影到 ViewModel，再显示到 CommonUI 面板。
+
+## 预期结果与排障
+
+本篇结束时，你应能指出每个进程的职责，并解释为什么 MMORPG 模块不依赖 ShooterCore。若工程能打开但登录界面没有出现，先检查生成的 UI Policy；若连接后角色落下，先检查 MMOCore 是否激活以及区域组件是否安装。不要用关掉碰撞、自动授予离线角色等方式绕过这些检查点。
+
+练习：为已有项目选择上表的一种迁移方式，列出三项直接复用、三项重写和三项暂不迁移的系统，并逐项说明它们与核心玩法的关系。
+
+## 验证边界
+
+可下载源码、生成脚本和实际验证结果是三种不同证据。操作步骤描述如何重现功能；只有仓库验证记录中附带日志或截图的项目才表示已经执行。本实验没有宣称支撑商业 MMORPG 的大规模在线人数；跨服、交易、公会和分片需要进一步设计。
+

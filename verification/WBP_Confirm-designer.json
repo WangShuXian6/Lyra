@@ -1,0 +1,89 @@
+{
+  "date": "2026-09-13T13:05:28.588Z",
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "asset": "/Game/UI/WBP_Confirm.WBP_Confirm",
+  "parent": "/Script/MMORPG.MMOConfirmPanel",
+  "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+  "localizationNamespace": "MMOUI",
+  "nativeCulture": "en",
+  "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+  "widgets": [
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "isVariable": true
+    },
+    {
+      "name": "ModalScrim",
+      "class": "/Script/UMG.Border",
+      "isVariable": true
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "isVariable": true
+    },
+    {
+      "name": "ConfirmLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "isVariable": true
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "Explanation",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "ConfirmButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "ConfirmButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "ConfirmButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "CancelButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "CancelButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "CancelButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    }
+  ],
+  "bindings": [],
+  "widgetCount": 13,
+  "canvasCount": 0,
+  "bindingCount": 0,
+  "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+  "compilerErrors": 0,
+  "compilerWarnings": 0,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_Confirm-designer.json"
+}

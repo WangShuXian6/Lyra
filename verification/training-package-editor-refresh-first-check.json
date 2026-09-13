@@ -1,0 +1,156 @@
+{
+  "startedAt": "2026-09-13T19:32:54.0060735Z",
+  "passed": false,
+  "scope": "Pre-package full Editor target refresh after shared engine BuildId changed; no asset generation, Editor launch, Cook or gameplay performed by this script",
+  "project": "F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+  "target": "LyraEditor",
+  "platform": "Win64",
+  "configuration": "Development",
+  "nativeBuildRequested": true,
+  "arguments": [
+    "LyraEditor",
+    "Win64",
+    "Development",
+    "-Project=F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+    "-EnablePlugin=BlueprintScreenshotTool+LyraDocTools+TrainingRange+ModelContextProtocol+ToolsetRegistry+AllToolsets",
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-NoUBA",
+    "-MaxParallelActions=3"
+  ],
+  "sourceMapSHA256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+  "busyProcessCount": 0,
+  "tcp8000Listeners": 0,
+  "before": {
+    "engineBuildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+    "manifests": [
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf",
+        "matchesEngine": false,
+        "modules": [
+          "LyraEditor",
+          "LyraGame"
+        ]
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\BlueprintScreenshotTool\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf",
+        "matchesEngine": false,
+        "modules": "BlueprintScreenshotTool"
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraDocTools\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf",
+        "matchesEngine": false,
+        "modules": "LyraDocTools"
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf",
+        "matchesEngine": false,
+        "modules": "TrainingRangeVerification"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\ModelContextProtocol\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "ModelContextProtocol",
+          "ModelContextProtocolEditor",
+          "ModelContextProtocolEditorTests",
+          "ModelContextProtocolEngine",
+          "ModelContextProtocolEngineTests",
+          "ModelContextProtocolTests"
+        ]
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\ToolsetRegistry\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "ToolsetRegistry"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\Toolsets\\AllToolsets\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": false,
+        "buildId": null,
+        "matchesEngine": false,
+        "modules": null
+      }
+    ]
+  },
+  "after": {
+    "engineBuildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+    "manifests": [
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "LyraEditor",
+          "LyraGame"
+        ]
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\BlueprintScreenshotTool\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "BlueprintScreenshotTool"
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraDocTools\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "LyraDocTools"
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "TrainingRangeVerification"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\ModelContextProtocol\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "ModelContextProtocol",
+          "ModelContextProtocolEditor",
+          "ModelContextProtocolEditorTests",
+          "ModelContextProtocolEngine",
+          "ModelContextProtocolEngineTests",
+          "ModelContextProtocolTests"
+        ]
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\ToolsetRegistry\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "ToolsetRegistry"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\Toolsets\\AllToolsets\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": false,
+        "buildId": null,
+        "matchesEngine": false,
+        "modules": null
+      }
+    ]
+  },
+  "log": "F:\\UE\\LyraDoc\\verification\\training-package-editor-refresh.log",
+  "exitCode": 0,
+  "error": "Some selected Editor/plugin manifests still do not match the current engine after normal UBT.",
+  "finishedAt": "2026-09-13T19:33:02.8113490Z"
+}

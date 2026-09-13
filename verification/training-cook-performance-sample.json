@@ -1,0 +1,54 @@
+{
+  "measuredAt": "2026-09-13T12:11:49.5637256Z",
+  "attemptLog": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-115727-f34fa9\\training-cook.log",
+  "shaderTotal": null,
+  "shaderRemaining": null,
+  "countAvailability": "Commandlet log does not expose the SlowTask pending-job count. No estimate substituted.",
+  "processes": [
+    {
+      "name": "ShaderCompileWorker",
+      "pid": 30592,
+      "cpuSeconds": 708.515625,
+      "elapsedSeconds": 737.97,
+      "memoryMiB": 214.71
+    },
+    {
+      "name": "ShaderCompileWorker",
+      "pid": 36448,
+      "cpuSeconds": 706.90625,
+      "elapsedSeconds": 737.99,
+      "memoryMiB": 123.0
+    },
+    {
+      "name": "UnrealEditor-Cmd",
+      "pid": 28352,
+      "cpuSeconds": 403.15625,
+      "elapsedSeconds": 860.57,
+      "memoryMiB": 3448.89
+    }
+  ],
+  "ioSample": [
+    {
+      "Name": "ShaderCompileWorker",
+      "IDProcess": 30592,
+      "PercentProcessorTime": 96,
+      "IOReadBytesPersec": 92336,
+      "IOWriteBytesPersec": 0
+    },
+    {
+      "Name": "ShaderCompileWorker#1",
+      "IDProcess": 36448,
+      "PercentProcessorTime": 96,
+      "IOReadBytesPersec": 0,
+      "IOWriteBytesPersec": 0
+    },
+    {
+      "Name": "UnrealEditor-Cmd",
+      "IDProcess": 28352,
+      "PercentProcessorTime": 4,
+      "IOReadBytesPersec": 0,
+      "IOWriteBytesPersec": 0
+    }
+  ],
+  "decision": "Narrow isolated teaching Windows configuration to D3D12/SM6. Existing source configuration also targets D3D11 SM5 and Vulkan SM6. Current workers CPU-bound."
+}

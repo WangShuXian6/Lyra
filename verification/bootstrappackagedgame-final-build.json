@@ -1,0 +1,32 @@
+{
+  "startedAt": "2026-09-13T18:39:57.2939561Z",
+  "passed": true,
+  "target": "BootstrapPackagedGame",
+  "configuration": "Shipping",
+  "platform": "Win64",
+  "engine": "E:/UnrealEngine",
+  "arguments": [
+    "BootstrapPackagedGame",
+    "Win64",
+    "Shipping",
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-MaxParallelActions=3",
+    "-NoUBA"
+  ],
+  "normalBuild": true,
+  "activeEditorsAtStart": 0,
+  "liveCoding": false,
+  "parallelActions": 3,
+  "ubaRemoteExecution": false,
+  "log": "F:\\UE\\LyraDoc\\verification\\bootstrappackagedgame-final-build.log",
+  "outputs": [
+    {
+      "bytes": 171008,
+      "sha256": "2128e315ddf8f4464328e0fadeefedc52985e3301a8ea1c677c4eb54ec501747",
+      "path": "E:/UnrealEngine/Engine/Binaries/Win64/BootstrapPackagedGame-Win64-Shipping.exe"
+    }
+  ],
+  "exitCode": 0,
+  "finishedAt": "2026-09-13T18:40:02.7026711Z"
+}

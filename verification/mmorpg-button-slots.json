@@ -1,0 +1,209 @@
+{
+  "checkedAt": "2026-09-13T14:34:26.313154+00:00",
+  "passed": true,
+  "change": "Button content slot HorizontalAlignment=Fill; preserve AutoWrap, centered text, WidgetTrees and MVVM bindings.",
+  "assets": [
+    {
+      "asset": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout",
+      "buttons": [],
+      "buttonCount": 0,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "saved": true,
+      "beforeSHA256": "afbdf118de496e2e3039ebde279a17a26365f63400743ecc27332a47a0ad28a2",
+      "sha256": "d2fc169b9b1bc2b539985879986a2de62c7775cea99a37e629bf4f09ee73f086"
+    },
+    {
+      "asset": "/Game/UI/WBP_Login.WBP_Login",
+      "buttons": [
+        {
+          "button": "RegisterButton",
+          "label": "RegisterButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "RefreshButton",
+          "label": "RefreshButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "LoginButton",
+          "label": "LoginButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "JoinButton",
+          "label": "JoinButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "CreateButton",
+          "label": "CreateButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        }
+      ],
+      "buttonCount": 5,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "saved": true,
+      "beforeSHA256": "31ecd23c5a2761005cd690092b7f522c2433234ee4e2aec3fe020dfd91748fd0",
+      "sha256": "62b8ccb02cf456c278a1da8f7e5e80df1f5255c7cfef33c636117a1b2d902dff"
+    },
+    {
+      "asset": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus",
+      "buttons": [],
+      "buttonCount": 0,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "saved": true,
+      "beforeSHA256": "ab38b41170355e83dbc289a331ff3c89ad15682d33b77b78403b4189cf962126",
+      "sha256": "319820ddfa2cd6063b0f6c581eaa6124bf017fb627daca26f2b6543b702f619b"
+    },
+    {
+      "asset": "/Game/UI/WBP_PlayerHUD.WBP_PlayerHUD",
+      "buttons": [
+        {
+          "button": "TargetButton",
+          "label": "TargetButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "SpellButton",
+          "label": "SpellButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "SettingsButton",
+          "label": "SettingsButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "InventoryButton",
+          "label": "InventoryButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "AttackButton",
+          "label": "AttackButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        }
+      ],
+      "buttonCount": 5,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "saved": true,
+      "beforeSHA256": "e3b2fa21e4e3104e3d6d5faff04a99d27bf86a1d866526c0ea61eca3126ba31f",
+      "sha256": "9658d23da3c535bee3218cb799cd57b691cbe0ee2c3664fc7be215f4e6d7df0f"
+    },
+    {
+      "asset": "/Game/UI/WBP_Inventory.WBP_Inventory",
+      "buttons": [
+        {
+          "button": "PotionButton",
+          "label": "PotionButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "CloseButton",
+          "label": "CloseButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        }
+      ],
+      "buttonCount": 2,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "saved": true,
+      "beforeSHA256": "388c66d203989b8dfb9103df85fee718ddfadee3c77d71e711183a169a42918b",
+      "sha256": "e8718ad26b29401c3117475f680d5eeda900452c00505730a9188f88b720fd27"
+    },
+    {
+      "asset": "/Game/UI/WBP_Settings.WBP_Settings",
+      "buttons": [
+        {
+          "button": "MediumQualityButton",
+          "label": "MediumQualityButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "LowQualityButton",
+          "label": "LowQualityButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "LogoutButton",
+          "label": "LogoutButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "HighQualityButton",
+          "label": "HighQualityButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "EnglishButton",
+          "label": "EnglishButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "CloseButton",
+          "label": "CloseButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "ChineseButton",
+          "label": "ChineseButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        }
+      ],
+      "buttonCount": 7,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "saved": true,
+      "beforeSHA256": "a2a7734008c63150508352c71726e40c885f073522b1fa7fcf3a1f0d460fccad",
+      "sha256": "1d1762341018bfb0c8d5459cf6eb2bf4b928729b2f0e20d6516aa3151278bab8"
+    },
+    {
+      "asset": "/Game/UI/WBP_Confirm.WBP_Confirm",
+      "buttons": [
+        {
+          "button": "ConfirmButton",
+          "label": "ConfirmButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        },
+        {
+          "button": "CancelButton",
+          "label": "CancelButtonLabel",
+          "previous": "<HorizontalAlignment.H_ALIGN_CENTER: 2>",
+          "current": "<HorizontalAlignment.H_ALIGN_FILL: 0>"
+        }
+      ],
+      "buttonCount": 2,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "saved": true,
+      "beforeSHA256": "2a6b050a7427a2bb01612488f81cfb728683cb4b00ef7a42f90892e0bf95e770",
+      "sha256": "3feaae16a58be1232e0cebb370a7befeda3029609f9e6e4fde3dadb375216a8f"
+    }
+  ],
+  "completedAt": "2026-09-13T14:34:26.961587+00:00"
+}

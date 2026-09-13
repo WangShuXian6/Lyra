@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "scannedAt": "2026-09-13T15:38:21.2261674Z",
+  "finishedAt": "2026-09-13T15:38:22.5146044Z",
+  "scope": "Read-only file metadata for the Training project Intermediate directory; plugin-local Intermediate and engine-wide caches excluded",
+  "path": "F:/UE/LyraDocLabs/LyraTraining/Intermediate",
+  "isJunction": false,
+  "fileCount": 593,
+  "bytes": 169335051.0,
+  "GiB": 0.158,
+  "pchFileCount": 0,
+  "pchBytes": 0,
+  "pchGiB": 0.0,
+  "pchSharePercent": 0.0,
+  "largestPCHs": [],
+  "topFileExtensions": [
+    {
+      "extension": ".obj",
+      "fileCount": 19,
+      "bytes": 131528967.0,
+      "GiB": 0.122
+    },
+    {
+      "extension": ".bin",
+      "fileCount": 8,
+      "bytes": 26593588.0,
+      "GiB": 0.025
+    },
+    {
+      "extension": ".cpp",
+      "fileCount": 241,
+      "bytes": 4679358.0,
+      "GiB": 0.004
+    },
+    {
+      "extension": ".uhtmanifest",
+      "fileCount": 1,
+      "bytes": 2626799.0,
+      "GiB": 0.002
+    },
+    {
+      "extension": ".json",
+      "fileCount": 26,
+      "bytes": 1738819.0,
+      "GiB": 0.002
+    },
+    {
+      "extension": ".h",
+      "fileCount": 237,
+      "bytes": 883321.0,
+      "GiB": 0.001
+    },
+    {
+      "extension": ".lib",
+      "fileCount": 2,
+      "bytes": 674024.0,
+      "GiB": 0.001
+    },
+    {
+      "extension": ".exp",
+      "fileCount": 2,
+      "bytes": 398966.0,
+      "GiB": 0.0
+    },
+    {
+      "extension": ".rsp",
+      "fileCount": 25,
+      "bytes": 86842.0,
+      "GiB": 0.0
+    },
+    {
+      "extension": ".ush",
+      "fileCount": 3,
+      "bytes": 51606.0,
+      "GiB": 0.0
+    }
+  ],
+  "ssdDrive": "E:",
+  "ssdFreeBytes": 110538420224,
+  "ssdFreeGiB": 102.947,
+  "ssdFreeAfterCopyGiB": 102.789,
+  "moved": false,
+  "assessment": "Do not move the current Training Intermediate solely for the next Editor increment: the project Intermediate is only 0.158 GiB and contains no PCH; all deduplicated PCH files referenced by current project/plugin compiler response files already live on E SSD. The future cold LyraGame target may grow local intermediate storage; reassess after its UBT action plan rather than treating current file sizes as a future size estimate.",
+  "pluginIntermediates": [
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.003,
+      "fileCount": 13,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\AsyncMixin\\Intermediate",
+      "bytes": 2685018
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.004,
+      "fileCount": 23,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\BlueprintScreenshotTool\\Intermediate",
+      "bytes": 4748792
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.008,
+      "fileCount": 41,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\CommonGame\\Intermediate",
+      "bytes": 8202400
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.003,
+      "fileCount": 23,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\CommonLoadingScreen\\Intermediate",
+      "bytes": 3216393
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.001,
+      "fileCount": 13,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\CommonStartupLoadingScreen\\Intermediate",
+      "bytes": 1074875
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.008,
+      "fileCount": 25,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\CommonUser\\Intermediate",
+      "bytes": 8873224
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.157,
+      "fileCount": 324,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\Developer\\RiderLink\\Intermediate",
+      "bytes": 168455547
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.008,
+      "fileCount": 41,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\ShooterCore\\Intermediate",
+      "bytes": 8353397
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.011,
+      "fileCount": 19,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\ShooterTests\\Intermediate",
+      "bytes": 11663992
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.004,
+      "fileCount": 23,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TopDownArena\\Intermediate",
+      "bytes": 3898251
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.003,
+      "fileCount": 38,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameplayMessageRouter\\Intermediate",
+      "bytes": 3655832
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.01,
+      "fileCount": 61,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameSettings\\Intermediate",
+      "bytes": 11048049
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.003,
+      "fileCount": 23,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameSubtitles\\Intermediate",
+      "bytes": 2836105
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.004,
+      "fileCount": 17,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraDocTools\\Intermediate",
+      "bytes": 4382185
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.001,
+      "fileCount": 17,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraExtTool\\Intermediate",
+      "bytes": 725478
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.002,
+      "fileCount": 29,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\ModularGameplayActors\\Intermediate",
+      "bytes": 2544936
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.002,
+      "fileCount": 25,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\PocketWorlds\\Intermediate",
+      "bytes": 1897229
+    },
+    {
+      "pchCount": 0,
+      "pchBytes": 0,
+      "GiB": 0.003,
+      "fileCount": 19,
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\UIExtension\\Intermediate",
+      "bytes": 3691713
+    }
+  ],
+  "pluginIntermediateBytes": 251953416,
+  "pluginIntermediateGiB": 0.235,
+  "combinedLocalIntermediateGiB": 0.392,
+  "pchResponseWorkingDirectory": "E:/UnrealEngine/Engine/Source",
+  "pchResolutionSource": "VCToolChain.cs:2893, CompileAction.WorkingDirectory = Unreal.EngineSourceDirectory",
+  "referencedSharedPCHs": [
+    {
+      "GiB": 2.317,
+      "bytes": 2488008552,
+      "path": "E:\\UnrealEngine\\Engine\\Intermediate\\Build\\Win64\\x64\\UnrealEditor\\Development\\UnrealEd\\SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h.pch",
+      "responseFileReferences": 37,
+      "alreadyOnSSD": true
+    }
+  ],
+  "referencedSharedPCHBytes": 2488008552,
+  "referencedSharedPCHGiB": 2.317
+}

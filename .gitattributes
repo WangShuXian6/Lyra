@@ -1,0 +1,11 @@
+# Evidence records hash the actual native UE exports, locale files and source bytes.
+# Preserve those bytes on Windows and GitHub's Linux runners. Disabling newline
+# conversion does not disable ordinary text diffs.
+* -text
+
+*.uasset binary
+*.umap binary
+*.png binary
+*.locres binary
+*.locmeta binary
+*.tar.gz binary

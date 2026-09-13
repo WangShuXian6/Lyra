@@ -1,0 +1,43 @@
+---
+title: 队伍、机器人、计分与对局阶段
+description: 找到玩法规则组件和 GamePhase，而不是把所有规则集中到一个 GameMode 蓝图。
+---
+
+## 学习目标与前置条件
+
+前置：Experience、组件注入、GAS。目标是追踪一名机器人进入队伍并参与对局的过程。源码与资产核对于 2026-09-13，UE 5.8.1。
+
+## 操作步骤
+
+1. 查看当前 Experience 的组件 ActionSet，确认 GameState 上注入哪些队伍、机器人和规则组件。
+2. Rider 打开 `Teams/LyraTeamCreationComponent.cpp`，查看 ExperienceLoaded 后服务器创建公共/私有队伍信息并分配玩家。
+3. 打开 `GameModes/LyraBotCreationComponent.cpp`，跟踪 `OnExperienceLoaded` → `ServerCreateBots` → `SpawnOneBot`。
+4. 打开 `/ShooterCore/Bot/B_ShooterBotSpawner`、`/ShooterCore/Bot/BT/BT_Lyra_Shooter_Bot`、`BB_Lyra_Shooter_Bot`，查看机器人 Controller 与行为树实际配置。
+5. 对比控制点的 `/ShooterCore/ControlPoint/AI/BT_Lyra_Shooter_ControlPoint_Bot`。记录目标选择与移动行为如何随玩法变化。
+
+## 队伍与出生
+
+TeamCreationComponent 通过 PlayerState 的 GenericTeamId 分配队伍，默认选择人口较少的队伍；人数相同时有确定的 ID 比较。TeamSubsystem 和 TeamAgentInterface 为其他系统提供查询与变化观察入口，外观颜色只是这一状态的展示。
+
+机器人生成后调用 GameMode 的 `GenericPlayerInitialization` 和 `RestartPlayer`，然后让 PawnExtension 再检查初始化。这条路径说明 Bot 也参与 PlayerState/PawnData/ASC 的初始化，而不是随便 Spawn 一个有模型的 Character。
+
+本机机器人数量可由开发者设置和 URL `NumBots` 覆盖。简化结构如下，原位置为 `ServerCreateBots_Implementation`：
+
+```cpp
+EffectiveBotCount = UGameplayStatics::GetIntOption(
+    GameModeBase->OptionsString, TEXT("NumBots"), EffectiveBotCount);
+```
+
+## 对局阶段
+
+`ULyraGamePhaseSubsystem` 与 `ULyraGamePhaseAbility` 用 GameplayTag 表示当前阶段，结合 GAS 的能力生命周期推进规则。已存在资产 `/ShooterCore/Experiences/Phases/Phase_Warmup`、`Phase_Playing`、`Phase_PostGame`。
+
+热身、正式游戏和赛后可能授予不同限制或免伤效果。测试开火不掉血时，除了队伍规则，也要确认是否还处于热身。`GE_DamageImmunity_FromGameMode` 位于同一 Phases 目录。
+
+计分要沿实际玩法组件或蓝图继续查找：基础 Lyra 层提供队伍、标签计数和消息；ShooterCore 的淘汰/控制点内容组合成具体胜负规则。击杀连锁与助攻处理器位于 `ShooterCoreRuntime` 的 `MessageProcessors`，并不是“所有计分都在 C++ GameMode”。
+
+## 预期结果、排障与练习
+
+应能指出 Bot 的队伍、PawnData、当前行为树和对局阶段。机器人站着不动时分开检查 NavMesh、控制器/行为树、黑板目标与技能初始化；不要先提高移动速度。
+
+练习：把实验地图机器人数量设为 0、1、多个，核对配置覆盖来源。再画出“淘汰一人 → 消息/计分 → 胜利条件 → 赛后阶段”的实际链路，标出权威执行位置。

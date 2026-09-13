@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-13T14:14:40.117521+00:00",
+  "engine": "UE 5.8.1 source build",
+  "scope": "Static reproducibility review of chapters 01–07 and 11. No UE, UBT or MMO chapter changes.",
+  "revisions": [
+    {
+      "topic": "Gameplay Cue",
+      "files": [
+        "05-gameplay/messages-audio",
+        "02-architecture/game-features"
+      ],
+      "change": "Added native actor Cue event display names, exact GameFeatureData Actions directory registration, Registering/Unregistering lifecycle and source-backed contextual footstep configuration fields."
+    },
+    {
+      "topic": "Equipment animation",
+      "files": [
+        "03-character/camera-animation"
+      ],
+      "change": "Added ID -> WID -> weapon Instance Type -> Equipped/UneuippedAnimSet -> rules/default -> animation layer interface traversal, ordering semantics, compile/save and exercise validation scope."
+    },
+    {
+      "topic": "UI root layout",
+      "files": [
+        "06-ui/common-game",
+        "06-ui/extensions"
+      ],
+      "change": "Added root Blueprint parent and variable requirements, exact four layer tags, Policy.LayoutClass and generated-class INI wiring, and clarified unimplemented custom score Widget remains an exercise."
+    },
+    {
+      "topic": "First clone and navigation",
+      "files": [
+        "01-start/environment",
+        "07-training/index",
+        "11-reference/troubleshooting"
+      ],
+      "change": "Distinguished baseline/training identical filenames, copy vs native generation, full Editor target metadata and navigation build/save before pickup."
+    },
+    {
+      "topic": "Blueprint source evidence",
+      "files": [
+        "03-character/jump-blueprint",
+        "04-gas/dash-blueprint",
+        "07-training/dash-and-blueprints",
+        "11-reference/blueprint-screenshots"
+      ],
+      "change": "Linked actual 20/26/10-node import compilation and required focus plus visible selection outlines before Ctrl+F7 at ZoomAmount=1. Root-layout 1:1 export remains pending."
+    }
+  ],
+  "siteWideScreenshotConsistency": "Read-only search across all docs found MMO workflow already specifies selected nodes at ZoomAmount=1; no MMO files changed.",
+  "sources": [
+    {
+      "path": "Source/LyraGame/GameFeatures/LyraGameFeaturePolicy.cpp",
+      "sha256": "3238ce57bc6e4a49d106976fff567d164e3e47580c46487f4f662d9d584b9d71",
+      "bytes": 5562,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "ULyraGameFeature_AddGameplayCuePaths::OnGameFeatureRegistering",
+          "line": 91
+        },
+        {
+          "name": "ULyraGameFeature_AddGameplayCuePaths::OnGameFeatureUnregistering",
+          "line": 130
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_AddGameplayCuePath.h",
+      "sha256": "00ab84cd4f789280a1b3e082a1c0e3874e67706591d581b332375786c2c1e1ac",
+      "bytes": 1161,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "DirectoryPathsToAdd",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/GameFeatures/GameFeatureAction_AddGameplayCuePath.cpp",
+      "sha256": "360d915afc97dfecff472a0e949dca39acb930576deb23f5d621cf2787bacbcd",
+      "bytes": 1215,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UGameFeatureAction_AddGameplayCuePath::UGameFeatureAction_AddGameplayCuePath",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Cosmetics/LyraCosmeticAnimationTypes.h",
+      "sha256": "82f1846d09fc12a30a8328abe8e5c65a35897938724f07bb041ebcbc8841a61a",
+      "bytes": 2559,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraAnimLayerSelectionEntry",
+          "line": 17
+        },
+        {
+          "name": "FLyraAnimLayerSelectionSet",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Cosmetics/LyraCosmeticAnimationTypes.cpp",
+      "sha256": "9b8829203278577cc5ecc3db6dd38f012f99e5947bc99e3b6843cd02f827cff0",
+      "bytes": 900,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraAnimLayerSelectionSet::SelectBestLayer",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Weapons/LyraWeaponInstance.h",
+      "sha256": "e4b8a0de4596cc2927f27661063810114d7d3ae55954b62d0c20c1f984db5c21",
+      "bytes": 3142,
+      "section": "03-character",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "EquippedAnimSet",
+          "line": 46
+        },
+        {
+          "name": "UneuippedAnimSet",
+          "line": 49
+        },
+        {
+          "name": "PickBestAnimLayer",
+          "line": 61
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Feedback/ContextEffects/AnimNotify_LyraContextEffects.h",
+      "sha256": "f86a540169d774fe2ca3c1563a7d959027b2b5a1a834f285f468d2f1a08397e5",
+      "bytes": 5903,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "UAnimNotify_LyraContextEffects",
+          "line": 96
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsLibrary.h",
+      "sha256": "ec7aeb19975c91b75df8a2b12e69e450b3a50220504aa6a762e24aa4f46fd7c9",
+      "bytes": 2360,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "FLyraContextEffects",
+          "line": 31
+        },
+        {
+          "name": "ULyraContextEffectsLibrary",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "path": "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectComponent.h",
+      "sha256": "91f9cc7a9ce199cc913555b190708018c0a4d3bdb8a59f6bfd4fa5bcc7d374f5",
+      "bytes": 2671,
+      "section": "05-gameplay",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "DefaultContextEffectsLibraries",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "path": "Plugins/CommonGame/Source/Public/PrimaryGameLayout.h",
+      "sha256": "8e5f19fecdd80bf8a41d1dd66897577310613b18bbae0478956b25c564494c1d",
+      "bytes": 6049,
+      "section": "06-ui",
+      "origin": "local-Lyra-baseline",
+      "symbols": [
+        {
+          "name": "RegisterLayer",
+          "line": 123
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "command": "pnpm run check:content",
+    "result": "passed: 63 MDX documents and native Blueprint downloads"
+  },
+  "newRuntimeClaims": false
+}

@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "summarizedAt": "2026-09-13T14:53:16.377727+00:00",
+  "engine": "UE 5.8.1",
+  "editorPid": 37428,
+  "passed": true,
+  "passedChecks": 17,
+  "totalChecks": 17,
+  "method": "Native SlateInspector key/mouse dispatch followed by read-only native UObject/UMG observations in the real MMORPG PIE client connected to a dedicated server.",
+  "actions": {
+    "path": "verification/mmorpg-native-input-actions.jsonl",
+    "sha256": "c53530cca825e02f2166c31ca51b3b3d7db8175f5619e286af2816a5e79725b3",
+    "count": 114
+  },
+  "checks": [
+    {
+      "name": "Keyboard P opens Settings and focuses Medium",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/keyboard-settings.json",
+          "sha256": "a8ab659ab3939d549e76287bdbd17a9da5c3d52288dad7385426c364fbc1d860",
+          "observedAt": "2026-09-13T14:13:18.720276+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Native mouse opens confirmation with Cancel focused",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/mouse-open-modal.json",
+          "sha256": "c247a3dfe5347b420840b7035049304b82a625aa486ca0bd200c255c434522ac",
+          "observedAt": "2026-09-13T14:13:35.822961+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Escape dismisses modal and restores invoking button",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/keyboard-back-restores-settings.json",
+          "sha256": "5cb758a3177b421abfe458b267220effda2af4d21b8360ee0e6801e0b3f16016",
+          "observedAt": "2026-09-13T14:13:41.289337+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Escape dismisses settings and restores gameplay layer",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/keyboard-back-to-hud.json",
+          "sha256": "749c110c9471ad54c9ff25c89ab4d9fdee67419d533759be84285a20ae80c367",
+          "observedAt": "2026-09-13T14:13:46.522017+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gamepad Menu opens Settings and changes input hints",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-menu.json",
+          "sha256": "bf3aa54f98f9a9d9a6393f0e366e62bf6a6ac71372f828fa51b1eb2ec36a6141",
+          "observedAt": "2026-09-13T14:14:02.621337+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gamepad D-pad navigates to language button",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-navigation.json",
+          "sha256": "2278bba6a9cbf715af1950b10f40f23d9e083ea367668b3800df36aa0960541c",
+          "observedAt": "2026-09-13T14:14:07.921878+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gamepad B closes Settings",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-back-to-hud.json",
+          "sha256": "a8a8d46becc10e5e3989567483ba871a620f38ecda00df2ff028dc85c2cf606b",
+          "observedAt": "2026-09-13T14:14:13.268202+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gamepad confirm opens modal with Cancel focused",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-confirm-opens-modal.json",
+          "sha256": "f2e3cf1f02aceecd03a1a97da6bf97b3708a57813b409fe4fb3dd12cd8a882c9",
+          "observedAt": "2026-09-13T14:14:39.436298+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gamepad B returns focus to Settings logout button",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-back-restores-settings.json",
+          "sha256": "cf4c69804bfedee18c04d96c94da93cd0eccd7c488e3d02b93a1d27a9c7f98e4",
+          "observedAt": "2026-09-13T14:14:45.014351+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gamepad View opens Inventory with potion focused",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-inventory.json",
+          "sha256": "98b8dcd5cadbdf4ce30d1e8acf10a3454a8dab2b8c0762f62857ae51f06d1373",
+          "observedAt": "2026-09-13T14:14:52.913030+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gamepad potion use updates real inventory and Mana binding",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-inventory.json",
+          "sha256": "98b8dcd5cadbdf4ce30d1e8acf10a3454a8dab2b8c0762f62857ae51f06d1373",
+          "observedAt": "2026-09-13T14:14:52.913030+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-potion-mvvm.json",
+          "sha256": "aa2bb832f4c73be7c32ea5421b7c1ea0cb0fc5a462b71884143fb53460fef099",
+          "observedAt": "2026-09-13T14:15:15.682075+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Keyboard I restores keyboard hints and opens Inventory",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/keyboard-inventory.json",
+          "sha256": "da1cd474ae6dd6884f4d16cdae03244db00c76483087d95038ce966bdfc4411e",
+          "observedAt": "2026-09-13T14:15:23.599543+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Logout removes HUD and old pawn/abilities",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-potion-mvvm.json",
+          "sha256": "aa2bb832f4c73be7c32ea5421b7c1ea0cb0fc5a462b71884143fb53460fef099",
+          "observedAt": "2026-09-13T14:15:15.682075+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "path": "verification/mmorpg-ui-observations/logout-clears-ui.json",
+          "sha256": "652accdc5afb016a1b2ae64a01cfbcf1f2d800c0a11e53675fcd53ae28855e93",
+          "observedAt": "2026-09-13T14:16:32.085961+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Selecting another actual character creates a fresh bound ViewModel",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/gamepad-potion-mvvm.json",
+          "sha256": "aa2bb832f4c73be7c32ea5421b7c1ea0cb0fc5a462b71884143fb53460fef099",
+          "observedAt": "2026-09-13T14:15:15.682075+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "path": "verification/mmorpg-ui-observations/changed-character-joined.json",
+          "sha256": "e5476d9b4bf71e0397a32b10e49846d1ebf5798f7f2d1b78c9f2b22b14258ddf",
+          "observedAt": "2026-09-13T14:27:59.638563+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "New character ability ActorInfo points to its current pawn/ASC",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/changed-character-joined.json",
+          "sha256": "e5476d9b4bf71e0397a32b10e49846d1ebf5798f7f2d1b78c9f2b22b14258ddf",
+          "observedAt": "2026-09-13T14:27:59.638563+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "New character subsequently receives its own combat/MVVM updates",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/changed-character-joined.json",
+          "sha256": "e5476d9b4bf71e0397a32b10e49846d1ebf5798f7f2d1b78c9f2b22b14258ddf",
+          "observedAt": "2026-09-13T14:27:59.638563+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        },
+        {
+          "path": "verification/mmorpg-ui-observations/changed-character-after-showcase.json",
+          "sha256": "eed803db738b29762bf69f8250c923b2b4ef18bb4b4f9e45cf4a1a1b2f9c9eab",
+          "observedAt": "2026-09-13T14:29:40.377704+00:00",
+          "viewport": [
+            1920,
+            1080
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Natural second logout retains keyboard navigation on login",
+      "passed": true,
+      "observations": [
+        {
+          "path": "verification/mmorpg-ui-observations/returned-login-keyboard-verified.json",
+          "sha256": "23561e80d2e5303d6105e7ee1c3b841c077f2dc354f96b17190d70400f292703",
+          "observedAt": "2026-09-13T14:33:39.683375+00:00",
+          "viewport": [
+            1914,
+            1042
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Gamepad events were injected through native Slate; physical USB/Bluetooth controller hardware was not tested.",
+    "Click returning true is dispatch evidence only. Checks above assert resulting focus/layers/game data.",
+    "Credential fixture fields were filled through an ignored local script; no password contents are recorded. After Output Log intervention, one login required explicitly restoring input focus. It is not counted as natural focus restoration.",
+    "The independent natural second logout/Tab path succeeded without Output Log or Type intervention. EditableTextBox inner Slate focus must be distinguished from HasAnyUserFocus on its outer UWidget.",
+    "Cached geometry can be zero for tickless UMG; those sizes are not rendered screenshot dimensions.",
+    "PIE localization is separate from the standalone bilingual showcase; these input observations do not certify language switching.",
+    "The final natural-login observation is 1914x1042 after the old quality handler reapplied resolution. Quality/1920x1080 acceptance requires the later fixed-handler rendered showcase.",
+    "This run precedes the button content-slot and animation Speed-axis fixes. It validates input/lifecycle at its recorded revision; final rendered and packaged regressions are separate."
+  ],
+  "toolSourceReview": "verification/slate-input-tool-source-review.json"
+}

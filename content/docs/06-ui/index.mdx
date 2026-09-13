@@ -1,0 +1,21 @@
+---
+title: UI：从输入到数据展示
+description: 先读懂 Lyra 的 CommonUI、CommonGame、UIExtension，再为 MMORPG 加入 MVVM。
+---
+
+Lyra UI 需要同时解决四件事：把界面显示出来、让正确玩家操作它、让玩法能提供自己的内容、让数据及时更新。四件事对应不同扩展点，不能用一个万能 Widget Tick 替代。
+
+| 层 | 职责 | 章节 |
+|---|---|---|
+| CommonUI / CommonInput | 激活、输入路由、设备显示、焦点与返回 | [输入和焦点](/docs/06-ui/commonui-input) |
+| CommonGame / UI Policy | 本地玩家根布局与界面层 | [根布局](/docs/06-ui/common-game) |
+| UIExtension | 玩法按标签与上下文提供插槽内容 | [扩展机制](/docs/06-ui/extensions) |
+| GameSettings / 新增 MVVM | 设置模型及游戏展示状态 | [设置与 MVVM](/docs/06-ui/settings-mvvm) |
+
+## 本篇的实际练习
+
+沿 Escape 菜单找到 UI.Layer.Menu，再追到根布局中对应容器；找到 Shooter HUD 内的扩展插槽，确认它由哪个 ActionSet 注册内容；最后沿音量滑块找到真正保存设置的对象。
+
+本机 Lyra 的 UI 并未全面使用 ModelViewViewModel。后续 MMORPG 的 MVVM 是教学增量：ViewModel 整理展示数据，CommonUI 继续负责输入和激活，服务器继续决定权威状态。
+
+资料基准：本机 UE 5.8.1 的 CommonGame、UIExtension、Lyra UI 与 Settings，核对于 2026-09-13。完成标准是键鼠与手柄都能进入、关闭、返回界面，并能说明重生和地图切换后哪些订阅需要重新建立。

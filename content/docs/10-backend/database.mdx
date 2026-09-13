@@ -1,0 +1,103 @@
+---
+title: PostgreSQL 初始化与迁移
+description: 创建专用数据库角色，用参数化查询和版本化 SQL 管理账号与角色状态。
+---
+
+## 学习目标与前置条件
+
+建立本地教学数据库，理解账号表、登录会话、角色快照与游戏租约的关系。需要 PowerShell 7、PostgreSQL 18，以及能初始化数据库的本机管理员凭据。本地读取核对日期为 2026-09-13；初始数据库连接检查与应用迁移的执行结果分别记录。
+
+## 初始化步骤
+
+先在 PowerShell 7 进入 `LyraDoc` 仓库根目录，设置安装路径并验证监听。`pg_isready` 不需要管理员密码；连接状态正确后才开始建库。
+
+```powershell
+Set-Location 'F:/UE/LyraDoc'
+$mmoPostgres = 'D:/program/1-web/PostgreSQL/18'
+& (Join-Path $mmoPostgres 'bin/pg_isready.exe') -h 127.0.0.1 -p 5432
+./scripts/backend/Initialize-Database.ps1 -PostgresRoot $mmoPostgres
+```
+
+脚本安全提示输入本机 PostgreSQL 管理员密码，连接 `127.0.0.1:5432`，建立 `lyra_mmo_tutorial` 数据库和 `lyra_mmo_service` 角色。新角色没有超级用户、建库和建角色权限。它拥有这个专用教学数据库，以便课程脚本自行执行迁移；正式部署可进一步把迁移角色与运行时 DML 角色分开。
+
+本机安装路径只是示例，`-PostgresRoot` 指向含 `bin/psql.exe` 的安装根目录。数据库连接主机、端口、管理员名、库名和专用角色名则由当前教学脚本固定为以下值；改安装目录不会自动改这些连接字段。
+
+| 字段 | 值 | 使用位置 |
+| --- | --- | --- |
+| 主机 / 端口 | `127.0.0.1` / `5432` | `Initialize-Database.ps1` 与 `Common.ps1` |
+| 初始化用户 | `postgres` | 仅建角色、建库时使用，口令通过隐藏输入读取 |
+| 运行用户 | `lyra_mmo_service` | 创建后使用该身份执行迁移和运行 SQL |
+| 教学数据库 | `lyra_mmo_tutorial` | 所有账号与角色表都在这个库中 |
+| 迁移目录 | `examples/MMORPG/backend/migrations` | 按文件名排序读取 `001`、`002` |
+
+如果 `pg_isready` 显示 no response，在 Windows“服务”中找到该 PostgreSQL 18 实例，确认它已启动；不要重新初始化已有数据目录。监听正常但口令错误时，脚本在管理员连接阶段失败，此时还没有以专用角色运行迁移。
+
+服务密码与游戏服务器密钥通过系统随机数生成器生成，使用当前 Windows 用户的 DPAPI 加密存入 `examples/MMORPG/.local/backend.secrets.clixml`。`.local` 不进入 Git。这个文件不能直接复制给其他 Windows 用户；更换机器时重新配置服务身份或通过受控的密钥管理过程转移。
+
+重复运行会读取原有加密凭据并跳过已应用迁移。若数据库角色已经存在而本地凭据文件丢失，脚本停止，不会静默重置该角色密码。管理员密码只用于初始化，后端运行时使用专用角色。
+
+## 只读确认初始化结果
+
+首次初始化的正常输出包含 `Applied 001_initial.sql` 和 `Applied 002_state_constraints.sql`。用下面的查询确认真实连接身份、版本记录和表数量；它只显示元数据，不打印账号、密码哈希或登录令牌。先在一个新的 PowerShell 7 终端执行，查询结束后关闭该终端即可清除这次导入的进程环境。
+
+```powershell
+Set-Location 'F:/UE/LyraDoc'
+. ./scripts/backend/Common.ps1
+Import-MMOEnvironment
+Invoke-MMOPsql 'SELECT current_database(), current_user;'
+Invoke-MMOPsql 'SELECT version FROM schema_migrations ORDER BY version;'
+Invoke-MMOPsql "SELECT tablename FROM pg_tables WHERE schemaname='public' ORDER BY tablename;"
+Invoke-MMOPsql "SELECT rolsuper, rolcreatedb, rolcreaterole FROM pg_roles WHERE rolname=current_user;"
+```
+
+预期第一条为 `lyra_mmo_tutorial|lyra_mmo_service`；第二条分两行返回 `1`、`2`；第三条返回下一节列出的 7 个表；第四条为 `f|f|f`。`Invoke-MMOPsql` 默认同一 PostgreSQL 安装路径，若此前使用自定义安装目录，每次调用加第三个实参，例如：
+
+```powershell
+Invoke-MMOPsql 'SELECT version FROM schema_migrations ORDER BY version;' `
+  'lyra_mmo_tutorial' 'D:/你的目录/PostgreSQL/18'
+```
+
+脚本以 `psql -X -q -t -A -v ON_ERROR_STOP=1` 运行，SQL 经 stdin 传递，所以结果没有表头且以 `|` 分隔。`Import-MMOEnvironment` 仅供后端终端使用；游戏服务器应使用不导入 `PGPASSWORD` 的 `Import-MMOGameServerEnvironment`，客户端不调用这两个函数。
+
+## 七类数据
+
+| 表 | 保存什么 | 为什么独立 |
+| --- | --- | --- |
+| `accounts` | 用户名、密码哈希 | 不把密码字段混入角色数据 |
+| `sessions` | 令牌摘要、账号、过期时间 | 可撤销登录会话 |
+| `characters` | 所属账号、名称、状态、版本 | 以一行事务保存完整角色快照 |
+| `join_tickets` | 票据摘要、账号/角色/服务器、消费时间 | 一次性入服交换凭证 |
+| `game_leases` | 活动角色、账号、租约摘要、过期时间 | 防止一个账号同时进入两次 |
+| `save_requests` | 请求 ID、负载摘要、租约摘要、结果版本 | 避免重试重复应用存档 |
+| `schema_migrations` | 已应用迁移编号 | 保持代码与表结构兼容 |
+
+`characters.state` 使用 JSONB，包括 `level`、`xp`、`health`、`mana`、`inventory` 和 `position`。这个设计让首版完整快照保存容易理解。库存和进度已经实际存入 PostgreSQL，并非仅保存在进程内存；涉及跨角色交易、复杂装备索引或审计流水时，应在新迁移中把对应业务拆成独立表和事务。
+
+## 阅读迁移
+
+`001_initial.sql` 建立表、约束和基础索引。角色 `account_id` 外键确定所有权；`game_leases.account_id` 唯一约束进一步阻止同账号多角色并发在线；保存请求以 `(character_id, request_id)` 为联合主键。
+
+`002_state_constraints.sql` 要求角色状态含有必需字段，并为清理过期数据建立索引。每个迁移自身使用 `BEGIN` 和 `COMMIT`，版本号也在同一事务中写入。因此迁移失败后不会留下“版本已更新但结构缺失”的记录。
+
+## 参数化查询
+
+`MMOPersistence.cpp` 的 `Query` 将 UTF-8 参数传给 `PQexecParams`。例如查询某个账号拥有的角色：
+
+```sql
+SELECT id, name, version, state
+FROM characters
+WHERE account_id = $1::uuid
+ORDER BY name;
+```
+
+SQL 结构是固定字符串，用户输入放进参数数组。角色名称即使包含单引号，也不会改变 SQL 含义。数据库连接从 `PGHOST`、`PGPORT`、`PGDATABASE`、`PGUSER`、`PGPASSWORD` 和 `PGSSLMODE` 环境变量读取，不写进 `.Build.cs` 或客户端配置。
+
+本机 `libpq` 头文件和导入库来自 PostgreSQL 安装目录。`MMOThirdParty` 负责链接和运行时 DLL，不会进入游戏 Client Target。Windows DLL 来源和实际路径均由依赖准备脚本说明。
+
+## 预期结果与排障
+
+执行脚本后应存在两条迁移记录。运行 `Start-Backend.ps1` 后 `/health` 会执行数据库查询，返回 `{"ok":true}`。认证失败时核对当前 Windows 用户是否能解密凭据、专用角色密码是否被外部修改；不要把管理员密码填进客户端工程。
+
+练习：给角色增加 `gold` 字段，创建 `003` 迁移并为旧角色提供默认值，然后更新合同验证和客户端读取。不要直接改已分发的 `001` 迁移来假装数据库从未演进。
+
+参数化查询和连接行为可对照 [PostgreSQL libpq 文档](https://www.postgresql.org/docs/18/libpq-exec.html)及 [连接参数文档](https://www.postgresql.org/docs/18/libpq-connect.html)。

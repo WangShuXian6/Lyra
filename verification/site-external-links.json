@@ -1,0 +1,248 @@
+{
+  "checkedAt": "2026-09-13T20:22:36.613661+00:00",
+  "scope": "Read-only external HTTP GET availability; response content and remote anchors are not validated.",
+  "links": [
+    {
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine",
+      "documents": [
+        "content/docs/08-mmorpg/animation.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/localization-tools-in-unreal-engine",
+      "documents": [
+        "content/docs/09-mmo-ui/localization.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/en-us/unreal-engine/localization-tools-in-unreal-engine",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-inventory-and-equipment-in-unreal-engine",
+      "documents": [
+        "content/docs/05-gameplay/inventory-equipment.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-inventory-and-equipment-in-unreal-engine",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-sample-game-in-unreal-engine",
+      "documents": [
+        "content/docs/index.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-sample-game-in-unreal-engine",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/umg-viewmodel-for-unreal-engine",
+      "documents": [
+        "content/docs/09-mmo-ui/viewmodels.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/en-us/unreal-engine/umg-viewmodel-for-unreal-engine",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-build-tool-target-reference",
+      "documents": [
+        "content/docs/10-backend/index.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-build-tool-target-reference",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/abilities-in-lyra-in-unreal-engine",
+      "documents": [
+        "content/docs/04-gas/ability-sets.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/unreal-engine/abilities-in-lyra-in-unreal-engine",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-in-unreal-engine",
+      "documents": [
+        "content/docs/01-start/environment.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-in-unreal-engine",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-interaction-system-in-unreal-engine?lang=en-US",
+      "documents": [
+        "content/docs/05-gameplay/interaction.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-interaction-system-in-unreal-engine?lang=en-US",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/using-string-tables-for-text-in-unreal-engine?lang=en-US",
+      "documents": [
+        "content/docs/09-mmo-ui/localization.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://dev.epicgames.com/documentation/unreal-engine/using-string-tables-for-text-in-unreal-engine?lang=en-US",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://doc.libsodium.org/generating_random_data",
+      "documents": [
+        "content/docs/10-backend/authentication.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://doc.libsodium.org/generating_random_data",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://doc.libsodium.org/installation",
+      "documents": [
+        "content/docs/10-backend/run-and-test.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://doc.libsodium.org/installation",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://doc.libsodium.org/password_hashing/default_phf",
+      "documents": [
+        "content/docs/10-backend/authentication.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://doc.libsodium.org/password_hashing/default_phf",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages",
+      "documents": [
+        "content/docs/11-reference/publishing.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://docs.python.org/3.13/using/windows.html",
+      "documents": [
+        "content/docs/09-mmo-ui/localization.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://docs.python.org/3.13/using/windows.html",
+      "contentType": "text/html"
+    },
+    {
+      "url": "https://github.com/Gradess2019/BlueprintScreenshotTool",
+      "documents": [
+        "content/docs/11-reference/blueprint-screenshots.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://github.com/Gradess2019/BlueprintScreenshotTool",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://github.com/WangShuXian6/Lyra",
+      "documents": [
+        "content/docs/downloads.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://github.com/WangShuXian6/Lyra",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://github.com/WangShuXian6/Lyra.git",
+      "documents": [
+        "content/docs/11-reference/publishing.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://github.com/WangShuXian6/Lyra",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/visualstudio/gamedev/unreal/get-started/vs-tools-unreal-install",
+      "documents": [
+        "content/docs/10-backend/run-and-test.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://learn.microsoft.com/en-us/visualstudio/gamedev/unreal/get-started/vs-tools-unreal-install",
+      "contentType": "text/html"
+    },
+    {
+      "url": "https://wangshuxian6.github.io/Lyra/",
+      "documents": [
+        "content/docs/11-reference/publishing.mdx"
+      ],
+      "status": 404,
+      "finalUrl": "https://wangshuxian6.github.io/Lyra/"
+    },
+    {
+      "url": "https://www.fumadocs.dev/docs/deploying/static",
+      "documents": [
+        "content/docs/11-reference/publishing.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://www.fumadocs.dev/docs/deploying/static",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/app-pgdump.html",
+      "documents": [
+        "content/docs/10-backend/deployment.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://www.postgresql.org/docs/18/app-pgdump.html",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/app-pgrestore.html",
+      "documents": [
+        "content/docs/10-backend/deployment.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://www.postgresql.org/docs/18/app-pgrestore.html",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/libpq-connect.html",
+      "documents": [
+        "content/docs/10-backend/database.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://www.postgresql.org/docs/18/libpq-connect.html",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/libpq-exec.html",
+      "documents": [
+        "content/docs/10-backend/database.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://www.postgresql.org/docs/18/libpq-exec.html",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.postgresql.org/download/windows/",
+      "documents": [
+        "content/docs/10-backend/run-and-test.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://www.postgresql.org/download/windows/",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.python.org/downloads/windows/",
+      "documents": [
+        "content/docs/09-mmo-ui/localization.mdx"
+      ],
+      "status": 200,
+      "finalUrl": "https://www.python.org/downloads/windows/",
+      "contentType": "text/html; charset=utf-8"
+    }
+  ]
+}

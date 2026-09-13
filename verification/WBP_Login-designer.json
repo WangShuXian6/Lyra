@@ -1,0 +1,212 @@
+{
+  "date": "2026-09-13T13:05:28.346Z",
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "asset": "/Game/UI/WBP_Login.WBP_Login",
+  "parent": "/Script/MMORPG.MMOLoginPanel",
+  "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+  "localizationNamespace": "MMOUI",
+  "nativeCulture": "en",
+  "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+  "widgets": [
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "isVariable": true
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "isVariable": true
+    },
+    {
+      "name": "Form",
+      "class": "/Script/UMG.VerticalBox",
+      "isVariable": true
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "AccountTitle",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "UsernameLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "UsernameSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "Username",
+      "class": "/Script/UMG.EditableTextBox",
+      "isVariable": true
+    },
+    {
+      "name": "PasswordLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "PasswordSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "Password",
+      "class": "/Script/UMG.EditableTextBox",
+      "isVariable": true
+    },
+    {
+      "name": "AccountActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "isVariable": true
+    },
+    {
+      "name": "LoginButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "LoginButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "LoginButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "RegisterButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "RegisterButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "RegisterButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "CharacterTitle",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "CharacterNameLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "CharacterNameSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "CharacterName",
+      "class": "/Script/UMG.EditableTextBox",
+      "isVariable": true
+    },
+    {
+      "name": "CreateButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "CreateButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "CreateButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "CharacterListLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "CharacterListSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "CharacterList",
+      "class": "/Script/UMG.ComboBoxString",
+      "isVariable": true
+    },
+    {
+      "name": "CharacterActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "isVariable": true
+    },
+    {
+      "name": "RefreshButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "RefreshButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "RefreshButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "JoinButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "JoinButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "JoinButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "Message",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    }
+  ],
+  "bindings": [],
+  "widgetCount": 37,
+  "canvasCount": 0,
+  "bindingCount": 0,
+  "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+  "compilerErrors": 0,
+  "compilerWarnings": 0,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_Login-designer.json"
+}

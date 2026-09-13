@@ -1,0 +1,66 @@
+---
+title: 第一次进入 Lyra：地图与游戏模式
+description: 用一次可重复的游戏观察建立地图、Experience、角色和 HUD 之间的联系。
+---
+
+## 学习目标与前置条件
+
+目标是在编辑器中找到官方地图，观察移动、开火、换枪和菜单，并记录每个行为属于哪个系统。前置：完成环境检查。证据基准：UE 5.8.1，本机配置与资产文件存在性核对于 2026-09-13。
+
+## 先分清三个入口
+
+![本机 L_ShooterGym 单人 PIE 实际画面：角色开火、机器人、队伍计分、生命值与武器快捷栏](/media/lyra/shooter-gym.png)
+
+图：`/ShooterCore/Maps/L_ShooterGym`，2026-09-13，UE 5.8.1 编辑器单人 PIE 实拍。本次已观察到机器人、开火和 HUD；此图不代表双客户端或打包验收已经完成。
+
+| 入口 | 已核对的包路径 | 用途 |
+|---|---|---|
+| 编辑器启动地图 | `/Game/System/DefaultEditorMap/L_DefaultEditorOverview` | 内容展示与学习入口 |
+| 游戏启动地图 | `/Game/System/FrontEnd/Maps/L_LyraFrontEnd` | 前端菜单与会话入口 |
+| 射击练习地图 | `/ShooterCore/Maps/L_ShooterGym` | 观察基础射击系统 |
+
+另外，`/ShooterMaps/Maps/L_Expanse`、`/ShooterMaps/Maps/L_FiringRange_WP` 和 `/TopDownArena/Maps/L_TopDown_LocalMultiplayer` 均在本机存在。插件目录名会成为资产包根路径；磁盘上的 `Plugins/GameFeatures/ShooterMaps/Content/Maps` 对应 `/ShooterMaps/Maps`，不是 `/Game/Plugins/...`。
+
+## 操作步骤
+
+第一次寻找插件资产时，按 **Ctrl+Space** 打开 Content Drawer，单击右上角 Settings，勾选 **Show Plugin Content**；在左侧 Sources 树展开 ShooterCore Content → Maps，再双击 `L_ShooterGym`。如果左侧树被收起，先展开 Sources 面板。页面中的 `/ShooterCore/Maps/...` 是包路径，不是要在 Windows 地址栏输入的目录。
+
+地图打开后，从 **Window → World Settings** 打开世界设置，清空 Details 搜索框，再搜索 `Default Gameplay Experience`。记录字段右侧引用的资产；用旁边的放大镜在内容浏览器中定位它。若只看到项目设置中的 Game Default Map，说明打开了另一个设置窗口。
+
+1. 在 Content Browser 中打开 `L_ShooterGym`。打开 **World Settings**，记录 `Default Gameplay Experience` 的实际资产，不根据地图名字推断。
+2. 点击 Play，等待加载界面结束。先测试移动和鼠标视角，再测试跳跃、开火、换弹和武器切换。
+3. 按 Escape 打开游戏菜单，再返回游戏。观察光标出现、玩家输入被切换以及返回后的焦点和鼠标捕获。
+4. 停止 PIE，打开所记录的 Experience，在 Class Defaults 中展开 `Game Features To Enable`、`Default Pawn Data`、`Actions` 和 `Action Sets`。
+5. 给本次观察建立一条笔记：**地图 → Experience → PawnData → PawnClass → 输入和 AbilitySets → HUD**。后续章节逐项填充，不必一次理解全部字段。
+
+本章只读取官方配置，不需要修改或保存原资产。编辑器顶部 Play 旁的下拉菜单可以选择 **New Editor Window (PIE)**；在 Advanced Settings 中设置新窗口宽 1920、高 1080，先以 1 名玩家验证。进入游戏后把画质设为 Medium。操作结果应是一个独立预览窗口；按停止按钮结束 PIE 后，回到同一张地图。Project Settings → Maps & Modes 中的 Editor Startup Map 与 Game Default Map 分别对应下方 INI 的两个字段，改变它们不会直接更换当前已打开地图的 Experience。
+
+本机 `Config/DefaultEditorKeyBindings.ini` 把 **Stop Play Session** 改成了 **Shift+Escape**，让单独 Escape 可以交给游戏菜单。如果你的 Escape 直接结束 PIE，在 **Editor Preferences → Keyboard Shortcuts** 搜索 **Stop Play Session**，检查当前用户快捷键是否覆盖了项目默认值；先记录旧值，再按需要调整。返回游戏前点击预览窗口让其获得输入焦点，调试完成用编辑器停止按钮结束 PIE。不要把编辑器抢先处理 Escape 误判为 CommonUI 的返回动作失效。
+
+如果想做两客户端观察，使用 Play 设置中的玩家数量和客户端网络模式；独立进程测试应在单客户端成功后进行。不要把两个独立 Standalone 窗口误认为处在同一网络会话。
+
+![项目地图、GameMode 与 GameInstance，真实原生配置面板](/media/configuration/training/maps-modes.png)
+
+图源：`Project Settings / Project / Maps & Modes`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。项目设置 → 地图和模式：默认 GameMode、编辑器开始地图、游戏默认地图与 GameInstance 是四个不同入口。
+
+## 原理与 C++ 定位
+
+`Config/DefaultEngine.ini` 明确区分编辑器启动和游戏启动：
+
+```ini
+[/Script/EngineSettings.GameMapsSettings]
+GlobalDefaultGameMode=/Game/B_LyraGameMode.B_LyraGameMode_C
+GameInstanceClass=/Game/B_LyraGameInstance.B_LyraGameInstance_C
+GameDefaultMap=/Game/System/FrontEnd/Maps/L_LyraFrontEnd.L_LyraFrontEnd
+EditorStartupMap=/Game/System/DefaultEditorMap/L_DefaultEditorOverview.L_DefaultEditorOverview
+```
+
+共同的 `ALyraGameMode` 负责选择 Experience、等待其加载和生成玩家。具体玩法通常由 Experience 的组件与动作组合而成。因此只在 GameMode 蓝图里找“控制点胜利逻辑”，容易走错入口。
+
+官方资产提供淘汰玩法 `B_ShooterGame_Elimination` 和控制点玩法 `B_LyraShooterGame_ControlPoints`，都在 `/ShooterCore/Experiences`。资产名字证明它们存在；具体默认值以编辑器 Class Defaults 为准。
+
+## 预期结果、排障与练习
+
+应该能在 PIE 中观察角色、武器与 HUD，并准确记录所选 Experience。进入后只有观察者相机时，先确认 Experience 加载完成和 PawnData；黑屏或长期加载则看 `LogLyraExperience`，不要先重做灯光。
+
+练习：比较两张地图的 World Settings。它们能否使用相同 Experience？再比较两个 Experience 的 Action Sets，指出哪个负责 HUD，哪个负责玩法组件。继续阅读[工程地图](/docs/01-start/project-map)。

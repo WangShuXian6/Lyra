@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-13",
+  "engine": "UE 5.8.1",
+  "symbol": "UPrimaryGameLayout::RegisterLayer",
+  "line": 97,
+  "assetTransitionDuration": 0.16,
+  "runtimeTransitionDuration": 0.0,
+  "reason": "Copied CommonGame RegisterLayer explicitly sets zero with an upstream gamepad-focus comment. Designer value is overridden at runtime. No game code or asset was changed.",
+  "sources": [
+    {
+      "path": "F:/UE/LyraStarterGame/Plugins/CommonGame/Source/Private/PrimaryGameLayout.cpp",
+      "sha256": "e2648c6dfdae8f3b0216190ca21ddff68749b7f0c270c2adf03597ba6ce28ca3"
+    },
+    {
+      "path": "F:/UE/LyraDocLabs/MMORPG/Plugins/CommonGame/Source/Private/PrimaryGameLayout.cpp",
+      "sha256": "e2648c6dfdae8f3b0216190ca21ddff68749b7f0c270c2adf03597ba6ce28ca3"
+    }
+  ],
+  "runtimeObservation": "verification/mmorpg-ui-observations/gamepad-menu.json"
+}

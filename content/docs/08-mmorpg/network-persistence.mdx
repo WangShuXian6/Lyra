@@ -1,0 +1,80 @@
+---
+title: 服务器准入与持久化生命周期
+description: 从一次性票据到角色生成，正确处理异步保存、重复响应、离服与租约失效。
+---
+
+## 学习目标与前置条件
+
+本篇把“可以连到 UE 服务器”和“被允许使用某个角色”分开处理。先理解 GameMode 只在服务器存在、PlayerState 会复制，以及 HTTP 回调并非同步返回。源码基准为 **UE 5.8.1 / 2026-09-13**；协议细节见[后端篇](/docs/10-backend)。
+
+## 三类凭据
+
+| 数据 | 持有者 | 用途 | 生命周期 |
+| --- | --- | --- | --- |
+| 登录 token | 客户端 GameInstance | 列表、建角、申请入服票据 | 可撤销账号会话 |
+| 入服 ticket | 客户端交给目标游戏服务器 | 证明账号允许该角色进入指定服务器 | 60 秒、一次使用 |
+| leaseToken | 游戏服务器 | 加载/保存/释放活动角色 | 120 秒租约，定期保存续租 |
+
+游戏服务器另有 `MMO_SERVER_SECRET`，只从服务器进程环境读取。它不进入 Blueprint、PlayerState、配置仓库或客户端网络复制。MMOBackendServer 模块声明为 ServerOnly，客户端构建不需要该模块或任何数据库库文件。
+
+## 准入顺序
+
+1. 登录界面向 `/v1/join-ticket` 提交选中角色和 `local-1`。
+2. 客户端用返回的地址和 ticket 执行 ClientTravel。
+3. `PreLogin` 检查票据是否存在、MMOCore 是否就绪；这里只做同步可判断的检查。
+4. `PostLogin` 调用服务器后端接口 `/v1/server/consume-ticket`，等待票据兑换和角色租约获取。
+5. 成功后把后端状态装入 PlayerState，再调用 `RestartPlayerAtTransform` 生成并控制 Pawn。
+6. 失败时拒绝这次会话；若玩家在 HTTP 回来前已经离开，服务器释放刚得到的租约。
+
+`HandleStartingNewPlayer` 被明确留给异步准入流程处理。不能先调用父类生成可操作角色，再在几秒后补做认证；这会给尚未完成准入的连接提供玩法操作窗口。
+
+## 服务器快照
+
+快照从权威 PlayerState/AttributeSet 和 Pawn 位置生成：Level、XP、Health、Mana、Inventory、Position。用户名不决定角色身份，角色 ID 来自后端；客户端没有“提交任意角色 ID 并写存档”的 RPC。
+
+```json title="保存请求的形状（值为示意，不是凭据）"
+{
+  "characterId": "character-uuid",
+  "serverId": "local-1",
+  "leaseToken": "opaque-server-lease",
+  "expectedVersion": 4,
+  "requestId": "unique-save-request-uuid",
+  "state": {
+    "level": 1,
+    "xp": 25,
+    "health": 100,
+    "mana": 80,
+    "inventory": [{ "itemId": "potion", "quantity": 1 }],
+    "position": { "x": 300, "y": 0, "z": 100 }
+  }
+}
+```
+
+每 15 秒保存一次，成功响应中的 version 成为下一次 expectedVersion。完整快照在数据库事务内更新，角色版本检查与幂等记录解决重复请求。服务器不持有 PostgreSQL 连接，数据库事务属于 Backend Program。
+
+## 不能忽略“成功了但响应丢失”
+
+假设服务器提交 version 4，后端已保存成 version 5，但响应在网络中丢失。若游戏服务器立即换 requestId 再提交 version 4，会得到版本冲突。正确重试应保留**相同 requestId、相同 expectedVersion、相同快照**，让后端返回该请求已经产生的结果。
+
+实验的 `FMMOSaveRecord` 保留 PendingBody，直到收到成功响应才清空。在请求进行期间的新变化留到下一个快照；离服到来时标记 Final，等待在途保存完成后再发最终快照。快照捕获与请求状态因此需要分开保存。
+
+## 离服与失败
+
+正常离服在 `GameMode::Logout` 先捕获最终快照，再交给父类清理 PlayerState。成功保存后才释放租约。最终请求遇到连接错误或服务端错误时进行有限重试；权限、租约或版本冲突会停止角色继续修改数据，并要求重新连接读取权威状态。
+
+注意 UE 的断开顺序：到 Logout 时 Pawn 可能已经解绑。实验在 PlayerController 的 `OnUnPossess` 调用父类之前保留最后位置，快照在没有 Pawn 时读取这个值。这个细节通过真实双客户端回归发现：修复前经验与背包恢复正常，但位置回到了初始点；修复后离服 X=45.516 的角色重进为 X=45.5，符合网络位置精度。
+
+进程关停有额外边界：在 `EndPlay` 发出异步 HTTP，不等于进程退出前一定完成。开发验证应先让客户端正常退出、确认 final save 日志，再关闭游戏服务器和后端。生产服务需要显式的停止准入、排空玩家、等待保存完成与超时退出流程。直接强杀进程可能损失最近一次成功保存之后的修改。
+
+## 操作、结果与排障
+
+1. 记录入服日志中的角色 ID 与 version，击败目标后等待一次自动保存。
+2. 使用设置面板退出角色；确认日志出现 `MMO saved character ... (final)`。
+3. 重新登录，确认经验、背包、法力和位置恢复；重启后端后再次验证。
+4. 用同一角色同时申请入服，观察租约冲突；将过期票据重复提交，观察拒绝。
+5. 临时停止后端，确认客户端没有自己“保存成功”的提示；恢复服务后观察重试或重新连接处理。
+
+保存 400 通常意味着快照不符合协议，例如药剂数量为零仍被提交。409 要先区分角色已在使用、版本冲突和幂等冲突，不能统一无限重试。连接失败应显示可行动的错误，不记录账号密码或服务器 secret。
+
+练习：画出“自动保存进行中 → 玩家退出 → 第一次响应丢失 → 重试成功 → 最终保存 → 释放租约”的时序图，并标出每一次 requestId 和 expectedVersion。
+

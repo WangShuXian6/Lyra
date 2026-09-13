@@ -1,0 +1,41 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" MMORPGEditor Win64 Development -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+Log file: E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Log.txt
+Executing up to 3 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (E:\UnrealEngine).
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+Invalidating makefile for MMORPGEditor (MMODocTools.Build.cs modified)
+UHT compiled-in object format Default
+Building MMORPGEditor...
+===== Toolchain Information =====
+Using ISPC compiler (E:\UnrealEngine\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.50.35737 toolchain (D:\program\0-editer\vs\VC\Tools\MSVC\14.50.35717) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 12 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 31.82 GB physical, 32.38 GB/49.82 GB committed
+  UBA Storage capacity 40 GB
+[1/12] Compile [x64] Module.MMORPG.gen.cpp [NoUba]
+[2/12] Compile [x64] MMOUI.cpp [NoUba]
+[3/12] Compile [x64] MMOGameplay.cpp [NoUba]
+[4/12] Link [x64] UnrealEditor-MMORPG.lib [NoUba]
+  ￦ﾭﾣ￥ﾜﾨ￥ﾈﾛ￥ﾻﾺ￥ﾺﾓ F:/UE/LyraDocLabs/MMORPG/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMORPG/UnrealEditor-MMORPG.lib ￥ﾒﾌ￥ﾯﾹ￨ﾱﾡ F:/UE/LyraDocLabs/MMORPG/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMORPG/UnrealEditor-MMORPG.exp
+[5/12] Link [x64] UnrealEditor-MMORPG.dll [NoUba]
+[6/12] Compile [x64] Module.MMOCore.cpp [NoUba]
+[7/12] Link [x64] UnrealEditor-MMOCore.lib [NoUba]
+  ￦ﾭﾣ￥ﾜﾨ￥ﾈﾛ￥ﾻﾺ￥ﾺﾓ F:/UE/LyraDocLabs/MMORPG/Plugins/GameFeatures/MMOCore/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMOCore/UnrealEditor-MMOCore.lib ￥ﾒﾌ￥ﾯﾹ￨ﾱﾡ F:/UE/LyraDocLabs/MMORPG/Plugins/GameFeatures/MMOCore/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMOCore/UnrealEditor-MMOCore.exp
+[8/12] Link [x64] UnrealEditor-MMOCore.dll [NoUba]
+[9/12] Compile [x64] Module.MMODocTools.cpp [NoUba]
+[10/12] Link [x64] UnrealEditor-MMODocTools.lib [NoUba]
+  ￦ﾭﾣ￥ﾜﾨ￥ﾈﾛ￥ﾻﾺ￥ﾺﾓ F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMODocTools/UnrealEditor-MMODocTools.lib ￥ﾒﾌ￥ﾯﾹ￨ﾱﾡ F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMODocTools/UnrealEditor-MMODocTools.exp
+[11/12] Link [x64] UnrealEditor-MMODocTools.dll [NoUba]
+[12/12] WriteMetadata MMORPGEditor.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 21.86 seconds
+Output binary: E:\UnrealEngine\Engine\Binaries\Win64\UnrealEditor.exe
+
+Result: Succeeded
+Total execution time: 30.36 seconds
+Trace written to file E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Trace.uba with size 7.6kb

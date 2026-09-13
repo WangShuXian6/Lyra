@@ -1,0 +1,28 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "Lyra Tutorial Training Range",
+  "Description": "Isolated tutorial experience, pawn data and practice level.",
+  "Category": "Game Features",
+  "CanContainContent": true,
+  "EnabledByDefault": false,
+  "ExplicitlyLoaded": true,
+  "BuiltInInitialFeatureState": "Registered",
+  "Modules": [
+    {
+      "Name": "TrainingRangeVerification",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "TargetConfigurationAllowList": [ "Development" ],
+      "TargetAllowList": [ "Game", "Client", "Editor" ]
+    }
+  ],
+  "Plugins": [
+    { "Name": "ShooterCore", "Enabled": true },
+    { "Name": "LyraExampleContent", "Enabled": true },
+    { "Name": "GameplayAbilities", "Enabled": true },
+    { "Name": "CommonUI", "Enabled": true },
+    { "Name": "CommonLoadingScreen", "Enabled": true }
+  ]
+}

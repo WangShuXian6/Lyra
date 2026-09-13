@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-09-13T16:16:16.068Z",
+  "passed": true,
+  "scope": "Deterministic POSIX ustar interoperability with native Windows bsdtar; no production archive or Git index mutation.",
+  "nativeTar": "bsdtar 3.8.4 - libarchive 3.8.4 zlib/1.2.13.1-motley liblzma/5.8.1 bz2lib/1.0.8 libzstd/1.5.7 cng/2.0 libb2/bundled",
+  "checks": {
+    "nativeInventory": true,
+    "nativeByteExtraction": [
+      {
+        "name": "lyra-package/README.md",
+        "bytes": 30,
+        "passed": true
+      },
+      {
+        "name": "lyra-package/examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/Private/TrainingRangeVerification.cpp",
+        "bytes": 16,
+        "passed": true
+      },
+      {
+        "name": "lyra-package/素材说明/empty.txt",
+        "bytes": 0,
+        "passed": true
+      },
+      {
+        "name": "lyra-package/binary.dat",
+        "bytes": 1025,
+        "passed": true
+      }
+    ],
+    "independentOfFileMtimeAndEnumeration": true,
+    "gitNativeTextFilterPreservesBytes": true,
+    "gzipOS": 255
+  },
+  "archive": {
+    "bytes": 624,
+    "sha256": "276d15fc413d064e3d25e173b3c056b60a46fe5e5d43756236fca632793b0ef8"
+  },
+  "implementationSHA256": "cd261a4f01917d9f35d2046f8203788d0f4836c07236fb050a0ba931a63ee56c"
+}

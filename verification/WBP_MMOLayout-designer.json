@@ -1,0 +1,42 @@
+{
+  "date": "2026-09-13T13:05:28.270Z",
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "asset": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout",
+  "parent": "/Script/MMORPG.MMORootLayout",
+  "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+  "localizationNamespace": "MMOUI",
+  "nativeCulture": "en",
+  "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+  "widgets": [
+    {
+      "name": "LayerLayout",
+      "class": "/Script/UMG.Overlay",
+      "isVariable": true
+    },
+    {
+      "name": "GameLayer",
+      "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+      "isVariable": true
+    },
+    {
+      "name": "MenuLayer",
+      "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+      "isVariable": true
+    },
+    {
+      "name": "ModalLayer",
+      "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+      "isVariable": true
+    }
+  ],
+  "bindings": [],
+  "widgetCount": 4,
+  "canvasCount": 0,
+  "bindingCount": 0,
+  "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+  "compilerErrors": 0,
+  "compilerWarnings": 0,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_MMOLayout-designer.json"
+}

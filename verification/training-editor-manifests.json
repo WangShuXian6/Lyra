@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-09-13T13:18:22.127106+00:00",
+  "target": "LyraEditor Win64 Development -EnablePlugin=BlueprintScreenshotTool -EnablePlugin=LyraDocTools",
+  "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+  "nativeBuildResult": "Succeeded",
+  "actions": 2,
+  "actionsDescription": "WriteMetadata UnrealEditor.version and LyraEditor.target",
+  "manifests": [
+    {
+      "path": "E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.modules",
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    },
+    {
+      "path": "E:/UnrealEngine/Engine/Plugins/Media/MediaIOFramework/Binaries/Win64/UnrealEditor.modules",
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    },
+    {
+      "path": "F:/UE/LyraDocLabs/LyraTraining/Binaries/Win64/UnrealEditor.modules",
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    },
+    {
+      "path": "F:/UE/LyraDocLabs/LyraTraining/Plugins/LyraDocTools/Binaries/Win64/UnrealEditor.modules",
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    },
+    {
+      "path": "F:/UE/LyraDocLabs/LyraTraining/Plugins/BlueprintScreenshotTool/Binaries/Win64/UnrealEditor.modules",
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    }
+  ],
+  "passed": true
+}

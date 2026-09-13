@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-09-13T15:50:37.896873+00:00",
+  "passed": true,
+  "addition": {
+    "recordedAt": "2026-09-13T15:50:37.896873+00:00",
+    "nativeSavedAt": "2026-09-13T15:48:35.231202+00:00",
+    "evidence": "verification/mmorpg-health-cook-label.json",
+    "evidenceSha256": "12ed73a276ddf7251d1906a9d3483d212dce9b8076b98e7be47ee7fcbd5a7cf2",
+    "assets": [
+      {
+        "path": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Labels/DA_TutorialExamples.uasset",
+        "repoPath": "examples/MMORPG/Content/MMO/Labels/DA_TutorialExamples.uasset",
+        "bytes": 2732,
+        "sha256": "1db58affde2f7321e37837e8f1d3bb10b53838d85f9aa9291bbd6541c6ff9560",
+        "origin": "Original tutorial PrimaryAssetLabel authored and saved with native UE editor APIs; no Blueprint graph reconstruction.",
+        "nativeEvidence": "verification/mmorpg-health-cook-label.json"
+      }
+    ],
+    "compileRequired": false,
+    "class": "PrimaryAssetLabel",
+    "cookExecuted": false,
+    "editorRestartRequired": true
+  },
+  "allOriginalAssetHashesMatch": true,
+  "originalAssetCount": 31
+}

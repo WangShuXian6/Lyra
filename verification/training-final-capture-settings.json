@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-09-13T17:06:22.330365+00:00",
+  "editorPid": 19024,
+  "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+  "editorWorld": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange",
+  "blueprintScreenshotSettings": {
+    "zoomAmount": 1.0,
+    "maxScreenshotSize": 15360
+  },
+  "previewWindowSetting": {
+    "width": 1920,
+    "height": 1078
+  },
+  "actualViewport": "pending native PIE GetViewportSize"
+}

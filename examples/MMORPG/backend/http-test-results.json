@@ -1,0 +1,131 @@
+{
+  "at": "2026-09-13T10:26:39.0341409Z",
+  "baseUrl": "http://127.0.0.1:8088",
+  "includeRestart": true,
+  "checks": [
+    {
+      "name": "database-backed health",
+      "passed": true
+    },
+    {
+      "name": "register account",
+      "passed": true
+    },
+    {
+      "name": "duplicate registration rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong password rejected",
+      "passed": true
+    },
+    {
+      "name": "opaque login session",
+      "passed": true
+    },
+    {
+      "name": "anonymous character access rejected",
+      "passed": true
+    },
+    {
+      "name": "create character with initial state",
+      "passed": true
+    },
+    {
+      "name": "duplicate character name rejected",
+      "passed": true
+    },
+    {
+      "name": "list owned characters",
+      "passed": true
+    },
+    {
+      "name": "cross-account character access rejected",
+      "passed": true
+    },
+    {
+      "name": "issue short-lived ticket",
+      "passed": true
+    },
+    {
+      "name": "client token cannot invoke server API",
+      "passed": true
+    },
+    {
+      "name": "ticket cannot be redeemed by wrong server",
+      "passed": true
+    },
+    {
+      "name": "consume ticket and load state atomically",
+      "passed": true
+    },
+    {
+      "name": "ticket replay rejected",
+      "passed": true
+    },
+    {
+      "name": "duplicate online account rejected",
+      "passed": true
+    },
+    {
+      "name": "heartbeat extends lease",
+      "passed": true
+    },
+    {
+      "name": "transactionally save inventory and progression",
+      "passed": true
+    },
+    {
+      "name": "identical save retry does not increment version",
+      "passed": true
+    },
+    {
+      "name": "reused requestId with changed payload rejected",
+      "passed": true
+    },
+    {
+      "name": "stale save version rejected",
+      "passed": true
+    },
+    {
+      "name": "invalid inventory rejected",
+      "passed": true
+    },
+    {
+      "name": "failed saves leave committed state intact",
+      "passed": true
+    },
+    {
+      "name": "backend restart preserves sessions lease and saved state",
+      "passed": true
+    },
+    {
+      "name": "release active lease",
+      "passed": true
+    },
+    {
+      "name": "released lease cannot save",
+      "passed": true
+    },
+    {
+      "name": "expired ticket rejected",
+      "passed": true
+    },
+    {
+      "name": "rejoin restores persisted progression",
+      "passed": true
+    },
+    {
+      "name": "expired lease cannot be revived",
+      "passed": true
+    },
+    {
+      "name": "logout revokes session",
+      "passed": true
+    },
+    {
+      "name": "revoked session cannot read characters",
+      "passed": true
+    }
+  ]
+}

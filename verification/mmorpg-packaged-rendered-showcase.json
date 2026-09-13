@@ -1,0 +1,737 @@
+{
+  "date": "2026-09-13T19:27:03.9806378Z",
+  "passed": true,
+  "packaged": true,
+  "captureAPI": "FSlateApplication::TakeScreenshot(SViewport), game timer",
+  "physicalInputTested": false,
+  "programmaticCultureSwitch": true,
+  "clients": [
+    {
+      "healthBlueprint": {
+        "httpResponse": {
+          "ok": true
+        },
+        "method": "Native Blueprint Print String after Request MMO Completed",
+        "spawned": true
+      },
+      "mediumQualityAction": {
+        "buttonApplied": true,
+        "beforeWidth": 1920,
+        "beforeHeight": 1080,
+        "afterWidth": 1920,
+        "afterHeight": 1080
+      },
+      "inputGrants": {
+        "stage": "showcase-complete",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "movementBases": {
+          "passed": true,
+          "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+          "logs": [
+            {
+              "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Interactive\\client-1-2e331e23dd.log",
+              "unresolvedBaseMessages": 0,
+              "geometryObservationCount": 12,
+              "snapshotBytes": 150320,
+              "observedNames": [
+                "MMOZone_Floor",
+                "MMOZone_WallEast",
+                "MMOZone_WallWest",
+                "MMOZone_WallNorth",
+                "MMOZone_WallSouth",
+                "MMOZone_Obstacle"
+              ],
+              "snapshotSHA256": "8a49aaf27fe3bca912ab654d3299db71148a5efa83a9fba87face106591ac153"
+            }
+          ]
+        }
+      },
+      "observations": [
+        {
+          "stage": "first-switch",
+          "culture": "zh-Hans",
+          "savedCulture": "zh-Hans",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "设置",
+          "statusText": "Traveler A · 等级 1 · 经验 25\n生命 50 / 100",
+          "targetText": "训练目标 · 生命 100 / 100",
+          "inputHint": "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        },
+        {
+          "stage": "second-switch",
+          "culture": "en",
+          "savedCulture": "en",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "Settings",
+          "statusText": "Traveler A · Level 1 · XP 25\nHealth 50 / 100",
+          "targetText": "Training target · Health 100 / 100",
+          "inputHint": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        },
+        {
+          "stage": "final-hud",
+          "culture": "zh-Hans",
+          "savedCulture": "zh-Hans",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "",
+          "statusText": "Traveler A · 等级 1 · 经验 25\n生命 50 / 100",
+          "targetText": "训练目标 · 生命 100 / 100",
+          "inputHint": "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        }
+      ],
+      "freshProcess": {
+        "stage": "fresh-process",
+        "culture": "zh-Hans",
+        "savedCulture": "zh-Hans",
+        "settingsIni": "GameUserSettings",
+        "isEditor": false,
+        "hasHUD": false,
+        "umgMVVMBinding": false,
+        "menuTitle": "开启旅程",
+        "statusText": "",
+        "targetText": "",
+        "inputHint": "",
+        "persisted": true,
+        "qualityGroups": {
+          "ViewDistance": 1,
+          "AntiAliasing": 1,
+          "Shadow": 1,
+          "GlobalIllumination": 1,
+          "Reflection": 1,
+          "PostProcess": 1,
+          "Texture": 1,
+          "Effects": 1,
+          "Foliage": 1,
+          "Shading": 1
+        },
+        "matchesExpectedCulture": true
+      },
+      "diskCulture": "zh-Hans",
+      "expectedCulture": "zh-Hans",
+      "locomotion": [
+        {
+          "stage": "moving-first",
+          "passed": true,
+          "method": "Read the evaluated Linked Anim Layer BlendSpace player after joining its parallel evaluation task.",
+          "pawnSpeed": 124.99999999999999,
+          "layerClass": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed_C",
+          "nodeProperty": "AnimGraphNode_BlendSpacePlayer",
+          "blendSpace": "/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run",
+          "axisX": "Direction",
+          "axisY": "Speed",
+          "inputX": 0,
+          "inputY": 125,
+          "filteredY": 125,
+          "blendWeight": 1,
+          "assetTime": 4.1899824142456055,
+          "assetLength": 7.566666603088379
+        },
+        {
+          "stage": "moving-second",
+          "passed": true,
+          "method": "Read the evaluated Linked Anim Layer BlendSpace player after joining its parallel evaluation task.",
+          "pawnSpeed": 125,
+          "layerClass": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed_C",
+          "nodeProperty": "AnimGraphNode_BlendSpacePlayer",
+          "blendSpace": "/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run",
+          "axisX": "Direction",
+          "axisY": "Speed",
+          "inputX": 0,
+          "inputY": 125,
+          "filteredY": 125,
+          "blendWeight": 1,
+          "assetTime": 6.650505542755127,
+          "assetLength": 7.566666603088379
+        }
+      ],
+      "initialCulture": "en",
+      "settingsIni": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Config\\Showcase\\2e331e23dd\\A.ini",
+      "role": "client-1"
+    },
+    {
+      "healthBlueprint": {
+        "httpResponse": {
+          "ok": true
+        },
+        "method": "Native Blueprint Print String after Request MMO Completed",
+        "spawned": true
+      },
+      "mediumQualityAction": {
+        "buttonApplied": true,
+        "beforeWidth": 1920,
+        "beforeHeight": 1080,
+        "afterWidth": 1920,
+        "afterHeight": 1080
+      },
+      "inputGrants": {
+        "stage": "showcase-complete",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "movementBases": {
+          "passed": true,
+          "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+          "logs": [
+            {
+              "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Interactive\\client-2-2e331e23dd.log",
+              "unresolvedBaseMessages": 0,
+              "geometryObservationCount": 12,
+              "snapshotBytes": 148422,
+              "observedNames": [
+                "MMOZone_Floor",
+                "MMOZone_WallEast",
+                "MMOZone_WallWest",
+                "MMOZone_WallNorth",
+                "MMOZone_WallSouth",
+                "MMOZone_Obstacle"
+              ],
+              "snapshotSHA256": "4e0f48ee18a9418b904705965d5c2756848050a2593c85f62f0484937ff4251b"
+            }
+          ]
+        }
+      },
+      "observations": [
+        {
+          "stage": "first-switch",
+          "culture": "en",
+          "savedCulture": "en",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "Settings",
+          "statusText": "Traveler B · Level 1 · XP 0\nHealth 100 / 100",
+          "targetText": "Training target · Health 100 / 100",
+          "inputHint": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        },
+        {
+          "stage": "second-switch",
+          "culture": "zh-Hans",
+          "savedCulture": "zh-Hans",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "设置",
+          "statusText": "Traveler B · 等级 1 · 经验 0\n生命 100 / 100",
+          "targetText": "训练目标 · 生命 100 / 100",
+          "inputHint": "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        },
+        {
+          "stage": "final-hud",
+          "culture": "en",
+          "savedCulture": "en",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "",
+          "statusText": "Traveler B · Level 1 · XP 0\nHealth 100 / 100",
+          "targetText": "Training target · Health 100 / 100",
+          "inputHint": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        }
+      ],
+      "freshProcess": {
+        "stage": "fresh-process",
+        "culture": "en",
+        "savedCulture": "en",
+        "settingsIni": "GameUserSettings",
+        "isEditor": false,
+        "hasHUD": false,
+        "umgMVVMBinding": false,
+        "menuTitle": "Begin your journey",
+        "statusText": "",
+        "targetText": "",
+        "inputHint": "",
+        "persisted": true,
+        "qualityGroups": {
+          "ViewDistance": 1,
+          "AntiAliasing": 1,
+          "Shadow": 1,
+          "GlobalIllumination": 1,
+          "Reflection": 1,
+          "PostProcess": 1,
+          "Texture": 1,
+          "Effects": 1,
+          "Foliage": 1,
+          "Shading": 1
+        },
+        "matchesExpectedCulture": true
+      },
+      "diskCulture": "en",
+      "expectedCulture": "en",
+      "locomotion": [],
+      "initialCulture": "zh-Hans",
+      "settingsIni": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Config\\Showcase\\2e331e23dd\\B.ini",
+      "role": "client-2"
+    }
+  ],
+  "captures": [
+    {
+      "sha256": "217ce07dfb11f3c227c02459fb6c47973ef7ae2f105101f435a780615370329d",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-final-hud.png",
+      "height": 1080
+    },
+    {
+      "sha256": "210312294ade8b49e0ee2ff3c3bb782b086117d55bc411a42e48ba3da3a8e5ba",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-hud.png",
+      "height": 1080
+    },
+    {
+      "sha256": "1ed2d75b4eb2cb89c01e726ea914b21fdc2bafb77d60b4c815753dca4717c753",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-inventory.png",
+      "height": 1080
+    },
+    {
+      "sha256": "eb9bad0a264d8e3d7e394dbf2fb4ac81d0ccfab0becd4d9b850e7b28a653dad3",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-language-final-hud.png",
+      "height": 1080
+    },
+    {
+      "sha256": "b46111a11345df87c054958b18223a7d3fc14e43302dc632914f4881463618d0",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-language-first-settings.png",
+      "height": 1080
+    },
+    {
+      "sha256": "82ac76c1592926339af6a9aa80bbb5fe604c18b0a85df3ed3ca1263d08cb21e2",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-language-second-settings.png",
+      "height": 1080
+    },
+    {
+      "sha256": "d6db5470031da2aa7cb57b765857e401fbb5d84e774f30371e998e98a87537ef",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-login.png",
+      "height": 1080
+    },
+    {
+      "sha256": "7aa60d1cb24fd3dddae0633626a265e658aefe9ced2359b88b16ba69387d3980",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-modal.png",
+      "height": 1080
+    },
+    {
+      "sha256": "354f0d1872ad2c89f23569331f6506eeb9dcceca49d461164ff4bfa1be93f135",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-returned-settings.png",
+      "height": 1080
+    },
+    {
+      "sha256": "46c5eb04ea41fc2d0a47a044013105b04cc6c6b0e8f03b914773c79770aa067e",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-settings.png",
+      "height": 1080
+    },
+    {
+      "sha256": "e7b4613dcfc3af4a932897958bea1305610ad47ad4faa42a5346b1517f245818",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-A-skill.png",
+      "height": 1080
+    },
+    {
+      "sha256": "6c4ab88be62718380ff47d281932857aea91f329b79af846deaed4504f2240e4",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-final-hud.png",
+      "height": 1080
+    },
+    {
+      "sha256": "1ec07bc51b017c9b54d61c0aac16a5a1b5037c68568ef4e75d8a35084c8ffb46",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-hud.png",
+      "height": 1080
+    },
+    {
+      "sha256": "06d5f6dfd0215fa15ab054d49a78e3729f2c428ca326ca54c2be6b93b43f2058",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-inventory.png",
+      "height": 1080
+    },
+    {
+      "sha256": "2137ffd016730094a10d14d2f91c25d3d6f5bb06d233408386fb752a747987c4",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-language-final-hud.png",
+      "height": 1080
+    },
+    {
+      "sha256": "5e8f9219b0e4237cb96edf4a76ca30de8cabbf728b82bbc1adf85b1602bc94d6",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-language-first-settings.png",
+      "height": 1080
+    },
+    {
+      "sha256": "f9622b3540b7802ee71ac8955872dc30e755cfd90dc90669f0e1ff7a1dfb5692",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-language-second-settings.png",
+      "height": 1080
+    },
+    {
+      "sha256": "1926e4a505ba145aa1aa5e61de817994497dda7a22d658b611f97ea8c8ce8bf5",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-login.png",
+      "height": 1080
+    },
+    {
+      "sha256": "c81b2df0419714f8103d82bade24042fc059728a6a5c14b027f12ef8c763d463",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-modal.png",
+      "height": 1080
+    },
+    {
+      "sha256": "dc8363ebc18427f6638e891865914e1dc00a47ca8ecd7925a10b88e5d24e8ee3",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-returned-settings.png",
+      "height": 1080
+    },
+    {
+      "sha256": "b40dff8395c75c1b49eb2e816ebb62d010b009d3d452913fec713016cbf3df90",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-settings.png",
+      "height": 1080
+    },
+    {
+      "sha256": "6390525499c64c77303f92ec087318c22f75750093995696ae62d5bcd836ba8f",
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\2e331e23dd\\mmo-B-skill.png",
+      "height": 1080
+    }
+  ],
+  "selectedInputs": [
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Binaries\\Win64\\MMORPGClient.exe",
+      "sha256": "6ed3cfce7074437b3ff77e5ff670bd7f488fd24a31ba08c0cee5d61f2f9dd92d"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsServer\\MMORPG\\Binaries\\Win64\\MMORPGServer.exe",
+      "sha256": "ff1a284e72c79919ce4678daf233f36285e394f8be7771fb5dce0f529ad1dd43"
+    },
+    {
+      "sha256": "6a4f7667f9812fdc616846008f5ab209d17bc87bf485b30e01ab705ed35918f7",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\global.ucas",
+      "bytes": 3396880
+    },
+    {
+      "sha256": "5c0851bb675ef51c030b795c556dcd44d038880ca007b84b66f42567561465b9",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\global.utoc",
+      "bytes": 818
+    },
+    {
+      "sha256": "9915ae65a6ada5942a89d06c6c8449860747178f90f930db32620fdf9abb227c",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak",
+      "bytes": 15663677
+    },
+    {
+      "sha256": "dcd85577b4bd7ccc19da68cbac47511894fbf34122f99132aee30373652dc367",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.ucas",
+      "bytes": 196486496
+    },
+    {
+      "sha256": "2e3544c2cb64aaabd086ba15afb498941fe81b3e1e8b0fbc75211769e9518186",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.utoc",
+      "bytes": 155734
+    }
+  ],
+  "stagedPresentation": {
+    "inspectionId": "2d99ba32a45343eb9828c130d35990d8",
+    "checkedAt": "2026-09-13T19:27:03.9981003Z",
+    "passed": true,
+    "client": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Binaries\\Win64\\MMORPGClient.exe",
+    "clientSHA256": "6ed3cfce7074437b3ff77e5ff670bd7f488fd24a31ba08c0cee5d61f2f9dd92d",
+    "stageRoot": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient",
+    "method": "Native UnrealPak -List and -ListContainer plus exact loose-file checks in the staged directory",
+    "resources": [
+      {
+        "relativePath": "MMORPG/Content/Localization/MMO/MMO.locmeta",
+        "loosePath": null,
+        "pakFiles": [
+          "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+        ],
+        "found": true
+      },
+      {
+        "relativePath": "MMORPG/Content/Localization/MMO/en/MMO.locres",
+        "loosePath": null,
+        "pakFiles": [
+          "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+        ],
+        "found": true
+      },
+      {
+        "relativePath": "MMORPG/Content/Localization/MMO/zh-Hans/MMO.locres",
+        "loosePath": null,
+        "pakFiles": [
+          "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+        ],
+        "found": true
+      },
+      {
+        "relativePath": "Engine/Content/Slate/Fonts/Roboto-Regular.ttf",
+        "loosePath": null,
+        "pakFiles": [
+          "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+        ],
+        "found": true
+      },
+      {
+        "relativePath": "Engine/Content/Slate/Fonts/DroidSansFallback.ttf",
+        "loosePath": null,
+        "pakFiles": [
+          "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+        ],
+        "found": true
+      }
+    ],
+    "containers": [
+      {
+        "sha256": "6a4f7667f9812fdc616846008f5ab209d17bc87bf485b30e01ab705ed35918f7",
+        "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\global.ucas",
+        "bytes": 3396880
+      },
+      {
+        "sha256": "5c0851bb675ef51c030b795c556dcd44d038880ca007b84b66f42567561465b9",
+        "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\global.utoc",
+        "bytes": 818
+      },
+      {
+        "sha256": "9915ae65a6ada5942a89d06c6c8449860747178f90f930db32620fdf9abb227c",
+        "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak",
+        "bytes": 15663677
+      },
+      {
+        "sha256": "dcd85577b4bd7ccc19da68cbac47511894fbf34122f99132aee30373652dc367",
+        "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.ucas",
+        "bytes": 196486496
+      },
+      {
+        "sha256": "2e3544c2cb64aaabd086ba15afb498941fe81b3e1e8b0fbc75211769e9518186",
+        "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.utoc",
+        "bytes": 155734
+      }
+    ],
+    "looseRoundTripFiles": [],
+    "teachingBlueprint": {
+      "roundTripTestsExcluded": true,
+      "healthIncluded": true,
+      "ioStoreLists": [
+        {
+          "csv": "F:\\UE\\LyraDoc\\verification\\mmorpg-staged-2d99ba32a45343eb9828c130d35990d8-global.csv",
+          "container": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\global.utoc",
+          "sha256": "2b2a9c26ac5fbd9742da1b604b427f551c4054cdc4bfe373eebdfefc832b2883",
+          "containerSHA256": "5c0851bb675ef51c030b795c556dcd44d038880ca007b84b66f42567561465b9",
+          "createdByThisRun": true,
+          "csvWrittenAt": "2026-09-13T19:27:04.7206183Z",
+          "listingStartedAt": "2026-09-13T19:27:04.598488Z"
+        },
+        {
+          "csv": "F:\\UE\\LyraDoc\\verification\\mmorpg-staged-2d99ba32a45343eb9828c130d35990d8-MMORPG-WindowsClient.csv",
+          "container": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.utoc",
+          "sha256": "834c656c3670ae3b3cdff66cf8d87b9e9b698d6f6eae0eda0569a02bb3265aa6",
+          "containerSHA256": "2e3544c2cb64aaabd086ba15afb498941fe81b3e1e8b0fbc75211769e9518186",
+          "createdByThisRun": true,
+          "csvWrittenAt": "2026-09-13T19:27:04.9447Z",
+          "listingStartedAt": "2026-09-13T19:27:04.8134516Z"
+        }
+      ]
+    },
+    "listingPath": "F:\\UE\\LyraDoc\\verification\\mmorpg-staged-presentation-files.log",
+    "listingSHA256": "74bf9f975d66ae1b208db17dc0bbf9c204b4bf2c598d730cdbfd2b2f470339b6"
+  },
+  "tagDrivenDispatch": {
+    "passed": true,
+    "scope": "Actual server RPC dispatch and GAS activation by granted dynamic spec tag",
+    "requiredSuccessfulTags": [
+      "InputTag.MMO.Spell"
+    ],
+    "events": [
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      }
+    ]
+  },
+  "movementBases": {
+    "passed": true,
+    "scope": "Native stable names for deterministic fixed zone geometry and absence of unresolved CharacterMovement base references",
+    "logs": [
+      {
+        "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Interactive\\server-2e331e23dd.log",
+        "unresolvedBaseMessages": 0,
+        "geometryObservationCount": 6,
+        "snapshotBytes": 91012,
+        "observedNames": [
+          "MMOZone_Floor",
+          "MMOZone_WallEast",
+          "MMOZone_WallWest",
+          "MMOZone_WallNorth",
+          "MMOZone_WallSouth",
+          "MMOZone_Obstacle"
+        ],
+        "snapshotSHA256": "722a8dd6f83e032bc762baf37340e47263dfa99faa08f6ed30a578fe87924102"
+      }
+    ]
+  },
+  "cleanupCompleted": true,
+  "completedAt": "2026-09-13T19:28:41.5734749Z"
+}

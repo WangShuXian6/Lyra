@@ -1,0 +1,21 @@
+---
+title: 角色、输入与表现的分工
+description: 从对象生命周期出发，理解按键、身体、相机、动画和外观的协作。
+---
+
+一个可操作角色由多个对象共同完成：LocalPlayer 代表本机用户，Controller 组织输入，PlayerState 持有较持久的能力状态，Pawn 在场景中移动，外观部件与动画负责可见表现。把它们都当成 Character 蓝图的一部分，会使重生和网络问题难以定位。
+
+## 阅读路径
+
+1. [玩家与 Pawn](/docs/03-character/player-pawn)：通过一次重生理解 ASC Owner/Avatar 与对象生命周期。
+2. [Enhanced Input](/docs/03-character/enhanced-input)：从硬件按键经过 IMC、InputConfig 和 InputTag 到技能。
+3. [相机、动画与外观](/docs/03-character/camera-animation)：理解 CameraMode、Linked Anim Layers 与装饰部件。
+4. [跳跃蓝图](/docs/03-character/jump-blueprint)：对照真实全图、节点文本和 C++ 父类阅读一个完整能力。
+
+## 小实验
+
+进入同一地图，依次测试视角移动、跳跃、换武器和死亡重生。为每次变化记录“输入来源、改变的逻辑对象、展示对象、清理时机”。重生后 Pawn 可以改变，本地设置却应仍可通过 LocalPlayer 查询；模型变了也不应让权威血量保存在装饰 Actor 上。
+
+本篇源码与资产基准为 2026-09-13 的 UE 5.8.1；蓝图文本来自编辑器原生导出。阅读文本与粘贴编译是不同验证步骤，相关边界在蓝图课说明。
+
+完成标准：能解释 Jump 为什么有原生父类和蓝图任务两层逻辑，并能定位输入失败是在 Action、Tag、AbilitySpec 还是激活条件。随后进入[GAS 与网络](/docs/04-gas)。

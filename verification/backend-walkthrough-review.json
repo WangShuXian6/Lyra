@@ -1,0 +1,158 @@
+{
+  "status": "documentation-and-read-only-preflight-passed",
+  "powershell": {
+    "parseErrors": [],
+    "blocks": 18,
+    "version": "7.6.5"
+  },
+  "dependencies": {
+    "files": [
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/bin/psql.exe",
+        "exists": true
+      },
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/bin/pg_isready.exe",
+        "exists": true
+      },
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/include/libpq-fe.h",
+        "exists": true
+      },
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/lib/libpq.lib",
+        "exists": true
+      },
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/bin/libpq.dll",
+        "exists": true
+      },
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/bin/libcrypto-3-x64.dll",
+        "exists": true
+      },
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/bin/libssl-3-x64.dll",
+        "exists": true
+      },
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/bin/libintl-9.dll",
+        "exists": true
+      },
+      {
+        "path": "D:/program/1-web/PostgreSQL/18/bin/libiconv-2.dll",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/.deps/sodium/libsodium/include/sodium.h",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/.deps/sodium/libsodium/x64/Release/v143/dynamic/libsodium.lib",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/.deps/sodium/libsodium/x64/Release/v143/dynamic/libsodium.dll",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/Binaries/Win64/MMOBackendService.exe",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/Binaries/Win64/libsodium.dll",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/Binaries/Win64/libpq.dll",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/Binaries/Win64/libcrypto-3-x64.dll",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/Binaries/Win64/libssl-3-x64.dll",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/Binaries/Win64/libintl-9.dll",
+        "exists": true
+      },
+      {
+        "path": "F:/UE/LyraDoc/examples/MMORPG/Binaries/Win64/libiconv-2.dll",
+        "exists": true
+      }
+    ],
+    "sodiumArchiveSha256": "3e03a726fac4bc09cb61d8f29d658ef7a5eca0811de59082130414f7ca2e4279",
+    "postgresVersion": "psql (PostgreSQL) 18.3",
+    "libsodiumVersion": "1.0.22"
+  },
+  "notExecuted": [
+    "Fresh Visual Studio/PostgreSQL installation",
+    "Fresh-host end-to-end replay",
+    "UBT rebuild",
+    "Database reinitialization or migration",
+    "Service start/stop/restart",
+    "Backup/restore exercise",
+    "Physical keyboard/gamepad verification",
+    "UE Project Settings screenshot collection"
+  ],
+  "schemaVersion": 1,
+  "engine": "UE 5.8.1 source",
+  "documentation": [
+    {
+      "sha256": "3fe18e285ed4fea78330f99b1a518a2f731b7cb662322b524cc693094b6a887c",
+      "path": "content/docs/10-backend/program-and-workers.mdx"
+    },
+    {
+      "sha256": "12c50527a11683cd16483ad733c92cf9fba2e9aac688cb2ce0ce7f7cbaad64cf",
+      "path": "content/docs/10-backend/database.mdx"
+    },
+    {
+      "sha256": "aa19859b54401e52582ecc9255d2515bd24da044ca7f23df84c14a465b94f6a1",
+      "path": "content/docs/10-backend/run-and-test.mdx"
+    },
+    {
+      "sha256": "92f0797ddd851411bf1326f6a9efdb4c2146d54166c59cb3ed7f526aa5a6d376",
+      "path": "content/docs/10-backend/deployment.mdx"
+    }
+  ],
+  "database": {
+    "ready": "127.0.0.1:5432 - accepting connections",
+    "readyExitCode": 0,
+    "privileges": "f|f|f",
+    "tables": [
+      "accounts",
+      "characters",
+      "game_leases",
+      "join_tickets",
+      "save_requests",
+      "schema_migrations",
+      "sessions"
+    ],
+    "queriesReadOnly": true,
+    "identity": "lyra_mmo_tutorial|lyra_mmo_service",
+    "versions": [
+      "1",
+      "2"
+    ]
+  },
+  "scope": "PowerShell code-block parser, local file existence, PostgreSQL metadata SELECTs and source-field review. No UBT build, database migration, account mutation, service restart or backup/restore performed.",
+  "reviewedAt": "2026-09-13T12:01:58.6640736Z",
+  "completedClarifications": [
+    "Repository backend path vs Labs gameplay path",
+    "VS workload and actual MSVC/SDK build evidence",
+    "PostgreSQL headers/import library/runtime DLLs",
+    "Pinned libsodium x64 v143 dynamic paths",
+    "Same-process build environment and separate pwsh inheritance",
+    "Complete Program Target and module registration/dependency graph",
+    "Hidden admin prompt and exact migration output",
+    "Read-only role/table/version confirmation",
+    "DPAPI role/server secret injection boundary",
+    "Backend health and graceful stop output",
+    "Client/server -MMOBackend and -MMOServerID vs Program environment",
+    "Default Start-Lab/Stop-Lab sequence",
+    "Backup and separate restore database commands with unexecuted status"
+  ]
+}

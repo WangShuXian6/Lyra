@@ -1,0 +1,77 @@
+{
+  "at": "2026-09-13T10:52:56.8782278Z",
+  "baseUrl": "http://127.0.0.1:8088",
+  "checks": [
+    {
+      "name": "database-backed health before concurrency tests",
+      "passed": true
+    },
+    {
+      "name": "create isolated concurrency account",
+      "passed": true
+    },
+    {
+      "name": "create owned concurrency character",
+      "passed": true
+    },
+    {
+      "name": "logout wins over already-waiting ticket issuance",
+      "passed": true
+    },
+    {
+      "name": "no post-logout ticket after ticket issuance",
+      "passed": true
+    },
+    {
+      "name": "logout wins over already-waiting character creation",
+      "passed": true
+    },
+    {
+      "name": "no post-logout ticket after character creation",
+      "passed": true
+    },
+    {
+      "name": "logout wins over already-waiting character listing",
+      "passed": true
+    },
+    {
+      "name": "no post-logout ticket after character listing",
+      "passed": true
+    },
+    {
+      "name": "issue ticket before replacement login",
+      "passed": true
+    },
+    {
+      "name": "replacement login revokes old unconsumed ticket",
+      "passed": true
+    },
+    {
+      "name": "issuance before redemption revokes old ticket without a lock cycle",
+      "passed": true
+    },
+    {
+      "name": "rejected old ticket created no lease",
+      "passed": true
+    },
+    {
+      "name": "redemption before issuance creates exactly one active account lease",
+      "passed": true
+    },
+    {
+      "name": "one lease after concurrent redemption and issuance",
+      "passed": true
+    },
+    {
+      "name": "release concurrency fixture lease",
+      "passed": true
+    },
+    {
+      "name": "ticket redemption rechecks revocation after waiting for logout",
+      "passed": true
+    }
+  ],
+  "failure": null,
+  "method": "Observed account-row lock waiters; no PostgreSQL global changes",
+  "sanitization": "Allowlisted timestamp, loopback service URL, fixed method, assertion names and booleans only; no fixture usernames, IDs, passwords, tokens or raw HTTP/database payloads."
+}

@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T20:55:30.4371902Z",
+  "passed": true,
+  "scope": "Final changed content and downloads on both real static exports; the earlier native browser report separately covers unchanged navigation, clipboard, themes and graph panning",
+  "testScriptSHA256": "cac2d8940840c3f00b2b4ad2d74932ffcdcc35800ca08259e3942723b208b4f4",
+  "exportReportSHA256": "83418b80e91f847b08c992cbf36d9e48ccc0cfb055b990f18f45d608fcf47a17",
+  "runs": [
+    {
+      "label": "root",
+      "passed": true,
+      "exitCode": 0,
+      "rawResultSHA256": "0f3d05c7415ee78f894d3f024393607c048f97a9bf02aae33c0728cb98edb6f8",
+      "browser": {
+        "at": "2026-09-13T20:55:36.905Z",
+        "basePath": "/",
+        "checks": [
+          {
+            "name": "Final tagged AbilitySet configuration image",
+            "passed": true,
+            "evidence": [
+              2560,
+              1200
+            ]
+          },
+          {
+            "name": "Final C++ input class is searchable",
+            "passed": true
+          },
+          {
+            "name": "Final symbol search deep refresh",
+            "passed": true,
+            "evidence": "http://127.0.0.1:3013/docs/08-mmorpg/character-gas/#%E4%B8%BA%E4%BB%80%E4%B9%88-asc-%E6%94%BE%E5%9C%A8-playerstate"
+          },
+          {
+            "name": "Final cooked Chinese settings screenshot",
+            "passed": true,
+            "evidence": [
+              1920,
+              1080
+            ]
+          },
+          {
+            "name": "Final gameplay screenshot zoom and return",
+            "passed": true
+          },
+          {
+            "name": "Final packaged training screenshot",
+            "passed": true,
+            "evidence": [
+              1920,
+              1080
+            ]
+          },
+          {
+            "name": "Both browser-fetched tutorial archives match published SHA-256",
+            "passed": true,
+            "evidence": [
+              {
+                "filename": "lyra-mmorpg-examples.tar.gz",
+                "bytes": 481882,
+                "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
+                "matches": true
+              },
+              {
+                "filename": "lyra-training-examples.tar.gz",
+                "bytes": 105559,
+                "sha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a",
+                "matches": true
+              }
+            ]
+          },
+          {
+            "name": "Final localization chapter mobile deep refresh",
+            "passed": true
+          },
+          {
+            "name": "No final-content browser or HTTP errors",
+            "passed": true,
+            "evidence": []
+          }
+        ],
+        "scope": "Final changed content and downloads; the separate 24/25-check browser run covers unchanged navigation, clipboard, themes, native graph panning and mobile controls.",
+        "runtimeErrors": []
+      }
+    },
+    {
+      "label": "pages",
+      "passed": true,
+      "exitCode": 0,
+      "rawResultSHA256": "1deb128dd16381758b7462f07228c18ce398feab8f88224deb9a7d932b73a08e",
+      "browser": {
+        "at": "2026-09-13T20:55:51.37Z",
+        "basePath": "/Lyra",
+        "checks": [
+          {
+            "name": "Final tagged AbilitySet configuration image",
+            "passed": true,
+            "evidence": [
+              2560,
+              1200
+            ]
+          },
+          {
+            "name": "Final C++ input class is searchable",
+            "passed": true
+          },
+          {
+            "name": "Final symbol search deep refresh",
+            "passed": true,
+            "evidence": "http://127.0.0.1:3014/Lyra/docs/08-mmorpg/character-gas/#%E4%B8%BA%E4%BB%80%E4%B9%88-asc-%E6%94%BE%E5%9C%A8-playerstate"
+          },
+          {
+            "name": "Final cooked Chinese settings screenshot",
+            "passed": true,
+            "evidence": [
+              1920,
+              1080
+            ]
+          },
+          {
+            "name": "Final gameplay screenshot zoom and return",
+            "passed": true
+          },
+          {
+            "name": "Final packaged training screenshot",
+            "passed": true,
+            "evidence": [
+              1920,
+              1080
+            ]
+          },
+          {
+            "name": "Both browser-fetched tutorial archives match published SHA-256",
+            "passed": true,
+            "evidence": [
+              {
+                "filename": "lyra-mmorpg-examples.tar.gz",
+                "bytes": 481882,
+                "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
+                "matches": true
+              },
+              {
+                "filename": "lyra-training-examples.tar.gz",
+                "bytes": 105559,
+                "sha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a",
+                "matches": true
+              }
+            ]
+          },
+          {
+            "name": "Final localization chapter mobile deep refresh",
+            "passed": true
+          },
+          {
+            "name": "No final-content browser or HTTP errors",
+            "passed": true,
+            "evidence": []
+          }
+        ],
+        "scope": "Final changed content and downloads; the separate 24/25-check browser run covers unchanged navigation, clipboard, themes, native graph panning and mobile controls.",
+        "runtimeErrors": []
+      }
+    }
+  ],
+  "error": null,
+  "completedAt": "2026-09-13T20:55:59.9421988Z"
+}

@@ -1,0 +1,280 @@
+---
+title: 角色初始化、GAS 与基础战斗
+description: 用 PlayerState 上的 ASC、服务器验证和真实 GameplayEffect 实现普通攻击与消耗技能。
+---
+
+## 学习目标与前置条件
+
+本篇建立“输入 → RPC → 服务器能力 → 状态复制 → UI”的完整链路。先完成插件迁移，理解 ASC、GameplayAbility、GameplayEffect 和 Owner/Avatar。核对基准为本机 **UE 5.8.1 / 2026-09-13**，教学源码位于 `MMOGameplay.h/.cpp`。
+
+## 为什么 ASC 放在 PlayerState
+
+![真实 Designer HUD 显示奥术箭施放后法力 80、目标生命 60、剩余冷却 2.6 秒，目标反击使玩家生命降为 75](/media/mmorpg/mmo-A-skill.png)
+
+图：2026-09-13 最终 Designer/Manny 运行轮次，UE 5.8.1，原生 1920×1080、Medium。角色类为 `/Game/Tutorial/BP_MMOCharacter`，奥术箭由 `/Game/Tutorial/GA_ArcaneBolt` 提供，字段显示来自 `/Game/UI/WBP_PlayerHUD` 的实际 MVVM 绑定。
+
+本实验 `UMMOSpellAbility` 的实际结果：服务器确认施放，GameplayEffect 扣除 20 法力并产生冷却，目标生命从 100 变为 60；HUD 通过复制与 ViewModel 更新。UE 5.8.1，2026-09-13，1920×1080、中等画质，`/Engine/Maps/Entry` 加载 MMOCore 区域。
+
+Lyra 的 `ALyraPlayerState` 创建 ASC，并使用 Mixed 复制模式。PawnExtension 把 PlayerState 作为 Owner、当前 Pawn 作为 Avatar。角色死亡或更换 Pawn 后，玩家身份、属性容器和服务器会话可以继续存在。
+
+实验沿用这个职责划分：`AMMOPlayerState` 创建 `UMMOAbilitySystemComponent` 和 `UMMOAttributes`。服务器 `PossessedBy`、客户端 `OnRep_PlayerState` 都调用统一初始化函数。它们解决不同机器上的不同到达次序，不能只实现其中一个。
+
+`UMMOPawnExtensionComponent` 管理 ASC 的 Avatar 与四阶段初始化。能力由 PlayerState 根据 PawnData 的 AbilitySets 在服务器授予，授予句柄也由 PlayerState 持有；换 Pawn 不重复授予，PlayerState 结束时统一撤销。只有 ASC 的当前 Avatar 仍是旧 Pawn 时，旧组件才清空 Avatar，避免延迟销毁抹掉新绑定。
+
+```cpp title="MMOGameplay.cpp：服务器和客户端共享的 ASC 连接"
+void AMMOCharacter::InitializeAbilitySystem()
+{
+    if (auto* PS = GetPlayerState<AMMOPlayerState>())
+    {
+        PawnExtension->InitializeAbilitySystem(PS->ASC, PS);
+    }
+    else
+    {
+        UninitializeAbilitySystem();
+    }
+}
+```
+
+上段在 PlayerState 存在时连接 Owner/Avatar，缺失时通过 `UninitializeAbilitySystem` 解除旧连接；PawnExtension 已由角色构造函数创建。`MMOExperienceGameplay.cpp` 中 `AMMOPlayerState::SetPawnData` 才调用 AbilitySet 的 `GrantToAbilitySystem`。实现需要 `MMOGameplay.h`、`AbilitySystemComponent.h`、`MMOPawnExtensionComponent.h`；模块依赖包括 GameplayAbilities、GameplayTags、GameplayTasks、MMOFramework。先在服务器授予，再生成 Pawn、完成组件初始化，最后把 `bSessionReady` 置为 true。
+
+## 手工创建角色、技能和目标蓝图
+
+在已成功构建的 MMORPG 编辑器中执行下面步骤；`prepare_content.py` 完成相同的创建、编译和保存。若资产已经生成，直接打开并核对，不要另建同名带数字后缀的资产。
+
+1. Content Browser `/Game` 下新建 `Tutorial` 文件夹，右键 **Blueprint Class → All Classes**，搜索 `MMOCharacter`，创建 `BP_MMOCharacter`。打开 **Class Settings**，Parent Class 应为 `/Script/MMORPG.MMOCharacter`。
+2. 在 Components 中展开继承组件：CapsuleComponent、CharacterMovement、Mesh、PawnExtension、SpringArm、Camera。选择 Mesh，Skeletal Mesh Asset 设 `SKM_Manny_Simple`，Animation Mode 为 Use Animation Blueprint，Anim Class 为 `ABP_MMOCharacter`；网格本地 Z 为胶囊半高的负值、Yaw=-90。准确来源与主图、层图创建步骤见[角色与动画](/docs/08-mmorpg/animation)。Class Defaults 确认 Replicates=true，Compile、Save。
+3. 同一文件夹右键 Blueprint Class → All Classes，搜索 `MMOSpellAbility`，创建 `GA_ArcaneBolt`。Class Defaults 中查看 Instancing Policy=`Instanced Per Actor`、Net Execution Policy=`Server Only`、Cost Gameplay Effect Class=`MMOSpellCost`、Cooldown Gameplay Effect Class=`MMOSpellCooldown`。这些值继承自 C++，不要把 Cost/Cooldown 清空。Compile、Save。
+4. 同样创建 `BP_MMOTrainingTarget`，父类 `MMOTarget`。Class Defaults 确认 Replicates=true；Components 里观察目标静态网格和碰撞。Health 初始 100 来自 `MMOGameplay.h`，该字段没有 EditAnywhere 标记，不能在 Details 中填写；运行时通过复制与目标 HUD 观察。Compile、Save。
+5. 关闭三个资产编辑器，再从 Content Browser 打开，确认路径分别为 `/Game/Tutorial/BP_MMOCharacter`、`GA_ArcaneBolt`、`BP_MMOTrainingTarget`，编译状态为绿色。
+
+`BP_MMOCharacter` 是 PawnData 实际选择的角色类，`GA_ArcaneBolt` 是 AbilitySet 的第二项能力，修改后会进入实际玩法。它们的连接点见下节。训练目标目前由区域组件创建原生 `MMOTarget`；`BP_MMOTrainingTarget` 保留为可替换子类教学资产，单独保存该子类不会替换区域组件的生成类型。
+
+## 逐项创建 Experience、PawnData 与 AbilitySet
+
+这些都是 Data Asset 实例，创建后保存，无需点 Blueprint Compile。先完成角色和技能蓝图，再创建数据依赖。先复制项目的 `DefaultGameplayTags.ini`；完全手动配置时，先在 Project Settings → Gameplay Tags 注册 `InputTag.MMO.Attack` 与 `InputTag.MMO.Spell`，确保下面的标签选择器里存在这两项。
+
+1. Content Browser 新建 `/Game/MMO/Abilities`，右键 Miscellaneous → Data Asset，选择 `MMOAbilitySet`，命名 `DA_MMOAbilities`。展开 Granted Abilities 添加两项：第 0 项 Ability=`MMOAttackAbility`、Level=1、Input ID=-1、Input Tag=`InputTag.MMO.Attack`；第 1 项 Ability=`GA_ArcaneBolt`、Level=1、Input ID=-1、Input Tag=`InputTag.MMO.Spell`。`-1` 对应 `INDEX_NONE`，运行时按已授予 Spec 的动态来源标签分发；Granted Effects 和 Granted Attributes 留空，因为 PlayerState 创建属性容器、数据库加载初始值。保存。
+
+![DA_MMOAbilities 原生 Details 展开两个 Granted Abilities，两项 Input ID 均为负一，普通攻击与 GA_ArcaneBolt 分别配置 InputTag.MMO.Attack 和 InputTag.MMO.Spell，Level 均为一](/media/configuration/mmorpg/ability-set-grants.png)
+
+图：`/Game/MMO/Abilities/DA_MMOAbilities`。点击每个索引左侧的三角形展开四个字段；两项 Input ID 均为 -1，分别选择 Attack、Spell 的完整 Input Tag。后面 InputConfig 的相应动作使用完全相同的标签；只修改动作标签而不修改技能授予标签，会找不到可激活的 Spec。
+
+2. 新建 `/Game/MMO/Pawns/DA_MMOPlayer`，类型 `MMOPawnData`。Pawn Class=`BP_MMOCharacter`，Ability Sets 添加 `DA_MMOAbilities`，Anim Instance Class=`ABP_MMOCharacter`。下节创建输入资产后再填 Input Config=`DA_MMOInputConfig`、Input Mapping Context=`IMC_MMOPlayer`，保存。
+
+![DA_MMOPlayer 原生 Details 显示 BP_MMOCharacter、DA_MMOAbilities、IMC_MMOPlayer、DA_MMOInputConfig 和 ABP_MMOCharacter 五个真实引用](/media/configuration/mmorpg/pawn-data-class-input-animation.png)
+
+图：`/Game/MMO/Pawns/DA_MMOPlayer` 的最终配置。Ability Sets 是数组，其余四项是单个引用；选择框中的同名资产必须位于本节指定的目录。输入资产尚未创建时，可先保存，再按下节完成后回填两项输入引用。图中的 `ABP_MMOCharacter` 是类引用，而不是 Manny 网格资产。
+
+3. 新建 `/Game/MMO/Experiences/DA_MMOExperience`，类型 `MMOExperienceDefinition`。Default Pawn Data=`DA_MMOPlayer`，Game Features To Enable 新增字符串 `MMOCore`，Action Sets 保持空，保存。
+
+![DA_MMOExperience 原生 Details 显示 Default Pawn Data 为 DA_MMOPlayer、Game Features to Enable 唯一一项 MMOCore、Action Sets 和 Actions 均为空](/media/configuration/mmorpg/experience-default-pawn-feature.png)
+
+图：`/Game/MMO/Experiences/DA_MMOExperience`。在 Game Features to Enable 右侧点击加号增加一个元素，填插件名 `MMOCore`。这里不是填写地图路径或角色类。当前 Actions 与 Action Sets 都为 0，区域添加行为来自 MMOCore 的 GameFeatureData。
+
+4. Project Settings → Asset Manager 的 Primary Asset Types to Scan 中，Primary Asset Type=`MMOExperience` 对应 Asset Base Class=`MMOExperienceDefinition`；`MMOPawnData`、`MMOAbilitySet`、`MMOInputConfig` 才分别对应同名原生类。四项依次扫描 `/Game/MMO/Experiences`、`/Game/MMO/Pawns`、`/Game/MMO/Abilities`、`/Game/MMO/Input`，全部 Has Blueprint Classes=false、Is Editor Only=false、Cook Rule=Always Cook。`MMOExperience` 是 `UMMOExperienceDefinition::GetPrimaryAssetId()` 返回的类型名，不是可供选择的原生类名。
+5. 打开 `/Game/MMO/BP_MMOGameMode`，在 Class Defaults 核对 Default Experience=`MMOExperience:DA_MMOExperience`，然后 Compile、Save；它继承 `AMMOGameMode`，也是 Maps & Modes 实际选用的 GameMode。更换 Experience 时，类型和资产名必须与 Asset Manager 精确对应。角色最终由 Experience 的 PawnData 决定，不要同时在 GameMode 中硬编码另一套 Default Pawn Class。
+
+以上三张是 2026-09-13 在 UE 5.8.1 实验工程中原生采集的资产 Details。AbilitySet 标签更新图为 2560×1200，PawnData 与 Experience 图为 2100×1000；`source-evidence/configuration-mmorpg.json` 逐项记录采集时间、资产路径与 SHA。它们证明这些配置的实际值，运行时初始化顺序另结合下述日志验证。
+
+GameState 的 ExperienceManager 先异步加载依赖闭包，再激活 MMOCore；GameMode 同时等待 Experience Ready 和后端角色加载完成。PawnExtension 依次推进 Spawned、DataAvailable、DataInitialized、GameplayReady，本地玩家在 DataAvailable 收到输入资源后绑定动作。日志中应先出现 Experience Ready，再出现 `MMO GameplayReady character` 和客户端 `MMO input ready`。
+
+UI 标签来自 `Config/DefaultGameplayTags.ini`，两个 Cooldown 标签由 `MMOGameplay.cpp` 的 UE_DEFINE_GAMEPLAY_TAG_STATIC 注册：Project Settings → Gameplay Tags 中检查 `Cooldown.MMO.Attack`、`Cooldown.MMO.Spell`、`UI.Layer.Game`、`UI.Layer.Menu`、`UI.Layer.Modal`、`UI.Slot.Status` 均存在。不要拼成不同大小写或漏掉层级；代码的 RequestGameplayTag 需要先有有效的标签注册。
+
+## 属性复制与变化通知
+
+`Health` 与 `Mana` 使用 `FGameplayAttributeData`，RepNotify 中调用 `GAMEPLAYATTRIBUTE_REPNOTIFY`。这一步不仅更新数值，还让 ASC 的属性委托得到变化通知，后面的 ViewModel 才能正确更新。
+
+```cpp title="MMOGameplay.cpp：Mana 的 RepNotify"
+void UMMOAttributes::OnRep_Mana(const FGameplayAttributeData& Old)
+{
+    GAMEPLAYATTRIBUTE_REPNOTIFY(UMMOAttributes, Mana, Old);
+}
+```
+
+本切片最大生命和法力均为 100。真实项目若需要装备加成、等级成长和最大值变化，应增加 MaxHealth/MaxMana 属性，并明确最大值变化时当前值采用的规则。
+
+## 输入与目标选择
+
+实验实际使用 `/Game/MMO/Input` 中的 InputAction、MappingContext 和 InputConfig 资产。`MMOInputGameplay.cpp` 在依赖加载完成后按标签找到动作；运行时不生成临时游戏输入资产。WASD/左摇杆控制移动，右键拖动或右摇杆控制镜头；Tab/Y 选择附近目标，1/A 普通攻击，2/X 奥术箭。
+
+1. 在 `/Game/MMO/Input` 右键 Input → Input Action，创建 `IA_Move`、`IA_Look`，Value Type 都设 Axis2D；创建 `IA_Target`、`IA_Attack`、`IA_Spell`、`IA_Inventory`、`IA_Settings`，Value Type 为 Digital (bool)。逐个 Save。
+
+每创建一个动作，就双击它，在 **操作（Action）→ 值类型（Value Type）** 选择相应类型。下面是七个资产逐一打开的真实结果。此阶段 Triggers 和 Modifiers 保持空；方向变换放在 Mapping Context 的具体按键上，避免影响同一动作的手柄轴。
+
+![IA_Move 输入动作的值类型为 Axis2D Vector2D，动作级 Triggers 和 Modifiers 均为空](/media/configuration/mmorpg/input-action-move.png)
+
+`/Game/MMO/Input/IA_Move`：Axis2D，X 表示左右，Y 表示前后。不要用 Digital，否则原生 `Value.Get<FVector2D>()` 无法按预期读取移动轴。
+
+![IA_Look 输入动作的值类型为 Axis2D Vector2D](/media/configuration/mmorpg/input-action-look.png)
+
+`/Game/MMO/Input/IA_Look`：Axis2D，承接鼠标 XY 和右摇杆两个方向量。
+
+![IA_Target 输入动作的值类型为 Digital bool](/media/configuration/mmorpg/input-action-target.png)
+
+`/Game/MMO/Input/IA_Target`：Digital，按下时选择目标。
+
+![IA_Attack 输入动作的值类型为 Digital bool](/media/configuration/mmorpg/input-action-attack.png)
+
+`/Game/MMO/Input/IA_Attack`：Digital，按下时请求普通攻击。
+
+![IA_Spell 输入动作的值类型为 Digital bool](/media/configuration/mmorpg/input-action-spell.png)
+
+`/Game/MMO/Input/IA_Spell`：Digital，按下时请求奥术箭；是否能成功由服务器的消耗、冷却和目标校验决定。
+
+![IA_Inventory 输入动作的值类型为 Digital bool](/media/configuration/mmorpg/input-action-inventory.png)
+
+`/Game/MMO/Input/IA_Inventory`：Digital，用于打开背包菜单。
+
+![IA_Settings 输入动作的值类型为 Digital bool](/media/configuration/mmorpg/input-action-settings.png)
+
+`/Game/MMO/Input/IA_Settings`：Digital，用于打开设置菜单，包括死亡等待期间。上述五个 Digital 动作绑定 `Started`，每次按下触发一次；移动和视角绑定持续的 `Triggered`。
+
+2. 创建 Input Mapping Context `IMC_MMOPlayer`，填下表 17 条映射。Modifiers 中 Negate 使用默认 XYZ=true，Swizzle Input Axis Values 使用默认 YXZ；顺序按表从上到下。保存并重新打开核对。
+
+![IMC_MMOPlayer 原生编辑器展开七个动作，共显示 WASD 和左摇杆、鼠标与右摇杆、目标攻击技能及背包设置的17条映射](/media/configuration/mmorpg/input-mapping-all-17.png)
+
+图：`/Game/MMO/Input/IMC_MMOPlayer`。先在 Mappings 右侧点击加号选择 Input Action，再在该动作内添加物理按键；同一动作可以有多条映射。图中 `游戏手柄左摇杆2D轴` 与 `游戏手柄右摇杆2D轴` 是完整二维轴，不要拆成两个同名 Digital 动作。
+
+展开 A 键左侧的三角形，在 **修改器（Modifiers）** 添加 **否定（Negate）**，其 X、Y、Z 三项保持勾选：键盘原始正 X 输入变为负 X，得到向左移动。
+
+![IMC_MMOPlayer 的 A 键展开一个 Negate 修改器，X Y Z 均勾选](/media/configuration/mmorpg/input-mapping-a-negate.png)
+
+图：A 键只有一个 Negate，不加 Swizzle。D 键没有修改器，保留正 X。
+
+展开 W 键，添加 **拼合输入轴值（Swizzle Input Axis Values）**，排序（Order）选择 `YXZ`：键盘输入原先落在 X，交换后落在 Y，得到向前移动。
+
+![IMC_MMOPlayer 的 W 键展开 Swizzle Input Axis Values 修改器，Order 为 YXZ](/media/configuration/mmorpg/input-mapping-w-swizzle.png)
+
+图：W 键只有 Swizzle，Order=`YXZ`。这不是角色动画 BlendSpace 的速度轴设置，两处配置服务于不同系统。
+
+展开 S 键，按顺序添加两个修改器：索引 0 为 Negate，索引 1 为 Swizzle，Order=`YXZ`。先取反再换轴，结果是负 Y。
+
+![IMC_MMOPlayer 的 S 键展开两个修改器，先 Negate 且XYZ勾选，再 Swizzle 且Order为YXZ](/media/configuration/mmorpg/input-mapping-s-modifiers.png)
+
+图：S 键需要两个元素。不要把这两个修改器加到 IA_Move 资产的全局 Modifiers，否则左摇杆也会被取反和交换轴。完成全部 17 条映射后点击 Save。
+
+3. 创建 `MMOInputConfig` 类型 Data Asset `DA_MMOInputConfig`，Native Input Actions 添加 7 项，依次将动作关联 `InputTag.MMO.Move`、`.Look`、`.Target`、`.Attack`、`.Spell`、`.Inventory`、`.Settings`。先在 Gameplay Tags 设置注册这些完整标签，再从下拉选择，不能只写短名。
+
+![DA_MMOInputConfig 展开前四项，将 IA_Move Look Target Attack 分别关联同名 InputTag.MMO 语义标签](/media/configuration/mmorpg/input-config-move-look-combat.png)
+
+图：`/Game/MMO/Input/DA_MMOInputConfig` 的索引 0–3：`IA_Move → InputTag.MMO.Move`、`IA_Look → InputTag.MMO.Look`、`IA_Target → InputTag.MMO.Target`、`IA_Attack → InputTag.MMO.Attack`。此处选择动作资产和标签，不填写 W、Tab、1 等物理键。
+
+![DA_MMOInputConfig 展开后三项，将 IA_Spell Inventory Settings 关联 InputTag.MMO.Spell Inventory Settings](/media/configuration/mmorpg/input-config-spell-inventory-settings.png)
+
+图：同一资产的索引 4–6：Spell、Inventory、Settings 分别与同名语义标签关联。检查数组总数为 7，Save，再继续回填 PawnData。
+
+4. 回到 `DA_MMOPlayer` 填入这两个配置引用并 Save。Play 后用菜单打开/返回测试输入路由：Inventory、Settings 或 Modal 激活期间，角色的游戏动作入口拒绝处理输入；CommonUI 返回动作关闭当前界面并恢复焦点。
+
+| 动作 | 按键 | Modifiers |
+| --- | --- | --- |
+| IA_Move | D | 无 |
+| IA_Move | A | Negate |
+| IA_Move | W | Swizzle Input Axis Values |
+| IA_Move | S | Negate → Swizzle Input Axis Values |
+| IA_Move | Gamepad Left Thumbstick 2D-Axis | 无 |
+| IA_Look | Mouse XY 2D-Axis | 无 |
+| IA_Look | Gamepad Right Thumbstick 2D-Axis | 无 |
+| IA_Target | Tab、Gamepad Face Button Top（各一条） | 无 |
+| IA_Attack | 1、Gamepad Face Button Bottom（各一条） | 无 |
+| IA_Spell | 2、Gamepad Face Button Left（各一条） | 无 |
+| IA_Inventory | I、Gamepad Special Left / View（各一条） | 无 |
+| IA_Settings | P、Gamepad Special Right / Menu（各一条） | 无 |
+
+客户端选择最近的可用训练目标，把候选 Actor 交给 `ServerSelectTarget`。服务器再次验证目标距离；激活能力时还要重新验证目标生命、范围和视线。选择时有效的目标，在真正施法时可能已移动、死亡或被墙遮挡，所以不能只检查一次。
+
+实验使用服务器执行的技能，不实现客户端预测。这样读者先能清楚看到权威链路；引入 LocalPredicted 时，需要同时设计预测键、确认/拒绝反馈、客户端动画和回滚。Lyra 原有预测实现可作为后续参考。
+
+## 标签如何找到已授予的技能
+
+同一条 `InputTag.MMO.Spell` 连接两处资产：`DA_MMOInputConfig` 用它识别 `IA_Spell`，`DA_MMOAbilities` 用它标记授予的 `GA_ArcaneBolt`。PlayerState 创建 `UMMOAbilitySystemComponent`，AbilitySet 将标签写进 `FGameplayAbilitySpec.GetDynamicSpecSourceTags()`。按 2 或手柄左侧面键时，角色发送 `ServerActivate(InputTag.MMO.Spell)`；服务器从自己的 ASC 中查找已授予的 Spec，不接受客户端提交的技能类。
+
+`AMMOCharacter::ServerActivate_Implementation` 只接受 Attack、Spell 两个白名单标签，并检查服务器权威、后端会话、Pawn 初始化、生命以及 PlayerState/ASC/当前 Avatar 的归属。通过后才调用下列完整函数。它位于 `MMOFramework` 模块的 `Private/MMOAbilitySystemComponent.cpp`，声明在同模块 `Public/MMOAbilitySystemComponent.h`；该头文件包含 `AbilitySystemComponent.h`，模块依赖 `GameplayAbilities`。`MMORPG` 依赖 `MMOFramework`，在 PlayerState 构造函数里用 `CreateDefaultSubobject<UMMOAbilitySystemComponent>(TEXT("ASC"))` 创建实例。
+
+```cpp title="MMOAbilitySystemComponent.cpp：先收集句柄，再激活"
+bool UMMOAbilitySystemComponent::TryActivateAbilitiesByInputTag(const FGameplayTag& InputTag)
+{
+    if (!IsOwnerActorAuthoritative() || !InputTag.IsValid()) return false;
+    TArray<FGameplayAbilitySpecHandle> Handles;
+    {
+        ABILITYLIST_SCOPE_LOCK();
+        for (const FGameplayAbilitySpec& Spec : GetActivatableAbilities())
+            if (Spec.Ability && Spec.GetDynamicSpecSourceTags().HasTagExact(InputTag)) Handles.Add(Spec.Handle);
+    }
+    // Activation may invoke callbacks that add or remove specs. The list lock and traversal have ended.
+    bool bAnyActivated = false;
+    for (const FGameplayAbilitySpecHandle Handle : Handles)
+        if (TryActivateAbility(Handle)) bAnyActivated = true;
+    return bAnyActivated;
+}
+```
+
+技能激活可能通过回调增删 Spec，因此不能一边遍历未保护的数组，一边直接激活。这个通用 ASC 会处理同一标签匹配的所有句柄；“每标签恰好一项、Input ID=-1”是当前两个教学技能的配置和验收约束，不是框架对未来组合技能的限制。
+
+已有旧版实验工程的更新步骤：
+
+1. 正常关闭使用同一引擎的编辑器与 Live Coding，复制最新原创源码并编译 `MMORPGEditor`。
+2. 打开 `F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject`，停止 PIE。在 Output Log 的输入栏保持 **Cmd** 模式，执行 `py "F:/UE/LyraDoc/scripts/mmorpg/prepare-tagged-ability-inputs.py"`。
+3. 脚本只修改现有 `DA_MMOAbilities` 两项的 Input Tag/Input ID，然后保存这一资产。检查 `Saved/Evidence/mmorpg-tagged-ability-input-assets.json` 的 `passed=true`、`saved=true`、`native.onlyInputFieldsChanged=true`，再重新打开资产逐项核对。它不会重建能力数组或蓝图图表。
+4. 正常关闭编辑器，重新编译 Client/Server，再 Cook。新建工程使用最新生成器时已直接写入这些值，不需要先生成旧的数字编号。
+
+运行脚本会检查客户端实际收到的 ASC 类型、每个标签对应的 Spec 类和 `InputID=-1`，并检查服务器日志中的 `MMO_INPUT_DISPATCH`。重生、退出与重进后仍检查相同条件。只有资产字段正确不能证明技能已经授予或实际完成了服务器激活；实际结果以本轮验证报告为准。
+
+**2026-09-13 最终打包复验：** Editor、Client、Server 的标签输入实现均已原生编译；8 项主流程和 6 项死亡离服流程逐项核对实际复制的两份 Spec，类型为 `MMOAbilitySystemComponent`、Attack/Spell 各唯一一份、InputID=-1。服务器日志确认两种标签都实际激活，重生后没有新增重复授予；22 张图形采集也验证同一配置。汇总为 `verification/mmorpg-tagged-ability-input-runtime.json`。这两种 ServerOnly 瞬发技能的测试不包含 Held/Released 输入队列或本地预测。
+
+当前两个技能都是 **ServerOnly 瞬发技能**，没有实现 Lyra 的 Held/Released 输入队列、每帧 `ProcessAbilityInput` 或本地预测。扩展蓄力与 LocalPredicted 时，需要继续处理按下/释放、取消、预测键和确认/拒绝反馈，参照原 Lyra 的 GAS 章节。
+
+## 普攻与奥术箭
+
+| 能力 | 伤害 | 范围 | 消耗 | 冷却 |
+| --- | --- | --- | --- | --- |
+| 普通攻击 | 15 | 500 cm | 无 | 0.65 秒 |
+| 奥术箭 | 40 | 1200 cm | 20 法力 | 3 秒 |
+
+两种能力共享服务器目标验证。奥术箭指定 `UMMOSpellCost` 和 `UMMOSpellCooldown` 两种 GameplayEffect；能力通过 `CommitAbility` 检查并提交消耗和冷却，不直接从 UI 修改 Mana。
+
+```cpp title="MMOGameplay.cpp：真实 GAS 消耗效果"
+UMMOSpellCost::UMMOSpellCost()
+{
+    DurationPolicy = EGameplayEffectDurationType::Instant;
+    FGameplayModifierInfo Modifier;
+    Modifier.Attribute = UMMOAttributes::GetManaAttribute();
+    Modifier.ModifierOp = EGameplayModOp::Additive;
+    Modifier.ModifierMagnitude = FScalableFloat(-20.f);
+    Modifiers.Add(Modifier);
+}
+```
+
+冷却效果使用 HasDuration，并通过 `UTargetTagsGameplayEffectComponent` 授予 `Cooldown.MMO.Spell`。这是本机较新的 GameplayEffect component API；不要照抄旧版本教程中已废弃的配置方式。
+
+目标被击败后，服务器奖励 25 经验和一瓶药剂；经验每增加 100 升一级，目标五秒后恢复生命。背包只向所属客户端复制。使用药剂由服务器扣减数量并恢复最多 40 法力，数量为零的条目不会进入后端快照。
+
+## 玩家受伤、死亡与检查点重生
+
+实验中的训练目标在受到攻击且仍然存活时，会在下一帧用 `UMMOTargetRetaliation` 向攻击者施加一次真正的 GAS 即时效果，扣除 25 Health。下一帧执行让本次攻击先完成；生命归零时的 `CancelAllAbilities` 不会重入尚未结束的攻击能力。
+
+1. 在内容浏览器打开 `/Game/Tutorial/BP_MMOCharacter`，Components 面板确认继承了 `HealthComponent` 和 `PawnExtension`。这些组件由原生父类创建，不要再添加第二份。
+2. 打开 `/Game/Tutorial/GA_ArcaneBolt`，Class Defaults 中查看 Activation Blocked Tags 包含 `Status.MMO.Dead`。原生普通攻击也使用同一阻止标签；能力执行处还会验证生命、当前 Avatar 和 Pawn 初始化状态。
+3. 打开 `/Game/MMO/BP_MMOGameMode`，Class Defaults → Respawn，将 Respawn Delay 保持为 `3.0` 秒。Compile、Save。Experience 和 PawnData 不需要更换。
+4. 启动后端、独立服务器和两个客户端。让生命为 100 的玩家靠近一个满血目标，Tab 选中后间隔一秒按四次 1。每次目标存活时，玩家依次受到反击，生命变为 75、50、25、0。
+5. 生命为零时确认移动和攻击停止，HUD 显示检查点重生信息；此时 P 或手柄 Menu 仍可打开设置，菜单和弹窗会继续阻止游戏输入。
+6. 三秒后检查新角色在检查点出现，Health 恢复为 100。Mana、背包和经验保留；另一个客户端应观察到旧 Pawn 消失、新 Pawn 出现。
+
+`UMMOHealthComponent` 只观察本 Pawn 的 ASC 生命委托。死亡状态复制到客户端后停用移动和胶囊碰撞；有 PhysicsAsset 的图形客户端显示布娃娃。服务端把重生计时器交给 GameMode。到期时，GameMode 解除旧 Pawn 的控制、销毁旧 Pawn、清除死亡标签，然后通过同一个 Experience/PawnData 生成新 Pawn。
+
+PlayerState 和 ASC 始终保留，AbilitySet 由 PlayerState 授予一次。旧 Pawn 的 PawnExtension、HealthComponent 和动画实例解除各自的委托；新 Pawn 初始化完成后，Root ViewModel 重新观察新 Pawn，Designer 中已有的 MVVM 绑定继续接收 FieldNotify。不要在每次重生时再次 `GiveAbility`。
+
+死亡等待期间离服也有明确规则：最终存档允许 Health 为零；下一次加载这种存档时，服务器将 Health 恢复为 100，并采用检查点位置。Logout 会清除旧连接的重生计时器，因此离线角色不会被旧异步回调重新生成。验证时应分别执行正常三秒重生，以及生命归零后立即从设置退出再入服。
+
+源码定位：`MMOHealthComponent.h/.cpp`（生命观察与死亡复制）、`MMORespawnGameplay.cpp`（权威重生）、`MMOGameplay.cpp` 的 `LoadSnapshot`（死亡存档恢复）、`MMOUI.cpp` 的 `RefreshStatus`（本地化状态）。脚本的 `death-respawn` 轮会检查实际死亡观察、Pawn 替换、同一个 ASC、两项能力以及重生后的 Designer 绑定；最新实测结果以验证记录为准。
+
+## 操作与预期结果
+
+1. 完成注册、建角和入服，走到目标附近，按 Tab。
+2. 按 2，观察法力从 100 降为 80，HUD 冷却开始倒数；三秒内重复输入不应再次造成伤害或消耗。
+3. 普攻配合技能击败目标，确认经验增加、药剂进入背包；五秒后目标复活。
+4. 移到遮挡物后方，确认服务器视线检查阻止命中；另一个客户端应看到同一目标的生命变化。
+
+若只有服务器数值变化，检查属性复制、RepNotify 和 ASC Owner；若连续攻击未受冷却限制，检查能力的 CooldownGameplayEffectClass 和效果授予的标签；若背包 UI 不更新，检查 `OnRep_Progress` 是否到达 ViewModel。
+
+练习：新增一项恢复技能，通过 GameplayEffect 恢复生命并加上独立冷却。明确它是在目标验证之前还是之后提交消耗，再用失败场景验证没有无效扣费。
+

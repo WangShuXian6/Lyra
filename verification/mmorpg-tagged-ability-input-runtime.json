@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-13T19:34:21.381363+00:00",
+  "passed": true,
+  "scope": "Actual cooked Development Client/Server: tag-based Spec grants and authoritative activation, including respawn and logout/restore.",
+  "physicalInputTested": false,
+  "serverOnlyInstantAbilities": true,
+  "heldReleasedQueuesImplemented": false,
+  "localPredictionImplemented": false,
+  "tutorialConstraint": "One Spec per Attack/Spell tag and InputID=-1; the reusable ASC supports multiple matching Specs.",
+  "rounds": [
+    {
+      "report": "verification/mmorpg-packaged-smoke.json",
+      "clientResults": 8,
+      "tagGrantsVerified": true,
+      "successfulServerTags": [
+        "InputTag.MMO.Attack",
+        "InputTag.MMO.Spell"
+      ]
+    },
+    {
+      "report": "verification/mmorpg-packaged-death-logout.json",
+      "clientResults": 6,
+      "tagGrantsVerified": true,
+      "successfulServerTags": [
+        "InputTag.MMO.Attack",
+        "InputTag.MMO.Spell"
+      ]
+    }
+  ],
+  "totalClientResults": 14,
+  "renderedClients": 2,
+  "renderedNativeCaptures": 22,
+  "stableMovementBasesVerified": true,
+  "clientSHA256": "6ed3cfce7074437b3ff77e5ff670bd7f488fd24a31ba08c0cee5d61f2f9dd92d",
+  "serverSHA256": "ff1a284e72c79919ce4678daf233f36285e394f8be7771fb5dce0f529ad1dd43",
+  "evidence": [
+    {
+      "path": "verification/mmorpg-tagged-editor-build.json",
+      "sha256": "bf5e9d2b3c2a08ca1152ffb0bdb33967702f971a18012b29cbc281252e73d01a"
+    },
+    {
+      "path": "verification/mmorpg-tagged-client-build.json",
+      "sha256": "af7fabfd9f1593b09baf5d7e898dcce352443471f87d5d4ddd9a1e74c7d1ffa3"
+    },
+    {
+      "path": "verification/mmorpg-tagged-server-build.json",
+      "sha256": "d849d91b0ce6982ed2f558342fd0d4d87fb844a92c87421341c05846af50bbf7"
+    },
+    {
+      "path": "verification/mmorpg-stable-zone-editor-toolsets-build.json",
+      "sha256": "9d5409a3794138a7fd0d56b1b489895bf33f18888544250e07adc79aee10081a"
+    },
+    {
+      "path": "verification/mmorpg-stable-zone-client-build.json",
+      "sha256": "64435f9655d6903b7a1615a5edfd39b362800e8c502dc1b955a5b40188987cb9"
+    },
+    {
+      "path": "verification/mmorpg-stable-zone-server-build.json",
+      "sha256": "b13fbfa1539037e163540da7fa06b35507efce55b8319912e8cfa329eeade392"
+    },
+    {
+      "path": "verification/mmorpg-tagged-ability-input-assets.json",
+      "sha256": "e1b802b3cedd26a45f42ed6824a9c5db79cbdaedbc7b4e599bbd8acb196ac65e"
+    },
+    {
+      "path": "verification/mmorpg-package.json",
+      "sha256": "af8bc0a799bc4a87386b1f6bacc09689b7c8572d103a8b1f209c93d5e04c930b"
+    },
+    {
+      "path": "verification/mmorpg-packaged-smoke.json",
+      "sha256": "99c3b43ef84be8b09674b78db44f0af4fcf92d23ea2412eb0bb465dd2092e81d"
+    },
+    {
+      "path": "verification/mmorpg-packaged-death-logout.json",
+      "sha256": "9fd8095703f335f1008a9c30e1333066058b632701f7265162144edbba3bc9f7"
+    },
+    {
+      "path": "verification/mmorpg-packaged-rendered-showcase.json",
+      "sha256": "57329a5410a60f744ee58c237c7dafd264fde50f3c4b2f863e7548c19f7d756c"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "module": "MMOFramework",
+  "engine": "UE 5.8.1",
+  "implementationStatus": "Tag-driven input passed native Editor, Client and Server builds, the two-row DataAsset save, and final cooked runtime validation. At 2026-09-13 19:26:04 UTC all eight packaged smoke results passed with UMMOAbilitySystemComponent tag grants and backend restart; at 19:26:58 UTC all six death/logout results passed. The final packaged rendered showcase also passed with cleanup completed. These reports cover their stated scenarios, not every item in validationRequired.",
+  "dependencyDirection": "MMORPG -> MMOFramework -> Engine/GAS/GameFeatures/ModularGameplay/EnhancedInput. MMOFramework never depends on MMORPG, backend, LyraGame or ShooterCore.",
+  "assets": [
+    {
+      "class": "/Script/MMOFramework.MMOExperienceDefinition",
+      "path": "/Game/MMO/Experiences/DA_MMOExperience",
+      "primaryAssetId": "MMOExperience:DA_MMOExperience",
+      "kind": "DataAsset",
+      "fields": {
+        "DefaultPawnData": "/Game/MMO/Pawns/DA_MMOPlayer",
+        "GameFeaturesToEnable": [
+          "MMOCore"
+        ],
+        "ActionSets": "optional MMOExperienceActionSet soft assets; empty is valid when GameFeatureData supplies its own actions",
+        "Actions": "optional instanced UGameFeatureAction objects"
+      }
+    },
+    {
+      "class": "/Script/MMOFramework.MMOPawnData",
+      "path": "/Game/MMO/Pawns/DA_MMOPlayer",
+      "primaryAssetId": "MMOPawnData:DA_MMOPlayer",
+      "kind": "DataAsset",
+      "fields": {
+        "PawnClass": "/Script/MMORPG.MMOCharacter or the actual teaching hero Blueprint generated class",
+        "AbilitySets": [
+          "/Game/MMO/Abilities/DA_MMOAbilities"
+        ],
+        "InputMappingContext": "optional real UInputMappingContext asset; consumers add/remove it by local-player lifecycle",
+        "AnimInstanceClass": "optional real compatible UAnimInstance generated class; consumer applies it to the mesh",
+        "InputConfig": "/Game/MMO/Input/DA_MMOInputConfig; client asynchronous dependency closure includes each soft InputAction"
+      }
+    },
+    {
+      "class": "/Script/MMOFramework.MMOAbilitySet",
+      "path": "/Game/MMO/Abilities/DA_MMOAbilities",
+      "primaryAssetId": "MMOAbilitySet:DA_MMOAbilities",
+      "kind": "DataAsset",
+      "fields": {
+        "GrantedAbilities": [
+          {
+            "Ability": "/Script/MMORPG.MMOAttackAbility",
+            "Level": 1,
+            "InputID": -1,
+            "InputTag": "InputTag.MMO.Attack"
+          },
+          {
+            "Ability": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+            "Level": 1,
+            "InputID": -1,
+            "InputTag": "InputTag.MMO.Spell"
+          }
+        ],
+        "GrantedEffects": [],
+        "GrantedAttributes": []
+      }
+    },
+    {
+      "class": "/Script/MMOFramework.MMOExperienceActionSet",
+      "path": "/Game/MMO/Experiences/LAS_MMOComponents",
+      "primaryAssetId": "MMOActionSet:LAS_MMOComponents",
+      "kind": "optional DataAsset",
+      "fields": {
+        "GameFeaturesToEnable": [],
+        "Actions": "Add Components/Add Widgets actions from actual available framework classes; no invented field values"
+      }
+    },
+    {
+      "class": "/Script/MMOFramework.MMOInputConfig",
+      "path": "/Game/MMO/Input/DA_MMOInputConfig",
+      "primaryAssetId": "MMOInputConfig:DA_MMOInputConfig",
+      "kind": "DataAsset",
+      "fields": {
+        "NativeInputActions": [
+          "IA_Move=InputTag.MMO.Move",
+          "IA_Look=InputTag.MMO.Look",
+          "IA_Target=InputTag.MMO.Target",
+          "IA_Attack=InputTag.MMO.Attack",
+          "IA_Spell=InputTag.MMO.Spell",
+          "IA_Inventory=InputTag.MMO.Inventory",
+          "IA_Settings=InputTag.MMO.Settings"
+        ]
+      }
+    }
+  ],
+  "manager": {
+    "header": "MMOExperienceManagerComponent.h",
+    "host": "AMMOGameState : AModularGameStateBase; CreateDefaultSubobject<UMMOExperienceManagerComponent> on every server/client GameState",
+    "select": "SetCurrentExperience(FPrimaryAssetId(TEXT(\"MMOExperience\"),TEXT(\"DA_MMOExperience\"))) -> bool; server only; one selection per world; repeat same ID is idempotent",
+    "ready": "CallOrRegister_OnReady(FOnMMOExperienceReady::FDelegate) immediately calls when ready, otherwise registers; weak/UObject-bound delegate recommended",
+    "read": "IsExperienceReady(), GetCurrentExperience(), GetPawnData(), GetSelectedExperienceId(), LoadState, FailureReason",
+    "failure": "OnExperienceFailed(Blueprint event), LogMMOExperience, 60-second load deadline; no Ready on error",
+    "ordering": "Resolve selected asset -> asynchronous soft dependency closure -> reference-counted GameFeature activation -> per-world instanced Actions -> Ready -> notify existing PawnExtensions. No fixed Delay.",
+    "teardown": "Cancel pending streamable requests; deactivate owned actions in reverse order; retain strong actions/loaded handles until asynchronous pausers finish; unregister actions; release process-scoped plugin counts. Do not separately own the same feature from the old GameInstance loader.",
+    "gameFeatureInitialState": "MMOCore .uplugin BuiltInInitialFeatureState=Registered; Experience owns runtime activation/release, old GameInstance loader removed."
+  },
+  "playerState": {
+    "headers": [
+      "MMOPawnData.h",
+      "MMOAbilitySet.h",
+      "MMOAbilitySystemComponent.h"
+    ],
+    "ownership": "Replicate selected PawnData on PS or assign replicated PawnExtension.PawnData on every spawned server Pawn. Keep one FMMOGrantedAbilityHandles per configured AbilitySet on the authority PS.",
+    "initialization": "Create UMMOAbilitySystemComponent as the PlayerState ASC default subobject, then ASC->InitAbilityActorInfo(this, GetPawn()) before grants; nullptr avatar is allowed while waiting for backend/Experience. Existing UMMOAttributes default subobject remains authoritative; leave GrantedAttributes empty to avoid a second instance of the same class.",
+    "grant": "LoadedSet->GrantToAbilitySystem(ASC,this,Handles) -> bool. All soft classes must already be loaded by Experience. Rejects non-authority or reusing a nonempty handle ownership slot. InputID is copied to FGameplayAbilitySpec.InputID; InputTag to GetDynamicSpecSourceTags().",
+    "cleanup": "Handles.TakeFromAbilitySystem(ASC) when replacing selected pawn data or releasing owning player/equipment. Do not remove PS-owned default grants merely because its pawn dies. Instant effects are not reversible by an active-effect handle."
+  },
+  "gameMode": {
+    "requiredGate": "A player may spawn only when BOTH ExperienceManager.IsExperienceReady() and its backend-authenticated PlayerState.bSessionReady are true.",
+    "onExperienceReady": "Configure each valid player's PawnData/default grants and call the shared TryStartPlayer gate. Backend-load completion calls that same gate; either callback may arrive first.",
+    "pawnClass": "GetDefaultPawnClassForController_Implementation returns ExperienceManager.GetPawnData()->PawnClass.Get() after Ready, not LoadSynchronous during login.",
+    "spawn": "On server, set PawnExtension.SetPawnData(the loaded selected data) before or immediately after possession; CheckDefaultInitialization handles order. Do not restore the previous unconditional hard-coded GiveAbility path."
+  },
+  "pawnExtension": {
+    "header": "MMOPawnExtensionComponent.h",
+    "host": "CreateDefaultSubobject<UMMOPawnExtensionComponent> in AMMOCharacter",
+    "api": [
+      "SetPawnData(UMMOPawnData*) -> bool, authority-only replicated immutable choice",
+      "InitializeAbilitySystem(UAbilitySystemComponent*, AActor* OwnerActor) -> bool",
+      "UninitializeAbilitySystem()",
+      "HandleControllerChanged()",
+      "HandlePlayerStateReplicated()",
+      "SetupPlayerInputComponent()",
+      "GetPawnData(), GetAbilitySystemComponent(), IsPawnReady()"
+    ],
+    "hooks": {
+      "PossessedBy": "Super, InitializeAbilitySystem(PS.ASC,PS), HandleControllerChanged",
+      "OnRep_PlayerState": "Super, InitializeAbilitySystem(PS.ASC,PS), HandlePlayerStateReplicated",
+      "SetupPlayerInputComponent": "After actual Enhanced Input bindings, call extension.SetupPlayerInputComponent",
+      "UnPossessed/EndPlay": "UninitializeAbilitySystem; retain existing input context removal and delegate cleanup",
+      "BeginPlay": "Subscribe to OnDataAvailable before Super::BeginPlay; callback and SetupPlayerInputComponent both retry the same idempotent actual input binding."
+    },
+    "states": [
+      "InitState.Spawned: valid pawn",
+      "InitState.DataAvailable: selected PawnData, ready Experience, controller where authority/local pawn requires it",
+      "InitState.DataInitialized: ASC bound to this avatar, local player input prepared, all actor features at DataAvailable",
+      "InitState.GameplayReady: broadcasts after state manager has recorded the state"
+    ],
+    "events": [
+      "OnDataAvailable",
+      "OnAbilitySystemInitialized",
+      "OnAbilitySystemUninitialized",
+      "OnGameplayReady"
+    ],
+    "lateReplication": "Manager Ready checks all existing PawnExtensions in its world; PawnData replication, possession and input setup retry initialization. No per-frame polling.",
+    "oldPawnSafety": "Uninitialize only clears ASC avatar/cues/input if ASC.GetAvatarActor()==own pawn; an old pawn cannot detach a newer pawn.",
+    "dataAvailableEventTiming": "Broadcast from HandleChangeInitState before state manager records DataAvailable. Callback can bind input after checking Experience readiness/data/InputComponent, then set input-ready via extension.SetupPlayerInputComponent. Outer ContinueInitStateChain advances afterward; do not gate this callback on HasReachedInitState(DataAvailable)."
+  },
+  "validationRequired": [
+    "Editor/Client/Server native builds",
+    "Actual DataAsset creation, save, reopen and field screenshots",
+    "Delayed Experience/client asset loads do not spawn gameplay early",
+    "Backend ticket rejection still prevents entry",
+    "Two clients reach GameplayReady with correct ASC owner/avatar",
+    "One set of default grants before/after respawn",
+    "One PIE world leaving does not deactivate MMOCore for another",
+    "Missing soft asset/GF name produces failure and never Ready",
+    "Normal EndPlay clears action/input/UI listeners"
+  ],
+  "instruction": "This contract documents implementation and integration requirements. It does not assert that pending builds or runtime checks passed.",
+  "inputConfig": {
+    "header": "MMOInputConfig.h",
+    "entry": "FMMOTaggedInputAction: TSoftObjectPtr<UInputAction> InputAction, FGameplayTag InputTag",
+    "lookup": "UInputAction* FindInputActionForTag(FGameplayTag) const; exact match; only returns loaded objects; invalid or absent tags return nullptr",
+    "collection": "CollectAssetPaths(TArray<FSoftObjectPath>&) const",
+    "ownership": "PawnData.InputConfig and InputMappingContext; the client Experience closure loads config then its soft actions before Ready; dedicated server excludes input assets",
+    "binding": "Main character binds after both InputComponent and replicated loaded PawnData are available; retry from OnRep/Ready as needed; remove context/listeners on teardown"
+  },
+  "abilityInput": {
+    "header": "MMOAbilitySystemComponent.h",
+    "class": "/Script/MMOFramework.MMOAbilitySystemComponent",
+    "lookup": "TArray<FMMOGrantedAbilityInput> GetGrantedAbilitiesForInputTag(const FGameplayTag& InputTag); exact dynamic spec source-tag match; returns copied Handle, InputID and AbilityClassPath values, not pointers into the mutable ability list",
+    "activate": "bool TryActivateAbilitiesByInputTag(const FGameplayTag& InputTag); authority and valid tag required; collect all matching handles under ABILITYLIST_SCOPE_LOCK, release the lock, then call TryActivateAbility for every collected handle; returns whether any activation succeeded",
+    "multiplicity": "The reusable ASC supports multiple granted specs per input tag. The tutorial assets and smoke checks, not this generic method, require one Attack and one Spell spec with InputID=-1.",
+    "flow": "Physical key -> real InputAction -> InputConfig semantic tag -> AMMOCharacter.ServerActivate(FGameplayTag) -> existing PlayerState ASC dynamic source-tag match -> TryActivateAbility; no numeric slot or ability class is sent in this RPC",
+    "authorization": "AMMOCharacter.ServerActivate_Implementation accepts only Attack/Spell tags and checks authority, authenticated session, Pawn ready, alive health state, PS pawn, ASC owner/avatar and PawnExtension ASC identity before calling the generic ASC.",
+    "scope": "Current Attack and Spell are ServerOnly instant abilities. This change does not add held/released queues, per-frame ProcessAbilityInput or local-prediction support.",
+    "validation": "The native Editor/Client/Server targets, saved two-row DataAsset, and final eight-result packaged smoke passed. All eight runtime results recorded tagDrivenInput=true and valid UMMOAbilitySystemComponent grant snapshots; death/logout and rendered behavior have separate successful reports. No local-prediction or held/released behavior is claimed.",
+    "evidence": {
+      "editorBuild": "verification/mmorpg-tagged-editor-build.json",
+      "editorFinishedAt": "2026-09-13T18:42:13.4161017Z",
+      "assetSave": "verification/mmorpg-tagged-ability-input-assets.json",
+      "assetSavedAt": "2026-09-14T02:46:48.645031+08:00",
+      "assetSHA256": "2d9f46939392876b3b038ecb39ebaebccbc9f77dcf0c0434b7451ce299ef3626",
+      "assetBytes": 3588,
+      "gameplayExecutedByAssetOperation": false,
+      "nativeBuildReports": [
+        "verification/mmorpg-tagged-client-build.json",
+        "verification/mmorpg-tagged-server-build.json",
+        "verification/mmorpg-stable-zone-editor-toolsets-build.json",
+        "verification/mmorpg-stable-zone-client-build.json",
+        "verification/mmorpg-stable-zone-server-build.json"
+      ],
+      "packagedSmoke": "verification/mmorpg-packaged-smoke.json",
+      "packagedSmokeDate": "2026-09-13T19:26:04.7779436Z",
+      "packagedSmokePassedResults": 8,
+      "backendRestarted": true,
+      "deathLogout": "verification/mmorpg-packaged-death-logout.json",
+      "deathLogoutDate": "2026-09-13T19:26:58.8590119Z",
+      "deathLogoutPassedResults": 6,
+      "renderedShowcase": "verification/mmorpg-packaged-rendered-showcase.json",
+      "renderedCleanupCompleted": true,
+      "runtimeSummary": "verification/mmorpg-tagged-ability-input-runtime.json",
+      "physicalInputTested": false
+    }
+  },
+  "implementationHistory": [
+    "Framework including MMOInputConfig and OnDataAvailable integrated Editor compile passed; native assets (7 InputActions, 17 mappings) saved successfully 2026-09-13 13:05:28 UTC; integrated headless regression passed 6/6 at 13:12:04 UTC per verification owner. Graphical input/device behavior remains separately validated.",
+    "The tag-driven UMMOAbilitySystemComponent implementation and integration passed the native MMORPGEditor target on 2026-09-13 18:42:13 UTC (27 actions). The two existing DA_MMOAbilities grants were saved by the native editor at 18:46:48 UTC with exact Attack/Spell tags and InputID=-1. Client/Server increments and runtime checks for this tag-driven revision remain pending; earlier successful builds and runtime reports do not validate this revision."
+  ]
+}

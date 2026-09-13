@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "at": "2026-09-13T20:17:37.371Z",
+  "scope": "MMORPG content preflight while the final Training Game build is still pending; the final Training image check is deliberately outside this run; the separate 24/25-check browser run covers unchanged navigation, clipboard, themes, native graph panning and mobile controls.",
+  "browser": {
+    "at": "2026-09-13T20:17:37.371Z",
+    "basePath": "/Lyra",
+    "checks": [
+      {
+        "name": "Final tagged AbilitySet configuration image",
+        "passed": true,
+        "evidence": [
+          2560,
+          1200
+        ]
+      },
+      {
+        "name": "Final C++ input class is searchable",
+        "passed": true
+      },
+      {
+        "name": "Final symbol search deep refresh",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3012/Lyra/docs/08-mmorpg/character-gas/#%E4%B8%BA%E4%BB%80%E4%B9%88-asc-%E6%94%BE%E5%9C%A8-playerstate"
+      },
+      {
+        "name": "Final cooked Chinese settings screenshot",
+        "passed": true,
+        "evidence": [
+          1920,
+          1080
+        ]
+      },
+      {
+        "name": "Final gameplay screenshot zoom and return",
+        "passed": true
+      },
+      {
+        "name": "Both browser-fetched tutorial archives match published SHA-256",
+        "passed": true,
+        "evidence": [
+          {
+            "filename": "lyra-mmorpg-examples.tar.gz",
+            "bytes": 481882,
+            "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
+            "matches": true
+          },
+          {
+            "filename": "lyra-training-examples.tar.gz",
+            "bytes": 96671,
+            "sha256": "9072ee99104e955ef3afa47f8eed4cb480c5fe8c1fe0445ca33af55fe3c9f866",
+            "matches": true
+          }
+        ]
+      },
+      {
+        "name": "Final localization chapter mobile deep refresh",
+        "passed": true
+      },
+      {
+        "name": "No final-content browser or HTTP errors",
+        "passed": true,
+        "evidence": []
+      }
+    ],
+    "scope": "MMORPG content preflight while the final Training Game build is still pending; the final Training image check is deliberately outside this run; the separate 24/25-check browser run covers unchanged navigation, clipboard, themes, native graph panning and mobile controls.",
+    "runtimeErrors": []
+  },
+  "testScript": {
+    "path": "output/playwright/mmo-content-preflight.js",
+    "bytes": 4822,
+    "sha256": "5db619627927d9b8f7d1b498f30e6a4fa1b993f2446ea3646ddb2117ee7e28ff"
+  },
+  "rawBrowserResult": {
+    "path": ".local/site-mmo-final-preflight-browser.txt",
+    "bytes": 1416,
+    "sha256": "31404eb7560472c507b323d17c2f4e167ecaa26c659af63bfc2bd97d876441c3"
+  },
+  "productionBuildLog": {
+    "path": ".local/site-mmo-final-preflight-build.log",
+    "bytes": 1257,
+    "sha256": "9af9c8c74699a2ab8ac33619b9e453c8c400cce68abba496b042dcd016c9face"
+  },
+  "harnessCorrections": [
+    "Used origin extraction supported by the Playwright CLI evaluation sandbox.",
+    "Located the AbilitySet configuration screenshot on its actual character-gas chapter.",
+    "Matched Next.js hashed static-image filenames and scoped to the original ImageZoom content to exclude its modal clone."
+  ],
+  "limitations": [
+    "This is an intermediate /Lyra check; final root and /Lyra exports, the Training packaged screenshot, and remote GitHub Pages deployment are not accepted by this report."
+  ]
+}

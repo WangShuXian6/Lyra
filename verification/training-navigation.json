@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "passed": true,
+  "project": "F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+  "editorPid": 2324,
+  "engine": "UE 5.8.1 source build",
+  "world": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange",
+  "nativeOperation": "BUILDPATHS -> FEditorBuildUtils::EditorBuild / BuildAIPaths",
+  "executedAt": "2026-09-13T13:42:27.358+00:00",
+  "navigationBuildSeconds": 0.02,
+  "mapCheck": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "savedAt": "2026-09-13T13:45:51+00:00",
+  "nativeSaveReturned": true,
+  "before": [
+    {
+      "actor": "B_Hero_ShooterMannequin_C_10",
+      "projected": "None"
+    },
+    {
+      "actor": "B_WeaponSpawner_C_2",
+      "projected": "None"
+    },
+    {
+      "actor": "B_WeaponSpawner_C_0",
+      "projected": "None"
+    },
+    {
+      "actor": "B_WeaponSpawner_C_1",
+      "projected": "None"
+    }
+  ],
+  "after": [
+    {
+      "point": "<Struct 'Vector' (0x00000238D15C28B0) {x: -720.000000, y: -170.000000, z: 142.000000}>",
+      "navData": "None",
+      "result": "<Struct 'Vector' (0x00000238D15C29F0) {x: -720.000000, y: -170.000000, z: 60.000000}>"
+    },
+    {
+      "point": "<Struct 'Vector' (0x00000238D15C28B0) {x: -720.000000, y: -170.000000, z: 142.000000}>",
+      "navData": "<Object '/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.RecastNavMesh-Default' (0x000002391B9EDC00) Class 'RecastNavMesh'>",
+      "result": "<Struct 'Vector' (0x00000238D15C1C80) {x: -720.000000, y: -170.000000, z: 60.000000}>"
+    },
+    {
+      "point": "<Struct 'Vector' (0x00000238D15C2130) {x: -1217.000000, y: -1070.000000, z: 130.000000}>",
+      "navData": "None",
+      "result": "<Struct 'Vector' (0x00000238D15C2950) {x: -1217.000000, y: -1070.000000, z: 60.000000}>"
+    },
+    {
+      "point": "<Struct 'Vector' (0x00000238D15C2130) {x: -1217.000000, y: -1070.000000, z: 130.000000}>",
+      "navData": "<Object '/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.RecastNavMesh-Default' (0x000002391B9EDC00) Class 'RecastNavMesh'>",
+      "result": "<Struct 'Vector' (0x00000238D15C29F0) {x: -1217.000000, y: -1070.000000, z: 60.000000}>"
+    },
+    {
+      "point": "<Struct 'Vector' (0x00000238D15C2D60) {x: 0.000000, y: 0.000000, z: 200.000000}>",
+      "navData": "None",
+      "result": "<Struct 'Vector' (0x00000238D15C1C80) {x: -0.000000, y: -0.000000, z: 60.000000}>"
+    },
+    {
+      "point": "<Struct 'Vector' (0x00000238D15C2D60) {x: 0.000000, y: 0.000000, z: 200.000000}>",
+      "navData": "<Object '/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.RecastNavMesh-Default' (0x000002391B9EDC00) Class 'RecastNavMesh'>",
+      "result": "<Struct 'Vector' (0x00000238D15C2950) {x: -0.000000, y: -0.000000, z: 60.000000}>"
+    }
+  ],
+  "logEvidence": [
+    "[2026.09.13-13.42.27:331][588]LogModelContextProtocol: Running tool: 'call_tool'",
+    "[2026.09.13-13.42.27:331][588]LogModelContextProtocol: Dispatching toolset tool: 'SlateInspectorToolset.SlateInspectorToolset.Type'",
+    "[2026.09.13-13.42.27:358][588]Cmd: BUILDPATHS",
+    "[2026.09.13-13.42.27:639][588]LogNavigationDataBuild: Display: UNavigationSystemV1::Build started...",
+    "[2026.09.13-13.42.27:639][588]LogNavigationDataBuild: Display:    RebuildAll building NavData:  Name Default class /Script/NavigationSystem.RecastNavMesh agent radius 35.0.",
+    "[2026.09.13-13.42.27:639][588]LogNavigationDataBuild: Display:    ANavigationData::RebuildAll load time: 0.00s",
+    "[2026.09.13-13.42.27:658][588]LogNavigationDataBuild: Display:    FRecastNavMeshGenerator::ProcessTileTasksAndGetUpdatedTiles build time: 0.02s",
+    "[2026.09.13-13.42.27:658][588]LogNavigationDataBuild: Display: UNavigationSystemV1::Build total execution time: 0.02s",
+    "[2026.09.13-13.42.27:658][588]Cmd: MAP CHECK DONTDISPLAYDIALOG",
+    "[2026.09.13-13.42.27:665][588]MapCheck: 地图检测完成：0个错误、0个警告、完成用时6.217毫秒。",
+    "[2026.09.13-13.42.27:665][588]LogEditorBuildUtils: Build time 0:00",
+    "[2026.09.13-13.45.51:484][427]LogSavePackage: Moving output files for package: /TrainingRange/Maps/L_TrainingRange",
+    "[2026.09.13-13.45.51:484][427]LogSavePackage: Moving 'F:/UE/LyraDocLabs/LyraTraining/Saved/L_TrainingRangeBAC899C54BF7FDDE8B4BA2A420511A84.tmp' to 'F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/TrainingRange/Content/Maps/L_TrainingRange.umap'"
+  ],
+  "mapHashRecordedAt": "2026-09-13T14:01:44.652672+00:00",
+  "mapSha256": "7bfa4b58f5dce3e1b07dbdb36284e73cdcab03c7e0fed448a0033694257a7384",
+  "mapBytes": 192801,
+  "lifecycleFollowUp": "verification/training-lifecycle.json",
+  "scope": "Native editor navigation build and saved Training map, followed by actual single-PIE walk-through pickup. Green P overlay was not captured. Existing Cook report predates this saved map; final Package must recook.",
+  "log": "F:\\UE\\LyraDoc\\.local\\training-editor-2324-20260913.log",
+  "logSha256": "23216580f84189a10f4a6e79b44328fc98c022dbe24b5f07d409dc9b502af58c"
+}

@@ -1,0 +1,154 @@
+{
+  "deathLogout": true,
+  "backendRestarted": false,
+  "passed": true,
+  "finalSaveCallbacksVerified": true,
+  "results": [
+    {
+      "role": "A",
+      "restore": false,
+      "passed": true,
+      "xp": 25,
+      "mana": 40,
+      "potions": 1,
+      "health": 50,
+      "deadCheckpointRestore": false,
+      "cooldown": true,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 45.51787847403918,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "B",
+      "restore": false,
+      "passed": true,
+      "xp": 0,
+      "mana": 100,
+      "potions": 0,
+      "health": 100,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": true,
+      "sawOtherMovement": true,
+      "positionX": 0,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "A",
+      "uiReturn": true,
+      "passed": true
+    },
+    {
+      "role": "B",
+      "uiReturn": true,
+      "passed": true
+    },
+    {
+      "role": "A",
+      "restore": true,
+      "passed": true,
+      "xp": 25,
+      "mana": 40,
+      "potions": 1,
+      "health": 100,
+      "deadCheckpointRestore": true,
+      "cooldown": false,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 0,
+      "umgMVVMBinding": true
+    },
+    {
+      "role": "B",
+      "restore": true,
+      "passed": true,
+      "xp": 0,
+      "mana": 100,
+      "potions": 0,
+      "health": 100,
+      "deadCheckpointRestore": true,
+      "cooldown": false,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 0,
+      "umgMVVMBinding": true
+    }
+  ],
+  "requestedResolution": "1920x1080",
+  "rendering": "NullRHI headless gameplay validation",
+  "date": "2026-09-13T13:57:26.6399732Z",
+  "scalability": "Medium (1)",
+  "persistedDeaths": [
+    {
+      "finalSaveAndReleaseVerified": true,
+      "storedState": {
+        "xp": 25,
+        "mana": 40,
+        "level": 1,
+        "health": 0,
+        "position": {
+          "x": 213.00908688065294,
+          "y": 35.47512501536607,
+          "z": 100
+        },
+        "inventory": [
+          {
+            "itemId": "potion",
+            "quantity": 1
+          }
+        ]
+      },
+      "role": "A",
+      "clientSnapshot": {
+        "level": 1,
+        "xp": 25,
+        "health": 0,
+        "mana": 40,
+        "inventory": [
+          {
+            "itemId": "potion",
+            "quantity": 1
+          }
+        ],
+        "position": {
+          "x": 212.9912479246407,
+          "y": 35.52508194001624,
+          "z": 100
+        }
+      }
+    },
+    {
+      "finalSaveAndReleaseVerified": true,
+      "storedState": {
+        "xp": 0,
+        "mana": 100,
+        "level": 1,
+        "health": 0,
+        "position": {
+          "x": 249.39388801649702,
+          "y": -32.00007263266243,
+          "z": 100
+        },
+        "inventory": []
+      },
+      "role": "B",
+      "clientSnapshot": {
+        "level": 1,
+        "xp": 0,
+        "health": 0,
+        "mana": 100,
+        "inventory": [],
+        "position": {
+          "x": 249.52084015227322,
+          "y": -32.02369015202685,
+          "z": 100
+        }
+      }
+    }
+  ],
+  "releaseCallbacksVerified": true,
+  "clientExecutable": "E:\\UnrealEngine\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "serverExecutable": "E:\\UnrealEngine\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+  "mode": "Two independent editor game clients + dedicated server"
+}

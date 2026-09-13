@@ -1,0 +1,171 @@
+{
+  "startedAt": "2026-09-13T20:45:31.4225212Z",
+  "status": "passed",
+  "passed": true,
+  "scope": "packaged-single-player",
+  "executable": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Binaries\\Win64\\LyraGame.exe",
+  "executableSha256": "c69ca4a481af2da0ed0e6e861e253c68c80adc5253f5879c3368c3bbfe889970",
+  "packageReport": "F:\\UE\\LyraDoc\\verification\\training-package.json",
+  "packageReportSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+  "sourceMapSha256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+  "arguments": [
+    "/TrainingRange/Maps/L_TrainingRange",
+    "-LyraTrainingVerify",
+    "-LyraTrainingVerifyOutput=F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88",
+    "-windowed",
+    "-ResX=1920",
+    "-ResY=1080",
+    "-ForceRes",
+    "-d3d12",
+    "-NoSplash",
+    "-unattended",
+    "-NoVSync",
+    "-abslog=F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\game.log"
+  ],
+  "runDirectory": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88",
+  "nativeReport": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\runtime.json",
+  "nativeReportSha256": "8295d987036ed4ab2367701d3f85aa00e297e12f9bf1c356ebe3aed72412b437",
+  "log": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\game.log",
+  "screenshot": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\training-package.png",
+  "screenshotSha256": "f4885db296532bd45dd28201db410dfa96e4c803183b073e4c92e5ac1b1a3e2e",
+  "screenshotWidth": 1920,
+  "screenshotHeight": 1080,
+  "processId": 22876,
+  "exitCode": 0,
+  "timeoutSeconds": 150,
+  "checks": [
+    {
+      "id": "packaged-world",
+      "passed": true,
+      "evidence": {
+        "map": "/TrainingRange/Maps/L_TrainingRange"
+      }
+    },
+    {
+      "id": "experience",
+      "passed": true,
+      "evidence": {
+        "class": "/TrainingRange/Experiences/B_TrainingRange.B_TrainingRange_C"
+      }
+    },
+    {
+      "id": "pawn-asc",
+      "passed": true,
+      "evidence": {
+        "pawn": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_2147482077",
+        "playerState": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerState_2147482290",
+        "asc": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerState_2147482290.AbilitySystemComponent",
+        "owner": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerState_2147482290",
+        "avatar": "/TrainingRange/Maps/L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_2147482077",
+        "heroReadyToBindInputs": true,
+        "loadingScreenManagerPresent": true,
+        "loadingScreenVisible": false
+      }
+    },
+    {
+      "id": "training-dash-granted",
+      "passed": true,
+      "evidence": {
+        "abilityClass": "/TrainingRange/Game/GA_TrainingDash.GA_TrainingDash_C",
+        "count": 1
+      }
+    },
+    {
+      "id": "hud",
+      "passed": true,
+      "evidence": {
+        "class": "/ShooterCore/UserInterface/W_ShooterHUDLayout.W_ShooterHUDLayout_C",
+        "visibleActiveCount": 1
+      }
+    },
+    {
+      "id": "display-medium-1080",
+      "passed": true,
+      "evidence": {
+        "width": 1920,
+        "height": 1080,
+        "viewportHasFocus": true,
+        "sg.ViewDistanceQuality": 1,
+        "sg.AntiAliasingQuality": 1,
+        "sg.ShadowQuality": 1,
+        "sg.GlobalIlluminationQuality": 1,
+        "sg.ReflectionQuality": 1,
+        "sg.PostProcessQuality": 1,
+        "sg.TextureQuality": 1,
+        "sg.EffectsQuality": 1,
+        "sg.FoliageQuality": 1,
+        "sg.ShadingQuality": 1
+      }
+    },
+    {
+      "id": "movement",
+      "passed": true,
+      "evidence": {
+        "input": "Input.+key W 1",
+        "distanceCm": 213.20627971730028,
+        "forwardDistanceCm": 213.20627971730028,
+        "verticalDisplacementCm": 0,
+        "sampledFrames": 51,
+        "elapsedSeconds": 0.6095604002475739
+      }
+    },
+    {
+      "id": "dash-input-activation",
+      "passed": true,
+      "evidence": {
+        "input": "Input.+key LeftShift 1 (while W is held)",
+        "abilitySpecActiveObserved": true,
+        "nativeActivationCallbackObserved": true,
+        "distanceCm": 1003.7043825478427,
+        "sampledFrames": 54,
+        "elapsedSeconds": 0.8071353994309902
+      }
+    },
+    {
+      "id": "fire-ammo",
+      "passed": true,
+      "evidence": {
+        "input": "Input.+key LeftMouseButton 1",
+        "magazineBefore": 11,
+        "magazineAfter": 10,
+        "viewportHasFocus": true,
+        "sampledFrames": 2,
+        "elapsedSeconds": 0.02067609876394272,
+        "observedActiveAbilityClasses": [
+          "/ShooterCore/Game/Respawn/GA_AutoRespawn.GA_AutoRespawn_C",
+          "/ShooterCore/Game/GA_QuickbarSlots.GA_QuickbarSlots_C",
+          "/Game/Weapons/GA_Weapon_AutoReload.GA_Weapon_AutoReload_C",
+          "/ShooterCore/Weapons/Pistol/GA_Weapon_Fire_Pistol.GA_Weapon_Fire_Pistol_C"
+        ]
+      }
+    },
+    {
+      "id": "reload-ammo",
+      "passed": true,
+      "evidence": {
+        "input": "Input.+key R 1",
+        "magazineBefore": 10,
+        "magazineAfter": 12,
+        "spareBefore": 48,
+        "spareAfter": 46,
+        "sampledFrames": 101,
+        "elapsedSeconds": 1.1056097000837326
+      }
+    },
+    {
+      "id": "native-screenshot",
+      "passed": true,
+      "evidence": {
+        "path": "F:/UE/LyraDocLabs/Artifacts/LyraTrainingRuntime/20260913-204531-c89c88/training-package.png",
+        "width": 1920,
+        "height": 1080,
+        "processedCallback": true,
+        "showUI": true,
+        "restrictToGameViewport": true
+      }
+    }
+  ],
+  "error": null,
+  "notCovered": "Packaged networking, pickup and respawn. Existing PIE reports remain separate evidence.",
+  "finishedAt": "2026-09-13T20:45:51.3639898Z"
+}

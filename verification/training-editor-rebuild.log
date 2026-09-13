@@ -1,0 +1,33 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" LyraEditor Win64 Development F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -EnablePlugin=LyraDocTools
+Log file: E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Log.txt
+Executing up to 3 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (E:\UnrealEngine).
+UbaServer - Listening on 0.0.0.0:1345
+Compiling GameFeaturePlugins in branch UE5
+Waiting for 'git status' command to complete
+UHT compiled-in object format Default
+Building LyraEditor...
+===== Toolchain Information =====
+Using ISPC compiler (E:\UnrealEngine\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.50.35737 toolchain (D:\program\0-editer\vs\VC\Tools\MSVC\14.50.35717) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 5 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 31.82 GB physical, 25.19 GB/49.82 GB committed
+  UBA Storage capacity 40 GB
+[1/5] WriteMetadata UnrealEditor.version (LyraEditor) [NoUba]
+[2/5] Compile [x64] Module.LyraDocTools.cpp
+[3/5] Link [x64] UnrealEditor-LyraDocTools.lib
+  正在创建库 F:/UE/LyraDocLabs/LyraTraining/Plugins/LyraDocTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraDocTools/UnrealEditor-LyraDocTools.lib 和对象 F:/UE/LyraDocLabs/LyraTraining/Plugins/LyraDocTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraDocTools/UnrealEditor-LyraDocTools.exp
+[4/5] Link [x64] UnrealEditor-LyraDocTools.dll
+[5/5] WriteMetadata LyraEditor.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 6.20 seconds
+Output binary: E:\UnrealEngine\Engine\Binaries\Win64\UnrealEditor.exe
+
+Result: Succeeded
+Total execution time: 10.94 seconds
+Trace written to file E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Trace.uba with size 6.3kb

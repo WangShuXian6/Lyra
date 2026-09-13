@@ -1,0 +1,17 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "MMO Tutorial Framework",
+  "Description": "Original data-driven experience and pawn initialization framework inspired by Lyra.",
+  "Category": "Gameplay",
+  "CanContainContent": true,
+  "EnabledByDefault": true,
+  "Modules": [{ "Name": "MMOFramework", "Type": "Runtime", "LoadingPhase": "Default" }],
+  "Plugins": [
+    { "Name": "GameplayAbilities", "Enabled": true },
+    { "Name": "GameFeatures", "Enabled": true },
+    { "Name": "ModularGameplay", "Enabled": true },
+    { "Name": "EnhancedInput", "Enabled": true }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "date": "2026-09-13T13:05:28.437Z",
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "asset": "/Game/UI/WBP_PlayerHUD.WBP_PlayerHUD",
+  "parent": "/Script/MMORPG.MMOHUDPanel",
+  "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+  "localizationNamespace": "MMOUI",
+  "nativeCulture": "en",
+  "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+  "widgets": [
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "isVariable": true
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "isVariable": true
+    },
+    {
+      "name": "HUDLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "isVariable": true
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "Values",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "ManaStatus",
+      "class": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus_C",
+      "isVariable": true
+    },
+    {
+      "name": "TargetHeading",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "TargetText",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "TargetHealthBarSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "TargetHealthBar",
+      "class": "/Script/UMG.ProgressBar",
+      "isVariable": true
+    },
+    {
+      "name": "CooldownText",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "AbilityActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "isVariable": true
+    },
+    {
+      "name": "TargetButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "TargetButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": false
+    },
+    {
+      "name": "TargetButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "AttackButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "AttackButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": false
+    },
+    {
+      "name": "AttackButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "SpellButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "SpellButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": false
+    },
+    {
+      "name": "SpellButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "MenuActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "isVariable": true
+    },
+    {
+      "name": "InventoryButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "InventoryButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": false
+    },
+    {
+      "name": "InventoryButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "SettingsButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "SettingsButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": false
+    },
+    {
+      "name": "SettingsButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "InputHintText",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    }
+  ],
+  "bindings": [
+    "PlayerVM.StatusText -> Values.Text",
+    "PlayerVM.TargetLabel -> TargetText.Text",
+    "PlayerVM.TargetFraction -> TargetHealthBar.Percent",
+    "PlayerVM.CooldownLabel -> CooldownText.Text",
+    "PlayerVM.InputHint -> InputHintText.Text"
+  ],
+  "widgetCount": 30,
+  "canvasCount": 0,
+  "bindingCount": 5,
+  "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+  "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+  "viewModelName": "PlayerVM",
+  "creationType": "Manual",
+  "compilerErrors": 0,
+  "compilerWarnings": 0,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_PlayerHUD-designer.json"
+}

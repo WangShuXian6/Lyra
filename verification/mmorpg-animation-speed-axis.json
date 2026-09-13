@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-09-13T14:48:11.656337+00:00",
+  "passed": true,
+  "change": "UE template BS_Idle_Walk_Run uses X=Direction and Y=Speed. GroundSpeed must drive Y.",
+  "assets": [
+    {
+      "asset": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed",
+      "graph": "Locomotion",
+      "blendSpaceNode": "AnimGraphNode_BlendSpacePlayer_0",
+      "previousSpeedConsumers": [
+        "Y"
+      ],
+      "speedInput": "Y",
+      "directionInput": "X",
+      "directionLiteral": "0.0",
+      "nodePathsPreserved": true,
+      "nodeCount": 6,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "beforeSHA256": "7947569b77afa7eb0336b48d458bb79a98138deaf627fae446f5d9d3d49163aa",
+      "sha256": "c0b77d8ad6e9928f4f8aafac4505860c5ce9f28df78e2a405d30261789766b76"
+    },
+    {
+      "asset": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter",
+      "graph": "Locomotion",
+      "blendSpaceNode": "AnimGraphNode_BlendSpacePlayer_0",
+      "previousSpeedConsumers": [
+        "X"
+      ],
+      "speedInput": "Y",
+      "directionInput": "X",
+      "directionLiteral": "0.0",
+      "nodePathsPreserved": true,
+      "nodeCount": 6,
+      "compileStatus": "BS_UP_TO_DATE",
+      "warningsAsErrors": true,
+      "beforeSHA256": "c58840db7b7c720c35ae4dc71b49d04913222e8f73568f12ad89d4fcef5752ef",
+      "sha256": "a931a3540237e4a54938ce77789014ef6af107de43ff853af817f01f17e23300"
+    }
+  ],
+  "completedAt": "2026-09-13T14:48:11.926074+00:00"
+}

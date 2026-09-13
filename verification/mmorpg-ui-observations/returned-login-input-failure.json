@@ -1,0 +1,2283 @@
+{
+  "stage": "returned-login-input-failure",
+  "observedAt": "2026-09-13T14:20:32.438758+00:00",
+  "project": "F:/UE/LyraDocLabs/MMORPG",
+  "engine": "5.8.1-0+UE5",
+  "world": "/Engine/Maps/UEDPIE_0_Entry.Entry",
+  "viewport": [
+    1920,
+    1080
+  ],
+  "culture": "zh-Hans",
+  "method": "Read-only native UObject/UMG observation following separately recorded Slate input.",
+  "widgets": [
+    {
+      "name": "ManaStatus",
+      "class": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.ManaStatus",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "owningPlayer": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerController_0",
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_MMOLayout_C_0",
+      "class": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        728.0,
+        827.0
+      ],
+      "owningPlayer": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerController_0",
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_Login_C_0",
+      "class": "/Game/UI/WBP_Login.WBP_Login_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        728.0,
+        827.0
+      ],
+      "activated": true,
+      "desiredFocus": "Username",
+      "owningPlayer": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerController_0",
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_PlayerHUD_C_0",
+      "class": "/Game/UI/WBP_PlayerHUD.WBP_PlayerHUD_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "activated": false,
+      "desiredFocus": null,
+      "owningPlayer": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerController_0",
+      "manaBinding": false
+    },
+    {
+      "name": "WBP_Inventory_C_0",
+      "class": "/Game/UI/WBP_Inventory.WBP_Inventory_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "activated": false,
+      "desiredFocus": "PotionButton",
+      "owningPlayer": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerController_0",
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_Settings_C_0",
+      "class": "/Game/UI/WBP_Settings.WBP_Settings_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "activated": false,
+      "desiredFocus": "MediumQualityButton",
+      "owningPlayer": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerController_0",
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_Confirm_C_0",
+      "class": "/Game/UI/WBP_Confirm.WBP_Confirm_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "activated": false,
+      "desiredFocus": "CancelButton",
+      "owningPlayer": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerController_0",
+      "manaBinding": null
+    },
+    {
+      "name": "CancelButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.CancelButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Continue playing"
+    },
+    {
+      "name": "CancelButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.CancelButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CancelButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.CancelButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ConfirmButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.ConfirmButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Save and sign out"
+    },
+    {
+      "name": "ConfirmButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.ConfirmButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ConfirmButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.ConfirmButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Explanation",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.Explanation",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Your character is saved before you return to sign in."
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.Title",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Leave this world?"
+    },
+    {
+      "name": "ConfirmLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.ConfirmLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.PanelBackground",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.PanelWidth",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ModalScrim",
+      "class": "/Script/UMG.Border",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.ModalScrim",
+      "visibility": "<SlateVisibility.HIT_TEST_INVISIBLE: 3>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0.WidgetTree_0.ScreenLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CloseButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.CloseButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Back"
+    },
+    {
+      "name": "CloseButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.CloseButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CloseButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.CloseButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "LogoutButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.LogoutButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Sign out"
+    },
+    {
+      "name": "LogoutButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.LogoutButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "LogoutButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.LogoutButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "EnglishButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.EnglishButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "English"
+    },
+    {
+      "name": "EnglishButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.EnglishButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "EnglishButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.EnglishButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ChineseButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.ChineseButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Simplified Chinese"
+    },
+    {
+      "name": "ChineseButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.ChineseButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ChineseButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.ChineseButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "LanguageActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.LanguageActions",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "LanguageHeading",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.LanguageHeading",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Language"
+    },
+    {
+      "name": "HighQualityButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.HighQualityButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "High"
+    },
+    {
+      "name": "HighQualityButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.HighQualityButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "HighQualityButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.HighQualityButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "MediumQualityButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.MediumQualityButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Medium"
+    },
+    {
+      "name": "MediumQualityButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.MediumQualityButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "MediumQualityButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.MediumQualityButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "LowQualityButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.LowQualityButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Low"
+    },
+    {
+      "name": "LowQualityButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.LowQualityButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "LowQualityButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.LowQualityButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "QualityActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.QualityActions",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "QualityHeading",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.QualityHeading",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Graphics quality"
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.Title",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Settings"
+    },
+    {
+      "name": "SettingsLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.SettingsLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.PanelBackground",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.PanelWidth",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0.WidgetTree_0.ScreenLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CloseButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.CloseButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Back"
+    },
+    {
+      "name": "CloseButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.CloseButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CloseButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.CloseButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PotionButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.PotionButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Use mana potion"
+    },
+    {
+      "name": "PotionButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.PotionButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PotionButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.PotionButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Message",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.Message",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Your inventory is empty. Defeat a training target to earn a potion."
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.Title",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Inventory"
+    },
+    {
+      "name": "InventoryLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.InventoryLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.PanelBackground",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.PanelWidth",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0.WidgetTree_0.ScreenLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ManaBar",
+      "class": "/Script/UMG.ProgressBar",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.ManaStatus.WidgetTree_0.ManaBar",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "percent": 0.800000011920929
+    },
+    {
+      "name": "ManaBarSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.ManaStatus.WidgetTree_0.ManaBarSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ManaText",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.ManaStatus.WidgetTree_0.ManaText",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Mana 80 / 100"
+    },
+    {
+      "name": "ManaLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.ManaStatus.WidgetTree_0.ManaLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "InputHintText",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.InputHintText",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings"
+    },
+    {
+      "name": "SettingsButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.SettingsButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Settings"
+    },
+    {
+      "name": "SettingsButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.SettingsButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "SettingsButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.SettingsButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "InventoryButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.InventoryButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Inventory"
+    },
+    {
+      "name": "InventoryButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.InventoryButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "InventoryButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.InventoryButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "MenuActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.MenuActions",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "SpellButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.SpellButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Arcane Bolt"
+    },
+    {
+      "name": "SpellButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.SpellButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "SpellButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.SpellButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "AttackButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.AttackButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Attack"
+    },
+    {
+      "name": "AttackButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.AttackButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "AttackButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.AttackButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "TargetButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.TargetButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Target"
+    },
+    {
+      "name": "TargetButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.TargetButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "TargetButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.TargetButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "AbilityActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.AbilityActions",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "CooldownText",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.CooldownText",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Arcane bolt: 0.0s cooldown · costs 20 mana"
+    },
+    {
+      "name": "TargetHealthBar",
+      "class": "/Script/UMG.ProgressBar",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.TargetHealthBar",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "percent": 1.0
+    },
+    {
+      "name": "TargetHealthBarSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.TargetHealthBarSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "TargetText",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.TargetText",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Training target · Health 100 / 100"
+    },
+    {
+      "name": "TargetHeading",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.TargetHeading",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Target"
+    },
+    {
+      "name": "Values",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.Values",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "教学旅人·二 · Level 1 · XP 25\nHealth 50 / 100"
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.Title",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "text": "Traveler"
+    },
+    {
+      "name": "HUDLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.HUDLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.PanelBackground",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.PanelWidth",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.ScreenLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Message",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.Message",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        340.0,
+        28.0
+      ],
+      "text": "Sign in to choose your character."
+    },
+    {
+      "name": "JoinButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.JoinButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        123.0,
+        29.0
+      ],
+      "text": "Enter world"
+    },
+    {
+      "name": "JoinButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.JoinButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        159.0,
+        49.0
+      ]
+    },
+    {
+      "name": "JoinButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.JoinButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        159.0,
+        49.0
+      ]
+    },
+    {
+      "name": "RefreshButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.RefreshButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        84.0,
+        29.0
+      ],
+      "text": "Refresh"
+    },
+    {
+      "name": "RefreshButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.RefreshButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        120.0,
+        49.0
+      ]
+    },
+    {
+      "name": "RefreshButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.RefreshButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        120.0,
+        49.0
+      ]
+    },
+    {
+      "name": "CharacterActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CharacterActions",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        289.0,
+        49.0
+      ]
+    },
+    {
+      "name": "CharacterList",
+      "class": "/Script/UMG.ComboBoxString",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CharacterList",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        44.0,
+        19.0
+      ]
+    },
+    {
+      "name": "CharacterListSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CharacterListSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        44.0,
+        44.0
+      ]
+    },
+    {
+      "name": "CharacterListLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CharacterListLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        209.0,
+        29.0
+      ],
+      "text": "Choose a character"
+    },
+    {
+      "name": "CreateButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CreateButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        178.0,
+        29.0
+      ],
+      "text": "Create character"
+    },
+    {
+      "name": "CreateButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CreateButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        214.0,
+        49.0
+      ]
+    },
+    {
+      "name": "CreateButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CreateButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        214.0,
+        49.0
+      ]
+    },
+    {
+      "name": "CharacterName",
+      "class": "/Script/UMG.EditableTextBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CharacterName",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        203.0,
+        44.0
+      ]
+    },
+    {
+      "name": "CharacterNameSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CharacterNameSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        203.0,
+        44.0
+      ]
+    },
+    {
+      "name": "CharacterNameLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CharacterNameLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        172.0,
+        29.0
+      ],
+      "text": "Character name"
+    },
+    {
+      "name": "CharacterTitle",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.CharacterTitle",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        205.0,
+        35.0
+      ],
+      "text": "Your characters"
+    },
+    {
+      "name": "RegisterButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.RegisterButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        164.0,
+        29.0
+      ],
+      "text": "Create account"
+    },
+    {
+      "name": "RegisterButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.RegisterButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        200.0,
+        49.0
+      ]
+    },
+    {
+      "name": "RegisterButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.RegisterButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        200.0,
+        49.0
+      ]
+    },
+    {
+      "name": "LoginButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.LoginButtonLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        76.0,
+        29.0
+      ],
+      "text": "Sign in"
+    },
+    {
+      "name": "LoginButton",
+      "class": "/Script/UMG.Button",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.LoginButton",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        112.0,
+        49.0
+      ]
+    },
+    {
+      "name": "LoginButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.LoginButtonSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        112.0,
+        49.0
+      ]
+    },
+    {
+      "name": "AccountActions",
+      "class": "/Script/UMG.HorizontalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.AccountActions",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        322.0,
+        49.0
+      ]
+    },
+    {
+      "name": "Password",
+      "class": "/Script/UMG.EditableTextBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.Password",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        412.0,
+        44.0
+      ]
+    },
+    {
+      "name": "PasswordSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.PasswordSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        412.0,
+        44.0
+      ]
+    },
+    {
+      "name": "PasswordLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.PasswordLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        107.0,
+        29.0
+      ],
+      "text": "Password"
+    },
+    {
+      "name": "Username",
+      "class": "/Script/UMG.EditableTextBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.Username",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        313.0,
+        44.0
+      ]
+    },
+    {
+      "name": "UsernameSize",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.UsernameSize",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        313.0,
+        44.0
+      ]
+    },
+    {
+      "name": "UsernameLabel",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.UsernameLabel",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        111.0,
+        29.0
+      ],
+      "text": "Username"
+    },
+    {
+      "name": "AccountTitle",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.AccountTitle",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        107.0,
+        35.0
+      ],
+      "text": "Account"
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.Title",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        339.0,
+        48.0
+      ],
+      "text": "Begin your journey"
+    },
+    {
+      "name": "Form",
+      "class": "/Script/UMG.VerticalBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.Form",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        412.0,
+        731.0
+      ]
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.PanelBackground",
+      "visibility": "<SlateVisibility.VISIBLE: 0>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        460.0,
+        779.0
+      ]
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.PanelWidth",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        680.0,
+        779.0
+      ]
+    },
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0.WidgetTree_0.ScreenLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        728.0,
+        827.0
+      ]
+    },
+    {
+      "name": "ModalLayer",
+      "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.ModalLayer",
+      "visibility": "<SlateVisibility.COLLAPSED: 1>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "MenuLayer",
+      "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.MenuLayer",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        728.0,
+        827.0
+      ]
+    },
+    {
+      "name": "GameLayer",
+      "class": "/Script/CommonUI.CommonActivatableWidgetStack",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.GameLayer",
+      "visibility": "<SlateVisibility.COLLAPSED: 1>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "LayerLayout",
+      "class": "/Script/UMG.Overlay",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.LayerLayout",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "enabled": true,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        728.0,
+        827.0
+      ]
+    }
+  ],
+  "playerState": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerState_0",
+  "playerName": "DESKTOP-C9JS8TO-3A26",
+  "xp": 0,
+  "level": 1,
+  "sessionReady": false,
+  "asc": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerState_0.ASC",
+  "abilityCount": 0,
+  "abilityActorInfo": [],
+  "rootCount": 1,
+  "viewModel": {
+    "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.MMOPlayerViewModel_2",
+    "StatusText": "Waiting for the server to load your character…",
+    "ManaLabel": "Mana 100 / 100",
+    "InventoryLabel": "Your inventory is empty. Defeat a training target to earn a potion.",
+    "TargetLabel": "No target selected",
+    "CooldownLabel": "Arcane bolt: 0.0s cooldown · costs 20 mana",
+    "InputHint": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+    "Health": 100.0,
+    "Mana": 100.0,
+    "Cooldown": 0.0,
+    "ManaFraction": 1.0,
+    "TargetFraction": 0.0
+  }
+}

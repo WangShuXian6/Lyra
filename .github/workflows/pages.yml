@@ -1,0 +1,53 @@
+name: Check and deploy documentation
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        base-path: ['', '/Lyra']
+    env:
+      NEXT_PUBLIC_BASE_PATH: ${{ matrix.base-path }}
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.2
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24.13.0'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build
+      - name: Verify reproducible tutorial downloads
+        run: git diff --exit-code -- public/downloads content/docs/downloads.mdx
+      - run: node scripts/check-content.mjs --export
+      - uses: actions/upload-pages-artifact@v4
+        if: matrix.base-path == '/Lyra' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          path: out
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - uses: actions/deploy-pages@v4
+        id: deployment

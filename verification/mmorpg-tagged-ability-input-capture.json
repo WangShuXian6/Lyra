@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "scope": "Native Details screenshot only; gameplay validation is separate.",
+  "capture": {
+    "ref": "w7",
+    "planId": "ability-set-grants",
+    "visibleValues": {
+      "abilities": [
+        {
+          "class": "MMOAttackAbility",
+          "level": 1,
+          "inputID": -1,
+          "inputTag": "InputTag.MMO.Attack"
+        },
+        {
+          "class": "GA_ArcaneBolt",
+          "level": 1,
+          "inputID": -1,
+          "inputTag": "InputTag.MMO.Spell"
+        }
+      ],
+      "effects": 0,
+      "attributes": 0
+    },
+    "slug": "ability-set-grants",
+    "assetPath": "/Game/MMO/Abilities/DA_MMOAbilities",
+    "title": "Data Asset Editor → Abilities",
+    "teachingLocation": {
+      "file": "content/docs/08-mmorpg/character-gas.mdx",
+      "heading": "逐项创建 Experience、PawnData 与 AbilitySet"
+    },
+    "sourceFiles": [
+      "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+      "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+      "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp"
+    ],
+    "editorPid": 37960,
+    "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+    "engine": "UE 5.8.1 source build",
+    "capturedAt": "2026-09-13T18:58:22.427769+00:00",
+    "method": "Native SlateInspectorToolset.Screenshot",
+    "postProcessing": false,
+    "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/Configuration/ability-set-grants.png",
+    "publicPath": "public/media/configuration/mmorpg/ability-set-grants.png",
+    "width": 2560,
+    "height": 1200,
+    "sha256": "00864a4bd2b196247f44fd8fb3d4ed0c80a98ab0d022729375446632c5468029",
+    "sourceAssetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+    "sourceAssetSHA256": "2d9f46939392876b3b038ecb39ebaebccbc9f77dcf0c0434b7451ce299ef3626",
+    "bytes": 120339,
+    "caption": "原生 Details 同屏展开两条技能：MMOAttackAbility 与 GA_ArcaneBolt 的 Level 均为 1，Input ID 均为 -1，Input Tag 分别为 InputTag.MMO.Attack 与 InputTag.MMO.Spell；Granted Effects 和 Granted Attributes 为空。",
+    "nativeValidation": "verification/mmorpg-tagged-ability-input-assets.json",
+    "supersedesCaptureSHA256": "0d6ad95ef0006d98e17602ad0e94f36eaa1d89897986fdbf838f1e6f8462b487"
+  },
+  "visualChecks": {
+    "bothClassesVisible": true,
+    "bothLevelsOne": true,
+    "bothInputIDsMinusOne": true,
+    "attackTagVisible": true,
+    "spellTagVisible": true,
+    "effectsAndAttributesEmpty": true,
+    "allSavedVisible": true
+  },
+  "assetWrittenDuringCapture": false,
+  "graphsRebuilt": false,
+  "pieStarted": false,
+  "closure": {
+    "method": "SlateInspector Windows close main index 0 -> SWindow::RequestDestroyWindow",
+    "checkedAtUtc": "2026-09-13T18:59:10.3494349Z",
+    "editorPid": 37960,
+    "editorStillRunning": false,
+    "listenerPids": []
+  },
+  "history": "source-evidence/configuration-mmorpg.json historicalCaptures; previous PNG is private under .local/capture-history/"
+}

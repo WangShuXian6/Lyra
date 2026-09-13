@@ -1,0 +1,81 @@
+---
+title: 接通武器、交互、HUD 与机器人
+description: 通过训练场逐个观察库存、装备、能力、消息和 Game Feature 动作的运行关系。
+---
+
+## 学习目标与前置条件
+
+进入 `L_TrainingRange` 后，把“画面里出现了一个功能”对应到提供它的系统。先保留 Elimination Experience 的 Actions 与 ActionSets，使用中等画质、1920 × 1080 预览。
+
+## 一、武器从哪里来
+
+先在角色出生后查看 PlayerController 上的 Inventory Manager 与 QuickBar，再看 Pawn 上的 Equipment Manager。物品实例、装备实例和武器 Actor 是不同对象。
+
+射击能力由装备的 AbilitySet 提供。Rider 的检查顺序为：`ULyraQuickBarComponent::SetActiveSlotIndex_Implementation` → 装备切换 → `ULyraEquipmentManagerComponent::EquipItem` → 能力授予 → `ULyraGameplayAbility_RangedWeapon::StartRangedWeaponTargeting`。
+
+把步枪放入快捷栏后再切换到它。分别观察物品数量、被授予的能力、手部武器 Actor 和 HUD 图标。只 Spawn 一个武器外观 Actor，并不会自动产生完整的开火流程。
+
+## 二、先分清重叠拾取与主动交互
+
+训练地图沿用 ShooterGym 的武器拾取点。`ALyraWeaponSpawner::OnOverlapBegin` 在服务器检查可用状态和重叠 Pawn，再调用 `AttemptPickUpWeapon`；成功授予武器后才将拾取点设为不可用并启动冷却。它是**重叠触发拾取**。`ULyraGameplayAbility_Interact` 的目标扫描、交互选项和执行能力是另一条通用交互流程，教学入口见[交互系统](/docs/05-gameplay/interaction)。当前 `training-play.json` 的实际已授予能力列表没有 `GA_Interact`，不能把训练场能拾取武器写成已经接通通用按键交互。
+
+练习时在 **World Outliner** 选择地图已有的武器拾取 Actor，Details 中记录其拾取定义引用，再用放大镜定位数据资产并查看 Reference Viewer。要修改时先复制 Actor 和相关数据到自己的训练范围，保存地图。通过真实移动进入范围前后，比较 QuickBar 物品、装备 Actor、能力授予与拾取点可用状态；服务器决定是否授予，客户端不能直接增加背包数量。9/9 单机与 5/5 联机报告未覆盖拾取；本章后面的独立 4/4 生命周期报告已覆盖单人重叠拾取，联机竞争仍需另行验证。
+
+### 实际操作：射击后换弹
+
+1. 停止之前的 PIE，打开 `/TrainingRange/Maps/L_TrainingRange`。在播放下拉菜单的高级设置中将 **Number of Players** 设为 `1`、**Net Mode** 设为 `Play Standalone`，关闭 **Launch Separate Server**，选择 **New Editor Window**。等待角色、快捷栏与弹药 HUD 出现，然后点击游戏窗口获得焦点。
+2. 记下当前武器的弹匣数与备用弹药数。按一下鼠标左键，确认弹匣数减少。不要用空弹匣或没有备用弹药的状态开始换弹实验。
+3. 按 `R` 并松开，等待换弹结束。预期结果是同一个物品实例的 `Lyra.ShooterGame.Weapon.MagazineAmmo` 增加，`Lyra.ShooterGame.Weapon.SpareAmmo` 减少。播放了动画并不等于弹药状态已经更新。
+4. 如果没有变化，停止 PIE，在 `/Game/Input/Mappings/IMC_Default` 中找到 `/Game/Input/Actions/IA_Weapon_Reload`，展开实际键位；再查看当前武器的 AbilitySet 是否授予相应换弹能力。默认手枪的能力资产位于 `/Game/Weapons/Pistol/GA_Weapon_Reload_Pistol`，通用换弹逻辑位于 `/Game/Weapons/GA_Weapon_ReloadMagazine`。只查看时无需保存；修改自己的副本后先 **Compile**，再 **Save**，重启 PIE 复测。
+
+### 实际操作：从拾取点获得另一种武器
+
+1. 停止 PIE，在 **World Outliner** 选择地图已有的武器拾取 Actor。在 **Details → Weapon Definition** 打开其数据资产，记录 **Inventory Item Definition** 与 **Spawn Cool Down Seconds**。选择一种当前快捷栏没有的武器，避免把已有武器的补给行为误认为新增武器。
+2. 重新进入单人 PIE，使用移动输入走过拾取点。预期结果是 QuickBar 的物品定义列表出现目标武器，拾取点的 `bIsWeaponAvailable` 变为 `false` 并开始冷却。随后切换到新武器，确认武器外观、HUD 与开火能力一起变化。
+3. 若角色经过后没有获得武器，在 `ALyraWeaponSpawner::OnOverlapBegin` 和 `AttemptPickUpWeapon_Implementation` 设断点，先检查是否在 Authority 上执行、拾取点是否可用、Pawn 是否有 ASC，再检查 `GiveWeapon` 的返回值。不要直接修改背包或拾取点布尔值来绕过失败。
+
+### 实际操作：死亡后重新绑定角色
+
+1. 在上述单人 PIE 中记录当前 Pawn、PlayerState 与 ASC 的对象路径。PlayerState 持有 ASC，Pawn 是本次出生使用的 Avatar；死亡前后比较的是对象身份，不能只比较类名。
+2. 在游戏控制台执行 `DamageSelfDestruct`。这是 Lyra 原生 CheatManager 的自毁命令，通过 Health Component 触发死亡流程。不要使用删除 Actor 或直接设置生命值替代它。
+3. 等待重生，确认 PlayerController 控制了一个新的 Pawn，PlayerState 与 ASC 仍为原对象，ASC 的 `AvatarActor` 指向新 Pawn。检查已授予能力中 `GA_TrainingDash` 只有一份，且可见、激活的 Shooter HUD Layout 只有一个。
+4. 若没有重生，先查看死亡状态、GameMode 的重生流程及 Experience 是否仍 Ready；若重生后输入或 HUD 失效，查看 PawnExtension 初始化状态和旧 Avatar 的解绑过程。不要靠再次执行 AbilitySet 授予掩盖重复技能问题。
+
+仓库提供 `scripts/verify-training-lifecycle.py` 自动记录这三条流程。在已初始化的单人 Training PIE 中打开 **Output Log**，执行下面命令，并在 **3 秒**内点击回到游戏预览窗口：
+
+```text
+py exec(open(r'F:/UE/LyraDoc/scripts/verify-training-lifecycle.py', encoding='utf-8').read())
+```
+
+脚本以实际输入开火、换弹，以导航路径引导 `AddMovementInput` 走过拾取点，然后调用原生自毁命令。它不写入弹药、背包、生命值、Actor Transform 或技能授予。总时限为 70 秒；换弹、行走、重生分别设有时限，失败也会写入 `verification/training-lifecycle.json` 并释放强制输入。导航辅助覆盖的是原生重叠拾取，不验证某个拾取按键。本机于 2026-09-13 13:46:39–13:46:51 UTC 实测 **4/4 通过**：换弹、原生重叠拾取、重生后同 PlayerState/ASC 绑定，以及 Dash/HUD 唯一性。手枪开火后弹匣 12 → 11，换弹后 12、备用弹药 48 → 47；真实走过现有步枪拾取点后，快捷栏新增 ID_Rifle。详细对象身份与数值见[训练场验收记录](/docs/07-training/multiplayer-and-package)。此轮是单人 PIE，不证明联机拾取竞争或打包重生已经通过。
+
+## 三、HUD 的三个观察点
+
+打开 `LAS_ShooterGame_StandardHUD`，记录 Layout 和 Widgets 扩展项。界面布局进入 CommonUI 层栈，具体控件通过 UIExtension 插到扩展点。装备、弹药、生命和冷却更新各有数据来源。
+
+| 观察现象 | 查什么 | 故障常见原因 |
+| --- | --- | --- |
+| HUD 整体缺失 | Experience 的 HUD ActionSet 与 LocalPlayer Root Layout | 动作未执行或玩家 UI 尚未初始化 |
+| 只有一个区域为空 | 扩展点 Gameplay Tag、玩家上下文 | 注册的 Tag 或 Context 不匹配 |
+| 弹药变化而数字不变 | 物品实例 Stat Tag 与消息监听 | 监听了旧物品，或切枪后未重新绑定 |
+| 重生后 UI 重复 | 扩展句柄的注销与 Widget 生命周期 | 重复注册而没有移除 |
+
+冲刺事件图中的冷却消息是一个很好的例子：能力知道自身状态，UI 通过约定的消息更新显示。消息总线本身不负责网络复制，不要把本地广播理解成服务器自动同步给所有玩家。
+
+## 四、机器人与计分
+
+在 Elimination Experience 的组件动作中找到机器人生成与计分相关的 GameState 组件。生成数量是玩法配置，Bot 的控制器和行为树决定移动与攻击，Team 系统决定敌我，伤害和死亡消息驱动计分。
+
+先观察一轮不操作的比赛：Bot 能否找到玩家、攻击、产生击杀和重生。接着减少 Bot 数量，确认日志与场上数量一起改变。不要通过销毁所有 AI Actor 的方法来掩盖 Experience 装配错误。
+
+## 源码定位与预期结果
+
+适用 UE 5.8.1，核验日期 2026-09-13。主要入口：`Source/LyraGame/Inventory`、`Equipment`、`Interaction`、`Teams`、`GameFeatures/GameFeatureAction_AddWidget.cpp`，以及 ShooterCore 的 `Experiences` 与 `Elimination` 资产。
+
+预期链条是：拾取或获得物品 → 快捷栏切换 → 装备授予技能 → 开火消耗弹药 → 伤害/死亡 → HUD 与计分更新。每一步用断点或日志确认所属客户端或服务器，避免把单机运行误认为网络验证。
+
+## 排障与练习
+
+物品存在而无法开火时，先查看装备授予的 AbilitySpec；不要首先修改动画。Bot 不动时，先看 NavMesh 和控制器，随后检查行为树。HUD 空白时从 LocalPlayer 与扩展点开始，逐帧 Tick 刷新控件只会掩盖注册问题。
+
+练习：换一种武器并保持相同训练 Experience，写出变化的资产引用和保持不变的 C++ 调用路径。

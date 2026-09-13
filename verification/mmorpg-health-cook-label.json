@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-09-13T15:48:35.231202+00:00",
+  "passed": true,
+  "saved": true,
+  "asset": "/Game/MMO/Labels/DA_TutorialExamples",
+  "primaryAssetId": "PrimaryAssetLabel:DA_TutorialExamples",
+  "explicitBlueprints": [
+    "/Game/Tutorial/BP_BackendHealth.BP_BackendHealth_C"
+  ],
+  "explicitAssets": [],
+  "labelAssetsInMyDirectory": false,
+  "isRuntimeLabel": false,
+  "includeRedirectors": false,
+  "rules": {
+    "priority": 1,
+    "chunkId": -1,
+    "applyRecursively": true,
+    "cookRule": "AlwaysCook"
+  },
+  "sourceGraphsReconstructed": false,
+  "testAssetsAdded": false,
+  "cookExecuted": false,
+  "currentEditorScan": [
+    {
+      "isEditorOnly": true,
+      "hasBlueprintClasses": false,
+      "directories": [
+        "/Game"
+      ],
+      "cookRule": "<PrimaryAssetCookRule.UNKNOWN: 0>"
+    }
+  ],
+  "currentEditorScanInspectionError": null,
+  "editorRestartRequired": true,
+  "persistedScanLine": "+PrimaryAssetTypesToScan=(PrimaryAssetType=\"PrimaryAssetLabel\",AssetBaseClass=\"/Script/Engine.PrimaryAssetLabel\",bHasBlueprintClasses=False,bIsEditorOnly=False,Directories=((Path=\"/Game/MMO/Labels\")),Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=AlwaysCook))",
+  "configSHA256": "64e2f33a72d3124f9cba03ba10f6e80de795f4782f12d9b758da088290508941",
+  "assetFile": "F:/UE/LyraDocLabs/MMORPG/Content/MMO/Labels/DA_TutorialExamples.uasset",
+  "assetBytes": 2732,
+  "assetSHA256": "1db58affde2f7321e37837e8f1d3bb10b53838d85f9aa9291bbd6541c6ff9560",
+  "meaning": "The label itself is editor-only; its explicit Blueprint and dependencies are AlwaysCook. Type scan IsEditorOnly=false permits this Cook inclusion."
+}

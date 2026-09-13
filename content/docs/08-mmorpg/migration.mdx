@@ -1,0 +1,144 @@
+---
+title: 依赖迁移与 Game Feature
+description: 从插件清单开始，在新工程中恢复 Lyra 的模块接收者、LocalPlayer 与界面扩展机制。
+---
+
+## 学习目标与前置条件
+
+完成本篇后，可以解释每一个导入插件的直接或间接用途，生成 MMORPG 独有的资产，并观察 Game Feature 给世界添加内容。先准备官方 Lyra 和本机 UE 5.8.1。源码核对日期为 **2026-09-13**。
+
+## 迁移对照表
+
+| 原 Lyra 实现 | 关键依赖 | 新工程实现 | 修改原因 | 验证方法 |
+| --- | --- | --- | --- | --- |
+| `CommonGame` | CommonUI、CommonUser、ModularGameplayActors、OnlineFramework | 直接导入插件；派生 GameInstance、PlayerController、UIManager 和 UIPolicy | 保留 LocalPlayer 通知与成熟的界面层栈 | 登录、切换 Pawn 后界面仍关联正确玩家 |
+| `CommonUser` | OnlineSubsystem/Utils、OnlineServices | 作为 CommonGame 的传递依赖导入 | 平台本地用户与教学账号服务是不同职责 | 项目启动无缺失模块；账号走 MMO HTTP |
+| `ModularGameplayActors` | ModularGameplay | PlayerState、Character、GameState 派生其接收者类型 | Add Components 依赖 Actor 生命周期通知 | MMOCore 区域组件在 GameState 上出现 |
+| `UIExtension` | CommonGame、CommonUI | 直接导入，注册 `UI.Slot.Status` 数据扩展 | 根据 LocalPlayer 隔离 HUD ViewModel | 两个客户端各自显示自己的背包/属性 |
+| `LyraPlayerState` | LyraGame、Lyra ASC、Experience 等 | `AMMOPlayerState` 持有 ASC、存档身份、PawnData 与 AbilitySet 句柄 | 保留跨 Pawn 的身份与能力所有权 | 存档加载、服务器授予、角色生成次序正确 |
+| Experience / PawnData / AbilitySet | Asset Manager、Game Features、GAS | 独立 `MMOFramework` 插件实现可配置资源、异步加载闭包和 GameState 管理器 | 保留 Lyra 数据驱动思想，移除射击专用依赖 | Experience Ready 与角色存档双闸都满足才生成角色 |
+| `LyraPawnExtensionComponent` | InitState manager、PawnData、Lyra ASC | `UMMOPawnExtensionComponent` 实现 Spawned → DataAvailable → DataInitialized → GameplayReady | 把复制到达顺序、输入与 ASC 就绪转为明确条件 | 服务器与客户端 Owner/Avatar 一致且本地输入 ready |
+| ShooterCore | 武器、模式、动画、音频、地图等 | 不导入；MMOCore 提供训练区域 | 新项目需要 RPG 玩法 | 关闭 ShooterCore 不影响工程依赖图 |
+
+`MMOFramework` 是本教程原创的基础插件，不直接依赖 LyraGame 或 ShooterCore。它复用引擎 InitState manager、Asset Manager 和 Game Features 的原生接口；MMORPG 业务模块只处理后端准入、角色状态与技能规则。资源配置的逐项操作见[角色与 GAS](/docs/08-mmorpg/character-gas)。
+
+## 从空白工程到第一次编译
+
+已有本教程实验目录时不要重复覆盖正在编辑的资产。下面按全新目录说明每一个连接点；自动复制入口 `scripts/Prepare-Labs.ps1 -Lab MMORPG` 完成的是第 2–4 步的文件准备，不会替你构建或验证运行。
+
+1. 启动本机源码引擎的项目浏览器，选 **Games → Blank → C++**，关闭 Starter Content，项目名填 `MMORPG`，位置填 `F:/UE/LyraDocLabs`，创建后保存并关闭编辑器。这个向导只建立 UE 模块骨架；也可直接使用教程已包含的空白工程骨架，二者最终目录相同。
+2. 打开下载增量的 `examples/MMORPG`。将 `MMORPG.uproject`、`Config`、`Source`、`Plugins`、`prepare_content.py`、`dependencies.json`、`ui-designer-strings.json`、`ui-designer-contract.json`、`README.md` 放入实验 `MMORPG` 根目录。两个 UI JSON 都必须保留：Editor 工具从实验根读取 `ui-designer-strings.json` 来生成 ST_MMO，`prepare_content.py` 从同一位置读取 `ui-designer-contract.json` 来创建七个 Widget Blueprint 并核对控件与绑定；缺少任一文件都会中止生成。使用本教程 `Source/MMORPG` 替换向导同名模块，避免同时保留两份 `IMPLEMENT_PRIMARY_GAME_MODULE`。已有个人工程请在新副本中做此步骤。教学 `Content` 可复制已发布原创资产，或在第 6 节从零生成；不要复制后端 `.local`、口令文件、任何 `Saved` 或 `Intermediate`。
+3. 从自己获得的官方 Lyra 精确复制下表四个插件目录到实验项目。保留 `.uplugin`、`Source`、`Config`、所需 `Content` 与版权声明；不迁入 `Binaries`、`Intermediate`。检查每个目标路径只出现一层插件名，避免 `Plugins/CommonGame/CommonGame`。
+4. 用 Rider 打开实验的 `MMORPG.uproject`。若使用 Visual Studio 解决方案，在引擎根执行下方 GenerateProjectFiles 命令。核对项目标题为 MMORPG，目标下拉可见 MMORPGEditor、MMORPGClient、MMORPGServer，Backend Program 是另外一个目标。
+5. 保存并正常关闭使用 `E:/UnrealEngine` 的编辑器，确认没有 Live Coding 会话；在 Rider 选择 **Development Editor / Win64**，构建 MMORPGEditor，或使用下方命令。先修复第一条编译错误，再重新构建；成功标准是 `Result: Succeeded`，不是 Rider 项目索引完成。
+6. 双击实验 `.uproject` 打开编辑器。项目启动地图应为 `/Engine/Maps/Entry`，不应自动加载 OpenWorld。继续检查插件与项目设置，然后生成原创资产。
+
+| 官方源路径 | 实验目标路径 | 必须保留的用途 |
+| --- | --- | --- |
+| `LyraStarterGame/Plugins/CommonGame` | `MMORPG/Plugins/CommonGame` | LocalPlayer、UIManager、UIPolicy、层栈 |
+| `LyraStarterGame/Plugins/CommonUser` | `MMORPG/Plugins/CommonUser` | CommonGame 的平台用户依赖 |
+| `LyraStarterGame/Plugins/ModularGameplayActors` | `MMORPG/Plugins/ModularGameplayActors` | Game Feature 组件接收者 |
+| `LyraStarterGame/Plugins/UIExtension` | `MMORPG/Plugins/UIExtension` | 玩家上下文的 UI 扩展 |
+
+```powershell title="生成 IDE 工程并构建 Editor"
+& E:/UnrealEngine/GenerateProjectFiles.bat `
+  -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject -Game -Engine
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  MMORPGEditor Win64 Development `
+  -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject `
+  -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+```
+
+## 逐项启用插件和项目配置
+
+每个项目字段与资产面板的真实截图、展开顺序、保存和重启检查见[配置操作图解](/docs/08-mmorpg/configuration)。本篇保留迁移依赖与创建顺序，操作时可同时对照图解。
+
+打开 **Edit → Plugins**，逐个搜索并确认启用：Gameplay Abilities、Enhanced Input、Modular Gameplay、Modular Gameplay Actors、Game Features、Common UI、Common Game、Common User、UI Extension、Model View ViewModel、MMO Framework、MMO Integration、MMO Core Training Zone。资产生成还需要 Editor-only 的 Python Editor Script Plugin、Editor Scripting Utilities、MMO Blueprint Documentation Tools。修改后按提示重启，重新核对项目身份。
+
+打开 **Edit → Project Settings**。以下值已写入教程 Config；人工迁移时逐项填写，关闭设置面板后重新打开确认已保存。类下拉搜索名称时以 `/Script/模块.类` 区分同名蓝图。
+
+| 设置面板 / 字段 | 填写值 | 落盘位置 |
+| --- | --- | --- |
+| Maps & Modes / Editor Startup Map | `/Engine/Maps/Entry` | DefaultEngine.ini |
+| Maps & Modes / Game Default Map、Server Default Map | 两者均 `/Engine/Maps/Entry` | DefaultEngine.ini |
+| Maps & Modes / Default GameMode | `/Game/MMO/BP_MMOGameMode` | DefaultEngine.ini |
+| Maps & Modes / Game Instance Class | `MMOGameInstance` | DefaultEngine.ini |
+| Engine / General Settings / Local Player Class | `CommonLocalPlayer` | DefaultEngine.ini |
+| Engine / General Settings / Game Viewport Client Class | `CommonGameViewportClient` | DefaultEngine.ini |
+| Engine / Input / Default Player Input Class | `EnhancedPlayerInput` | DefaultInput.ini |
+| Engine / Input / Default Input Component Class | `EnhancedInputComponent` | DefaultInput.ini |
+| Common Input Settings / Enable Enhanced Input Support | 勾选 | DefaultGame.ini |
+| Common Input Settings / Input Data | `MMOInputData` | DefaultGame.ini |
+| Packaging / Maps to Cook | 新增 `/Engine/Maps/Entry` | DefaultGame.ini |
+| Packaging / Additional Asset Directories to Cook | `/MMOCore`、`/Game/UI`、`/Game/MMO`、`/Game/Localization` | DefaultGame.ini |
+
+然后打开 **Asset Manager → Primary Asset Types to Scan**，新增或展开一项：Primary Asset Type=`GameFeatureData`，Asset Base Class=`GameFeatureData`，Has Blueprint Classes=false，Is Editor Only=false，Directories 添加 `/MMOCore`，Rules/Cook Rule=`Always Cook`。它扫描的是 Data Asset 实例，因此不能勾选 Has Blueprint Classes。
+
+## 创建 Game Feature Data 并保存
+
+1. Content Browser 的 Settings 中打开 **Show Plugin Content**，定位 `MMO Core Training Zone Content`；对应挂载路径为 `/MMOCore`。看不到目录先检查 `.uproject` 中 MMOCore Enabled=true、插件模块已构建，不要改到 `/Game/MMOCore` 代替。
+2. 在该根目录右键 **Miscellaneous → Data Asset**，父类选 `GameFeatureData`，命名 **MMOCore**。完整对象路径必须是 `/MMOCore/MMOCore.MMOCore`，与插件名一致。
+3. 双击资产，Actions 点 `+`，选择 **Add Components**。展开 Component List，新增一项：Actor Class=`ModularGameStateBase`，Component Class=`MMOZoneComponent`，Client Component=true，Server Component=true。
+4. 保存 Data Asset。它不是 Blueprint，没有 Compile 按钮；只需保存并核对字段。插件的 BuiltInInitialFeatureState=Registered、ExplicitlyLoaded=true 已在 `MMOCore.uplugin` 中声明。Registered 只发现并注册配置，实际激活由 Experience 请求。
+5. 保存全部资产，关闭后重新打开 MMOCore，确认组件列表仍存在。启动独立服务器，日志应包含 `MMOCore: zone added`。
+
+## 生成脚本对应哪些人工操作
+
+**先准备动画生成器必需的官方角色资源，再执行脚本。** 手工迁移四个 Lyra 插件不会带来 Manny；`prepare_content.py` 的第一步会加载 Manny 网格、移动 BlendSpace 和下落动画，缺少其中任一资源就会停止。按照下面步骤补齐：
+
+1. 保存并正常关闭使用实验项目的编辑器和游戏进程；游戏服务器先完成最终保存再退出。
+2. 在资源管理器打开 `E:/UnrealEngine/Templates/TemplateResources/High/Characters/Content/Mannequins`，确认包含 Meshes、Anims、Materials、Textures 和 Rigs。引擎安装目录不同时替换 `E:/UnrealEngine`；来源目录不存在时先补齐该引擎的 Templates and Feature Packs。
+3. 在 `F:/UE/LyraDocLabs/MMORPG/Content` 下创建 `Characters` 文件夹，把整个 `Mannequins` 目录复制进去。最终路径必须是 `Content/Characters/Mannequins`，保留目录层级与资源名称。
+4. 重新打开 MMORPG 编辑器，在 Content Browser 核对 `/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple`、`/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run` 和 `/Game/Characters/Mannequins/Anims/Unarmed/Jump/MM_Fall_Loop` 均存在。双击 Manny，确认网格、骨骼和材质能够正常加载，再继续生成。
+
+使用 `scripts/prepare-labs.ps1 -Lab MMORPG` 时，脚本已按 `dependencies.json` 的 `importEngineDirectories` 复制这些资源，只需执行上述核对。官方角色资源不在公开下载增量中；完整资产职责与动画编辑步骤见 [Manny 与模块化动画](/docs/08-mmorpg/animation)。
+
+在 MMORPG 编辑器 **Tools → Execute Python Script** 选择实验根的 `prepare_content.py`。脚本按当前工程身份创建/配置 GameFeatureData、角色/技能/目标子类、UI Policy、教学 Widget 子类、真实 WBP_ManaStatus 绑定与后端健康蓝图，编译并保存；任一必要编译失败会抛出错误。UI 资产的字段与人工创建步骤在[蓝图与 UMG 工作流](/docs/09-mmo-ui/blueprint-workflow)逐项展开，角色子类在[角色与 GAS](/docs/08-mmorpg/character-gas)展开。
+
+无交互复现时，先关闭同项目编辑器，再运行：
+
+```powershell title="使用原生编辑器生成原创资产"
+& E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor-Cmd.exe `
+  F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject `
+  -run=pythonscript `
+  -script=F:/UE/LyraDocLabs/MMORPG/prepare_content.py `
+  -NullRHI -Unattended -NoSound -Multiprocess
+```
+
+预期脚本 exit 0、Compiler Results 无错误，`Saved/Evidence` 出现健康蓝图往返与 ManaStatus 绑定的真实编译报告。脚本自动执行不能替代阅读上述字段：下一次替换 Actor 接收者、挂载目录或 UI 类时，仍需要知道是哪项配置建立了联系。
+
+`Target.cs` 描述要构建的程序，`Build.cs` 描述模块的依赖。Editor、Client、Server、Game 目标统一使用本机版本的构建设置；Backend Program 有独立入口和依赖集合。不要把 PostgreSQL 或密码哈希库加入 MMORPG 玩法模块。
+
+## Game Feature 的实际连接点
+
+`MMOCore.uplugin` 声明 `ExplicitlyLoaded` 和初始 Registered 状态。GameState 上的 `UMMOExperienceManagerComponent` 接收复制的 Experience ID，异步加载 PawnData、能力、输入与动画依赖，再请求 Game Features。GameInstance 不承担玩法资源激活。
+
+下面节选 `AMMOGameMode::TryStartPlayer` 的准入分支。完整函数已先确认运行于 Dedicated Server、Controller/PS/Experience 非空且 Controller 尚无 Pawn；这些检查不能在移植时省略。
+
+```cpp title="MMOExperienceGameplay.cpp：已完成对象检查后的准入节选"
+if (!PS->bCharacterLoaded || !Experience->IsExperienceReady())
+{
+    return;
+}
+// SetPawnData grants AbilitySets on the server; the spawn uses its PawnClass.
+if (!PS->SetPawnData(Experience->GetPawnData())) return;
+RestartPlayerAtTransform(Controller,
+    FTransform(FRotator::ZeroRotator, PS->SavedPosition));
+```
+
+节选来自 `AMMOGameMode::TryStartPlayer`，完整实现还验证 PawnExtension GameplayReady 并处理失败。需要 `MMOExperienceManagerComponent.h` 与 MMOFramework 模块。区域组件的 `BeginPlay` 创建世界内容，`EndPlay` 清理自己创建的 Actor；ExperienceManager 维护特性使用计数与释放，两个 PIE 世界不会互相提前停用同一插件。
+
+## 资产的角色
+
+生成脚本创建的是原创教学资产。`BP_MMOUIPolicy` 的 LayoutClass 实际指向 `WBP_MMOLayout`；GameFeatureData 提供组件安装配置；PawnData 指向 `BP_MMOCharacter`；AbilitySet 实际授予 `GA_ArcaneBolt`。Designer 中的界面布局和 MVVM 绑定也直接参与运行。
+
+Maps & Modes 的默认模式为 `/Game/MMO/BP_MMOGameMode`，其 Class Defaults 的 Default Experience 是 `MMOExperience:DA_MMOExperience`。替换角色时修改该 Experience 所引用 PawnData 的 Pawn Class；替换技能则修改 AbilitySet。不要另在 GameMode 的 Default Pawn Class 填一套冲突来源，实际生成会按 Experience 选择。
+
+## 预期结果、排障与练习
+
+运行后应能看到训练区域，并在日志中找到 `MMOCore: zone added`。看不到区域时，按“插件发现 → 数据资产存在 → Feature 激活 → GameState 接收者 → 组件 BeginPlay”的顺序检查。找到模块 DLL 不代表 Game Feature 的资产动作已经执行。
+
+练习：在 MMOCore 中新增一面遮挡墙，验证普通攻击和奥术箭都无法穿墙命中目标。随后停用特性，确认其创建的内容被清理；不要删除引擎基础资产。
+
+源码定位：Lyra 的 `Plugins/CommonGame`、`Plugins/ModularGameplayActors`；引擎 `GameFeatureAction_AddComponents.h`；教学 `MMOZoneComponent.cpp` 与 `prepare_content.py`。版本差异以本机源码和生成日志为准。
+

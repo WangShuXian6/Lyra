@@ -1,0 +1,22 @@
+{
+  "validationPending": false,
+  "arguments": [
+    "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+    "/Engine/Maps/Entry",
+    "-LiveCoding=false",
+    "-Multiprocess",
+    "-EnablePlugins=ModelContextProtocol,ToolsetRegistry,AllToolsets,BlueprintScreenshotTool",
+    "-ExecCmds=Scalability 1,t.MaxFPS 30",
+    "-ResX=1920",
+    "-ResY=1080",
+    "-ForceRes",
+    "-ExecutePythonScript=F:/UE/LyraDoc/scripts/mmorpg/validate-existing-content.py",
+    "-abslog=F:/UE/LyraDocLabs/MMORPG/Saved/Logs/mmorpg-existing-content-validation-editor.log"
+  ],
+  "startedAt": "2026-09-13T16:37:52.192493Z",
+  "processId": 9556,
+  "passed": false,
+  "error": "Python reflected class is EditorPythonScripting, not EditorPythonScriptingLibrary; entry failed before any asset validation",
+  "log": "F:/UE/LyraDocLabs/MMORPG/Saved/Logs/mmorpg-existing-content-validation-editor.log",
+  "editorExitedNormally": true
+}

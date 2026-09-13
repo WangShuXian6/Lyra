@@ -1,0 +1,41 @@
+{
+  "name": "lyra-field-guide",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "node scripts/package-examples.mjs && next build",
+    "package:examples": "node scripts/package-examples.mjs",
+    "postinstall": "fumadocs-mdx",
+    "typecheck": "fumadocs-mdx && next typegen && tsc --noEmit",
+    "check:content": "node scripts/check-content.mjs",
+    "check": "pnpm typecheck && pnpm check:content",
+    "serve": "node scripts/serve-static.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/ibm-plex-sans": "5.3.0",
+    "@fontsource-variable/noto-sans-sc": "5.3.0",
+    "fumadocs-core": "16.15.10",
+    "fumadocs-mdx": "15.4.0",
+    "fumadocs-ui": "16.15.10",
+    "lucide-react": "1.45.0",
+    "next": "16.3.5",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "zod": "4.6.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/mdx": "2.0.14",
+    "@types/node": "26.5.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2"
+  }
+}

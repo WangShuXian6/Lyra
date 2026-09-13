@@ -1,0 +1,40 @@
+{
+  "verifiedAt": "2026-09-13T18:42:10.4085024+08:00",
+  "engine": "5.8.1",
+  "plugin": "Gradess Games BlueprintScreenshotTool 1.1.7",
+  "build": "Succeeded",
+  "fullTargetMetadata": "Succeeded",
+  "buildId": "f13cdf4b-3431-474f-9acf-db7de1089774",
+  "runtime": "Toolbar present; Ctrl+A and Ctrl+F7 native Slate input; successful original PNG export",
+  "captures": [
+    {
+      "file": "public/media/lyra/dash-direction.png",
+      "source": "/ShooterCore/Game/Dash/GA_Hero_Dash:SelectDirectionalMontage",
+      "width": 3417,
+      "height": 966,
+      "sha256": "2946e45423c5c6ac754282268e96791360dedeb250ea237393bcdd094011f7a5",
+      "zoomAmount": 1,
+      "allNodesSelected": true
+    },
+    {
+      "file": "public/media/lyra/dash-event-graph.png",
+      "source": "/ShooterCore/Game/Dash/GA_Hero_Dash:EventGraph",
+      "width": 9392,
+      "height": 2514,
+      "sha256": "97a0bc6b3a5916d165af5159d8c595060ec95ccbecb5b675b4af70f285621c0f",
+      "zoomAmount": 1,
+      "allNodesSelected": true
+    },
+    {
+      "file": "public/media/lyra/jump-event-graph.png",
+      "source": "/Game/Characters/Heroes/Abilities/GA_Hero_Jump:EventGraph",
+      "width": 2385,
+      "height": 1172,
+      "sha256": "8efaaa3f2909090eda7172141f176f05e79403c5b2074a1c5fbe33c52180c7fc",
+      "zoomAmount": 1,
+      "allNodesSelected": true
+    }
+  ],
+  "declaredCompatibilityVersion": "5.8.0",
+  "compatibilityReason": "UE 5.8.1 FEngineVersion::CompatibleWith() reports 5.8.0; unattended startup no longer skips the plugin."
+}

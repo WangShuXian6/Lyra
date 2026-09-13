@@ -1,0 +1,56 @@
+{
+  "verifiedAt": "2026-09-13T11:09:06.582Z",
+  "files": [
+    {
+      "path": "examples/MMORPG/backend/migrations/001_initial.sql",
+      "sha256": "9818de7efd8b1aa06994b19937b1dc958aa80efe9f72684b5eac6fa69df716c7"
+    },
+    {
+      "path": "examples/MMORPG/backend/migrations/002_state_constraints.sql",
+      "sha256": "9e9415bf9d4e00d2c4235b9b55357640c390bf8e6967058469d70d3529d09166"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOBackendService.Target.cs",
+      "sha256": "2d455ccc04d501a5e789ddcc113b357cc15f86b74841bb28751c80d3eaca9b8d"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOBackendService/MMOBackendService.Build.cs",
+      "sha256": "52fd1419f5ae3e004d2661266e38a62dd94370d15aa6193602f2ee7391d69d0d"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+      "sha256": "0582ae1f5eb3e91f0b589606148ed2b29c68bdfcbd98ff9260285dc54f2afe41"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOContracts/MMOContracts.Build.cs",
+      "sha256": "9339f7539b315e4cb9314e96423647c41e2e30609077b21afffe83d29d5360dd"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOContracts/Private/MMOContracts.cpp",
+      "sha256": "d0b917dc481c6cc0ba017d90b8a7ae9c3d25a832da7f5bee818eaba5d57bf434"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOContracts/Public/MMOContracts.h",
+      "sha256": "bee7b4452baa4a37ea4571261a777b6e4ceb85bfbfc6fad5789d1e2fd1c67a92"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOPersistence/MMOPersistence.Build.cs",
+      "sha256": "97d1d29b1038f8b3df5d55a4f4c9ecebbf214cd040304b886c9b0d8afda2af8c"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "sha256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443"
+    },
+    {
+      "path": "examples/MMORPG/Source/MMOPersistence/Public/MMOPersistence.h",
+      "sha256": "ab462f39a9061d159a96731a5852c839ebc7fe2e44b0c4a8a8f1e63a53476c4d"
+    },
+    {
+      "path": "examples/MMORPG/Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs",
+      "sha256": "f75980962bec3bf05656759a73d8392dcab1147a9bd2621d35ba0ae12997fe65"
+    }
+  ],
+  "backendBuild": "MMOBackendService Win64 Development passed",
+  "engine": "UE 5.8.1",
+  "transactionFixPersistenceSha256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443"
+}

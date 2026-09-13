@@ -1,0 +1,43 @@
+---
+title: 属性、费用、冷却、伤害与死亡
+description: 沿 HealthSet 和 HealthComponent 区分数值修改、属性通知及死亡状态推进。
+---
+
+## 学习目标与前置条件
+
+前置：AbilitySet 与技能激活。目标是能解释伤害从 Effect 到血条、死亡和重生的路径。源码核对于 2026-09-13，UE 5.8.1。
+
+AttributeSet 定义属性，GameplayEffect 描述修改规则，EffectSpec 承载一次应用的等级、上下文和动态数值。技能负责何时尝试并提交操作；UI 观察结果，不决定权威生命值。
+
+## 操作步骤
+
+1. 打开 `/Game/GameplayEffects/Damage/GE_Damage_Basic_SetByCaller` 与 `/Game/GameplayEffects/Heal/GE_Heal_Instant`，观察修饰目标、持续策略和数值来源。
+2. 打开 `/Game/GameplayEffects/GE_HeroDash_Cooldown`，区分持续时间和标记冷却状态的标签。不同引擎版本可能用不同组件界面表达 GE 标签，按本机 Details 为准。
+3. 在 `ULyraHealthSet::PostGameplayEffectExecute` 设置断点，观察执行属性是 Damage、Healing 还是 Health。
+4. 跟进 `ULyraHealthComponent::HandleOutOfHealth`，查看死亡 GameplayEvent 的目标 ASC。
+5. 在 `/Game/Characters/Heroes/Abilities/GA_Hero_Death` 中检查父类和图，沿 StartDeath、FinishDeath 到角色销毁/重生的执行过程。
+
+## Damage 和 Health 不一样
+
+`Source/LyraGame/AbilitySystem/Attributes/LyraHealthSet.cpp` 会消耗 Damage 元属性并清零：
+
+```cpp
+SetHealth(FMath::Clamp(GetHealth() - GetDamage(), MinimumHealth, GetMaxHealth()));
+SetDamage(0.0f);
+```
+
+因此 Damage 不是“剩余生命”。Healing 同样用于一次治疗计算后归零。Health 在合法范围内被钳制；免伤和开发者 GodMode 等条件也会影响结果。只盯着最终 Health 数字，可能漏掉伤害在上游被拒绝的原因。
+
+HealthSet 发送属性变化和耗尽事件，HealthComponent 提供更方便的角色侧通知，并复制死亡状态。`OnRep_DeathState` 处理从未死亡直接收到死亡完成的情况，补走 StartDeath 与 FinishDeath，说明客户端不一定观察到每一个服务器中间状态。
+
+## 费用与冷却什么时候扣
+
+先检查能否激活，再在适当时间 `CommitAbility`，避免技能开始播放却无条件扣两次费用。Lyra 的 `ULyraAbilityCost` 支持额外费用逻辑；装备弹药和普通 GAS Attribute 费用的存储位置可能不同。
+
+SetByCaller 需要在 EffectSpec 上设置与资产一致的标签和值；只创建 GE 资产不会自动知道“这次伤害是 20”。对照调用方构造 Spec 的代码和蓝图引脚，而不是只编辑 GE 默认值。
+
+## 预期结果、排障与练习
+
+应能观察一次应用只扣一次数值、冷却期间拒绝重新激活、生命耗尽只启动一次死亡流程。重生后 UI 仍显示旧数值时，查属性委托与 Avatar 更换；连续触发死亡则查耗尽边界与状态守卫。
+
+练习：分别画出持续治疗、瞬间伤害和冷却的时间线。指出哪个数值需要复制、哪个只是执行时的元属性，以及独立服务器断开重启后为什么仍需要数据库层恢复角色进度。

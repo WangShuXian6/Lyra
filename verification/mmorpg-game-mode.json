@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "asset": "/Game/MMO/BP_MMOGameMode",
+  "parent": "/Script/MMORPG.MMOGameMode",
+  "defaultExperience": "MMOExperience:DA_MMOExperience"
+}

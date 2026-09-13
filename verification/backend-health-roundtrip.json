@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "saved": true,
+  "httpExecuted": false,
+  "verifiedAt": "2026-09-13T13:05:28.661Z",
+  "asset": "/Game/Tutorial/BP_BackendHealth.BP_BackendHealth",
+  "errors": [],
+  "sourceCompilation": {
+    "passed": true,
+    "asset": "/Game/Tutorial/BP_BackendHealth.BP_BackendHealth",
+    "compileStatus": "BS_UpToDate",
+    "errorCount": 0,
+    "warningCount": 0,
+    "errors": [],
+    "warnings": [],
+    "compiledThisCall": true
+  },
+  "nodeCount": 4,
+  "exportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/backend-health.txt",
+  "testAsset": "/Game/Tutorial/Tests/BP_BackendHealth_RoundTrip_AF48D86A4181EEA514985DA84430EEF2.BP_BackendHealth_RoundTrip_AF48D86A4181EEA514985DA84430EEF2",
+  "roundTripCompilation": {
+    "passed": true,
+    "asset": "/Game/Tutorial/Tests/BP_BackendHealth_RoundTrip_AF48D86A4181EEA514985DA84430EEF2.BP_BackendHealth_RoundTrip_AF48D86A4181EEA514985DA84430EEF2",
+    "compileStatus": "BS_UpToDate",
+    "errorCount": 0,
+    "warningCount": 0,
+    "errors": [],
+    "warnings": [],
+    "compiledThisCall": true,
+    "importedNodeCount": 4,
+    "nodeCount": 4
+  },
+  "nodeCountPreserved": true,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/backend-health-roundtrip.json"
+}

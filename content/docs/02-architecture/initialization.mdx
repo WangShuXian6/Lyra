@@ -1,0 +1,48 @@
+---
+title: PawnData 与初始化状态链
+description: 跟踪 PawnExtension 和 HeroComponent 如何等待复制数据、控制器、ASC 与本地输入。
+---
+
+## 学习目标与前置条件
+
+前置：Experience 加载链。目标是定位“角色看得见却不能操作”的具体等待条件。源码核对于 2026-09-13，UE 5.8.1。
+
+`ULyraPawnData` 把角色类、AbilitySets、TagRelationshipMapping、InputConfig、DefaultCameraMode 组合成不可变配置。它不是每个玩家的生命值存档，也不是角色 Actor。声明在 `Source/LyraGame/Character/LyraPawnData.h`。
+
+## 状态链
+
+| 状态 | 意义 | 典型等待项 |
+|---|---|---|
+| `InitState.Spawned` | Actor/组件已生成 | 有合法 Pawn |
+| `InitState.DataAvailable` | 所需数据到达 | PawnData、PlayerState、Controller 配对 |
+| `InitState.DataInitialized` | 数据已接入运行对象 | ASC 的 Owner/Avatar、本地输入 |
+| `InitState.GameplayReady` | 可进入正常玩法 | 前序特性已完成 |
+
+PawnExtension 与 Hero 都向 `UGameFrameworkComponentManager` 注册特性。它们不是两个互不相关的 BeginPlay：Hero 等待 PawnExtension 的初始化状态，PawnExtension 协调同一 Actor 上的特性进度。
+
+## 操作步骤
+
+1. Rider 打开 `LyraPawnExtensionComponent.cpp` 和 `LyraHeroComponent.cpp`，分别找 `CanChangeInitState`、`HandleChangeInitState`、`CheckDefaultInitialization`。
+2. 为角色不能操作的那一个网络实例设置断点，查看 LocalRole、Controller、PlayerState、PawnData、InputComponent 和 LocalPlayer。
+3. 模拟代理不要求拥有本地输入；本地玩家则必须有 InputComponent 和 LocalPlayer。不要用服务器窗口的观察来断言客户端输入已经初始化。
+4. 查 `ALyraGameMode::SpawnDefaultPawnAtTransform_Implementation`，观察延迟生成期间如何给 PawnExtension 设置 PawnData。
+5. 查 `ALyraPlayerState::SetPawnData`，理解为什么默认技能不是每次都由 Pawn BeginPlay 随意授予。
+
+## ASC 接入的关键代码
+
+`ULyraHeroComponent::HandleChangeInitState` 在 DataAvailable → DataInitialized 时执行：
+
+```cpp
+PawnExtComp->InitializeAbilitySystem(
+    LyraPS->GetLyraAbilitySystemComponent(), LyraPS);
+```
+
+ASC 对应的 Owner 是 PlayerState，Avatar 是当前 Pawn。Pawn 死亡或重生时 Avatar 会变化，PlayerState 生命周期通常更长。`OnAbilitySystemInitialized_RegisterAndCall` 允许组件在 ASC 已经接入后补订阅并立即收到一次通知；`OnAbilitySystemUninitialized_Register` 提供解绑时机。
+
+不要通过增加 Delay 来解决复制顺序。网络上的 PlayerState、Controller、PawnData 不保证在同一个帧到达；状态条件和 OnRep 的再次检查正是用来处理这种情况。
+
+## 预期结果、排障与练习
+
+你应能指出当前卡在哪一个状态、哪一个条件返回 false。若输入组件不是 `ULyraInputComponent` 或其子类，Hero 中的检查会提示能力输入无法绑定。若 PlayerState 已有 PawnData，重复设置会被本机实现拒绝；切职业不能直接当成重复调用 SetPawnData。
+
+练习：写出角色重生时需要重新绑定的三类对象：HealthComponent、相机/输入、UI 数据观察。哪些应随 Pawn 销毁，哪些应随 LocalPlayer 或 PlayerState 保留？继续阅读[玩家与角色](/docs/03-character/player-pawn)。

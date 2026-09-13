@@ -1,0 +1,650 @@
+{
+  "schemaVersion": 1,
+  "engine": "5.8.1",
+  "source": "E:/UnrealEngine/Templates/TemplateResources/High/Characters/Content/Mannequins",
+  "destination": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Characters\\Mannequins",
+  "copiedAt": "2026-09-13T12:26:30.5871972Z",
+  "distribution": "Local copy only; obtain UE templates from Epic. No Epic art assets are included in the documentation repository.",
+  "files": [
+    {
+      "relative": "Anims/Death/MM_Death_Back_01.uasset",
+      "bytes": 308880,
+      "sha256": "fdee63c4a4dc23076dda04b32eb8505bcd41fb791e574a264026c43e700bf923"
+    },
+    {
+      "relative": "Anims/Death/MM_Death_Front_01.uasset",
+      "bytes": 308516,
+      "sha256": "c9daa694dda4639b106a29401712b03376344b301b6161955a92ba64ea60ae6d"
+    },
+    {
+      "relative": "Anims/Death/MM_Death_Front_02.uasset",
+      "bytes": 314751,
+      "sha256": "dda4f9d6a4c8fc3bf79458d4d2f490965ff01401256e90fdf98a938a58c61986"
+    },
+    {
+      "relative": "Anims/Death/MM_Death_Front_03.uasset",
+      "bytes": 277478,
+      "sha256": "bf3a411d465002756eb1a19cdb2bef63b75a57a9fab7ce121ee71941e010d2cc"
+    },
+    {
+      "relative": "Anims/Death/MM_Death_Left_01.uasset",
+      "bytes": 283231,
+      "sha256": "712a25024fe931bd518fff6c935b82bc0ee2070a77caef63edd0d6fc7ff66508"
+    },
+    {
+      "relative": "Anims/Death/MM_Death_Right_01.uasset",
+      "bytes": 302339,
+      "sha256": "7968e7e1bc3d8e33c3f0d8479e6753d011ced0e05a831eb7f10e28ceb536b9a4"
+    },
+    {
+      "relative": "Anims/Pistol/MF_Pistol_Idle_ADS.uasset",
+      "bytes": 2068319,
+      "sha256": "766a02544f06604946d8c47c47c6bb877e14208904306188bc1f5b174fd7715b"
+    },
+    {
+      "relative": "Anims/Pistol/MM_Pistol_DryFire.uasset",
+      "bytes": 250601,
+      "sha256": "64b3c6dc7357f8a1b380057ef76e1cbb984d69e7d0732eaefd70befe2be7b67f"
+    },
+    {
+      "relative": "Anims/Pistol/MM_Pistol_Equip.uasset",
+      "bytes": 360966,
+      "sha256": "7f5a1ed2c1b72a9bb27b417cb0d5315440af2b22b7b846254fbce50e2fbb3d17"
+    },
+    {
+      "relative": "Anims/Pistol/MM_Pistol_Fire_Montage.uasset",
+      "bytes": 10119,
+      "sha256": "2eabacc1911be6c5b0dff7cf8a5c29c0506a25ffa6f3e7fa5946e76f992e38ee"
+    },
+    {
+      "relative": "Anims/Pistol/MM_Pistol_Fire.uasset",
+      "bytes": 186765,
+      "sha256": "ebd8467dbb3de5ba0e1b2eac0092352e270b37e616bc443872341cde2f5c22d8"
+    },
+    {
+      "relative": "Anims/Pistol/MM_Pistol_Reload.uasset",
+      "bytes": 479562,
+      "sha256": "a821a774302ce5121efff744620da09587752290e35e4413b8e40db8ad9c0391"
+    },
+    {
+      "relative": "Anims/Pistol/Aim/AO_Pistol.uasset",
+      "bytes": 8824,
+      "sha256": "a4f2fca2458488be2d05cb2188bd641293d06bdcc4e598feee59ba1b23156c24"
+    },
+    {
+      "relative": "Anims/Pistol/Aim/MF_Pistol_Idle_ADS_AO_CD.uasset",
+      "bytes": 170203,
+      "sha256": "2898b38d8ef305d1d2e285f519be72cde7e2b0106bb85657fda47e35dc27b15d"
+    },
+    {
+      "relative": "Anims/Pistol/Aim/MF_Pistol_Idle_ADS_AO_CU.uasset",
+      "bytes": 173260,
+      "sha256": "e5c5855b58743d51bf1abe11b470749f50ae6074fac734da446d1c4a9b076650"
+    },
+    {
+      "relative": "Anims/Pistol/Aim/MF_Pistol_Idle_ADS1.uasset",
+      "bytes": 2056489,
+      "sha256": "4d7113f1799219db01d8394c2984d5afd2957de07d66cfa463c9c33822e11d89"
+    },
+    {
+      "relative": "Anims/Pistol/Jog/MF_Pistol_Jog_Bwd_Left.uasset",
+      "bytes": 255387,
+      "sha256": "dc8a45c6259a8a51808ff3de4688302a65ce4988a05a5b0f70fbced01001ea6b"
+    },
+    {
+      "relative": "Anims/Pistol/Jog/MF_Pistol_Jog_Bwd_Right.uasset",
+      "bytes": 255329,
+      "sha256": "e6f80eb946a12e3056a53d67b8134f5e9bd028eb66333a8a665c13d6cf14d1ee"
+    },
+    {
+      "relative": "Anims/Pistol/Jog/MF_Pistol_Jog_Bwd.uasset",
+      "bytes": 365135,
+      "sha256": "f93aacabf40a36d906896e5c5998e4a63445749efa25c973092b9ae82ef1477f"
+    },
+    {
+      "relative": "Anims/Pistol/Jog/MF_Pistol_Jog_Fwd_Left.uasset",
+      "bytes": 309345,
+      "sha256": "8ed2295bbfbbe7800395b2fc2023e082f6c9b2b7127dd6ceb5c7ec055486c39b"
+    },
+    {
+      "relative": "Anims/Pistol/Jog/MF_Pistol_Jog_Fwd_Right.uasset",
+      "bytes": 309527,
+      "sha256": "d80c0c9bb0a8fae52095506f7f83c42bdd11b4d62ebfe57b1d9c7f40e8a9478a"
+    },
+    {
+      "relative": "Anims/Pistol/Jog/MF_Pistol_Jog_Fwd.uasset",
+      "bytes": 432796,
+      "sha256": "caba32a2584600031bca7cec76875e50eb80e4c1d6fea3e249f2532388d4f221"
+    },
+    {
+      "relative": "Anims/Pistol/Jog/MF_Pistol_Jog_Left.uasset",
+      "bytes": 310960,
+      "sha256": "4d8fcf3a8b6e581f4d06bc4fe2b307e1dcdcc7432cc114173c201a0115cad2c9"
+    },
+    {
+      "relative": "Anims/Pistol/Jog/MF_Pistol_Jog_Right.uasset",
+      "bytes": 354844,
+      "sha256": "017f902b0a80b4fff2115c5c39f640b7622ad562a0ec137d25aae61d511d0b53"
+    },
+    {
+      "relative": "Anims/Pistol/Jump/MM_Pistol_Jump_Fall_Loop.uasset",
+      "bytes": 255338,
+      "sha256": "7b01836fa36515fcb523644e82f2f130289a69a14314b6b939d5a580b3c5950e"
+    },
+    {
+      "relative": "Anims/Pistol/Jump/MM_Pistol_Jump_RecoveryAdditive.uasset",
+      "bytes": 268356,
+      "sha256": "e9935321b5ee3fe9445cfa2a6c9f0d0391d888fbb9db71b1eaf76b3bc5345d6d"
+    },
+    {
+      "relative": "Anims/Pistol/Jump/MM_Pistol_Jump_Start.uasset",
+      "bytes": 144542,
+      "sha256": "58c1e69b2690611740c465f92e3763fd9747b9a6e75fe6a7629b16c5fcc37e7a"
+    },
+    {
+      "relative": "Anims/Pistol/Walk/MF_Pistol_Walk_Bwd_Left.uasset",
+      "bytes": 450957,
+      "sha256": "fff084ed3ca270a8d926f810f078a69347507851744cf399f3142c97e36e2fa6"
+    },
+    {
+      "relative": "Anims/Pistol/Walk/MF_Pistol_Walk_Bwd_Right.uasset",
+      "bytes": 451022,
+      "sha256": "26a82255db90c0dc4e8c01d52a55f73b5f5a532ef161812faf63be65869f3504"
+    },
+    {
+      "relative": "Anims/Pistol/Walk/MF_Pistol_Walk_Bwd.uasset",
+      "bytes": 545138,
+      "sha256": "704dd7e116a755b086a8d685321f23e332bba6cb77dd6ae95542d38c462feb9b"
+    },
+    {
+      "relative": "Anims/Pistol/Walk/MF_Pistol_Walk_Fwd_Left.uasset",
+      "bytes": 374604,
+      "sha256": "bdd682c2a45cf6a73a34df6499f8bb4ccf8b68a42b8888c47b8532bfecb200d1"
+    },
+    {
+      "relative": "Anims/Pistol/Walk/MF_Pistol_Walk_Fwd_Right.uasset",
+      "bytes": 374748,
+      "sha256": "b9b42e230d6fdf9f4f836592507c3f8a17dfd76d7b054b78b633a11722f94100"
+    },
+    {
+      "relative": "Anims/Pistol/Walk/MF_Pistol_Walk_Fwd.uasset",
+      "bytes": 474209,
+      "sha256": "7ac6171e3b841b09fff67dc4162b0c70f99f3107f549a20a213d5e05405dc69e"
+    },
+    {
+      "relative": "Anims/Pistol/Walk/MF_Pistol_Walk_Left.uasset",
+      "bytes": 580040,
+      "sha256": "bc5f5b9f355e755023d1aa153070a073156f6d902b08e7cf78463f5e0bc8f629"
+    },
+    {
+      "relative": "Anims/Pistol/Walk/MF_Pistol_Walk_Right.uasset",
+      "bytes": 498997,
+      "sha256": "e72f68c9a306ec44f7bc4f37e3533f2918ee19d99a1d8e60986036f2a4405d68"
+    },
+    {
+      "relative": "Anims/Rifle/MF_Rifle_Idle_ADS.uasset",
+      "bytes": 1700234,
+      "sha256": "cfa32b19207a25546bb5bc2dde8454dc633cc27c3de45747e941756e23da5d4d"
+    },
+    {
+      "relative": "Anims/Rifle/MM_Rifle_DryFire.uasset",
+      "bytes": 249623,
+      "sha256": "131e01f0a31f999e7fd09ef190b314314c851f39101412161dabdb00d2dda801"
+    },
+    {
+      "relative": "Anims/Rifle/MM_Rifle_Equip.uasset",
+      "bytes": 416648,
+      "sha256": "136b19498b8bac4119dde48236d22127e8463c0becff775069e0b6399b7939d6"
+    },
+    {
+      "relative": "Anims/Rifle/MM_Rifle_Fire.uasset",
+      "bytes": 184600,
+      "sha256": "1c5b983bd6c09431c83866f772ccf13871ad9626426c86cc08a0c87c150555f7"
+    },
+    {
+      "relative": "Anims/Rifle/MM_Rifle_Reload.uasset",
+      "bytes": 547351,
+      "sha256": "ac1e17d2acb7e3cea6e4c9ca967400dc3052d5ec6514e155b33d8e4701e80784"
+    },
+    {
+      "relative": "Anims/Rifle/AIM/AO_Rifle.uasset",
+      "bytes": 10402,
+      "sha256": "a3cfb9e380d881fa8561df0515f4ff24d96af4d3e1430df829c7ede641a12b1d"
+    },
+    {
+      "relative": "Anims/Rifle/AIM/MM_Rifle_Idle_ADS_AO_CC.uasset",
+      "bytes": 94995,
+      "sha256": "9521c1941980dc784cedb3df736d7c1edf56afaa0201f28b41c5ae9923e88bbb"
+    },
+    {
+      "relative": "Anims/Rifle/AIM/MM_Rifle_Idle_ADS_AO_CD.uasset",
+      "bytes": 94882,
+      "sha256": "09b2c98aa7778b6a970b0d90882555cf920c03d761f1e50bb3feaf0e3c9a6fef"
+    },
+    {
+      "relative": "Anims/Rifle/AIM/MM_Rifle_Idle_ADS_AO_CU.uasset",
+      "bytes": 95154,
+      "sha256": "60969c39ff3c1bd1e30e7c728a9dbe49c236857659b1ae8d20ae7605d8152324"
+    },
+    {
+      "relative": "Anims/Rifle/HitReact/MM_HitReact_Back_Med_01.uasset",
+      "bytes": 252342,
+      "sha256": "ecb41ae9339d797408a7b9c0270dc1f917b680a21f1c189ac0e3890f41185e0b"
+    },
+    {
+      "relative": "Anims/Rifle/HitReact/MM_HitReact_Front_Hvy_01.uasset",
+      "bytes": 247961,
+      "sha256": "e5caf5938c73d131c9254c1af09cb7fd4335516c9a406be77c17ad5e1f2cdebe"
+    },
+    {
+      "relative": "Anims/Rifle/HitReact/MM_HitReact_Front_Lgt_01.uasset",
+      "bytes": 224756,
+      "sha256": "ae8728f698434dd1e63978d5d92c5984d086d7ee39ce618598122b6fa87dc820"
+    },
+    {
+      "relative": "Anims/Rifle/HitReact/MM_HitReact_Front_Lgt_02.uasset",
+      "bytes": 238345,
+      "sha256": "dcb6c068d81d5be1d84c88895805eb29c2f3f345668a10884836f00759b0647b"
+    },
+    {
+      "relative": "Anims/Rifle/HitReact/MM_HitReact_Front_Lgt_03.uasset",
+      "bytes": 281622,
+      "sha256": "3949df1228e6c14047477538424f9440216915a0637da33cf6c7298400128073"
+    },
+    {
+      "relative": "Anims/Rifle/HitReact/MM_HitReact_Front_Lgt_04.uasset",
+      "bytes": 318893,
+      "sha256": "e0ed26de9c333968631cc040e82aebac289a2fd655a1f348a3b09ce3b40f1ef5"
+    },
+    {
+      "relative": "Anims/Rifle/HitReact/MM_HitReact_Front_Med_01.uasset",
+      "bytes": 225043,
+      "sha256": "cca3c893d68d8270a9eec9eb7572f7ed6bfcfdf6ce6345dc8b2860d6135dbe00"
+    },
+    {
+      "relative": "Anims/Rifle/HitReact/MM_HitReact_Front_Med_02.uasset",
+      "bytes": 234402,
+      "sha256": "3acb6956f9eb6512e386b575c4c3e390f7d0280b037ca52e0eef813fb1f729d6"
+    },
+    {
+      "relative": "Anims/Rifle/Jog/MF_Rifle_Jog_Bwd_Left.uasset",
+      "bytes": 458365,
+      "sha256": "c3939c4aa298e6be0834256ef6f642cff0465a40d676ec7e464aaf504b44f729"
+    },
+    {
+      "relative": "Anims/Rifle/Jog/MF_Rifle_Jog_Bwd_Right.uasset",
+      "bytes": 458272,
+      "sha256": "907cb106c1c466aac0b38753b7551af73a09c082a652c82c43df5418eb33b089"
+    },
+    {
+      "relative": "Anims/Rifle/Jog/MF_Rifle_Jog_Bwd.uasset",
+      "bytes": 582054,
+      "sha256": "0fd489f5c8d4d63e84f8a25c2db46c3ae54eae828212b2a32622726e593b5d3c"
+    },
+    {
+      "relative": "Anims/Rifle/Jog/MF_Rifle_Jog_Fwd_Left.uasset",
+      "bytes": 384314,
+      "sha256": "4103ea6388d484e8f71cd30b955c3c954750d922a0c030bf3d902bdb3e02c13d"
+    },
+    {
+      "relative": "Anims/Rifle/Jog/MF_Rifle_Jog_Fwd_Right.uasset",
+      "bytes": 384322,
+      "sha256": "2ca8d8ec88d086d4cb6027a2eefdde258142587bca40e98dee021abe9c8824f8"
+    },
+    {
+      "relative": "Anims/Rifle/Jog/MF_Rifle_Jog_Fwd.uasset",
+      "bytes": 516328,
+      "sha256": "287d39883a65ccf6f89d91c7ca13b23184f04ae6eb5cc3867dd7ef7cfb35ec1c"
+    },
+    {
+      "relative": "Anims/Rifle/Jog/MF_Rifle_Jog_Left.uasset",
+      "bytes": 296415,
+      "sha256": "4feaf1bd5b370e28f5dce611b28d955bbf84bbeb72b7e22972a0e143022621a7"
+    },
+    {
+      "relative": "Anims/Rifle/Jog/MF_Rifle_Jog_Right.uasset",
+      "bytes": 420984,
+      "sha256": "e3c5cae5448dbb8c4e3bda5406202a8e55b08247695082270e1fef3dbdd6e533"
+    },
+    {
+      "relative": "Anims/Rifle/Jump/MM_Rifle_Jump_Apex.uasset",
+      "bytes": 228355,
+      "sha256": "39acbd6bcfc5ec2795ee2497bb353fbe954766bda545c3318c3cd6ee5f1ee008"
+    },
+    {
+      "relative": "Anims/Rifle/Jump/MM_Rifle_Jump_Fall_Land.uasset",
+      "bytes": 179028,
+      "sha256": "ce74e83b9b88fa3722951c1c6b2cc36ae7159b8141f5347e5b47d760cee41c42"
+    },
+    {
+      "relative": "Anims/Rifle/Jump/MM_Rifle_Jump_Fall_Loop.uasset",
+      "bytes": 645680,
+      "sha256": "d17c0a4fe1d9bb970b3208909e1c35b7183568c7968a0d6d0de391cca216b472"
+    },
+    {
+      "relative": "Anims/Rifle/Jump/MM_Rifle_Jump_RecoveryAdditive.uasset",
+      "bytes": 294517,
+      "sha256": "9d663743ac0fd361303751c55688a34053fbed145aaa88a004abd7b02533d5e5"
+    },
+    {
+      "relative": "Anims/Rifle/Jump/MM_Rifle_Jump_Start_Loop.uasset",
+      "bytes": 441727,
+      "sha256": "c2da3d291df2070e1aaa62a45e445a7979948489b9e811e0d17f94b3e627d14e"
+    },
+    {
+      "relative": "Anims/Rifle/Jump/MM_Rifle_Jump_Start.uasset",
+      "bytes": 146783,
+      "sha256": "925f27182be45054a1bbb5d458cb53d38773b356dd61e18b82fa9a72880dc8e7"
+    },
+    {
+      "relative": "Anims/Rifle/Walk/MF_Rifle_Walk_Bwd_Left.uasset",
+      "bytes": 332682,
+      "sha256": "8d535eb181e756f56974efae068f34da050747fd8836fe2bb5f0c693f51325c2"
+    },
+    {
+      "relative": "Anims/Rifle/Walk/MF_Rifle_Walk_Bwd_Right.uasset",
+      "bytes": 332577,
+      "sha256": "6e0bd9b3ba2e982ac9ffd60a643dab78cf886d194a26af518170a02dc4f3eac0"
+    },
+    {
+      "relative": "Anims/Rifle/Walk/MF_Rifle_Walk_Bwd.uasset",
+      "bytes": 449720,
+      "sha256": "e1400dc7a7bfca224e0aa7796e5c230236ad634c808b2a1540cbad8903fa897b"
+    },
+    {
+      "relative": "Anims/Rifle/Walk/MF_Rifle_Walk_Fwd_Left.uasset",
+      "bytes": 384794,
+      "sha256": "f7797a7841cb86c3dc9e68dcdf968e538c9a7335abb1b0d9db95e0983b2226d7"
+    },
+    {
+      "relative": "Anims/Rifle/Walk/MF_Rifle_Walk_Fwd_Right.uasset",
+      "bytes": 384793,
+      "sha256": "787c7b69a054c6f2850503c016a2ef2fade7ad0941375c8e521c3534bf695d12"
+    },
+    {
+      "relative": "Anims/Rifle/Walk/MF_Rifle_Walk_Fwd.uasset",
+      "bytes": 490267,
+      "sha256": "540a6a77c48027e13be84d483c6afd18d82fb115b7532334597ebefe2249ecd0"
+    },
+    {
+      "relative": "Anims/Rifle/Walk/MF_Rifle_Walk_Left.uasset",
+      "bytes": 453120,
+      "sha256": "a99d18722e504801616e1c0c495711c43c2d82c4465f7f388cdae8a45502bd1e"
+    },
+    {
+      "relative": "Anims/Rifle/Walk/MF_Rifle_Walk_Right.uasset",
+      "bytes": 510650,
+      "sha256": "2c2c12d6a959d69c96962ca340bdfe984942df621ee2ff7e7e955662ddaee52a"
+    },
+    {
+      "relative": "Anims/Unarmed/ABP_Unarmed.uasset",
+      "bytes": 385911,
+      "sha256": "60ae8c970189979d9e070beb0fd8675f4afb2b04d8aaa8d11a0f03c5b7ebf4b2"
+    },
+    {
+      "relative": "Anims/Unarmed/BS_Idle_Walk_Run.uasset",
+      "bytes": 52333,
+      "sha256": "bc71af8768b569695d4bcb69c79867f998e085693f5e8230854d228de359f5bb"
+    },
+    {
+      "relative": "Anims/Unarmed/MM_Idle.uasset",
+      "bytes": 1436554,
+      "sha256": "11ee7fdeb84db89c1a66785b43b9bfc1415782122b8ac229517f4c5125d9cb0d"
+    },
+    {
+      "relative": "Anims/Unarmed/Attack/MM_Attack_01.uasset",
+      "bytes": 757637,
+      "sha256": "f796113f17c91eca7e48ef57bbadc4fc36245a86b127e75a34ca4771500639ed"
+    },
+    {
+      "relative": "Anims/Unarmed/Attack/MM_Attack_02.uasset",
+      "bytes": 661409,
+      "sha256": "fb3c74b8e32fb5a88c6d659cae8717294af85d4eaa7f684b2a36c36d245559dc"
+    },
+    {
+      "relative": "Anims/Unarmed/Attack/MM_Attack_03.uasset",
+      "bytes": 1036132,
+      "sha256": "1c66016fc3bd386453ac7fb1229a5f0644c6bd5f98ead29f6e6a1be80632ba1f"
+    },
+    {
+      "relative": "Anims/Unarmed/Attack/MM_ChargedAttack.uasset",
+      "bytes": 1057890,
+      "sha256": "5d9b0fc6892519095cb6930aba5c0dd063acf647612a06e0f2f7e19c463223ee"
+    },
+    {
+      "relative": "Anims/Unarmed/Jog/MF_Unarmed_Jog_Bwd_Left.uasset",
+      "bytes": 417528,
+      "sha256": "e6e68e6cf4175f85c0e16a60f80335a1fab3f8c76a014d02bc0cd18aabe3314a"
+    },
+    {
+      "relative": "Anims/Unarmed/Jog/MF_Unarmed_Jog_Bwd_Right.uasset",
+      "bytes": 417530,
+      "sha256": "ee3137ff2b7d2cb721c935e2de91d55479e20f030ff230e9f912f6b70658c399"
+    },
+    {
+      "relative": "Anims/Unarmed/Jog/MF_Unarmed_Jog_Bwd.uasset",
+      "bytes": 483265,
+      "sha256": "1f6e9448f0e0737f506d9e8f11b8d661d6d65c818f0e3160938f1e24082b16c3"
+    },
+    {
+      "relative": "Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd_Left.uasset",
+      "bytes": 466995,
+      "sha256": "12ee5a11f277af90429980f120026f430ae1e438f6eae42c10222e175f9dbe12"
+    },
+    {
+      "relative": "Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd_Right.uasset",
+      "bytes": 467310,
+      "sha256": "66a7561d60453794864edd7e0c55487817068b6b66e31e179c98b9f2bab4c76b"
+    },
+    {
+      "relative": "Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.uasset",
+      "bytes": 531789,
+      "sha256": "0ccbe851f85a6d4cd7c6438c219cb6af8e281784107b5be8e9b052e4df3069cb"
+    },
+    {
+      "relative": "Anims/Unarmed/Jog/MF_Unarmed_Jog_Left.uasset",
+      "bytes": 487864,
+      "sha256": "f7842445f0c2b2f8d3cd9d43b9f58bc3ea888adeb1e161398b492097358431bd"
+    },
+    {
+      "relative": "Anims/Unarmed/Jog/MF_Unarmed_Jog_Right.uasset",
+      "bytes": 521907,
+      "sha256": "208f642310d9627d12a5125889b480e051a1f1fc5397a10b83975903a0c59aea"
+    },
+    {
+      "relative": "Anims/Unarmed/Jump/MM_Dash.uasset",
+      "bytes": 663135,
+      "sha256": "8a1c964403b7b1d9d9f5e0dd8c20c1ae809606c5e8021b2983edfc65ac0a66f0"
+    },
+    {
+      "relative": "Anims/Unarmed/Jump/MM_Fall_Loop.uasset",
+      "bytes": 925351,
+      "sha256": "408be742c63adffe8c6c1d22442e99ea34a7618cd33c6e78e0eed3d7db877433"
+    },
+    {
+      "relative": "Anims/Unarmed/Jump/MM_Jump.uasset",
+      "bytes": 403730,
+      "sha256": "252cbf69b07b797d3c3c6177d3ae9df17e9873f4872c4fa040c0d441dc3b3cef"
+    },
+    {
+      "relative": "Anims/Unarmed/Jump/MM_Land.uasset",
+      "bytes": 410017,
+      "sha256": "a00de25a6beca56ff6d8077081531e5cef238c92825b6c184351d0aa99ef3fcb"
+    },
+    {
+      "relative": "Anims/Unarmed/Jump/MM_WallJump.uasset",
+      "bytes": 409179,
+      "sha256": "e29af6dc13219cb813097e596c143d964a18c118caca138015574009e50859c0"
+    },
+    {
+      "relative": "Anims/Unarmed/Walk/MF_Unarmed_Walk_Bwd_Left.uasset",
+      "bytes": 537758,
+      "sha256": "7c25a8eebb9883085ac8f82de3c83fc34fd19b02567f17fafde9dd60c09cf3e5"
+    },
+    {
+      "relative": "Anims/Unarmed/Walk/MF_Unarmed_Walk_Bwd_Right.uasset",
+      "bytes": 537632,
+      "sha256": "8c71b9bbf7b15d75cacddbeb8827e22888cfa63a359ecbc0e017aec822d1a522"
+    },
+    {
+      "relative": "Anims/Unarmed/Walk/MF_Unarmed_Walk_Bwd.uasset",
+      "bytes": 606821,
+      "sha256": "ae0c2ee1c1178fd1b9493f6c327e52d10a3d6bbde29eae54dcb07c13a27dcf46"
+    },
+    {
+      "relative": "Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd_Left.uasset",
+      "bytes": 411535,
+      "sha256": "a7d8ff5a55eb0c445da2c74b2fd9460b6a3aff0db206be9e99aed319158d5770"
+    },
+    {
+      "relative": "Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd_Right.uasset",
+      "bytes": 411529,
+      "sha256": "67d3d4fed066023a14220277f5598db83f19efee97de908b1397b0ae998e5599"
+    },
+    {
+      "relative": "Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.uasset",
+      "bytes": 475783,
+      "sha256": "c74b2fc0cb651c4924804b364e534856a1b44dee818127c408dc055e4bda5ed9"
+    },
+    {
+      "relative": "Anims/Unarmed/Walk/MF_Unarmed_Walk_Left.uasset",
+      "bytes": 486552,
+      "sha256": "81500e4fcdd9ae9aa6433e652e67dea8f9dd9fa7b9ef1714e29f6ab0a1bb9d97"
+    },
+    {
+      "relative": "Anims/Unarmed/Walk/MF_Unarmed_Walk_Right.uasset",
+      "bytes": 491934,
+      "sha256": "f5922b4e632351353224b32f719af97e85512ab4f6553b15315cf14ad04f675f"
+    },
+    {
+      "relative": "Materials/M_Mannequin.uasset",
+      "bytes": 59292,
+      "sha256": "d7ffe412d906380bd5bd4462f464b2a1fe48fdb79b9077f29bd0f958a782035c"
+    },
+    {
+      "relative": "Materials/Manny/MI_Manny_01_New.uasset",
+      "bytes": 17963,
+      "sha256": "9f1e4ed382304d020b750c81505140fc1de4d339b0909430adb5380a6bb89b65"
+    },
+    {
+      "relative": "Materials/Manny/MI_Manny_02_New.uasset",
+      "bytes": 18706,
+      "sha256": "26389db06f0b7928b487494bef3320d6b0e6bccd58193bccedd67c2c89132a46"
+    },
+    {
+      "relative": "Materials/Quinn/MI_Quinn_01.uasset",
+      "bytes": 11184,
+      "sha256": "62a3050ef24b823f9fe84ac5d9c477099494982d35dafcc3d8078f32b0d4a865"
+    },
+    {
+      "relative": "Materials/Quinn/MI_Quinn_02.uasset",
+      "bytes": 10718,
+      "sha256": "6aec77489fdfab0e1ea299de60fbd4f332face4495bbbd20b97fb0308bb9c5b4"
+    },
+    {
+      "relative": "Meshes/SK_Mannequin.uasset",
+      "bytes": 191198,
+      "sha256": "22029d47455f24471195b26a0e04a1e1389f27d6a924e88c9f46a0f600c9a530"
+    },
+    {
+      "relative": "Meshes/SKM_Manny_Simple.uasset",
+      "bytes": 15825101,
+      "sha256": "be9f011191ee1887b97cd13bce09886a6066c2fd62c619991070ec142184e1bf"
+    },
+    {
+      "relative": "Meshes/SKM_Quinn_Simple.uasset",
+      "bytes": 16252577,
+      "sha256": "1ef45d92507a76d74a5e06737f94cad40eb7d5f5769dfbb63f7f74e784a178c6"
+    },
+    {
+      "relative": "Rigs/CR_Mannequin_Body.uasset",
+      "bytes": 17057558,
+      "sha256": "57f84458a160c35b77f0442d2af41054e41e021ebbb496c2c76dea76d1d89580"
+    },
+    {
+      "relative": "Rigs/CR_Mannequin_FootIK.uasset",
+      "bytes": 498698,
+      "sha256": "aa01be065d2efa2dfd3b258f60b94b09fcd5d351356d16bb52578ef5bcbfb5c5"
+    },
+    {
+      "relative": "Rigs/CR_Mannequin_Procedural.uasset",
+      "bytes": 2575944,
+      "sha256": "057818dd3e0e16ff90c147e25a8fc5ab309c49c4c60360477cf4742e767d151e"
+    },
+    {
+      "relative": "Rigs/PA_Mannequin.uasset",
+      "bytes": 301538,
+      "sha256": "c0ceaf003947088ff076555b81a46e5ccb11149c94025eb2a9e74263fbaa0d67"
+    },
+    {
+      "relative": "Textures/Manny/T_Manny_01_BN.uasset",
+      "bytes": 1422785,
+      "sha256": "2f623209571ecbd8185b5b463786be033c3284190b4fc7b249e8d1d2ed995fd8"
+    },
+    {
+      "relative": "Textures/Manny/T_Manny_01_D.uasset",
+      "bytes": 699555,
+      "sha256": "6ae0f4f9908c30ecc9aedf1ebb442e4983e526a7832ec791542064c7853f9999"
+    },
+    {
+      "relative": "Textures/Manny/T_Manny_01_MRA.uasset",
+      "bytes": 712594,
+      "sha256": "3e42e888aed8aefff68da7d7dda4f177c5647b19473e4e913f61375c1319abd8"
+    },
+    {
+      "relative": "Textures/Manny/T_Manny_02_BN.uasset",
+      "bytes": 20999487,
+      "sha256": "c9575d21c9e2872b3358c0efb9e202535ce2efce94c338b9d3bd04cb9831e353"
+    },
+    {
+      "relative": "Textures/Manny/T_Manny_02_D.uasset",
+      "bytes": 1036712,
+      "sha256": "474728713232c6833f55c041548f555bc62c5c49e74082a5d16e68a5ce488cfe"
+    },
+    {
+      "relative": "Textures/Manny/T_Manny_02_MRA.uasset",
+      "bytes": 1059559,
+      "sha256": "6697972eaf2dfe201923dba6a302f024b0ef4c4e46b4ecf578178717098e8277"
+    },
+    {
+      "relative": "Textures/Manny/T_Manny_02_N.uasset",
+      "bytes": 1680197,
+      "sha256": "61a9db73f72fe2d7d8821b33a79f57f3f11df9da9455822392b84b199c78e8df"
+    },
+    {
+      "relative": "Textures/Quinn/T_Quinn_01_D.uasset",
+      "bytes": 674768,
+      "sha256": "04e5ed207b7df0d2ad1bbc668916bcf170545fc2a72875e49ec99c6e2667002f"
+    },
+    {
+      "relative": "Textures/Quinn/T_Quinn_01_MRA.uasset",
+      "bytes": 791597,
+      "sha256": "0988d4d9f25597224910e1043591cb2a089a8607a4fe4a63cbc68f3eb2ab473e"
+    },
+    {
+      "relative": "Textures/Quinn/T_Quinn_01_N.uasset",
+      "bytes": 1263741,
+      "sha256": "10fbe9ac3e18e0a890d19756d3470ca372a1aeaffefbe9a22d6b0e6182293551"
+    },
+    {
+      "relative": "Textures/Quinn/T_Quinn_02_D.uasset",
+      "bytes": 943331,
+      "sha256": "f0ccb2f465894c6f9ff4dd142351ed33186c5f861283a75f3e08d1531a253c49"
+    },
+    {
+      "relative": "Textures/Quinn/T_Quinn_02_MRA.uasset",
+      "bytes": 974099,
+      "sha256": "9f7e495cbe0430aed7084b5508f87186f98346eb04f003734c9b378891da7887"
+    },
+    {
+      "relative": "Textures/Quinn/T_Quinn_02_N.uasset",
+      "bytes": 1524635,
+      "sha256": "0bc26466e9fdc954cc276bb6ac1350e22c3dabbe1b54b6bf78ed5ae2e339d9fc"
+    },
+    {
+      "relative": "Textures/Shared/T_UE_Logo_M.uasset",
+      "bytes": 59927,
+      "sha256": "34e6fa3414c04a86b7a5287e5569ea9d6e53c319d6e7dbfc8b09dab5b70611a6"
+    }
+  ]
+}

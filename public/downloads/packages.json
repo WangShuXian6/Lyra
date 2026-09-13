@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "packages": [
+    {
+      "id": "lyra-mmorpg-examples",
+      "title": "MMORPG 原创教学工程与 UE 后端",
+      "filename": "lyra-mmorpg-examples.tar.gz",
+      "bytes": 481882,
+      "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
+      "fileCount": 265,
+      "originalAssetCount": 31,
+      "manifest": "lyra-mmorpg-examples.manifest.json"
+    },
+    {
+      "id": "lyra-training-examples",
+      "title": "Lyra 射击训练场原创教学增量",
+      "filename": "lyra-training-examples.tar.gz",
+      "bytes": 105559,
+      "sha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a",
+      "fileCount": 58,
+      "originalAssetCount": 0,
+      "manifest": "lyra-training-examples.manifest.json"
+    }
+  ]
+}

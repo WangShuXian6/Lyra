@@ -1,0 +1,7 @@
+{
+  "FileVersion":3,"Version":1,"VersionName":"1.0","FriendlyName":"MMO Integration","CanContainContent":false,
+  "Modules":[
+    {"Name":"MMOBackendClient","Type":"Runtime","LoadingPhase":"Default"},
+    {"Name":"MMOBackendServer","Type":"ServerOnly","LoadingPhase":"Default"}
+  ]
+}

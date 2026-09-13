@@ -1,0 +1,172 @@
+---
+title: 让 C++ 与蓝图共同承担教学
+description: 使用 Designer 布局、真实 MVVM 绑定和异步蓝图节点连接原生业务，并验证节点文本与截图。
+---
+
+## 学习目标与前置条件
+
+本篇把原生实现接到蓝图工作流：C++ 提供生命周期、HTTP 与服务器权限边界，蓝图组合可视化流程和界面外观。需要已经构建 MMORPGEditor 并运行 `prepare_content.py`。基准版本为 **UE 5.8.1 / 2026-09-13**。
+
+## 现有可用资产与节点
+
+角色与技能使用 `BP_MMOCharacter`、`GA_ArcaneBolt`、`BP_MMOTrainingTarget`。界面由七个真实 Widget Blueprint 组成：`WBP_MMOLayout`、`WBP_Login`、`WBP_PlayerHUD`、`WBP_ManaStatus`、`WBP_Inventory`、`WBP_Settings`、`WBP_Confirm`。控件层级、样式与 MVVM 编辑器绑定保存在这些资产内，固定文案引用 `/Game/Localization/ST_MMO`。原生父类处理按钮业务、层栈和 ViewModel 生命周期；完整的逐控件创建步骤见 [Designer 布局实作](/docs/09-mmo-ui/designer)。
+
+`prepare_content.py` 按控件契约生成布局后才显式编译，并要求各资产的编译结果、控件名称、Is Variable 与绑定数量全部符合契约。`Saved/Evidence/ui-designer-assets.json` 记录本次实际结果；生成与编译通过仍需后续游戏运行验证。
+
+`UMMORequestAction::RequestMMO` 提供蓝图异步 HTTP 节点。它的输入是 WorldContext、Verb、Route、JsonBody；Completed 输出 bSuccess、StatusCode、Json。节点注册到 GameInstance，HTTP 完成后广播结果并结束，避免局部变量离开作用域时被提前回收。
+
+```cpp title="MMOBackendClient.h：异步蓝图接口"
+UFUNCTION(BlueprintCallable,
+    meta=(BlueprintInternalUseOnly="true", WorldContext="WorldContextObject"),
+    Category="MMO|Backend")
+static UMMORequestAction* RequestMMO(
+    UObject* WorldContextObject,
+    FString Verb,
+    FString Route,
+    FString JsonBody);
+```
+
+这个低层节点故意公开 JSON，方便理解协议。产品界面更适合在它上面封装 Register/Login/ListCharacters 等有明确类型的函数，集中验证输入、错误和取消行为。
+
+GET/HEAD 不发送请求体：即使教学节点的 JsonBody 显示 `{}`，客户端模块也不会把它写入 GET 的 HTTP payload。本机 UE HTTP 实现会拒绝带 payload 的 GET。模块还通过 Pending 集合保证回调只完成一次，避免 `ProcessRequest` 同步失败回调与调用处的失败兜底重复广播 Completed。
+
+## 蓝图操作步骤
+
+1. 在实验工程创建一个临时 Widget Blueprint，确保 MMOIntegration 已启用。
+2. 添加按钮 OnClicked，调用 Request MMO；例如登录前先用后端健康接口验证连接，或在登录后请求 `GET /v1/characters`。
+3. 将 Completed 的 bSuccess 接到 Branch；成功分支显示返回 JSON，失败分支显示 StatusCode 和错误信息。
+4. 使用 `Get Game Instance Subsystem` 获取 MMOBackendClient，通过原生 SetSessionToken 保存登录 token；不要把 token 存到复制的 Actor 属性。
+5. 编译并运行，观察一次点击仅发出一次请求；销毁界面后不得访问旧 Widget。
+
+接口路径必须来自本项目 HTTP 合同；不要凭节点名猜测后端 URL。没有登录 token 时，角色列表返回未授权是正确行为，不能在 UI 吞掉错误并显示空列表。
+
+## 人工创建 UI Policy 和 Widget 子类
+
+1. 在 Content Browser 的 `/Game` 新建 `UI` 文件夹。右键 **Blueprint Class → All Classes**，搜索 `MMOUIPolicy`，创建 `BP_MMOUIPolicy`。
+2. 在 UI 文件夹右键 **User Interface → Widget Blueprint → All Classes**，以 `MMORootLayout` 为父类创建 `WBP_MMOLayout`。在 Designer 用 Overlay 依次放入三个 Common Activatable Widget Stack，精确命名 `GameLayer`、`MenuLayer`、`ModalLayer`，均勾选 **Is Variable**，Overlay Slot 水平、垂直均设 Fill。完成这些必需的 BindWidget 控件后再 Compile、Save。
+3. 打开 Policy，点击 **Class Defaults**，找到 Layout Class，选择 **WBP_MMOLayout**，Compile、Save。原生 `MMORootLayout` 声明业务接口，实际被创建的是包含 Designer 三栈的蓝图生成类。
+4. 检查 `Config/DefaultGame.ini` 的 `[/Script/MMORPG.MMOUIManager]` 下 `DefaultUIPolicyClass=/Game/UI/BP_MMOUIPolicy.BP_MMOUIPolicy_C`。`_C` 表示 Blueprint 生成类；仅写资产路径无法作为类创建布局。修改 Config 后重启编辑器。
+5. 依照 [七个 Widget 的父类与控件表](/docs/09-mmo-ui/designer) 创建 Login、ManaStatus、PlayerHUD、Inventory、Settings、Confirm。先填齐每个原生父类要求的控件及绑定，再编译；空 Designer 会缺少 BindWidget。最后在 WBP_MMOLayout 的 Class Defaults 核对 Login Class、HUDClass、Inventory Class、Settings Class、Confirm Class，分别指向对应 WBP。
+
+运行时 CommonUI 根据这些可配置类压入面板，Blueprint Designer 决定面板内部结构。按钮 OnClicked 已由原生父类绑定；同一按钮不要再在 EventGraph 中重复调用登录、施法或退出业务。
+
+## 从零创建实际运行的 WBP_ManaStatus
+
+以下步骤对应 Editor 模块 MMODocTools 中 `UMMODocToolsLibrary::ConfigureDesignerWidget` 对 WBP_ManaStatus 的配置。选择手工或生成脚本其中一种完成，不要在同一个资产上边编辑边运行重建脚本；脚本会重建该教学资产的 Designer 和绑定。
+
+1. 确认 Plugins 中 **Model View ViewModel** 已启用并重启；运行最新 MMORPGEditor 构建，使 `MMOPlayerViewModel` 中 ManaLabel、ManaFraction 两个 FieldNotify 字段可用。
+2. `/Game/UI` 右键 **User Interface → Widget Blueprint**，父类选 **UserWidget**，命名 `WBP_ManaStatus`。打开 Designer，把预置 Canvas Panel 删除。
+3. 从 Palette 拖入 Vertical Box 作为根，Hierarchy 中命名 `ManaLayout`。向其添加 Text Block，命名 `ManaText`，勾选 **Is Variable**。展开 Text 属性右侧的本地化菜单，在 String Table 选择 `/Game/Localization/ST_MMO`，Key 选择 `Mana.Preview`，设计预览的英文源文案为 `Mana 100 / 100`。Font Size=`18`，Color and Opacity 线性 RGBA=`(0.90,0.94,1,1)`；Vertical Box Slot 的 Padding Bottom=`6`。
+4. 在 ManaLayout 下再添加 Size Box，命名 `ManaBarSize`，勾选 **Min Desired Height** 并填 `14`。在其中加入 Progress Bar，命名 `ManaBar`，勾选 Is Variable，Percent=`1.0`，Fill Color 线性 RGBA=`(0.08,0.5,1,1)`。它是显示控件，不接服务器写入逻辑。
+5. 打开 **Window → Viewmodels** 与 **Window → View Bindings**。在 Viewmodels 中添加 **MMOPlayerViewModel**，将 Viewmodel Name 改为 **PlayerVM**，Creation Type 选择 **Manual**。根布局负责创建实例，所以这里不选 Create Instance。
+6. 在 View Bindings 新增一条：源选择 `PlayerVM → ManaLabel`，目标选择 `ManaText → Text`。方向选择 **One Way To Destination**，启用 Compile、Enabled，Execution Mode 覆盖为 **Immediate**。
+7. 新增第二条：源 `PlayerVM → ManaFraction`，目标 `ManaBar → Percent`，同样单向、Immediate、Compile、Enabled。ManaFraction 已在 ViewModel 中计算为 Clamp(Mana/100,0,1)，不要把 0–100 的 Mana 直接绑定到 0–1 的 Percent。
+8. 点击 Compile，确认 Compiler Results 为 0 errors，再 Save。关闭并重开资产，检查两条绑定、Manual source 和 Designer Hierarchy 都已保留。
+
+| 控件 | 被绑定字段 | 来源 | 值域 / 类型 |
+| --- | --- | --- | --- |
+| ManaText | Text | PlayerVM.ManaLabel | FText，已格式化的法力说明 |
+| ManaBar | Percent | PlayerVM.ManaFraction | float，0–1 |
+
+这些配置存储在 Widget Blueprint 的 MVVM extension 中，由编译器生成字段路径与通知绑定；它们不是 EventGraph 的普通 K2 节点，所以不能用手写“节点文本”代替绑定配置。这里需要 Designer、Viewmodels Details、View Bindings 三种真实面板截图，查看截图时同时核对资产路径。
+
+## 将同一个 ViewModel 交给 Widget
+
+打开 **WBP_PlayerHUD → Designer**，在 Palette 的 User Created 分类找到 WBP_ManaStatus，将它拖入 HUD 的 Vertical Box，放在 Values 文本下方。Hierarchy 中精确命名为 **ManaStatus**，勾选 Is Variable，Compile、Save。这个嵌套 Widget 是布局资产的一部分，原生 HUD 的 `BindWidget` 属性在实例初始化时取得它。
+
+根布局通过 UIExtension 把当前玩家 ViewModel 交给 HUD。HUD 的 `SetViewModel` 把同一实例赋给自身和 Designer 内的 ManaStatus，两处都使用 Manual source 名 `PlayerVM`：
+
+```cpp title="MMOUI.cpp：Manual source 绑定已有实例"
+static void AssignViewModel(UUserWidget* Widget, UMMOPlayerViewModel* Model)
+{
+    if (!Widget) return;
+    if (auto* View = UMVVMSubsystem::GetViewFromUserWidget(Widget);
+        View && View->IsConstructed())
+    {
+        ensure(View->SetViewModel(TEXT("PlayerVM"),
+            TScriptInterface<INotifyFieldValueChanged>(Model)));
+    }
+}
+
+void UMMOHUDPanel::SetViewModel(UMMOPlayerViewModel* Model)
+{
+    VM = Model;
+    AssignViewModel(this, VM);
+    AssignViewModel(ManaStatus, VM);
+}
+```
+
+头文件为 `MVVMSubsystem.h`、`View/MVVMView.h`，模块依赖 ModelViewViewModel、FieldNotification、UMG。若在蓝图中练习同一赋值过程，从 Variables 把 Designer 已有的 **ManaStatus** 拖为 Get，接 **Get View From User Widget → Set View Model**，View Model Name 填 `PlayerVM`，对象仍由根布局传入。业务版本已经在 C++ 执行赋值，练习图不要重复执行；每个子 Widget 也不应创建一个没有 BindPlayer 的新 ViewModel。
+
+HUD 销毁时先注销 UIExtension，再调用 `SetViewModel(nullptr)`，同时解除自身与嵌套 ManaStatus 的绑定。角色切换由根布局重新绑定玩家数据；界面只接收 FieldNotify 通知。
+
+进入角色后，服务器初始 Mana=100，文本显示 100、进度条满格；选中目标施放一次奥术箭，服务器确认后应变为 80 和 0.8，冷却结束继续施放应再次下降。退出并重进时根布局更换数据来源，绑定显示加载后的法力。`ValidateManaBinding` 会读取真实 TextBlock 文本和 ProgressBar.Percent 与 ViewModel 比较；自动回归把这个断言与 GAS/存档验证放在一起，而不是只检查 UPROPERTY 存在。
+
+手工确认时把断点放在 ViewModel Refresh：GAS 委托推动 ManaFraction/ManaLabel 通知，UMG 自动更新；不要在 HUD 每帧手动 SetPercent，否则无法证明这两条编辑器绑定有效。按钮请求仍由 Pawn/服务器处理，需要双向绑定的通常是本地设置表单。
+
+## 原生节点文本与截图
+
+实验已包含原创 `/Game/Tutorial/BP_BackendHealth`：`Event BeginPlay → Request MMO → Completed → Print String`，另有 Self 为两个 WorldContext 引脚提供上下文。请求使用 `GET /health`、JSON `{}`，不需要账号令牌；Completed 的 Json 接入打印。下载 [可直接复制粘贴的原生节点文本](/blueprints/mmorpg/backend-health.txt)，在空白 Actor Blueprint 的 EventGraph 中粘贴。该图应只保留一个 BeginPlay 事件，先删除模板中已有的同名空事件。
+
+<BlueprintGraph src="/media/mmorpg/backend-health-graph.png" alt="原创 BP_BackendHealth 的完整四节点图：BeginPlay 调用异步 Request MMO，Completed 输出 JSON 接入 Print String，Self 提供 WorldContext" caption="/Game/Tutorial/BP_BackendHealth:EventGraph；UE 5.8.1，2026-09-13 14:36 UTC 重采；BlueprintScreenshotTool ZoomAmount=1，原始 1262×564，与本次保存的四节点资产对应。" download="/blueprints/mmorpg/backend-health.txt" />
+
+**2026-09-13 / UE 5.8.1 验证：** Editor-only `MMODocTools` 构造并编译真实图，再读取导出的文本，在完整 Actor Blueprint 副本中导入并编译。源图和副本均为 4 个节点、0 个编译错误、0 个警告；记录在 `verification/backend-health-roundtrip.json`。这项记录证明构造、保存和原生文本往返，不单独证明 HTTP 已在游戏中执行。`prepare_content.py` 会重建并验证此资产，测试副本留在实验工程 `/Game/Tutorial/Tests`，不发布为教学增量。
+
+随后两客户端在 Showcase 中实际生成这个 Actor，BeginPlay 执行蓝图 HTTP 节点，两端各输出一次 `{"ok":true}`。最终已 Cook Client 的同一流程也通过，运行证据单独记录在 `verification/mmorpg-packaged-rendered-showcase.json`，不改写前面仅验证蓝图编译范围的报告。
+
+## 为健康检查蓝图声明 Cook 依赖
+
+字符串形式的 `LoadClass("/Game/Tutorial/BP_BackendHealth.BP_BackendHealth_C")` 不会自动告诉 Cooker 要包含这个资产。实验工程的 `Tutorial/Tests` 还保存了原生粘贴验证副本，因此采用一个只列出健康检查蓝图的 Primary Asset Label。
+
+1. Content Browser 新建 `/Game/MMO/Labels`，右键 **Miscellaneous → Data Asset**，类型选 **PrimaryAssetLabel**，命名 `DA_TutorialExamples`。它是 Data Asset 实例，不是 Blueprint Class。
+2. 打开 Details，在 Rules 中设置 **Priority=1、Chunk ID=-1、Apply Recursively=true、Cook Rule=Always Cook**。Chunk ID=-1 表示不指定独立分块；本教程仍使用默认分块。
+3. **Label Assets in My Directory=false**，避免递归收集整目录；**Is Runtime Label=false**，因为游戏代码不需要加载标签对象本身。这个开关不禁止它标记的资产进入包，标记资产由 Cook Rule 决定。
+4. 将 **Explicit Blueprints** 增加一项，选择 `/Game/Tutorial/BP_BackendHealth`。Explicit Assets 保持 0，Asset Collection 为空，Include Redirectors=false。不要把三个 `BP_BackendHealth_RoundTrip_*` 验证副本加入标签。Save 后重新打开核对只有一个显式蓝图。
+5. 打开 **Project Settings → Asset Manager → Primary Asset Types to Scan**，找到既有 `PrimaryAssetLabel` 条目，类型对应 `/Script/Engine.PrimaryAssetLabel`，扫描目录改为 `/Game/MMO/Labels`，**Has Blueprint Classes=false、Is Editor Only=false、Cook Rule=Always Cook**。不要追加一个内容冲突的同名类型。
+6. 保存配置并重启编辑器。UE 5.8 的引擎默认标签类型设置了 `Is Editor Only=true`，这会让 Asset Manager 忽略用于拉入资产的 AlwaysCook 规则；只修改标签里的规则还不够。项目 `DefaultGame.ini` 已覆盖该类型的扫描规则。
+
+![DA_TutorialExamples 原生 Details：Priority1、ChunkID负1、递归应用与AlwaysCook，目录收集和运行时标签均关闭，显式蓝图仅BP_BackendHealth](/media/configuration/mmorpg/health-explicit-cook-label.png)
+
+图：`/Game/MMO/Labels/DA_TutorialExamples`，UE 5.8.1 原生标签 Details。`规则 → 烘焙规则` 为 Always Cook，`显式蓝图` 只有一项 BP_BackendHealth。**标签规则与 Asset Manager 扫描规则是两层配置**：本图只展示前者。2026-09-13 15:48 UTC 的创建报告已验证保存和显式引用，同时如实记录该编辑器仍持有旧的 `/Game`、IsEditorOnly=true 扫描设置，需重启后另行核对；不能凭本图宣称 Cook 已通过。
+
+![重启后的 Asset Manager 标签类型：Is Editor Only 关闭，目录 Game/MMO/Labels，Cook Rule Always Cook](/media/configuration/mmorpg/asset-scan-primaryassetlabel-fresh.png)
+
+图：2026-09-13 16:49 UTC 的实际新进程设置。**16:45:12 UTC** 的 `verification/mmorpg-health-cook-label-scan.json` 已只读核验通过：唯一 PrimaryAssetLabel 类型、`/Game/MMO/Labels`、`IsEditorOnly=false`、`AlwaysCook=true`，标签仍只显式引用 BP_BackendHealth，资产 SHA 未改变，`assetsModified=false`。因此前图创建时需要的重启核对已经完成；`cookExecuted=false` 仍明确表示这份记录不证明资产已进入最终包。
+
+自动化使用独立脚本 `scripts/mmorpg/prepare-health-cook-label.py`，它只创建或更新上述标签，不重建蓝图图表。执行前核对编辑器打开的是 `F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject`，保存已有资产。打开底部 **输出日志（Output Log）**，将输入栏左侧模式保持为 **Cmd**，输入下面完整命令后回车：
+
+```text title="在实验编辑器的 Output Log → Cmd 执行"
+py "F:/UE/LyraDoc/scripts/mmorpg/prepare-health-cook-label.py"
+```
+
+等待日志显示 `MMO health Cook label saved`，再打开 `F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/mmorpg-health-cook-label.json`，核对 `passed=true`、`saved=true`、`explicitBlueprints` 只有 BP_BackendHealth。`editorRestartRequired=true` 表示该进程仍持有旧扫描配置；保存并正常关闭编辑器，重新打开同一工程后再在 Cmd 执行：
+
+```text title="重启后只读检查当前进程加载的扫描规则"
+py "F:/UE/LyraDoc/scripts/mmorpg/validate-health-cook-label.py"
+```
+
+第二个脚本不修改资产，在 `Saved/Evidence/mmorpg-health-cook-label-scan.json` 检查唯一 Label 类型、扫描目录、IsEditorOnly=false、AlwaysCook 和显式引用。只有 `passed=true` 后继续 Cook；这仍是配置检查，实际包的内容还须按下一段验证。`prepare_content.py` 不创建这个标签，完全从空白手工创建或删除 Content 后重新生成的读者需要补跑上述独立脚本；下载增量已经包含保存好的标签。
+
+发布验证必须在真实 Pak/IoStore 清单中找到 `Tutorial/BP_BackendHealth.uasset`，并确认 `Tutorial/Tests` 的副本缺席。`Invoke-RenderedShowcase.ps1` 的开发和打包模式都通过实际入服后的生成入口运行该图，分别核对 `MMO_SHOWCASE_HEALTH_GRAPH spawned=1` 和原生 `LogBlueprintUserMessages` 中健康检查的 `{"ok":true}`。手工复现可使用 `Start-Lab.ps1 -Showcase`；打包时同时传入真实 ClientExecutable、ServerExecutable，具体命令见[运行与打包验收](/docs/08-mmorpg/run-lab)。
+
+**最终实际结果：** `verification/mmorpg-staged-presentation.json` 已从本轮原生 Pak/IoStore 清单确认 BP_BackendHealth 存在，三个 RoundTrip 测试副本及 Tutorial/Tests 目录内容缺席，也检查了 Stage 的松散文件。随后两个打包 Client 都成功加载生成该类，并从真实蓝图 Completed 回调得到健康 JSON。配置检查、原生节点往返、最终 Cook 内容与 HTTP 运行分别保留报告，不能互相替代。
+
+## 验证文本与截图对应关系
+
+蓝图文本是编辑器复制节点产生的原生文本，包含节点类、对象引用、PinId 和连线。教程中的流程说明不是可粘贴文本；为了交付可复现内容，需要完成以下验证：
+
+1. 选中教学图需要的完整节点，在编辑器复制并保存原生文本。
+2. 在实验工程同类型图中粘贴，处理依赖并编译，记录结果。
+3. 用 BlueprintScreenshotTool 在 **ZoomAmount = 1** 下截取选中节点，保留完整分辨率 PNG。
+4. 在站点按 1:1 展示可平移原图，同时提供文本下载、依赖类、资产路径和验证日期。
+
+截图、节点文本和当前资产应来自同一个版本。缩到全图可见的截图可以帮助定位，但不能代替节点文字可读的原图。不要用人工绘制的“像蓝图”的图片冒充编辑器截图。
+
+## 预期结果与排障
+
+原生节点可以出现在搜索菜单并正常完成异步请求，Widget Blueprint 可以读取相同 ViewModel 字段。若找不到节点，先检查模块是否加载、C++ 是否重新构建以及 Context Sensitive 的上下文限制；若粘贴后缺失函数，核对原始文本所依赖的类和插件。
+
+制作新的 WBP 后，在 WBP_MMOLayout 的对应可配置 Class 字段选择它；修改根布局时同时核对 BP_MMOUIPolicy 的 Layout Class。运行后用 Widget Reflector 核对实际类名与层级，再确认新外观和返回焦点。
+
+练习：在 ManaStatus 中增加生命进度条，用新增 HealthFraction FieldNotify 绑定，验证重生后切换到新 Pawn 的数据。保留 Designer、绑定配置与游戏前后结果；如果新增 EventGraph 逻辑，再附原生节点文本和 1:1 图截图。
+

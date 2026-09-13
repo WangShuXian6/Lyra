@@ -1,0 +1,186 @@
+{
+  "stage": "startup",
+  "observedAt": "2026-09-13T14:11:57.759843+00:00",
+  "project": "F:/UE/LyraDocLabs/MMORPG",
+  "engine": "5.8.1-0+UE5",
+  "world": "/Engine/Maps/UEDPIE_0_Entry.Entry",
+  "viewport": [
+    1920,
+    1080
+  ],
+  "culture": "zh-Hans",
+  "method": "Read-only native UObject/UMG observation following separately recorded Slate input.",
+  "widgets": [
+    {
+      "name": "ManaStatus",
+      "class": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0.WidgetTree_0.ManaStatus",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        160.0,
+        61.0
+      ],
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_MMOLayout_C_0",
+      "class": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        588.0,
+        670.0
+      ],
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_Login_C_0",
+      "class": "/Game/UI/WBP_Login.WBP_Login_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Login_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "activated": false,
+      "desiredFocus": "Username",
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_PlayerHUD_C_0",
+      "class": "/Game/UI/WBP_PlayerHUD.WBP_PlayerHUD_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_PlayerHUD_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        588.0,
+        670.0
+      ],
+      "activated": true,
+      "desiredFocus": null,
+      "manaBinding": true
+    },
+    {
+      "name": "WBP_Inventory_C_0",
+      "class": "/Game/UI/WBP_Inventory.WBP_Inventory_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Inventory_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "activated": false,
+      "desiredFocus": "PotionButton",
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_Settings_C_0",
+      "class": "/Game/UI/WBP_Settings.WBP_Settings_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Settings_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "activated": false,
+      "desiredFocus": "MediumQualityButton",
+      "manaBinding": null
+    },
+    {
+      "name": "WBP_Confirm_C_0",
+      "class": "/Game/UI/WBP_Confirm.WBP_Confirm_C",
+      "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.WidgetTree_0.WBP_Confirm_C_0",
+      "visibility": "<SlateVisibility.SELF_HIT_TEST_INVISIBLE: 4>",
+      "focus": false,
+      "size": [
+        0.0,
+        0.0
+      ],
+      "desiredSize": [
+        0.0,
+        0.0
+      ],
+      "activated": false,
+      "desiredFocus": "CancelButton",
+      "manaBinding": null
+    }
+  ],
+  "playerState": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerState_0",
+  "playerName": "教学旅人·二",
+  "xp": 25,
+  "level": 1,
+  "sessionReady": true,
+  "asc": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerState_0.ASC",
+  "abilityCount": 2,
+  "abilityActorInfo": [
+    {
+      "ability": "/Script/MMORPG.MMOAttackAbility",
+      "avatar": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.BP_MMOCharacter_C_0",
+      "asc": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerState_0.ASC"
+    },
+    {
+      "ability": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+      "avatar": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.BP_MMOCharacter_C_0",
+      "asc": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.MMOPlayerState_0.ASC"
+    }
+  ],
+  "pawn": "/Engine/Maps/UEDPIE_0_Entry.Entry:PersistentLevel.BP_MMOCharacter_C_0",
+  "position": [
+    34.13271230605815,
+    0.0,
+    90.15000063619888
+  ],
+  "dead": false,
+  "mesh": "/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple.SKM_Manny_Simple",
+  "animation": {
+    "class": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter_C",
+    "groundSpeed": 0.0,
+    "falling": false,
+    "linkedLayer": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed_C",
+    "linkedGroundSpeed": 0.0
+  },
+  "rootCount": 1,
+  "viewModel": {
+    "object": "/Engine/Transient.UnrealEdEngine_0:MMOGameInstance_0.WBP_MMOLayout_C_0.MMOPlayerViewModel_1",
+    "StatusText": "教学旅人·二 · Level 1 · XP 25\nHealth 50 / 100",
+    "ManaLabel": "Mana 40 / 100",
+    "InventoryLabel": "Mana potion × 1",
+    "TargetLabel": "Training target · Health 100 / 100",
+    "CooldownLabel": "Arcane bolt: 0.0s cooldown · costs 20 mana",
+    "InputHint": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+    "Health": 50.0,
+    "Mana": 40.0,
+    "Cooldown": 0.0,
+    "ManaFraction": 0.4000000059604645,
+    "TargetFraction": 1.0
+  }
+}

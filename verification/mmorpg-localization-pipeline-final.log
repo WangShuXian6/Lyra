@@ -1,0 +1,1256 @@
+[2026.09.13-16.35.35:678][  0]LogInit: Display: Running engine for game: MMORPG
+[2026.09.13-16.35.35:678][  0]LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,region'
+[2026.09.13-16.35.35:678][  0]LogTrace: Display: Control listening on port 1985
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : platform="Windows"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : config="Development"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : buildversion="UE5-CL-0"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : engineversion="5.8.1-0+UE5"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : enginereleaseversion="5.8.1"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : os="Windows 11 (25H2) [10.0.26200.8457] "
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : cpu="GenuineIntel|12th Gen Intel(R) Core(TM) i5-12490F"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : pgoenabled="0"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : ltoenabled="0"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : asan="0"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : mergedmodules="0"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : compacttset="0"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : commandline="" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -run=GatherText -config=Config/Localization/MMO_Gather.ini -unattended -nop4 -NullRHI -nosound -Multiprocess -corelimit=2 -UTF8Output -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False""
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : loginid="b88a7139400b436c9bc330924bae3246"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : llm="0"
+[2026.09.13-16.35.35:678][  0]LogInit: Display: Output is UTF-8 by default. Use of -UTF8Output on the command is deprecated and can be removed.
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : zenstreaming="0"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
+[2026.09.13-16.35.35:678][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+[2026.09.13-16.35.35:678][  0]LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
+[2026.09.13-16.35.35:678][  0]LogAssetRegistry: Display: FindShardedCacheFiles: 0 via .ref, 0 via migration fallback, 0 total
+[2026.09.13-16.35.35:678][  0]LogAssetRegistry: Display: No AssetDiscovery cache present at F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistryDiscovery.bin. AssetRegistry discovery of files will be uncached.
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading Android ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading IOS ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading Linux ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading LinuxArm64 ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading Mac ini files took 0.01 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading TVOS ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading Unix ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading VulkanPC ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading Windows ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]LogConfig: Display: Loading VisionOS ini files took 0.02 seconds
+[2026.09.13-16.35.35:678][  0]RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+[2026.09.13-16.35.35:679][  0]LogAsyncCompilation: Display: MemorySharingInfo: UsedMemory=263MiB, MaxMemoryAvailable=51013MiB
+[2026.09.13-16.35.35:679][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.35.35:679][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.35.35:679][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.35.35:679][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.35.35:679][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.35.35:679][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.35.35:679][  0]LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+[2026.09.13-16.35.35:679][  0]LogHAL: Display: Platform has ~ 32 GB [34164105216 / 34359738368 / 32], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2026.09.13-16.35.35:679][  0]LogVirtualTexturing: Display: Recreating virtual texture pools.
+[2026.09.13-16.35.35:679][  0]LogCsvProfiler: Display: Metadata set : extradevelopmentmemorymb="0"
+[2026.09.13-16.35.35:679][  0]LogObj: Display: Attempting to load config data for Default__DownlinkBandwidthManagerConfig before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.35.36:023][  0]LogObj: Display: Attempting to load config data for Default__SlateThemeManager before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.35.36:110][  0]LogCsvProfiler: Display: Metadata set : verbatimrhiname="Null"
+[2026.09.13-16.35.36:110][  0]LogCsvProfiler: Display: Metadata set : rhiname="Null"
+[2026.09.13-16.35.36:110][  0]LogCsvProfiler: Display: Metadata set : rhifeaturelevel="SM6"
+[2026.09.13-16.35.36:110][  0]LogCsvProfiler: Display: Metadata set : shaderplatform="PCD3D_SM6"
+[2026.09.13-16.35.36:110][  0]LogCsvProfiler: Display: Metadata set : gpu=""
+[2026.09.13-16.35.36:110][  0]LogCsvProfiler: Display: Metadata set : gpudriver=""
+[2026.09.13-16.35.36:115][  0]LogTextureFormatASTC: Display: ASTCEnc version 5.0.1 library loaded
+[2026.09.13-16.35.36:116][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatASTC
+[2026.09.13-16.35.36:116][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatETC2
+[2026.09.13-16.35.36:116][  0]LogTextureFormatOodle: Display: Oodle Texture TFO init; latest sdk version = 2.9.16
+[2026.09.13-16.35.36:116][  0]LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.16.dll
+[2026.09.13-16.35.36:116][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatOodle
+[2026.09.13-16.35.36:116][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatUncompressed
+[2026.09.13-16.35.36:143][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Android'
+[2026.09.13-16.35.36:168][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Linux'
+[2026.09.13-16.35.36:182][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'LinuxArm64'
+[2026.09.13-16.35.36:211][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2026.09.13-16.35.36:211][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsEditor'
+[2026.09.13-16.35.36:211][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2026.09.13-16.35.36:211][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2026.09.13-16.35.36:211][  0]LogTargetPlatformManager: Display: Building Assets For WindowsEditor
+[2026.09.13-16.35.36:213][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2026.09.13-16.35.36:251][  0]LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+[2026.09.13-16.35.36:856][  0]LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+[2026.09.13-16.35.36:856][  0]LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.35.36:856][  0]LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.35.36:856][  0]LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+[2026.09.13-16.35.36:857][  0]LogZenServiceInstance: Display: Launching executable 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\air\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 5172  --child-id Zen_5172_Startup'
+[2026.09.13-16.35.39:134][  0]LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+[2026.09.13-16.35.39:135][  0]LogDerivedDataCache: Display: ZenLocal: Using ZenServer HTTP service at [::1] with namespace ue.ddc. Status: OK!.
+[2026.09.13-16.35.39:139][  0]LogDerivedDataCache: Display: ../../../Engine/DerivedDataCache: Performance: Latency=0.02ms. RandomReadSpeed=2164.58MBs, RandomWriteSpeed=314.81MBs. Assigned SpeedClass 'Local'
+[2026.09.13-16.35.39:142][  0]LogUbaHorde: Display: UBA/Horde Configuration [Uba.Provider.Horde]: Not Enabled
+[2026.09.13-16.35.39:142][  0]LogShaderCompilers: Display: No distributed shader compiler controller found
+[2026.09.13-16.35.39:142][  0]LogShaderCompilers: Display: Using 1 local workers for shader compilation
+[2026.09.13-16.35.39:149][  0]LogShaderCompilers: Display: Compiling shader autogen file: F:/UE/LyraDocLabs/MMORPG/Intermediate/ShaderAutogen/PCD3D_SM6/AutogenShaderHeaders.ush
+[2026.09.13-16.35.39:149][  0]LogShaderCompilers: Display: Autogen file is unchanged, skipping write.
+[2026.09.13-16.35.40:247][  0]LogEditorDomain: Display: EditorDomain is Disabled
+[2026.09.13-16.35.40:296][  0]LogAssetRegistry: Display: AssetDataGatherer spent 0.000s loading caches from F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistry.
+[2026.09.13-16.35.40:499][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64Editor not found.
+[2026.09.13-16.35.40:499][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64 not found.
+[2026.09.13-16.35.40:542][  0]LogCsvProfiler: Display: Metadata set : deviceprofile="WindowsEditor"
+[2026.09.13-16.35.40:544][  0]LogStreaming: Display: FlushAsyncLoading(1): 1 QueuedPackages, 0 AsyncPackages
+[2026.09.13-16.35.40:561][  0]LogTextureEncodingSettings: Display: Texture Encode Speed: Final (cook).
+[2026.09.13-16.35.40:561][  0]LogTextureEncodingSettings: Display: Oodle Texture Encode Speed settings: Fast: RDO Off Lambda=0, Effort=Normal Final: RDO Off Lambda=0, Effort=Normal
+[2026.09.13-16.35.40:561][  0]LogTextureEncodingSettings: Display: Shared linear texture encoding: Disabled
+[2026.09.13-16.35.40:579][  0]LogMeshReduction: Display: Using QuadricMeshReduction for automatic static mesh reduction
+[2026.09.13-16.35.40:579][  0]LogMeshReduction: Display: Using SkeletalMeshReduction for automatic skeletal mesh reduction
+[2026.09.13-16.35.40:579][  0]LogMeshReduction: Display: Using ProxyLODMeshReduction for automatic mesh merging
+[2026.09.13-16.35.40:579][  0]LogMeshReduction: Display: No distributed automatic mesh merging module available
+[2026.09.13-16.35.40:705][  0]LogVirtualization: Display: VirtualizationSystem name found in ini file: None
+[2026.09.13-16.35.40:705][  0]LogVirtualization: Display: FNullVirtualizationSystem mounted, virtualization will be disabled
+[2026.09.13-16.35.40:766][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize started...
+[2026.09.13-16.35.40:769][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize took 2.405 ms
+[2026.09.13-16.35.41:135][  0]LogMetaSound: Display: MetaSound Page Target Initialized to 'Default'
+[2026.09.13-16.35.41:138][  0]LogAudio: Display: Registering Engine Module Parameter Interfaces...
+[2026.09.13-16.35.41:460][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.35.41:460][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.35.41:867][  0]LogGameFeatures: Display: Game feature 'MMOCore' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.09.13-16.35.41:867][  0]LogGameFeatures: Display: Total built in plugin load time 0.0049s
+[2026.09.13-16.35.41:882][  0]LogCsvProfiler: Display: Metadata set : largeworldcoordinates="1"
+[2026.09.13-16.35.41:907][  0]LogCsvProfiler: Display: Metadata set : raytracing="0"
+[2026.09.13-16.35.42:017][  0]LogGatherTextCommandlet: Display: LegacyScheduler: No
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Scheduling GatherText tasks for 'F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini'
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'UpdateArchives' has a single parallel task. Adding it to the end of its sequential tasks.
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'Finalize' has a single parallel task. Adding it to the end of its sequential tasks.
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PreInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'Initialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PostInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'UpdateManifests':
+	3 sequential task(s): 1 GatherTextFromSourceCommandlet, 1 GatherTextFromAssetsCommandlet, 1 GenerateGatherManifestCommandlet
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'UpdateArchives':
+	1 sequential task(s): 1 GenerateGatherArchiveCommandlet
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PreImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'Import':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PostImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PreExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'Export':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PostExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PreCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'Compile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PostCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PreFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'Finalize':
+	1 sequential task(s): 1 GenerateTextLocalizationReportCommandlet
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Phase 'PostFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: CanRunParallelTasks: Yes
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Running phase 'UpdateManifests' (3 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Running 3 sequentials task(s) in phase 'UpdateManifests'...
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Starting sequential task 1 of 3 in phase 'UpdateManifests'...
+[2026.09.13-16.35.42:018][  0]LogGatherTextCommandlet: Display: Executing GatherTextFromSourceCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.42:018][  0]LogGatherTextFromSourceCommandlet: Display: UGatherTextFromSourceCommandlet::Main started...
+[2026.09.13-16.35.54:838][  0]LogGatherTextFromSourceCommandlet: Display: Ran source prepass for nested macros in 12.82 seconds
+[2026.09.13-16.35.54:949][  0]LogGatherTextFromSourceCommandlet: Display: Ran source mainpass in 0.11 seconds
+[2026.09.13-16.35.54:949][  0]LogGatherTextFromSourceCommandlet: Display: UGatherTextFromSourceCommandlet::Main took 12.9 sec
+[2026.09.13-16.35.54:949][  0]LogGatherTextCommandlet: Display: Executing GatherTextFromSourceCommandlet took 12.93 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.54:949][  0]LogGatherTextCommandlet: Display: Starting sequential task 2 of 3 in phase 'UpdateManifests'...
+[2026.09.13-16.35.54:949][  0]LogGatherTextCommandlet: Display: Executing GatherTextFromAssetsCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep1 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.54:949][  0]LogGatherTextFromAssetsCommandlet: Display: UGatherTextFromAssetsCommandlet::Main started...
+[2026.09.13-16.35.54:949][  0]LogGatherTextFromAssetsCommandlet: Display: SkipGatherCache: false
+[2026.09.13-16.35.54:949][  0]LogGatherTextFromAssetsCommandlet: Display: ReportStaleGatherCache: false
+[2026.09.13-16.35.54:949][  0]LogGatherTextFromAssetsCommandlet: Display: FixStaleGatherCache: false
+[2026.09.13-16.35.54:949][  0]LogGatherTextFromAssetsCommandlet: Display: FixMissingGatherCache: false
+[2026.09.13-16.35.54:949][  0]LogGatherTextFromAssetsCommandlet: Display: FixPackageLocalizationIdConflict: false
+[2026.09.13-16.35.54:960][  0]LogGatherTextFromAssetsCommandlet: Display: Skipping first pass PackagePaths filter due to complex IncludePathFilters: F:/UE/LyraDocLabs/MMORPG/Content/Localization/ST_MMO.uasset
+[2026.09.13-16.35.54:960][  0]LogGatherTextFromAssetsCommandlet: Display: Discovering assets to gather...
+[2026.09.13-16.35.54:960][  0]LogGatherTextFromAssetsCommandlet: Display: UGatherTextFromAssetsCommandlet::DiscoverAllAssetsForGatherFilter started...
+[2026.09.13-16.35.55:005][  0]LogAssetRegistry: Display: Starting OnFilesLoaded.Broadcast
+[2026.09.13-16.35.55:012][  0]LogAssetRegistry: Display: Completed OnFilesLoaded.Broadcast: 0.007s
+[2026.09.13-16.35.55:012][  0]LogGatherTextFromAssetsCommandlet: Display: UGatherTextFromAssetsCommandlet::DiscoverAllAssetsForGatherFilter took 52.525 ms
+[2026.09.13-16.35.55:013][  0]LogGatherTextFromAssetsCommandlet: Display: Getting all assets with first pass filter from asset registry took 0.00 seconds.
+[2026.09.13-16.35.55:013][  0]LogGatherTextFromAssetsCommandlet: Display: UGatherTextFromAssetsCommandlet::FilterAssetsBasedOnIncludeExcludePaths started...
+[2026.09.13-16.35.55:130][  0]LogGatherTextFromAssetsCommandlet: Display: UGatherTextFromAssetsCommandlet::FilterAssetsBasedOnIncludeExcludePaths took 116.669 ms
+[2026.09.13-16.35.55:130][  0]LogGatherTextFromAssetsCommandlet: Display: Discovering external packages to gather...
+[2026.09.13-16.35.55:131][  0]LogGatherTextFromAssetsCommandlet: Display: Discovering external packages took 0.00 seconds.
+[2026.09.13-16.35.55:131][  0]LogGatherTextFromAssetsCommandlet: Display: Populating pending packages took 0.00 seconds.
+[2026.09.13-16.35.55:131][  0]LogGatherTextFromAssetsCommandlet: Display: Discovering assets to gather took 0.17 seconds.
+[2026.09.13-16.35.55:131][  0]LogGatherTextFromAssetsCommandlet: Display: Processing assets to gather...
+[2026.09.13-16.35.55:131][  0]LogGatherTextFromAssetsCommandlet: Display: UGatherTextFromAssetsCommandlet::ProcessAndRemoveCachedPackages started...
+[2026.09.13-16.35.55:131][  0]LogGatherTextFromAssetsCommandlet: Display: Loading the cached localization data for 9 package(s) using 2 thread(s). This may take a while...
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: Loading the cached localization data for 9 package(s) took 0.03 seconds.
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: Ingesting the cached localization data for 9 package(s). This may take a while...
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: [ 66.67%] Gathering package: '/Game/Localization/ST_MMO'...
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: Ingesting the cached localization data for 9 package(s) took 0.00 seconds.
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: Number of packages with duplicate loc ids: 0
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: Number of packages to load: 0
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: UGatherTextFromAssetsCommandlet::ProcessAndRemoveCachedPackages took 27.052 ms
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: Asset gather cache metrics: 1 cached, 0 uncached (0 too old, 0 no cache or contained bytecode)
+[2026.09.13-16.35.55:158][  0]LogGatherTextFromAssetsCommandlet: Display: UGatherTextFromAssetsCommandlet::Main took 208.144 ms
+[2026.09.13-16.35.55:158][  0]LogGatherTextCommandlet: Display: Executing GatherTextFromAssetsCommandlet took 0.21 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep1 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.55:158][  0]LogGatherTextCommandlet: Display: Starting sequential task 3 of 3 in phase 'UpdateManifests'...
+[2026.09.13-16.35.55:158][  0]LogGatherTextCommandlet: Display: Executing GenerateGatherManifestCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep2 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.55:158][  0]LogGenerateManifestCommandlet: Display: UGenerateGatherManifestCommandlet::Main started...
+[2026.09.13-16.35.55:159][  0]LogGenerateManifestCommandlet: Display: UGenerateGatherManifestCommandlet::Main took 1.247 ms
+[2026.09.13-16.35.55:159][  0]LogGatherTextCommandlet: Display: Executing GenerateGatherManifestCommandlet took 0.00 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep2 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.55:159][  0]LogGatherTextCommandlet: Display: 3 sequentials task(s) in phase 'UpdateManifests' took 13.14 seconds.
+[2026.09.13-16.35.55:159][  0]LogGatherTextCommandlet: Display: Phase 'UpdateManifests' took 13.14 seconds (3 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.35.55:159][  0]LogGatherTextCommandlet: Display: Running phase 'UpdateArchives' (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.35.55:159][  0]LogGatherTextCommandlet: Display: Running 1 sequentials task(s) in phase 'UpdateArchives'...
+[2026.09.13-16.35.55:159][  0]LogGatherTextCommandlet: Display: Starting sequential task 1 of 1 in phase 'UpdateArchives'...
+[2026.09.13-16.35.55:159][  0]LogGatherTextCommandlet: Display: Executing GenerateGatherArchiveCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep3 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.55:159][  0]LogGenerateArchiveCommandlet: Display: UGenerateGatherArchiveCommandlet::Main started...
+[2026.09.13-16.35.55:161][  0]LogGenerateArchiveCommandlet: Display: UGenerateGatherArchiveCommandlet::Main took 2.529 ms
+[2026.09.13-16.35.55:161][  0]LogGatherTextCommandlet: Display: Executing GenerateGatherArchiveCommandlet took 0.00 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep3 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.55:161][  0]LogGatherTextCommandlet: Display: 1 sequentials task(s) in phase 'UpdateArchives' took 0.00 seconds.
+[2026.09.13-16.35.55:161][  0]LogGatherTextCommandlet: Display: Phase 'UpdateArchives' took 0.00 seconds (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.35.55:161][  0]LogGatherTextCommandlet: Display: Running phase 'Finalize' (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.35.55:161][  0]LogGatherTextCommandlet: Display: Running 1 sequentials task(s) in phase 'Finalize'...
+[2026.09.13-16.35.55:161][  0]LogGatherTextCommandlet: Display: Starting sequential task 1 of 1 in phase 'Finalize'...
+[2026.09.13-16.35.55:161][  0]LogGatherTextCommandlet: Display: Executing GenerateTextLocalizationReportCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep4 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.55:161][  0]LogGenerateTextLocalizationReportCommandlet: Display: UGenerateTextLocalizationReportCommandlet::Main started...
+[2026.09.13-16.35.55:162][  0]LogGenerateTextLocalizationReportCommandlet: Display: UGenerateTextLocalizationReportCommandlet::Main took 666 us
+[2026.09.13-16.35.55:162][  0]LogGatherTextCommandlet: Display: Executing GenerateTextLocalizationReportCommandlet took 0.00 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Gather.ini" -Section=GatherTextStep4 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Gather.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.35.55:162][  0]LogGatherTextCommandlet: Display: 1 sequentials task(s) in phase 'Finalize' took 0.00 seconds.
+[2026.09.13-16.35.55:162][  0]LogGatherTextCommandlet: Display: Phase 'Finalize' took 0.00 seconds (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: ---Gather Source Stats------------------------
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: ---Prepass------------------------------------
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                            54943 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                          40119 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: Total =                          95062 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                       12.82 seconds
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: ---Mainpass-----------------------------------
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                               11 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                             16 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.35.55:162][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Total =                             27 files
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.11 seconds
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: ---Nested Macro-------------------------------
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExact =                     0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateMacroName =                 8
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExcluded =                  0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Concatenation =                      0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Variadic =                           0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: SizeInBytes =                   108997 bytes
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Nested_LOCTEXT =                    34
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSLOCTEXT =                  13
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NOTELOCTEXT =                 0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSNOTELOCTEXT =               0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND =                 12
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND_EXT =              0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: PrepassBegin =                  275353
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: PrepassEnd =                    275153
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: MainpassBegin =                      0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: MainpassMid =                        0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: MainpassEnd =                        0
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: Submit =                            39
+[2026.09.13-16.35.55:163][  0]LogGatherTextFromSourceCommandlet: Display: SubmitNested =                       0
+[2026.09.13-16.35.55:163][  0]LogGatherTextCommandlet: Display: Completed all steps in 13.14 seconds
+[2026.09.13-16.35.55:163][  0]LogGatherTextCommandlet: Display: GatherText completed with exit code 0
+[2026.09.13-16.35.55:163][  0]LogInit: Display: Finished.
+[2026.09.13-16.35.55:163][  0]LogInit: Display: 
+
+Execution of commandlet took:  13.14 seconds, PeakPhysMemoryMB=3796 MB, PeakVirtMemoryMB=3668 MB
+[2026.09.13-16.35.55:240][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 0 .ref files found, 0 referenced binaries
+[2026.09.13-16.35.55:240][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 0 total binaries, 0 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+[2026.09.13-16.35.55:435][  0]LogShaderCompilers: Display: Exiting ShaderCompilingThread
+Localization Gather completed.
+[2026.09.13-16.35.56:855][  0]LogInit: Display: Running engine for game: MMORPG
+[2026.09.13-16.35.56:855][  0]LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,region'
+[2026.09.13-16.35.56:855][  0]LogTrace: Display: Control listening on port 1985
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : platform="Windows"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : config="Development"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : buildversion="UE5-CL-0"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : engineversion="5.8.1-0+UE5"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : enginereleaseversion="5.8.1"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : os="Windows 11 (25H2) [10.0.26200.8457] "
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : cpu="GenuineIntel|12th Gen Intel(R) Core(TM) i5-12490F"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : pgoenabled="0"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : ltoenabled="0"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : asan="0"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : mergedmodules="0"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : compacttset="0"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : commandline="" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -run=GatherText -config=Config/Localization/MMO_Export.ini -unattended -nop4 -NullRHI -nosound -Multiprocess -corelimit=2 -UTF8Output -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Export.log -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False""
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : loginid="b88a7139400b436c9bc330924bae3246"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : llm="0"
+[2026.09.13-16.35.56:855][  0]LogInit: Display: Output is UTF-8 by default. Use of -UTF8Output on the command is deprecated and can be removed.
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : zenstreaming="0"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+[2026.09.13-16.35.56:855][  0]LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
+[2026.09.13-16.35.56:855][  0]LogAssetRegistry: Display: FindShardedCacheFiles: 0 via .ref, 0 via migration fallback, 0 total
+[2026.09.13-16.35.56:855][  0]LogAssetRegistry: Display: No AssetDiscovery cache present at F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistryDiscovery.bin. AssetRegistry discovery of files will be uncached.
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading Android ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading IOS ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading Linux ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading LinuxArm64 ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading Mac ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading TVOS ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading Unix ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading VulkanPC ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading Windows ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.35.56:855][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.35.56:855][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.35.56:855][  0]LogConfig: Display: Loading VisionOS ini files took 0.02 seconds
+[2026.09.13-16.35.56:855][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.35.56:855][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.35.56:855][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.35.56:855][  0]LogAsyncCompilation: Display: MemorySharingInfo: UsedMemory=263MiB, MaxMemoryAvailable=51013MiB
+[2026.09.13-16.35.56:855][  0]RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+[2026.09.13-16.35.56:855][  0]LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+[2026.09.13-16.35.56:855][  0]LogHAL: Display: Platform has ~ 32 GB [34164105216 / 34359738368 / 32], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2026.09.13-16.35.56:855][  0]LogVirtualTexturing: Display: Recreating virtual texture pools.
+[2026.09.13-16.35.56:855][  0]LogCsvProfiler: Display: Metadata set : extradevelopmentmemorymb="0"
+[2026.09.13-16.35.56:855][  0]LogObj: Display: Attempting to load config data for Default__DownlinkBandwidthManagerConfig before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.35.57:168][  0]LogObj: Display: Attempting to load config data for Default__SlateThemeManager before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.35.57:250][  0]LogCsvProfiler: Display: Metadata set : verbatimrhiname="Null"
+[2026.09.13-16.35.57:250][  0]LogCsvProfiler: Display: Metadata set : rhiname="Null"
+[2026.09.13-16.35.57:250][  0]LogCsvProfiler: Display: Metadata set : rhifeaturelevel="SM6"
+[2026.09.13-16.35.57:250][  0]LogCsvProfiler: Display: Metadata set : shaderplatform="PCD3D_SM6"
+[2026.09.13-16.35.57:250][  0]LogCsvProfiler: Display: Metadata set : gpu=""
+[2026.09.13-16.35.57:250][  0]LogCsvProfiler: Display: Metadata set : gpudriver=""
+[2026.09.13-16.35.57:253][  0]LogTextureFormatASTC: Display: ASTCEnc version 5.0.1 library loaded
+[2026.09.13-16.35.57:253][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatASTC
+[2026.09.13-16.35.57:253][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatETC2
+[2026.09.13-16.35.57:253][  0]LogTextureFormatOodle: Display: Oodle Texture TFO init; latest sdk version = 2.9.16
+[2026.09.13-16.35.57:253][  0]LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.16.dll
+[2026.09.13-16.35.57:254][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatOodle
+[2026.09.13-16.35.57:254][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatUncompressed
+[2026.09.13-16.35.57:281][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Android'
+[2026.09.13-16.35.57:307][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Linux'
+[2026.09.13-16.35.57:325][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'LinuxArm64'
+[2026.09.13-16.35.57:355][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2026.09.13-16.35.57:355][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsEditor'
+[2026.09.13-16.35.57:355][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2026.09.13-16.35.57:355][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2026.09.13-16.35.57:355][  0]LogTargetPlatformManager: Display: Building Assets For WindowsEditor
+[2026.09.13-16.35.57:358][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2026.09.13-16.35.57:396][  0]LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+[2026.09.13-16.35.58:705][  0]LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+[2026.09.13-16.35.58:705][  0]LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.35.58:705][  0]LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.35.58:705][  0]LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+[2026.09.13-16.35.58:706][  0]LogZenServiceInstance: Display: Launching executable 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\air\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 30312  --child-id Zen_30312_Startup'
+[2026.09.13-16.36.00:975][  0]LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+[2026.09.13-16.36.00:977][  0]LogDerivedDataCache: Display: ZenLocal: Using ZenServer HTTP service at [::1] with namespace ue.ddc. Status: OK!.
+[2026.09.13-16.36.00:981][  0]LogDerivedDataCache: Display: ../../../Engine/DerivedDataCache: Performance: Latency=0.02ms. RandomReadSpeed=2081.71MBs, RandomWriteSpeed=291.27MBs. Assigned SpeedClass 'Local'
+[2026.09.13-16.36.00:983][  0]LogUbaHorde: Display: UBA/Horde Configuration [Uba.Provider.Horde]: Not Enabled
+[2026.09.13-16.36.00:984][  0]LogShaderCompilers: Display: No distributed shader compiler controller found
+[2026.09.13-16.36.00:984][  0]LogShaderCompilers: Display: Using 1 local workers for shader compilation
+[2026.09.13-16.36.00:990][  0]LogShaderCompilers: Display: Compiling shader autogen file: F:/UE/LyraDocLabs/MMORPG/Intermediate/ShaderAutogen/PCD3D_SM6/AutogenShaderHeaders.ush
+[2026.09.13-16.36.00:990][  0]LogShaderCompilers: Display: Autogen file is unchanged, skipping write.
+[2026.09.13-16.36.02:076][  0]LogEditorDomain: Display: EditorDomain is Disabled
+[2026.09.13-16.36.02:171][  0]LogAssetRegistry: Display: AssetDataGatherer spent 0.000s loading caches from F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistry.
+[2026.09.13-16.36.02:318][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64Editor not found.
+[2026.09.13-16.36.02:318][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64 not found.
+[2026.09.13-16.36.02:367][  0]LogCsvProfiler: Display: Metadata set : deviceprofile="WindowsEditor"
+[2026.09.13-16.36.02:370][  0]LogStreaming: Display: FlushAsyncLoading(1): 1 QueuedPackages, 0 AsyncPackages
+[2026.09.13-16.36.02:388][  0]LogTextureEncodingSettings: Display: Texture Encode Speed: Final (cook).
+[2026.09.13-16.36.02:388][  0]LogTextureEncodingSettings: Display: Oodle Texture Encode Speed settings: Fast: RDO Off Lambda=0, Effort=Normal Final: RDO Off Lambda=0, Effort=Normal
+[2026.09.13-16.36.02:388][  0]LogTextureEncodingSettings: Display: Shared linear texture encoding: Disabled
+[2026.09.13-16.36.02:403][  0]LogMeshReduction: Display: Using QuadricMeshReduction for automatic static mesh reduction
+[2026.09.13-16.36.02:403][  0]LogMeshReduction: Display: Using SkeletalMeshReduction for automatic skeletal mesh reduction
+[2026.09.13-16.36.02:403][  0]LogMeshReduction: Display: Using ProxyLODMeshReduction for automatic mesh merging
+[2026.09.13-16.36.02:403][  0]LogMeshReduction: Display: No distributed automatic mesh merging module available
+[2026.09.13-16.36.02:536][  0]LogVirtualization: Display: VirtualizationSystem name found in ini file: None
+[2026.09.13-16.36.02:536][  0]LogVirtualization: Display: FNullVirtualizationSystem mounted, virtualization will be disabled
+[2026.09.13-16.36.02:598][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize started...
+[2026.09.13-16.36.02:600][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize took 1.904 ms
+[2026.09.13-16.36.02:932][  0]LogMetaSound: Display: MetaSound Page Target Initialized to 'Default'
+[2026.09.13-16.36.02:935][  0]LogAudio: Display: Registering Engine Module Parameter Interfaces...
+[2026.09.13-16.36.03:439][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.36.03:439][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.36.03:746][  0]LogGameFeatures: Display: Game feature 'MMOCore' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.09.13-16.36.03:746][  0]LogGameFeatures: Display: Total built in plugin load time 0.0064s
+[2026.09.13-16.36.03:760][  0]LogCsvProfiler: Display: Metadata set : largeworldcoordinates="1"
+[2026.09.13-16.36.03:788][  0]LogCsvProfiler: Display: Metadata set : raytracing="0"
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: LegacyScheduler: No
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Scheduling GatherText tasks for 'F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Export.ini'
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'Export' has a single parallel task. Adding it to the end of its sequential tasks.
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PreInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'Initialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PostInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'UpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'UpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PreImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'Import':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PostImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PreExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'Export':
+	1 sequential task(s): 1 InternationalizationExportCommandlet
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PostExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PreCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'Compile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PostCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PreFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'Finalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Phase 'PostFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: CanRunParallelTasks: Yes
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Running phase 'Export' (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Running 1 sequentials task(s) in phase 'Export'...
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Starting sequential task 1 of 1 in phase 'Export'...
+[2026.09.13-16.36.03:917][  0]LogGatherTextCommandlet: Display: Executing InternationalizationExportCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Export.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Export.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.36.03:917][  0]LogInternationalizationExportCommandlet: Display: UInternationalizationExportCommandlet::Main (Export) started...
+[2026.09.13-16.36.03:921][  0]LogInternationalizationExportCommandlet: Display: UInternationalizationExportCommandlet::Main (Export) took 4.335 ms
+[2026.09.13-16.36.03:921][  0]LogGatherTextCommandlet: Display: Executing InternationalizationExportCommandlet took 0.00 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Export.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Export.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.36.03:921][  0]LogGatherTextCommandlet: Display: 1 sequentials task(s) in phase 'Export' took 0.00 seconds.
+[2026.09.13-16.36.03:922][  0]LogGatherTextCommandlet: Display: Phase 'Export' took 0.00 seconds (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: ---Gather Source Stats------------------------
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: ---Prepass------------------------------------
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                                0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Total =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.00 seconds
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: ---Mainpass-----------------------------------
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                                0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Total =                              0 files
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.00 seconds
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: ---Nested Macro-------------------------------
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExact =                     0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateMacroName =                 0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExcluded =                  0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Concatenation =                      0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Variadic =                           0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: SizeInBytes =                        0 bytes
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Nested_LOCTEXT =                     0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSLOCTEXT =                   0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NOTELOCTEXT =                 0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSNOTELOCTEXT =               0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND =                  0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND_EXT =              0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: PrepassBegin =                       0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: PrepassEnd =                         0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: MainpassBegin =                      0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: MainpassMid =                        0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: MainpassEnd =                        0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: Submit =                             0
+[2026.09.13-16.36.03:922][  0]LogGatherTextFromSourceCommandlet: Display: SubmitNested =                       0
+[2026.09.13-16.36.03:922][  0]LogGatherTextCommandlet: Display: Completed all steps in 0.00 seconds
+[2026.09.13-16.36.03:922][  0]LogGatherTextCommandlet: Display: GatherText completed with exit code 0
+[2026.09.13-16.36.03:922][  0]LogInit: Display: Finished.
+[2026.09.13-16.36.03:922][  0]LogInit: Display: 
+
+Execution of commandlet took:  0.00 seconds, PeakPhysMemoryMB=1374 MB, PeakVirtMemoryMB=1182 MB
+[2026.09.13-16.36.03:934][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 0 .ref files found, 0 referenced binaries
+[2026.09.13-16.36.03:934][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 0 total binaries, 0 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+[2026.09.13-16.36.06:156][  0]LogShaderCompilers: Display: Exiting ShaderCompilingThread
+Localization Export completed.
+[2026.09.13-16.36.07:660][  0]LogInit: Display: Running engine for game: MMORPG
+[2026.09.13-16.36.07:660][  0]LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,region'
+[2026.09.13-16.36.07:660][  0]LogTrace: Display: Control listening on port 1985
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : platform="Windows"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : config="Development"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : buildversion="UE5-CL-0"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : engineversion="5.8.1-0+UE5"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : enginereleaseversion="5.8.1"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : os="Windows 11 (25H2) [10.0.26200.8457] "
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : cpu="GenuineIntel|12th Gen Intel(R) Core(TM) i5-12490F"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : pgoenabled="0"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : ltoenabled="0"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : asan="0"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : mergedmodules="0"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : compacttset="0"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : commandline="" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -run=GatherText -config=Config/Localization/MMO_Import.ini -unattended -nop4 -NullRHI -nosound -Multiprocess -corelimit=2 -UTF8Output -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Import.log -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False""
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : loginid="b88a7139400b436c9bc330924bae3246"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : llm="0"
+[2026.09.13-16.36.07:660][  0]LogInit: Display: Output is UTF-8 by default. Use of -UTF8Output on the command is deprecated and can be removed.
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : zenstreaming="0"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+[2026.09.13-16.36.07:660][  0]LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
+[2026.09.13-16.36.07:660][  0]LogAssetRegistry: Display: FindShardedCacheFiles: 0 via .ref, 0 via migration fallback, 0 total
+[2026.09.13-16.36.07:660][  0]LogAssetRegistry: Display: No AssetDiscovery cache present at F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistryDiscovery.bin. AssetRegistry discovery of files will be uncached.
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading Android ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading IOS ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading Linux ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading LinuxArm64 ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading Mac ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading TVOS ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading Unix ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading VulkanPC ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading Windows ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogConfig: Display: Loading VisionOS ini files took 0.02 seconds
+[2026.09.13-16.36.07:660][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.36.07:660][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.36.07:660][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.36.07:660][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.36.07:660][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.36.07:660][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.36.07:660][  0]LogAsyncCompilation: Display: MemorySharingInfo: UsedMemory=263MiB, MaxMemoryAvailable=51013MiB
+[2026.09.13-16.36.07:660][  0]RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+[2026.09.13-16.36.07:660][  0]LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+[2026.09.13-16.36.07:660][  0]LogHAL: Display: Platform has ~ 32 GB [34164105216 / 34359738368 / 32], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2026.09.13-16.36.07:660][  0]LogVirtualTexturing: Display: Recreating virtual texture pools.
+[2026.09.13-16.36.07:660][  0]LogCsvProfiler: Display: Metadata set : extradevelopmentmemorymb="0"
+[2026.09.13-16.36.07:660][  0]LogObj: Display: Attempting to load config data for Default__DownlinkBandwidthManagerConfig before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.36.08:018][  0]LogObj: Display: Attempting to load config data for Default__SlateThemeManager before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.36.08:124][  0]LogCsvProfiler: Display: Metadata set : verbatimrhiname="Null"
+[2026.09.13-16.36.08:124][  0]LogCsvProfiler: Display: Metadata set : rhiname="Null"
+[2026.09.13-16.36.08:124][  0]LogCsvProfiler: Display: Metadata set : rhifeaturelevel="SM6"
+[2026.09.13-16.36.08:124][  0]LogCsvProfiler: Display: Metadata set : shaderplatform="PCD3D_SM6"
+[2026.09.13-16.36.08:124][  0]LogCsvProfiler: Display: Metadata set : gpu=""
+[2026.09.13-16.36.08:124][  0]LogCsvProfiler: Display: Metadata set : gpudriver=""
+[2026.09.13-16.36.08:128][  0]LogTextureFormatASTC: Display: ASTCEnc version 5.0.1 library loaded
+[2026.09.13-16.36.08:128][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatASTC
+[2026.09.13-16.36.08:128][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatETC2
+[2026.09.13-16.36.08:128][  0]LogTextureFormatOodle: Display: Oodle Texture TFO init; latest sdk version = 2.9.16
+[2026.09.13-16.36.08:128][  0]LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.16.dll
+[2026.09.13-16.36.08:129][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatOodle
+[2026.09.13-16.36.08:129][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatUncompressed
+[2026.09.13-16.36.08:161][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Android'
+[2026.09.13-16.36.08:190][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Linux'
+[2026.09.13-16.36.08:207][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'LinuxArm64'
+[2026.09.13-16.36.08:244][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2026.09.13-16.36.08:244][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsEditor'
+[2026.09.13-16.36.08:244][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2026.09.13-16.36.08:244][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2026.09.13-16.36.08:244][  0]LogTargetPlatformManager: Display: Building Assets For WindowsEditor
+[2026.09.13-16.36.08:248][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2026.09.13-16.36.08:288][  0]LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+[2026.09.13-16.36.09:599][  0]LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+[2026.09.13-16.36.09:600][  0]LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.36.09:600][  0]LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.36.09:600][  0]LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+[2026.09.13-16.36.09:601][  0]LogZenServiceInstance: Display: Launching executable 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\air\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 10544  --child-id Zen_10544_Startup'
+[2026.09.13-16.36.11:882][  0]LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+[2026.09.13-16.36.11:884][  0]LogDerivedDataCache: Display: ZenLocal: Using ZenServer HTTP service at [::1] with namespace ue.ddc. Status: OK!.
+[2026.09.13-16.36.11:887][  0]LogDerivedDataCache: Display: ../../../Engine/DerivedDataCache: Performance: Latency=0.03ms. RandomReadSpeed=2215.13MBs, RandomWriteSpeed=303.65MBs. Assigned SpeedClass 'Local'
+[2026.09.13-16.36.11:890][  0]LogUbaHorde: Display: UBA/Horde Configuration [Uba.Provider.Horde]: Not Enabled
+[2026.09.13-16.36.11:890][  0]LogShaderCompilers: Display: No distributed shader compiler controller found
+[2026.09.13-16.36.11:890][  0]LogShaderCompilers: Display: Using 1 local workers for shader compilation
+[2026.09.13-16.36.11:897][  0]LogShaderCompilers: Display: Compiling shader autogen file: F:/UE/LyraDocLabs/MMORPG/Intermediate/ShaderAutogen/PCD3D_SM6/AutogenShaderHeaders.ush
+[2026.09.13-16.36.11:898][  0]LogShaderCompilers: Display: Autogen file is unchanged, skipping write.
+[2026.09.13-16.36.13:019][  0]LogEditorDomain: Display: EditorDomain is Disabled
+[2026.09.13-16.36.13:070][  0]LogAssetRegistry: Display: AssetDataGatherer spent 0.000s loading caches from F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistry.
+[2026.09.13-16.36.13:267][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64Editor not found.
+[2026.09.13-16.36.13:267][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64 not found.
+[2026.09.13-16.36.13:319][  0]LogCsvProfiler: Display: Metadata set : deviceprofile="WindowsEditor"
+[2026.09.13-16.36.13:321][  0]LogStreaming: Display: FlushAsyncLoading(1): 1 QueuedPackages, 0 AsyncPackages
+[2026.09.13-16.36.13:343][  0]LogTextureEncodingSettings: Display: Texture Encode Speed: Final (cook).
+[2026.09.13-16.36.13:343][  0]LogTextureEncodingSettings: Display: Oodle Texture Encode Speed settings: Fast: RDO Off Lambda=0, Effort=Normal Final: RDO Off Lambda=0, Effort=Normal
+[2026.09.13-16.36.13:343][  0]LogTextureEncodingSettings: Display: Shared linear texture encoding: Disabled
+[2026.09.13-16.36.13:360][  0]LogMeshReduction: Display: Using QuadricMeshReduction for automatic static mesh reduction
+[2026.09.13-16.36.13:360][  0]LogMeshReduction: Display: Using SkeletalMeshReduction for automatic skeletal mesh reduction
+[2026.09.13-16.36.13:360][  0]LogMeshReduction: Display: Using ProxyLODMeshReduction for automatic mesh merging
+[2026.09.13-16.36.13:360][  0]LogMeshReduction: Display: No distributed automatic mesh merging module available
+[2026.09.13-16.36.13:489][  0]LogVirtualization: Display: VirtualizationSystem name found in ini file: None
+[2026.09.13-16.36.13:489][  0]LogVirtualization: Display: FNullVirtualizationSystem mounted, virtualization will be disabled
+[2026.09.13-16.36.13:550][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize started...
+[2026.09.13-16.36.13:552][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize took 2.185 ms
+[2026.09.13-16.36.13:848][  0]LogMetaSound: Display: MetaSound Page Target Initialized to 'Default'
+[2026.09.13-16.36.13:849][  0]LogAudio: Display: Registering Engine Module Parameter Interfaces...
+[2026.09.13-16.36.14:390][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.36.14:390][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.36.14:642][  0]LogGameFeatures: Display: Game feature 'MMOCore' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.09.13-16.36.14:642][  0]LogGameFeatures: Display: Total built in plugin load time 0.0043s
+[2026.09.13-16.36.14:657][  0]LogCsvProfiler: Display: Metadata set : largeworldcoordinates="1"
+[2026.09.13-16.36.14:682][  0]LogCsvProfiler: Display: Metadata set : raytracing="0"
+[2026.09.13-16.36.14:787][  0]LogGatherTextCommandlet: Display: LegacyScheduler: No
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Scheduling GatherText tasks for 'F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Import.ini'
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'Import' has a single parallel task. Adding it to the end of its sequential tasks.
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PreInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'Initialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PostInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'UpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'UpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PreImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'Import':
+	1 sequential task(s): 1 InternationalizationExportCommandlet
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PostImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PreExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'Export':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PostExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PreCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'Compile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PostCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PreFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'Finalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Phase 'PostFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: CanRunParallelTasks: Yes
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Running phase 'Import' (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Running 1 sequentials task(s) in phase 'Import'...
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Starting sequential task 1 of 1 in phase 'Import'...
+[2026.09.13-16.36.14:788][  0]LogGatherTextCommandlet: Display: Executing InternationalizationExportCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Import.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Import.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.36.14:788][  0]LogInternationalizationExportCommandlet: Display: UInternationalizationExportCommandlet::Main Import started...
+[2026.09.13-16.36.14:789][  0]LogInternationalizationExportCommandlet: Display: UInternationalizationExportCommandlet::Main Import took 2.019 ms
+[2026.09.13-16.36.14:789][  0]LogGatherTextCommandlet: Display: Executing InternationalizationExportCommandlet took 0.00 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Import.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Import.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.36.14:789][  0]LogGatherTextCommandlet: Display: 1 sequentials task(s) in phase 'Import' took 0.00 seconds.
+[2026.09.13-16.36.14:789][  0]LogGatherTextCommandlet: Display: Phase 'Import' took 0.00 seconds (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.36.14:789][  0]LogGatherTextFromSourceCommandlet: Display: ---Gather Source Stats------------------------
+[2026.09.13-16.36.14:789][  0]LogGatherTextFromSourceCommandlet: Display: ---Prepass------------------------------------
+[2026.09.13-16.36.14:789][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                                0 files
+[2026.09.13-16.36.14:789][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.36.14:789][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.36.14:789][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                              0 files
+[2026.09.13-16.36.14:789][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.36.14:789][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Total =                              0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.00 seconds
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: ---Mainpass-----------------------------------
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                                0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                              0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Total =                              0 files
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.00 seconds
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: ---Nested Macro-------------------------------
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExact =                     0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateMacroName =                 0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExcluded =                  0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Concatenation =                      0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Variadic =                           0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: SizeInBytes =                        0 bytes
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Nested_LOCTEXT =                     0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSLOCTEXT =                   0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NOTELOCTEXT =                 0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSNOTELOCTEXT =               0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND =                  0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND_EXT =              0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: PrepassBegin =                       0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: PrepassEnd =                         0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: MainpassBegin =                      0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: MainpassMid =                        0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: MainpassEnd =                        0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: Submit =                             0
+[2026.09.13-16.36.14:790][  0]LogGatherTextFromSourceCommandlet: Display: SubmitNested =                       0
+[2026.09.13-16.36.14:790][  0]LogGatherTextCommandlet: Display: Completed all steps in 0.00 seconds
+[2026.09.13-16.36.14:790][  0]LogGatherTextCommandlet: Display: GatherText completed with exit code 0
+[2026.09.13-16.36.14:790][  0]LogInit: Display: Finished.
+[2026.09.13-16.36.14:790][  0]LogInit: Display: 
+
+Execution of commandlet took:  0.00 seconds, PeakPhysMemoryMB=1363 MB, PeakVirtMemoryMB=1177 MB
+[2026.09.13-16.36.14:836][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 0 .ref files found, 0 referenced binaries
+[2026.09.13-16.36.14:836][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 0 total binaries, 0 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+[2026.09.13-16.36.16:956][  0]LogShaderCompilers: Display: Exiting ShaderCompilingThread
+Localization Import completed.
+[2026.09.13-16.36.18:112][  0]LogInit: Display: Running engine for game: MMORPG
+[2026.09.13-16.36.18:112][  0]LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,region'
+[2026.09.13-16.36.18:112][  0]LogTrace: Display: Control listening on port 1985
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : platform="Windows"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : config="Development"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : buildversion="UE5-CL-0"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : engineversion="5.8.1-0+UE5"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : enginereleaseversion="5.8.1"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : os="Windows 11 (25H2) [10.0.26200.8457] "
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : cpu="GenuineIntel|12th Gen Intel(R) Core(TM) i5-12490F"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : pgoenabled="0"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : ltoenabled="0"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : asan="0"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : mergedmodules="0"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : compacttset="0"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : commandline="" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -run=GatherText -config=Config/Localization/MMO_Compile.ini -unattended -nop4 -NullRHI -nosound -Multiprocess -corelimit=2 -UTF8Output -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Compile.log -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False""
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : loginid="b88a7139400b436c9bc330924bae3246"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : llm="0"
+[2026.09.13-16.36.18:112][  0]LogInit: Display: Output is UTF-8 by default. Use of -UTF8Output on the command is deprecated and can be removed.
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : zenstreaming="0"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+[2026.09.13-16.36.18:112][  0]LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
+[2026.09.13-16.36.18:112][  0]LogAssetRegistry: Display: FindShardedCacheFiles: 0 via .ref, 0 via migration fallback, 0 total
+[2026.09.13-16.36.18:112][  0]LogAssetRegistry: Display: No AssetDiscovery cache present at F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistryDiscovery.bin. AssetRegistry discovery of files will be uncached.
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading Android ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading IOS ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading Linux ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading LinuxArm64 ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading Mac ini files took 0.01 seconds
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading TVOS ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading Unix ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading VulkanPC ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading Windows ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+[2026.09.13-16.36.18:112][  0]LogConfig: Display: Loading VisionOS ini files took 0.02 seconds
+[2026.09.13-16.36.18:112][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.36.18:112][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.36.18:112][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.36.18:112][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.36.18:112][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.36.18:112][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.36.18:112][  0]LogAsyncCompilation: Display: MemorySharingInfo: UsedMemory=264MiB, MaxMemoryAvailable=51013MiB
+[2026.09.13-16.36.18:112][  0]LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+[2026.09.13-16.36.18:112][  0]LogHAL: Display: Platform has ~ 32 GB [34164105216 / 34359738368 / 32], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2026.09.13-16.36.18:112][  0]LogVirtualTexturing: Display: Recreating virtual texture pools.
+[2026.09.13-16.36.18:112][  0]LogCsvProfiler: Display: Metadata set : extradevelopmentmemorymb="0"
+[2026.09.13-16.36.18:112][  0]LogObj: Display: Attempting to load config data for Default__DownlinkBandwidthManagerConfig before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.36.18:451][  0]LogObj: Display: Attempting to load config data for Default__SlateThemeManager before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.36.18:536][  0]LogCsvProfiler: Display: Metadata set : verbatimrhiname="Null"
+[2026.09.13-16.36.18:536][  0]LogCsvProfiler: Display: Metadata set : rhiname="Null"
+[2026.09.13-16.36.18:536][  0]LogCsvProfiler: Display: Metadata set : rhifeaturelevel="SM6"
+[2026.09.13-16.36.18:536][  0]LogCsvProfiler: Display: Metadata set : shaderplatform="PCD3D_SM6"
+[2026.09.13-16.36.18:536][  0]LogCsvProfiler: Display: Metadata set : gpu=""
+[2026.09.13-16.36.18:536][  0]LogCsvProfiler: Display: Metadata set : gpudriver=""
+[2026.09.13-16.36.18:539][  0]LogTextureFormatASTC: Display: ASTCEnc version 5.0.1 library loaded
+[2026.09.13-16.36.18:539][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatASTC
+[2026.09.13-16.36.18:539][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatETC2
+[2026.09.13-16.36.18:539][  0]LogTextureFormatOodle: Display: Oodle Texture TFO init; latest sdk version = 2.9.16
+[2026.09.13-16.36.18:539][  0]LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.16.dll
+[2026.09.13-16.36.18:540][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatOodle
+[2026.09.13-16.36.18:540][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatUncompressed
+[2026.09.13-16.36.18:568][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Android'
+[2026.09.13-16.36.18:593][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Linux'
+[2026.09.13-16.36.18:608][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'LinuxArm64'
+[2026.09.13-16.36.18:636][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2026.09.13-16.36.18:636][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsEditor'
+[2026.09.13-16.36.18:636][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2026.09.13-16.36.18:636][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2026.09.13-16.36.18:636][  0]LogTargetPlatformManager: Display: Building Assets For WindowsEditor
+[2026.09.13-16.36.18:638][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2026.09.13-16.36.18:676][  0]LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+[2026.09.13-16.36.19:986][  0]LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+[2026.09.13-16.36.19:986][  0]LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.36.19:986][  0]LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.36.19:986][  0]LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+[2026.09.13-16.36.19:987][  0]LogZenServiceInstance: Display: Launching executable 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\air\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 28988  --child-id Zen_28988_Startup'
+[2026.09.13-16.36.22:278][  0]LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+[2026.09.13-16.36.22:280][  0]LogDerivedDataCache: Display: ZenLocal: Using ZenServer HTTP service at [::1] with namespace ue.ddc. Status: OK!.
+[2026.09.13-16.36.22:284][  0]LogDerivedDataCache: Display: ../../../Engine/DerivedDataCache: Performance: Latency=0.02ms. RandomReadSpeed=2339.43MBs, RandomWriteSpeed=332.82MBs. Assigned SpeedClass 'Local'
+[2026.09.13-16.36.22:286][  0]LogUbaHorde: Display: UBA/Horde Configuration [Uba.Provider.Horde]: Not Enabled
+[2026.09.13-16.36.22:286][  0]LogShaderCompilers: Display: No distributed shader compiler controller found
+[2026.09.13-16.36.22:286][  0]LogShaderCompilers: Display: Using 1 local workers for shader compilation
+[2026.09.13-16.36.22:293][  0]LogShaderCompilers: Display: Compiling shader autogen file: F:/UE/LyraDocLabs/MMORPG/Intermediate/ShaderAutogen/PCD3D_SM6/AutogenShaderHeaders.ush
+[2026.09.13-16.36.22:293][  0]LogShaderCompilers: Display: Autogen file is unchanged, skipping write.
+[2026.09.13-16.36.23:373][  0]LogEditorDomain: Display: EditorDomain is Disabled
+[2026.09.13-16.36.23:435][  0]LogAssetRegistry: Display: AssetDataGatherer spent 0.000s loading caches from F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistry.
+[2026.09.13-16.36.23:623][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64Editor not found.
+[2026.09.13-16.36.23:623][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64 not found.
+[2026.09.13-16.36.23:672][  0]LogCsvProfiler: Display: Metadata set : deviceprofile="WindowsEditor"
+[2026.09.13-16.36.23:674][  0]LogStreaming: Display: FlushAsyncLoading(1): 1 QueuedPackages, 0 AsyncPackages
+[2026.09.13-16.36.23:696][  0]LogTextureEncodingSettings: Display: Texture Encode Speed: Final (cook).
+[2026.09.13-16.36.23:696][  0]LogTextureEncodingSettings: Display: Oodle Texture Encode Speed settings: Fast: RDO Off Lambda=0, Effort=Normal Final: RDO Off Lambda=0, Effort=Normal
+[2026.09.13-16.36.23:696][  0]LogTextureEncodingSettings: Display: Shared linear texture encoding: Disabled
+[2026.09.13-16.36.23:713][  0]LogMeshReduction: Display: Using QuadricMeshReduction for automatic static mesh reduction
+[2026.09.13-16.36.23:713][  0]LogMeshReduction: Display: Using SkeletalMeshReduction for automatic skeletal mesh reduction
+[2026.09.13-16.36.23:713][  0]LogMeshReduction: Display: Using ProxyLODMeshReduction for automatic mesh merging
+[2026.09.13-16.36.23:713][  0]LogMeshReduction: Display: No distributed automatic mesh merging module available
+[2026.09.13-16.36.23:843][  0]LogVirtualization: Display: VirtualizationSystem name found in ini file: None
+[2026.09.13-16.36.23:843][  0]LogVirtualization: Display: FNullVirtualizationSystem mounted, virtualization will be disabled
+[2026.09.13-16.36.23:908][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize started...
+[2026.09.13-16.36.23:911][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize took 2.607 ms
+[2026.09.13-16.36.24:369][  0]LogMetaSound: Display: MetaSound Page Target Initialized to 'Default'
+[2026.09.13-16.36.24:371][  0]LogAudio: Display: Registering Engine Module Parameter Interfaces...
+[2026.09.13-16.36.24:842][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.36.24:842][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.36.25:030][  0]LogGameFeatures: Display: Game feature 'MMOCore' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.09.13-16.36.25:030][  0]LogGameFeatures: Display: Total built in plugin load time 0.0039s
+[2026.09.13-16.36.25:043][  0]LogCsvProfiler: Display: Metadata set : largeworldcoordinates="1"
+[2026.09.13-16.36.25:065][  0]LogCsvProfiler: Display: Metadata set : raytracing="0"
+[2026.09.13-16.36.25:169][  0]LogGatherTextCommandlet: Display: LegacyScheduler: No
+[2026.09.13-16.36.25:169][  0]LogGatherTextCommandlet: Display: Scheduling GatherText tasks for 'F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Compile.ini'
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'Compile' has a single parallel task. Adding it to the end of its sequential tasks.
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PreInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'Initialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PostInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'UpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'UpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PreImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'Import':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PostImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PreExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'Export':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PostExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PreCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'Compile':
+	1 sequential task(s): 1 GenerateTextLocalizationResourceCommandlet
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PostCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PreFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'Finalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Phase 'PostFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: CanRunParallelTasks: Yes
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Running phase 'Compile' (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Running 1 sequentials task(s) in phase 'Compile'...
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Starting sequential task 1 of 1 in phase 'Compile'...
+[2026.09.13-16.36.25:170][  0]LogGatherTextCommandlet: Display: Executing GenerateTextLocalizationResourceCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Compile.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Compile.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.36.25:170][  0]LogGenerateTextLocalizationResourceCommandlet: Display: UGenerateTextLocalizationResourceCommandlet::Main started...
+[2026.09.13-16.36.25:185][  0]LogGenerateTextLocalizationResourceCommandlet: Display: UGenerateTextLocalizationResourceCommandlet::Main took 14.990 ms
+[2026.09.13-16.36.25:185][  0]LogGatherTextCommandlet: Display: Executing GenerateTextLocalizationResourceCommandlet took 0.02 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_Compile.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\Compile.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.36.25:185][  0]LogGatherTextCommandlet: Display: 1 sequentials task(s) in phase 'Compile' took 0.02 seconds.
+[2026.09.13-16.36.25:185][  0]LogGatherTextCommandlet: Display: Phase 'Compile' took 0.02 seconds (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: ---Gather Source Stats------------------------
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: ---Prepass------------------------------------
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                                0 files
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                              0 files
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: Total =                              0 files
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.00 seconds
+[2026.09.13-16.36.25:185][  0]LogGatherTextFromSourceCommandlet: Display: ---Mainpass-----------------------------------
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                                0 files
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                              0 files
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Total =                              0 files
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.00 seconds
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: ---Nested Macro-------------------------------
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExact =                     0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateMacroName =                 0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExcluded =                  0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Concatenation =                      0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Variadic =                           0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: SizeInBytes =                        0 bytes
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Nested_LOCTEXT =                     0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSLOCTEXT =                   0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NOTELOCTEXT =                 0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSNOTELOCTEXT =               0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND =                  0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND_EXT =              0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: PrepassBegin =                       0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: PrepassEnd =                         0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: MainpassBegin =                      0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: MainpassMid =                        0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: MainpassEnd =                        0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: Submit =                             0
+[2026.09.13-16.36.25:186][  0]LogGatherTextFromSourceCommandlet: Display: SubmitNested =                       0
+[2026.09.13-16.36.25:186][  0]LogGatherTextCommandlet: Display: Completed all steps in 0.02 seconds
+[2026.09.13-16.36.25:186][  0]LogGatherTextCommandlet: Display: GatherText completed with exit code 0
+[2026.09.13-16.36.25:186][  0]LogInit: Display: Finished.
+[2026.09.13-16.36.25:186][  0]LogInit: Display: 
+
+Execution of commandlet took:  0.02 seconds, PeakPhysMemoryMB=1375 MB, PeakVirtMemoryMB=1181 MB
+[2026.09.13-16.36.25:296][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 0 .ref files found, 0 referenced binaries
+[2026.09.13-16.36.25:296][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 0 total binaries, 0 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+[2026.09.13-16.36.27:243][  0]LogShaderCompilers: Display: Exiting ShaderCompilingThread
+Localization Compile completed.
+[2026.09.13-16.36.28:358][  0]LogInit: Display: Running engine for game: MMORPG
+[2026.09.13-16.36.28:358][  0]LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,region'
+[2026.09.13-16.36.28:358][  0]LogTrace: Display: Control listening on port 1985
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : platform="Windows"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : config="Development"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : buildversion="UE5-CL-0"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : engineversion="5.8.1-0+UE5"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : enginereleaseversion="5.8.1"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : os="Windows 11 (25H2) [10.0.26200.8457] "
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : cpu="GenuineIntel|12th Gen Intel(R) Core(TM) i5-12490F"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : pgoenabled="0"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : ltoenabled="0"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : asan="0"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : mergedmodules="0"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : compacttset="0"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : commandline="" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -run=GatherText -config=Config/Localization/MMO_GenerateReports.ini -unattended -nop4 -NullRHI -nosound -Multiprocess -corelimit=2 -UTF8Output -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\GenerateReports.log -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False""
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : loginid="b88a7139400b436c9bc330924bae3246"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : llm="0"
+[2026.09.13-16.36.28:358][  0]LogInit: Display: Output is UTF-8 by default. Use of -UTF8Output on the command is deprecated and can be removed.
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : zenstreaming="0"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+[2026.09.13-16.36.28:358][  0]LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
+[2026.09.13-16.36.28:358][  0]LogAssetRegistry: Display: FindShardedCacheFiles: 0 via .ref, 0 via migration fallback, 0 total
+[2026.09.13-16.36.28:358][  0]LogAssetRegistry: Display: No AssetDiscovery cache present at F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistryDiscovery.bin. AssetRegistry discovery of files will be uncached.
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading Android ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading IOS ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading Linux ini files took 0.03 seconds
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading LinuxArm64 ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading Mac ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading TVOS ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading Unix ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading VulkanPC ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading Windows ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+[2026.09.13-16.36.28:358][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.36.28:358][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.36.28:358][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.36.28:358][  0]LogConfig: Display: Loading VisionOS ini files took 0.02 seconds
+[2026.09.13-16.36.28:358][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+[2026.09.13-16.36.28:358][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+[2026.09.13-16.36.28:358][  0]LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+[2026.09.13-16.36.28:358][  0]LogAsyncCompilation: Display: MemorySharingInfo: UsedMemory=259MiB, MaxMemoryAvailable=51013MiB
+[2026.09.13-16.36.28:358][  0]LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+[2026.09.13-16.36.28:358][  0]LogHAL: Display: Platform has ~ 32 GB [34164105216 / 34359738368 / 32], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2026.09.13-16.36.28:358][  0]LogVirtualTexturing: Display: Recreating virtual texture pools.
+[2026.09.13-16.36.28:358][  0]LogCsvProfiler: Display: Metadata set : extradevelopmentmemorymb="0"
+[2026.09.13-16.36.28:358][  0]LogObj: Display: Attempting to load config data for Default__DownlinkBandwidthManagerConfig before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.36.28:718][  0]LogObj: Display: Attempting to load config data for Default__SlateThemeManager before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.09.13-16.36.28:808][  0]LogCsvProfiler: Display: Metadata set : verbatimrhiname="Null"
+[2026.09.13-16.36.28:808][  0]LogCsvProfiler: Display: Metadata set : rhiname="Null"
+[2026.09.13-16.36.28:808][  0]LogCsvProfiler: Display: Metadata set : rhifeaturelevel="SM6"
+[2026.09.13-16.36.28:808][  0]LogCsvProfiler: Display: Metadata set : shaderplatform="PCD3D_SM6"
+[2026.09.13-16.36.28:808][  0]LogCsvProfiler: Display: Metadata set : gpu=""
+[2026.09.13-16.36.28:808][  0]LogCsvProfiler: Display: Metadata set : gpudriver=""
+[2026.09.13-16.36.28:813][  0]LogTextureFormatASTC: Display: ASTCEnc version 5.0.1 library loaded
+[2026.09.13-16.36.28:813][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatASTC
+[2026.09.13-16.36.28:813][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatETC2
+[2026.09.13-16.36.28:813][  0]LogTextureFormatOodle: Display: Oodle Texture TFO init; latest sdk version = 2.9.16
+[2026.09.13-16.36.28:813][  0]LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.16.dll
+[2026.09.13-16.36.28:813][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatOodle
+[2026.09.13-16.36.28:813][  0]LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatUncompressed
+[2026.09.13-16.36.28:849][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Android'
+[2026.09.13-16.36.28:878][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Linux'
+[2026.09.13-16.36.28:893][  0]LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'LinuxArm64'
+[2026.09.13-16.36.28:921][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+[2026.09.13-16.36.28:921][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsEditor'
+[2026.09.13-16.36.28:921][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+[2026.09.13-16.36.28:921][  0]LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+[2026.09.13-16.36.28:921][  0]LogTargetPlatformManager: Display: Building Assets For WindowsEditor
+[2026.09.13-16.36.28:923][  0]LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+[2026.09.13-16.36.28:959][  0]LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+[2026.09.13-16.36.30:268][  0]LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+[2026.09.13-16.36.30:269][  0]LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.36.30:270][  0]LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+[2026.09.13-16.36.30:270][  0]LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+[2026.09.13-16.36.30:271][  0]LogZenServiceInstance: Display: Launching executable 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\air\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 9324  --child-id Zen_9324_Startup'
+[2026.09.13-16.36.32:523][  0]LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+[2026.09.13-16.36.32:524][  0]LogDerivedDataCache: Display: ZenLocal: Using ZenServer HTTP service at [::1] with namespace ue.ddc. Status: OK!.
+[2026.09.13-16.36.32:527][  0]LogDerivedDataCache: Display: ../../../Engine/DerivedDataCache: Performance: Latency=0.02ms. RandomReadSpeed=2165.09MBs, RandomWriteSpeed=400.74MBs. Assigned SpeedClass 'Local'
+[2026.09.13-16.36.32:530][  0]LogUbaHorde: Display: UBA/Horde Configuration [Uba.Provider.Horde]: Not Enabled
+[2026.09.13-16.36.32:530][  0]LogShaderCompilers: Display: No distributed shader compiler controller found
+[2026.09.13-16.36.32:530][  0]LogShaderCompilers: Display: Using 1 local workers for shader compilation
+[2026.09.13-16.36.32:537][  0]LogShaderCompilers: Display: Compiling shader autogen file: F:/UE/LyraDocLabs/MMORPG/Intermediate/ShaderAutogen/PCD3D_SM6/AutogenShaderHeaders.ush
+[2026.09.13-16.36.32:537][  0]LogShaderCompilers: Display: Autogen file is unchanged, skipping write.
+[2026.09.13-16.36.33:615][  0]LogEditorDomain: Display: EditorDomain is Disabled
+[2026.09.13-16.36.33:675][  0]LogAssetRegistry: Display: AssetDataGatherer spent 0.000s loading caches from F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistry.
+[2026.09.13-16.36.33:866][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64Editor not found.
+[2026.09.13-16.36.33:866][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64 not found.
+[2026.09.13-16.36.33:919][  0]LogCsvProfiler: Display: Metadata set : deviceprofile="WindowsEditor"
+[2026.09.13-16.36.33:922][  0]LogStreaming: Display: FlushAsyncLoading(1): 1 QueuedPackages, 0 AsyncPackages
+[2026.09.13-16.36.33:942][  0]LogTextureEncodingSettings: Display: Texture Encode Speed: Final (cook).
+[2026.09.13-16.36.33:942][  0]LogTextureEncodingSettings: Display: Oodle Texture Encode Speed settings: Fast: RDO Off Lambda=0, Effort=Normal Final: RDO Off Lambda=0, Effort=Normal
+[2026.09.13-16.36.33:942][  0]LogTextureEncodingSettings: Display: Shared linear texture encoding: Disabled
+[2026.09.13-16.36.33:958][  0]LogMeshReduction: Display: Using QuadricMeshReduction for automatic static mesh reduction
+[2026.09.13-16.36.33:958][  0]LogMeshReduction: Display: Using SkeletalMeshReduction for automatic skeletal mesh reduction
+[2026.09.13-16.36.33:958][  0]LogMeshReduction: Display: Using ProxyLODMeshReduction for automatic mesh merging
+[2026.09.13-16.36.33:958][  0]LogMeshReduction: Display: No distributed automatic mesh merging module available
+[2026.09.13-16.36.34:082][  0]LogVirtualization: Display: VirtualizationSystem name found in ini file: None
+[2026.09.13-16.36.34:082][  0]LogVirtualization: Display: FNullVirtualizationSystem mounted, virtualization will be disabled
+[2026.09.13-16.36.34:144][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize started...
+[2026.09.13-16.36.34:146][  0]LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize took 1.835 ms
+[2026.09.13-16.36.34:433][  0]LogMetaSound: Display: MetaSound Page Target Initialized to 'Default'
+[2026.09.13-16.36.34:436][  0]LogAudio: Display: Registering Engine Module Parameter Interfaces...
+[2026.09.13-16.36.34:894][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.36.34:894][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.09.13-16.36.35:233][  0]LogGameFeatures: Display: Game feature 'MMOCore' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.09.13-16.36.35:233][  0]LogGameFeatures: Display: Total built in plugin load time 0.0052s
+[2026.09.13-16.36.35:247][  0]LogCsvProfiler: Display: Metadata set : largeworldcoordinates="1"
+[2026.09.13-16.36.35:271][  0]LogCsvProfiler: Display: Metadata set : raytracing="0"
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: LegacyScheduler: No
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Scheduling GatherText tasks for 'F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_GenerateReports.ini'
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'Finalize' has a single parallel task. Adding it to the end of its sequential tasks.
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PreInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'Initialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PostInitialize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'UpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateManifests':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PreUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'UpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PostUpdateArchives':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PreImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'Import':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PostImport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PreExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'Export':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PostExport':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PreCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'Compile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PostCompile':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PreFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'Finalize':
+	1 sequential task(s): 1 GenerateTextLocalizationReportCommandlet
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Phase 'PostFinalize':
+	0 sequential task(s): 
+	0 parallel tasks(s): 
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: CanRunParallelTasks: Yes
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Running phase 'Finalize' (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Running 1 sequentials task(s) in phase 'Finalize'...
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Starting sequential task 1 of 1 in phase 'Finalize'...
+[2026.09.13-16.36.35:383][  0]LogGatherTextCommandlet: Display: Executing GenerateTextLocalizationReportCommandlet (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_GenerateReports.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\GenerateReports.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.36.35:383][  0]LogGenerateTextLocalizationReportCommandlet: Display: UGenerateTextLocalizationReportCommandlet::Main started...
+[2026.09.13-16.36.35:385][  0]LogGenerateTextLocalizationReportCommandlet: Display: UGenerateTextLocalizationReportCommandlet::Main took 2.191 ms
+[2026.09.13-16.36.35:385][  0]LogGatherTextCommandlet: Display: Executing GenerateTextLocalizationReportCommandlet took 0.00 seconds (params: -Config="F:/UE/LyraDocLabs/MMORPG/Config/Localization/MMO_GenerateReports.ini" -Section=GatherTextStep0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -abslog=F:\UE\LyraDocLabs\MMORPG\Saved\Logs\Localization\20260913-163534\GenerateReports.log -corelimit=2 -run=GatherText -unattended -nop4 -NullRHI -nosound -Multiprocess -UTF8Output)
+[2026.09.13-16.36.35:385][  0]LogGatherTextCommandlet: Display: 1 sequentials task(s) in phase 'Finalize' took 0.00 seconds.
+[2026.09.13-16.36.35:385][  0]LogGatherTextCommandlet: Display: Phase 'Finalize' took 0.00 seconds (1 sequential tasks and 0 parallel tasks).
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: ---Gather Source Stats------------------------
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: ---Prepass------------------------------------
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                                0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Total =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.00 seconds
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: ---Mainpass-----------------------------------
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.h =                                0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.inl =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.c =                                0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.cpp =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: *.ini =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Other =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Total =                              0 files
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Duration =                        0.00 seconds
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: ---Nested Macro-------------------------------
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExact =                     0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateMacroName =                 0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: DuplicateExcluded =                  0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Concatenation =                      0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Variadic =                           0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: SizeInBytes =                        0 bytes
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Nested_LOCTEXT =                     0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSLOCTEXT =                   0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NOTELOCTEXT =                 0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Nested_NSNOTELOCTEXT =               0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND =                  0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: Nested_UI_COMMAND_EXT =              0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: PrepassBegin =                       0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: PrepassEnd =                         0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: MainpassBegin =                      0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: MainpassMid =                        0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: MainpassEnd =                        0
+[2026.09.13-16.36.35:385][  0]LogGatherTextFromSourceCommandlet: Display: 
+[2026.09.13-16.36.35:386][  0]LogGatherTextFromSourceCommandlet: Display: Submit =                             0
+[2026.09.13-16.36.35:386][  0]LogGatherTextFromSourceCommandlet: Display: SubmitNested =                       0
+[2026.09.13-16.36.35:386][  0]LogGatherTextCommandlet: Display: Completed all steps in 0.00 seconds
+[2026.09.13-16.36.35:386][  0]LogGatherTextCommandlet: Display: GatherText completed with exit code 0
+[2026.09.13-16.36.35:386][  0]LogInit: Display: Finished.
+[2026.09.13-16.36.35:386][  0]LogInit: Display: 
+
+Execution of commandlet took:  0.00 seconds, PeakPhysMemoryMB=1372 MB, PeakVirtMemoryMB=1179 MB
+[2026.09.13-16.36.35:438][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 0 .ref files found, 0 referenced binaries
+[2026.09.13-16.36.35:439][  0]LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 0 total binaries, 0 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+[2026.09.13-16.36.37:481][  0]LogShaderCompilers: Display: Exiting ShaderCompilingThread
+Localization GenerateReports completed.
+Native localization resources compiled. Runtime language/layout checks are separate: F:\UE\LyraDoc\verification\mmorpg-localization.json

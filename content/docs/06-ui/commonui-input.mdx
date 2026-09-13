@@ -1,0 +1,43 @@
+---
+title: CommonUI、焦点与返回操作
+description: 理解激活式界面怎样请求输入模式，正确处理键鼠、手柄与菜单返回。
+---
+
+## 学习目标与前置条件
+
+前置：UMG 基础与 Enhanced Input。目标是让菜单打开、切换、返回后仍能正确操作游戏与界面。依据本机 LyraActivatableWidget、LyraHUDLayout 和 DefaultInput，核对于 2026-09-13，UE 5.8.1。
+
+UMG 提供 Widget 和布局；CommonUI 增加激活式界面、动作路由及输入设备适配；CommonInput 管理输入类型和相关展示。启用插件不代表每一个普通 UserWidget 自动进入了正确的激活层栈。
+
+## 操作步骤
+
+1. 打开 `/Game/UI/Settings/W_LyraSettingScreen`，查看父类链。找到 `ULyraActivatableWidget` 的 InputConfig 属性和所期望的初始焦点。
+2. Rider 打开 `Source/LyraGame/UI/LyraActivatableWidget.cpp`，阅读 `GetDesiredInputConfig`。
+3. 在 PIE 打开菜单，先用鼠标选择，再切换手柄或键盘导航，最后执行返回。观察焦点高亮与鼠标捕获变化。
+4. 打开 `Config/DefaultInput.ini`，查看 `UI.Action.Escape` 的实际键映射与 `UIActionProcessingPriority`。
+5. 在 `ULyraHUDLayout::HandleEscapeAction` 设置断点，观察它将 EscapeMenuClass 推入 `UI.Layer.Menu`。
+
+## 输入模式的真实映射
+
+```cpp
+case ELyraWidgetInputMode::GameAndMenu:
+    return FUIInputConfig(ECommonInputMode::All, GameMouseCaptureMode);
+case ELyraWidgetInputMode::Game:
+    return FUIInputConfig(ECommonInputMode::Game, GameMouseCaptureMode);
+case ELyraWidgetInputMode::Menu:
+    return FUIInputConfig(ECommonInputMode::Menu, EMouseCaptureMode::NoCapture);
+```
+
+`Default` 返回未指定的配置，让更上层的规则发挥作用。到处调用 `SetInputModeGameOnly` 或 `SetInputModeUIOnly` 容易与 CommonUI 的激活状态冲突。优先让当前激活界面声明它需要的输入模式。
+
+## 焦点是一条完整流程
+
+进入页面时需要合法、可见、可聚焦的目标；切换弹窗时保存返回位置；关闭弹窗后恢复父页面；返回游戏后恢复捕获。`ULyraActivatableWidget::ValidateCompiledWidgetTree` 会检查 `BP_GetDesiredFocusTarget`，未实现时给出手柄使用相关警告或说明。
+
+只用鼠标测试常掩盖焦点缺失。列表为空、按钮被禁用和异步内容尚未加载时，也要有可聚焦的退路。焦点属于具体本地玩家，分屏时不能始终硬编码玩家 0。
+
+## 预期结果、排障与练习
+
+菜单激活时收到 UI 操作，返回后游戏输入正常；子弹不应在纯菜单操作时误发。无响应时检查 Widget 是否激活、处在哪个容器、是否有更高层挡住、期望焦点是否合法。
+
+本机 `DefaultGame.ini` 提供 DebugUI CheatScript 的日志配置，可参考开启 LogCommonUI 和 LogUIActionRouter。练习：依次测试主菜单 → 设置 → 确认弹窗 → 返回，记录每一步的激活 Widget、焦点目标和输入模式。

@@ -1,0 +1,357 @@
+{
+  "startedAt": "2026-09-13T19:34:46.1318875Z",
+  "status": "passed",
+  "passed": true,
+  "mode": "Package",
+  "project": "F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+  "engine": "E:\\UnrealEngine",
+  "target": "LyraGame",
+  "configuration": "Development",
+  "platform": "Win64",
+  "map": "/TrainingRange/Maps/L_TrainingRange",
+  "nativeBuildRequested": true,
+  "runner": "E:\\UnrealEngine\\Engine\\Build\\BatchFiles\\RunUAT.bat",
+  "arguments": [
+    "-NoCompileUAT",
+    "-NoCompile",
+    "-NoAutoSDK",
+    "BuildCookRun",
+    "-project=F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+    "-target=LyraGame",
+    "-platform=Win64",
+    "-clientconfig=Development",
+    "-cook",
+    "-MapsToCook=/TrainingRange/Maps/L_TrainingRange",
+    "-skipbuildeditor",
+    "-unattended",
+    "-utf8output",
+    "-nop4",
+    "-build",
+    "-stage",
+    "-pak",
+    "-iostore",
+    "-package",
+    "-archive",
+    "-ubtargs=-NoUBA -MaxParallelActions=3",
+    "-AdditionalCookerOptions=-CookProcessCount=1 -corelimit=3 -Multiprocess -ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False",
+    "-stagingdirectory=F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Stage",
+    "-archivedirectory=F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive"
+  ],
+  "log": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\training-package.log",
+  "sourceMapSha256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+  "trainingPluginSha256": "45edfe58ba451893d0b9e32e23d5f2a096ec19821434c0792efbd1ffd256c6c5",
+  "runtimeVerifierSourceSha256": "65afc633f5437d852411337b67251195d5427b09cdb066e4a64eab2c8d88ce68",
+  "renderingProfile": "Windows D3D12 / PCD3D_SM6 only",
+  "renderingConfig": "F:\\UE\\LyraDocLabs\\LyraTraining\\Config\\Windows\\WindowsEngine.ini",
+  "renderingPatchSha256": "ca393f58cc8a233cb88ba841c9d55b3e39ea1a91d018d16d9a06e7c62594fea8",
+  "cookDirectory": null,
+  "shaderWorkerLimit": 2,
+  "ubtParallelActionLimit": 3,
+  "ubaEnabled": false,
+  "runDirectory": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db",
+  "archiveDirectory": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive",
+  "localServiceProxyBypasses": [
+    "localhost",
+    "127.0.0.1",
+    "::1",
+    "[::1]"
+  ],
+  "systemProxyConfigurationChanged": false,
+  "exitCode": 0,
+  "runtimeVerification": "pending",
+  "artifacts": [
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraGame.exe",
+      "bytes": 195072
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\chrome_100_percent.pak",
+      "bytes": 695026
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\chrome_200_percent.pak",
+      "bytes": 1094579
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\resources.pak",
+      "bytes": 8683856
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\af.pak",
+      "bytes": 538998
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\am.pak",
+      "bytes": 866444
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ar.pak",
+      "bytes": 953918
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\bg.pak",
+      "bytes": 987762
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\bn.pak",
+      "bytes": 1269605
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ca.pak",
+      "bytes": 612377
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\cs.pak",
+      "bytes": 622919
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\da.pak",
+      "bytes": 567958
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\de.pak",
+      "bytes": 609935
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\el.pak",
+      "bytes": 1080416
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\en-GB.pak",
+      "bytes": 492124
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\en-US.pak",
+      "bytes": 497015
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\es-419.pak",
+      "bytes": 598355
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\es.pak",
+      "bytes": 596806
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\et.pak",
+      "bytes": 544221
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\fa.pak",
+      "bytes": 879421
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\fi.pak",
+      "bytes": 552657
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\fil.pak",
+      "bytes": 624599
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\fr.pak",
+      "bytes": 646732
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\gu.pak",
+      "bytes": 1255599
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\he.pak",
+      "bytes": 777593
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\hi.pak",
+      "bytes": 1330999
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\hr.pak",
+      "bytes": 600581
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\hu.pak",
+      "bytes": 646489
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\id.pak",
+      "bytes": 535422
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\it.pak",
+      "bytes": 594371
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ja.pak",
+      "bytes": 719063
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\kn.pak",
+      "bytes": 1424332
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ko.pak",
+      "bytes": 606589
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\lt.pak",
+      "bytes": 652194
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\lv.pak",
+      "bytes": 651016
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ml.pak",
+      "bytes": 1479560
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\mr.pak",
+      "bytes": 1223735
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ms.pak",
+      "bytes": 560048
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\nb.pak",
+      "bytes": 543051
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\nl.pak",
+      "bytes": 562204
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\pl.pak",
+      "bytes": 627081
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\pt-BR.pak",
+      "bytes": 587941
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\pt-PT.pak",
+      "bytes": 592511
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ro.pak",
+      "bytes": 612678
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ru.pak",
+      "bytes": 1003077
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\sk.pak",
+      "bytes": 632482
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\sl.pak",
+      "bytes": 607050
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\sr.pak",
+      "bytes": 929699
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\sv.pak",
+      "bytes": 547471
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\sw.pak",
+      "bytes": 576117
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ta.pak",
+      "bytes": 1475609
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\te.pak",
+      "bytes": 1361935
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\th.pak",
+      "bytes": 1144623
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\tr.pak",
+      "bytes": 587129
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\uk.pak",
+      "bytes": 1001189
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\ur.pak",
+      "bytes": 872334
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\vi.pak",
+      "bytes": 695768
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\zh-CN.pak",
+      "bytes": 503346
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\ThirdParty\\CEF3\\Win64\\128.4.13+ge76af7e+chromium-128.0.6613.138+v2\\Resources\\locales\\zh-TW.pak",
+      "bytes": 500142
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\Engine\\Binaries\\Win64\\EpicWebHelper.exe",
+      "bytes": 4726272
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Binaries\\Win64\\LyraGame.exe",
+      "bytes": 350006784
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\global.ucas",
+      "bytes": 3693984
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\global.utoc",
+      "bytes": 878
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk0-Windows.pak",
+      "bytes": 79110729
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk0-Windows.ucas",
+      "bytes": 399301056
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk0-Windows.utoc",
+      "bytes": 660146
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk1-Windows.pak",
+      "bytes": 1083
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk1-Windows.ucas",
+      "bytes": 90009840
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk1-Windows.utoc",
+      "bytes": 177934
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk2-Windows.pak",
+      "bytes": 918
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk2-Windows.ucas",
+      "bytes": 4216048
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Content\\Paks\\pakchunk2-Windows.utoc",
+      "bytes": 12976
+    }
+  ],
+  "error": null,
+  "shaderWorkerLog": [
+    "LogShaderCompilers: Display: Using 2 local workers for shader compilation"
+  ],
+  "finishedAt": "2026-09-13T20:39:46.1922352Z"
+}

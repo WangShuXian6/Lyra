@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "synchronizedAt": "2026-09-13T15:37:59.8519969Z",
+  "passed": true,
+  "scope": "Explicit original teaching files only",
+  "repository": "F:/UE/LyraDoc/examples/LyraTraining",
+  "lab": "F:\\UE\\LyraDocLabs\\LyraTraining",
+  "trainingEditorRunning": false,
+  "nativeBuildExecuted": false,
+  "assetPreparationExecuted": false,
+  "copiedCount": 4,
+  "unchangedCount": 1,
+  "files": [
+    {
+      "relativePath": "prepare_training.py",
+      "labSha256": "01f589f9f712a23451da382236b63d01790b77dd0cd8324ea7b8dfbdef0a3dd4",
+      "changed": false,
+      "bytes": 6484,
+      "labPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\prepare_training.py",
+      "repoPath": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\prepare_training.py",
+      "matched": true,
+      "previousLabSha256": "01f589f9f712a23451da382236b63d01790b77dd0cd8324ea7b8dfbdef0a3dd4",
+      "repoSha256": "01f589f9f712a23451da382236b63d01790b77dd0cd8324ea7b8dfbdef0a3dd4"
+    },
+    {
+      "relativePath": "Plugins/GameFeatures/TrainingRange/TrainingRange.uplugin",
+      "labSha256": "45edfe58ba451893d0b9e32e23d5f2a096ec19821434c0792efbd1ffd256c6c5",
+      "changed": true,
+      "bytes": 879,
+      "labPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\TrainingRange.uplugin",
+      "repoPath": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\TrainingRange.uplugin",
+      "matched": true,
+      "previousLabSha256": "e9c81dd6762a9bc03f40e7787ff3bfd84de312ece04a3a673d38f5b4452cf695",
+      "repoSha256": "45edfe58ba451893d0b9e32e23d5f2a096ec19821434c0792efbd1ffd256c6c5"
+    },
+    {
+      "relativePath": "Plugins/GameFeatures/TrainingRange/README.md",
+      "labSha256": "00e8f3eee8abaf4f78f0d604cb4783281e2c7c33865055743e4e920f1270cf53",
+      "changed": true,
+      "bytes": 6393,
+      "labPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\README.md",
+      "repoPath": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\README.md",
+      "matched": true,
+      "previousLabSha256": null,
+      "repoSha256": "00e8f3eee8abaf4f78f0d604cb4783281e2c7c33865055743e4e920f1270cf53"
+    },
+    {
+      "relativePath": "Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/TrainingRangeVerification.Build.cs",
+      "labSha256": "117d8c57db6c3a4b39ea319546e68271e244ce66b64f4d5a0b585dbde81f8957",
+      "changed": true,
+      "bytes": 639,
+      "labPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Source\\TrainingRangeVerification\\TrainingRangeVerification.Build.cs",
+      "repoPath": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Source\\TrainingRangeVerification\\TrainingRangeVerification.Build.cs",
+      "matched": true,
+      "previousLabSha256": null,
+      "repoSha256": "117d8c57db6c3a4b39ea319546e68271e244ce66b64f4d5a0b585dbde81f8957"
+    },
+    {
+      "relativePath": "Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/Private/TrainingRangeVerification.cpp",
+      "labSha256": "65afc633f5437d852411337b67251195d5427b09cdb066e4a64eab2c8d88ce68",
+      "changed": true,
+      "bytes": 31239,
+      "labPath": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Source\\TrainingRangeVerification\\Private\\TrainingRangeVerification.cpp",
+      "repoPath": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Source\\TrainingRangeVerification\\Private\\TrainingRangeVerification.cpp",
+      "matched": true,
+      "previousLabSha256": null,
+      "repoSha256": "65afc633f5437d852411337b67251195d5427b09cdb066e4a64eab2c8d88ce68"
+    }
+  ],
+  "pendingEditorBuild": {
+    "scope": "Full target increment, not -Module-only, so native target metadata is updated",
+    "executed": false,
+    "arguments": [
+      "LyraEditor",
+      "Win64",
+      "Development",
+      "-Project=F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "-EnablePlugin=BlueprintScreenshotTool",
+      "-EnablePlugin=LyraDocTools",
+      "-EnablePlugin=TrainingRange",
+      "-NoUBA",
+      "-MaxParallelActions=3",
+      "-WaitMutex"
+    ],
+    "runner": "E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat",
+    "precondition": "Save work and normally close every editor/LiveCoding session sharing E:/UnrealEngine; coordinate shared UBT window"
+  },
+  "packageShowCommand": "Passed after synchronization; only printed command, no UAT/UBT/Cook/process/output directory",
+  "storageReport": "source-evidence/training-intermediate-storage.json"
+}

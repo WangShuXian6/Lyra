@@ -1,0 +1,28 @@
+{
+  "manifests": [
+    {
+      "path": "F:/UE/LyraDocLabs/LyraTraining/Binaries/Win64/UnrealEditor.modules",
+      "matchesEngine": true,
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    },
+    {
+      "path": "F:/UE/LyraDocLabs/LyraTraining/Plugins/BlueprintScreenshotTool/Binaries/Win64/UnrealEditor.modules",
+      "matchesEngine": true,
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    },
+    {
+      "path": "F:/UE/LyraDocLabs/LyraTraining/Plugins/LyraDocTools/Binaries/Win64/UnrealEditor.modules",
+      "matchesEngine": true,
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    },
+    {
+      "path": "F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/TrainingRange/Binaries/Win64/UnrealEditor.modules",
+      "matchesEngine": true,
+      "buildId": "7f7bdd53-26a8-4526-88f3-9beef6b57fcf"
+    }
+  ],
+  "prepareSha256": "01f589f9f712a23451da382236b63d01790b77dd0cd8324ea7b8dfbdef0a3dd4",
+  "tcp8000Listeners": 0,
+  "busyProcesses": 0,
+  "checkedAt": "2026-09-13T16:55:37.4513769Z"
+}

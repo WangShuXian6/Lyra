@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-13T13:05:28.395Z",
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "asset": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus",
+  "parent": "/Script/UMG.UserWidget",
+  "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+  "localizationNamespace": "MMOUI",
+  "nativeCulture": "en",
+  "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+  "widgets": [
+    {
+      "name": "ManaLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "isVariable": true
+    },
+    {
+      "name": "ManaText",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "ManaBarSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "ManaBar",
+      "class": "/Script/UMG.ProgressBar",
+      "isVariable": true
+    }
+  ],
+  "bindings": [
+    "PlayerVM.ManaLabel -> ManaText.Text",
+    "PlayerVM.ManaFraction -> ManaBar.Percent"
+  ],
+  "widgetCount": 4,
+  "canvasCount": 0,
+  "bindingCount": 2,
+  "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+  "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+  "viewModelName": "PlayerVM",
+  "creationType": "Manual",
+  "compilerErrors": 0,
+  "compilerWarnings": 0,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_ManaStatus-designer.json"
+}

@@ -1,0 +1,3436 @@
+{
+  "schemaVersion": 2,
+  "startedAt": "2026-09-13T20:58:12.462833+00:00",
+  "completedAt": "2026-09-13T20:58:13.114924+00:00",
+  "passed": true,
+  "scope": "Read-only validation of the exact published tar.gz byte snapshots, every internal MANIFEST member and its SHA-256/byte count, source-level repository helper/configuration/contract dependency completeness, and actual Training report-to-package plus native screenshot-to-public provenance links. Existing runtime results are read and linked; no experiment is rerun.",
+  "method": "Python standard-library tarfile in-memory reads without extraction; actual bytes hashed independently of the manifests; source-level dependency tracing of archived entry points and all literal PSScriptRoot .ps1/.py calls.",
+  "archives": [
+    {
+      "id": "lyra-mmorpg-examples",
+      "path": "public/downloads/lyra-mmorpg-examples.tar.gz",
+      "bytes": 481882,
+      "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
+      "archiveFileCount": 265,
+      "internalManifestFileCount": 264,
+      "manifestItselfExcludedFromInternalFileList": true,
+      "originalAssetCount": 31,
+      "internalManifestSha256": "356d8b4cfa68e165ac55c2db7c30300ca121054ac2874c039e8c5e1cdad81b69",
+      "publishedPackageMetadataMatches": true,
+      "publishedAndInternalManifestEqual": true,
+      "allManifestedBytesAndHashesMatch": true,
+      "manifestFileChecks": [
+        {
+          "path": "examples/MMORPG/.gitignore",
+          "actualBytes": 19,
+          "actualSha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/client-boundary-review.json",
+          "actualBytes": 131,
+          "actualSha256": "0e41e988359ab11581215d154370d8883c076de88e3c58317dd995f5a65c1486",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/concurrency-test-results.json",
+          "actualBytes": 2069,
+          "actualSha256": "8629ebec2a0b2bb7b4225868e857f9c833526ffcca2548a1380cb90678a8a48e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/config.example.ps1",
+          "actualBytes": 604,
+          "actualSha256": "decad44f99208748f25d61b62aac0bf6c01b257bfa2d21e87200c7cbfc3d9389",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/fault-test-results.json",
+          "actualBytes": 131,
+          "actualSha256": "feecd52c11956fcd6e74927f985641f3b763a7d6f2cfcad4aa5f9912ee46e4ca",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/http-test-results.json",
+          "actualBytes": 2849,
+          "actualSha256": "37411702d5de3c76a7bc9b0bc30e4b1e03329189e16503f1e67f726b14b92f19",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/migrations/001_initial.sql",
+          "actualBytes": 2090,
+          "actualSha256": "9818de7efd8b1aa06994b19937b1dc958aa80efe9f72684b5eac6fa69df716c7",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/migrations/002_state_constraints.sql",
+          "actualBytes": 452,
+          "actualSha256": "9e9415bf9d4e00d2c4235b9b55357640c390bf8e6967058469d70d3529d09166",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/openapi.json",
+          "actualBytes": 22076,
+          "actualSha256": "855caa9f05dd89e4474f12588fae975ab32884f02b6629f24aaf552a08887e2a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/README.md",
+          "actualBytes": 1729,
+          "actualSha256": "7cec252cca4ba6aa1134ac1b841f2a4bb95f847dd4a8b53670dc00b916a4b4db",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/source-manifest.json",
+          "actualBytes": 2352,
+          "actualSha256": "ae6f2f83a315ad9ca34ab55dfb4306c6657599bcd6a043311c73d995e3a09293",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/backend/validation.json",
+          "actualBytes": 8730,
+          "actualSha256": "42d261c2fc006984d4ee242cd9d80d267ee08929c7edb80c42d7bfa819f52dfb",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/DefaultEditor.ini",
+          "actualBytes": 1196,
+          "actualSha256": "44b9fdc952263ed58f84e497855ca7b2f7bfc7544fe6889fb4e5b228b8e053b4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/DefaultEngine.ini",
+          "actualBytes": 515,
+          "actualSha256": "f3b9c22cb8eae29bf52b47370a7bd1064bceeb4e7dbe95663b255fb4bf605d5d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/DefaultGame.ini",
+          "actualBytes": 2615,
+          "actualSha256": "64e2f33a72d3124f9cba03ba10f6e80de795f4782f12d9b758da088290508941",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/DefaultGameplayTags.ini",
+          "actualBytes": 854,
+          "actualSha256": "218487f11c1083e88db9e6a54d18a8e89cbe54dc71f92b5a09610fb346ce7113",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/DefaultGameUserSettings.ini",
+          "actualBytes": 547,
+          "actualSha256": "2ba9037a874450b0675a6da9a43cbfe7dd9228a8f1b62e933f1e30ed8583ae60",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/DefaultInput.ini",
+          "actualBytes": 171,
+          "actualSha256": "a1e822a22fba08a06c2308d23dcc64804cc64fb568bb70cadb35d27b3ab686c0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/Localization/MMO_Compile.ini",
+          "actualBytes": 383,
+          "actualSha256": "c802c432b86c9093ba2f11514da7fad0a753f36025ef86f8766fe9aff4a8a59e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/Localization/MMO_Export.ini",
+          "actualBytes": 507,
+          "actualSha256": "571b4da469aeb674333fcb6cd104c57c854dd2608f72078cfcd4d14cab7148b5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/Localization/MMO_Gather.ini",
+          "actualBytes": 954,
+          "actualSha256": "145160234d0f0232be73a06f7a94c70297d9f7c1d04177e65a3920dbc288b356",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/Localization/MMO_GenerateReports.ini",
+          "actualBytes": 389,
+          "actualSha256": "561f6329757465066a5e1f6f3b8ef338165ff84e9e7122904abcfc4ac160604f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/Localization/MMO_Import.ini",
+          "actualBytes": 432,
+          "actualSha256": "ad8e5ab131dcacbd2ce3d47fbe6905fc3f02d3d6b1f7caa5c9dab8640807b65a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Config/Windows/WindowsEngine.ini",
+          "actualBytes": 429,
+          "actualSha256": "0a3722ba67385c8b5ffc297e3f56398fa9c8698ea826676090561a43dd7dd652",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Characters/MMO/ABP_MMOCharacter.uasset",
+          "actualBytes": 101490,
+          "actualSha256": "b1dd79def4b1c690332055588b6c981bcb54cc28c922a342d74c8ee99092c2b5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Characters/MMO/ABP_MMOUnarmed.uasset",
+          "actualBytes": 91377,
+          "actualSha256": "ae34c136b7b2db128228ac1d68a48c5c14dc937f521b85690238ad5b97c63dd7",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Characters/MMO/ALI_MMOCharacter.uasset",
+          "actualBytes": 12797,
+          "actualSha256": "fd1fe74b22c4f2b431e9664f41affffac04bb5b16519f7b1569f7e7e8ff0fc7b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/en/MMO.archive",
+          "actualBytes": 31956,
+          "actualSha256": "50a2d9a65aa7c3dd70e4df7dbc4cf9ea11abef6fe9d37a65e9f6ddd2c916c05e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/en/MMO.locres",
+          "actualBytes": 6382,
+          "actualSha256": "317fc4abeecd01f912e3763096b4f9d603bacb3931ebf0b7e9183602ba4547ca",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/en/MMO.po",
+          "actualBytes": 23333,
+          "actualSha256": "bcf331d96e77d97b1142bfd370cb72b317a4c00d8d76541f8daf8940e70b6334",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/MMO_Conflicts.txt",
+          "actualBytes": 0,
+          "actualSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/MMO.csv",
+          "actualBytes": 64,
+          "actualSha256": "86b938d5f0d2891eda9680c81717b9ef05e3fda30febdd492c6fb09d917a7061",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/MMO.locmeta",
+          "actualBytes": 69,
+          "actualSha256": "0acb9f6883e2b8a9aad7cf0df6f8c887ce77d19e5e2b45ea499702f00a15044c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/MMO.manifest",
+          "actualBytes": 42918,
+          "actualSha256": "157882c20722e5cf7d2efe9ee37dfda8a473e790cbff354632b7ab6363663b16",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/zh-Hans/MMO.archive",
+          "actualBytes": 28950,
+          "actualSha256": "c887a5526a3fff57762824b95bf01806d1f616a1db82c7401d95da2c8c4b0c70",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/zh-Hans/MMO.locres",
+          "actualBytes": 5279,
+          "actualSha256": "1ea00e81608c3d3a6cb8a7bab82e0d1511cff5d9adfee127fd92334d89ffa69c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/MMO/zh-Hans/MMO.po",
+          "actualBytes": 23828,
+          "actualSha256": "eca94b069b22aaa6a70646e96e08882e0d211566484a87e6bdc291ef1db4049e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Localization/ST_MMO.uasset",
+          "actualBytes": 14500,
+          "actualSha256": "4fd52a5e5307bd098f53764c358e63bd752835f7cb32f5a574338477c77a56e4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Abilities/DA_MMOAbilities.uasset",
+          "actualBytes": 3588,
+          "actualSha256": "2d9f46939392876b3b038ecb39ebaebccbc9f77dcf0c0434b7451ce299ef3626",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/BP_MMOGameMode.uasset",
+          "actualBytes": 20817,
+          "actualSha256": "2c8ab68f6c5ac96724aa52987d2828f5c5e525d5c94bbd7fa86356e3a8b8034e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Experiences/DA_MMOExperience.uasset",
+          "actualBytes": 2607,
+          "actualSha256": "0745c819a9bcf8748da76510a2b0837d683a4f796e75c51e0df209ee048ea249",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/DA_MMOInputConfig.uasset",
+          "actualBytes": 4703,
+          "actualSha256": "664152a805b206a25600683011b7c1bae997bb2b0537846d67bce3dc8ac70a52",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/IA_Attack.uasset",
+          "actualBytes": 1070,
+          "actualSha256": "655eeaf81af1cdb472c9d9a5fec9409bce7f66279b3a8ceae151ac6d20812df1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/IA_Inventory.uasset",
+          "actualBytes": 1082,
+          "actualSha256": "c8bfe9508dae165de34cf99cda740a4fb6b26dbe54b39c745dd4e6de9f1707a7",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/IA_Look.uasset",
+          "actualBytes": 1258,
+          "actualSha256": "b41789429b40a8bb5f1352f09e7ad7493a981c881cced3e2b43d8808eb8b9a18",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/IA_Move.uasset",
+          "actualBytes": 1258,
+          "actualSha256": "84d8c482bc473ae308271742735ef7b5e0bf4d25e5a6f5e3c16c631cb30511f1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/IA_Settings.uasset",
+          "actualBytes": 1078,
+          "actualSha256": "32e5934f9cbb680a0eaf07997cfc3ef3933c289bba3f925035c1c447b796e9be",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/IA_Spell.uasset",
+          "actualBytes": 1066,
+          "actualSha256": "f09003b352f9f41c7a2c1d1337ea70524b0cf5e9dfc99851245a657fe87680b2",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/IA_Target.uasset",
+          "actualBytes": 1070,
+          "actualSha256": "9069d955c5b2778d9808ffe5e17d11f43bdb659463d8cb9d0ca04b8eb2924437",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Input/IMC_MMOPlayer.uasset",
+          "actualBytes": 8899,
+          "actualSha256": "0e38b92b5983e7f2bdde9548307400bff156900d3a2add1cb84b4b579c921c2c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Labels/DA_TutorialExamples.uasset",
+          "actualBytes": 2732,
+          "actualSha256": "1db58affde2f7321e37837e8f1d3bb10b53838d85f9aa9291bbd6541c6ff9560",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/MMO/Pawns/DA_MMOPlayer.uasset",
+          "actualBytes": 3704,
+          "actualSha256": "e48b6eaef7e49bf6366e6e5f4eb4b64a47085656b728a4700273f5e29a3bd2dd",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Tutorial/BP_BackendHealth.uasset",
+          "actualBytes": 32925,
+          "actualSha256": "18cf23004bb04610566f04aabaf6ba25f10184a14a0ff5860b81fb5f8f5d2958",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Tutorial/BP_MMOCharacter.uasset",
+          "actualBytes": 26625,
+          "actualSha256": "1f210c44e56fbcd2efe6202e33707fbee4d371fff569296e5d9b321f626f459e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Tutorial/BP_MMOTrainingTarget.uasset",
+          "actualBytes": 23663,
+          "actualSha256": "dae9278da5c0d8e43234ec6981d2d07c2dbe3f233051284eb9b79e032e1599f9",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/Tutorial/GA_ArcaneBolt.uasset",
+          "actualBytes": 15625,
+          "actualSha256": "bcb500cf04eb436d4a80d90097c9f3cd974391955d90f049f2641e84f1fb13b5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/UI/BP_MMOUIPolicy.uasset",
+          "actualBytes": 5735,
+          "actualSha256": "f0b68b996ea0862929373a14cf393e6f9a12ec0e32b7978a692d947a5e3492a2",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/UI/WBP_Confirm.uasset",
+          "actualBytes": 60710,
+          "actualSha256": "3feaae16a58be1232e0cebb370a7befeda3029609f9e6e4fde3dadb375216a8f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/UI/WBP_Inventory.uasset",
+          "actualBytes": 69605,
+          "actualSha256": "e8718ad26b29401c3117475f680d5eeda900452c00505730a9188f88b720fd27",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/UI/WBP_Login.uasset",
+          "actualBytes": 135401,
+          "actualSha256": "62b8ccb02cf456c278a1da8f7e5e80df1f5255c7cfef33c636117a1b2d902dff",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/UI/WBP_ManaStatus.uasset",
+          "actualBytes": 48787,
+          "actualSha256": "319820ddfa2cd6063b0f6c581eaa6124bf017fb627daca26f2b6543b702f619b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/UI/WBP_MMOLayout.uasset",
+          "actualBytes": 30674,
+          "actualSha256": "d2fc169b9b1bc2b539985879986a2de62c7775cea99a37e629bf4f09ee73f086",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/UI/WBP_PlayerHUD.uasset",
+          "actualBytes": 127597,
+          "actualSha256": "9658d23da3c535bee3218cb799cd57b691cbe0ee2c3664fc7be215f4e6d7df0f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Content/UI/WBP_Settings.uasset",
+          "actualBytes": 112341,
+          "actualSha256": "1d1762341018bfb0c8d5459cf6eb2bf4b928729b2f0e20d6516aa3151278bab8",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/dependencies.json",
+          "actualBytes": 1484,
+          "actualSha256": "c69e7e1f43e72455c4f2c3bcbea48a0394e547badfbacb521137b252e29cdd12",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/localization-runtime-zh-Hans.json",
+          "actualBytes": 6719,
+          "actualSha256": "4240a936ca703cab503cb75ca88d9733d0cff23cf20f612d0e3f6a3c64153188",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/MMORPG.uproject",
+          "actualBytes": 1076,
+          "actualSha256": "d3c9cad1724437b03f9b97f3e40cae092d2d19ced48b199a3d9f3aeb82556f57",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Content/MMOCore.uasset",
+          "actualBytes": 3163,
+          "actualSha256": "ba1f464ea665ab7cb6dc273c74df2e07c056f3c88e59ffd51e3b62620c0269f0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/GameFeatures/MMOCore/MMOCore.uplugin",
+          "actualBytes": 463,
+          "actualSha256": "a74a2750db17b63b9657d7ea310f920077790a998322cfa3872a3d19fd21d58b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs",
+          "actualBytes": 335,
+          "actualSha256": "e4111bc2801d731670f3915c0e2f9a620f57d8112a6509a54e87ca689d34d086",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+          "actualBytes": 4336,
+          "actualSha256": "219795347b82ce98b8c2cd3a66616cb08096c9b6de8c5a491958677bf110475a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h",
+          "actualBytes": 1066,
+          "actualSha256": "66490dd605e3b803c52ef9f88d0c75786692b1a88ef65130396bd9242f0636d1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin",
+          "actualBytes": 765,
+          "actualSha256": "5d9f6fbb0156eea93ae51690f07dc3f22e227ef4759a1c2adda4991702c4e6d9",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/README.md",
+          "actualBytes": 6043,
+          "actualSha256": "8c44f8509ce528f2149d7adeea75ef3a224e77a414c4fcbc00710db708860dd7",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs",
+          "actualBytes": 713,
+          "actualSha256": "081dc5a6b2ffc92dd581185508d0fa467b56640e79398ef8fc31ddf84db57fdb",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+          "actualBytes": 25230,
+          "actualSha256": "f19d675dbd7bafaa5bc5565396d3c02321fe0cf378c5c9dc36c0bbe1d680f6c0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+          "actualBytes": 23551,
+          "actualSha256": "17f3aaeafb7dae8d37db857b1f65b7f9a84a99eb14b2c84b46dc4afbfc2d459a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+          "actualBytes": 12515,
+          "actualSha256": "7181808cc424cbf8279776fb77585a9d48e6cf97f1e1a483e847020205edbe4e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp",
+          "actualBytes": 6887,
+          "actualSha256": "801203ee392914d5e46960304b268ca499ec99c7607312b08cf6883ea8dd5062",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp",
+          "actualBytes": 11649,
+          "actualSha256": "a7177ee94f6af2da4974ecee8692049ea8ba3a93c0ae742da04a3f591ee79c3b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp",
+          "actualBytes": 86,
+          "actualSha256": "ca6b9ec7bc20c65e5d69a5a8fdef0492ff32f3c313acaee1569e26fd92a3fde1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+          "actualBytes": 6329,
+          "actualSha256": "fff2096fb8d3f8ca78dacb545b6e744b8b4cc01db24fa9116e11d727511b5ce1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h",
+          "actualBytes": 802,
+          "actualSha256": "e6626d17f9413e8009c5c1a3167ae2e6801023cda592be04ba057c94fa14b03b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h",
+          "actualBytes": 799,
+          "actualSha256": "eb0c832deb70a3ef8457a6b8bd97cc5a34f138bc3860aff66cb1dc093ac86d09",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h",
+          "actualBytes": 1357,
+          "actualSha256": "4f08ad2eeac2720db576a32709596532653deaeda1ab41a30fefcd1fc41eb3ca",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/api-contract.json",
+          "actualBytes": 15616,
+          "actualSha256": "8b6464f333746175ab8384cad5af281776638c046223492bc12f47cb477ca383",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/MMOFramework.uplugin",
+          "actualBytes": 607,
+          "actualSha256": "3724b3bc7c28591e2c7952edaf4454081de63d7dbf989c0d394829fbf8f3aa5a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/README.md",
+          "actualBytes": 19307,
+          "actualSha256": "989c03fd817e3691bedd9040dd2f289e6473ff7838b9fb00c059ccafc3c1f630",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs",
+          "actualBytes": 431,
+          "actualSha256": "7a73a22ae37991b8bc140ac25a054d9a7937973df5fecbe2ec9766c4ca6b7ec3",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp",
+          "actualBytes": 2749,
+          "actualSha256": "11c19b4b83b58e0ed40a60224d4257c566c8ae5d270a4e1de8a24742639206cf",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp",
+          "actualBytes": 1464,
+          "actualSha256": "54c263096a0f5d219184b96a37f1e395fba56397e0ee5bd19bdfbb357ab2e7a1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp",
+          "actualBytes": 12562,
+          "actualSha256": "acd5b47909ce2180353a7f4396dd00d10af9e13aa4540071d55182226b4663f1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp",
+          "actualBytes": 1064,
+          "actualSha256": "94971a9db02ba3e70dd00cb208788d2a84f9daeaa18630c5131d4586c24e2ff0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp",
+          "actualBytes": 649,
+          "actualSha256": "5d5ac362450b8eb6bf2bea54d66782fcff181f08fa19c51b76244350a4fce8b8",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp",
+          "actualBytes": 6176,
+          "actualSha256": "83a8827e7eacfdaeceb278457a7b8c69c1c7946a16d6e4403ffd0176c5e63c5b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+          "actualBytes": 2486,
+          "actualSha256": "c1626ad34db0166bee05d52a1672816af74e311d4ea989e85c65540d0f8f56c9",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h",
+          "actualBytes": 957,
+          "actualSha256": "687a4fc81eebea503be604d4485e21953ed37213607f220bb97c29196268c021",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h",
+          "actualBytes": 1683,
+          "actualSha256": "389e23f345316642295d29bcf0762f5a43593c463c42a677e9428242cafdbcd8",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h",
+          "actualBytes": 3312,
+          "actualSha256": "4e832c535db10a8d2a63f3798c959786c516996159860926aacee637a635811c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h",
+          "actualBytes": 756,
+          "actualSha256": "a11c7eb03dc92c47311587740ac7240e38d8bc521c5c89dfa3307fa08955ed73",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h",
+          "actualBytes": 1361,
+          "actualSha256": "ffdbb326b26bb9b5751b278e07ce71c647cec249330d4319c2fa8ff351ab83c6",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h",
+          "actualBytes": 1213,
+          "actualSha256": "aecbe35a36c2a741f6ed6a4ab16374abc37fd82327fb9dcea1e288a95fc33c84",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h",
+          "actualBytes": 2974,
+          "actualSha256": "2693b6bb4d5991bb96fecb4739cce18a5927f5737c3f72990b9f09d735f3e8a7",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOIntegration/MMOIntegration.uplugin",
+          "actualBytes": 284,
+          "actualSha256": "d3c9dc74e9521fc850cf2a4eb5da2559fbf46a2ab86a627e7daa36b57883e867",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs",
+          "actualBytes": 332,
+          "actualSha256": "2e29cca3c2d9940d11542dcded3b487dc92fb6cd9cfd8086ff1dcc053f42adc1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp",
+          "actualBytes": 3629,
+          "actualSha256": "604c95ed1a115cf9bc9be00ccdc2966b168159ae2b0a549cc65328d230ce4de0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h",
+          "actualBytes": 1904,
+          "actualSha256": "ac13bf9eff08419d055d0afa44485dcad1427304fed287a61b4158e7ed048360",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs",
+          "actualBytes": 332,
+          "actualSha256": "0dfeb3b81a85cdc3be20a078e298ebdafd0d7924f4a304bf7c7c10ddb14381b5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp",
+          "actualBytes": 2143,
+          "actualSha256": "bbc153042f98a4e42057baa3619dee5cb383c453b6453f6729014acd1e7892c0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h",
+          "actualBytes": 777,
+          "actualSha256": "fe6e976042daa0b6d9cf83f75c265a95b5cbf036f7ee7a4e88dee75777454411",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/prepare_content.py",
+          "actualBytes": 9795,
+          "actualSha256": "75445e9d04fc442b2c132e35bf0791ced549223896b9679299e6534aef3759b6",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/README.md",
+          "actualBytes": 7111,
+          "actualSha256": "86ee3c65347b310622ff25c4db76bc75a92ffb1ebe99f0a728e83990c3a80a3d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOBackendService.Target.cs",
+          "actualBytes": 1198,
+          "actualSha256": "2d455ccc04d501a5e789ddcc113b357cc15f86b74841bb28751c80d3eaca9b8d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOBackendService/MMOBackendService.Build.cs",
+          "actualBytes": 341,
+          "actualSha256": "52fd1419f5ae3e004d2661266e38a62dd94370d15aa6193602f2ee7391d69d0d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+          "actualBytes": 7995,
+          "actualSha256": "0582ae1f5eb3e91f0b589606148ed2b29c68bdfcbd98ff9260285dc54f2afe41",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOContracts/MMOContracts.Build.cs",
+          "actualBytes": 218,
+          "actualSha256": "9339f7539b315e4cb9314e96423647c41e2e30609077b21afffe83d29d5360dd",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOContracts/Private/MMOContracts.cpp",
+          "actualBytes": 2678,
+          "actualSha256": "d0b917dc481c6cc0ba017d90b8a7ae9c3d25a832da7f5bee818eaba5d57bf434",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOContracts/Public/MMOContracts.h",
+          "actualBytes": 1704,
+          "actualSha256": "bee7b4452baa4a37ea4571261a777b6e4ceb85bfbfc6fad5789d1e2fd1c67a92",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOPersistence/MMOPersistence.Build.cs",
+          "actualBytes": 297,
+          "actualSha256": "97d1d29b1038f8b3df5d55a4f4c9ecebbf214cd040304b886c9b0d8afda2af8c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+          "actualBytes": 17967,
+          "actualSha256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMOPersistence/Public/MMOPersistence.h",
+          "actualBytes": 383,
+          "actualSha256": "ab462f39a9061d159a96731a5852c839ebc7fe2e44b0c4a8a8f1e63a53476c4d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG.Target.cs",
+          "actualBytes": 331,
+          "actualSha256": "0c04b420eddd080729631b99981a417bff2a542a8e61794b3b22317ab98e7402",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/MMORPG.Build.cs",
+          "actualBytes": 807,
+          "actualSha256": "c48bb1f00be0635d0006a042247d31bd51bee6837836c5a90de96352b2098afb",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/MMORPG.cpp",
+          "actualBytes": 108,
+          "actualSha256": "094cb85f5653d6e42e3c79f7f90d6375151632072bf888e2190cd263b405ef2d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOAbilityInputValidation.cpp",
+          "actualBytes": 2842,
+          "actualSha256": "0633c1826ff740445af3e369bf77be03bb30a3da9e596c813be144022b296225",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOAnimationValidation.cpp",
+          "actualBytes": 3986,
+          "actualSha256": "bf8610103261de9e951d8d9899690b75de242a9af8066d3cb836999836b98d04",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp",
+          "actualBytes": 2017,
+          "actualSha256": "95c090adf38bddb85d6bf77fbc2bd9ce4d917a7c8c9d9738e023930bebfee793",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMODeathValidation.cpp",
+          "actualBytes": 4655,
+          "actualSha256": "e8e2a08db27bc46dd9b3868ea08e293662aea00f9b0ded09e85feaf7a89edcca",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOExperienceGameplay.cpp",
+          "actualBytes": 5129,
+          "actualSha256": "4a7a439feb65acadd7bad4f279aae819e34e50ac19ccf44720dd057001a352d0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp",
+          "actualBytes": 48502,
+          "actualSha256": "5deb3fc0c3c192877dc84fde7bbb5c3fedbd607abfc27a904fafeda038c92450",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOHealthComponent.cpp",
+          "actualBytes": 3736,
+          "actualSha256": "9ce7cd9193ab660eb3fb2aa7bbdbf0fdf32489beae6ef4d55e6d68326b4f0b2e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOInputGameplay.cpp",
+          "actualBytes": 2721,
+          "actualSha256": "16360d6546ddeb3c20574cf7dd4583d58465acc2f9dbef6df69586981c980491",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOLocalizationValidation.cpp",
+          "actualBytes": 3493,
+          "actualSha256": "b52d75180d83bfaabf2227795a77c3ee743a5e22029caee95226bea6163a8867",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMORespawnGameplay.cpp",
+          "actualBytes": 2193,
+          "actualSha256": "65d1cbad6e3f55b1ac605b9d007f00c55a470046213067a6240ee3e5477fdcc0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+          "actualBytes": 29573,
+          "actualSha256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Public/MMOAnimInstance.h",
+          "actualBytes": 1406,
+          "actualSha256": "4fe7ecb6676eb3eed8c9ab439f38cd786783e4d945cd26f31ceeb513944f1463",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Public/MMOGameplay.h",
+          "actualBytes": 10959,
+          "actualSha256": "6c461c19eb8381a23b5b907d68c57b29d5e9fd53193ea68f7d80b697a68ebf63",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Public/MMOHealthComponent.h",
+          "actualBytes": 1451,
+          "actualSha256": "0e17db149b32c7d2fb075be8baca4971ceae6af5bf782c1ba629a31450076500",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+          "actualBytes": 12508,
+          "actualSha256": "5e61e24ed46045ad2bc260c07dbc1480d7e9cd1ce3dc500ed4df36c610d0f228",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPGClient.Target.cs",
+          "actualBytes": 345,
+          "actualSha256": "67799013d576d6afc24f9fef84621e27549e293df4203bb0181aba3aa269eca1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPGEditor.Target.cs",
+          "actualBytes": 345,
+          "actualSha256": "11cb062e048f092b9c15838bd7ff0e631b8d331fbc8f00193b4d7c5171b3e6bc",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/MMORPGServer.Target.cs",
+          "actualBytes": 345,
+          "actualSha256": "ed848e33582e41550a56c09ed63a3f0d2e47c14738dc306fe8be65a6ce8b5fa4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs",
+          "actualBytes": 1392,
+          "actualSha256": "f75980962bec3bf05656759a73d8392dcab1147a9bd2621d35ba0ae12997fe65",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/ui-designer-contract.json",
+          "actualBytes": 6128,
+          "actualSha256": "0a273b7185a31fbf754c51ab5ed524507ef3cf2aed61544aa5e1752166a6ff07",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/MMORPG/ui-designer-strings.json",
+          "actualBytes": 4033,
+          "actualSha256": "b5fe340009b6fa462d4f224d6c8d80783cbb14ad0bc48f99434b61efacb94468",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "NOTICE.md",
+          "actualBytes": 1342,
+          "actualSha256": "a5e282c8c6f6a3fcaf327a95b5d0891f6adbfbdda23eccbff0652770c983a391",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "public/blueprints/mmorpg/backend-health.txt",
+          "actualBytes": 17581,
+          "actualSha256": "16fb6cdc9f0cc761f08cd1b25926aedbbc9394b335b7e7ae130f1e98588c4c7a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "public/blueprints/mmorpg/mmo-character-animgraph.txt",
+          "actualBytes": 7080,
+          "actualSha256": "8bd5f8e10f913bfa1f25b7e2bc23f5de1fbed0885bcba7985e59f3a4b64d565c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "public/blueprints/mmorpg/mmo-unarmed-locomotion.txt",
+          "actualBytes": 27287,
+          "actualSha256": "38f3c92510d1c81e9af59694a82e45c69db2738e54ea6525fdd9031aed69293b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "README.md",
+          "actualBytes": 1442,
+          "actualSha256": "dcb99529177352ee4d4b006cacf2421d21c386ada0b16a9bb52065f438759355",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Build-Backend.ps1",
+          "actualBytes": 694,
+          "actualSha256": "08e2eab522750f7eacaaaa61d39ba29bcdaed4ea225cbf906f10f6a6d09f36bd",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Common.ps1",
+          "actualBytes": 2205,
+          "actualSha256": "21418be8bb5decc47b8ec93b278d0678c68784dacf6eb6bdd711dd538bae02d0",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Initialize-Database.ps1",
+          "actualBytes": 3280,
+          "actualSha256": "45d81d1b041549073b01fbe7e8fc8e1664f51ca242d4bfeae91b599e746cba82",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Prepare-Dependencies.ps1",
+          "actualBytes": 1190,
+          "actualSha256": "13a45403a064676ee52b1ddb2e91216f4760f38d826f927f8a3dd6ab870051fd",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Start-Backend.ps1",
+          "actualBytes": 1401,
+          "actualSha256": "2fcecf01a6ccf3f8371976940bedc6f35d290afdd0cbef0f5f6ecc1c34548cf4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Stop-Backend.ps1",
+          "actualBytes": 645,
+          "actualSha256": "69a09861bb1b1c0d9c6bf9bce9ccfe7004100bc7eea2940f96786aa0e52b8b1c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Test-Backend-Concurrency.ps1",
+          "actualBytes": 10879,
+          "actualSha256": "e3195a51df5490e7acaab839df6bbc64ccbff857c6d8d3741f19af30bd8fae27",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Test-Backend-Faults.ps1",
+          "actualBytes": 2377,
+          "actualSha256": "fd33508dbd586dae8d93fdfd7076382f88d42dc26be7674c1fbabac163fdba29",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Test-Backend.ps1",
+          "actualBytes": 7774,
+          "actualSha256": "62b68cf77a0f99572f0de4ab58426f946589ff9fcab5cc4ef228478efe3f643f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Test-BackupRestore.ps1",
+          "actualBytes": 8453,
+          "actualSha256": "694c2ec2117522eba861807cb0d052ab7e03f5240794b89aff9ab2db27c57a29",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Test-ClientBoundaries.ps1",
+          "actualBytes": 2726,
+          "actualSha256": "df65aa99aa528ef63342606d75a1a37495507317fe4c975021c20d7eb3561438",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/backend/Test-InternationalizedData.ps1",
+          "actualBytes": 3190,
+          "actualSha256": "6022e6dbf5680a32fbb7d95c1aff977bdc8e7989728c97785cfccf8a0753f6ac",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Build-Localization.ps1",
+          "actualBytes": 6308,
+          "actualSha256": "3a40b0baf5ab1247cd25f8afaf345821a455965b81bc48c58fab496fab3b84a6",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/fix-animation-speed-axis.py",
+          "actualBytes": 4078,
+          "actualSha256": "3798a767334e84b6134e0c80360a8915aa31b28c1e67ec785d096c7601b60190",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/fix-button-label-slots.py",
+          "actualBytes": 3174,
+          "actualSha256": "5165a9aa1b9448dda6f21b1e849da387276b9361bb73287d477a42181a4c64ed",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/inspect-runtime-ui.py",
+          "actualBytes": 8071,
+          "actualSha256": "5c847a3513c778acbd8fb9b727d586d2565ca0edfb1d9b3162f88c415a7aac29",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "actualBytes": 12614,
+          "actualSha256": "a3c6ab6b8e18a2d50a717d614c37ba9e19e04cf1629877da6404708c2893555f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "actualBytes": 13942,
+          "actualSha256": "7db27cb810572e2673bfff55744d022bf8ff4bcafb0bcc926cf85e4db1ce3adf",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Package-Lab.ps1",
+          "actualBytes": 6490,
+          "actualSha256": "d9b086cc793bdd3ae1837dfcec303d78265e096cf6780399033ae1d0ac430f87",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/prepare-health-cook-label.py",
+          "actualBytes": 6296,
+          "actualSha256": "faeb92c5b4dc2ee7cff494983768fdd8faea0b5e762364444053f19febdf54bc",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/prepare-tagged-ability-inputs.py",
+          "actualBytes": 4680,
+          "actualSha256": "be400ffcfe07e5cf36a17228bae3d117f477ea7424c76883c71e3354316b1d2b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Read-TaggedAbilityDispatch.ps1",
+          "actualBytes": 1296,
+          "actualSha256": "645e0d6183ec2c4145bbd798932c5aeeb847a6b3718aff6a16223e73b3c4ba4e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Read-TaggedAbilityInputs.ps1",
+          "actualBytes": 1844,
+          "actualSha256": "4b000c19f43ed1705489316263197c195876d67b03de8092f1af00b8d4547860",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/recompile-gameplay-blueprints.py",
+          "actualBytes": 1170,
+          "actualSha256": "feb3276192c31ef91a204d74b4158b37f226890c2179f4135247cc796c9d350d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/runtime_ui_toolset.py",
+          "actualBytes": 2548,
+          "actualSha256": "8c029e554ba2bdde9c94226e736ea85248c6b96cbc70cb41158c7dd5e65e62f4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Start-EditorUIValidation.ps1",
+          "actualBytes": 5930,
+          "actualSha256": "cbcd6921c38494520b60abc74bb778d76259fda468655e3412db7c3451a5519d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Start-Lab.ps1",
+          "actualBytes": 9989,
+          "actualSha256": "5755e9107016951547590d6a5f4379fafec6072dc990e32cb2ea50fd2c79c33a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Stop-Lab.ps1",
+          "actualBytes": 3094,
+          "actualSha256": "7e757614708fc726eb0dfe85d6a4d3295aa29f51db20bf05cb4838321f5cc32c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/summarize-native-ui-validation.py",
+          "actualBytes": 8108,
+          "actualSha256": "83828bd26956333ad4ba2da6a2da8efb0fc696ea45a6a89aac4c6d9ef42877d9",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Test-MovementBaseLogs.ps1",
+          "actualBytes": 2261,
+          "actualSha256": "0e3b40082451df0e19071c3692ec79e4b2e9e08b69db34eda2acf86ec2c5b9c5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/Test-StagedPresentation.ps1",
+          "actualBytes": 6752,
+          "actualSha256": "547c9da33f768afdf79555f77e0cc496052c34d10ea5a64cb247ff8084a31fe9",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/translate-localization.py",
+          "actualBytes": 5823,
+          "actualSha256": "4ba7a1afcf17acc5d0fab64922bc038e5c1c0861c06b1796c4d4ae02ece2d6bc",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/validate-animation.py",
+          "actualBytes": 960,
+          "actualSha256": "7de4d004682b4de96971bdbb3fb214c5519e2bb18c185a2a41da08cb335a9166",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/validate-existing-content.py",
+          "actualBytes": 2932,
+          "actualSha256": "d3886b1cc2b061032e05ed0ec37636f8ea35c287317fcefb3788b5c4d61f8edc",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/mmorpg/validate-health-cook-label.py",
+          "actualBytes": 3648,
+          "actualSha256": "29d368b8b56f671be4964434fa3969448000f1203c82f8ab099d785104921faf",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/patches/blueprint-screenshot-ue58.patch",
+          "actualBytes": 452,
+          "actualSha256": "f8d8edba58acef7187b938ca84ee1e3d6d00e9db0af885777b28feac01c8042a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/patches/README.md",
+          "actualBytes": 1530,
+          "actualSha256": "182bb348aeb48c4fcea6f3660aa9e211abaa4c42027da7533054cacac7a7a7ab",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/prepare-labs.ps1",
+          "actualBytes": 3196,
+          "actualSha256": "0c19814f0cd84c81df82e451ba6eddbd53d4726249db6417d8795af5d2c2ba8d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/set-preview-quality.ps1",
+          "actualBytes": 3242,
+          "actualSha256": "469d7eba472d664a912becdf805a29540094cfd32594627dd8dbd299a3c007f3",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/configuration-mmorpg.json",
+          "actualBytes": 148347,
+          "actualSha256": "8307e84e6052c106687cbb77d106037f30b5ff216cf6706786f870a46790e01f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/mmorpg-graph-captures.json",
+          "actualBytes": 5602,
+          "actualSha256": "48a2c637d28f36458d8cc27853543ab2048db6e3b6a0b07f946d760afcc98ecd",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/mmorpg-localization.json",
+          "actualBytes": 5313,
+          "actualSha256": "0cb322c332246b094fce10e3c02094d9dbe9c7706145a7fe0ca1c1d08748ac61",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/mmorpg-native-graphs.json",
+          "actualBytes": 2550,
+          "actualSha256": "3446100947f2705225a0824533dff08ba955856341aaf0b409d9785b065ed89a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/mmorpg-references.json",
+          "actualBytes": 112346,
+          "actualSha256": "5a5169611b013eb7b68386596a66d820ad12fcc591387e9ca0d8b253f2af298b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/backend-backup-restore.json",
+          "actualBytes": 2273,
+          "actualSha256": "11928bbe574c70944a7f4743858ca16e07fe02614aaeb4173ea6c24a5303fb31",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/backend-health-roundtrip.json",
+          "actualBytes": 1260,
+          "actualSha256": "f1d5641eab71bb4cd2895b4a35f6d77dd81f7874e80853e55f51a9b27751b15b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/backend-health-screenshot.json",
+          "actualBytes": 2692,
+          "actualSha256": "c29578c176bb8c2847943cae652da75b314e34b522c26b3351b9eb5f57da6a2d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/backend-internationalized-data.json",
+          "actualBytes": 813,
+          "actualSha256": "7aff25ed1971f31ec21eb75483f5db609f5874028158fba218bd463286aaa9a4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/backend-walkthrough-review.json",
+          "actualBytes": 5269,
+          "actualSha256": "08b733502abd7af4eaabbf6c8c81e079e0dbce6022e73a444a62478d06abe63b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/blueprint-screenshot.json",
+          "actualBytes": 1558,
+          "actualSha256": "7188443272843a96e3e199ada88457c0058b158b9f40bde9683d8575c755ac7d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/bootstrappackagedgame-final-build.json",
+          "actualBytes": 899,
+          "actualSha256": "bbb4311f264bfbe45f38d00fffda7bd0bdbbb5df26723512221e1caa211cfe6d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/configuration-mmorpg-review.json",
+          "actualBytes": 48868,
+          "actualSha256": "0998fd21f581c02465996eae4115d015f6c6a85d47b68b2edb6d647ba607a835",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/localization-script-review.json",
+          "actualBytes": 3961,
+          "actualSha256": "dd5a0a8f3c9c87df1c0b0a18f86f2870187bbe93a93f44f9c563495a7d6c59c3",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mana-status-bindings.json",
+          "actualBytes": 1379,
+          "actualSha256": "537e326d0ec30d7da4eb668c29b35bc25dcd7d98da1ca98a1a291559319f5aa6",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-animation-assets.json",
+          "actualBytes": 2313,
+          "actualSha256": "04563c656c5e605d448a61cc8d2f35a20a428d65f45b4f58fc1c118753ab354c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-animation-speed-axis.json",
+          "actualBytes": 1517,
+          "actualSha256": "d2222fef72e0a45f43fc93bcb163bcfd6f4ed0f6773de4c80bddfdc734accc7e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-assets.json",
+          "actualBytes": 26729,
+          "actualSha256": "20d52459f04e31ecf97736c0c2cd7046f9dcabee4fdefd83af33f63381a078db",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-button-slots-sync.json",
+          "actualBytes": 2454,
+          "actualSha256": "05d32408e102e8bd2c20fb4c1537ffc2526255fbb94d18cad7b8cb112924e122",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-button-slots.json",
+          "actualBytes": 7874,
+          "actualSha256": "b07de629e332b24f8f210eae2566b8c81d3e9131186be22bff71282271c6c318",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-character-defaults.json",
+          "actualBytes": 433,
+          "actualSha256": "fae73cd527687c60e61477ab71f0bcad02b7e87cadee36ee6dbb6581848c454e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-death-assets-sync.json",
+          "actualBytes": 1815,
+          "actualSha256": "9dba7d849a7101ebf41dbb663b1af4c6b3c9642eb5bed942fe811066d6c9b3a6",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-death-blueprints.json",
+          "actualBytes": 635,
+          "actualSha256": "c1422019c2071deb93346fe18d258d28da63e903cc4ce0816bb90a2c26ed60bf",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-death-logout.json",
+          "actualBytes": 3578,
+          "actualSha256": "e23a95bcd61383015383350c0b8cc4f008b4a51443056adbc9fabe98f64c56cf",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-existing-content-validation.json",
+          "actualBytes": 773,
+          "actualSha256": "55bab5392cbfb2545796a5c60f65d4659d4969046a822dc6915fd54b4cb6e7e4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-experience-assets.json",
+          "actualBytes": 838,
+          "actualSha256": "cffdaebddec738b6023d82666fd95ef09bd4fe87faef8e8be2842d9e84e3c1eb",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-final-editor-build.json",
+          "actualBytes": 1556,
+          "actualSha256": "74f0dc5400aa02929e5202eb409f3ffbbb6df319015a131e4d5e5564dcacbc32",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-game-mode.json",
+          "actualBytes": 211,
+          "actualSha256": "c05ff625086b3110977829462a284c0fac15a29a67edf361d5538df1d254856b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-graph-capture-actions.jsonl",
+          "actualBytes": 11006,
+          "actualSha256": "5fc5ce1f3d9ea523281ae3ee4ea88f5ead622cd8bb2f1cc3102f7c23e7bd9380",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-graph-captures.json",
+          "actualBytes": 6046,
+          "actualSha256": "cc4eccc8040ee232f0b0ed5de918e622c8f329695a39fa408b22cde3f3fcb8af",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-health-cook-label-scan.json",
+          "actualBytes": 857,
+          "actualSha256": "c83a7e1d384dda7b55420fac6c4550d9487eb178565a6682a1ff4a3c0dbb7d1b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-health-cook-label-sync.json",
+          "actualBytes": 1108,
+          "actualSha256": "508d6b52f9519ddc0a104adee48e4080c5b79bb0e627f63e33af8897701c686f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-health-cook-label.json",
+          "actualBytes": 1692,
+          "actualSha256": "12ed73a276ddf7251d1906a9d3483d212dce9b8076b98e7be47ee7fcbd5a7cf2",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-layer-transition-review.json",
+          "actualBytes": 879,
+          "actualSha256": "f45de52e481cdb0707da48e7cc86c18412064f8c7bbdc3cf689a443216ac1ec5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-localization.json",
+          "actualBytes": 3843,
+          "actualSha256": "e6f4f55acf2ef1a6cecaaf21ffa63197b5db4dad259050914c4d10f933d0fa85",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-native-input-actions.jsonl",
+          "actualBytes": 25280,
+          "actualSha256": "c53530cca825e02f2166c31ca51b3b3d7db8175f5619e286af2816a5e79725b3",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-native-ui-input.json",
+          "actualBytes": 11374,
+          "actualSha256": "73a5ca77c8dbfdddd8026d95914ce2958f899ce89b505a5de0a1b3fe1c172dad",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-original-assets-review.json",
+          "actualBytes": 15300,
+          "actualSha256": "21a5cbeae5627be0d8b7ad26d6b83f75797e775a4f182d8c26f61c14f17e5654",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-package-attempt1-zen-proxy.json",
+          "actualBytes": 1447,
+          "actualSha256": "bd07af47a8cd6376612e14aef0ad2a285a1ab9b8843a281f852470f8181e49d2",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-package-proxy-recovery.json",
+          "actualBytes": 1949,
+          "actualSha256": "a63ae1f6b9dc27f5c66eb211bd4ef317d191c79caecdb1d65155fd6b6ad7eaba",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-package.json",
+          "actualBytes": 3932,
+          "actualSha256": "af8bc0a799bc4a87386b1f6bacc09689b7c8572d103a8b1f209c93d5e04c930b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-packaged-death-logout.json",
+          "actualBytes": 17455,
+          "actualSha256": "9fd8095703f335f1008a9c30e1333066058b632701f7265162144edbba3bc9f7",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-packaged-media-sync.json",
+          "actualBytes": 22446,
+          "actualSha256": "edc5c80eedd3f3192e0bde910ae80e0394714fd66cc49a48ff99e0bde98cccf1",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-packaged-rendered-showcase.json",
+          "actualBytes": 28147,
+          "actualSha256": "57329a5410a60f744ee58c237c7dafd264fde50f3c4b2f863e7548c19f7d756c",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-packaged-smoke-before-stable-zone.json",
+          "actualBytes": 12822,
+          "actualSha256": "89ef74329ad79063c3e9afa4299d79fcc1088f639cbf44d65b7e201b5f51ef88",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-packaged-smoke.json",
+          "actualBytes": 20284,
+          "actualSha256": "99c3b43ef84be8b09674b78db44f0af4fcf92d23ea2412eb0bb465dd2092e81d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-packaged-visual-review.json",
+          "actualBytes": 4327,
+          "actualSha256": "392583bf8ff37469a17163258972b76005a2e2802092ebaa796f03a8d9d314b5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-rendered-media-review.json",
+          "actualBytes": 846,
+          "actualSha256": "c6312420a9cbed062d10975c86e8d3d5f042965aa82e0c43eb36f4907e9add5b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-rendered-showcase.json",
+          "actualBytes": 13808,
+          "actualSha256": "33ea7448596bb4162dd4fb2cfd3713f6a1c1ce9c33bfbeb644f8caa18c5946d8",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-smoke.json",
+          "actualBytes": 2687,
+          "actualSha256": "33dd71da77fc2935f329965abc93b4eba1316fa0af496f8811721e39a8496adc",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-stable-zone-client-build.json",
+          "actualBytes": 10506,
+          "actualSha256": "64435f9655d6903b7a1615a5edfd39b362800e8c502dc1b955a5b40188987cb9",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-stable-zone-editor-toolsets-build.json",
+          "actualBytes": 11086,
+          "actualSha256": "9d5409a3794138a7fd0d56b1b489895bf33f18888544250e07adc79aee10081a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-stable-zone-issue.json",
+          "actualBytes": 3432,
+          "actualSha256": "6e61bdc1ee9351c95ba748a35b2e4c9b15290177ea0768dc5a11aa4fa8891f01",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-stable-zone-server-build.json",
+          "actualBytes": 10506,
+          "actualSha256": "b13fbfa1539037e163540da7fa06b35507efce55b8319912e8cfa329eeade392",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-staged-presentation.json",
+          "actualBytes": 4814,
+          "actualSha256": "78d6f263a8108690d853ea1a66c8b893f561434e9b1a05b22f38111691e7e9a3",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-tagged-ability-input-assets.json",
+          "actualBytes": 2360,
+          "actualSha256": "e1b802b3cedd26a45f42ed6824a9c5db79cbdaedbc7b4e599bbd8acb196ac65e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-tagged-ability-input-capture.json",
+          "actualBytes": 3167,
+          "actualSha256": "519db8bfba1cb9fb626d2332dfbbc93b9a801752034f62ee4d614e07a9198155",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-tagged-ability-input-runtime.json",
+          "actualBytes": 3162,
+          "actualSha256": "9886f71805324324f2b00c19a21635a8d2ac1bb4d1cafc8969518615d30383bc",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-tagged-client-build.json",
+          "actualBytes": 9802,
+          "actualSha256": "af7fabfd9f1593b09baf5d7e898dcce352443471f87d5d4ddd9a1e74c7d1ffa3",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-tagged-editor-build.json",
+          "actualBytes": 10067,
+          "actualSha256": "bf5e9d2b3c2a08ca1152ffb0bdb33967702f971a18012b29cbc281252e73d01a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-tagged-editor-startup-attempts.json",
+          "actualBytes": 1227,
+          "actualSha256": "1cfca71c32c0c388e4beafaf62be6632781de1c5e161f0d39aaa5acfdc6c1a2b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-tagged-editor-toolsets-build.json",
+          "actualBytes": 10147,
+          "actualSha256": "8ff34ec7fbc7a2592b27e41ff45c7f19cfe747261caa18274b99418e485d3950",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpg-tagged-server-build.json",
+          "actualBytes": 9802,
+          "actualSha256": "d849d91b0ce6982ed2f558342fd0d4d87fb844a92c87421341c05846af50bbf7",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpgclient-final-build.json",
+          "actualBytes": 1118,
+          "actualSha256": "48d8241db59c687555406828a0def93cede40aad07d72161e0718500b1b43122",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/mmorpgserver-final-build.json",
+          "actualBytes": 1118,
+          "actualSha256": "ef4f284f76c6f201df3e9841534297104e33b080d4c6f7952fa29be57310c220",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/slate-input-tool-source-review.json",
+          "actualBytes": 3292,
+          "actualSha256": "0bb7dcee64434305ece4ea5e800968d7488837f77dd219f6f80595c555bdefad",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/ui-designer-assets.json",
+          "actualBytes": 25129,
+          "actualSha256": "fbee89e08404f1f064202b710ad00eeea0e5451064ef2c5496563b4e6f6809d3",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/unrealpak-final-build.json",
+          "actualBytes": 842,
+          "actualSha256": "3d771cd5cc632efd36cc48aa43255afdbade059351cb20459d41658a804f2d96",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/WBP_Confirm-designer.json",
+          "actualBytes": 2242,
+          "actualSha256": "6f298e4c2ec8d461bf3290a9e1e82a56b10421e6025e2450551c1def63146e71",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/WBP_Inventory-designer.json",
+          "actualBytes": 2304,
+          "actualSha256": "fd593cb0005d7bd59b53186a6c5fd9c9bdddb8d0584de254dbf2c32cc608435a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/WBP_Login-designer.json",
+          "actualBytes": 5080,
+          "actualSha256": "dccbd524d7d5c65b521d05fe3968e0810a101766fb87ba01b22732db5b4a1ad4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/WBP_ManaStatus-designer.json",
+          "actualBytes": 1379,
+          "actualSha256": "537e326d0ec30d7da4eb668c29b35bc25dcd7d98da1ca98a1a291559319f5aa6",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/WBP_MMOLayout-designer.json",
+          "actualBytes": 1238,
+          "actualSha256": "56f19ace10cf149fd7125e4d154d784e7d4b6d6b12b9a36dc0ae504d2af27a50",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/WBP_PlayerHUD-designer.json",
+          "actualBytes": 4680,
+          "actualSha256": "1c9992a6954e613e591954f21a64714a2d0e2e0308f32dd73830956170bbb786",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/WBP_Settings-designer.json",
+          "actualBytes": 4400,
+          "actualSha256": "d50fe031e4ab16aab375bff802eaf19d8c1f05c31a221a1a76383562f29d1239",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        }
+      ],
+      "literalSiblingScriptReferencesChecked": 32,
+      "literalSiblingScriptReferences": [
+        {
+          "source": "scripts/backend/Build-Backend.ps1",
+          "line": 2,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Initialize-Database.ps1",
+          "line": 2,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Prepare-Dependencies.ps1",
+          "line": 2,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Start-Backend.ps1",
+          "line": 2,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Stop-Backend.ps1",
+          "line": 2,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Test-Backend-Concurrency.ps1",
+          "line": 5,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Test-Backend-Faults.ps1",
+          "line": 2,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Test-Backend.ps1",
+          "line": 2,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Test-Backend.ps1",
+          "line": 63,
+          "dependency": "scripts/backend/Stop-Backend.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Test-Backend.ps1",
+          "line": 64,
+          "dependency": "scripts/backend/Start-Backend.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Test-BackupRestore.ps1",
+          "line": 6,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Test-ClientBoundaries.ps1",
+          "line": 2,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/backend/Test-InternationalizedData.ps1",
+          "line": 3,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Build-Localization.ps1",
+          "line": 24,
+          "dependency": "scripts/mmorpg/translate-localization.py",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "line": 15,
+          "dependency": "scripts/mmorpg/Test-StagedPresentation.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "line": 25,
+          "dependency": "scripts/mmorpg/Start-Lab.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "line": 39,
+          "dependency": "scripts/mmorpg/Read-TaggedAbilityInputs.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "line": 40,
+          "dependency": "scripts/mmorpg/Test-MovementBaseLogs.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "line": 95,
+          "dependency": "scripts/mmorpg/Read-TaggedAbilityDispatch.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "line": 96,
+          "dependency": "scripts/mmorpg/Test-MovementBaseLogs.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "line": 109,
+          "dependency": "scripts/mmorpg/Stop-Lab.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "line": 14,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "line": 111,
+          "dependency": "scripts/mmorpg/Read-TaggedAbilityInputs.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "line": 113,
+          "dependency": "scripts/mmorpg/Test-MovementBaseLogs.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "line": 151,
+          "dependency": "scripts/backend/Stop-Backend.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "line": 152,
+          "dependency": "scripts/backend/Start-Backend.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "line": 156,
+          "dependency": "scripts/mmorpg/Read-TaggedAbilityDispatch.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "line": 157,
+          "dependency": "scripts/mmorpg/Test-MovementBaseLogs.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Package-Lab.ps1",
+          "line": 57,
+          "dependency": "scripts/backend/Test-ClientBoundaries.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Start-EditorUIValidation.ps1",
+          "line": 6,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Start-Lab.ps1",
+          "line": 13,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        },
+        {
+          "source": "scripts/mmorpg/Stop-Lab.ps1",
+          "line": 3,
+          "dependency": "scripts/backend/Common.ps1",
+          "present": true
+        }
+      ],
+      "missingLiteralSiblingScriptReferences": [],
+      "currentRepositoryFilesCompared": 262,
+      "allCurrentRepositorySourceBytesMatch": true,
+      "reviewedDependencyChains": [
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/prepare-labs.ps1",
+          "sourceLines": [
+            31,
+            33,
+            34,
+            36
+          ],
+          "description": "MMORPG-only preparation, original skeleton plus the local Epic dependency manifest",
+          "requiredFiles": [
+            "examples/MMORPG/MMORPG.uproject",
+            "examples/MMORPG/dependencies.json",
+            "examples/MMORPG/prepare_content.py"
+          ],
+          "requiredOriginalSourceRoots": [
+            "examples/MMORPG/Config/",
+            "examples/MMORPG/Source/",
+            "examples/MMORPG/Plugins/"
+          ],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/backend/Initialize-Database.ps1",
+          "sourceLines": [
+            2,
+            29,
+            30
+          ],
+          "description": "Database initializer imports Common and consumes both numbered SQL migrations",
+          "requiredFiles": [
+            "scripts/backend/Common.ps1",
+            "examples/MMORPG/backend/migrations/001_initial.sql",
+            "examples/MMORPG/backend/migrations/002_state_constraints.sql"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/backend/Build-Backend.ps1",
+          "sourceLines": [
+            2,
+            6
+          ],
+          "description": "Independent Program target and contracts/service/persistence/third-party module rules",
+          "requiredFiles": [
+            "scripts/backend/Common.ps1",
+            "scripts/backend/Prepare-Dependencies.ps1",
+            "examples/MMORPG/Source/MMOBackendService.Target.cs",
+            "examples/MMORPG/Source/MMOBackendService/MMOBackendService.Build.cs",
+            "examples/MMORPG/Source/MMOContracts/MMOContracts.Build.cs",
+            "examples/MMORPG/Source/MMOPersistence/MMOPersistence.Build.cs",
+            "examples/MMORPG/Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs",
+            "examples/MMORPG/backend/config.example.ps1",
+            "examples/MMORPG/backend/openapi.json"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/backend/Test-BackupRestore.ps1",
+          "sourceLines": [
+            6,
+            8,
+            24,
+            64
+          ],
+          "description": "Backup/restore shares generated local environment; PostgreSQL binaries are installed externally",
+          "requiredFiles": [
+            "scripts/backend/Common.ps1",
+            "scripts/backend/Initialize-Database.ps1",
+            "scripts/backend/Start-Backend.ps1",
+            "scripts/backend/Stop-Backend.ps1"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/mmorpg/Package-Lab.ps1",
+          "sourceLines": [
+            29,
+            31,
+            57
+          ],
+          "description": "Cook/Stage requires the included original UI and localization; engine tools and target executables are built locally",
+          "requiredFiles": [
+            "scripts/backend/Test-ClientBoundaries.ps1",
+            "examples/MMORPG/Content/UI/WBP_ManaStatus.uasset",
+            "examples/MMORPG/Content/Localization/MMO/en/MMO.locres",
+            "examples/MMORPG/Content/Localization/MMO/zh-Hans/MMO.locres",
+            "examples/MMORPG/Content/Localization/MMO/MMO.locmeta",
+            "examples/MMORPG/Content/Tutorial/BP_BackendHealth.uasset",
+            "examples/MMORPG/Content/MMO/Labels/DA_TutorialExamples.uasset",
+            "examples/MMORPG/Config/Windows/WindowsEngine.ini"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/mmorpg/Invoke-Smoke.ps1",
+          "sourceLines": [
+            14,
+            111,
+            113,
+            151,
+            152,
+            156,
+            157
+          ],
+          "description": "Smoke helper chain including backend restart, actual input grants/dispatch and movement-base log checks",
+          "requiredFiles": [
+            "scripts/backend/Common.ps1",
+            "scripts/backend/Stop-Backend.ps1",
+            "scripts/backend/Start-Backend.ps1",
+            "scripts/mmorpg/Read-TaggedAbilityInputs.ps1",
+            "scripts/mmorpg/Read-TaggedAbilityDispatch.ps1",
+            "scripts/mmorpg/Test-MovementBaseLogs.ps1"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/mmorpg/Invoke-RenderedShowcase.ps1",
+          "sourceLines": [
+            15,
+            25,
+            39,
+            40,
+            95,
+            96,
+            109
+          ],
+          "description": "Rendered/fresh-culture runner and its staged-container/input/process-cleanup helpers",
+          "requiredFiles": [
+            "scripts/mmorpg/Test-StagedPresentation.ps1",
+            "scripts/mmorpg/Start-Lab.ps1",
+            "scripts/mmorpg/Stop-Lab.ps1",
+            "scripts/mmorpg/Read-TaggedAbilityInputs.ps1",
+            "scripts/mmorpg/Read-TaggedAbilityDispatch.ps1",
+            "scripts/mmorpg/Test-MovementBaseLogs.ps1",
+            "examples/MMORPG/Config/DefaultGameUserSettings.ini",
+            "examples/MMORPG/Config/DefaultGame.ini"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/mmorpg/Build-Localization.ps1",
+          "sourceLines": [
+            22,
+            24,
+            29,
+            30
+          ],
+          "description": "Translate helper, reviewed Designer/runtime translations and five actual UE commandlet configurations",
+          "requiredFiles": [
+            "scripts/mmorpg/translate-localization.py",
+            "examples/MMORPG/ui-designer-strings.json",
+            "examples/MMORPG/localization-runtime-zh-Hans.json",
+            "examples/MMORPG/Content/Localization/ST_MMO.uasset",
+            "examples/MMORPG/Config/Localization/MMO_Gather.ini",
+            "examples/MMORPG/Config/Localization/MMO_Export.ini",
+            "examples/MMORPG/Config/Localization/MMO_Import.ini",
+            "examples/MMORPG/Config/Localization/MMO_Compile.ini",
+            "examples/MMORPG/Config/Localization/MMO_GenerateReports.ini"
+          ],
+          "requiredOriginalSourceRoots": [
+            "examples/MMORPG/Source/MMORPG/",
+            "examples/MMORPG/Plugins/MMOFramework/Source/"
+          ],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "examples/MMORPG/prepare_content.py",
+          "sourceLines": [
+            110
+          ],
+          "description": "Designer asset preparation reads the stable widget contract and native bridge reads the StringTable source JSON",
+          "requiredFiles": [
+            "examples/MMORPG/ui-designer-contract.json",
+            "examples/MMORPG/ui-designer-strings.json"
+          ],
+          "requiredOriginalSourceRoots": [
+            "examples/MMORPG/Plugins/MMODocTools/Source/"
+          ],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-mmorpg-examples",
+          "source": "scripts/mmorpg/validate-existing-content.py",
+          "sourceLines": [
+            34,
+            35
+          ],
+          "description": "Existing-asset validation delegates to the included animation and cook-label helpers",
+          "requiredFiles": [
+            "scripts/mmorpg/validate-animation.py",
+            "scripts/mmorpg/validate-health-cook-label.py"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        }
+      ],
+      "requiredRepositoryDependencyOmissionsFound": [],
+      "passed": true,
+      "archiveUnchangedAfterReview": true
+    },
+    {
+      "id": "lyra-training-examples",
+      "path": "public/downloads/lyra-training-examples.tar.gz",
+      "bytes": 105559,
+      "sha256": "268f7143a51d5ac47fb6344df29dd1eec159ceefba5c78713d44350aeee8a05a",
+      "archiveFileCount": 58,
+      "internalManifestFileCount": 57,
+      "manifestItselfExcludedFromInternalFileList": true,
+      "originalAssetCount": 0,
+      "internalManifestSha256": "7c630ce2e74e44616de820443f66e6bec5e81a83064a2b924a352ecae258e4de",
+      "publishedPackageMetadataMatches": true,
+      "publishedAndInternalManifestEqual": true,
+      "allManifestedBytesAndHashesMatch": true,
+      "manifestFileChecks": [
+        {
+          "path": "examples/LyraTraining/Config/TutorialWindowsSM6.ini",
+          "actualBytes": 517,
+          "actualSha256": "ca393f58cc8a233cb88ba841c9d55b3e39ea1a91d018d16d9a06e7c62594fea8",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/README.md",
+          "actualBytes": 6393,
+          "actualSha256": "00e8f3eee8abaf4f78f0d604cb4783281e2c7c33865055743e4e920f1270cf53",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/Private/TrainingRangeVerification.cpp",
+          "actualBytes": 31239,
+          "actualSha256": "65afc633f5437d852411337b67251195d5427b09cdb066e4a64eab2c8d88ce68",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/TrainingRangeVerification.Build.cs",
+          "actualBytes": 639,
+          "actualSha256": "117d8c57db6c3a4b39ea319546e68271e244ce66b64f4d5a0b585dbde81f8957",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/TrainingRange.uplugin",
+          "actualBytes": 879,
+          "actualSha256": "45edfe58ba451893d0b9e32e23d5f2a096ec19821434c0792efbd1ffd256c6c5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/LyraDocTools/LyraDocTools.uplugin",
+          "actualBytes": 614,
+          "actualSha256": "e97c6ca00257d24cbf140a6505ff9320dfe546e79c9329da551cba5004975b66",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/LyraDocTools/README.md",
+          "actualBytes": 10303,
+          "actualSha256": "8230844cd6eaa4be820273af1961239742924a5774d36cc5800a92261a6f92da",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/LyraDocTools.Build.cs",
+          "actualBytes": 552,
+          "actualSha256": "2452da0fe8fbe5e515bd1956caa4d7742d5a7703fe6abdb7c8e283a4ba3fd13f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/Private/LyraDocToolsLibrary.cpp",
+          "actualBytes": 17668,
+          "actualSha256": "d785b027c689eda406d1c9c927bf7c6c975d23f4f2b522336e914273b04b2f39",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/Private/LyraDocToolsModule.cpp",
+          "actualBytes": 87,
+          "actualSha256": "1d2d59463d80c4163f2ad065b5c7e05d8884380a7b717a4a1593be04afc1e0c8",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/Public/LyraDocToolsLibrary.h",
+          "actualBytes": 2199,
+          "actualSha256": "7987e87aaea293e25749698e60e77e0c5302ac09b4c5bcb8ab41dd1ddd4ce965",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "examples/LyraTraining/prepare_training.py",
+          "actualBytes": 6572,
+          "actualSha256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "NOTICE.md",
+          "actualBytes": 1342,
+          "actualSha256": "a5e282c8c6f6a3fcaf327a95b5d0891f6adbfbdda23eccbff0652770c983a391",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "public/blueprints/lyra/dash-direction.txt",
+          "actualBytes": 74460,
+          "actualSha256": "513d2f18c9feaefe4ed5db0b07e773884214312b0af6f6d914909fa1669e51f2",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "public/blueprints/lyra/jump-event-graph.txt",
+          "actualBytes": 59263,
+          "actualSha256": "9a79f714eea40aeab3a4d35aadc919839e85cbd22876db3b580fdee5ffe28c50",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "public/blueprints/lyra/root-layout-registration.txt",
+          "actualBytes": 26987,
+          "actualSha256": "33f8c41b2cb64c24e405fbacaa4c662db1240b5c3404c41d383601bdbcf73b54",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "README.md",
+          "actualBytes": 1507,
+          "actualSha256": "ecad55bb47468283d361fae82db87952afcdc1e40828dae3bffecf52d8d9cf78",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/package-training.ps1",
+          "actualBytes": 14609,
+          "actualSha256": "99436796825d9b09cd553e3ffe540553cf4a2034bf3a1827c4aae9a52157eeee",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/patches/blueprint-screenshot-ue58.patch",
+          "actualBytes": 452,
+          "actualSha256": "f8d8edba58acef7187b938ca84ee1e3d6d00e9db0af885777b28feac01c8042a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/patches/README.md",
+          "actualBytes": 1530,
+          "actualSha256": "182bb348aeb48c4fcea6f3660aa9e211abaa4c42027da7533054cacac7a7a7ab",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/prepare-labs.ps1",
+          "actualBytes": 3196,
+          "actualSha256": "0c19814f0cd84c81df82e451ba6eddbd53d4726249db6417d8795af5d2c2ba8d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/set-preview-quality.ps1",
+          "actualBytes": 3242,
+          "actualSha256": "469d7eba472d664a912becdf805a29540094cfd32594627dd8dbd299a3c007f3",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/verify-training-blueprints.py",
+          "actualBytes": 7822,
+          "actualSha256": "fa9c4bb727ebc7c45b70f9dbd7a5e6a54ac0078bd2f06bd3dbb5087f8462075a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/verify-training-lifecycle.py",
+          "actualBytes": 15976,
+          "actualSha256": "53447524d860d3b7588452023066d5cd9f5f22cb1560c42ed51f8eaa0930ea09",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/verify-training-network.py",
+          "actualBytes": 8001,
+          "actualSha256": "31d398b28043329d3e4f814440f17709577bff0e9068e075dbd007abc2383486",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/verify-training-package.ps1",
+          "actualBytes": 8300,
+          "actualSha256": "4a9db83f82336dc9ca478c0aae6c70d81f0867858516130b4c85c97de17a0d28",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/verify-training-play.py",
+          "actualBytes": 17714,
+          "actualSha256": "90314f6bcf369d76c32476a6b2a24fb7ff49bcdef9672bd8cebcea153ea670ec",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "scripts/verify-training-prepare.py",
+          "actualBytes": 11211,
+          "actualSha256": "138df9585204047219ef94c9f28a0692c79b947d7b5f2b43c58b06145d4da49d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/configuration-training.json",
+          "actualBytes": 34635,
+          "actualSha256": "dc5f12569cb4ecf4d2f594bfa8ff527ef5f341bdb681b3184f441d1856f56e5b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/root-layout-blueprint.json",
+          "actualBytes": 3285,
+          "actualSha256": "dd333fcc96ec7b5a2aeb68991f8a5d5d3fcbfc1c199b231c2cc4c0da8a5f2928",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/training-packaged-runtime-implementation.json",
+          "actualBytes": 13154,
+          "actualSha256": "3759cd214a25cfdca78d20304fac025a8eb4cea04d453782faea078716bca82e",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "source-evidence/training-references.json",
+          "actualBytes": 15819,
+          "actualSha256": "3c49bffed3b822dc91cb94fbee97dcf08da8eb370a3a6cb79d44c5f2792b72cc",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/blueprint-screenshot.json",
+          "actualBytes": 1558,
+          "actualSha256": "7188443272843a96e3e199ada88457c0058b158b9f40bde9683d8575c755ac7d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/bootstrappackagedgame-final-build.json",
+          "actualBytes": 899,
+          "actualSha256": "bbb4311f264bfbe45f38d00fffda7bd0bdbbb5df26723512221e1caa211cfe6d",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/root-layout-graph-export.json",
+          "actualBytes": 336,
+          "actualSha256": "4ef7147daf75429a590b267359e0db4ea6303304d4ee6fb213b3db8428622ae8",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-assets.json",
+          "actualBytes": 817,
+          "actualSha256": "348d9659c7d276c6dbf6c47803c7e7e2fe7c4adab8996e4fdab979078d15d37f",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-blueprint-roundtrip.json",
+          "actualBytes": 4210,
+          "actualSha256": "94a6904f33c96bc63703f97885a1c8c8331171692fe65f7ba88d59117b504951",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-configuration-files.json",
+          "actualBytes": 5507,
+          "actualSha256": "e4c9a96c118651dad5dcc81d5beb922c63de3f76eb2f4f2b9e7589e1d28a2b02",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-cook.json",
+          "actualBytes": 2559,
+          "actualSha256": "c9e7a65b49c21339d81eabe3dc2cd3daa5e148c683f221c2382879d727a44509",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-editor-final-build.json",
+          "actualBytes": 2166,
+          "actualSha256": "a0360e0b7fa945ca8466184a4565822b950c10614e17cad254546586a4558019",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-final-capture-settings.json",
+          "actualBytes": 459,
+          "actualSha256": "b53d972316644920e9b87eefbf367ac27de3f6b9e700528a9bd68ff4e7ef502a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-final-editor-closure.json",
+          "actualBytes": 417,
+          "actualSha256": "c26f0c98330ca05fdcedaf4dcf2235b7b5168bbac5b61a0e88d5adf2a1ffad67",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-final-preview-state.json",
+          "actualBytes": 1085,
+          "actualSha256": "0b01a8d4b0d245f46b80aa68ad59d353a4166ba2fdff9c799f983ea76e2562bf",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-lifecycle.json",
+          "actualBytes": 2576,
+          "actualSha256": "dc15f625e869f55e2c133988a7ec10dd6e60d9c63e813b4b7c4d53b19d1cc8be",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-navigation-helper-build.json",
+          "actualBytes": 317,
+          "actualSha256": "c5e016a7ab49e5bd1eaa1fa12682914efa8f8021f06412464b529afda8ad7500",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-navigation-helper-sync.json",
+          "actualBytes": 1705,
+          "actualSha256": "fafbf425619e180c43fe2e3b344e55f411d880f1c9fe3bc8a196fdada0628f03",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-navigation.json",
+          "actualBytes": 5125,
+          "actualSha256": "37ae98ce0e016be1163e540fde557682b76e97a94ffc35ea133262ea450256f4",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-network.json",
+          "actualBytes": 2221,
+          "actualSha256": "911f91ce614b89acad46eb0afb7340fb2320700f464126a6006d64719be4f8b7",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-package-editor-refresh.json",
+          "actualBytes": 7306,
+          "actualSha256": "a6f81c895ab0e5c200953a7423366e33f6ef8f65cc6e6a35723d18602fc2978b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-package-log-analysis.json",
+          "actualBytes": 11463,
+          "actualSha256": "d3e67ce028c50a6bd4c6b1e071da4cd556e7a6587734254499a9e6818dbbd813",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-package-runtime-first-run.json",
+          "actualBytes": 6224,
+          "actualSha256": "7f30123b873f2df96099b527a352b12ecd016739b6c76ce431f876dd61185c40",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-package-runtime.json",
+          "actualBytes": 6232,
+          "actualSha256": "b4d1ccf47ce5316ed8d90e50f146231fabe1c111d3771e51a533ddb990039e6a",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-package.json",
+          "actualBytes": 20815,
+          "actualSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-packaged-visual-review.json",
+          "actualBytes": 1685,
+          "actualSha256": "977011bba72f6720666ffb60b572b8ec9743cdf90562923df2c7feef18323a56",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-play.json",
+          "actualBytes": 8498,
+          "actualSha256": "06ef23a1b705c4378ffe1f1ccd93bd27aee7cab0d0426e8936c8bf26a5e058cc",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/training-prepare-rerun.json",
+          "actualBytes": 10351,
+          "actualSha256": "1f64a437c1d24643022bab5f5160902dc8f4493a0494952ac6745a80160d67d5",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        },
+        {
+          "path": "verification/unrealpak-final-build.json",
+          "actualBytes": 842,
+          "actualSha256": "3d771cd5cc632efd36cc48aa43255afdbade059351cb20459d41658a804f2d96",
+          "manifestBytesMatch": true,
+          "manifestSha256Matches": true,
+          "passed": true
+        }
+      ],
+      "literalSiblingScriptReferencesChecked": 0,
+      "literalSiblingScriptReferences": [],
+      "missingLiteralSiblingScriptReferences": [],
+      "currentRepositoryFilesCompared": 55,
+      "allCurrentRepositorySourceBytesMatch": true,
+      "reviewedDependencyChains": [
+        {
+          "archive": "lyra-training-examples",
+          "source": "scripts/prepare-labs.ps1",
+          "sourceLines": [
+            21,
+            22,
+            23
+          ],
+          "description": "README selects -Lab Training, so this archive does not require the separate MMORPG archive",
+          "requiredFiles": [
+            "examples/LyraTraining/prepare_training.py",
+            "examples/LyraTraining/Plugins/LyraDocTools/LyraDocTools.uplugin",
+            "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/TrainingRange.uplugin"
+          ],
+          "requiredOriginalSourceRoots": [
+            "examples/LyraTraining/Plugins/LyraDocTools/Source/"
+          ],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-training-examples",
+          "source": "scripts/package-training.ps1",
+          "sourceLines": [
+            20,
+            61,
+            62,
+            136
+          ],
+          "description": "Original SM6 patch, runtime verification module and descriptor are included; official map/experience are created in the lab",
+          "requiredFiles": [
+            "examples/LyraTraining/Config/TutorialWindowsSM6.ini",
+            "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/TrainingRange.uplugin",
+            "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/TrainingRangeVerification.Build.cs",
+            "examples/LyraTraining/Plugins/GameFeatures/TrainingRange/Source/TrainingRangeVerification/Private/TrainingRangeVerification.cpp"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-training-examples",
+          "source": "scripts/verify-training-package.ps1",
+          "sourceLines": [
+            3,
+            12
+          ],
+          "description": "Runtime verifier consumes the included successful Package report; rerunning package generation replaces it with that reader's own executable paths",
+          "requiredFiles": [
+            "scripts/package-training.ps1",
+            "verification/training-package.json"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-training-examples",
+          "source": "scripts/verify-training-prepare.py",
+          "sourceLines": [
+            127,
+            128,
+            140
+          ],
+          "description": "Preparation/rerun reads the original preparation script and native Editor bridge",
+          "requiredFiles": [
+            "examples/LyraTraining/prepare_training.py",
+            "examples/LyraTraining/Plugins/LyraDocTools/Source/LyraDocTools/Public/LyraDocToolsLibrary.h"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        },
+        {
+          "archive": "lyra-training-examples",
+          "source": "scripts/verify-training-blueprints.py",
+          "sourceLines": [
+            63,
+            64
+          ],
+          "description": "All three official native node texts retain explicit original asset/graph/hash attribution in MANIFEST.externalMaterials",
+          "requiredFiles": [
+            "public/blueprints/lyra/jump-event-graph.txt",
+            "public/blueprints/lyra/dash-direction.txt",
+            "public/blueprints/lyra/root-layout-registration.txt",
+            "NOTICE.md"
+          ],
+          "requiredOriginalSourceRoots": [],
+          "missing": [],
+          "passed": true
+        }
+      ],
+      "requiredRepositoryDependencyOmissionsFound": [],
+      "passed": true,
+      "archiveUnchangedAfterReview": true
+    }
+  ],
+  "trainingEvidence": {
+    "packageReport": "verification/training-package.json",
+    "packageReportSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+    "runs": [
+      {
+        "report": "verification/training-package-runtime-first-run.json",
+        "reportSha256": "7f30123b873f2df96099b527a352b12ecd016739b6c76ce431f876dd61185c40",
+        "packageReport": "verification/training-package.json",
+        "recordedPackageReportSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+        "actualPackageReportSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+        "packageReportHashMatches": true,
+        "sourceMapSha256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+        "executableSha256Recorded": "c69ca4a481af2da0ed0e6e861e253c68c80adc5253f5879c3368c3bbfe889970",
+        "nativeReport": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be\\runtime.json",
+        "nativeReportSha256": "1032098d55ecdeb5bf7ab88bb8b949965a2e6b624755c66da5d833f0367fabe9",
+        "nativeReportHashMatches": true,
+        "screenshot": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be\\training-package.png",
+        "screenshotSha256": "7f352785906d4a002f5bf34bbbbdd6e90459c7aa749c09326dde9a1460b6e3ab",
+        "screenshotBytes": 2774573,
+        "width": 1920,
+        "height": 1080,
+        "screenshotHashAndDimensionsMatch": true,
+        "elevenChecksAndExitCodePass": true
+      },
+      {
+        "report": "verification/training-package-runtime.json",
+        "reportSha256": "b4d1ccf47ce5316ed8d90e50f146231fabe1c111d3771e51a533ddb990039e6a",
+        "packageReport": "verification/training-package.json",
+        "recordedPackageReportSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+        "actualPackageReportSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+        "packageReportHashMatches": true,
+        "sourceMapSha256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+        "executableSha256Recorded": "c69ca4a481af2da0ed0e6e861e253c68c80adc5253f5879c3368c3bbfe889970",
+        "nativeReport": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\runtime.json",
+        "nativeReportSha256": "8295d987036ed4ab2367701d3f85aa00e297e12f9bf1c356ebe3aed72412b437",
+        "nativeReportHashMatches": true,
+        "screenshot": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\training-package.png",
+        "screenshotSha256": "f4885db296532bd45dd28201db410dfa96e4c803183b073e4c92e5ac1b1a3e2e",
+        "screenshotBytes": 2668846,
+        "width": 1920,
+        "height": 1080,
+        "screenshotHashAndDimensionsMatch": true,
+        "elevenChecksAndExitCodePass": true
+      }
+    ],
+    "sameExecutableSha256Recorded": true,
+    "executableRehashedInThisReview": false,
+    "publishedImage": {
+      "publicPath": "public/media/training/packaged-preview.png",
+      "original": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be\\training-package.png",
+      "sha256": "7f352785906d4a002f5bf34bbbbdd6e90459c7aa749c09326dde9a1460b6e3ab",
+      "bytes": 2774573,
+      "width": 1920,
+      "height": 1080,
+      "originalPublicAndProvenanceMatch": true,
+      "runtimeReport": "verification/training-package-runtime-first-run.json",
+      "runtimeReportSha256": "7f30123b873f2df96099b527a352b12ecd016739b6c76ce431f876dd61185c40",
+      "firstRunAssociationVerified": true,
+      "visualReviewAssociationVerified": true,
+      "imageIsNotTheRepeatRunScreenshot": true
+    },
+    "audioScope": "First-run AudioMixer diagnostic remains in the archived log analysis. The same-executable repeat passed with no Error/Stall; neither this dependency review nor the eleven functional checks certifies audio quality or resolves the first-run cause."
+  },
+  "mmorpgPublishedMedia": [
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-final-hud.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-final-hud.png",
+      "sha256": "217ce07dfb11f3c227c02459fb6c47973ef7ae2f105101f435a780615370329d",
+      "bytes": 1935401,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-hud.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-hud.png",
+      "sha256": "210312294ade8b49e0ee2ff3c3bb782b086117d55bc411a42e48ba3da3a8e5ba",
+      "bytes": 2271569,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-inventory.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-inventory.png",
+      "sha256": "1ed2d75b4eb2cb89c01e726ea914b21fdc2bafb77d60b4c815753dca4717c753",
+      "bytes": 2084640,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-language-final-hud.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-language-final-hud.png",
+      "sha256": "eb9bad0a264d8e3d7e394dbf2fb4ac81d0ccfab0becd4d9b850e7b28a653dad3",
+      "bytes": 2383316,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-language-first-settings.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-language-first-settings.png",
+      "sha256": "b46111a11345df87c054958b18223a7d3fc14e43302dc632914f4881463618d0",
+      "bytes": 2056406,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-language-second-settings.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-language-second-settings.png",
+      "sha256": "82ac76c1592926339af6a9aa80bbb5fe604c18b0a85df3ed3ca1263d08cb21e2",
+      "bytes": 2046102,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-login.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-login.png",
+      "sha256": "d6db5470031da2aa7cb57b765857e401fbb5d84e774f30371e998e98a87537ef",
+      "bytes": 2157198,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-modal.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-modal.png",
+      "sha256": "7aa60d1cb24fd3dddae0633626a265e658aefe9ced2359b88b16ba69387d3980",
+      "bytes": 1015130,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-returned-settings.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-returned-settings.png",
+      "sha256": "354f0d1872ad2c89f23569331f6506eeb9dcceca49d461164ff4bfa1be93f135",
+      "bytes": 2062088,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-settings.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-settings.png",
+      "sha256": "46c5eb04ea41fc2d0a47a044013105b04cc6c6b0e8f03b914773c79770aa067e",
+      "bytes": 2058293,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-A-skill.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-A-skill.png",
+      "sha256": "e7b4613dcfc3af4a932897958bea1305610ad47ad4faa42a5346b1517f245818",
+      "bytes": 2277786,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-final-hud.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-final-hud.png",
+      "sha256": "6c4ab88be62718380ff47d281932857aea91f329b79af846deaed4504f2240e4",
+      "bytes": 2356273,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-hud.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-hud.png",
+      "sha256": "1ec07bc51b017c9b54d61c0aac16a5a1b5037c68568ef4e75d8a35084c8ffb46",
+      "bytes": 2313259,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-inventory.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-inventory.png",
+      "sha256": "06d5f6dfd0215fa15ab054d49a78e3729f2c428ca326ca54c2be6b93b43f2058",
+      "bytes": 2129457,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-language-final-hud.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-language-final-hud.png",
+      "sha256": "2137ffd016730094a10d14d2f91c25d3d6f5bb06d233408386fb752a747987c4",
+      "bytes": 2329310,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-language-first-settings.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-language-first-settings.png",
+      "sha256": "5e8f9219b0e4237cb96edf4a76ca30de8cabbf728b82bbc1adf85b1602bc94d6",
+      "bytes": 2071648,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-language-second-settings.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-language-second-settings.png",
+      "sha256": "f9622b3540b7802ee71ac8955872dc30e755cfd90dc90669f0e1ff7a1dfb5692",
+      "bytes": 2095932,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-login.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-login.png",
+      "sha256": "1926e4a505ba145aa1aa5e61de817994497dda7a22d658b611f97ea8c8ce8bf5",
+      "bytes": 2198210,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-modal.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-modal.png",
+      "sha256": "c81b2df0419714f8103d82bade24042fc059728a6a5c14b027f12ef8c763d463",
+      "bytes": 1043970,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-returned-settings.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-returned-settings.png",
+      "sha256": "dc8363ebc18427f6638e891865914e1dc00a47ca8ecd7925a10b88e5d24e8ee3",
+      "bytes": 2097515,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-settings.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-settings.png",
+      "sha256": "b40dff8395c75c1b49eb2e816ebb62d010b009d3d452913fec713016cbf3df90",
+      "bytes": 2093327,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    },
+    {
+      "publicPath": "public/media/mmorpg/mmo-B-skill.png",
+      "original": "F:/UE/LyraDocLabs/MMORPG/Saved/Screenshots/MMOShowcase/2e331e23dd/mmo-B-skill.png",
+      "sha256": "6390525499c64c77303f92ec087318c22f75750093995696ae62d5bcd836ba8f",
+      "bytes": 2319348,
+      "width": 1920,
+      "height": 1080,
+      "run": "2e331e23dd",
+      "originalPublicAndProvenanceMatch": true
+    }
+  ],
+  "findings": [],
+  "boundaries": {
+    "ueOrMcpCalled": false,
+    "ubtOrUatExecuted": false,
+    "backendStartedOrTested": false,
+    "databaseReadOrChanged": false,
+    "packageRegenerated": false,
+    "archivesExtracted": false,
+    "screenshotsEditedOrResized": false,
+    "freshHostReplayExecuted": false,
+    "freshHostReplayInScope": false,
+    "officialLocalDependenciesCountedAsMissing": false,
+    "externalDependencies": "Epic Lyra, the engine Manny template, UE build tools, PostgreSQL/libpq and libsodium are prepared locally using the included manifests/scripts. Their absence from these original-source archives is intentional.",
+    "generatedLocalState": "Credentials, process manifests, cooked containers and native executables are generated by the documented local preparation/build/run sequence; archived historical absolute paths are evidence, not portable prebuilt binaries.",
+    "snapshotOnly": "This conclusion applies only to the exact archive SHA-256 values recorded here. A source/archive refresh requires renewed current-byte validation.",
+    "selfReference": "This report is not included in the archives it reviewed."
+  }
+}

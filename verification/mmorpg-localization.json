@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 2,
+  "project": "F:\\UE\\LyraDocLabs\\MMORPG\\MMORPG.uproject",
+  "startedAt": "2026-09-13T16:35:34.9466839Z",
+  "passed": true,
+  "steps": [
+    {
+      "exitCode": 0,
+      "seconds": 21.1785483,
+      "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Localization\\20260913-163534\\Gather.log",
+      "name": "Gather"
+    },
+    {
+      "exitCode": 0,
+      "seconds": 10.4024275,
+      "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Localization\\20260913-163534\\Export.log",
+      "name": "Export"
+    },
+    {
+      "exitCode": 0,
+      "seconds": 10.4647664,
+      "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Localization\\20260913-163534\\Import.log",
+      "name": "Import"
+    },
+    {
+      "exitCode": 0,
+      "seconds": 10.2361133,
+      "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Localization\\20260913-163534\\Compile.log",
+      "name": "Compile"
+    },
+    {
+      "exitCode": 0,
+      "seconds": 10.2478901,
+      "log": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Logs\\Localization\\20260913-163534\\GenerateReports.log",
+      "name": "GenerateReports"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\MMO.manifest",
+      "sha256": "157882c20722e5cf7d2efe9ee37dfda8a473e790cbff354632b7ab6363663b16",
+      "bytes": 42918
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\en\\MMO.archive",
+      "sha256": "50a2d9a65aa7c3dd70e4df7dbc4cf9ea11abef6fe9d37a65e9f6ddd2c916c05e",
+      "bytes": 31956
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\zh-Hans\\MMO.archive",
+      "sha256": "c887a5526a3fff57762824b95bf01806d1f616a1db82c7401d95da2c8c4b0c70",
+      "bytes": 28950
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\en\\MMO.locres",
+      "sha256": "317fc4abeecd01f912e3763096b4f9d603bacb3931ebf0b7e9183602ba4547ca",
+      "bytes": 6382
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\zh-Hans\\MMO.locres",
+      "sha256": "1ea00e81608c3d3a6cb8a7bab82e0d1511cff5d9adfee127fd92334d89ffa69c",
+      "bytes": 5279
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\MMO.locmeta",
+      "sha256": "0acb9f6883e2b8a9aad7cf0df6f8c887ce77d19e5e2b45ea499702f00a15044c",
+      "bytes": 69
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\MMO.csv",
+      "sha256": "86b938d5f0d2891eda9680c81717b9ef05e3fda30febdd492c6fb09d917a7061",
+      "bytes": 64
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\MMO_Conflicts.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "conflicts": {
+    "bytes": 0,
+    "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\MMO_Conflicts.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "count": 0,
+    "method": "Native report at the end of the same Source/Assets Gather process"
+  },
+  "translation": {
+    "passed": true,
+    "nativeCulture": "en",
+    "culture": "zh-Hans",
+    "designerKeys": 45,
+    "runtimeKeys": 39,
+    "translatedKeys": 84,
+    "reviewedSourceFiles": 27,
+    "po": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\zh-Hans\\MMO.po"
+  },
+  "wordCounts": {
+    "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Content\\Localization\\MMO\\MMO.csv",
+    "source": 404,
+    "reportedAt": "2026.09.14-00.36.35",
+    "method": "Native source word counts, separate from translation key counts",
+    "cultures": {
+      "en": 404,
+      "zh-Hans": 404
+    }
+  },
+  "completedAt": "2026-09-13T16:36:37.9618512Z"
+}

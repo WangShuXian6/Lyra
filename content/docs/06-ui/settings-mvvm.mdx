@@ -1,0 +1,71 @@
+---
+title: 设置系统与 MVVM 的边界
+description: 阅读 Lyra 现有 GameSettings 架构，并明确 MMORPG 新增 ViewModel 的职责。
+---
+
+## 学习目标与前置条件
+
+前置：UI 激活与 LocalPlayer。目标是能新增一个设置项，并理解它与后续 MVVM 状态界面的关系。依据本机 Settings 和 Build.cs，核对于 2026-09-13，UE 5.8.1。
+
+本机 LyraGame 没有接入 ModelViewViewModel 模块，其现有 UI 不能被描述成“官方 Lyra 已经全面使用 MVVM”。Lyra 设置使用 GameSettings 注册表、动态数据源和专门存储对象；后续 MMORPG ViewModel 属于教程新增实现。
+
+## 设置的三层
+
+| 层 | 本机类型 | 职责 |
+|---|---|---|
+| 可展示设置模型 | `ULyraGameSettingRegistry` | 分类、标题、说明、可编辑条件、取值来源 |
+| 本机设备设置 | `ULyraSettingsLocal : UGameUserSettings` | 画面、音量、平台相关设置 |
+| 玩家共享设置 | `ULyraSettingsShared : ULocalPlayerSaveGame` | 用户偏好及可保存的共享设置 |
+
+“Shared” 是这个项目的命名，不等于自动接入账号服务器云同步。后端同步仍要有协议和冲突策略。
+
+## 操作步骤：沿音量滑块追踪
+
+1. 打开 `/Game/UI/Settings/W_LyraSettingScreen` 和 `W_SettingsPanel`，查看列表如何呈现设置集合。
+2. Rider 打开 `Settings/LyraGameSettingRegistry_Audio.cpp`，找到 OverallVolume 的创建、标题、描述、Getter、Setter 和默认值。
+3. 跟进 `ULyraSettingsLocal` 的 GetOverallVolume / SetOverallVolume，查看实际音频应用路径。
+4. 查 `LyraGameSettingRegistry.cpp::SaveChanges`，区分 ApplySettings 与 SaveSettings。
+5. 在实验副本修改一个设置，执行应用，重启后再次查看；同时测试取消操作是否还原编辑前值。
+
+## C++：动态数据源
+
+```cpp
+Setting->SetDynamicGetter(GET_LOCAL_SETTINGS_FUNCTION_PATH(GetOverallVolume));
+Setting->SetDynamicSetter(GET_LOCAL_SETTINGS_FUNCTION_PATH(SetOverallVolume));
+Setting->SetDefaultValue(GetDefault<ULyraSettingsLocal>()->GetOverallVolume());
+```
+
+这些宏在设置注册表上下文使用，不能未经定义直接复制到任意模块。新增设置还需要标题与描述、本地化文本、数据类型、编辑条件、恢复默认和保存行为，而不只是给滑块加一个 OnValueChanged。
+
+## 官方 Lyra 已有语言设置，不属于新增 MVVM
+
+本机 Lyra 已有独立的语言设置与本地化资源。`LyraGameSettingRegistry_Gameplay.cpp::InitializeGameplaySettings` 创建 **Gameplay → Language → Language** 设置，类型为 `ULyraSettingValueDiscrete_Language`，并限制主要本地玩家编辑。它不依赖 MVVM。
+
+| 环节 | 官方本机实现 |
+| --- | --- |
+| 语言选项 | `OnInitialized` 从游戏本地化资源取得可用 Culture，并加入索引 0 的 System Default |
+| 修改但未应用 | `SetDiscreteOptionByIndex` 写入 SharedSettings.PendingCulture 或标记恢复系统默认 |
+| 应用与保存 | 注册表 SaveChanges 调用 SharedSettings.ApplySettings；ApplyCultureSettings 设置 Culture 并写入用户配置 |
+| 用户配置位置 | `GGameUserSettingsIni` 的 `[Internationalization] Culture`，恢复系统默认时移除此键 |
+| 翻译资源 | `Config/Localization/Game_Gather.ini`、`Game_Compile.ini` 与 `Content/Localization/Game`；原生语言为 en，包含 zh-Hans 等目标 |
+
+语言保存在用户配置中有明确原因：登录前和加载画面已经需要显示对应语言，不能等账号服务器返回角色数据才决定。SharedSettings 是调用入口，不表示这里把语言保存在后端数据库或由角色存档复制。
+
+新手可按下面步骤检查：
+
+1. 从游戏设置打开 **Gameplay → Language**，选择语言后对照 `GetPendingCulture`。选择项改变与应用完成是两个阶段，不要仅凭下拉框文字改变判断所有游戏文本已经切换。
+2. 应用设置，再完整重启游戏核对。该设置的 `OnApply` 会提示重启才能使所有语言相关改动生效；注册表在 Editor 中也明确提示 PIE 的语言验证限制，建议使用独立 **`-game`** 进程或明确配置 PIE 语言。编辑器菜单本身显示中文，不证明这次游戏本地化已经加载。
+3. 若目标语言不在列表，先检查游戏本地化资源，而不是向列表硬编码一个 Culture 名。打开 **Tools → Localization Dashboard** 的 Game Target，对照原生语言、支持语言及 Gather/Compile；本机生成的 ini 文件顶部要求通过 Dashboard 修改配置，不直接改生成文件当作唯一配置源。
+4. 发布前在 **Project Settings → Packaging** 检查 **Internationalization Support** 和 **Localizations to Package**。本机基线为 `InternationalizationPreset=All`，`CulturesToStage` 包含 `en`、`zh-Hans` 等语言；实际翻译资源仍须参与 Stage，列表里有标签不代表包内有翻译。
+
+后续 MMORPG 章节使用教程新增的 **MMO 本地化 Target、翻译词条和设置界面**。`UMMOSettingsPanel::ChangeCulture` 直接调用 `SetCurrentCulture(Culture, true)` 并刷新其 ViewModel，与官方 Lyra 的待应用设置模型不同；不要把它写成从官方 MVVM 语言面板复制而来。两者都使用 UE 的 FText/Culture/locres 机制。MMORPG 的中英切换、重新进入与新进程恢复由其独立验证记录覆盖，本节对官方设置流程的源码核对不等于已经重跑了官方所有语言。
+
+## MMORPG 为什么新增 ViewModel
+
+战斗血条、目标状态、技能冷却和背包常需要把多个来源整理成展示数据。后续实现采用 `UMVVMViewModelBase` 与 FieldNotify：监听 GAS 属性委托、复制通知或背包变化，更新 ViewModel 字段，让 View 绑定显示。
+
+CommonUI 继续负责激活、焦点与输入；ViewModel 负责状态展示；游戏服务器继续负责权威数据。ViewModel 不应直接使用数据库连接，也不通过 UI 属性绑定决定伤害。数据订阅必须随角色变化解绑旧来源、绑定新来源，并立即刷新一次初始快照。
+
+## 预期结果、排障与练习
+
+设置项能显示、应用、取消、恢复默认并正确保存。ViewModel 设计则应明确本地玩家、角色和单个窗口各自的生命周期。练习：为血量百分比、冷却剩余秒数和错误提示写 ViewModel 字段清单，说明更新来源、通知时机及重生时如何重置。

@@ -1,0 +1,93 @@
+{
+  "startedAt": "2026-09-13T11:32:08.859938+00:00",
+  "passed": true,
+  "method": "Two native client PIE worlds with a dedicated server, Enhanced Input forced keys and replicated state sampling",
+  "checks": {
+    "two_clients_and_server": true,
+    "resolution_1920x1080": true,
+    "movement_replicated_to_all_worlds": true,
+    "training_dash_activated": true,
+    "client_fire_authorized_ammo_consumed": true
+  },
+  "errors": [],
+  "scope": "Local PIE networking; separate packaged executables are checked independently.",
+  "project": "F:/UE/LyraDocLabs/LyraTraining",
+  "engine": "5.8.1-0+UE5",
+  "playerIds": [
+    258,
+    259
+  ],
+  "viewportSizes": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1920,
+      1080
+    ]
+  ],
+  "before": [
+    {
+      "world": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange",
+      "position": [
+        -720.0,
+        -170.0,
+        142.00010681152344
+      ]
+    },
+    {
+      "world": "/TrainingRange/Maps/UEDPIE_1_L_TrainingRange.L_TrainingRange",
+      "position": [
+        -720.0,
+        -170.0,
+        142.0
+      ]
+    },
+    {
+      "world": "/TrainingRange/Maps/UEDPIE_2_L_TrainingRange.L_TrainingRange",
+      "position": [
+        -720.0,
+        -170.0,
+        142.0
+      ]
+    }
+  ],
+  "after": [
+    {
+      "world": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange",
+      "position": [
+        203.47983918013503,
+        -220.15432224821333,
+        142.00010681152344
+      ]
+    },
+    {
+      "world": "/TrainingRange/Maps/UEDPIE_1_L_TrainingRange.L_TrainingRange",
+      "position": [
+        203.47983918013503,
+        -220.15432224821333,
+        142.00010681152344
+      ]
+    },
+    {
+      "world": "/TrainingRange/Maps/UEDPIE_2_L_TrainingRange.L_TrainingRange",
+      "position": [
+        203.48000000000002,
+        -220.15,
+        142.0
+      ]
+    }
+  ],
+  "movementDistancesCm": [
+    924.8407805737946,
+    924.8407805737946,
+    924.8407067706308
+  ],
+  "maximumPositionDifferenceCm": 0.004326557678816433,
+  "ammo": {
+    "before": 12,
+    "after": 11
+  },
+  "finishedAt": "2026-09-13T11:32:15.546654+00:00"
+}

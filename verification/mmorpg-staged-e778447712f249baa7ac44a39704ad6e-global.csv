@@ -1,0 +1,2 @@
+OrderInContainer, ChunkId, PackageId, PackageName, Filename, ContainerName, Offset, OffsetOnDisk, Size, CompressedSize, Hash, ChunkType, ClassType, PakChunk, Platform, InstallType, DeliveryType, PartitionIndex, OffsetInPartition
+0, 000000000000000000000005, 0x0, , <ScriptObjects>, global, 0, 0, 3396874, 3396874, 0x2e8a821ac32ee422c21ed79370581d88021e7e69, ScriptObjects, , global, Unknown, Base, Installed, 0, 0

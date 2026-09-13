@@ -1,0 +1,96 @@
+---
+title: CommonGame、LocalPlayer 与 UI Policy
+description: 沿真实根布局创建链定位 W_OverallUILayout，理解 UI.Layer 与容器注册。
+---
+
+## 学习目标与前置条件
+
+前置：[CommonUI 输入](/docs/06-ui/commonui-input)。目标是回答“Lyra 的根界面究竟在哪里创建”。资料来自本机 CommonGame 插件与 Lyra UI 配置，核对于 2026-09-13，UE 5.8.1。
+
+## 根布局链
+
+```text
+GameInstance 的 UIManager
+  → DefaultUIPolicyClass
+  → 每个 CommonLocalPlayer 对应的 RootLayout
+  → 按 GameplayTag 注册的 Widget 容器
+  → Experience / 功能界面推入相应层
+```
+
+`Config/DefaultGame.ini` 将 LyraUIManagerSubsystem 的 DefaultUIPolicyClass 设为 `/Game/UI/B_LyraUIPolicy.B_LyraUIPolicy_C`。根布局资产 `/Game/UI/W_OverallUILayout` 在本机存在，具体策略默认值请在 B_LyraUIPolicy 中查看。
+
+## 操作步骤
+
+1. 打开 B_LyraUIPolicy 的 Class Defaults，查看 LayoutClass。多人交互模式另从本机 C++ 阅读。
+2. 打开 W_OverallUILayout，观察 Designer 中各个 CommonActivatableWidget 容器及其注册图。
+3. Rider 查看 `Plugins/CommonGame/Source/Private/GameUIPolicy.cpp` 的 `NotifyPlayerAdded`、`CreateLayoutWidget`、`AddLayoutToViewport`。
+4. 再看 `PrimaryGameLayout.cpp` 的 `RegisterLayer`，确认 GameplayTag 与实际容器关联。
+5. 查看 `ULyraUIManagerSubsystem::SyncRootLayoutVisibilityToShowHUD`，解释游戏调试隐藏 HUD 如何影响整个 RootLayout。
+
+### 在 UI 编辑器中找到层栈
+
+从 Content Browser 的 Content → UI 打开 **B_LyraUIPolicy**，单击 Class Defaults，在 Details 搜索 **Layout Class**。用引用旁的放大镜定位实际根布局，打开 **W_OverallUILayout** 并切到右上方 **Designer**。在左侧 Hierarchy 逐个选择激活容器，右侧 Details 显示的是当前选中控件的属性；单击画布空白处会改变选择，因此截图应同时保留 Hierarchy 高亮和 Details 标题。
+
+再切到 **Graph**，定位调用 `Register Layer` 的注册逻辑，逐条对照 `Layer Tag` 与接入的容器变量。Designer 证明容器存在，注册图证明标签能找到它；只在 Gameplay Tags 设置中新增标签不足以完成注册。只读时不需 Save。修改自己复制的根布局后，Compile 并检查 Compiler Results，无错误再 Save；重新进入 PIE，验证打开菜单与返回后焦点恢复。
+
+本机 `GameUIPolicy.h` 的 `LocalMultiplayerInteractionMode` 是普通 C++ 私有字段，默认 `PrimaryOnly`，**没有 UPROPERTY**。因此本版本的 Class Defaults 不提供该字段的编辑控件，不能让读者反复在 Details 中搜索一个不存在的设置；需要改变策略时应从自己的 Policy C++ 实现开始。
+
+![CommonGame UI Policy 根布局配置，真实原生配置面板](/media/configuration/training/ui-policy.png)
+
+图源：`/Game/UI/B_LyraUIPolicy`，UE 5.8.1，2026-09-13，原生 Slate 截图（1100 × 440，未裁剪或重采样）。B_LyraUIPolicy 的 Layout Class 指向 W_OverallUILayout；这是 LocalPlayer 根布局的资产入口。
+
+![根 UI 的四个 CommonUI 层栈，真实原生配置面板](/media/configuration/training/root-layout-designer.png)
+
+图源：`/Game/UI/W_OverallUILayout`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。W_OverallUILayout 的 Designer 层级包含四个独立层栈；图中选中 GameLayer_Stack，设计时 Visibility 为 Collapsed。
+
+![根布局的 Register Layer 连接，真实原生配置面板](/media/configuration/training/root-layout-registration.png)
+
+图源：`/Game/UI/W_OverallUILayout`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。Event OnInitialized 顺序调用四次 Register Layer，将 Designer 中的栈变量与 UI.Layer.* 标签对应。此图保留编辑器上下文；完整节点见下一张 1:1 原图。
+
+这张图用于保留 Widget Blueprint 的 Graph 上下文，当前画布为缩小视图，不能充当 1:1 节点细节图。四个 Register Layer 分别连接 GameLayer_Stack、GameMenu_Stack、Menu_Stack、Modal_Stack，对应 UI.Layer.Game、UI.Layer.GameMenu、UI.Layer.Menu、UI.Layer.Modal。原生 [10 节点复制文本](/blueprints/lyra/root-layout-registration.txt) 已在完整 WidgetBlueprint 测试副本中导入并编译通过；Designer 树必须同时保留，不能向空 Actor 蓝图粘贴来代替。
+
+<BlueprintGraph src="/media/lyra/root-layout-registration.png" alt="W_OverallUILayout EventGraph 完整十节点原图：OnInitialized 顺序注册 Game、GameMenu、Menu、Modal 四层" download="/blueprints/lyra/root-layout-registration.txt" caption="UE 5.8.1，2026-09-13 17:05 UTC。原生 Blueprint Screenshot Tool 选中全部 10 节点后以 ZoomAmount=1 导出，1648 × 1264，未裁剪或重采样；可切换实际大小阅读。" />
+
+四个 Designer 容器分别注册一次。这里的第十个节点是保留完整官方说明的 Comment；白色执行线从 OnInitialized 依次经过四个注册调用，蓝线接入对应变量。截图由本次原生插件实际导出，节点文本的粘贴编译证明另见 `verification/training-blueprint-roundtrip.json`，两者不代替菜单运行与焦点验证。
+
+## 修改自己的根布局时还要接上 Policy
+
+只复制 `W_OverallUILayout` 并修改 Designer，运行时仍会创建原 Policy 引用的类。若要练习替换根布局，在 **训练实验工程** 的 `/Game/Tutorial/UI` 复制为 `W_TrainingRoot`，再复制 `B_LyraUIPolicy` 为 `B_TrainingUIPolicy`，依次完成：
+
+1. 在 `W_TrainingRoot` 的 **Designer → Hierarchy** 核对四个层栈均存在，并启用对应变量的 **Is Variable**。在 **Class Settings** 确认父类仍为 **PrimaryGameLayout**；普通 UserWidget 没有 `Register Layer` 接口。
+2. 切 **Graph → EventGraph**，从 **Event OnInitialized** 沿白色执行线核对四次 `Register Layer`。每次 **Layer Widget** 接正确的 Designer 容器变量，**Layer Tag** 使用下表已有标签；不要把四个标签都连到同一个栈。Compile 后 Save。
+3. 打开 `B_TrainingUIPolicy` → **Class Defaults**，把 **Layout Class** 换成 `W_TrainingRoot`。Compile 后 Save，关闭再重开核对。
+4. 在训练工程的 `Config/DefaultGame.ini` 中找到 `[/Script/LyraGame.LyraUIManagerSubsystem]`，将其已有 `DefaultUIPolicyClass` 行改为 `/Game/Tutorial/UI/B_TrainingUIPolicy.B_TrainingUIPolicy_C`，保存配置并重开工程。这里引用的是生成类，结尾有 `_C`。此练习改变该实验工程的全局 UI Policy，不是只修改某个 Experience；做完恢复原行。
+5. 进入 PIE，检查本地玩家实际 Root Layout 类，再打开菜单、弹窗并返回。预期界面进入正确层，关闭后焦点恢复；Designer 可见不能代替这次运行检查。
+
+| Designer 容器变量 | Register Layer 的 Layer Tag |
+| --- | --- |
+| GameLayer_Stack | UI.Layer.Game |
+| GameMenu_Stack | UI.Layer.GameMenu |
+| Menu_Stack | UI.Layer.Menu |
+| Modal_Stack | UI.Layer.Modal |
+
+这些映射已经从原生图读取并经完整测试副本导入编译；本段的 `W_TrainingRoot / B_TrainingUIPolicy` 是读者可执行的替换练习，当前配套实验仍使用原 Policy，未把新 Policy 的焦点行为列入已运行结果。
+
+## 为什么按本地玩家创建
+
+GameUIPolicy 保存 LocalPlayer 与 RootLayout 的映射，并在 PlayerController 变化时处理布局。实际添加到视口时：
+
+```cpp
+Layout->SetPlayerContext(FLocalPlayerContext(LocalPlayer));
+Layout->AddToPlayerScreen(1000);
+```
+
+这段来自 CommonGame，不是让每个远程玩家都生成本机 UI。独立服务器没有需要显示菜单的本地玩家；UI 创建代码应遵守这种上下文。
+
+## LayerTag 不是 ZOrder 数字
+
+`UI.Layer.Menu` 等标签用于找到根布局已经注册的容器。仅创建一个同名 GameplayTag，不会自动生成对应层。Push 失败时检查层是否已 RegisterLayer，以及界面父类是否符合容器要求。
+
+本机 RegisterLayer 将过渡时长设为 0，并在注释中说明与手柄焦点转换有关。迁移时不要为了视觉动画随意改容器过渡而不验证焦点。若新增动效，可以先在页面内部实现，并单独验证返回和快速切换。
+
+## 预期结果、排障与练习
+
+你应能从配置追踪到真实根布局，从 LayerTag 找到容器。页面重复出现时先检查是否既被手动 AddToViewport 又被 Feature 动作推入。切换角色后根 UI 不应因旧 Pawn 销毁而失去整个管理入口。
+
+练习：为 MMORPG 登录、角色选择、游戏 HUD、背包和确认对话框分配界面层及激活关系。说明哪些页面替换同层内容，哪些作为更高层弹出，以及每种关闭方式的焦点恢复目标。

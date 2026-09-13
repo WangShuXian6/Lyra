@@ -1,0 +1,27 @@
+---
+title: 从启动到 GameplayReady
+description: 建立 Lyra 的装配与初始化模型，理解异步加载为何影响所有后续系统。
+---
+
+Lyra 把玩法配置、资源加载、组件注入和角色初始化分为不同阶段。BeginPlay 说明对象进入世界，不保证 InputConfig、ASC、UI 或远端复制数据已经就绪。本篇建立后面所有技能与 UI 章节共同使用的时间顺序。
+
+## 阅读路径
+
+1. [Experience](/docs/02-architecture/experience)：谁选择玩法，选择的来源有哪些，为什么玩家等待加载完成。
+2. [Game Features 与 ActionSet](/docs/02-architecture/game-features)：如何把组件、输入和 UI 组合进世界，退出时怎样回收。
+3. [Asset Manager](/docs/02-architecture/asset-manager)：资源怎样登记、加载和被 Cook，为什么 PIE 与打包不同。
+4. [PawnData 与状态链](/docs/02-architecture/initialization)：数据到达后，角色怎样接入 ASC、控制器与本地输入。
+
+## 建议保留的一张调试表
+
+| 观察项 | 记录内容 |
+|---|---|
+| 玩法选择 | Experience ID 与日志中的 Source |
+| 资源加载 | LoadState、缺失的包或插件名 |
+| 角色配置 | PawnData、PawnClass、AbilitySets |
+| 网络实例 | World、LocalRole、是否本地控制 |
+| 初始化 | PawnExtension 与 Hero 当前状态 |
+
+本篇实际源码位置集中在 `Source/LyraGame/GameModes`、`Character`、`GameFeatures`、`System`，配置在 DefaultEngine / DefaultGame。核对基准为 2026-09-13 的 UE 5.8.1。
+
+完成后应能不借助固定 Delay，找到一个系统正确的初始化或加载回调。若仍无法解释“模型有了却不能移动”，先完成状态链断点练习，再进入[角色篇](/docs/03-character)。

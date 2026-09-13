@@ -1,0 +1,105 @@
+{
+  "inspectionId": "2d99ba32a45343eb9828c130d35990d8",
+  "checkedAt": "2026-09-13T19:27:03.9981003Z",
+  "passed": true,
+  "client": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Binaries\\Win64\\MMORPGClient.exe",
+  "clientSHA256": "6ed3cfce7074437b3ff77e5ff670bd7f488fd24a31ba08c0cee5d61f2f9dd92d",
+  "stageRoot": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient",
+  "method": "Native UnrealPak -List and -ListContainer plus exact loose-file checks in the staged directory",
+  "resources": [
+    {
+      "relativePath": "MMORPG/Content/Localization/MMO/MMO.locmeta",
+      "loosePath": null,
+      "pakFiles": [
+        "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+      ],
+      "found": true
+    },
+    {
+      "relativePath": "MMORPG/Content/Localization/MMO/en/MMO.locres",
+      "loosePath": null,
+      "pakFiles": [
+        "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+      ],
+      "found": true
+    },
+    {
+      "relativePath": "MMORPG/Content/Localization/MMO/zh-Hans/MMO.locres",
+      "loosePath": null,
+      "pakFiles": [
+        "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+      ],
+      "found": true
+    },
+    {
+      "relativePath": "Engine/Content/Slate/Fonts/Roboto-Regular.ttf",
+      "loosePath": null,
+      "pakFiles": [
+        "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+      ],
+      "found": true
+    },
+    {
+      "relativePath": "Engine/Content/Slate/Fonts/DroidSansFallback.ttf",
+      "loosePath": null,
+      "pakFiles": [
+        "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak"
+      ],
+      "found": true
+    }
+  ],
+  "containers": [
+    {
+      "sha256": "6a4f7667f9812fdc616846008f5ab209d17bc87bf485b30e01ab705ed35918f7",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\global.ucas",
+      "bytes": 3396880
+    },
+    {
+      "sha256": "5c0851bb675ef51c030b795c556dcd44d038880ca007b84b66f42567561465b9",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\global.utoc",
+      "bytes": 818
+    },
+    {
+      "sha256": "9915ae65a6ada5942a89d06c6c8449860747178f90f930db32620fdf9abb227c",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.pak",
+      "bytes": 15663677
+    },
+    {
+      "sha256": "dcd85577b4bd7ccc19da68cbac47511894fbf34122f99132aee30373652dc367",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.ucas",
+      "bytes": 196486496
+    },
+    {
+      "sha256": "2e3544c2cb64aaabd086ba15afb498941fe81b3e1e8b0fbc75211769e9518186",
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.utoc",
+      "bytes": 155734
+    }
+  ],
+  "looseRoundTripFiles": [],
+  "teachingBlueprint": {
+    "roundTripTestsExcluded": true,
+    "healthIncluded": true,
+    "ioStoreLists": [
+      {
+        "csv": "F:\\UE\\LyraDoc\\verification\\mmorpg-staged-2d99ba32a45343eb9828c130d35990d8-global.csv",
+        "container": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\global.utoc",
+        "sha256": "2b2a9c26ac5fbd9742da1b604b427f551c4054cdc4bfe373eebdfefc832b2883",
+        "containerSHA256": "5c0851bb675ef51c030b795c556dcd44d038880ca007b84b66f42567561465b9",
+        "createdByThisRun": true,
+        "csvWrittenAt": "2026-09-13T19:27:04.7206183Z",
+        "listingStartedAt": "2026-09-13T19:27:04.5984880Z"
+      },
+      {
+        "csv": "F:\\UE\\LyraDoc\\verification\\mmorpg-staged-2d99ba32a45343eb9828c130d35990d8-MMORPG-WindowsClient.csv",
+        "container": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Content\\Paks\\MMORPG-WindowsClient.utoc",
+        "sha256": "834c656c3670ae3b3cdff66cf8d87b9e9b698d6f6eae0eda0569a02bb3265aa6",
+        "containerSHA256": "2e3544c2cb64aaabd086ba15afb498941fe81b3e1e8b0fbc75211769e9518186",
+        "createdByThisRun": true,
+        "csvWrittenAt": "2026-09-13T19:27:04.9447000Z",
+        "listingStartedAt": "2026-09-13T19:27:04.8134516Z"
+      }
+    ]
+  },
+  "listingPath": "F:\\UE\\LyraDoc\\verification\\mmorpg-staged-presentation-files.log",
+  "listingSHA256": "74bf9f975d66ae1b208db17dc0bbf9c204b4bf2c598d730cdbfd2b2f470339b6"
+}

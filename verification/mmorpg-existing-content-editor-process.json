@@ -1,0 +1,22 @@
+{
+  "validationPending": false,
+  "processId": 30180,
+  "startedAt": "2026-09-13T16:44:56.2899368Z",
+  "arguments": [
+    "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+    "/Engine/Maps/Entry",
+    "-LiveCoding=false",
+    "-Multiprocess",
+    "-corelimit=3",
+    "-EnablePlugins=ModelContextProtocol,ToolsetRegistry,AllToolsets,BlueprintScreenshotTool",
+    "-ExecCmds=Scalability 1,t.MaxFPS 30",
+    "-ResX=1920",
+    "-ResY=1080",
+    "-ForceRes",
+    "-ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0",
+    "-ExecutePythonScript=F:/UE/LyraDoc/scripts/mmorpg/validate-existing-content.py",
+    "-abslog=F:/UE/LyraDocLabs/MMORPG/Saved/Logs/mmorpg-existing-content-validation-editor-retry.log"
+  ],
+  "passed": true,
+  "validationEvidence": "verification/mmorpg-existing-content-validation.json"
+}

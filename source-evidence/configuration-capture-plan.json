@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "engine": "UE 5.8.1 local source build",
+  "preparedAt": "2026-09-13",
+  "captureProject": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+  "status": "captured-native-editor: 19 of 19 planned configuration views, 26 original PNG files",
+  "rules": [
+    "Verify connected project before opening assets; capture baseline-origin assets read-only in the training clone.",
+    "Use the actual Details, Class Defaults, Designer or Project Settings view; graph exports cannot stand in for configuration views.",
+    "Keep the asset title, property name, array index and selected value readable. Expand nested structs; use additional frames when all fields cannot fit.",
+    "No original asset Save or Compile is needed for read-only capture. Compile and Save only intentional TrainingRange edits; Data Assets have Save but no Blueprint Compile button.",
+    "Capture metadata must record actual time, full asset path, panel, viewport/window dimensions, visible values and output PNG hash. The entries below are instructions, not evidence that capture happened.",
+    "Where expectedValues is absent, native editor inspection must establish the value. Do not infer configured values from C++ declarations or filenames."
+  ],
+  "chapterAudit": [
+    {
+      "chapter": "01-start",
+      "gap": "First launch steps assumed readers could reveal plugin folders and open World Settings; Maps & Modes values lacked a visual configuration reference.",
+      "textUpdate": "first-session.mdx: exact Content Browser and World Settings entry, read-only/save distinction.",
+      "captures": [
+        "maps-modes",
+        "training-world"
+      ]
+    },
+    {
+      "chapter": "02-architecture",
+      "gap": "Asset Manager and Experience operations named assets but omitted array expansion, Blueprint/data-asset editor distinction and close/reopen confirmation.",
+      "textUpdate": "asset-manager.mdx and experience.mdx: exact scan fields and Class Defaults/Actions traversal.",
+      "captures": [
+        "asset-manager",
+        "experience",
+        "components-actionset",
+        "training-feature"
+      ]
+    },
+    {
+      "chapter": "03-character",
+      "gap": "PawnData and input chain needed concrete property panes, unchanged mapping semantics, and save/compile instructions.",
+      "textUpdate": "player-pawn.mdx and enhanced-input.mdx: asset-by-asset field checklist and input mapping inspection.",
+      "captures": [
+        "pawn-data",
+        "input-config",
+        "input-mapping"
+      ]
+    },
+    {
+      "chapter": "04-gas",
+      "gap": "AbilitySet grants and skill Class Defaults needed a visible distinction from graph code, including grant row identity and network policy.",
+      "textUpdate": "ability-sets.mdx: nested fields, exact replacement rule, separate save/compile behavior.",
+      "captures": [
+        "ability-set",
+        "dash-defaults"
+      ]
+    },
+    {
+      "chapter": "05-gameplay",
+      "gap": "Item/equipment Blueprint defaults and pickup actor Details were not specified precisely; overlap pickup was conflated with generic interaction in training.",
+      "textUpdate": "inventory-equipment.mdx and 07 weapons-hud-bots.mdx: Class Defaults traversal and authority-specific pickup path.",
+      "captures": [
+        "inventory-definition",
+        "equipment-definition"
+      ]
+    },
+    {
+      "chapter": "06-ui",
+      "gap": "Designer hierarchy selection, AddWidgets arrays and UI Policy LayoutClass needed explicit steps. LocalMultiplayerInteractionMode is not a reflected editable property in this version.",
+      "textUpdate": "common-game.mdx and extensions.mdx: Designer/Graph/Details distinction and exact property names.",
+      "captures": [
+        "hud-actionset",
+        "ui-policy",
+        "root-layout",
+        "hud-extension"
+      ]
+    },
+    {
+      "chapter": "07-training",
+      "gap": "Manual cloning lacked exact rename destination, preservation of inherited array values, Compile/Save and reopen confirmation.",
+      "textUpdate": "feature-and-experience.mdx: ordered manual checks and persisted values; multiplayer-and-package.mdx: native Cook entry.",
+      "captures": [
+        "training-experience",
+        "training-feature",
+        "training-world",
+        "training-pawn-abilities"
+      ]
+    },
+    {
+      "chapter": "11-reference",
+      "gap": "Blueprint graph screenshot instructions did not explain configuration screenshots, property annotations or missing-capture status.",
+      "textUpdate": "blueprint-screenshots.mdx: configuration screenshot workflow and source-linked annotations.",
+      "captures": [
+        "asset-manager",
+        "dash-defaults",
+        "root-layout"
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "maps-modes",
+      "status": "captured-native",
+      "chapter": "01-start/first-session",
+      "assetPath": null,
+      "configSource": "Config/DefaultEngine.ini [/Script/EngineSettings.GameMapsSettings]",
+      "panel": "Edit > Project Settings > Project > Maps & Modes",
+      "keyFields": [
+        "Editor Startup Map",
+        "Game Default Map",
+        "Default GameMode",
+        "Game Instance Class"
+      ],
+      "expectedValues": {
+        "EditorStartupMap": "/Game/System/DefaultEditorMap/L_DefaultEditorOverview",
+        "GameDefaultMap": "/Game/System/FrontEnd/Maps/L_LyraFrontEnd",
+        "GlobalDefaultGameMode": "/Game/B_LyraGameMode",
+        "GameInstanceClass": "/Game/B_LyraGameInstance"
+      },
+      "annotation": "1 编辑器入口；2 游戏入口；3 共同 GameMode；4 跨地图 GameInstance。值来自本机 DefaultEngine.ini。",
+      "captureSlugs": [
+        "maps-modes"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "asset-manager",
+      "status": "captured-native",
+      "chapter": "02-architecture/asset-manager",
+      "assetPath": null,
+      "configSource": "Config/DefaultGame.ini [/Script/Engine.AssetManagerSettings]",
+      "panel": "Edit > Project Settings > Game > Asset Manager",
+      "keyFields": [
+        "Primary Asset Types to Scan: LyraExperienceDefinition",
+        "Asset Base Class",
+        "Has Blueprint Classes",
+        "Is Editor Only",
+        "Directories",
+        "Specific Assets",
+        "Rules.Cook Rule"
+      ],
+      "expectedValues": {
+        "PrimaryAssetType": "LyraExperienceDefinition",
+        "AssetBaseClass": "/Script/LyraGame.LyraExperienceDefinition",
+        "bHasBlueprintClasses": true,
+        "bIsEditorOnly": false,
+        "Directories": [
+          "/Game/System/Experiences"
+        ],
+        "CookRule": "AlwaysCook"
+      },
+      "annotation": "1 类型 ID；2 蓝图生成类扫描；3 基础扫描目录；4 Cook 保留规则。再拍 LyraExperienceActionSet 的 Has Blueprint Classes=false 作对照。",
+      "captureSlugs": [
+        "asset-manager",
+        "asset-manager-actionset"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "experience",
+      "status": "captured-native",
+      "chapter": "02-architecture/experience",
+      "assetPath": "/ShooterCore/Experiences/B_ShooterGame_Elimination",
+      "panel": "Blueprint Editor > Class Defaults > Details",
+      "keyFields": [
+        "GameFeaturesToEnable",
+        "DefaultPawnData",
+        "Actions",
+        "ActionSets"
+      ],
+      "annotation": "标出四个装配入口，并展开 ActionSets 展示实际引用；不要把 EventGraph 当配置截图。",
+      "captureSlugs": [
+        "experience"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "components-actionset",
+      "status": "captured-native",
+      "chapter": "02-architecture/experience",
+      "assetPath": "/ShooterCore/Experiences/LAS_ShooterGame_StandardComponents",
+      "panel": "Data Asset Editor > Details > Actions > Add Components",
+      "keyFields": [
+        "Actions",
+        "ComponentList.ActorClass",
+        "ComponentList.ComponentClass",
+        "ComponentList.bClientComponent",
+        "ComponentList.bServerComponent"
+      ],
+      "annotation": "一行组件动作回答给谁添加、添加哪类组件、客户端还是服务器创建。字段显示名以当前原生 Details 为准。",
+      "captureSlugs": [
+        "components-actionset"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "pawn-data",
+      "status": "captured-native",
+      "chapter": "03-character/player-pawn",
+      "assetPath": "/ShooterCore/Game/HeroData_ShooterGame",
+      "panel": "Data Asset Editor > Details",
+      "keyFields": [
+        "PawnClass",
+        "AbilitySets",
+        "TagRelationshipMapping",
+        "InputConfig",
+        "DefaultCameraMode"
+      ],
+      "annotation": "按角色类→技能集→输入配置→相机顺序编号；每个引用保留资产名称与放大镜按钮。",
+      "captureSlugs": [
+        "pawn-data"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "ability-set",
+      "status": "captured-native",
+      "chapter": "04-gas/ability-sets",
+      "assetPath": "/ShooterCore/Game/AbilitySet_ShooterHero",
+      "panel": "Data Asset Editor > Details > Granted Gameplay Abilities",
+      "keyFields": [
+        "GrantedGameplayAbilities[].Ability",
+        "GrantedGameplayAbilities[].AbilityLevel",
+        "GrantedGameplayAbilities[].InputTag",
+        "GrantedGameplayEffects",
+        "GrantedAttributes"
+      ],
+      "annotation": "展开实际 Dash 条目，标清 Ability 是类、InputTag 是激活匹配标签、AbilityLevel 是授予等级；实际值由原生读取回填。",
+      "captureSlugs": [
+        "ability-set"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "input-config",
+      "status": "captured-native",
+      "chapter": "03-character/enhanced-input",
+      "assetPath": "/Game/Input/InputData_Hero",
+      "panel": "Data Asset Editor > Details",
+      "keyFields": [
+        "NativeInputActions[].InputAction",
+        "NativeInputActions[].InputTag",
+        "AbilityInputActions[].InputAction",
+        "AbilityInputActions[].InputTag"
+      ],
+      "annotation": "展开移动与 Jump 对照：Native 条目由 C++ 绑定，Ability 条目按标签交给 ASC。",
+      "captureSlugs": [
+        "input-config"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "input-mapping",
+      "status": "captured-native",
+      "chapter": "03-character/enhanced-input",
+      "assetPath": "/Game/Input/Mappings/IMC_Default",
+      "panel": "Input Mapping Context Editor > Mappings",
+      "keyFields": [
+        "Mappings.InputAction",
+        "Mappings.Key",
+        "Mappings.Modifiers",
+        "Mappings.Triggers"
+      ],
+      "annotation": "展开 IA_Move 的一行、IA_Jump、IA_Weapon_Fire；展示真正按键、Modifiers 与 Triggers，不根据动作名称猜默认键。",
+      "captureSlugs": [
+        "input-mapping-buttons",
+        "input-mapping-movement"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "dash-defaults",
+      "status": "captured-native",
+      "chapter": "04-gas/ability-sets",
+      "assetPath": "/ShooterCore/Game/Dash/GA_Hero_Dash",
+      "panel": "Blueprint Editor > Class Defaults > Details",
+      "keyFields": [
+        "ActivationPolicy",
+        "ActivationGroup",
+        "NetExecutionPolicy",
+        "InstancingPolicy",
+        "CooldownGameplayEffectClass",
+        "AbilityTags / current Gameplay Tags category"
+      ],
+      "annotation": "配置图用于解释何时激活、客户端预测与冷却类；和 SelectDirectionalMontage 节点图配对，实际枚举值须读取。",
+      "captureSlugs": [
+        "dash-defaults-policy",
+        "dash-defaults-activation",
+        "dash-defaults-cooldown"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "inventory-definition",
+      "status": "captured-native",
+      "chapter": "05-gameplay/inventory-equipment",
+      "assetPath": "/ShooterCore/Weapons/Rifle/ID_Rifle",
+      "panel": "Blueprint Editor > Class Defaults > Details > Fragments",
+      "keyFields": [
+        "DisplayName",
+        "Fragments",
+        "EquippableItem.EquipmentDefinition",
+        "SetStats.InitialItemStats"
+      ],
+      "annotation": "展开装备碎片与统计碎片；圈出 WID 引用与弹药 Stat Tag，区分定义初值和运行时实例值。",
+      "captureSlugs": [
+        "inventory-definition"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "equipment-definition",
+      "status": "captured-native",
+      "chapter": "05-gameplay/inventory-equipment",
+      "assetPath": "/ShooterCore/Weapons/Rifle/WID_Rifle",
+      "panel": "Blueprint Editor > Class Defaults > Details",
+      "keyFields": [
+        "InstanceType",
+        "AbilitySetsToGrant",
+        "ActorsToSpawn[].ActorToSpawn",
+        "ActorsToSpawn[].AttachSocket",
+        "ActorsToSpawn[].AttachTransform"
+      ],
+      "annotation": "1 装备实例类型；2 授予技能集；3 生成外观 Actor；4 附着插槽/变换。展示至少一条完整 ActorsToSpawn。",
+      "captureSlugs": [
+        "equipment-definition"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "hud-actionset",
+      "status": "captured-native",
+      "chapter": "06-ui/extensions",
+      "assetPath": "/ShooterCore/Experiences/LAS_ShooterGame_StandardHUD",
+      "panel": "Data Asset Editor > Actions > Add Widgets",
+      "keyFields": [
+        "Layout[].LayoutClass",
+        "Layout[].LayerID",
+        "Widgets[].WidgetClass",
+        "Widgets[].SlotID"
+      ],
+      "annotation": "Layout 的 LayerID 对接整页层栈，Widgets 的 SlotID 对接页面内部扩展点；分别展开一条真实条目。",
+      "captureSlugs": [
+        "hud-actionset"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "ui-policy",
+      "status": "captured-native",
+      "chapter": "06-ui/common-game",
+      "assetPath": "/Game/UI/B_LyraUIPolicy",
+      "panel": "Blueprint Editor > Class Defaults > Details",
+      "keyFields": [
+        "LayoutClass"
+      ],
+      "annotation": "记录实际 LayoutClass；源码中的 LocalMultiplayerInteractionMode 无 UPROPERTY，不能要求读者在 Details 修改它。",
+      "captureSlugs": [
+        "ui-policy"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "root-layout",
+      "status": "captured-native",
+      "chapter": "06-ui/common-game",
+      "assetPath": "/Game/UI/W_OverallUILayout",
+      "panel": "Widget Blueprint > Designer > Hierarchy selection + Details, then Graph registration view",
+      "keyFields": [
+        "CommonActivatableWidget container names/classes",
+        "RegisterLayer.LayerTag",
+        "RegisterLayer.LayerWidget"
+      ],
+      "annotation": "Designer 表明容器实际存在，注册图表明 UI.Layer 标签映射到哪个容器；至少两张原生视图，不能用 ZOrder 代替 LayerTag。",
+      "captureSlugs": [
+        "root-layout-designer",
+        "root-layout-registration"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "hud-extension",
+      "status": "captured-native",
+      "chapter": "06-ui/extensions",
+      "assetPath": "/ShooterCore/UserInterface/W_ShooterHUDLayout",
+      "panel": "Widget Blueprint > Designer > select UIExtensionPointWidget in Hierarchy > Details",
+      "keyFields": [
+        "ExtensionPointTag",
+        "ExtensionPointTagMatch",
+        "DataClasses"
+      ],
+      "annotation": "截取选中扩展点的 Hierarchy、预览位置和 Details；与 HUD ActionSet 同标签的一项配对标注。",
+      "captureSlugs": [
+        "hud-extension"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "training-experience",
+      "status": "captured-native",
+      "chapter": "07-training/feature-and-experience",
+      "assetPath": "/TrainingRange/Experiences/B_TrainingRange",
+      "panel": "Blueprint Editor > Class Defaults > Details",
+      "keyFields": [
+        "DefaultPawnData",
+        "GameFeaturesToEnable",
+        "ActionSets"
+      ],
+      "expectedValues": {
+        "DefaultPawnData": "/TrainingRange/Game/HeroData_Training",
+        "GameFeaturesToEnableContains": "TrainingRange"
+      },
+      "annotation": "新副本的 DefaultPawnData 与新增 Feature 名必须可见；原 ActionSets 保留。来源 prepare_training.py 与 training-assets.json，已按实际编辑器截图核对。",
+      "captureSlugs": [
+        "training-experience"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "training-feature",
+      "status": "captured-native",
+      "chapter": "07-training/feature-and-experience",
+      "assetPath": "/TrainingRange/TrainingRange",
+      "panel": "GameFeatureData Editor > Details > Primary Asset Types to Scan",
+      "keyFields": [
+        "PrimaryAssetType",
+        "AssetBaseClass",
+        "bHasBlueprintClasses",
+        "Directories",
+        "Rules.CookRule"
+      ],
+      "expectedValues": {
+        "LyraExperienceDefinition": {
+          "bHasBlueprintClasses": true,
+          "Directories": [
+            "/TrainingRange/Experiences"
+          ],
+          "CookRule": "AlwaysCook"
+        },
+        "Map": {
+          "bHasBlueprintClasses": false,
+          "Directories": [
+            "/TrainingRange/Maps"
+          ],
+          "CookRule": "AlwaysCook"
+        }
+      },
+      "annotation": "同页对比 Experience 蓝图类扫描和 World 地图扫描；显示 TrainingRange Feature 状态。",
+      "captureSlugs": [
+        "training-feature-experience",
+        "training-feature-map"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "training-world",
+      "status": "captured-native",
+      "chapter": "07-training/feature-and-experience",
+      "assetPath": "/TrainingRange/Maps/L_TrainingRange",
+      "panel": "Level Editor > World Settings > Game Mode / Lyra",
+      "keyFields": [
+        "DefaultGameplayExperience",
+        "GameModeOverride"
+      ],
+      "expectedValues": {
+        "DefaultGameplayExperience": "/TrainingRange/Experiences/B_TrainingRange"
+      },
+      "annotation": "保留地图标签页和 World Settings 字段；GameModeOverride 读取实际值，不为截图擅自改配置。",
+      "captureSlugs": [
+        "training-world"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    },
+    {
+      "id": "training-pawn-abilities",
+      "status": "captured-native",
+      "priority": "follow-up",
+      "chapter": "07-training/feature-and-experience",
+      "assetPath": "/TrainingRange/Game/HeroData_Training",
+      "relatedAssetPath": "/TrainingRange/Game/AbilitySet_TrainingHero",
+      "panel": "Two Data Asset Details views",
+      "keyFields": [
+        "AbilitySets",
+        "GrantedGameplayAbilities[].Ability",
+        "GrantedGameplayAbilities[].InputTag",
+        "GrantedGameplayAbilities[].AbilityLevel"
+      ],
+      "expectedValues": {
+        "AbilitySetsContains": "/TrainingRange/Game/AbilitySet_TrainingHero",
+        "DashAbility": "/TrainingRange/Game/GA_TrainingDash"
+      },
+      "annotation": "已采集两张原生图：展示 PawnData 到训练技能集、技能集到训练 Dash 的两条真实引用。保存重开后检查，不重复追加技能。",
+      "captureSlugs": [
+        "training-pawn",
+        "training-ability-set"
+      ],
+      "evidenceManifest": "source-evidence/configuration-training.json"
+    }
+  ],
+  "graphDetailFollowUp": {
+    "asset": "/Game/UI/W_OverallUILayout",
+    "graph": "EventGraph",
+    "status": "passed-native-1:1-export",
+    "reason": "Resolved: actual Register Layer node text clicked, Ctrl+A visibly selected all ten nodes, then Ctrl+F7 exported native 1648x1264 Zoom 1:1. Earlier empty-selection Zoom -3 remains recorded as a failed attempt.",
+    "publicPath": "/media/lyra/root-layout-registration.png",
+    "evidence": "source-evidence/root-layout-blueprint.json",
+    "verifiedAt": "2026-09-13T17:05:51.455541+00:00"
+  }
+}

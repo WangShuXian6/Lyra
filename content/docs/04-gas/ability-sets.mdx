@@ -1,0 +1,75 @@
+---
+title: AbilitySet、技能激活与标签关系
+description: 看清技能如何获得、输入标签如何匹配、独占组怎样阻止或替换技能。
+---
+
+## 学习目标与前置条件
+
+前置：[Enhanced Input](/docs/03-character/enhanced-input)。目标是能把“技能未授予”“标签不匹配”“条件不满足”分别定位。依据本机 AbilitySystem 源码，核对于 2026-09-13，UE 5.8.1。
+
+`ULyraAbilitySet` 一次授予技能、Gameplay Effects 和 AttributeSets；`FLyraAbilitySet_GrantedHandles` 保存对应句柄，供卸装或 Feature 停用时回收。技能类只是定义，ASC 中的 AbilitySpec 才代表“这个角色拥有这个技能”。
+
+## 操作步骤
+
+1. 打开 `/ShooterCore/Game/AbilitySet_ShooterHero`，记录技能类、等级和 InputTag。
+2. 对照 `/ShooterCore/Weapons/Rifle/AbilitySet_ShooterRifle`，区分角色基础技能和装备授予技能。
+3. Rider 在 `ULyraAbilitySet::GiveToAbilitySystem` 设置断点，查看 ASC、SourceObject 和 OutGrantedHandles。
+4. 查 `ALyraPlayerState::SetPawnData` 中 PawnData 的默认 AbilitySets 授予；再查 EquipmentList 中装备时授予和卸装时回收。
+5. 打开一个技能 Class Defaults，记录 ActivationPolicy、ActivationGroup 和网络执行策略。不要只看 EventGraph。
+
+### 展开一条授予记录
+
+在 ShooterCore Content → Game 双击 **AbilitySet_ShooterHero**，在 Details 展开 **Granted Gameplay Abilities**。找到 Ability 引用为 `GA_Hero_Dash` 的行，再展开该行，完整记录 **Ability、Ability Level、Input Tag**。数组顺序不是技能 ID；练习时按 Ability 类定位这一项。下方 Granted Gameplay Effects 与 Granted Attributes 是另两种授予内容，不要把冷却 GE 随意加入这里来“启用冲刺”。
+
+![AbilitySet_ShooterHero 的真实能力数组，展开 Dash 行的能力类、等级1与输入标签](/media/configuration/training/ability-set.png)
+
+图源：训练副本中的 `/ShooterCore/Game/AbilitySet_ShooterHero`，UE 5.8.1，2026-09-13。当前数组有 **11** 项，索引 **2** 为 `GA_Hero_Dash`，**Ability Level=1**，**Input Tag=InputTag.Ability.Dash**。截图里的索引用于复核本次资产，不应成为程序查找技能的固定编号；训练脚本按原能力类查找并替换。
+
+双击 Dash 能力后选择 **Class Defaults**，搜索并分别记录 `Activation Policy`、`Activation Group`、`Net Execution Policy`、`Instancing Policy` 与 `Cooldown Gameplay Effect Class`。前两项是 Lyra 的激活规则，后面属于 GAS 的实例、网络和效果配置。清空搜索框恢复全部字段；没有显示的字段先检查高级属性和当前父类，不凭其他版本截图猜值。
+
+训练场副本的具体改法是打开 `AbilitySet_TrainingHero`，把已有 Dash 行的 **Ability** 改成 `/TrainingRange/Game/GA_TrainingDash`，**等级与 Input Tag 保留原值**；不要按加号再添加一份技能。技能集点 Save；若修改了 `GA_TrainingDash` 的默认值，则在能力蓝图中 Compile，无错误后 Save。重开两个资产确认引用，最后在运行 ASC 中检查只有一个训练 Dash AbilitySpec。原生准备脚本和实际 PIE 报告已经检查这项数量为 1。
+
+![Dash 的激活、实例化与网络策略，真实原生配置面板](/media/configuration/training/dash-defaults-policy.png)
+
+图源：`/ShooterCore/Game/Dash/GA_Hero_Dash`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。GA_Hero_Dash 的类默认值按 Policy 过滤：输入触发、每 Actor 一个实例、Local Predicted。Replication Policy 和网络执行策略是不同字段。
+
+![Dash 的 Activation Group，真实原生配置面板](/media/configuration/training/dash-defaults-activation.png)
+
+图源：`/ShooterCore/Game/Dash/GA_Hero_Dash`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。按 Activation 过滤后可核对 Activation Group = Independent；不要把输入触发策略与能力互斥分组混为一谈。
+
+![Dash 的冷却效果配置，真实原生配置面板](/media/configuration/training/dash-defaults-cooldown.png)
+
+图源：`/ShooterCore/Game/Dash/GA_Hero_Dash`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。类默认值的 Cooldown 变量为 0.0，冷却 Gameplay Effect 引用 GE_HeroDash_Cooldown；实际冷却流程须结合 Commit 与效果逻辑阅读。
+
+Details 搜索分别输入 Policy、Activation、Cooldown 可复现这组三个视图，观察完要清空搜索以恢复其他字段。截图中的 **Dash → Cooldown** 数值 0.0 与 **Cooldown Gameplay Effect Class** 是不同字段；当前可见字段名是 Cooldown，不是 Cooldown Time。不要仅凭这个蓝图变量的类默认值断言运行技能没有冷却，要继续追踪它的运行时赋值和实际效果。
+
+## 输入标签在什么位置
+
+本机 `Source/LyraGame/AbilitySystem/LyraAbilitySet.cpp` 的实际操作：
+
+```cpp
+AbilitySpec.GetDynamicSpecSourceTags().AddTag(AbilityToGrant.InputTag);
+const FGameplayAbilitySpecHandle AbilitySpecHandle =
+    LyraASC->GiveAbility(AbilitySpec);
+```
+
+这段在有权授予的执行路径内运行。客户端调用同名蓝图节点不等于具备授予权限。`SourceObject` 可指向装备实例，让装备技能找到自己的武器、弹药或其他上下文。
+
+## 两组常见配置
+
+| 配置 | 值 | 含义 |
+|---|---|---|
+| ActivationPolicy | OnInputTriggered | 输入按下时尝试激活 |
+| ActivationPolicy | WhileInputActive | 持续按住且技能不活跃时继续尝试 |
+| ActivationPolicy | OnSpawn | Avatar 接入后尝试激活 |
+| ActivationGroup | Independent | 不参与独占冲突 |
+| ActivationGroup | Exclusive_Replaceable | 可被其他独占技能替换 |
+| ActivationGroup | Exclusive_Blocking | 阻止其他独占技能 |
+
+独占组与标签条件是两套协作规则。`ULyraAbilityTagRelationshipMapping` 能由能力标签扩展要阻止/取消的标签，以及激活需要/禁止的标签。冷却或费用失败不应误判为独占组问题。
+
+## 预期结果、排障与练习
+
+技能可在 ASC 调试信息中找到，输入标签与动态来源标签完全一致。失败时检查本机定义的 `Ability.ActivateFail.Cost`、`Cooldown`、`TagsBlocked`、`TagsMissing`、`ActivationGroup` 等原因，再进入对应函数断点。
+
+练习：设计一个引导读条技能，使移动或另一个独占技能能打断它。写清激活组、标签与 EndAbility 清理，而不通过每帧扫描“其他技能是否在运行”来实现。更多官方概念见 [Abilities in Lyra](https://dev.epicgames.com/documentation/unreal-engine/abilities-in-lyra-in-unreal-engine)。

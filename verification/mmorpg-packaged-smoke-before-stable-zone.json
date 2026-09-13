@@ -1,0 +1,461 @@
+{
+  "deathLogout": false,
+  "finalSaveCallbacksVerified": true,
+  "passed": true,
+  "requestedResolution": "1920x1080",
+  "backendRestarted": true,
+  "serverExecutable": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsServer\\MMORPG\\Binaries\\Win64\\MMORPGServer.exe",
+  "persistedDeaths": [],
+  "tagDrivenDispatch": {
+    "passed": true,
+    "scope": "Actual server RPC dispatch and GAS activation by granted dynamic spec tag",
+    "requiredSuccessfulTags": [
+      "InputTag.MMO.Attack",
+      "InputTag.MMO.Spell"
+    ],
+    "events": [
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": false,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Spell",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      },
+      {
+        "tag": "InputTag.MMO.Attack",
+        "activated": true,
+        "matchingSpecCount": 1,
+        "authoritative": true
+      }
+    ]
+  },
+  "rendering": "NullRHI headless gameplay validation",
+  "mode": "Two cooked Development MMORPGClient executables + MMORPGServer",
+  "results": [
+    {
+      "role": "A",
+      "restore": false,
+      "passed": true,
+      "xp": 25,
+      "mana": 80,
+      "potions": 0,
+      "health": 50,
+      "deadCheckpointRestore": false,
+      "cooldown": true,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 45.51297745667398,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "gameplay-result",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "role": "B",
+      "restore": false,
+      "passed": true,
+      "xp": 0,
+      "mana": 100,
+      "potions": 0,
+      "health": 100,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": true,
+      "sawOtherMovement": true,
+      "positionX": 0,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "gameplay-result",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "role": "A",
+      "restore": true,
+      "passed": true,
+      "xp": 25,
+      "mana": 80,
+      "potions": 0,
+      "health": 50,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 45.5,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "gameplay-result",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "role": "B",
+      "restore": true,
+      "passed": true,
+      "xp": 0,
+      "mana": 100,
+      "potions": 0,
+      "health": 100,
+      "deadCheckpointRestore": false,
+      "cooldown": false,
+      "sawDamage": false,
+      "sawOtherMovement": false,
+      "positionX": 0,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "gameplay-result",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "role": "A",
+      "deathRespawn": true,
+      "passed": true,
+      "deathObserved": true,
+      "pawnReplaced": true,
+      "sameASC": true,
+      "abilityCount": 2,
+      "health": 100,
+      "mana": 80,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "death-respawn",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "role": "B",
+      "deathRespawn": true,
+      "passed": true,
+      "deathObserved": true,
+      "pawnReplaced": true,
+      "sameASC": true,
+      "abilityCount": 2,
+      "health": 100,
+      "mana": 100,
+      "umgMVVMBinding": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "death-respawn",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "role": "A",
+      "uiReturn": true,
+      "passed": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "before-ui-return",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    },
+    {
+      "role": "B",
+      "uiReturn": true,
+      "passed": true,
+      "tagDrivenInput": true,
+      "inputGrants": {
+        "stage": "before-ui-return",
+        "ascClass": "/Script/MMOFramework.MMOAbilitySystemComponent",
+        "authoritative": false,
+        "abilityCount": 2,
+        "ownerAndAvatarMatch": true,
+        "bindings": [
+          {
+            "tag": "InputTag.MMO.Attack",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Script/MMORPG.MMOAttackAbility",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          },
+          {
+            "tag": "InputTag.MMO.Spell",
+            "matchingSpecCount": 1,
+            "specs": [
+              {
+                "abilityClass": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+                "inputID": -1,
+                "handleValid": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "passed": true
+      }
+    }
+  ],
+  "clientExecutable": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Binaries\\Win64\\MMORPGClient.exe",
+  "date": "2026-09-13T19:13:49.1419858Z",
+  "scalability": "Medium (1)",
+  "releaseCallbacksVerified": true
+}

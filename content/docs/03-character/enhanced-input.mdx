@@ -1,0 +1,82 @@
+---
+title: 从按键到 InputTag，再到技能
+description: 追踪 Enhanced Input 的映射上下文、InputConfig、Hero 绑定与 GAS 输入处理。
+---
+
+## 学习目标与前置条件
+
+目标是区分“键没有触发 Action”和“Action 触发了但技能没激活”。前置：对象所有权与 PawnData。依据本机输入资产与 C++，核对于 2026-09-13，UE 5.8.1。
+
+```text
+硬件按键 → Input Mapping Context → Input Action
+  → LyraInputConfig 中的 GameplayTag
+  → HeroComponent → ASC 输入句柄 → GameplayAbility
+```
+
+移动和视角属于 Native Input Actions，直接绑定 C++ 方法；技能属于 Ability Input Actions，输入标签与 AbilitySpec 上的动态来源标签对应。两条路径不要混成“所有 InputAction 都直接调用技能”。
+
+## 操作步骤
+
+1. 打开 `/Game/Input/Mappings/IMC_Default`，观察 `/Game/Input/Actions/IA_Move`、`IA_Look_Mouse`、`IA_Jump` 等实际映射和触发条件。
+2. 打开 `/Game/Input/InputData_Hero`，比较 Native Input Actions 和 Ability Input Actions。记录 Jump 的实际 InputTag，不凭名称猜标签。
+3. 打开当前 PawnData，确认 InputConfig 指向所查看的资产。只修改没有被引用的 InputConfig 不会影响角色。
+4. 在 `ULyraHeroComponent::InitializePlayerInput` 检查 `ULyraInputComponent` 类型、本地玩家子系统和 DefaultInputMappings。
+5. 在 `Input_AbilityInputTagPressed` 和 `ULyraAbilitySystemComponent::AbilityInputTagPressed` 依次设置断点，比较收到的标签与已授予技能的标签。
+
+### 不跳过映射编辑器的检查
+
+从 Content Browser 的 Content → Input → Mappings 双击 **IMC_Default**。在本机 5.8.1 中先展开 **Default Key Mappings → Mappings**，再展开 `IA_Move` 的各个按键行；每一行继续展开 **Modifiers（修改器）** 和 **Triggers（触发器）**。二维移动的按键需要通过修饰器组合方向，单独看到 W、A、S、D 的名字还不能说明输出向量。接着找到 `IA_Jump` 与 `IA_Weapon_Fire`，记录当前按键及触发器。不要在阅读官方配置时删除看似多余的映射行。
+
+![IMC_Default 展开的 W 键配置，Swizzle Input Axis Values 的 Order 为 YXZ](/media/configuration/training/input-mapping-movement.png)
+
+图源：`/Game/Input/Mappings/IMC_Default`，UE 5.8.1，2026-09-13，原生 Slate 截图。**IA_Move → W → Modifiers → 索引 0** 使用 `Swizzle Input Axis Values`，排序为 **YXZ**。按键先产生 X 分量，再通过该修饰器送入 Y 分量。画面还显示有一项从 InputAction 继承的 Modifier；不要把 W 这一行的配置误当作整个 Action 的完整处理链。
+
+![IMC_Default 的开火和跳跃映射，显示鼠标左键、空格、手柄键以及映射行的触发器设置](/media/configuration/training/input-mapping-buttons.png)
+
+同一资产中，**IA_Weapon_Fire** 使用鼠标左键或手柄右扳机，**IA_Jump** 使用空格或手柄底部面键。开火的按键行 Trigger 数组为 0，但 **来自输入操作的触发器** 为 1；它从 InputAction 继承触发条件。继续双击对应 `IA_Weapon_Fire` 检查动作层，才能判断完整触发时机。跳跃行的输入设置行为为 `Inherit Settings from Action`。
+
+再打开 Content → Input → **InputData_Hero**，分别展开 Native Input Actions 与 Ability Input Actions。每个数组元素同时显示 **Input Action** 和 **Input Tag**；把 Jump 所在行与 AbilitySet 中对应技能行并排对照，两个标签必须完全一致。最后沿 PawnData 的 Input Config 引用确认正在使用这份资产。
+
+![InputData_Hero 展开的 Native Move 与 Ability Jump，标签分别是 InputTag.Move 和 InputTag.Jump](/media/configuration/training/input-config.png)
+
+图源：`/Game/Input/InputData_Hero`，同日原生采集。**Native Input Actions** 有 5 项，首项为 `IA_Move → InputTag.Move`；**Ability Input Actions** 有 6 项，首项为 `IA_Jump → InputTag.Jump`。这里的 Jump 标签没有额外的 `Ability` 层级，必须使用资产实际配置的标签，不能根据 Dash 的命名推导它。
+
+IMC、InputAction、InputConfig 都按数据资产 **Save**，没有需要编译的事件图。若练习修改按键，先复制到 TrainingRange 的 Input 目录，并让自己的装配引用这份副本；保存、关闭并重开确认值，再重新 PIE。只复制文件却仍引用原 IMC，不会改变输入。若变更涉及能力蓝图 Class Defaults，该蓝图还须 Compile 后 Save。
+
+## 原生移动绑定的真实节选
+
+位置：`Source/LyraGame/Character/LyraHeroComponent.cpp`。依赖类型来自 EnhancedInput 和 Lyra 的 Input 模块代码。
+
+```cpp
+LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Move,
+    ETriggerEvent::Triggered, this, &ThisClass::Input_Move,
+    /*bLogIfNotFound=*/ false);
+```
+
+`Input_Move` 将二维输入转换到控制器 Yaw 对应的前/右方向，再调用 Pawn 的 `AddMovementInput`。鼠标视角直接使用输入增量；手柄视角乘以速率和 DeltaSeconds。把鼠标也照搬手柄倍率，会改变输入手感。
+
+这里的轴顺序需要按 C++ 确认：**Value.X → RightVector，Value.Y → ForwardVector**。因此截图的 W 键先把一维按键值从 X 换到 Y，最终才向前移动；不要根据“X 通常代表前方”的印象改接线。之后若进入动画 BlendSpace，还要在该资产的 Axis Settings 核对 X/Y 分别是什么参数，移动输入的二维轴与动画资产的 Direction/Speed 轴不是同一套契约；编译器不会替你发现两个 float 引脚交换。
+
+## 为新技能加入按键
+
+在实验 Feature 中创建自己的 InputAction 和映射上下文，添加对应 GameplayTag，再在 InputConfig 的能力输入列表关联 Action 与 Tag。最后让 AbilitySet 的技能条目使用同一 Tag，并确认 AbilitySet 已由服务器授予。
+
+这条操作链还必须包含**安装 IMC 与绑定 InputConfig**。本机编辑器显示名不是 C++ 文件名：
+
+| 需要接入的数据 | 在自己的装配副本中检查的字段 | 原生声明 |
+| --- | --- | --- |
+| IMC | Experience / ActionSet 的 **Actions → Add Input Mapping → Input Mappings → Input Mapping、Priority、Register With Settings** | `GameFeatureAction_AddInputContextMapping.h` |
+| 附加 InputConfig | **Actions → Add Input Binds → Input Configs**，加入自己的配置引用 | `GameFeatureAction_AddInputBinding.h` |
+| 角色基础 InputConfig | PawnData 的 **Input Config**；角色 HeroComponent 还可能提供 **Default Input Mappings** | `LyraPawnData.h`、`LyraHeroComponent.h` |
+
+保留原配置中的其他映射与优先级，只在自己的副本修改对应引用。角色基础配置与附加绑定是两种接入途径，同一份配置不应重复添加。保存数据资产，修改 Experience 蓝图时 Compile 后 Save，重新 PIE 再沿本章断点验证。只有 InputAction 和 IMC 文件存在，Hero 并不会自动搜索并启用它们；本段是源码支持的扩展步骤，现有训练场仍复用原输入配置。
+
+本机 AbilitySet 写入标签使用 `AbilitySpec.GetDynamicSpecSourceTags().AddTag(...)`。旧教程出现的 `DynamicAbilityTags` 在本版本应根据实际 API 调整。ASC 的输入匹配使用 `HasTagExact`；父标签并不自动匹配某个子标签输入。
+
+## 预期结果、排障与练习
+
+预期断点链完整命中，技能失败可继续进入 GAS 条件检查。若菜单打开后仍触发开火，先检查 CommonUI 的输入模式和激活层，而不是在每个技能里读取菜单布尔值。
+
+本机 `RemoveAdditionalInputConfig` 仍有 TODO，新增系统不能假设所有动态绑定都已实现完整移除。自行扩展时保存绑定句柄，并验证 Feature 停用、重生和再次进入不会重复回调。
+
+练习：把一个实验技能映射到不同按键，只改 IMC；再改 InputTag，观察为什么还要同步 InputConfig 和 AbilitySet。每次只改一层，保留日志证明因果。

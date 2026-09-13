@@ -1,0 +1,373 @@
+{
+  "date": "2026-09-13T14:04:59.8194454Z",
+  "passed": true,
+  "captureAPI": "FSlateApplication::TakeScreenshot(SViewport), game timer",
+  "physicalInputTested": false,
+  "programmaticCultureSwitch": true,
+  "clients": [
+    {
+      "observations": [
+        {
+          "stage": "first-switch",
+          "culture": "zh-Hans",
+          "savedCulture": "zh-Hans",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "设置",
+          "statusText": "Traveler A · 等级 1 · 经验 25\n生命 50 / 100",
+          "targetText": "训练目标 · 生命 100 / 100",
+          "inputHint": "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        },
+        {
+          "stage": "second-switch",
+          "culture": "en",
+          "savedCulture": "en",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "Settings",
+          "statusText": "Traveler A · Level 1 · XP 25\nHealth 50 / 100",
+          "targetText": "Training target · Health 100 / 100",
+          "inputHint": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        },
+        {
+          "stage": "final-hud",
+          "culture": "zh-Hans",
+          "savedCulture": "zh-Hans",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "",
+          "statusText": "Traveler A · 等级 1 · 经验 25\n生命 50 / 100",
+          "targetText": "训练目标 · 生命 100 / 100",
+          "inputHint": "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        }
+      ],
+      "diskCulture": "zh-Hans",
+      "settingsIni": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Config\\Showcase\\d2a2741c0d\\A.ini",
+      "expectedCulture": "zh-Hans",
+      "initialCulture": "en",
+      "freshProcess": {
+        "stage": "fresh-process",
+        "culture": "zh-Hans",
+        "savedCulture": "zh-Hans",
+        "settingsIni": "GameUserSettings",
+        "isEditor": false,
+        "hasHUD": false,
+        "umgMVVMBinding": false,
+        "menuTitle": "开启旅程",
+        "statusText": "",
+        "targetText": "",
+        "inputHint": "",
+        "persisted": true,
+        "qualityGroups": {
+          "ViewDistance": 1,
+          "AntiAliasing": 1,
+          "Shadow": 1,
+          "GlobalIllumination": 1,
+          "Reflection": 1,
+          "PostProcess": 1,
+          "Texture": 1,
+          "Effects": 1,
+          "Foliage": 1,
+          "Shading": 1
+        },
+        "matchesExpectedCulture": true
+      },
+      "role": "client-1"
+    },
+    {
+      "observations": [
+        {
+          "stage": "first-switch",
+          "culture": "en",
+          "savedCulture": "en",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "Settings",
+          "statusText": "Traveler B · Level 1 · XP 0\nHealth 100 / 100",
+          "targetText": "Training target · Health 100 / 100",
+          "inputHint": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        },
+        {
+          "stage": "second-switch",
+          "culture": "zh-Hans",
+          "savedCulture": "zh-Hans",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "设置",
+          "statusText": "Traveler B · 等级 1 · 经验 0\n生命 100 / 100",
+          "targetText": "训练目标 · 生命 100 / 100",
+          "inputHint": "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        },
+        {
+          "stage": "final-hud",
+          "culture": "en",
+          "savedCulture": "en",
+          "settingsIni": "GameUserSettings",
+          "isEditor": false,
+          "hasHUD": true,
+          "umgMVVMBinding": true,
+          "menuTitle": "",
+          "statusText": "Traveler B · Level 1 · XP 0\nHealth 100 / 100",
+          "targetText": "Training target · Health 100 / 100",
+          "inputHint": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+          "persisted": true,
+          "qualityGroups": {
+            "ViewDistance": 1,
+            "AntiAliasing": 1,
+            "Shadow": 1,
+            "GlobalIllumination": 1,
+            "Reflection": 1,
+            "PostProcess": 1,
+            "Texture": 1,
+            "Effects": 1,
+            "Foliage": 1,
+            "Shading": 1
+          }
+        }
+      ],
+      "diskCulture": "en",
+      "settingsIni": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Config\\Showcase\\d2a2741c0d\\B.ini",
+      "expectedCulture": "en",
+      "initialCulture": "zh-Hans",
+      "freshProcess": {
+        "stage": "fresh-process",
+        "culture": "en",
+        "savedCulture": "en",
+        "settingsIni": "GameUserSettings",
+        "isEditor": false,
+        "hasHUD": false,
+        "umgMVVMBinding": false,
+        "menuTitle": "Begin your journey",
+        "statusText": "",
+        "targetText": "",
+        "inputHint": "",
+        "persisted": true,
+        "qualityGroups": {
+          "ViewDistance": 1,
+          "AntiAliasing": 1,
+          "Shadow": 1,
+          "GlobalIllumination": 1,
+          "Reflection": 1,
+          "PostProcess": 1,
+          "Texture": 1,
+          "Effects": 1,
+          "Foliage": 1,
+          "Shading": 1
+        },
+        "matchesExpectedCulture": true
+      },
+      "role": "client-2"
+    }
+  ],
+  "captures": [
+    {
+      "sha256": "f7b3807375083ac48917aeea5ba178438c9e4a99b08d788cf2accb3e6ad8d1b0",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-final-hud.png"
+    },
+    {
+      "sha256": "92e6d41b117678047330c6e55f148fac13fb3659d9e7eeb6fd5af22667c2049d",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-hud.png"
+    },
+    {
+      "sha256": "223dea64eb33b46c259d52da07df84975e68ee7d4235ebe4a4923caf0eb6eb27",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-inventory.png"
+    },
+    {
+      "sha256": "2c2705459916ea644fe84b7e0ceb8b4bc4c79d1e3140a7f2e5d923ee5a0606aa",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-language-final-hud.png"
+    },
+    {
+      "sha256": "95a64e15329ae2ae7863e7274489a388a680921427cb637c103176d643473127",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-language-first-settings.png"
+    },
+    {
+      "sha256": "11bf62aa67b421eec81563ad5b7b56c70d3120e7ceb2d96dcdc8ef0324d9b241",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-language-second-settings.png"
+    },
+    {
+      "sha256": "d4c32c53c5fa2d1d6f8d0f276773cc41d8d3bf5f8a97acadd9e0c549dc97cafa",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-login.png"
+    },
+    {
+      "sha256": "cc43db59eeea1a2d57dd77012277f5671e86f6761ef911c88f745d8bd09c2f6d",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-modal.png"
+    },
+    {
+      "sha256": "07d0966e77ccec58b29d4e93d03f5d01c0307ac57c5f6ba4cc47dc0ea33c6f28",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-returned-settings.png"
+    },
+    {
+      "sha256": "bbf5f51d28ee4c5c354d6d8655c69c1e8884cdf72f85ef1ac00813c42691b2a4",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-settings.png"
+    },
+    {
+      "sha256": "76d6634bdb178e7f833cb2c878a9e45717d69e631b406279ab4ec9c5e99f3e8c",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-A-skill.png"
+    },
+    {
+      "sha256": "a44b37b038ddef174729d2ed63a3d0c161dcfaf4a9ecbcb0549541bdb085ecd1",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-final-hud.png"
+    },
+    {
+      "sha256": "0a3394335510df975e535b0a381dec8ca1bb573832f88dc2a4ed71d91ddcbab3",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-hud.png"
+    },
+    {
+      "sha256": "55fbc69ec2cea133db80e8343c737b496296ee09777a186947af577cc0eafe8f",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-inventory.png"
+    },
+    {
+      "sha256": "c22b8ffd458e228557450080b39d44b4508c6ec68ec85d54598df8281b2cf181",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-language-final-hud.png"
+    },
+    {
+      "sha256": "ec45bdfa70710e5ddf4febd7da7ef04ed91079acb4c11ab7e2282a735d185333",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-language-first-settings.png"
+    },
+    {
+      "sha256": "56636ab56d4973e2cb77713d7455f3a81aa6b0110294422fbabb55145026372d",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-language-second-settings.png"
+    },
+    {
+      "sha256": "d501ce5931a20777f8657162efae51bbda5749d823226db9650ca434c4326f30",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-login.png"
+    },
+    {
+      "sha256": "3102ec9b5b6d738dc9eb5fa5b96569778c611633ed20386b697f04434191fc77",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-modal.png"
+    },
+    {
+      "sha256": "0642133d741ab2ec434b3b3bdf7a5ac350aed5fba7cbc57764baede20de6d776",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-returned-settings.png"
+    },
+    {
+      "sha256": "5a9f603b3a1d1f1eb2373a3fb590d2a062b3b221a4b100d08ebd04ceecc062f2",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-settings.png"
+    },
+    {
+      "sha256": "e0e6d0b785b16e5fdf1505e602e49b78972b6a70b79a8b6c8fb208520fbf2b7a",
+      "height": 1080,
+      "width": 1920,
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Screenshots\\MMOShowcase\\d2a2741c0d\\mmo-B-skill.png"
+    }
+  ],
+  "cleanupCompleted": true,
+  "completedAt": "2026-09-13T14:06:34.1210234Z"
+}

@@ -1,0 +1,59 @@
+---
+title: 蓝图阅读实战：冲刺方向与动画选择
+description: 从真实 SelectDirectionalMontage 图解释朝向差、移动方向和动画选择，不把图文本误当完整技能。
+---
+
+## 学习目标与前置条件
+
+前置：相机与动画、GAS 激活。实际资产为 `/ShooterCore/Game/Dash/GA_Hero_Dash`，本图为其 `SelectDirectionalMontage` 函数。图文本来自本机编辑器导出，核对日期 2026-09-13，UE 5.8.1。
+
+<BlueprintGraph src="/media/lyra/dash-direction.png" alt="GA_Hero_Dash 的 SelectDirectionalMontage 全图，比较朝向与移动方向并选择冲刺动画" download="/blueprints/lyra/dash-direction.txt" caption="GA_Hero_Dash · SelectDirectionalMontage · 真实全图与 UE 原生节点文本。" />
+
+## 操作步骤
+
+1. 打开该技能蓝图，在 My Blueprint 中找到函数 `SelectDirectionalMontage`。先选入口与返回节点，确定数据接口。
+2. 入口有 `FacingDirection`、`MovementDirection` 两个 Vector。沿纯函数线找到两次 Vector → Rotator 转换，再找到 `NormalizedDeltaRotator`。
+3. 找到拆分后的 Yaw 分量和后续比较节点。逐一记下图里的阈值、符号与分支方向，不用“前后左右”四个字代替实际条件。
+4. 沿执行线观察局部变量 `MontageToPick` 与 `BiasForward` 的赋值，最后看返回的 Montage 和 `BiasForwardMovement`。
+5. 回到调用此函数的图，检查 FacingDirection 和 MovementDirection 来自哪里。函数本身不会替你决定玩家按键、根运动、费用或冷却。
+
+## 为什么归一化角度差
+
+相同方向可以用相差 360 度的角度表示。直接相减可能把临近方向误判为大转弯；归一化的旋转差让后续方向区间判断更可靠。Vector 转 Rotator 也意味着零长度输入需要由调用方或图内逻辑给出有意义的处理。
+
+当镜头方向与移动方向不同，动画应反映人物相对朝向的移动，不只是世界坐标的 X 正负。这个函数是阅读“移动意图 → 表现选择”的好例子，但它不承担整个冲刺位移逻辑。
+
+### 两根同类型连线也不能交换
+
+本机原生文本中，`NormalizedDeltaRotator` 的 **A** 接 `MovementDirection` 转成的 Rotator，**B** 接 `FacingDirection` 转成的 Rotator，即取“移动方向减面朝方向”的归一化差。两根线都是 Rotator，交换后依然可以编译，但 Yaw 符号翻转会交换侧向动画选择。
+
+设该差的 Yaw 为 θ，图的实际分支为：
+
+| 条件，按执行顺序判断 | Montage 成员 | BiasForwardMovement |
+| --- | --- | --- |
+| `abs(θ) < 45` | Dash_Fwd Montage | true |
+| 否则，`abs(θ) > 135` | Dash_Bwd Montage | false |
+| 否则，`θ < 0` | Dash_Left Montage | false |
+| 其余 | Dash_Right Montage | false |
+
+两个阈值都是严格比较，所以 ±45° 和 ±135° 落入侧向分支。连接证据为文本中的 `K2Node_CallFunction_14`（Delta）、`K2Node_PromotableOperator_1/2/4`（比较），以及写入 `BiasForward` 的两个 Set 节点。节点存在和函数编译通过只证明结构有效；复现时还要用同一面朝方向测试左右输入，不能从“两个引脚类型相同”推断可以互换。本表是静态图语义核对，不是本次四方向 PIE 均已通过的声明。
+
+## 文本与 C++ 定位
+
+下载文件中的 `FunctionReference` 可检索 `Conv_VectorToRotator` 和 `NormalizedDeltaRotator`；这些属于 `UKismetMathLibrary`。检查引脚 `LinkedTo` 可以核对连接，但日常学习优先看原图与节点 Details。
+
+技能侧费用、激活组和相机逻辑仍由 LyraGameplayAbility 与该技能其他图配置。冷却资产 `/Game/GameplayEffects/GE_HeroDash_Cooldown` 已在本机找到；当前 `GA_Hero_Dash` 的 Class Defaults 实际引用此类，字段截图见[能力配置](/docs/04-gas/ability-sets)。不要仅凭该类名推断另一个技能也采用相同费用或冷却。
+
+## 使用下载文本的边界
+
+完整函数包含局部变量、输入输出签名和对蓝图成员/动画资产的引用。先在实验副本复制原技能，再对照同名函数；创建新函数时要同步签名和依赖。函数入口/返回节点有专属语义，不适合直接粘进 EventGraph。
+
+文本已从真实图导出，但它不是整个 `.uasset`，也不是完成粘贴编译的保证。原始比例截图用于看清节点；缩放适配用于理解总体结构，两种视图回答不同问题。
+
+本机另行完成了完整 Dash 副本中的原生导入和编译：26 个节点、函数签名保留、0 errors/0 warnings，记录在 `verification/training-blueprint-roundtrip.json`。复现入口见[训练场蓝图复制步骤](/docs/07-training/feature-and-experience#五验证真实蓝图复制文本)；这是该函数的编译证据，不是四方向运动全部通过的声明。
+
+## 预期结果、排障与练习
+
+用固定朝向分别输入前、后、左、右移动方向，应该能说明选中哪个 Montage 以及 BiasForward 的输出。动画选对而位移错误时，转查调用方和移动任务。
+
+练习：挑一个区间边界的两侧角度，各代入一组方向向量。观察分支是否连续；再分析静止冲刺应采用面朝方向还是禁止激活，并将这一选择放在调用方的明确规则中。

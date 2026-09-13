@@ -1,0 +1,17 @@
+{
+  "engine": "UE source build 5.8.1",
+  "sourceProject": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+  "importDirectories": [
+    {"from":"Plugins/CommonGame", "to":"Plugins/CommonGame", "reason":"LocalPlayer, PlayerController, UIManager, UIPolicy and root layout"},
+    {"from":"Plugins/CommonUser", "to":"Plugins/CommonUser", "reason":"CommonGame transitive platform-user dependency"},
+    {"from":"Plugins/ModularGameplayActors", "to":"Plugins/ModularGameplayActors", "reason":"Component receiver lifecycle for Game Feature actions"},
+    {"from":"Plugins/UIExtension", "to":"Plugins/UIExtension", "reason":"Player-scoped HUD extension points"}
+  ],
+  "importEngineDirectories": [
+    {"from":"Templates/TemplateResources/High/Characters/Content/Mannequins", "to":"Content/Characters/Mannequins", "reason":"UE 5.8 supplied Manny/Quinn skeletal meshes, skeleton, materials and unarmed locomotion animations; preserve the template's /Game/Characters/Mannequins mount paths"}
+  ],
+  "excluded": ["ShooterCore", "ShooterMaps", "LyraGame", "LyraEditor"],
+  "excludedFromDistribution": ["official Epic code copied locally", "official mannequin assets copied locally"],
+  "originalAssets": "Run prepare_content.py inside MMORPG editor after compiling; generated assets are original tutorial content.",
+  "notice": "Imported Epic code retains original notices and license. Obtain Lyra from Epic; the documentation repository distributes tutorial additions and the copy manifest."
+}

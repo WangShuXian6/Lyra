@@ -1,0 +1,194 @@
+---
+title: 创建训练场 Game Feature、地图与 Experience
+description: 理解注册、资产扫描、Experience 选择与 PawnData 替换，建立可回溯的教学副本。
+---
+
+## 学习目标与前置条件
+
+能够解释为什么“插件文件夹存在”不等于“玩法已激活”。先在官方 `/ShooterCore/Maps/L_ShooterGym` 跑通一次射击模式，确认角色、HUD、武器和机器人正常。
+
+本节依据 UE 5.8.1 本机源码，核验日期 2026-09-13。关键文件为 `Source/LyraGame/GameModes/LyraExperienceDefinition.h`、`LyraExperienceManagerComponent.cpp`、`LyraWorldSettings.h` 和 `Character/LyraPawnData.h`。
+
+## 一、创建插件
+
+在实验工程的 Game Features 插件目录中创建 `TrainingRange`，启用内容，声明依赖 `ShooterCore` 与地图直接引用的 `LyraExampleContent`，初始状态为 Registered。配套 `.uplugin` 为：
+
+```json
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "Lyra Tutorial Training Range",
+  "Category": "Game Features",
+  "CanContainContent": true,
+  "EnabledByDefault": false,
+  "ExplicitlyLoaded": true,
+  "BuiltInInitialFeatureState": "Registered",
+  "Modules": [
+    {
+      "Name": "TrainingRangeVerification",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "TargetConfigurationAllowList": [ "Development" ],
+      "TargetAllowList": [ "Game", "Client", "Editor" ]
+    }
+  ],
+  "Plugins": [
+    { "Name": "ShooterCore", "Enabled": true },
+    { "Name": "LyraExampleContent", "Enabled": true },
+    { "Name": "GameplayAbilities", "Enabled": true },
+    { "Name": "CommonUI", "Enabled": true },
+    { "Name": "CommonLoadingScreen", "Enabled": true }
+  ]
+}
+```
+
+Registered 让编辑器能够发现插件资产。进入 Experience 时，Experience Manager 才请求将需要的玩法功能激活。插件依赖解决加载顺序；Experience 的 `GameFeaturesToEnable` 表达这次游戏需要的功能。
+
+如果使用上一节的 `prepare-labs.ps1 -Lab Training`，脚本会在训练工程 `.uproject` 的 **Plugins** 数组中追加 `{ "Name": "TrainingRange", "Enabled": true }`。手工复制文件时也要核对这条项目引用：`EnabledByDefault=false` 不会替你启用它，`BuiltInInitialFeatureState=Registered` 是启用后的 Feature 初始状态。先放齐下面提到的 `Source` 与 Editor 工具源码，按第四节完成构建，再打开训练工程；在 **Edit → Plugins** 搜索 TrainingRange 核对启用，在 Content Browser 勾选 **Show Plugin Content** 后应出现 TrainingRange Content。
+
+配套版本另外包含原创 `TrainingRangeVerification` 模块，用于[实际归档程序验收](/docs/07-training/multiplayer-and-package#归档程序的原生运行验收)。因此复制 `.uplugin` 时也要复制同目录 `Source`，再构建完整目标，不能只添加 Modules 字段。Development Editor 会编译验收主体以提前核对 C++ API，但启动时明确拒绝 Editor/PIE 执行；Development 游戏只有使用 Cook 内容且收到显式验收开关才注册 ticker，正常训练玩法不依赖它。该模块已于 **2026-09-13 16:34 UTC** 随完整 `LyraEditor Win64 Development` 目标编译、链接成功，见 `verification/training-editor-final-build.json`。最终导航地图于 **20:39 UTC 完成 LyraGame Development 构建、重新 Cook、Stage 与归档**，同一归档程序随后两次原生运行均 **11/11 通过并正常退出**。证据与首轮音频队列错误、复测边界见[打包验收](/docs/07-training/multiplayer-and-package#本次-package-与两次归档运行结果)；已有 PIE 报告仍保留各自范围。
+
+## 二、复制装配数据
+
+打开内容浏览器的“显示插件内容”，按表复制。保留右侧名字，便于与脚本、日志和后面的练习对应。
+
+| 官方实现 | 自己的副本 | 修改原因 |
+| --- | --- | --- |
+| `/ShooterCore/Experiences/B_ShooterGame_Elimination` | `/TrainingRange/Experiences/B_TrainingRange` | 拥有独立模式入口 |
+| `/ShooterCore/Game/HeroData_ShooterGame` | `/TrainingRange/Game/HeroData_Training` | 独立选择角色与技能集 |
+| `/ShooterCore/Game/AbilitySet_ShooterHero` | `/TrainingRange/Game/AbilitySet_TrainingHero` | 替换训练用技能 |
+| `/ShooterCore/Game/Dash/GA_Hero_Dash` | `/TrainingRange/Game/GA_TrainingDash` | 允许修改冲刺而不改变官方模式 |
+| `/ShooterCore/Maps/L_ShooterGym` | `/TrainingRange/Maps/L_TrainingRange` | 拥有独立地图设置 |
+
+在 `AbilitySet_TrainingHero` 中，把指向 `GA_Hero_Dash` 的那一项替换为 `GA_TrainingDash`，保留它原有的 Input Tag。接着把 `HeroData_Training.AbilitySets` 中的射击角色技能集替换为新的训练技能集。
+
+打开 `B_TrainingRange` 的 Class Defaults，将 `DefaultPawnData` 改成 `HeroData_Training`，并在 `GameFeaturesToEnable` 加入 `TrainingRange`。保留原 Experience 的其他功能与 ActionSet。第一次教学先让原系统运行，再逐项裁剪。
+
+### 手动操作时逐项保存并重开
+
+在 Content Browser 的 Sources 树确认目标是 **TrainingRange Content**。资产可以通过右键 Duplicate 复制，再拖到目标文件夹并选择 Move Here；如果出现引用重定向提示，先确认被移动的是刚建的副本。复制地图时先关闭 PIE，并将新地图另存为 `TrainingRange/Maps/L_TrainingRange`。不要把仍在 ShooterCore 文件夹中的原件直接改名。
+
+按下面顺序检查，避免出现 Experience 已换但技能集仍沿用原件的情况：
+
+1. 打开 `GA_TrainingDash`，Compile，无错误后 Save；本阶段先不改图表。
+2. 打开 `AbilitySet_TrainingHero` 的 Details，展开 Granted Gameplay Abilities，按原 Dash 类找到已有行，只替换 Ability 为 `GA_TrainingDash`，保留 Input Tag 与 Ability Level，然后 Save。
+3. 打开 `HeroData_Training`，展开 Ability Sets，把原 `AbilitySet_ShooterHero` 那行换成 `AbilitySet_TrainingHero`，其他条目保留，Save。
+4. 打开 `B_TrainingRange` → Class Defaults，把 Default Pawn Data 设为 `HeroData_Training`；在 Game Features To Enable 中仅当不存在时追加字符串 `TrainingRange`。Compile 后 Save。
+5. 关闭并重开以上资产，按 `B_TrainingRange → HeroData_Training → AbilitySet_TrainingHero → GA_TrainingDash` 再追一遍引用。预期是每条连接都落在 TrainingRange，保留的基础动作和依赖仍可回到官方资产。
+
+![HeroData_Training 的真实 Details，Ability Sets 指向 AbilitySet_TrainingHero](/media/configuration/training/training-pawn.png)
+
+图源：`/TrainingRange/Game/HeroData_Training`，UE 5.8.1，2026-09-13，原生 Slate 截图。先看 **Ability Sets → 索引 0**，值必须是 `AbilitySet_TrainingHero`；当前 **Pawn Class、Tag Relationship Mapping、Input Config、Default Camera Mode** 继续复用官方配置。一个新 PawnData 并不要求把所有底层资产都复制一份。
+
+![AbilitySet_TrainingHero 中替换为 GA_TrainingDash 的原生配置，等级与标签保留](/media/configuration/training/training-ability-set.png)
+
+图源：`/TrainingRange/Game/AbilitySet_TrainingHero`，同日原生采集。能力数组仍为 **11** 项，索引 **2** 的 **Ability** 已改成 `GA_TrainingDash`，**Ability Level=1** 与 **Input Tag=InputTag.Ability.Dash** 保留。右侧加号是新增元素，左侧小箭头才是展开当前项；这一步只替换已有能力类，不新增第二项 Dash。
+
+## 三、注册与选择 Experience
+
+创建 `/TrainingRange/TrainingRange`，类型为 `GameFeatureData`。在 Primary Asset Types to Scan 中加入：类型 `LyraExperienceDefinition`、基类 `LyraExperienceDefinition`、勾选 Has Blueprint Classes、目录 `/TrainingRange/Experiences`、Cook Rule 为 Always Cook。再加入类型 `Map`、基类 `World`、不勾选 Has Blueprint Classes、目录 `/TrainingRange/Maps`，同样使用 Always Cook。
+
+打开 `L_TrainingRange`，在 World Settings 的 Default Gameplay Experience 中选择 `B_TrainingRange`。这项设置存储的是 Experience **类的软引用**。不要把 `LyraUserFacingExperienceDefinition` 当成相同的数据类型；后者负责前端选择界面与创建会话。
+
+新建 GameFeatureData 的具体入口是 TrainingRange Content 根目录空白处右键 → **Miscellaneous → Data Asset**，在类型选择器搜索 **GameFeatureData**，命名为 **TrainingRange**。打开资产后展开 Primary Asset Types to Scan，每个类型各新增一行，再展开 Directories 新增目录项；Rules 下把 Cook Rule 选为 Always Cook。地图扫描的 Asset Base Class 是 **World**，不是 LyraExperienceDefinition。配置后点 Save，这个数据资产没有 Compile 按钮。
+
+地图配置从 **Window → World Settings** 进入，搜索 Default Gameplay Experience，选择 `B_TrainingRange` 后保存当前地图（Ctrl+S）。关闭再打开地图，确认字段仍指向训练副本，然后才启动 PIE。配置截图要同时保留地图标签页和该字段，单独截一个 `B_TrainingRange` 文件名不能证明地图保存了引用。
+
+![TrainingRange Experience 扫描规则，真实原生配置面板](/media/configuration/training/training-feature-experience.png)
+
+图源：`/TrainingRange/TrainingRange`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。TrainingRange 的 Experience 扫描使用蓝图类，目录 /TrainingRange/Experiences，Cook Rule 为 Always Cook。
+
+![TrainingRange 地图扫描规则，真实原生配置面板](/media/configuration/training/training-feature-map.png)
+
+图源：`/TrainingRange/TrainingRange`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。同一 GameFeatureData 的 Map 条目使用 World 类，不勾选蓝图类，扫描 /TrainingRange/Maps 并 Always Cook。
+
+![训练场 Experience 类默认值，真实原生配置面板](/media/configuration/training/training-experience.png)
+
+图源：`/TrainingRange/Experiences/B_TrainingRange`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。B_TrainingRange 使用 HeroData_Training，启用 ShooterCore 与 TrainingRange，保留四个输入、组件、HUD 和 Accolades ActionSet。
+
+![训练地图的 World Settings，真实原生配置面板](/media/configuration/training/training-world.png)
+
+图源：`/TrainingRange/Maps/L_TrainingRange`，UE 5.8.1，2026-09-13，原生 Slate 截图（1716 × 1315，未裁剪或重采样）。L_TrainingRange 的 World Settings：GameMode Override 保持 None，Default Gameplay Experience 指向 B_TrainingRange。右侧面板在编辑器中实际拉宽以完整显示资产名。
+
+GameMode Override 当前是 None，表示继承项目默认 GameMode；Default Gameplay Experience 才是本地图选择 B_TrainingRange 的位置。修改后保存的是地图，数据资产编辑器的 Save 不会替地图保存这项设置。
+
+### 复制地图后构建导航并保存
+
+复制 World 资产后，地图中存在 NavMeshBoundsVolume 和 RecastNavMesh Actor 并不保证导航瓦片可用。本次训练副本的角色、HUD 和武器已能运行，但角色及三个拾取点的原生导航投影均返回 None，沿路径拾取检查因此失败。
+
+1. 停止 PIE，确认当前标签页为 **L_TrainingRange**，打开 **Window → Developer Tools → Output Log**。在底部控制台输入 `BUILDPATHS` 并回车；也可从编辑器 **Build** 菜单选择 **Build Paths**。这是编辑器的导航构建，不是 C++ 编译。
+2. 等待日志中的导航构建和 Map Check 完成。点击关卡视口后按 `P`，预期可行走区域显示绿色导航覆盖；再次按 `P` 可隐藏。拾取 Actor 的显示中心可能高于地面，路径目标应投影到地面，不应把悬空中心当作导航终点。
+3. 按 **Ctrl+S** 保存当前训练地图，再重新启动 PIE。预期路径查询能连接出生位置与目标拾取点，角色真实走入范围后获得武器。不要通过新建另一组拾取点或写入背包替代这项修复。
+
+本机于 13:42:27 UTC 执行原生 `BUILDPATHS`，Map Check 为 0 errors/0 warnings；角色与步枪位置随后均投影到 Z=60 的地面，13:45:51 UTC 保存地图成功。后续真实拾取与重生检查通过。`P` 的绿色覆盖是读者应观察的预期结果，本次证据以原生投影及真实行走报告为准，未将绿色覆盖截图记为已采集。
+
+导航数据属于需要保存和重新 Cook 的地图结果。调整地形、可行走碰撞或导航范围后要再次构建；已有 Cook 输出不会自动变成更新后地图的发布证明。
+
+## 四、脚本复现
+
+脚本需要配套的 **LyraDocTools Editor 插件**。`prepare-labs.ps1 -Lab Training` 会把 `examples/LyraTraining` 里的教学文件复制到实验工程，包括 `Plugins/LyraDocTools`、`Plugins/GameFeatures/TrainingRange` 和 `prepare_training.py`。若实验工程早于插件创建，请先复制这些新增教学文件；先保留自己对实验工程的修改，再决定是否重跑整个复制脚本。
+
+`LyraDocTools` 是普通 Editor 插件，与内容 Game Feature `TrainingRange` 分工不同。它依赖已有 `LyraGame` 模块，提供 `replace_ability_in_set`、`configure_training_feature`、`configure_training_world` 和 `build_training_navigation` 等原生方法。在本机 5.8.1，Python 读取 AbilitySet 后得到的分离结构值不能直接修改 `EditDefaultsOnly` 字段，结构构造也不接受这些命名参数；原生方法通过资产所属数组的反射属性修改能力，保留 Input Tag 和等级。资产扫描配置使用原生 `FPrimaryAssetTypeInfo` 构造函数。
+
+首次执行 Python 前，保存工作并正常关闭所有使用同一引擎且存在 Live Coding 会话的编辑器，构建完整训练场 Editor 目标：
+
+```powershell
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  LyraEditor Win64 Development `
+  -Project=F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject `
+  -EnablePlugin=LyraDocTools -EnablePlugin=TrainingRange `
+  -NoUBA -MaxParallelActions=3 -WaitMutex
+```
+
+确认构建成功后，执行资产生成。`EnablePlugin` 是上面 UBT 的参数；下面编辑器的 `EnablePlugins` 接受逗号分隔列表，不要混淆：
+
+```powershell
+& E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor-Cmd.exe `
+  F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject `
+  -run=pythonscript `
+  -script=F:/UE/LyraDocLabs/LyraTraining/prepare_training.py `
+  '-EnablePlugins=LyraDocTools,PythonScriptPlugin,EditorScriptingUtilities' `
+  '-ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0' `
+  '-ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False' `
+  -unattended -NullRHI -LiveCoding=false -Multiprocess -corelimit=3
+```
+
+完整准备使用上面的独立 commandlet。导航步骤调用 `LyraDocToolsLibrary.build_training_navigation(world)`：等待异步加载与资产编译完成后，仅释放该训练 World 的 `AsyncLoadLock`，拒绝其他阻塞锁，再调用同步 `UNavigationSystemV1::Build()`。随后对三个原有拾取点实际投影，全部成功才保存地图。上面的 `-corelimit=3` 与 Shader INI 将本机编译 worker 限制为 2；`-Multiprocess` 避免启动时自动触发 SDK 验证的额外 UBT。
+
+图形编辑器中的 **Build → Build Paths / BUILDPATHS** 仍按前节手工使用；不要把它放进 Python commandlet。本机 5.8.1 的 `FEditorBuildUtils::EditorBuild()` 包装还会访问图形进度窗口，曾在无界面 commandlet 中产生原生异常。该失败保留在 `verification/training-prepare-navigation-failure.json`；修正后的 helper 已随完整 LyraEditor 目标编译通过。
+
+**2026-09-13 17:00 UTC，完整准备两轮原生复验通过**，报告为 `verification/training-prepare-rerun.json`。第一轮是在全新 Cmd 进程中读取已经生成的六个训练资产；第二轮在同进程保留第一轮 World 包装对象后重跑。两轮均保持唯一标牌、训练 AbilitySet 和 Experience 引用，三个原有拾取点均投影到 Z=60；第二轮保持同一个原生 World。进程退出码为 0，原生汇总为 0 errors、297 条现有 Lyra 翻译资源冲突警告，未据此宣称警告已消除。这证明现有资产的复跑，不是删除资产后首次创建的证明。
+
+需要自己复验时，把上面同一条 commandlet 命令中的 `-script` 改为 `F:/UE/LyraDoc/scripts/verify-training-prepare.py`。它先检查 repo/lab 的准备源码 SHA 相同，并保留每一轮报告。早先重复 `load_level` 导致 World GC 失败的 `verification/training-prepare-repeat.json` 仍保留；现行源码通过比较完整 World 路径跳过同地图重载。不能清空全部引擎对象、删除地图或只改报告来规避失败。
+
+脚本检查工程路径，只在隔离训练工程中执行。它通过 Unreal 加载资产、修改属性和编译蓝图，不编辑二进制文件内容。原生插件还限制写入 `/TrainingRange/`，不修改官方技能集。
+
+## 五、验证真实蓝图复制文本
+
+创建训练场资产并完成上面的插件构建后，用独立 commandlet 执行：
+
+```powershell
+& E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor-Cmd.exe `
+  F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject `
+  -run=pythonscript `
+  '-script=F:/UE/LyraDoc/scripts/verify-training-blueprints.py' `
+  '-EnablePlugins=LyraDocTools,PythonScriptPlugin,EditorScriptingUtilities' `
+  -unattended -NullRHI -LiveCoding=false
+```
+
+脚本读取文档仓库的 `jump-event-graph.txt`、`dash-direction.txt` 与 `root-layout-registration.txt`，分别把完整 Jump、Dash 蓝图和 `W_OverallUILayout` WidgetBlueprint 复制到 `/TrainingRange/Tests/` 的本次唯一包名。复制 WidgetBlueprint 时保留 Designer 树和成员变量；原生工具只清除指定测试图内节点，导入文本，核对节点数量与函数签名，随后编译。三张图都会尝试验证，只有通过的测试副本才保存。2026-09-13 13:48:30–13:48:39 UTC 实际三项全部通过，节点数依次为 20、26、10，编译均为 0 errors/0 warnings。
+
+报告默认写入文档仓库 `verification/training-blueprint-roundtrip.json`，包含工程与引擎身份、输入文本 SHA-256、三个实际原生报告、错误和保存结果。脚本路径变化时，可在 `-script` 的同一个参数值中追加 `--docs-root F:/UE/LyraDoc --report F:/UE/LyraDoc/verification/training-blueprint-roundtrip.json`。失败时 commandlet 返回非零；不要通过手工改报告把失败标成成功。这项检查证明完整依赖条件下的导入和编译，游戏行为仍需要后续 PIE 与联机验收。
+
+## 预期结果与排障
+
+打开地图后，World Settings 指向训练 Experience；PIE 的角色仍能移动、开火和冲刺。Rider 在 `ULyraExperienceManagerComponent::OnExperienceLoadComplete` 处断点，确认实际加载的是训练 Experience。只看地图名称不能证明装配数据已替换。
+
+如果出现找不到 Primary Asset，先检查 GameFeatureData 的扫描目录和 Has Blueprint Classes，再看 `LogGameFeatures` 是否已注册插件。如果角色出生但没有能力，继续追 `DefaultPawnData` 和 `AbilitySets`，不要用 Level Blueprint 重复授予技能来掩盖初始化错误。
+
+如果 Python 提示没有 `LyraDocToolsLibrary`，先检查训练场 `Plugins/LyraDocTools` 是否存在、完整 Editor 目标是否已编译，以及本次 commandlet 是否启用了该插件。只有复制 `.h/.cpp` 文件还不足以让 Python 看到反射类。
+
+## 练习
+
+复制第二份 PawnData，只更换一个 DefaultCameraMode，在两个 Experience 间切换。记录哪些角色代码完全没有改变，以及资产依赖中出现了哪条新引用。

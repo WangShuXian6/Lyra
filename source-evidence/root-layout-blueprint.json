@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "asset": "/Game/UI/W_OverallUILayout",
+  "graph": "EventGraph",
+  "nodeCount": 10,
+  "originalSourceEdited": false,
+  "nativeText": {
+    "path": "public/blueprints/lyra/root-layout-registration.txt",
+    "sha256": "33f8c41b2cb64c24e405fbacaa4c662db1240b5c3404c41d383601bdbcf73b54",
+    "bytes": 26987,
+    "exportReport": "verification/root-layout-graph-export.json"
+  },
+  "nativeRoundTrip": {
+    "passed": true,
+    "saved": true,
+    "destination": "/TrainingRange/Tests/W_LayoutClipboardTest_20260913_134830_626debbb",
+    "importedNodeCount": 10,
+    "compileStatus": "BS_UpToDate",
+    "errors": 0,
+    "warnings": 0,
+    "report": "verification/training-blueprint-roundtrip.json",
+    "finishedAt": "2026-09-13T13:48:39.232853+00:00",
+    "preserved": "Complete WidgetBlueprint duplication preserves Designer tree and member variables; only EventGraph is cleared and reimported."
+  },
+  "configurationScreenshots": [
+    "public/media/configuration/training/root-layout-designer.png",
+    "public/media/configuration/training/root-layout-registration.png"
+  ],
+  "oneToOneGraph": {
+    "status": "passed",
+    "passed": true,
+    "capture": {
+      "publicPath": "/media/lyra/root-layout-registration.png",
+      "sourceAsset": "/Game/UI/W_OverallUILayout",
+      "graph": "EventGraph",
+      "kind": "native-graph-capture",
+      "original": "F:\\UE\\LyraDocLabs\\LyraTraining\\Saved\\Screenshots\\WindowsEditor\\W_OverallUILayout_EventGraph_00001.png",
+      "captureTool": "Gradess Games Blueprint Screenshot Tool 1.1.7, Ctrl+A then Ctrl+F7",
+      "editorPid": 19024,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "selectedNodeCount": 10,
+      "selectionVerification": "All four Register Layer calls, four Designer variables, Event OnInitialized and comment selected; orange outlines visually checked before Ctrl+F7.",
+      "nativeScale": 1,
+      "actualGraphZoom": "1:1",
+      "zoomAmount": 1.0,
+      "maxScreenshotSize": 15360,
+      "width": 1648,
+      "height": 1264,
+      "bytes": 314070,
+      "sha256": "d6418c7a211a16aebca15a76e2306beb7b938bf51c75bda42b944c2ee10c886d",
+      "pixelsModified": false,
+      "capturedAt": "2026-09-13T17:05:51.455541+00:00",
+      "settingsEvidence": "verification/training-final-capture-settings.json"
+    },
+    "previousFailedAttempt": {
+      "original": "F:\\UE\\LyraDocLabs\\LyraTraining\\Saved\\Screenshots\\WindowsEditor\\W_OverallUILayout_EventGraph_00000.png",
+      "width": 1210,
+      "height": 743,
+      "sha256": "7522710bd7f0f407c8fac40f5f628da7d449b5764b3641df99da8c41a8065ece",
+      "actualGraphZoom": "-3",
+      "publishedAsOneToOne": false
+    },
+    "resolvedCause": "Native Slate clicked the Register Layer node text, then Ctrl+A visibly selected the entire graph before Ctrl+F7."
+  },
+  "originalAssetComparisonAfterCapture": {
+    "verifiedAt": "2026-09-13T17:16:14.924496+00:00",
+    "baseline": "F:\\UE\\LyraStarterGame\\Content\\UI\\W_OverallUILayout.uasset",
+    "lab": "F:\\UE\\LyraDocLabs\\LyraTraining\\Content\\UI\\W_OverallUILayout.uasset",
+    "sha256": "e794816030a3ac57a9512d28569fee04bbfdd384bf7614780e12dfc0d6293f21",
+    "byteIdentical": true
+  }
+}

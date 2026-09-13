@@ -1,0 +1,32 @@
+{
+  "startedAt": "2026-09-13T18:35:03.5571727Z",
+  "passed": true,
+  "target": "UnrealPak",
+  "configuration": "Development",
+  "platform": "Win64",
+  "engine": "E:/UnrealEngine",
+  "arguments": [
+    "UnrealPak",
+    "Win64",
+    "Development",
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-MaxParallelActions=3",
+    "-NoUBA"
+  ],
+  "normalBuild": true,
+  "activeEditorsAtStart": 0,
+  "liveCoding": false,
+  "parallelActions": 3,
+  "ubaRemoteExecution": false,
+  "log": "F:\\UE\\LyraDoc\\verification\\unrealpak-final-build.log",
+  "outputs": [
+    {
+      "bytes": 150016,
+      "sha256": "3dc857828f8c9385b302787380045f07d072c734275be5ae55eecfc2663f5b7b",
+      "path": "E:/UnrealEngine/Engine/Binaries/Win64/UnrealPak.exe"
+    }
+  ],
+  "exitCode": 0,
+  "finishedAt": "2026-09-13T18:39:57.1524848Z"
+}

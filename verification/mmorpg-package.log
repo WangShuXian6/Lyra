@@ -1,0 +1,531 @@
+Running AutomationTool...
+Using bundled DotNet SDK version: 10.0 win-x64
+Starting AutomationTool...
+Parsing command line: -NoCompileUAT -NoCompile -NoAutoSDK BuildCookRun -project=F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -nop4 -unattended -utf8output -nocompileeditor -client -server -platform=Win64 -serverplatform=Win64 -clientconfig=Development -serverconfig=Development -stage -pak -iostore -ubtargs="-NoUBA -MaxParallelActions=3" -additionalcookeroptions="-NullRHI -Multiprocess -CookProcessCount=1 -corelimit=3 -ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False" -skipcook
+Initializing script modules...
+Total script module initialization time: 0.47 s.
+Using D:\program\0-editer\vs2022\MSBuild\Current\Bin\MSBuild.exe
+Executing commands...
+Setting up ProjectParams for F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject
+********** STAGE COMMAND STARTED **********
+Creating Staging Manifest...
+Patching bootstrap executable; F:\UE\LyraDocLabs\MMORPG\Intermediate\Staging\MMORPGClient.exe
+Begin update resource 'F:\UE\LyraDocLabs\MMORPG\Intermediate\Staging\MMORPGClient.exe' (0)
+Add resource 101, length 104 (True)
+Add resource 1, length 1996 (True)
+Add resource 2, length 2447 (True)
+Add resource 3, length 2535 (True)
+Add resource 4, length 3037 (True)
+Add resource 5, length 3244 (True)
+Add resource 6, length 3531 (True)
+Add resource 7, length 6931 (True)
+Add resource 201, length 78 (True)
+Add resource 202, length 14 (True)
+Add resource 205, length 2 (True)
+End update resource (True/0)
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PropertyNames.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseLightmass.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditor.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\RepairData.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorKeyBindings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseSourceControlSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Category.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Engine.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Windows\WindowsEditorSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Windows\WindowsEditorPerProjectUserSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BasePakFileRules.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\ToolTips.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\WordCount.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorPerProjectUserSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseUnrealInsightsSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Editor.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Keywords.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PortableObjectExport.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PortableObjectImport.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\WindowsInput.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\WindowsGame.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseInput.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseHardware.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseGameUserSettings.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseGame.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\DataDrivenPlatformInfo.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsInput.ini
+Including config file E:\UnrealEngine\Engine\Config\Layouts\UE4ClassicLayout.ini
+Including config file E:\UnrealEngine\Engine\Config\Layouts\DefaultLayout.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseScalability.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseRuntimeOptions.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsGame.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\VulkanPC\DataDrivenPlatformInfo.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseMaterialExpressions.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseInstallBundle.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseDeviceProfiles.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseCompat.ini
+Including config file E:\UnrealEngine\Engine\Config\Base.ini
+Including config file E:\UnrealEngine\Engine\Config\PluginBase.ini
+Including config file E:\UnrealEngine\Engine\Config\DefaultEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\ConsoleVariables.ini
+Including config file E:\UnrealEngine\Engine\Config\ConfigRedirects.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEditor.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Import.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Export.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Gather.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_GenerateReports.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Compile.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEditorPerProjectUserSettings.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultInput.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGameUserSettings.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGameplayTags.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGame.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEngine.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\Windows\WindowsEngine.ini
+Reading oplog from Zen...
+Running UnrealPak with arguments: "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" IoStore -StartZenServerForStage -SponsorProcessID=37300 -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -unattended
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" IoStore -StartZenServerForStage -SponsorProcessID=37300 -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -unattended
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogPakFile: Display: ProjectDir: F:/UE/LyraDocLabs/MMORPG/
+LogIoStore: Display: ==================== IoStore Utils ====================
+LogIoStore: Display: Using command line for crypto configuration
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Launching executable 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\air\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 22148  --child-id Zen_22148_Startup'
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogPakFile: Display: UnrealPak executed in 4.023072 seconds
+Took 4.41s to run UnrealPak.exe, ExitCode=0
+Reading oplog from http://[::1]:8558/prj/MMORPG.e5f11b78/oplog/WindowsClient/entries?trim_by_referencedset=true
+Parsed 572 package entries from oplog.
+Cleaning Stage Directory: F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsClient
+Creating pak using staging manifest.
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PrePak_WindowsClient_NonUFSFiles.txt, NumItems: 105
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PrePak_WindowsClient_NonUFSFilesDebug.txt, NumItems: 6
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PrePak_WindowsClient_UFSFiles.txt, NumItems: 2830
+No matching platform for PakFileRules for Section ExcludeContentForMobile : Windows
+Using 0 pak order files:
+Running UnrealPak with arguments: "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject"  -cryptokeys="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\MMORPG\Metadata\Crypto.json" -unattended -patchpaddingalign=2048 -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken  -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -platform=Windows  -CreateMultiple="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PakCommands.txt"
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject"  -cryptokeys="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\MMORPG\Metadata\Crypto.json" -unattended -patchpaddingalign=2048 -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken  -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -platform=Windows  -CreateMultiple="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PakCommands.txt"
+OodleDataCompression: Display: Oodle v2.9.16 format for pak/iostore with method=Kraken, level=4=Normal
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogPakFile: Display: ProjectDir: F:/UE/LyraDocLabs/MMORPG/
+LogPakFile: Display: Parsing crypto keys from a crypto key cache file
+LogPakFile: Display: CompressionFormats in priority order: Oodle, Zlib
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenStore: Display: Opening oplog MMORPG.e5f11b78 / WindowsClient
+LogIoStore: Display: Fetched 573 oplog items from Zen in 1.37 seconds
+LogIoStore: Display: Parsed 573 oplog items 0.01 seconds, 3942 chunks
+LogIoStore: Display: Loaded 610 chunk hashes from Zen in 0.04 seconds, 610 hashes updated in 0.00 seconds
+LogPakFile: Display: Oodle enabled on 'NoPluginCompression' files
+LogPakFile: Display: Loading response file E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\ResponseFiles\PakList_MMORPG-WindowsClient.txt
+LogPakFile: Display: Added 2218 entries to add to pak file.
+LogPakFile: Display: Collecting files to add to pak file...
+LogPakFile: Display: Collected 2218 files in 0.01s.
+LogPakFile: Display: Creating pak F:/UE/LyraDocLabs/MMORPG/Saved/StagedBuilds/WindowsClient/MMORPG/Content/Paks/MMORPG-WindowsClient.pak.
+LogPakFile: Display: Created pak file: F:/UE/LyraDocLabs/MMORPG/Saved/StagedBuilds/WindowsClient/MMORPG/Content/Paks/MMORPG-WindowsClient.pak
+LogPakFile: Display: CompressionFormat 0 [Oodle] : 496 files, 35130588 -> 13979782 bytes
+LogPakFile: Display: CompressionFormat 2 [None] : 1722 files, 860506 -> 860506 bytes
+LogPakFile: Display: Added 2218 files, 15663677 bytes total
+LogPakFile: Display: PrimaryIndex size: 30706 bytes
+LogPakFile: Display: PathHashIndex size: 71239 bytes
+LogPakFile: Display: FullDirectoryIndex size: 68540 bytes
+LogPakFile: Display: Compression summary: 39.79% of original size. Compressed Size 13979782 bytes, Original Size 35130588 bytes.
+LogPakFile: Display: Encryption - DISABLED
+LogPakFile: Display:
+LogPakFile: Display: Writer and Compression Threads exited.
+LogPakFile: Display: UnrealPak executed in 1.668639 seconds
+Took 1.93s to run UnrealPak.exe, ExitCode=0
+Running UnrealPak with arguments: "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -CreateGlobalContainer="F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsClient\MMORPG\Content\Paks\global.utoc" -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -CookedDirectory="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient" -Commands="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt" -patchpaddingalign=2048 -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken   -cryptokeys="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\MMORPG\Metadata\Crypto.json" -compressionMinBytesSaved=1024 -compressionMinPercentSaved=5 -WriteBackMetadataToAssetRegistry=Disabled -platform=Windows  -unattended
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -CreateGlobalContainer="F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsClient\MMORPG\Content\Paks\global.utoc" -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -CookedDirectory="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient" -Commands="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt" -patchpaddingalign=2048 -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken   -cryptokeys="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\MMORPG\Metadata\Crypto.json" -compressionMinBytesSaved=1024 -compressionMinPercentSaved=5 -WriteBackMetadataToAssetRegistry=Disabled -platform=Windows  -unattended
+OodleDataCompression: Display: Oodle v2.9.16 format for pak/iostore with method=Kraken, level=4=Normal
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogPakFile: Display: ProjectDir: F:/UE/LyraDocLabs/MMORPG/
+LogIoStore: Display: ==================== IoStore Utils ====================
+LogIoStore: Display: Parsing crypto keys from a crypto key cache file 'F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\MMORPG\Metadata\Crypto.json'
+LogIoStore: Display: Container signing - DISABLED
+LogIoStore: Display: Directory index - ENABLED
+LogIoStore: Display: Using compression format 'Oodle'
+LogConfig: Display: Read in platform Windows ini files took 0.02 seconds
+LogIoStore: Display: Using memory mapping alignment '16384'
+LogIoStore: Display: Using compression block size '65536'
+LogIoStore: Display: Using compression block alignment '2048'
+LogIoStore: Display: Using compression min bytes saved '1024'
+LogIoStore: Display: Using compression min percent saved '5'
+LogIoStore: Display: Using max partition size '0'
+LogIoStore: Display: Not using DDC for compression
+LogIoStore: Display: Container metadata disabled
+LogIoStore: Display: Using command list file: 'E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt'
+LogIoStore: Display: Selected Oodle level 4 (Normal) from command line for shaders
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenStore: Display: Opening oplog MMORPG.e5f11b78 / WindowsClient
+LogIoStore: Display: Fetched 573 oplog items from Zen in 2.34 seconds
+LogIoStore: Display: Parsed 573 oplog items 0.01 seconds, 3942 chunks
+LogIoStore: Display: Loaded 610 chunk hashes from Zen in 0.00 seconds, 610 hashes updated in 0.00 seconds
+LogIoStore: Display: Searching for cooked assets in folder 'F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient'
+LogIoStore: Display: Found '4' files
+LogIoStore: Display: Creating container targets...
+LogIoStore: Display: Processing shader libraries, compressing with Oodle Mermaid, level 4 (Normal)
+LogIoStore: Display: Shader library chunk override is disabled
+LogShaderLibrary: Display: Created IoStoreShaderArchive header: shaders grouped in 209 groups (66 of them didn't need new indices), average uncompressed size 132199 bytes, min 2378 bytes, max 1001257 bytes (r.ShaderCodeLibrary.MaxShaderGroupSize=1048576)
+LogIoStore: Display: MMORPG-PCD3D_SM6(PCD3D_SM6): Recompressed 2136 shaders as 209 groups. Library size changed from 20480 KB (1.32 : 1 ratio) to 12891 KB (2.09 : 1 ratio), 62.94% of previous.
+LogIoStore: Display: Save IoStoreShaderCodeArchive 'MMORPG-PCD3D_SM6-PCD3D_SM6' with ChunkId '4514e25b1f9e4ae200000008' for target file 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsClient/MMORPG/Content/ShaderArchive-MMORPG-PCD3D_SM6-PCD3D_SM6.ushaderbytecode'
+LogShaderLibrary: Display: Created IoStoreShaderArchive header: shaders grouped in 553 groups (182 of them didn't need new indices), average uncompressed size 242879 bytes, min 1249 bytes, max 1036717 bytes (r.ShaderCodeLibrary.MaxShaderGroupSize=1048576)
+LogIoStore: Display: Global-PCD3D_SM6(PCD3D_SM6): Recompressed 8095 shaders as 553 groups. Library size changed from 99334 KB (1.32 : 1 ratio) to 58974 KB (2.22 : 1 ratio), 59.37% of previous.
+LogIoStore: Display: Save IoStoreShaderCodeArchive 'Global-PCD3D_SM6-PCD3D_SM6' with ChunkId '1680bae1ae38d5b900000008' for target file 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsClient/MMORPG/Content/ShaderArchive-Global-PCD3D_SM6-PCD3D_SM6.ushaderbytecode'
+LogIoStore: Display: Shaders processed in 1.96 seconds
+LogIoStore: Display: Initialized WriteRequestManager with MaxConcurrentSourceReads=6 (12 cores), MaxSourceBufferMemory=3072MiB
+LogIoStore: Display: Processing redirects...
+LogIoStore: Display: Creating disk layout...
+LogIoStore: Display: Ordered 570 packages using fallback bundle order
+LogIoStore: Display: Disabled WriteRequestManager memory throttling, MaxConcurrentSourceReads=6 (12 cores)
+LogIoStore: Display: Writing container(s)...
+LogIoStore: Display: Writing and compressing took 0.66 seconds, writes to disk took 0.11 seconds for 199,883,376 bytes @ 1,837,095,842 bytes per second.
+LogIoStore: Display: global: Found perfect hashmap for 1 items.
+LogIoStore: Display: MMORPG-WindowsClient: Found perfect hashmap for 1375 items.
+LogIoStore: Display: Finalize took 0.1 seconds for 2 writers to write 156,552 bytes, 1,750,625 bytes per second
+LogIoStore: Display: Writing tocs... [Physical: 620 MiB, Virtual: 3330 MiB]
+LogIoStore: Display: 610 / 1,376 hashes were loaded from the hash database, by type:
+LogIoStore: Display:     ExportBundleData           570
+LogIoStore: Display:     BulkData                   40
+LogIoStore: Display: 610 / 1,376 chunks attempted to compress, by type:
+LogIoStore: Display:     ExportBundleData           570 / 570
+LogIoStore: Display:     BulkData                   40 / 40
+LogIoStore: Display:     ScriptObjects              0 / 1
+LogIoStore: Display:     ContainerHeader            0 / 1
+LogIoStore: Display:     ShaderCodeLibrary          0 / 2
+LogIoStore: Display:     ShaderCode                 0 / 762
+LogIoStore: Display: Source bytes read:
+LogIoStore: Display:     Zen:                        175,675,237
+LogIoStore: Display:         ExportBundleData        162,362,145 bytes over 570 reads
+LogIoStore: Display:         BulkData                 13,313,092 bytes over 40 reads
+LogIoStore: Display:     Loose File:                           0
+LogIoStore: Display:     Memory:                     147,738,418
+LogIoStore: Display:         ShaderCodeLibrary           555,864 bytes over 4 reads
+LogIoStore: Display:         ShaderCode              147,182,554 bytes over 1,524 reads
+LogIoStore: Display: Calculating stats...
+LogIoStore: Display:
+LogIoStore: Display: Container Summary
+LogIoStore: Display: ==================
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Flags      Chunk(s) #       TOC (KiB)       Raw Size (MiB)           Size (MiB)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                         global  -/-/-/-/-               1            0.80                 3.24                 3.24 -
+LogIoStore: Display:           MMORPG-WindowsClient  C/-/-/I/-            1375          152.08               239.07               187.38 (21.62% Oodle)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                          Total                       1376          152.88               242.31               190.62
+LogIoStore: Display:
+LogIoStore: Display: ** Flags: (C)ompressed / (E)ncrypted / (S)igned) / (I)ndexed) / (O)nDemand **
+LogIoStore: Display:
+LogIoStore: Display: Compression block padding:     1.07 MiB
+LogIoStore: Display:
+LogIoStore: Display: Container Directory Index
+LogIoStore: Display: ==========================
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Size (KiB)
+LogIoStore: Display: ----------------------------------------------
+LogIoStore: Display:                         global            0.00
+LogIoStore: Display:           MMORPG-WindowsClient           30.53
+LogIoStore: Display:
+LogIoStore: Display: Container Patch Report
+LogIoStore: Display: ========================
+LogIoStore: Display:
+LogIoStore: Display:                      Container          Total #       Modified #          Added #   Modified (MiB)      Added (MiB)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                         global                1                0                0             0.00             0.00
+LogIoStore: Display:           MMORPG-WindowsClient             1375                0             1375             0.00           186.32
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:
+LogIoStore: Display: PackageStore
+LogIoStore: Display: =============
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Size (KiB)      Packages #     Localized #
+LogIoStore: Display: ------------------------------------------------------------------------------
+LogIoStore: Display:           MMORPG-WindowsClient              15             570               0
+LogIoStore: Display: ------------------------------------------------------------------------------
+LogIoStore: Display:                          Total              15             570               0
+LogIoStore: Display:
+LogIoStore: Display:
+LogIoStore: Display: Input:       570 Packages
+LogIoStore: Display: Input:         0   B UExp
+LogIoStore: Display: Input:    154.84 MiB UAsset
+LogIoStore: Display: Input:     12.70 MiB UBulk
+LogIoStore: Display: Input:     57.59 MiB for 553 Global shaders
+LogIoStore: Display: Input:      1.47 MiB for 93 Shared shaders
+LogIoStore: Display: Input:         0   B for 0 Unique shaders
+LogIoStore: Display: Input:     11.12 MiB for 116 Inline shaders
+LogIoStore: Display:
+LogIoStore: Display: Output:      650 Imported package entries
+LogIoStore: Display: Output:      351 Packages without imports
+LogIoStore: Display: Output:        0 Public runtime script objects
+LogIoStore: Display: Output:     3.24 MiB InitialLoadData
+LogIoStore: Display:
+LogIoStore: Display: Success
+LogPakFile: Display: UnrealPak executed in 5.149315 seconds
+Took 5.45s to run UnrealPak.exe, ExitCode=0
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\FinalCopyWin64_UFSFiles.txt, NumItems: 2831
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\FinalCopyWin64_NonUFSFiles.txt, NumItems: 105
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\FinalCopyWin64_NonUFSFilesDebug.txt, NumItems: 6
+Copying NonUFSFiles to staging directory: F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsClient
+Copying DebugFiles to staging directory: F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsClient
+Creating Staging Manifest...
+Patching bootstrap executable; F:\UE\LyraDocLabs\MMORPG\Intermediate\Staging\MMORPGServer.exe
+Begin update resource 'F:\UE\LyraDocLabs\MMORPG\Intermediate\Staging\MMORPGServer.exe' (0)
+Add resource 101, length 104 (True)
+Add resource 1, length 1996 (True)
+Add resource 2, length 2447 (True)
+Add resource 3, length 2535 (True)
+Add resource 4, length 3037 (True)
+Add resource 5, length 3244 (True)
+Add resource 6, length 3531 (True)
+Add resource 7, length 6931 (True)
+Add resource 201, length 78 (True)
+Add resource 202, length 14 (True)
+Add resource 205, length 2 (True)
+End update resource (True/0)
+Excluding config file E:\UnrealEngine\Engine\Config\Windows\WindowsEditorSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseLightmass.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BasePakFileRules.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditor.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Category.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Editor.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorKeyBindings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Engine.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PropertyNames.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\RepairData.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseSourceControlSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Keywords.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorPerProjectUserSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\ToolTips.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseUnrealInsightsSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PortableObjectExport.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Windows\WindowsEditorPerProjectUserSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\WordCount.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PortableObjectImport.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\DataDrivenPlatformInfo.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsInput.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsGame.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\VulkanPC\DataDrivenPlatformInfo.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseScalability.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseRuntimeOptions.ini
+Including config file E:\UnrealEngine\Engine\Config\Layouts\UE4ClassicLayout.ini
+Including config file E:\UnrealEngine\Engine\Config\Layouts\DefaultLayout.ini
+Including config file E:\UnrealEngine\Engine\Config\PluginBase.ini
+Including config file E:\UnrealEngine\Engine\Config\DefaultEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\ConsoleVariables.ini
+Including config file E:\UnrealEngine\Engine\Config\ConfigRedirects.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseMaterialExpressions.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseInstallBundle.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseInput.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseHardware.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseGameUserSettings.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseGame.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\WindowsInput.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\WindowsGame.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseDeviceProfiles.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseCompat.ini
+Including config file E:\UnrealEngine\Engine\Config\Base.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEditor.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Export.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Gather.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_GenerateReports.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Import.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Compile.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEditorPerProjectUserSettings.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGame.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGameUserSettings.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultInput.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGameplayTags.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEngine.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\Windows\WindowsEngine.ini
+Reading oplog from Zen...
+Reading oplog from http://[::1]:8558/prj/MMORPG.e5f11b78/oplog/WindowsServer/entries?trim_by_referencedset=true
+Parsed 570 package entries from oplog.
+Cleaning Stage Directory: F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsServer
+Creating pak using staging manifest.
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PrePak_Server_WindowsServer_NonUFSFiles.txt, NumItems: 33
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PrePak_Server_WindowsServer_NonUFSFilesDebug.txt, NumItems: 6
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PrePak_Server_WindowsServer_UFSFiles.txt, NumItems: 2778
+No matching platform for PakFileRules for Section ExcludeContentForMobile : Windows
+Using 0 pak order files:
+Running UnrealPak with arguments: "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject"  -cryptokeys="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\MMORPG\Metadata\Crypto.json" -unattended -patchpaddingalign=2048 -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken  -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\ue.projectstore" -platform=Windows  -CreateMultiple="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PakCommands.txt"
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject"  -cryptokeys="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\MMORPG\Metadata\Crypto.json" -unattended -patchpaddingalign=2048 -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken  -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\ue.projectstore" -platform=Windows  -CreateMultiple="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\PakCommands.txt"
+OodleDataCompression: Display: Oodle v2.9.16 format for pak/iostore with method=Kraken, level=4=Normal
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogPakFile: Display: ProjectDir: F:/UE/LyraDocLabs/MMORPG/
+LogPakFile: Display: Parsing crypto keys from a crypto key cache file
+LogPakFile: Display: CompressionFormats in priority order: Oodle, Zlib
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenStore: Display: Opening oplog MMORPG.e5f11b78 / WindowsServer
+LogIoStore: Display: Fetched 571 oplog items from Zen in 1.84 seconds
+LogIoStore: Display: Parsed 571 oplog items 0.01 seconds, 3893 chunks
+LogIoStore: Display: Loaded 568 chunk hashes from Zen in 0.02 seconds, 568 hashes updated in 0.00 seconds
+LogPakFile: Display: Oodle enabled on 'NoPluginCompression' files
+LogPakFile: Display: Loading response file E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\ResponseFiles\PakList_MMORPG-WindowsServer.txt
+LogPakFile: Display: Added 2210 entries to add to pak file.
+LogPakFile: Display: Collecting files to add to pak file...
+LogPakFile: Display: Collected 2210 files in 0.01s.
+LogPakFile: Display: Creating pak F:/UE/LyraDocLabs/MMORPG/Saved/StagedBuilds/WindowsServer/MMORPG/Content/Paks/MMORPG-WindowsServer.pak.
+LogPakFile: Display: Created pak file: F:/UE/LyraDocLabs/MMORPG/Saved/StagedBuilds/WindowsServer/MMORPG/Content/Paks/MMORPG-WindowsServer.pak
+LogPakFile: Display: CompressionFormat 0 [Oodle] : 492 files, 31700037 -> 13487589 bytes
+LogPakFile: Display: CompressionFormat 2 [None] : 1718 files, 858002 -> 858002 bytes
+LogPakFile: Display: Added 2210 files, 15160188 bytes total
+LogPakFile: Display: PrimaryIndex size: 30382 bytes
+LogPakFile: Display: PathHashIndex size: 70774 bytes
+LogPakFile: Display: FullDirectoryIndex size: 68020 bytes
+LogPakFile: Display: Compression summary: 42.55% of original size. Compressed Size 13487589 bytes, Original Size 31700037 bytes.
+LogPakFile: Display: Encryption - DISABLED
+LogPakFile: Display:
+LogPakFile: Display: Writer and Compression Threads exited.
+LogPakFile: Display: UnrealPak executed in 2.000417 seconds
+Took 2.30s to run UnrealPak.exe, ExitCode=0
+Running UnrealPak with arguments: "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -CreateGlobalContainer="F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsServer\MMORPG\Content\Paks\global.utoc" -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\ue.projectstore" -CookedDirectory="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer" -Commands="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt" -patchpaddingalign=2048 -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken   -cryptokeys="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\MMORPG\Metadata\Crypto.json" -compressionMinBytesSaved=1024 -compressionMinPercentSaved=5 -WriteBackMetadataToAssetRegistry=Disabled -platform=Windows  -unattended
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -CreateGlobalContainer="F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsServer\MMORPG\Content\Paks\global.utoc" -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\ue.projectstore" -CookedDirectory="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer" -Commands="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt" -patchpaddingalign=2048 -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken   -cryptokeys="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\MMORPG\Metadata\Crypto.json" -compressionMinBytesSaved=1024 -compressionMinPercentSaved=5 -WriteBackMetadataToAssetRegistry=Disabled -platform=Windows  -unattended
+OodleDataCompression: Display: Oodle v2.9.16 format for pak/iostore with method=Kraken, level=4=Normal
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogPakFile: Display: ProjectDir: F:/UE/LyraDocLabs/MMORPG/
+LogIoStore: Display: ==================== IoStore Utils ====================
+LogIoStore: Display: Parsing crypto keys from a crypto key cache file 'F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer\MMORPG\Metadata\Crypto.json'
+LogIoStore: Display: Container signing - DISABLED
+LogIoStore: Display: Directory index - ENABLED
+LogIoStore: Display: Using compression format 'Oodle'
+LogConfig: Display: Read in platform Windows ini files took 0.02 seconds
+LogIoStore: Display: Using memory mapping alignment '16384'
+LogIoStore: Display: Using compression block size '65536'
+LogIoStore: Display: Using compression block alignment '2048'
+LogIoStore: Display: Using compression min bytes saved '1024'
+LogIoStore: Display: Using compression min percent saved '5'
+LogIoStore: Display: Using max partition size '0'
+LogIoStore: Display: Not using DDC for compression
+LogIoStore: Display: Container metadata disabled
+LogIoStore: Display: Using command list file: 'E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt'
+LogIoStore: Display: Selected Oodle level 4 (Normal) from command line for shaders
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenStore: Display: Opening oplog MMORPG.e5f11b78 / WindowsServer
+LogIoStore: Display: Fetched 571 oplog items from Zen in 1.55 seconds
+LogIoStore: Display: Parsed 571 oplog items 0.01 seconds, 3893 chunks
+LogIoStore: Display: Loaded 568 chunk hashes from Zen in 0.00 seconds, 568 hashes updated in 0.00 seconds
+LogIoStore: Display: Searching for cooked assets in folder 'F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsServer'
+LogIoStore: Display: Found '0' files
+LogIoStore: Display: Creating container targets...
+LogIoStore: Display: Processing shader libraries, compressing with Oodle Mermaid, level 4 (Normal)
+LogIoStore: Display: Shader library chunk override is disabled
+LogIoStore: Display: Shaders processed in 0.00 seconds
+LogIoStore: Display: Initialized WriteRequestManager with MaxConcurrentSourceReads=6 (12 cores), MaxSourceBufferMemory=3072MiB
+LogIoStore: Display: Processing redirects...
+LogIoStore: Display: Creating disk layout...
+LogIoStore: Display: Ordered 568 packages using fallback bundle order
+LogIoStore: Display: Disabled WriteRequestManager memory throttling, MaxConcurrentSourceReads=6 (12 cores)
+LogIoStore: Display: Writing container(s)...
+LogIoStore: Display: Writing and compressing took 0.54 seconds, writes to disk took 0.05 seconds for 109,174,448 bytes @ 2,226,232,626 bytes per second.
+LogIoStore: Display: global: Found perfect hashmap for 1 items.
+LogIoStore: Display: MMORPG-WindowsServer: Found perfect hashmap for 569 items.
+LogIoStore: Display: Finalize took 0.1 seconds for 2 writers to write 85,570 bytes, 942,381 bytes per second
+LogIoStore: Display: Writing tocs... [Physical: 393 MiB, Virtual: 3148 MiB]
+LogIoStore: Display: 568 / 570 hashes were loaded from the hash database, by type:
+LogIoStore: Display:     ExportBundleData           568
+LogIoStore: Display: 568 / 570 chunks attempted to compress, by type:
+LogIoStore: Display:     ExportBundleData           568 / 568
+LogIoStore: Display:     ScriptObjects              0 / 1
+LogIoStore: Display:     ContainerHeader            0 / 1
+LogIoStore: Display: Source bytes read:
+LogIoStore: Display:     Zen:                        118,672,593
+LogIoStore: Display:         ExportBundleData        118,672,593 bytes over 568 reads
+LogIoStore: Display:     Loose File:                           0
+LogIoStore: Display:     Memory:                               0
+LogIoStore: Display: Calculating stats...
+LogIoStore: Display:
+LogIoStore: Display: Container Summary
+LogIoStore: Display: ==================
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Flags      Chunk(s) #       TOC (KiB)       Raw Size (MiB)           Size (MiB)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                         global  -/-/-/-/-               1            0.80                 3.24                 3.24 -
+LogIoStore: Display:           MMORPG-WindowsServer  C/-/-/I/-             569           82.77               113.44               100.88 (11.08% Oodle)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                          Total                        570           83.56               116.68               104.12
+LogIoStore: Display:
+LogIoStore: Display: ** Flags: (C)ompressed / (E)ncrypted / (S)igned) / (I)ndexed) / (O)nDemand **
+LogIoStore: Display:
+LogIoStore: Display: Compression block padding:     0.25 MiB
+LogIoStore: Display:
+LogIoStore: Display: Container Directory Index
+LogIoStore: Display: ==========================
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Size (KiB)
+LogIoStore: Display: ----------------------------------------------
+LogIoStore: Display:                         global            0.00
+LogIoStore: Display:           MMORPG-WindowsServer           28.73
+LogIoStore: Display:
+LogIoStore: Display: Container Patch Report
+LogIoStore: Display: ========================
+LogIoStore: Display:
+LogIoStore: Display:                      Container          Total #       Modified #          Added #   Modified (MiB)      Added (MiB)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                         global                1                0                0             0.00             0.00
+LogIoStore: Display:           MMORPG-WindowsServer              569                0              569             0.00           100.63
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:
+LogIoStore: Display: PackageStore
+LogIoStore: Display: =============
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Size (KiB)      Packages #     Localized #
+LogIoStore: Display: ------------------------------------------------------------------------------
+LogIoStore: Display:           MMORPG-WindowsServer              14             568               0
+LogIoStore: Display: ------------------------------------------------------------------------------
+LogIoStore: Display:                          Total              14             568               0
+LogIoStore: Display:
+LogIoStore: Display:
+LogIoStore: Display: Input:       568 Packages
+LogIoStore: Display: Input:         0   B UExp
+LogIoStore: Display: Input:    113.18 MiB UAsset
+LogIoStore: Display: Input:         0   B UBulk
+LogIoStore: Display: Input:         0   B for 0 Global shaders
+LogIoStore: Display: Input:         0   B for 0 Shared shaders
+LogIoStore: Display: Input:         0   B for 0 Unique shaders
+LogIoStore: Display: Input:         0   B for 0 Inline shaders
+LogIoStore: Display:
+LogIoStore: Display: Output:      643 Imported package entries
+LogIoStore: Display: Output:      351 Packages without imports
+LogIoStore: Display: Output:        0 Public runtime script objects
+LogIoStore: Display: Output:     3.24 MiB InitialLoadData
+LogIoStore: Display:
+LogIoStore: Display: Success
+LogPakFile: Display: UnrealPak executed in 2.267706 seconds
+Took 2.55s to run UnrealPak.exe, ExitCode=0
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\FinalCopy_ServerWin64_UFSFiles.txt, NumItems: 2779
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\FinalCopy_ServerWin64_NonUFSFiles.txt, NumItems: 33
+DumpManifest: E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\FinalCopy_ServerWin64_NonUFSFilesDebug.txt, NumItems: 6
+Copying NonUFSFiles to staging directory: F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsServer
+Copying DebugFiles to staging directory: F:\UE\LyraDocLabs\MMORPG\Saved\StagedBuilds\WindowsServer
+Stage command time: 86.03 s
+********** STAGE COMMAND COMPLETED **********
+BuildCookRun time: 87.48 s
+BUILD SUCCESSFUL
+AutomationTool executed for 0h 1m 28s
+AutomationTool exiting with ExitCode=0 (Success)

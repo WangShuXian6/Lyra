@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-13T16:47:19.710993+00:00",
+  "engine": "UE 5.8.1",
+  "media": [
+    {
+      "source": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/backend-health.txt",
+      "publicPath": "/blueprints/mmorpg/backend-health.txt",
+      "sourceAsset": "/Game/Tutorial/BP_BackendHealth.BP_BackendHealth",
+      "graph": "EventGraph",
+      "nodes": 4,
+      "evidence": "verification/backend-health-roundtrip.json",
+      "kind": "native-node-text",
+      "origin": "Original tutorial graph authored and exported with UE native APIs",
+      "bytes": 17581,
+      "sha256": "16fb6cdc9f0cc761f08cd1b25926aedbbc9394b335b7e7ae130f1e98588c4c7a"
+    },
+    {
+      "source": "F:/UE/LyraDocLabs/MMORPG/Saved/TutorialBlueprints/mmo-character-animgraph.txt",
+      "publicPath": "/blueprints/mmorpg/mmo-character-animgraph.txt",
+      "sourceAsset": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter",
+      "graph": "AnimGraph",
+      "nodes": 2,
+      "totalGraphNodes": 3,
+      "preservedOutputPoseNode": true,
+      "evidence": "verification/mmorpg-animation-assets.json",
+      "kind": "native-node-text",
+      "origin": "Original tutorial graph authored and exported with UE native APIs",
+      "bytes": 7080,
+      "sha256": "8bd5f8e10f913bfa1f25b7e2bc23f5de1fbed0885bcba7985e59f3a4b64d565c",
+      "validatedAt": "2026-09-13T16:45:11.334Z",
+      "validationProcessId": 30180,
+      "originalNodeGuidsPreserved": true
+    },
+    {
+      "source": "F:/UE/LyraDocLabs/MMORPG/Saved/TutorialBlueprints/mmo-unarmed-locomotion.txt",
+      "publicPath": "/blueprints/mmorpg/mmo-unarmed-locomotion.txt",
+      "sourceAsset": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed",
+      "graph": "Locomotion",
+      "nodes": 5,
+      "totalGraphNodes": 6,
+      "preservedOutputPoseNode": true,
+      "evidence": "verification/mmorpg-animation-assets.json",
+      "kind": "native-node-text",
+      "origin": "Original tutorial graph authored and exported with UE native APIs",
+      "bytes": 27287,
+      "sha256": "38f3c92510d1c81e9af59694a82e45c69db2738e54ea6525fdd9031aed69293b",
+      "validatedAt": "2026-09-13T16:45:11.334Z",
+      "validationProcessId": 30180,
+      "originalNodeGuidsPreserved": true
+    }
+  ],
+  "screenshotScope": "Graph screenshots are recorded separately in source-evidence/mmorpg-graph-captures.json. This strict validation preserves original Graph/Node GUIDs; prior capture timestamps and captured asset hashes remain historical evidence."
+}

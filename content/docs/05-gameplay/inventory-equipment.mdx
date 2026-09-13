@@ -1,0 +1,68 @@
+---
+title: Inventory、Equipment 与 QuickBar
+description: 用一把步枪串起物品定义、运行实例、装备技能、快捷栏与复制通知。
+---
+
+## 学习目标与前置条件
+
+前置：AbilitySet、网络权限。目标是区分“拥有某个物品”与“当前身体已装备它”。依据本机 Inventory、Equipment 源码与步枪资产，核对于 2026-09-13，UE 5.8.1。
+
+| 对象 | 负责什么 | 步枪实例 |
+|---|---|---|
+| InventoryItemDefinition | 名称与可组合碎片配置 | `/ShooterCore/Weapons/Rifle/ID_Rifle` |
+| InventoryItemInstance | 某件物品的运行数据 | 可变标签计数等状态 |
+| EquipmentDefinition | 装备类、授予技能、生成 Actor | `/ShooterCore/Weapons/Rifle/WID_Rifle` |
+| EquipmentInstance | 已装备物品的运行表现 | 当前武器与生成对象 |
+| QuickBarComponent | 槽位选择、装备/卸装协调 | 切换当前持有武器 |
+
+这些对象不能互相替代。UI 显示一个图标不表示服务器已创建物品实例；有背包实例也不表示武器技能已授予。
+
+## 操作步骤
+
+1. 打开 ID_Rifle，在 Fragments 查看图标、统计值和 EquippableItem 等实际碎片；沿装备碎片找到 WID_Rifle。
+2. 查看 WID_Rifle 的 AbilitySetsToGrant、InstanceType、ActorsToSpawn，记录骨骼插槽和生成类。
+3. Rider 在 `ULyraInventoryManagerComponent::AddItemDefinition`、`ULyraQuickBarComponent::EquipItemInSlot`、`ULyraEquipmentManagerComponent::EquipItem` 设置断点。
+4. 在实验地图拾取并切换武器，比较 InventoryInstance 与 EquipmentInstance。检查装备技能的 SourceObject 如何指回装备上下文。
+5. 卸装后观察 AbilitySet 的授予句柄回收以及生成 Actor 清理；不要只确认枪模型消失。
+
+### 从 Class Defaults 追到完整装备配置
+
+先展开 Content Browser 的 ShooterCore Content → Weapons → Rifle，双击 **ID_Rifle** 并单击 **Class Defaults**。在 Details 搜索 `Fragments`，逐条展开，找到 Equippable Item 碎片的 **Equipment Definition**，沿引用定位 `WID_Rifle`；再查看 Set Stats 碎片的 **Initial Item Stats**。后者是一张 GameplayTag 到整数的初值表；运行时弹匣数量存在 InventoryItemInstance，不能用定义资产中的初值证明某次开火是否扣弹。
+
+双击 **WID_Rifle**，同样选择 Class Defaults。清空搜索后，依次展开 **Instance Type**、**Ability Sets To Grant**、**Actors To Spawn**。在一条生成记录中同时查看 **Actor To Spawn**、**Attach Socket** 和 **Attach Transform**。点击 AbilitySet 的放大镜打开技能集，确认装备授予内容与角色默认能力不是同一个来源。
+
+阅读阶段不保存官方定义。要做换武器实验，先在训练 Feature 的 Weapons 文件夹复制需要修改的 ID/WID，并把复制的 ID 碎片改指向复制的 WID。两者都是定义蓝图，修改后分别 **Compile → 检查结果 → Save**；技能集数据资产只需 Save。关闭再重开 ID，沿碎片追到 WID，检查没有漏回原定义。最后通过服务器认可的拾取或授予流程获得该物品，运行时再观察快捷栏、装备实例和武器 Actor。
+
+![步枪库存定义与初始弹药，真实原生配置面板](/media/configuration/training/inventory-definition.png)
+
+图源：`/ShooterCore/Weapons/Rifle/ID_Rifle`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。ID_Rifle 的 Equippable Fragment 引用 WID_Rifle；Set Stats Fragment 定义 30 发容量、30 发初始弹匣与 60 发备用弹药。
+
+![步枪装备定义与生成挂点，真实原生配置面板](/media/configuration/training/equipment-definition.png)
+
+图源：`/ShooterCore/Weapons/Rifle/WID_Rifle`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。WID_Rifle 授予 AbilitySet_ShooterRifle，生成 B_Rifle 并挂接 weapon_r；图中同时展开相对挂接变换。
+
+## 物品创建与复制
+
+`FLyraInventoryList::AddEntry(ItemDef, StackCount)` 要求 Owner 具有 Authority，创建实例并调用各碎片的 `OnInstanceCreated`，最后标记 FastArray 项已变化：
+
+```cpp
+NewEntry.StackCount = StackCount;
+Result = NewEntry.Instance;
+MarkItemDirty(NewEntry);
+```
+
+完整代码在 `Source/LyraGame/Inventory/LyraInventoryManagerComponent.cpp`。FastArray 的 PreReplicatedRemove、PostReplicatedAdd、PostReplicatedChange 在接收端组织变化通知；另外还要正确处理 UObject 子对象复制。只在数组里增删指针不等于网络端完整接收到实例。
+
+`BroadcastChangeMessage` 携带 InventoryOwner、Instance、NewCount、Delta。订阅者要根据拥有者过滤，避免分屏玩家看到另一背包的变化。
+
+## 本机实现边界
+
+`FLyraInventoryList::AddEntry(ULyraInventoryItemInstance*)` 当前直接调用 `unimplemented()`。因此不能把公开可见的 `AddItemInstance` 当作已完成的物品转移接口。教程实战应走已实现的定义创建路径，或另行实现并验证转移语义。
+
+默认背包也不是完整 MMORPG 背包：容量、堆叠策略、持久 ID、跨容器移动、交易与数据库事务需要明确设计。把整个 UObject 序列化到数据库不是推荐的协议边界；持久层使用稳定物品 ID 和数值，运行层重建实例。
+
+## 预期结果、排障与练习
+
+拾取产生背包实例，切槽产生装备实例并授予技能，卸装回收该装备拥有的能力。模型有了却不能射击时，查装备 AbilitySet 与 InputTag；另一个客户端看不见枪时，查生成 Actor 和子对象复制。
+
+练习：列出掉落当前武器需要的原子步骤，以及中途失败如何避免“背包没了、世界也没生成”。概念补充见 [Epic Inventory and Equipment](https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-inventory-and-equipment-in-unreal-engine)。

@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-09-13T17:08:08.785346+00:00",
+  "editorPid": 19024,
+  "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+  "world": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange",
+  "controller": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerController_0",
+  "pawn": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_4",
+  "viewport": [
+    1920,
+    1080
+  ],
+  "qualityValues": {
+    "sg.ViewDistanceQuality": 1,
+    "sg.AntiAliasingQuality": 1,
+    "sg.ShadowQuality": 1,
+    "sg.GlobalIlluminationQuality": 1,
+    "sg.ReflectionQuality": 1,
+    "sg.PostProcessQuality": 1,
+    "sg.TextureQuality": 1,
+    "sg.EffectsQuality": 1,
+    "sg.FoliageQuality": 1,
+    "sg.ShadingQuality": 1
+  },
+  "sourceMapSha256": "8334a40e8118d1ef4d7a71152e7d5eb034ebb503e856f66a32ba491a223fb07f",
+  "scope": "Actual native single PIE viewport and applied quality values for final screenshot; not a gameplay test.",
+  "passed": true
+}

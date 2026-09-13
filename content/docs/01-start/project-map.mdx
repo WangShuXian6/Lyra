@@ -1,0 +1,53 @@
+---
+title: 工程地图：源码、资产、插件如何对应
+description: 学会从屏幕现象找到 C++ 符号、蓝图资产及其依赖，而不是按文件夹背目录。
+---
+
+## 学习目标与前置条件
+
+完成一次 PIE 观察后，本章建立最常用的导航方法。资料来自本机 `Source`、`Plugins` 和 `Config`，核对于 2026-09-13，适用 UE 5.8.1。
+
+| 位置 | 保存什么 | 先看什么 |
+|---|---|---|
+| `Source/LyraGame` | 运行时基础框架 | GameModes、Character、AbilitySystem |
+| `Source/LyraEditor` | 编辑器扩展与校验 | 资产校验和编辑器工具 |
+| `Content` | 跨玩法共享蓝图、美术与 UI | Input、Characters、System、UI |
+| `Plugins/GameFeatures` | 组合式玩法和地图 | ShooterCore、ShooterMaps、TopDownArena |
+| `Plugins/CommonGame` | 本地玩家 UI 策略与根布局 | GameUIPolicy、PrimaryGameLayout |
+| `Plugins/UIExtension` | 按标签注册 UI 插槽和内容 | UIExtensionSystem、UIExtensionPointWidget |
+| `Plugins/GameplayMessageRouter` | 游戏实例内的类型化消息 | GameplayMessageSubsystem |
+| `Config` | 启动类、资产扫描、输入、标签 | DefaultEngine、DefaultGame、DefaultInput |
+
+## 操作步骤：以步枪为线索
+
+1. 搜索 `/ShooterCore/Weapons/Rifle/ID_Rifle`。打开 Class Defaults，找到碎片列表；再打开装备碎片引用的装备定义。
+2. 打开 `/ShooterCore/Weapons/Rifle/WID_Rifle`，查看 `Instance Type`、`Ability Sets To Grant` 和 `Actors To Spawn`。记录实际引用。
+3. 在 Rider 搜索 `ULyraEquipmentDefinition`。确认它是存储定义的 UObject 类，和运行中的 `ULyraEquipmentInstance` 是不同对象。
+4. 查 `ULyraQuickBarComponent::EquipItemInSlot`，看背包物品如何转成装备；查 `ULyraEquipmentManagerComponent::EquipItem`，看组件如何应用装备。
+5. 在资产右键菜单打开 Reference Viewer，观察谁引用步枪、步枪又依赖哪些技能与美术。先学会读一个小子图，再看整个插件。
+
+## C++、蓝图与数据资产的分工
+
+下面是本机装备定义的真实字段节选，声明于 `Source/LyraGame/Equipment/LyraEquipmentDefinition.h`：
+
+```cpp
+UPROPERTY(EditDefaultsOnly, Category=Equipment)
+TSubclassOf<ULyraEquipmentInstance> InstanceType;
+
+UPROPERTY(EditDefaultsOnly, Category=Equipment)
+TArray<TObjectPtr<const ULyraAbilitySet>> AbilitySetsToGrant;
+```
+
+`UPROPERTY` 让编辑器和反射系统看到数据；`EditDefaultsOnly` 说明在类默认对象上配置。字段不是“已经发生装备”的证明，执行行为仍要沿 `EquipItem` 查找。教程中的节选用于阅读定位；向其他模块复制完整类时，还要处理模块导出宏、头文件和依赖。
+
+## 资产路径的三种写法
+
+`/Game/Characters/Heroes/Abilities/GA_Hero_Jump` 是包路径；加 `.GA_Hero_Jump` 指蓝图资产对象；加 `.GA_Hero_Jump_C` 通常指其生成类。错误地把对象路径传给期待类的字段，是迁移时常见的加载失败原因。优先在编辑器里使用资产选择器和 Copy Reference。
+
+搜索 C++ 使用符号名；搜索内容使用包名；搜索跨插件依赖用 Reference Viewer 和 `.uplugin`。不把 `.uasset` 当文本替换，也不从二进制中的字符串猜图节点连接。
+
+## 预期结果、排障与练习
+
+你应能为一个行为写出“资产配置、原生父类、运行时实例、拥有它的组件”四项。看到蓝图图表为空时先检查父类、Class Defaults 和组件，空图不代表没有行为。
+
+练习：用相同办法找到一次换弹。分别记录输入资产、输入标签、技能、弹药存储位置。答案会在[背包与装备](/docs/05-gameplay/inventory-equipment)和[开火链](/docs/05-gameplay/weapons)中串起来。

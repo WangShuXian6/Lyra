@@ -1,0 +1,55 @@
+---
+title: 从开火键到命中反馈
+description: 按真实 RangedWeapon 调用链拆解射线、TargetData、提交技能和命中标记。
+---
+
+## 学习目标与前置条件
+
+前置：装备与预测。目标是用一发子弹把输入、武器、GAS 和 UI 串联起来。源码核对于 2026-09-13，UE 5.8.1；网络安全边界按本机实际实现说明。
+
+## 一发子弹的检查路线
+
+```text
+IA_Weapon_Fire → InputConfig / InputTag → 武器授予的 GA
+  → StartRangedWeaponTargeting
+  → PerformLocalTargeting → TraceBulletsInCartridge
+  → TargetData → OnTargetDataReadyCallback
+  → CommitAbility → OnRangedWeaponTargetDataReady
+  → 伤害 Effect / 表现 / 命中确认
+```
+
+`/Game/Weapons/GA_Weapon_Fire` 是已核对的共享技能资产，具体武器可以引用或派生相关技能。最终 GE 应用与表现需继续查看实际蓝图实现，不能把上图当作所有武器都完全相同的调用栈。
+
+## 操作步骤
+
+1. 在当前装备 AbilitySet 中找到开火技能，打开其父类与 EventGraph。核对网络策略、费用和输入标签。
+2. Rider 打开 `Source/LyraGame/Weapons/LyraGameplayAbility_RangedWeapon.cpp`，在 `StartRangedWeaponTargeting` 设置断点。
+3. 查看 `PerformLocalTargeting` 得到的起点、瞄准方向、最大伤害距离；在 `TraceBulletsInCartridge` 观察一发霰弹如何包含多个子弹方向。
+4. 查看 `OnTargetDataReadyCallback` 的数据、预测窗口与 CommitAbility 返回值。按住连射时不要把每个输入帧都误认为成功提交一发。
+5. 查 `LyraWeaponStateComponent` 的未确认命中标记与 `ClientConfirmTargetData`，对照所属客户端的准星反馈。
+
+## 命中数据不只是一个 Actor
+
+本机创建 `FLyraGameplayAbilityTargetData_SingleTargetHit`，保存 HitResult 与 CartridgeID，并添加到 TargetData。HitResult 可以包含位置、法线、物理材质等，供伤害上下文和表现使用。射线检测也可能有 Sweep 兜底和去重，具体以该函数为准。
+
+关键提交节选：
+
+```cpp
+if (bIsTargetDataValid && CommitAbility(CurrentSpecHandle,
+    CurrentActorInfo, CurrentActivationInfo))
+{
+    // 本机函数随后更新武器状态，并调用蓝图扩展事件。
+}
+```
+
+这里只展示条件结构；内部行为请读完整函数。本机 `bIsTargetDataValid = true`，并未在此实现生产级命中验证。不要把“服务器收到数据”误写为“服务器已经独立验证射线”。
+
+## 换弹与武器实例
+
+`ULyraRangedWeaponInstance` 承载射击相关配置和状态；InventoryInstance 的标签计数可参与弹药管理。先找到技能使用的 SourceObject 和装备关联，再查看弹夹与备用弹药。直接改 HUD 文本不能补充弹药；修改错误的实例也不会影响正在使用的枪。
+
+## 预期结果、排障与练习
+
+应能记录一次按键到底有没有提交技能、命中哪个对象、在哪台机器应用伤害。能看见火花却不掉血时，依次检查命中目标 ASC、伤害 EffectSpec、队伍规则和免伤标签。准星重复命中提示时检查预测表现与确认表现是否重复添加。
+
+练习：分别测试墙体、友军、敌人和射程外目标。每项记录本地检测、服务器结果与 UI；再写出新增近战武器时哪些装备/能力机制可复用，哪些射线规则需要重新设计。

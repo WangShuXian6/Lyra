@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-13",
+  "passed": true,
+  "scope": "Read-only dependency completeness review of the two actual tar.gz archives. Entry-point source was read from the archives, repository-relative helper calls and required configuration/contracts were followed, and every internally manifested file was checked for byte count and SHA-256 equality.",
+  "method": "Python tarfile read-only access, in-memory manifest/hash checks, source inspection, and read-only archive SHA-256 calculation. No extraction, package generation or experiment execution was performed.",
+  "archives": [
+    {
+      "path": "public/downloads/lyra-mmorpg-examples.tar.gz",
+      "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
+      "archiveFileCount": 265,
+      "internalManifestFileCount": 264,
+      "manifestItselfExcludedFromInternalFileList": true,
+      "originalAssetCount": 31,
+      "allManifestedBytesAndHashesMatch": true,
+      "literalSiblingScriptReferencesChecked": 32,
+      "missingLiteralSiblingScriptReferences": [],
+      "reviewedDependencyChains": [
+        "prepare-labs.ps1 -> examples/MMORPG skeleton, dependencies.json, four locally copied official plugins and the engine Manny template directory manifest",
+        "Backend Build/Start/Stop/Initialize/Test-BackupRestore -> Common.ps1, migrations 001/002, Program/module rules and ThirdParty dependency configuration",
+        "Package-Lab.ps1 -> Test-ClientBoundaries.ps1, original UI/configuration, localization outputs and required externally built Unreal tools",
+        "Invoke-Smoke.ps1 and Invoke-RenderedShowcase.ps1 -> Start-Lab.ps1, Stop-Lab.ps1, backend start/stop helpers, Read-TaggedAbilityInputs.ps1, Read-TaggedAbilityDispatch.ps1, Test-MovementBaseLogs.ps1 and Test-StagedPresentation.ps1",
+        "Build-Localization.ps1 -> translate-localization.py, ui-designer-strings.json, localization-runtime-zh-Hans.json and five MMO localization INI files",
+        "prepare_content.py and native Designer builder -> ui-designer-contract.json and ui-designer-strings.json",
+        "validate-existing-content.py -> validate-animation.py and validate-health-cook-label.py"
+      ],
+      "requiredRepositoryDependencyOmissionsFound": []
+    },
+    {
+      "path": "public/downloads/lyra-training-examples.tar.gz",
+      "sha256": "9072ee99104e955ef3afa47f8eed4cb480c5fe8c1fe0445ca33af55fe3c9f866",
+      "archiveFileCount": 53,
+      "internalManifestFileCount": 52,
+      "manifestItselfExcludedFromInternalFileList": true,
+      "originalAssetCount": 0,
+      "allManifestedBytesAndHashesMatch": true,
+      "literalSiblingScriptReferencesChecked": 0,
+      "missingLiteralSiblingScriptReferences": [],
+      "reviewedDependencyChains": [
+        "prepare-labs.ps1 -Lab Training -> local official Lyra project plus original LyraTraining additions, without requiring the MMORPG archive",
+        "prepare_training.py -> original LyraDocTools Editor bridge and locally copied official Lyra assets",
+        "package-training.ps1 -> TrainingRange runtime verification source, descriptor and TutorialWindowsSM6.ini",
+        "verify-training-blueprints.py -> jump-event-graph.txt, dash-direction.txt and root-layout-registration.txt with explicit official source attribution",
+        "verify-training-prepare.py -> the archived original preparation script and its synchronized lab copy"
+      ],
+      "requiredRepositoryDependencyOmissionsFound": []
+    }
+  ],
+  "boundaries": {
+    "officialLocalDependenciesCountedAsMissing": false,
+    "thirdPartyBinaryDownloadsOrUEBuildOutputsRequiredInsideArchive": false,
+    "ueOrMcpCalled": false,
+    "ubtExecuted": false,
+    "backendStartedOrTested": false,
+    "databaseReadOrChanged": false,
+    "packageRegenerated": false,
+    "freshHostReplayExecuted": false,
+    "freshHostReplayInScope": false,
+    "trainingFinalPackageAndRuntimeReports": "Pending at review time; dependency completeness does not mark these runtime checks as passed.",
+    "snapshotOnly": "The findings apply to the exact archive SHA-256 values above. A later package refresh requires a separate current-archive check.",
+    "selfReference": "This report is external to the reviewed archives and must not be inserted into those same reviewed snapshots."
+  }
+}

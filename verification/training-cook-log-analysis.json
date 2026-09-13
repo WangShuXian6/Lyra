@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "sourceReport": "verification/training-cook.json",
+  "log": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-121150-a249eb\\training-cook.log",
+  "logSha256": "a64ebeef589766cba78f1de10f0331f4c188abf0c85def603fd9b81711dbc4c5",
+  "analyzedAt": "2026-09-13T12:39:27.5080907Z",
+  "exitCode": 0,
+  "summary": "Success - 0 error(s), 299 warning(s)",
+  "packages": "Packages Cooked: 3867, Packages Incrementally Skipped: 0, Packages Skipped by Platform: 220, Total Packages: 4087",
+  "warningsByCategory": [
+    {
+      "count": 2,
+      "category": "LogAudio"
+    },
+    {
+      "count": 297,
+      "category": "LogTextLocalizationResource"
+    }
+  ],
+  "commandletDuration": "Execution of commandlet took:  22m 44s (1364.09 seconds), PeakPhysMemoryMB=8055 MB, PeakVirtMemoryMB=8103 MB",
+  "scope": "Read-only extraction from the completed native Cook log. Does not assert packaged executable runtime verification."
+}

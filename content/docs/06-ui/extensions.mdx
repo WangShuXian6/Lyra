@@ -1,0 +1,72 @@
+---
+title: UIExtension：让玩法提供自己的 HUD 内容
+description: 学习按标签和上下文把 UI 插入布局，并正确注销句柄。
+---
+
+## 学习目标与前置条件
+
+前置：CommonGame 根布局。目标是添加玩法 HUD 时，不需要让基础布局引用每个 Game Feature 的具体 Widget。源码核对于 2026-09-13，UE 5.8.1。
+
+UI 层管理整页界面的激活顺序；UIExtension 管理某个布局插槽由哪些内容填充。它们解决不同问题。一个 ShooterHUDLayout 可以被压入游戏层，同时其内部插槽接收武器、队伍或能力提供的 Widget。
+
+## 操作步骤
+
+1. 打开 `/ShooterCore/UserInterface/W_ShooterHUDLayout`，在 Designer 找 UIExtensionPointWidget，记录 ExtensionPointTag、匹配方式和接受的数据类型。
+2. 打开 `/ShooterCore/Experiences/LAS_ShooterGame_StandardHUD`，分别观察 Layout 请求和 Widgets 条目。
+3. Rider 打开 `Source/LyraGame/GameFeatures/GameFeatureAction_AddWidget.cpp`。文件名是单数，类名是 `UGameFeatureAction_AddWidgets`。
+4. 在 `AddWidgets` 查看本地玩家与 HUD 上下文，再在 `RemoveWidgets` 查看布局停用和扩展句柄注销。
+5. 回看[跳跃蓝图](/docs/03-character/jump-blueprint)中的 OnAbilityAdded / OnAbilityRemoved，比较技能自己管理扩展与 Experience 管理扩展两种生命周期。
+
+### 配对查看动作配置和 Designer 插槽
+
+双击 ShooterCore Content → Experiences → **LAS_ShooterGame_StandardHUD**。在 Data Asset Details 展开 Actions，找到 **Add Widgets**，继续展开 **Layout** 和 **Widgets**。Layout 的一行包含 `Layout Class` 与 `Layer ID`；Widgets 的一行包含 `Widget Class` 与 `Slot ID`。把两组完整字段记录下来，不能只截最外层的 Add Widgets 名称。
+
+沿布局引用打开 **W_ShooterHUDLayout**，切到 Designer，在 Hierarchy 选中一个 `UIExtensionPointWidget`。在 Details 检查 **Extension Point Tag**、**Extension Point Tag Match**、**Data Classes**；源码属性分别为 `ExtensionPointTag`、`ExtensionPointTagMatch`、`DataClasses`。选择一个能与上述 Widgets 行的 Slot ID 对应的扩展点，记录双方标签以及控件位置。这里读取的是原 Lyra 的 UIExtension 配置，不是后续 MMORPG 新增的 MVVM 数据绑定面板。
+
+本节对照只读原资产。若制作训练场自己的 HUD，先复制 Layout 与 ActionSet，修改 ActionSet 引用后点 Save；修改 Widget Designer 或图表后须 Compile → 检查 Compiler Results → Save。重新打开两份副本确认引用，再让自己的 Experience 使用该 ActionSet。预期是训练 HUD 只添加一次，退出玩法后相应注册被注销。
+
+![HUD ActionSet 的层与扩展点配置，真实原生配置面板](/media/configuration/training/hud-actionset.png)
+
+图源：`/ShooterCore/Experiences/LAS_ShooterGame_StandardHUD`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。一个 Layout 进入 UI.Layer.Game；11 个 Widget 扩展项按 HUD.Slot.* 插入布局，图中展开了前五项。
+
+![HUD 装备扩展点的真实 Designer 配置，真实原生配置面板](/media/configuration/training/hud-extension.png)
+
+图源：`/ShooterCore/UserInterface/W_ShooterHUDLayout`，UE 5.8.1，2026-09-13，原生 Slate 截图（2100 × 1000，未裁剪或重采样）。Designer 中选择 ExtensionPoint_Equipment，按 Extension 过滤 Details：标签 HUD.Slot.Equipment，Exact Match，Data Classes 为空。画布上的扩展占位框不是最终运行时 HUD 内容。
+
+在 Hierarchy 中选 ExtensionPoint_Equipment，Details 搜索 Extension。Extension Point Tag=HUD.Slot.Equipment、Match=ExactMatch，正好对应上图 ActionSet 中 W_QuickBar 的 Slot ID。Data Classes 0 项是此资产的实际值，不要为使图看起来完整而额外添加类型。
+
+## 实际注册与清理
+
+```cpp
+ActorData.ExtensionHandles.Add(
+    ExtensionSubsystem->RegisterExtensionAsWidgetForContext(
+        Entry.SlotID, LocalPlayer, Entry.WidgetClass.Get(), -1));
+```
+
+这段在本地玩家存在且资源已可用的路径中执行。返回句柄被保存；移除时调用 `Handle.Unregister()`。不保存句柄，就难以在 Feature 关闭或拥有者离开时精确清理自己的内容。
+
+## 匹配的三个维度
+
+| 维度 | 检查内容 |
+|---|---|
+| 标签 | ExactMatch 只匹配完全相同标签；PartialMatch 可接收子标签 |
+| 上下文 | 注册内容与插槽是否属于相同 LocalPlayer / 预期对象 |
+| 数据类型 | 插槽是否接受注册的 Widget 类或数据类型 |
+
+`UUIExtensionSubsystem` 是 **WorldSubsystem**，与 GameplayMessageSubsystem 的 GameInstance 生命周期不同。地图切换或世界销毁时不要将旧扩展句柄当作新世界的有效注册。
+
+**Data Classes 为空不等于“不接收任何 Widget”。** 本机 `Plugins/UIExtension/Source/Private/Widgets/UIExtensionPointWidget.cpp` 的 `RegisterExtensionPoint` 会先把 `UUserWidget` 加入允许类型，再追加 Details 中的 DataClasses，所以截图中的 0 项仍可接收 Widget 类。
+
+同一原生控件还会建立无指定上下文、Owning LocalPlayer，以及 PlayerState 可用后的对应注册。HUD ActionSet 使用 LocalPlayer 上下文；Jump 图的 `GetOwningActorFromActorInfo` 在此角色上返回 PlayerState，可以匹配 PlayerState 注册。排障时要逐个核对实际对象身份，不是仅比较它们是否都属于“同一个玩家”；把 Context 换成当前 Pawn 并不保证已有扩展点也注册了该 Pawn。
+
+## 新增一块训练场计分 UI
+
+在训练场 Feature 内创建计分 Widget；在自己的 HUD 插槽或已有合适插槽中选择标签；用训练场的 AddWidgets 动作注册。Widget 从消息或复制状态读取分数，并按 Context 过滤玩家。基础 W_OverallUILayout 不需要硬引用训练场计分类。
+
+若插槽本身也需要新的布局结构，在训练场的 HUDLayout 中组合它，而不是把所有模式的控件都永久塞在基础页面并不断隐藏。
+
+这是读者的扩展练习。当前配套训练场继续使用 `LAS_ShooterGame_StandardHUD`，已有运行记录验证其初始化与重生后单实例，不包含新计分 Widget 的制作、绑定或退出清理验收。
+
+## 预期结果、排障与练习
+
+进入玩法出现一次计分组件，离开后注销，再进入仍只有一个实例。内容没有出现时按标签、上下文、类型、布局激活和资源加载顺序检查。练习：设计一个装备附带的弹药 HUD，让它随装备授予与卸装回收；分别说明装备、技能和 UI 谁拥有哪个句柄。

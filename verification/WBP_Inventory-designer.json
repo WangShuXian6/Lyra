@@ -1,0 +1,89 @@
+{
+  "date": "2026-09-13T13:05:28.483Z",
+  "passed": true,
+  "saved": true,
+  "gameplayExecuted": false,
+  "asset": "/Game/UI/WBP_Inventory.WBP_Inventory",
+  "parent": "/Script/MMORPG.MMOInventoryPanel",
+  "layoutOrigin": "Saved WidgetBlueprint Designer tree; Editor-only authoring utility",
+  "localizationNamespace": "MMOUI",
+  "nativeCulture": "en",
+  "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+  "widgets": [
+    {
+      "name": "ScreenLayout",
+      "class": "/Script/UMG.Overlay",
+      "isVariable": true
+    },
+    {
+      "name": "PanelWidth",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "PanelBackground",
+      "class": "/Script/UMG.Border",
+      "isVariable": true
+    },
+    {
+      "name": "InventoryLayout",
+      "class": "/Script/UMG.VerticalBox",
+      "isVariable": true
+    },
+    {
+      "name": "Title",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "Message",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "PotionButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "PotionButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "PotionButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    },
+    {
+      "name": "CloseButtonSize",
+      "class": "/Script/UMG.SizeBox",
+      "isVariable": true
+    },
+    {
+      "name": "CloseButton",
+      "class": "/Script/UMG.Button",
+      "isVariable": true,
+      "isFocusable": true
+    },
+    {
+      "name": "CloseButtonLabel",
+      "class": "/Script/UMG.TextBlock",
+      "isVariable": true
+    }
+  ],
+  "bindings": [
+    "PlayerVM.InventoryLabel -> Message.Text"
+  ],
+  "widgetCount": 12,
+  "canvasCount": 0,
+  "bindingCount": 1,
+  "bindingMode": "Manual PlayerVM / OneWayToDestination / Immediate",
+  "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+  "viewModelName": "PlayerVM",
+  "creationType": "Manual",
+  "compilerErrors": 0,
+  "compilerWarnings": 0,
+  "reportPath": "F:/UE/LyraDocLabs/MMORPG/Saved/Evidence/WBP_Inventory-designer.json"
+}

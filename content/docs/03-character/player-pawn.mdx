@@ -1,0 +1,57 @@
+---
+title: PlayerController、PlayerState 与 Pawn
+description: 以重生为例理解对象所有权、网络角色和组件应该放在哪里。
+---
+
+## 学习目标与前置条件
+
+前置：[初始化状态链](/docs/02-architecture/initialization)。本章要解决的问题是：一个玩家死了，哪些数据应该消失，哪些应该继续存在？本机源码核对于 2026-09-13，UE 5.8.1。
+
+| 对象 | Lyra 中的主要职责 | 生命周期与网络可见性 |
+|---|---|---|
+| `ULyraLocalPlayer` | 本地用户、设置和本地 UI 入口 | 属于本机，不是复制的角色实体 |
+| `ALyraPlayerController` | 控制意图、输入后处理、拥有者操作 | 服务器与所属客户端存在；不是其他玩家的公共数据容器 |
+| `ALyraPlayerState` | ASC、属性和玩家状态 | 比单次 Pawn 存活更久；有关字段参与复制 |
+| `ALyraCharacter` | 场景中的运动、碰撞和角色组件 | 死亡重生可以替换为新 Pawn |
+
+“PlayerState 较持久”只描述游戏会话内的对象生命周期，并不等于已写入数据库，也不保证任何旅行方式都会自动保留所有数据。
+
+## 操作步骤
+
+先打开 ShooterCore Content → Game → **HeroData_ShooterGame**。这是 PawnData 数据资产，字段直接出现在 Details 中；依次展开 `Pawn Class`、`Ability Sets`、`Tag Relationship Mapping`、`Input Config`、`Default Camera Mode`。把这五项的实际引用写到笔记，使用每项旁的放大镜定位目标。角色蓝图的 Class Defaults 与 PawnData 的 Details 是两个不同窗口：PawnData 选择要生成哪一种角色，并不包含角色的 Components 树。
+
+![HeroData_ShooterGame 的原生 Details，显示角色类、技能集、标签关系、输入配置和相机](/media/configuration/training/pawn-data.png)
+
+图源：训练副本中的 `/ShooterCore/Game/HeroData_ShooterGame`，UE 5.8.1，2026-09-13，原生 Slate 截图。**Pawn Class** 为 `B_Hero_ShooterMannequin`；唯一的 **Ability Sets** 条目为 `AbilitySet_ShooterHero`；下方依次是 `TagRelationships_ShooterHero`、`InputData_Hero` 和 `CM_ThirdPerson`。保留这五条引用关系，后面才容易判断改动属于角色、技能还是输入层。
+
+1. 运行实验工程，暂停 PIE，在 World Outliner 找到自己的 PlayerController、PlayerState 和 Character。查看控制器的 PlayerState 与 Pawn 指向。
+2. Rider 打开 `Source/LyraGame/Player/LyraPlayerState.cpp`。构造函数创建 ASC，启用复制，设置 Mixed GameplayEffect 复制模式，同时创建基础属性集。
+3. 在 `ALyraPlayerState::SetPawnData` 设置断点，记录默认技能授予时机；在 PawnExtension 的 `InitializeAbilitySystem` 处观察 Owner/Avatar。
+4. 触发一次死亡重生，再检查对象地址或名字。重点观察 Pawn 改变和 ASC 的 Avatar 更新，而不是只看模型重新出现。
+5. 为新功能选择宿主：当前身体上的装备放 Pawn 相关层，本地菜单放 LocalPlayer/UI 层，需要全员了解的队伍状态通过有权限的复制状态暴露。
+
+要对比自己的角色配置，打开 `/TrainingRange/Game/HeroData_Training`，展开 Ability Sets，确认其中射击角色技能集已指向 `AbilitySet_TrainingHero`。这一修改由训练场准备步骤完成；先不要同时改 Pawn Class、Input Config 和 Camera。PawnData 编辑后单击 **Save**，关闭再重开检查引用；它没有 Blueprint Compile 按钮。预期是 Experience 仍能选到该 PawnData，而新出生角色只拥有一份训练技能集。
+
+## C++：输入最后在哪里处理
+
+`ALyraPlayerController::PostProcessInput` 的真实调用说明，ASC 并不是只在按键事件发生的瞬间处理所有技能：
+
+```cpp
+if (ULyraAbilitySystemComponent* LyraASC = GetLyraAbilitySystemComponent())
+{
+    LyraASC->ProcessAbilityInput(DeltaTime, bGamePaused);
+}
+Super::PostProcessInput(DeltaTime, bGamePaused);
+```
+
+HeroComponent 收集输入标签，ASC 缓存 Pressed/Held/Released 句柄，在这一步按激活策略统一处理。把整个 GAS 输入循环再写进 Character Tick，会产生重复处理。
+
+## 网络角色怎样影响调试
+
+同一个 Pawn 在服务器、所属客户端和其他客户端上承担不同角色。本地控制关系影响是否读取输入，Authority 决定是否能执行权威状态修改。`IsLocallyControlled()` 与 `HasAuthority()` 不是同义词；监听服务器中的主机玩家同时满足两者，因此只测试主机容易漏掉客户端问题。
+
+## 预期结果、排障与练习
+
+应该能指出 ASC Owner 与 Avatar，以及死亡后需要重新绑定的对象。远端玩家 UI 读不到对方 PlayerController 时，检查设计是否错误依赖了不在该客户端存在的对象。重生后血条不刷新时，查旧 Pawn 委托解绑和新 ASC/HealthComponent 接入。
+
+练习：为体力、当前锁定目标、聊天输入框、角色数据库 ID 选择存储层，分别写出可见对象、修改权限和保存时机。将“适合放在哪个 UObject”与“是否长期持久化”分开作答。

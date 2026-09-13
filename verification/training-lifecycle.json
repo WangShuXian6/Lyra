@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T13:46:39.410447+00:00",
+  "passed": true,
+  "status": "passed",
+  "checks": {
+    "reload_consumes_spare": true,
+    "native_overlap_weapon_pickup": true,
+    "respawn_rebinds_same_playerstate_asc": true,
+    "respawn_unique_dash_and_hud": true
+  },
+  "errors": [],
+  "method": "Native fire/reload input, navigation-guided AddMovementInput, Lyra DamageSelfDestruct",
+  "notCovered": [
+    "packaged runtime",
+    "network replication",
+    "pickup input bindings"
+  ],
+  "project": "F:/UE/LyraDocLabs/LyraTraining",
+  "world": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange",
+  "engine": "5.8.1-0+UE5",
+  "oldPawn": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_5",
+  "playerState": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerState_0",
+  "abilitySystem": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.LyraPlayerState_0.AbilitySystemComponent",
+  "ammoBeforeFire": {
+    "magazine": 12,
+    "spare": 48
+  },
+  "ammoAfterFire": {
+    "magazine": 11,
+    "spare": 48
+  },
+  "ammoAfterReload": {
+    "magazine": 12,
+    "spare": 47
+  },
+  "pickup": {
+    "spawner": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_WeaponSpawner_C_1",
+    "expectedItem": "/ShooterCore/Weapons/Rifle/ID_Rifle.ID_Rifle_C",
+    "slotsBefore": [
+      "/ShooterCore/Weapons/Pistol/ID_Pistol.ID_Pistol_C",
+      null,
+      null
+    ],
+    "path": [
+      [
+        -160.0,
+        -130.0,
+        60.0
+      ],
+      [
+        -1217.49462890625,
+        -1070.30126953125,
+        60.0
+      ]
+    ],
+    "slotsAfter": [
+      "/ShooterCore/Weapons/Pistol/ID_Pistol.ID_Pistol_C",
+      "/ShooterCore/Weapons/Rifle/ID_Rifle.ID_Rifle_C",
+      null
+    ],
+    "spawnerAvailable": false
+  },
+  "respawn": {
+    "newPawn": "/TrainingRange/Maps/UEDPIE_0_L_TrainingRange.L_TrainingRange:PersistentLevel.B_Hero_ShooterMannequin_C_7",
+    "samePlayerState": true,
+    "sameASC": true,
+    "avatarMatches": true,
+    "avatarEvidence": "Training Dash instance public GetAvatarActorFromActorInfo + GetAbilitySystemComponentFromActorInfo",
+    "dashCount": 1,
+    "activeHUDLayouts": [
+      "/Engine/Transient.LyraEditorEngine_0:B_LyraGameInstance_C_2.W_OverallUILayout_C_0.WidgetTree_0.W_ShooterHUDLayout_C_0"
+    ]
+  },
+  "completedAt": "2026-09-13T13:46:51.535408+00:00",
+  "elapsedSeconds": 12.125
+}

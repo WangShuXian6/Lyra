@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "errors": 0,
+  "warnings": 0,
+  "defaultsRetainedAfterCompile": true,
+  "asset": "/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter",
+  "mesh": "/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple.SKM_Manny_Simple",
+  "animClass": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter_C",
+  "relativeLocation": "X=0.000 Y=0.000 Z=-88.000",
+  "relativeRotation": "P=-0.000000 Y=-90.000000 R=-0.000000"
+}

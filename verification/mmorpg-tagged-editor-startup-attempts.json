@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "scope": "Fresh Editor startup for the precise AbilitySet tag migration and native configuration capture.",
+  "attempts": [
+    {
+      "startedAt": "2026-09-13T18:43:04Z",
+      "processId": 13196,
+      "passed": false,
+      "log": "F:/UE/LyraDocLabs/MMORPG/Saved/Logs/TaggedInput/1b9c392d26/editor.log",
+      "reason": "MCP plugins enabled only at launch had a module BuildId from an earlier Editor target. The native Missing Modules dialog appeared before asset migration.",
+      "assetMigrationExecuted": false,
+      "normalCloseRequested": true,
+      "processExited": true
+    },
+    {
+      "startedAt": "2026-09-13T18:46:26.1393614Z",
+      "processId": 37960,
+      "passed": true,
+      "log": "F:/UE/LyraDocLabs/MMORPG/Saved/Logs/TaggedInput/a4262595d3/editor.log",
+      "nativeRepairBuild": "verification/mmorpg-tagged-editor-toolsets-build.json",
+      "repair": "Normal UBT MMORPGEditor target with -EnablePlugin=ModelContextProtocol+ToolsetRegistry+AllToolsets rebuilt affected code and module metadata. No module BuildId was edited manually.",
+      "assetMigrationExecuted": true,
+      "assetMigrationReport": "verification/mmorpg-tagged-ability-input-assets.json"
+    }
+  ]
+}

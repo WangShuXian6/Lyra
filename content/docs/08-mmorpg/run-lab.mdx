@@ -1,0 +1,182 @@
+---
+title: 运行两个客户端并验收
+description: 按角色准入、战斗、界面和持久化四条路径验证实验，保留可复现的日志证据。
+---
+
+## 学习目标与前置条件
+
+本篇把“代码编译成功”推进到“两个独立客户端真正共享服务器状态”。需要完成 MMORPG Editor 构建、运行 `prepare_content.py`、初始化数据库，并构建和启动 Backend Program。使用本机 UE 5.8.1；以下命令中的目录按实验准备脚本实际输出调整。
+
+源码工程和产物目录分开：文档仓库保存原创源码、教程与脚本，`LyraDocLabs` 保存导入的官方插件、生成资产和构建缓存。UE 编辑器与 Rider 同时打开时，先结束 Live Coding 会话再进行完整 UBT 构建。
+
+## 启动顺序
+
+1. 启动 PostgreSQL，确认后端使用专用角色和教学数据库。
+2. 启动 Backend Program，检查健康接口和数据库迁移状态。
+3. 给游戏服务器进程设置与后端匹配的 `MMO_SERVER_SECRET`，启动 Dedicated Server。
+4. 启动两个独立游戏客户端。每个客户端分别注册账号、创建不同角色，再进入 `local-1`。
+
+开发期可以用 Editor 二进制分别启动服务器与游戏进程，不需要先等待全套发布打包：
+
+```powershell title="推荐入口：一个服务器与两个可见客户端"
+pwsh -File F:/UE/LyraDoc/scripts/mmorpg/Start-Lab.ps1
+```
+
+脚本等待游戏服务器监听 7777 且 MMOCore 场景注入完成，再打开客户端。它把服务器身份只放入服务器子进程环境，客户端明确移除 `PG*` 和 `MMO_SERVER_SECRET`；不需要在游戏进程中配置数据库。默认窗口为 1920×1080、中等画质，并在实验工程 `Saved/Logs/Interactive` 保存进程清单和本地日志。`-ClientCount 1` 可先单窗口检查；只有确认 7777 上是本实验服务器时才使用 `-UseRunningServer`。
+
+理解底层命令时，可以在两个独立终端分别启动服务器和客户端。服务器终端先运行 `. F:/UE/LyraDoc/scripts/backend/Common.ps1` 与 `Import-MMOGameServerEnvironment`；客户端使用干净终端：
+
+```powershell title="独立游戏服务器（开发验证）"
+& 'E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe' `
+  'F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject' `
+  /Engine/Maps/Entry -server -port=7777 -log
+```
+
+```powershell title="客户端 A；再启动一次作为客户端 B"
+& 'E:/UnrealEngine/Engine/Binaries/Win64/UnrealEditor.exe' `
+  'F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject' `
+  /Engine/Maps/Entry -game -windowed -ResX=1920 -ResY=1080 -ForceRes
+```
+
+这两个命令不会自动启动后端，也不会代替 `MMORPGClient`、`MMORPGServer` 的构建与 Cook 验收。发布产物必须单独检查缺失资产、默认地图和 ServerOnly 模块隔离。
+
+## 独立目标、Cook 与实际产物启动
+
+1. 保存并正常关闭编辑器，确认所有使用同一引擎的 Live Coding 会话已结束。
+2. 依次构建下方 Client、Server 两个目标；每次等 `Result: Succeeded` 后再执行下一条。源码引擎还需构建 `UnrealPak` 和 `BootstrapPackagedGame`，分别供 Pak/IoStore 打包和生成 Windows 顶层启动程序使用。首次编译需要引擎单体库，耗时与 Editor 增量构建不同，建议把构建 Intermediate 放在 SSD。
+3. 重新核对原创 UI 资产已生成，尤其 `/Game/UI/WBP_ManaStatus` 的两条绑定已编译。Packaging 中地图为 Entry，Always Cook 目录为 `/MMOCore`、`/Game/UI`、`/Game/MMO` 和 `/Game/Localization`。再完成[健康检查蓝图的显式 Cook 标签](/docs/09-mmo-ui/blueprint-workflow#为健康检查蓝图声明-cook-依赖)：`DA_TutorialExamples` 只包含 BP_BackendHealth，不包含 Tutorial/Tests 的验证副本；配置变更后重启编辑器。
+4. 执行 `scripts/mmorpg/Package-Lab.ps1`。脚本使用 UAT BuildCookRun 的 Client+Server Cook/Stage，输出 WindowsClient 与 WindowsServer 两套目录，并检查客户端不包含 libpq、libsodium、服务端私有模块或后端口令文件。
+5. 用 Stage 输出的实际两个 exe 路径运行 Invoke-Smoke；此时传入的是 cooked 原生 Client/Server，不能传 UnrealEditor.exe 冒充。等待 combat、restore、death-respawn、ui-return 四轮共八个结果完成，再检查 `verification/mmorpg-packaged-smoke.json`。随后用相同两个 exe 参数加 `-DeathLogoutOnly`，单独验证死亡等待中退出的恢复策略。
+
+```powershell title="原生 Client 与 Server 构建"
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  MMORPGClient Win64 Development `
+  -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject `
+  -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  MMORPGServer Win64 Development `
+  -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject `
+  -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  UnrealPak Win64 Development `
+  -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+& E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat `
+  BootstrapPackagedGame Win64 Shipping `
+  -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+# 首次准备源码引擎的 AutomationTool 与平台脚本模块。
+& E:/UnrealEngine/Engine/Build/BatchFiles/RunUAT.bat -CompileOnly
+if ($LASTEXITCODE -ne 0) { throw 'AutomationTool preparation failed; inspect the first build error.' }
+pwsh -File F:/UE/LyraDoc/scripts/mmorpg/Package-Lab.ps1
+```
+
+本机源码引擎已经编译 AutomationTool 和 Windows 平台脚本，并配置可用的 Windows SDK。上面的 `RunUAT.bat -CompileOnly` 是首次准备这些工具的独立步骤；执行前正常关闭共享引擎的编辑器，并等待其他构建结束。预期退出码为 0，且引擎下存在 `Engine/Binaries/DotNET/AutomationTool/AutomationTool.dll` 与 `Engine/Binaries/DotNET/AutomationTool/AutomationUtils/net10.0/AutomationUtils.Automation.dll`。工具已经就绪且没有变化时无需重复准备；缺失时执行这条命令，不能只跳过打包脚本的检查。相同前置流程见 [训练场打包工具准备](/docs/07-training/multiplayer-and-package)。
+
+`Package-Lab.ps1` 在检查程序集后使用原生 `-NoCompileUAT -NoCompile -NoAutoSDK` 参数，直接执行已有工具；这些参数不跳过资产 Cook、着色器编译、Stage 或 Pak/IoStore。它们属于后续打包阶段，**不要附加到允许工具编译的 `-CompileOnly` 准备命令**。
+
+```powershell title="已 Cook 的独立二进制验收"
+pwsh -File F:/UE/LyraDoc/scripts/mmorpg/Invoke-Smoke.ps1 `
+  -ClientExecutable F:/UE/LyraDocLabs/MMORPG/Saved/StagedBuilds/WindowsClient/MMORPG/Binaries/Win64/MMORPGClient.exe `
+  -ServerExecutable F:/UE/LyraDocLabs/MMORPG/Saved/StagedBuilds/WindowsServer/MMORPG/Binaries/Win64/MMORPGServer.exe `
+  -RestartBackendBetweenRounds
+```
+
+`Package-Lab.ps1` 的成功报告只说明 Cook、Stage 和客户端边界检查完成，`gameplayExecuted=false`；只有后续实际执行 smoke 才能说明打包产物完成账号、复制、技能、存档与 UI 返回。发布时以两份实际报告为准，不能用构建命令存在代替执行结果。
+
+图形与国际化还需要在这两个真实产物上单独验证。沿用相同路径运行：
+
+```powershell title="Cook 后的 Designer、动画、中文字体与语言重启验证"
+pwsh -File F:/UE/LyraDoc/scripts/mmorpg/Invoke-RenderedShowcase.ps1 `
+  -ClientExecutable F:/UE/LyraDocLabs/MMORPG/Saved/StagedBuilds/WindowsClient/MMORPG/Binaries/Win64/MMORPGClient.exe `
+  -ServerExecutable F:/UE/LyraDocLabs/MMORPG/Saved/StagedBuilds/WindowsServer/MMORPG/Binaries/Win64/MMORPGServer.exe
+```
+
+该模式不会给游戏程序传 `.uproject` 或 `-game`，也不读取 Editor DLL 作为产物证据。先用原生 UnrealPak 检查实际发布目录包含 `MMO.locmeta`、en/zh-Hans 的 `MMO.locres`、Roboto 和中文后备字体 DroidSansFallback；然后检查 22 张 1920×1080、中等画质的真实视口图、画质按钮后的分辨率、移动时实际 BlendSpace 节点，以及两个独立客户端的语言落盘和新进程中文/英文登录标题。结果写入独立的 `verification/mmorpg-packaged-rendered-showcase.json`，保留 Editor 开发验证报告。还需目视中文截图确认字形，不能只凭文本变量有中文就认定字体显示正常。
+
+本版 Windows 客户端使用 **DirectX 12 / Shader Model 6**，需要相应显卡与驱动。配置在 `Config/Windows/WindowsEngine.ini`：Default RHI 选 DirectX 12，D3D12 Targeted Shader Formats 仅保留 `PCD3D_SM6`，D3D11 与 Vulkan 格式列表清空。编辑器中对应 **Project Settings → Platforms → Windows**。这项选择决定 Cook 的着色器平台；设置页的 Medium 控制的是另一组运行时画质参数，仍保持十组等级为 1。首次 Cook 只编译本版实际支持的一套格式，脚本同时将 ShaderCompileWorker 限制为两进程。
+
+![新进程中的 Project Settings → Platforms → Windows，Default RHI 实际选中 DirectX 12](/media/configuration/mmorpg/project-windows-default-dx12.png)
+
+先选择默认 RHI，再展开三个 Targeted Shader Formats 分组；若有待重启提示，保存配置并正常重启编辑器后重新核对。
+
+![Windows 的完整目标格式配置：仅勾选 D3D12 SM6，D3D11 与 Vulkan 下的格式全部关闭](/media/configuration/mmorpg/project-windows-targeted-formats.png)
+
+这两张图来自读取最终配置后重新启动的 MMORPG 编辑器；逐项对照勾选状态，不能只改 Default RHI 而保留其他格式 Cook 列表。
+
+## 两客户端验收表
+
+![客户端 A 的 Designer HUD 与同场两个 Manny 角色，经验 25、法力 40，受到反击后生命为 50](/media/mmorpg/mmo-A-final-hud.png)
+
+![同一服务器的客户端 B，经验保持 0、法力保持 100，并能看到客户端 A 的 Pawn](/media/mmorpg/mmo-B-final-hud.png)
+
+2026-09-13 19:27–19:28 UTC，UE 5.8.1：两个已 Cook 的 `MMORPGClient.exe` 连接同一个 `MMORPGServer.exe`，地图 `/Engine/Maps/Entry`，场景由 `/MMOCore/MMOCore` 注入。两个 Pawn 都来自 `/Game/Tutorial/BP_MMOCharacter`，显示 UE 模板 Manny 与原创 Linked Layer AnimBP；HUD 实际加载 `/Game/UI/WBP_PlayerHUD` 和嵌套 `/Game/UI/WBP_ManaStatus`。两张原始视口图均为 1920×1080、十组中等画质。此阶段 A 仍使用初始英文、B 使用初始中文，后续再切换语言。截图轮次未使用药剂，因此 A 法力为 40、背包仍有一瓶；自动回归轮次使用了药剂，结果为法力 80，两组操作不可混为一个结果。
+
+| 场景 | 操作 | 应观察到的结果 |
+| --- | --- | --- |
+| 准入 | 两账号分别登录、建角、入服 | 后端各产生独立角色租约；服务器加载后才生成 Pawn |
+| 移动 | A 绕 B 行走 | B 看到 A 的移动；A 无法控制 B |
+| 共享目标 | A 攻击目标，B 选择同一目标 | 两端目标生命一致，目标仅由服务器扣血 |
+| 冷却 | A 连续按 2 | 每三秒至多成功一次，法力按成功施法扣减 |
+| 射程/遮挡 | A 远离目标或站到墙后 | 超出条件时不造成伤害、不额外扣费 |
+| 背包隔离 | A 击败目标 | A 获得药剂与经验；B 的背包不变 |
+| 药剂 | A 消耗法力后使用药剂 | 数量减一，法力增加且不超过 100 |
+| 玩家重生 | 普攻满血目标四次并受到反击 | Health 归零，三秒后生成新 Pawn；ASC 保留、能力数量仍为两项 |
+| 死亡时退出 | Health 归零后从设置退出，再入服 | 先保存 Health 0；新入服恢复 100 和检查点，Mana/经验/背包保留 |
+| 存档 | A 退出后重进 | A 的经验、背包、法力、位置恢复 |
+| 重启 | 正常退出两客户端，再重启后端 | 数据来自 PostgreSQL，角色状态仍可恢复 |
+| 重复使用 | 重复提交已兑换票据 | 后端拒绝重放 |
+| 断开后端 | 停止服务并触发保存 | 记录失败；不会错误释放为“已保存”状态 |
+
+## UI 验收
+
+检查登录表单的 Tab 顺序、角色下拉框、按钮可达性。进入游戏后，HUD 允许玩法与鼠标界面并行；打开背包/设置后，菜单层应接管输入；再打开退出确认，Modal 层成为最高优先级。取消后焦点应回到上一层。
+
+键鼠和手柄都需要实际操作。手柄按键映射存在并不等于所有导航已经验收；编辑器中鼠标点击成功，也不能代替焦点恢复和返回操作测试。
+
+**2026-09-13 原生输入验证：17/17 项通过。** `verification/mmorpg-native-ui-input.json` 汇总 114 次原生 Slate 输入操作及对应观察，包括 P/I、手柄 Menu/View、方向键导航、A 确认、B/Escape 返回、模态焦点恢复、退出后重新登录和角色切换。药剂通过真实按钮操作使 Mana 从 40 变为 80、背包数量从 1 变为 0，Designer 绑定随之更新。这是引擎原生键鼠/手柄事件注入，未连接物理手柄硬件。后半段 PIE 窗口因当时的画质按钮同时应用分辨率而变为 1914×1042，该部分只用于输入与生命周期验证，不计为 1920×1080 素材验收；修正后的画质与图像尺寸由独立渲染回归检查。
+
+## 日志与证据
+
+自动回归入口为 `scripts/mmorpg/Invoke-Smoke.ps1 -RestartBackendBetweenRounds`。默认用 NullRHI 启动两个独立客户端，真实完成 HTTP 登录、入服票据、共享目标伤害、GAS 消耗/冷却、背包隔离、移动复制，以及后端重启后退出重进的快照验证。第三轮通过实际 GAS 反击让两名玩家死亡，检查权威重生、同 ASC、两项能力及重生后的 Designer 绑定。第四轮调用设置面板的退出确认逻辑，再检查 OpenLevel 后登录层恢复、Game/Modal 层清空。它只把脱敏的 `MMO_SMOKE_RESULT` 写入验证 JSON；原始本地日志可能包含一次性 travel ticket，不应直接发布。
+
+`Invoke-Smoke.ps1 -DeathLogoutOnly` 使用另外一组临时账号，保留战斗获得的药剂，在真正死亡后调用 Settings → Confirm 正常离服。脚本等待实际 final save 和 release 回调，通过账号接口核对存下的 Health 确实为零，再启动新客户端检查生命 100、检查点、原法力/经验/药剂。结果写入独立的 `verification/mmorpg-death-logout.json`，不与普通三秒重生结果混用。
+
+这个无图形回归用于验证逻辑，不能代替游戏截图与 UI 导航测试。传入 `-Visible` 才运行可见图形预览；所有图形预览统一 **1920×1080、中等画质（Scalability = 1）**。脚本只给服务器进程传入服务身份，客户端环境移除 PostgreSQL 与服务器 secret；测试结束后清理本轮确切账号名单。
+
+素材采集入口为 `scripts/mmorpg/Start-Lab.ps1 -Showcase`。它创建专用教学账号与角色，通过真实 HTTP 入服，使用真实 GAS 能力攻击，再由引擎 Slate 截图 API 采集含 UMG 的 `SViewport`：登录、HUD、技能、背包、设置和模态确认。调用发生在游戏定时器中，避开当前引擎 `ProcessScreenShots` 内嵌 Slate 重绘导致的阻塞。流程结束后客户端继续停留在游戏中，便于继续实际操作；截图位于实验工程 `Saved/Screenshots/MMOShowcase/<本轮编号>`。`-RenderOffscreen` 仅隐藏窗口，仍使用真实 RHI 渲染。
+
+采集结束运行 `scripts/mmorpg/Stop-Lab.ps1 -Manifest <启动输出的进程清单>`，正常关闭本轮客户端、等待最终保存，再关闭本轮创建的服务器并删除确切的教学账号。脚本核对进程 PID、启动时间与可执行文件，避免误关其他 UE 项目。截图脚本中的程序化点击和焦点记录不等于人工键鼠/手柄导航验收，仍需单独执行上一节的操作。
+
+语言保存使用 `Invoke-RenderedShowcase.ps1` 验证。A 从英文开始最终保存简体中文，B 从中文开始最终保存英文；每个客户端拥有独立 INI。脚本随后读取磁盘，再启动不传 `-culture` 的新进程，确认登录页使用刚保存的语言。源码引擎的 `-Multiprocess` 默认禁止写配置，故这些独立配置的进程显式加 `-MultiprocessSaveConfig`；离屏预览再用 `-ForceRes` 阻止虚拟显示尺寸把视口缩小。这两项参数都在实际截图尺寸和重启测试中核验。
+
+至少保存构建目标、退出码、启动命令、后端响应、服务器准入与保存日志，以及两客户端同场截图。截图需注明是开发进程还是发布产物。蓝图图使用原生导出的节点文本和 1:1 图截图；像素缩放后的屏幕预览不能替代可读的节点原图。
+
+当前完成状态由仓库 `verification` 中的实际记录决定。若某一步因编译、资产生成或服务问题尚未执行，应记录具体阻塞和复现命令，不勾选通过。
+
+**2026-09-13 最终独立产物验收：** Editor、Client、Server 与打包工具均已原生构建。WindowsClient/WindowsServer 的 Cook 退出码为 0，随后完成 Pak/IoStore 与 Stage；`verification/mmorpg-package.json` 关联实际 Cook 日志、最终可执行文件 SHA-256，以及后续仅更新运行代码的 Stage，避免把 `-SkipCook` 误记为从未 Cook。
+
+| 最终记录（UTC） | 实际结果 | 验证报告 |
+| --- | --- | --- |
+| 19:26:04，主流程 | 8/8；战斗、后端重启后的存档恢复、两人死亡重生、UI 返回登录 | `mmorpg-packaged-smoke.json` |
+| 19:26:58，死亡期间离服 | 6/6；保存 Health 0，重新入服 Health 100、检查点位置，Mana/XP/背包保留 | `mmorpg-packaged-death-logout.json` |
+| 19:27–19:28，图形与语言 | 22 张原生 1920×1080 图、十组 Medium、双向切换及全新进程文化恢复 | `mmorpg-packaged-rendered-showcase.json` |
+| 当前授予与派发 | 14 个客户端结果均为 MMOAbilitySystemComponent、两个 Spec、唯一 Attack/Spell 标签、InputID=-1；服务器两技能实际激活 | `mmorpg-tagged-ability-input-runtime.json` |
+
+以上 JSON 位于仓库 `verification/`。主流程中 A 最终 Mana 80、XP 25、Health 50，B 观察到目标伤害与 A 的移动且自身进度不变。两人重生均替换 Pawn、保留同一 ASC，能力没有重复授予，Designer 绑定继续更新。死亡离服专用轮另检查 A 的 Mana 40、XP 25、一瓶药剂与 B 的独立状态；final save 和 release 回调均成功。
+
+最后一轮还逐个检查六个固定场景 Actor 的网络稳定名称，并要求客户端和服务器没有无法解析移动基座的日志。最初打包回归虽然玩法断言通过，却暴露了自动命名几何体的网络标识问题；该有限结果和修复记录分别保存在 `mmorpg-packaged-smoke-before-stable-zone.json`、`mmorpg-stable-zone-issue.json`，没有用它们代替最终验收。日志快照工具的一次共享读取失败也单独保留为失败记录。
+
+图形验证通过程序调用现有按钮业务，未模拟玩家的每次实际输入；原生 Slate 键鼠/手柄事件与焦点的 17 项检查另见 `mmorpg-native-ui-input.json`，它也不是实体手柄兼容性测试。八张中英代表图的实际目视记录在 `mmorpg-packaged-visual-review.json`。较早的 Editor 开发报告 `mmorpg-smoke.json`、`mmorpg-death-logout.json`、`mmorpg-rendered-showcase.json` 保留原日期和范围，当前页面游戏图使用最终打包轮次。
+
+## 常见问题与练习
+
+- **Cook 已成功，但 Stage 报 Zen readiness 超时**：先分别检查本机 Zen 健康接口和 UAT 日志。本机首次失败是 .NET 代理没有把 IPv6 URI 主机 `[::1]` 视为已有 `::1` 例外，健康请求经代理返回 502，直连则为 200。`Package-Lab.ps1` 保留现有 NO_PROXY 条目，只在本次进程及 UAT 子进程中补 localhost、127.0.0.1、::1、[::1]，结束后恢复原值。没有修改系统代理。只有确认前次 Cook 成功且资产、Cook 配置未变，才使用 `-SkipCook` 重做 Stage；本机失败和恢复链均保留在 Package 报告中。
+- **首次 DX12/SM6 启动停留在启动画面**：先查看日志是否正在编译 WorldGrid 等默认材质，并检查 ShaderCompileWorker 的 CPU、内存和系统可用内存。首次着色器缓存缺失时，主日志可能暂时不更新；仍在计算不等于死锁。等待完成后保留生成缓存，后续启动会复用它。脚本限制编译线程只控制负载，不会跳过必须生成的着色器。
+- **登录按钮报连接错误**：检查 8088 端口、后端健康状态和 `-MMOBackend=` 参数；不要去修改 UE 网络端口。
+- **连不上游戏服务器**：检查 7777 端口、服务器进程以及一次性票据是否已过期。
+- **看到空白界面**：检查 `/Game/UI/BP_MMOUIPolicy` 存在，DefaultGame.ini 指向正确类，CommonGame 的 LocalPlayer/GameInstance 配置正确。
+- **特性未就绪**：检查 `/MMOCore/MMOCore` 资产、插件发现和 Add Components 的接收者类。
+- **第二次入服提示角色正在使用**：查看前一次 final save/release 是否完成，或等待租约过期后重试。
+
+练习：让两位读者各操作一个客户端，按验收表互相观察，并把发现的差异记录为带复现步骤的缺陷。以新角色重跑整个流程，防止旧数据掩盖初始化错误。
+
+

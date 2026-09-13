@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "assets": [
+    {
+      "asset": "/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter",
+      "errors": 0,
+      "warnings": 0,
+      "inheritedHealthComponent": true,
+      "saved": true
+    },
+    {
+      "asset": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt",
+      "errors": 0,
+      "warnings": 0,
+      "blockedWhileDead": true,
+      "saved": true
+    },
+    {
+      "asset": "/Game/MMO/BP_MMOGameMode.BP_MMOGameMode",
+      "errors": 0,
+      "warnings": 0,
+      "respawnDelay": 3,
+      "saved": true
+    }
+  ],
+  "graphsReconstructed": false,
+  "date": "2026-09-13T13:53:00.818Z"
+}

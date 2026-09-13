@@ -1,0 +1,53 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" MMORPGEditor Win64 Development -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+Log file: E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Log.txt
+Executing up to 3 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (E:\UnrealEngine).
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+Invalidating makefile for MMORPGEditor (source file added)
+UHT compiled-in object format Default
+Building MMORPGEditor...
+===== Toolchain Information =====
+Using ISPC compiler (E:\UnrealEngine\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.50.35737 toolchain (D:\program\0-editer\vs\VC\Tools\MSVC\14.50.35717) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 22 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 31.82 GB physical, 31.12 GB/49.82 GB committed
+  UBA Storage capacity 40 GB
+[1/22] Compile [x64] MMOAnimationValidation.cpp [NoUba]
+F:\UE\LyraDocLabs\MMORPG\Source\MMORPG\Private\MMOAnimationValidation.cpp(40,51): error C2248: ￢ﾀﾜUSkeletalMeshComponent::GetLinkedAnimInstances￢ﾀﾝ: ￦ﾗﾠ￦ﾳﾕ￨ﾮ﾿￩ﾗﾮ private ￦ﾈﾐ￥ﾑﾘ(￥ﾜﾨ￢ﾀﾜUSkeletalMeshComponent￢ﾀﾝ￧ﾱﾻ￤ﾸﾭ￥ﾣﾰ￦ﾘﾎ)
+        for (UAnimInstance* LayerInstance : Mesh->GetLinkedAnimInstances())
+                                                  ^
+E:\UnrealEngine\Engine\Source\Runtime\Engine\Classes\Components\SkeletalMeshComponent.h(1139,37): note: ￥ﾏﾂ￨ﾧﾁ￢ﾀﾜUSkeletalMeshComponent::GetLinkedAnimInstances￢ﾀﾝ￧ﾚﾄ￥ﾣﾰ￦ﾘﾎ
+	TArray<TObjectPtr<UAnimInstance>>& GetLinkedAnimInstances() { return LinkedInstances; }
+	                                   ^
+E:\UnrealEngine\Engine\Source\Runtime\Engine\Classes\Components\SkeletalMeshComponent.h(341,7): note: ￥ﾏﾂ￨ﾧﾁ￢ﾀﾜUSkeletalMeshComponent￢ﾀﾝ￧ﾚﾄ￥ﾣﾰ￦ﾘﾎ
+class USkeletalMeshComponent : public USkinnedMeshComponent, public IInterface_CollisionDataProvider
+      ^
+[2/22] Compile [x64] MMOAnimInstance.cpp [NoUba]
+[3/22] Compile [x64] MMODeathValidation.cpp [NoUba]
+[4/22] Compile [x64] MMOExperienceGameplay.cpp [NoUba]
+[5/22] Compile [x64] MMOHealthComponent.cpp [NoUba]
+[6/22] Compile [x64] MMOInputGameplay.cpp [NoUba]
+[7/22] Compile [x64] MMOGameplay.cpp [NoUba]
+[8/22] Compile [x64] MMORPG.cpp [NoUba]
+[9/22] Compile [x64] MMORespawnGameplay.cpp [NoUba]
+[10/22] Compile [x64] MMOLocalizationValidation.cpp [NoUba]
+[11/22] Compile [x64] MMOUI.cpp [NoUba]
+[12/22] Compile [x64] Module.MMORPG.gen.cpp [NoUba]
+[13/22] Compile [x64] PerModuleInline.gen.cpp [NoUba]
+[14/22] Compile [x64] Module.MMOCore.cpp [NoUba]
+[15/22] Link [x64] UnrealEditor-MMOCore.lib [NoUba]
+  ￦ﾭﾣ￥ﾜﾨ￥ﾈﾛ￥ﾻﾺ￥ﾺﾓ F:/UE/LyraDocLabs/MMORPG/Plugins/GameFeatures/MMOCore/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMOCore/UnrealEditor-MMOCore.lib ￥ﾒﾌ￥ﾯﾹ￨ﾱﾡ F:/UE/LyraDocLabs/MMORPG/Plugins/GameFeatures/MMOCore/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMOCore/UnrealEditor-MMOCore.exp
+[16/22] Compile [x64] Module.MMODocTools.cpp [NoUba]
+[17/22] Link [x64] UnrealEditor-MMODocTools.lib [NoUba]
+  ￦ﾭﾣ￥ﾜﾨ￥ﾈﾛ￥ﾻﾺ￥ﾺﾓ F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMODocTools/UnrealEditor-MMODocTools.lib ￥ﾒﾌ￥ﾯﾹ￨ﾱﾡ F:/UE/LyraDocLabs/MMORPG/Plugins/MMODocTools/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMODocTools/UnrealEditor-MMODocTools.exp
+[18/22] Link [x64] UnrealEditor-MMODocTools.dll [NoUba]
+Total time in Unreal Build Accelerator local executor: 38.39 seconds
+
+Result: Failed (OtherCompilationError)
+Total execution time: 45.20 seconds
+Trace written to file E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Trace.uba with size 10.7kb

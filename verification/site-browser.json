@@ -1,0 +1,332 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-13T10:52:24Z",
+  "framework": {
+    "next": "16.3.5",
+    "node": "24.13.0",
+    "chromium": "152.0.7977.83",
+    "fumadocsUI": "16.15.10",
+    "fumadocsMDX": "15.4.0",
+    "fumaTranslate": "1.0.2"
+  },
+  "method": "Playwright CLI headed Chromium against Next static export; actual clicks, clipboard, pointer drags, search, history, reload and image-zoom dialog.",
+  "builds": {
+    "root": "passed",
+    "githubPages": "passed",
+    "typecheck": "passed",
+    "contentCheck": {
+      "mdxDocuments": 59,
+      "exportedHtmlPages": 63,
+      "status": "passed"
+    }
+  },
+  "fixes": [
+    {
+      "problem": "Next speculative prefetch requested non-exported catch-all RSC segment files.",
+      "resolution": "Shared SiteLink sets prefetch=false for home, MDX and Fumadocs links. Clicks use the exported index.txt and retain normal Next navigation.",
+      "evidence": "Homepage -> docs request /docs/index.txt returned200, zero browser errors; same behavior verified under /Lyra."
+    },
+    {
+      "problem": "Fumadocs UI translations require text plus component/aria notes; legacy short keys and raw English-only keys did not match.",
+      "resolution": "Provider translation keys now match @fuma-translate/react encodeKey(text,notes), e.g. Search(search trigger), Copy Text(code block)(aria-label)."
+    },
+    {
+      "problem": "Local Markdown image imports are StaticImageData objects; the previous branch rendered src=[object Object].",
+      "resolution": "Normalize string, StaticImageData and default-wrapped imports, preserve intrinsic dimensions, then pass prefixed src to ImageZoom."
+    },
+    {
+      "problem": "Navigation/sidebar duplicate learning links and missing icon.",
+      "resolution": "Removed duplicate explicit sidebar links and added app/icon.svg."
+    },
+    {
+      "problem": "Next metadataBase path merging could double-prefix a basePath-aware canonical.",
+      "resolution": "Use a fully absolute canonical from siteOrigin + assetUrl; inspected https://wangshuxian6.github.io/Lyra/docs/10-backend/persistence/."
+    },
+    {
+      "problem": "Content checker ignored script src after stripping script tags, omitted Markdown images, and treated same-origin preconnect as a page escaping basePath.",
+      "resolution": "Preserve external script tags, validate Markdown images and invalid rendered image src, skip origin-only resource hints."
+    }
+  ],
+  "root": {
+    "at": "2026-09-13T10:47:57.978Z",
+    "basePath": "/",
+    "checks": [
+      {
+        "name": "home navigation",
+        "passed": true
+      },
+      {
+        "name": "Blueprint 1:1 intrinsic size",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            2385,
+            1172
+          ],
+          "rendered": [
+            2385,
+            1172
+          ],
+          "canvas": [
+            808,
+            605
+          ]
+        }
+      },
+      {
+        "name": "Blueprint drag scroll",
+        "passed": true,
+        "evidence": [
+          673,
+          120
+        ]
+      },
+      {
+        "name": "Blueprint fit width",
+        "passed": true
+      },
+      {
+        "name": "Blueprint native text download",
+        "passed": true,
+        "evidence": "/blueprints/lyra/jump-event-graph.txt"
+      },
+      {
+        "name": "C++ code clipboard",
+        "passed": true,
+        "evidence": {
+          "characters": 139
+        }
+      },
+      {
+        "name": "static search 背包",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search 冲刺",
+        "passed": true,
+        "evidence": {
+          "results": 23
+        }
+      },
+      {
+        "name": "static search 角色",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search ULyraHeroComponent",
+        "passed": true,
+        "evidence": {
+          "results": 8
+        }
+      },
+      {
+        "name": "search result navigation and refresh",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3000/docs/02-architecture/initialization/#asc-%E6%8E%A5%E5%85%A5%E7%9A%84%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"
+      },
+      {
+        "name": "browser back and forward",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3000/docs/02-architecture/initialization/#asc-%E6%8E%A5%E5%85%A5%E7%9A%84%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"
+      },
+      {
+        "name": "ImageZoom open and Escape close",
+        "passed": true,
+        "evidence": "/_next/static/media/shooter-gym.386xsgtero_ah.png"
+      },
+      {
+        "name": "theme persists after reload",
+        "passed": true
+      },
+      {
+        "name": "375px home no overflow",
+        "passed": true
+      },
+      {
+        "name": "375px native graph contained",
+        "passed": true,
+        "evidence": {
+          "width": 375,
+          "documentWidth": 360,
+          "canvas": 311
+        }
+      },
+      {
+        "name": "mobile sidebar opens",
+        "passed": true
+      },
+      {
+        "name": "no browser runtime or HTTP errors",
+        "passed": true,
+        "evidence": []
+      }
+    ],
+    "searches": {
+      "背包": 60,
+      "冲刺": 23,
+      "角色": 60,
+      "ULyraHeroComponent": 8
+    },
+    "screenshots": [
+      "output/playwright/root-home-desktop.png",
+      "output/playwright/root-blueprint-native.png",
+      "output/playwright/root-symbol-search.png",
+      "output/playwright/root-theme-switched.png",
+      "output/playwright/root-home-mobile.png",
+      "output/playwright/root-blueprint-mobile.png"
+    ],
+    "runtimeErrors": []
+  },
+  "pages": {
+    "at": "2026-09-13T10:49:59.112Z",
+    "basePath": "/Lyra",
+    "checks": [
+      {
+        "name": "home navigation",
+        "passed": true
+      },
+      {
+        "name": "Blueprint 1:1 intrinsic size",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            2385,
+            1172
+          ],
+          "rendered": [
+            2385,
+            1172
+          ],
+          "canvas": [
+            808,
+            605
+          ]
+        }
+      },
+      {
+        "name": "Blueprint drag scroll",
+        "passed": true,
+        "evidence": [
+          673,
+          120
+        ]
+      },
+      {
+        "name": "Blueprint fit width",
+        "passed": true
+      },
+      {
+        "name": "Blueprint native text download",
+        "passed": true,
+        "evidence": "/Lyra/blueprints/lyra/jump-event-graph.txt"
+      },
+      {
+        "name": "C++ code clipboard",
+        "passed": true,
+        "evidence": {
+          "characters": 139
+        }
+      },
+      {
+        "name": "static search 背包",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search 冲刺",
+        "passed": true,
+        "evidence": {
+          "results": 23
+        }
+      },
+      {
+        "name": "static search 角色",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search ULyraHeroComponent",
+        "passed": true,
+        "evidence": {
+          "results": 8
+        }
+      },
+      {
+        "name": "search result navigation and refresh",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3001/Lyra/docs/02-architecture/initialization/#asc-%E6%8E%A5%E5%85%A5%E7%9A%84%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"
+      },
+      {
+        "name": "browser back and forward",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3001/Lyra/docs/02-architecture/initialization/#asc-%E6%8E%A5%E5%85%A5%E7%9A%84%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"
+      },
+      {
+        "name": "ImageZoom open and Escape close",
+        "passed": true,
+        "evidence": "/Lyra/_next/static/media/shooter-gym.386xsgtero_ah.png"
+      },
+      {
+        "name": "theme persists after reload",
+        "passed": true
+      },
+      {
+        "name": "375px home no overflow",
+        "passed": true
+      },
+      {
+        "name": "375px native graph contained",
+        "passed": true,
+        "evidence": {
+          "width": 375,
+          "documentWidth": 360,
+          "canvas": 311
+        }
+      },
+      {
+        "name": "mobile sidebar opens",
+        "passed": true
+      },
+      {
+        "name": "no browser runtime or HTTP errors",
+        "passed": true,
+        "evidence": []
+      }
+    ],
+    "searches": {
+      "背包": 60,
+      "冲刺": 23,
+      "角色": 60,
+      "ULyraHeroComponent": 8
+    },
+    "screenshots": [
+      "output/playwright/pages-home-desktop.png",
+      "output/playwright/pages-blueprint-native.png",
+      "output/playwright/pages-symbol-search.png",
+      "output/playwright/pages-game-image-zoom.png",
+      "output/playwright/pages-theme-switched.png",
+      "output/playwright/pages-home-mobile.png",
+      "output/playwright/pages-blueprint-mobile.png"
+    ],
+    "runtimeErrors": []
+  },
+  "visualReview": {
+    "desktop": "1440x1000: home hierarchy, article typography and Blueprint crop reviewed.",
+    "mobile": "375x812: home and native graph remain within viewport; sidebar opens.",
+    "gameImageZoom": "Reviewed pages-game-image-zoom.png after CSS transitions complete; actual 1275x897 gameplay screenshot enlarges and Escape closes."
+  },
+  "limitations": [
+    "These checks cover static documentation browser behavior; they are separate from UE gameplay/build validation.",
+    "Artifacts are local under ignored output/playwright; no website publication or Git operations were performed."
+  ]
+}

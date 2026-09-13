@@ -1,0 +1,43 @@
+---
+title: 做出自己的 Lyra 射击训练场
+description: 从独立 Game Feature、Experience 和 PawnData 到技能、武器、HUD、机器人与联机验证。
+---
+
+这一章把前六章串成一个可以进入的训练场。工程位于 `F:/UE/LyraDocLabs/LyraTraining`；官方 Lyra 项目保留作对照。新增内容放在 `Plugins/GameFeatures/TrainingRange`，入口地图为 `/TrainingRange/Maps/L_TrainingRange`，Experience 为 `B_TrainingRange`。
+
+训练场复用 ShooterCore 的射击系统，复制需要修改的 Experience、PawnData、AbilitySet 与冲刺蓝图，再加入自己的地图标记。这样可以看到“改一份数据如何影响一整套玩法”。下一章的空白 MMORPG 路线会重新选择基础依赖，不能把这里对 ShooterCore 的依赖直接照搬过去。
+
+![训练场真实单人预览：角色、手枪、HUD 与 LYRA TRAINING 标牌](/media/training/first-preview.png)
+
+图源：`/TrainingRange/Maps/L_TrainingRange`，UE 5.8.1，2026-09-13 17:08 UTC。本轮地图已完成原生导航构建；PlayerController 实测视口 **1920 × 1080**，十个画质组均为 **1（Medium）**。原始 PNG 为 **1926 × 1118**，保留窗口标题与边框，未裁剪或重采样。该图展示单人 PIE，输入、联机和生命周期的实际检查各见后续验证报告。
+
+## 学习目标
+
+- 独立创建一个可被 Asset Manager 发现的 Game Feature。
+- 从地图追到 Experience，再追到 PawnData 和角色技能。
+- 在自己的技能副本中粘贴、编译并调试蓝图。
+- 判断武器、HUD、机器人分别由哪些动作和组件装配。
+- 区分 PIE、独立服务器和 Cook 后运行的验证范围。
+
+## 准备工程
+
+在文档仓库的 PowerShell 中执行：
+
+```powershell
+./scripts/prepare-labs.ps1 -Lab Training
+./scripts/set-preview-quality.ps1 -ProjectRoot F:/UE/LyraDocLabs/LyraTraining
+```
+
+复制脚本读取本机官方内容，不清空目标目录。它排除缓存、临时文件和本地秘密。再次执行前先提交自己对实验源码的修改，因为同名教学文件可能被更新。预览统一采用 **1920 × 1080、中等画质**。
+
+执行前先保存并关闭正在使用**目标训练副本**的 Editor/PIE；复制完成后打开 `F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject`，核对完整路径。两个工程的 `.uproject` 文件名相同，不能只凭窗口标题中的 LyraStarterGame 判断正在编辑哪一份。首次副本保留了模块 DLL，不保证它们与此刻源码引擎的 manifest 仍匹配；按下一节执行完整 LyraEditor 目标构建，不能只复制 DLL 或手填 BuildId。
+
+第一次需要完成两层准备：上述 PowerShell 复制的是工程和教学源码，下一节的原生 Python 才创建 `/TrainingRange/Maps/L_TrainingRange` 及其 Experience/PawnData。地图复制后还要[构建导航并保存](/docs/07-training/feature-and-experience#复制地图后构建导航并保存)，再做真实走动与拾取检查。仅看到 NavMesh Actor 或已经进入 PIE，不证明复制后的导航瓦片可用。
+
+按 [Game Feature 与 Experience](/docs/07-training/feature-and-experience) 完成资产创建，再继续 [冲刺和蓝图](/docs/07-training/dash-and-blueprints)。每一步先观察预期结果，再改变一个条件，不要一次修改所有系统。
+
+## 配套文件
+
+仓库的 `examples/LyraTraining/prepare_training.py` 用 Unreal 原生资产 API 重现本章的复制与配置操作。源码和脚本可以阅读；`.uasset`、`.umap` 必须交给 Unreal 加载和保存。
+
+生成报告位于实验工程的 `Saved/training-assets.json`。报告记录复制关系；运行验收另见仓库 `verification/`。生成了资产、蓝图编译成功和游戏运行正确是三种不同证据。

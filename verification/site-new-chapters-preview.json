@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-13T15:13:48.137Z",
+  "scope": "Local Next dev preview of newly added chapters; final static root/Pages export validation is separate.",
+  "method": "Playwright CLI run-code with real Chromium DOM interactions, image decoding, 1:1 buttons, Chinese search and navigation/reload.",
+  "passed": true,
+  "checks": [
+    {"name": "Two real animation graphs present", "passed": true},
+    {"name": "Native animation graph 0", "passed": true, "evidence": {"natural": [1717, 947], "rendered": [1717, 947], "canvas": 341, "documentWidth": 375, "viewport": 375}},
+    {"name": "Native animation graph 1", "passed": true, "evidence": {"natural": [1417, 437], "rendered": [1417, 437], "canvas": 341, "documentWidth": 375, "viewport": 375}},
+    {"name": "Localization chapter mobile width", "passed": true},
+    {"name": "Chinese localization search result", "passed": true},
+    {"name": "Localization search destination refresh", "passed": true},
+    {"name": "Desktop animation no document overflow", "passed": true}
+  ],
+  "screenshots": [
+    "output/playwright/new-animation-0-mobile.png",
+    "output/playwright/new-animation-1-mobile.png",
+    "output/playwright/new-localization-mobile.png",
+    "output/playwright/new-animation-desktop.png"
+  ]
+}

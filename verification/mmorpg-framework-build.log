@@ -1,0 +1,113 @@
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" MMORPGEditor Win64 Development -Project=F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject -Module=MMORPG -Module=MMOFramework -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=3 -NoUBA
+Log file: E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Log.txt
+Executing up to 3 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (E:\UnrealEngine).
+Creating makefile for MMORPGEditor (.uproject file is newer)
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+UHT compiled-in object format Default
+Building MMORPGEditor...
+===== Toolchain Information =====
+Using ISPC compiler (E:\UnrealEngine\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+Using Visual Studio 14.50.35737 toolchain (D:\program\0-editer\vs\VC\Tools\MSVC\14.50.35717) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 12 action(s)
+  CPU 6 physical cores, 12 logical cores
+  Memory 31.82 GB physical, 33.86 GB/49.82 GB committed
+  UBA Storage capacity 40 GB
+[1/12] Compile [x64] MMOAnimInstance.cpp [NoUba]
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,3): error C2679: ￤ﾺﾌ￥ﾅﾃ￢ﾀﾜ=￢ﾀﾝ: ￦ﾲﾡ￦ﾜﾉ￦ﾉﾾ￥ﾈﾰ￦ﾎﾥ￥ﾏﾗ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￧ﾱﾻ￥ﾞﾋ￧ﾚﾄ￥ﾏﾳ￦ﾓﾍ￤ﾽﾜ￦ﾕﾰ￧ﾚﾄ￨﾿ﾐ￧ﾮﾗ￧ﾬﾦ(￦ﾈﾖ￦ﾲﾡ￦ﾜﾉ￥ﾏﾯ￦ﾎﾥ￥ﾏﾗ￧ﾚﾄ￨ﾽﾬ￦ﾍﾢ)
+		WeakPtr = TempObject;
+		^
+E:\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject\WeakObjectPtr.h(159,18): note: ￥ﾏﾯ￨ﾃﾽ￦ﾘﾯ￢ﾀﾜFWeakObjectPtr &FWeakObjectPtr::operator =(const FWeakObjectPtr &)￢ﾀﾝ
+	FWeakObjectPtr& operator=(const FWeakObjectPtr& Other) = default;
+	                ^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,3): note: ￢ﾀﾜFWeakObjectPtr &FWeakObjectPtr::operator =(const FWeakObjectPtr &)￢ﾀﾝ: ￦ﾗﾠ￦ﾳﾕ￥ﾰﾆ￥ﾏﾂ￦ﾕﾰ 2 ￤ﾻﾎ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￨ﾽﾬ￦ﾍﾢ￤ﾸﾺ￢ﾀﾜconst FWeakObjectPtr &￢ﾀﾝ
+		WeakPtr = TempObject;
+		^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￥ﾎﾟ￥ﾛﾠ￥ﾦﾂ￤ﾸﾋ: ￦ﾗﾠ￦ﾳﾕ￤ﾻﾎ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￨ﾽﾬ￦ﾍﾢ￤ﾸﾺ￢ﾀﾜconst FWeakObjectPtr￢ﾀﾝ
+		WeakPtr = TempObject;
+		          ^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￢ﾀﾜFWeakObjectPtr::FWeakObjectPtr￢ﾀﾝ: ￦ﾲﾡ￦ﾜﾉ￩ﾇﾍ￨ﾽﾽ￥ﾇﾽ￦ﾕﾰ￥ﾏﾯ￤ﾻﾥ￨ﾽﾬ￦ﾍﾢ￦ﾉﾀ￦ﾜﾉ￥ﾏﾂ￦ﾕﾰ￧ﾱﾻ￥ﾞﾋ
+E:\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject\WeakObjectPtr.h(87,2): note: ￥ﾏﾯ￨ﾃﾽ￦ﾘﾯ￢ﾀﾜFWeakObjectPtr::FWeakObjectPtr(const UObject *)￢ﾀﾝ
+	UE_FORCEINLINE_HINT FWeakObjectPtr(const UObject* Object)
+	^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￢ﾀﾜFWeakObjectPtr::FWeakObjectPtr(const UObject *)￢ﾀﾝ: ￦ﾗﾠ￦ﾳﾕ￥ﾰﾆ￥ﾏﾂ￦ﾕﾰ 1 ￤ﾻﾎ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￨ﾽﾬ￦ﾍﾢ￤ﾸﾺ￢ﾀﾜconst UObject *￢ﾀﾝ
+		WeakPtr = TempObject;
+		          ^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￦ﾌﾇ￥ﾐﾑ￧ﾚﾄ￧ﾱﾻ￥ﾞﾋ￤ﾸﾍ￧ﾛﾸ￥ﾅﾳ; ￨ﾽﾬ￦ﾍﾢ￩ﾜﾀ￨ﾦﾁ reinterpret_cast￣ﾀﾁC ￦ﾠﾷ￥ﾼﾏ￥ﾼﾺ￥ﾈﾶ￨ﾽﾬ￦ﾍﾢ￦ﾈﾖ￥ﾸﾦ￥ﾜﾆ￦ﾋﾬ￥ﾏﾷ￧ﾚﾄ￥ﾇﾽ￦ﾕﾰ￦ﾠﾷ￥ﾼﾏ￥ﾼﾺ￥ﾈﾶ￨ﾽﾬ￦ﾍﾢ
+E:\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject\WeakObjectPtr.h(83,2): note: ￦ﾈﾖ    ￢ﾀﾜFWeakObjectPtr::FWeakObjectPtr(FObjectPtr)￢ﾀﾝ
+	UE_FORCEINLINE_HINT FWeakObjectPtr(FObjectPtr Object)
+	^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￢ﾀﾜFWeakObjectPtr::FWeakObjectPtr(FObjectPtr)￢ﾀﾝ: ￦ﾗﾠ￦ﾳﾕ￥ﾰﾆ￥ﾏﾂ￦ﾕﾰ 1 ￤ﾻﾎ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￨ﾽﾬ￦ﾍﾢ￤ﾸﾺ￢ﾀﾜFObjectPtr￢ﾀﾝ
+		WeakPtr = TempObject;
+		          ^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￨ﾽﾬ￦ﾍﾢ￨ﾦﾁ￦ﾱﾂ￧ﾬﾬ￤ﾺﾌ￤ﾸﾪ￧ﾔﾨ￦ﾈﾷ￥ﾮﾚ￤ﾹﾉ￧ﾚﾄ￨ﾽﾬ￦ﾍﾢ￨﾿ﾐ￧ﾮﾗ￧ﾬﾦ￦ﾈﾖ￦ﾞﾄ￩ﾀﾠ￥ﾇﾽ￦ﾕﾰ
+E:\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject\WeakObjectPtr.h(58,2): note: ￦ﾈﾖ    ￢ﾀﾜFWeakObjectPtr::FWeakObjectPtr(TYPE_OF_NULLPTR)￢ﾀﾝ
+	UE_FORCEINLINE_HINT FWeakObjectPtr(TYPE_OF_NULLPTR)
+	^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￢ﾀﾜFWeakObjectPtr::FWeakObjectPtr(TYPE_OF_NULLPTR)￢ﾀﾝ: ￦ﾗﾠ￦ﾳﾕ￥ﾰﾆ￥ﾏﾂ￦ﾕﾰ 1 ￤ﾻﾎ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￨ﾽﾬ￦ﾍﾢ￤ﾸﾺ￢ﾀﾜTYPE_OF_NULLPTR￢ﾀﾝ
+		WeakPtr = TempObject;
+		          ^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: nullptr ￥ﾏﾪ￨ﾃﾽ￨ﾽﾬ￦ﾍﾢ￦ﾈﾐ￦ﾌﾇ￩ﾒﾈ￦ﾈﾖ￥ﾏﾥ￦ﾟﾄ￧ﾱﾻ￥ﾞﾋ
+E:\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject\WeakObjectPtr.h(92,2): note: ￦ﾈﾖ    ￢ﾀﾜFWeakObjectPtr::FWeakObjectPtr(TObjectPtr<T>)￢ﾀﾝ
+	UE_FORCEINLINE_HINT FWeakObjectPtr(TObjectPtr<T> Object)
+	^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￥ﾰﾝ￨ﾯﾕ￥ﾌﾹ￩ﾅﾍ￥ﾏﾂ￦ﾕﾰ￥ﾈﾗ￨ﾡﾨ￢ﾀﾜ(UAbilitySystemComponent *)￢ﾀﾝ￦ﾗﾶ
+		WeakPtr = TempObject;
+		          ^
+E:\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject\WeakObjectPtr.h(139,27): note: ￦ﾈﾖ    ￢ﾀﾜvoid FWeakObjectPtr::operator =(const UObject *)￢ﾀﾝ
+	UE_FORCEINLINE_HINT void operator=(const UObject* Object)
+	                         ^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,3): note: ￢ﾀﾜvoid FWeakObjectPtr::operator =(const UObject *)￢ﾀﾝ: ￦ﾗﾠ￦ﾳﾕ￥ﾰﾆ￥ﾏﾂ￦ﾕﾰ 2 ￤ﾻﾎ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￨ﾽﾬ￦ﾍﾢ￤ﾸﾺ￢ﾀﾜconst UObject *￢ﾀﾝ
+		WeakPtr = TempObject;
+		^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: ￦ﾌﾇ￥ﾐﾑ￧ﾚﾄ￧ﾱﾻ￥ﾞﾋ￤ﾸﾍ￧ﾛﾸ￥ﾅﾳ; ￨ﾽﾬ￦ﾍﾢ￩ﾜﾀ￨ﾦﾁ reinterpret_cast￣ﾀﾁC ￦ﾠﾷ￥ﾼﾏ￥ﾼﾺ￥ﾈﾶ￨ﾽﾬ￦ﾍﾢ￦ﾈﾖ￥ﾸﾦ￥ﾜﾆ￦ﾋﾬ￥ﾏﾷ￧ﾚﾄ￥ﾇﾽ￦ﾕﾰ￦ﾠﾷ￥ﾼﾏ￥ﾼﾺ￥ﾈﾶ￨ﾽﾬ￦ﾍﾢ
+		WeakPtr = TempObject;
+		          ^
+E:\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject\WeakObjectPtr.h(138,23): note: ￦ﾈﾖ    ￢ﾀﾜvoid FWeakObjectPtr::operator =(FObjectPtr)￢ﾀﾝ
+	COREUOBJECT_API void operator=(FObjectPtr Object);
+	                     ^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,3): note: ￢ﾀﾜvoid FWeakObjectPtr::operator =(FObjectPtr)￢ﾀﾝ: ￦ﾗﾠ￦ﾳﾕ￥ﾰﾆ￥ﾏﾂ￦ﾕﾰ 2 ￤ﾻﾎ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￨ﾽﾬ￦ﾍﾢ￤ﾸﾺ￢ﾀﾜFObjectPtr￢ﾀﾝ
+		WeakPtr = TempObject;
+		^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,13): note: struct￢ﾀﾜFObjectPtr￢ﾀﾝ￧ﾚﾄ￦ﾞﾄ￩ﾀﾠ￥ﾇﾽ￦ﾕﾰ￥ﾣﾰ￦ﾘﾎ￤ﾸﾺ￢ﾀﾜexplicit￢ﾀﾝ
+		WeakPtr = TempObject;
+		          ^
+E:\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject\WeakObjectPtr.h(144,27): note: ￦ﾈﾖ    ￢ﾀﾜvoid FWeakObjectPtr::operator =(TObjectPtr<T>)￢ﾀﾝ
+	UE_FORCEINLINE_HINT void operator=(TObjectPtr<T> Object)
+	                         ^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,3): note: ￢ﾀﾜvoid FWeakObjectPtr::operator =(TObjectPtr<T>)￢ﾀﾝ: ￦ﾗﾠ￦ﾳﾕ￤ﾻﾎ￢ﾀﾜUAbilitySystemComponent *￢ﾀﾝ￦ﾎﾨ￥ﾯﾼ￥ﾇﾺ￢ﾀﾜTObjectPtr<T>￢ﾀﾝ￧ﾚﾄ ￦ﾨﾡ￦ﾝ﾿ ￥ﾏﾂ￦ﾕﾰ
+		WeakPtr = TempObject;
+		^
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,3): note: ￥ﾰﾝ￨ﾯﾕ￥ﾌﾹ￩ﾅﾍ￥ﾏﾂ￦ﾕﾰ￥ﾈﾗ￨ﾡﾨ￢ﾀﾜ(TWeakObjectPtrBase, UAbilitySystemComponent *)￢ﾀﾝ￦ﾗﾶ
+        with
+        [
+            TWeakObjectPtrBase=FWeakObjectPtr
+        ]
+E:\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject\WeakObjectPtrTemplates.h(109,3): note: ￦ﾨﾡ￦ﾝ﾿￥ﾮﾞ￤ﾾﾋ￥ﾌﾖ￤ﾸﾊ￤ﾸﾋ￦ﾖﾇ(￦ﾜﾀ￦ﾗﾩ￧ﾚﾄ￥ﾮﾞ￤ﾾﾋ￥ﾌﾖ￤ﾸﾊ￤ﾸﾋ￦ﾖﾇ)￤ﾸﾺ
+F:\UE\LyraDocLabs\MMORPG\Source\MMORPG\Private\MMOAnimInstance.cpp(18,14): note: ￦ﾟﾥ￧ﾜﾋ￥ﾯﾹ￦ﾭﾣ￥ﾜﾨ￧ﾼﾖ￨ﾯﾑ￧ﾚﾄ￥ﾇﾽ￦ﾕﾰ ￦ﾨﾡ￦ﾝ﾿ ￥ﾮﾞ￤ﾾﾋ￥ﾌﾖ￢ﾀﾜTWeakObjectPtr<UAbilitySystemComponent,FWeakObjectPtr> &TWeakObjectPtr<UAbilitySystemComponent,FWeakObjectPtr>::operator =<UAbilitySystemComponent>(U *)￢ﾀﾝ￧ﾚﾄ￥ﾼﾕ￧ﾔﾨ
+        with
+        [
+            U=UAbilitySystemComponent
+        ]
+    BoundASC = AbilitySystem;
+             ^
+F:\UE\LyraDocLabs\MMORPG\Source\MMORPG\Private\MMOAnimInstance.cpp(18,14): note: ￨ﾯﾷ￥ﾏﾂ￩ﾘﾅ "UMMOAnimInstance::InitializeWithAbilitySystem" ￤ﾸﾭ￥ﾯﾹ "TWeakObjectPtr<UAbilitySystemComponent,FWeakObjectPtr>::operator =" ￧ﾚﾄ￧ﾬﾬ￤ﾸﾀ￤ﾸﾪ￥ﾼﾕ￧ﾔﾨ
+[2/12] Compile [x64] MMOExperienceGameplay.cpp [NoUba]
+[3/12] Compile [x64] Module.MMOFramework.cpp [NoUba]
+[4/12] Link [x64] UnrealEditor-MMOFramework.lib [NoUba]
+  ￦ﾭﾣ￥ﾜﾨ￥ﾈﾛ￥ﾻﾺ￥ﾺﾓ F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMOFramework/UnrealEditor-MMOFramework.lib ￥ﾒﾌ￥ﾯﾹ￨ﾱﾡ F:/UE/LyraDocLabs/MMORPG/Plugins/MMOFramework/Intermediate/Build/Win64/x64/UnrealEditor/Development/MMOFramework/UnrealEditor-MMOFramework.exp
+[5/12] Link [x64] UnrealEditor-MMOFramework.dll [NoUba]
+[6/12] Compile [x64] MMORPG.cpp [NoUba]
+[7/12] Compile [x64] MMOGameplay.cpp [NoUba]
+[8/12] Compile [x64] PerModuleInline.gen.cpp [NoUba]
+[9/12] Compile [x64] Module.MMORPG.gen.cpp [NoUba]
+[10/12] Compile [x64] MMOUI.cpp [NoUba]
+Total time in Unreal Build Accelerator local executor: 26.63 seconds
+
+Result: Failed (OtherCompilationError)
+Total execution time: 34.14 seconds
+Trace written to file E:\UnrealEngine\Engine\Programs\UnrealBuildTool\Trace.uba with size 16.7kb

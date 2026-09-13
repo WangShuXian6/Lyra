@@ -1,0 +1,89 @@
+{
+  "startedAt": "2026-09-13T19:20:00.2548786Z",
+  "passed": true,
+  "project": "F:\\UE\\LyraDocLabs\\MMORPG\\MMORPG.uproject",
+  "engine": "E:/UnrealEngine",
+  "skipCook": true,
+  "precompiledAutomationTools": true,
+  "gameplayExecuted": false,
+  "arguments": [
+    "-NoCompileUAT",
+    "-NoCompile",
+    "-NoAutoSDK",
+    "BuildCookRun",
+    "-project=F:\\UE\\LyraDocLabs\\MMORPG\\MMORPG.uproject",
+    "-nop4",
+    "-unattended",
+    "-utf8output",
+    "-nocompileeditor",
+    "-client",
+    "-server",
+    "-platform=Win64",
+    "-serverplatform=Win64",
+    "-clientconfig=Development",
+    "-serverconfig=Development",
+    "-stage",
+    "-pak",
+    "-iostore",
+    "-ubtargs=-NoUBA -MaxParallelActions=3",
+    "-additionalcookeroptions=-NullRHI -Multiprocess -CookProcessCount=1 -corelimit=3 -ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False",
+    "-skipcook"
+  ],
+  "log": "F:\\UE\\LyraDoc\\verification\\mmorpg-package.log",
+  "localServiceProxyBypasses": [
+    "localhost",
+    "127.0.0.1",
+    "::1",
+    "[::1]"
+  ],
+  "systemProxyConfigurationChanged": false,
+  "uatExitCode": 0,
+  "client": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsClient\\MMORPG\\Binaries\\Win64\\MMORPGClient.exe",
+  "server": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\StagedBuilds\\WindowsServer\\MMORPG\\Binaries\\Win64\\MMORPGServer.exe",
+  "clientSHA256": "6ed3cfce7074437b3ff77e5ff670bd7f488fd24a31ba08c0cee5d61f2f9dd92d",
+  "serverSHA256": "ff1a284e72c79919ce4678daf233f36285e394f8be7771fb5dce0f529ad1dd43",
+  "privateClientFiles": 0,
+  "completedAt": "2026-09-13T19:21:31.9419223Z",
+  "cookEvidence": {
+    "report": "verification/mmorpg-package-attempt1-zen-proxy.json",
+    "log": "verification/mmorpg-package-attempt1-zen-proxy.log",
+    "logSHA256": "7a9cea530a1beed1563a70e22838de132194847bece01e8f126cb53484de3cee",
+    "platforms": [
+      "WindowsClient",
+      "WindowsServer"
+    ],
+    "exitCode": 0,
+    "elapsedSeconds": 260.54,
+    "errors": 0,
+    "warnings": 1,
+    "warning": "SemanticSearch discarded an index with an old type; no game asset Cook errors.",
+    "originalStageExitCode": 1,
+    "originalStagePassed": false,
+    "originalAssetsUnchanged": 31,
+    "zenStoreUsed": true,
+    "note": "SkipCook reuses this actual successful content Cook; it does not mean cooking was omitted."
+  },
+  "stageRecoveryEvidence": {
+    "report": "verification/mmorpg-package-proxy-recovery.json",
+    "log": "verification/mmorpg-package-proxy-recovery.log",
+    "scope": "Only process-scoped loopback NO_PROXY bypasses changed for this Stage retry; no game C++, asset or config change in that retry.",
+    "proxyProbe": {
+      "existingIPv6Bypassed": false,
+      "withBracketedIPv6Bypassed": true,
+      "sameRunningZenDefaultProxyHTTPStatus": 502,
+      "sameRunningZenDirectHTTPStatus": 200
+    },
+    "systemProxyChanged": false
+  },
+  "latestRuntimeCodeChange": {
+    "file": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+    "sha256": "219795347b82ce98b8c2cd3a66616cb08096c9b6de8c5a491958677bf110475a",
+    "scope": "BeginPlay fixed geometry names, pre-FinishSpawning network addressability and Static mobility. No reflected type, CDO mesh reference, original asset or game config change.",
+    "builds": [
+      "verification/mmorpg-stable-zone-editor-toolsets-build.json",
+      "verification/mmorpg-stable-zone-client-build.json",
+      "verification/mmorpg-stable-zone-server-build.json"
+    ]
+  },
+  "historyRecordedAt": "2026-09-13T19:23:08.346780+00:00"
+}

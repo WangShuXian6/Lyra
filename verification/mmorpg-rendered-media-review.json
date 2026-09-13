@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-13T14:12:04.228431+00:00",
+  "passed": true,
+  "scope": "Native PNG copy/header/hash, referenced Designer asset hashes, programmatic locale report and selected-image visual review. No new game execution.",
+  "report": "verification/mmorpg-rendered-showcase.json",
+  "reportSha256": "33ea7448596bb4162dd4fb2cfd3713f6a1c1ce9c33bfbeb644f8caa18c5946d8",
+  "copiedPNG": 22,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "visuallyInspectedImages": [
+    "mmo-A-login.png",
+    "mmo-A-language-first-settings.png",
+    "mmo-B-language-second-settings.png",
+    "mmo-A-inventory.png",
+    "mmo-A-language-final-hud.png",
+    "mmo-B-login.png",
+    "mmo-B-hud.png",
+    "mmo-A-modal.png"
+  ],
+  "graphImagesCopied": 0,
+  "nativeTextFilesChanged": 0,
+  "physicalInputTested": false
+}

@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-13T20:52:35.545976+00:00",
+  "engine": "UE 5.8.1",
+  "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+  "meaning": "Local training tutorial project derived from Epic Lyra; screenshot provenance and scoped runtime evidence. No official map or dependent binary assets are distributed.",
+  "map": {
+    "asset": "/TrainingRange/Maps/L_TrainingRange",
+    "experience": "/TrainingRange/Experiences/B_TrainingRange",
+    "path": "F:/UE/LyraDocLabs/LyraTraining/Plugins/GameFeatures/TrainingRange/Content/Maps/L_TrainingRange.umap",
+    "sha256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+    "hashVerifiedAt": "2026-09-13T17:11:34.1662113Z",
+    "origin": "Local copy of /ShooterCore/Maps/L_ShooterGym with tutorial changes, including original TextRender signage.",
+    "upstream": {
+      "asset": "/ShooterCore/Maps/L_ShooterGym",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameFeatures/ShooterCore/Content/Maps/L_ShooterGym.umap",
+      "sha256": "2332c677c086592d94c35e09b0e8e43364813f1f865e3091b2b0318efa1be25b"
+    },
+    "dependencies": "Official Lyra geometry, art, characters, weapons, UI and base plugins are prepared from the reader’s local Lyra installation. The cloned ShooterGym map directly references LyraExampleContent, declared alongside ShooterCore. No dependent official binary assets are distributed.",
+    "localChanges": [
+      "Training Experience/PawnData configuration",
+      "Original TextRender signage; final orientation uses named rotation arguments with roll=0 and dark green text.",
+      "Native navigation rebuilt and saved in the 17:00 UTC fresh-process and same-process prepare verification."
+    ],
+    "bytes": 193375,
+    "latestSaveEvidence": "verification/training-final-editor-closure.json"
+  },
+  "media": [
+    {
+      "publicPath": "/media/training/first-preview.png",
+      "sourceAsset": "/TrainingRange/Maps/L_TrainingRange",
+      "experience": "/TrainingRange/Experiences/B_TrainingRange",
+      "kind": "native-editor-preview-window-capture",
+      "captureTool": "Unreal native SlateInspector Screenshot",
+      "original": "F:\\UE\\LyraDocLabs\\LyraTraining\\Saved\\Screenshots\\WindowsEditor\\Training_Final_FirstPreview_20260913_1708.png",
+      "windowTitle": "LyraStarterGame 预览 [NetMode: Standalone 0]  （64-bit/PC D3D SM6）",
+      "editorPid": 19024,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "capturedAt": "2026-09-13T17:08:35.450448+00:00",
+      "sha256": "85f4c1f671998f11d121f486511e55c4e44f02f589f045cc6361482fab922efc",
+      "bytes": 2877829,
+      "width": 1926,
+      "height": 1118,
+      "includesTitleBar": true,
+      "pixelsModified": false,
+      "sourceMapSha256": "8334a40e8118d1ef4d7a71152e7d5eb034ebb503e856f66a32ba491a223fb07f",
+      "nativeViewportReported": {
+        "width": 1920,
+        "height": 1080,
+        "source": "PlayerController.GetViewportSize in this native PIE session"
+      },
+      "qualityVerification": {
+        "method": "GameUserSettings applied Medium; ten actual SystemLibrary CVar reads",
+        "values": {
+          "sg.ViewDistanceQuality": 1,
+          "sg.AntiAliasingQuality": 1,
+          "sg.ShadowQuality": 1,
+          "sg.GlobalIlluminationQuality": 1,
+          "sg.ReflectionQuality": 1,
+          "sg.PostProcessQuality": 1,
+          "sg.TextureQuality": 1,
+          "sg.EffectsQuality": 1,
+          "sg.FoliageQuality": 1,
+          "sg.ShadingQuality": 1
+        }
+      },
+      "settingsEvidence": "verification/training-final-preview-state.json",
+      "usage": "Single native Training PIE, final saved navigation map. Full original includes title and border around the actual 1920×1080 viewport."
+    },
+    {
+      "publicPath": "/media/training/client-1.png",
+      "sourceAsset": "/TrainingRange/Maps/L_TrainingRange",
+      "experience": "/TrainingRange/Experiences/B_TrainingRange",
+      "sourceMapSha256": "94785156736ba55482ec3fe5bac914cf4d28c327f6a39953b9ab73fb68e99f36",
+      "kind": "native-network-client-preview-window-capture",
+      "client": 1,
+      "captureTool": "Unreal native SlateInspector Screenshot",
+      "windowId": "w34",
+      "captureReportedBy": "root agent operating native LyraTraining editor tools",
+      "capturedAt": "2026-09-13T11:35:53.5433421Z",
+      "capturedAtBasis": "Final overwritten file LastWriteTimeUtc.",
+      "sha256": "af2b84319840fcc2e05b3a150dcc99a29e00bc917dc5bc1340c1c3892034a647",
+      "bytes": 2784699,
+      "width": 1926,
+      "height": 1118,
+      "includesTitleBar": true,
+      "pixelsModified": false,
+      "nativeScale": 1,
+      "nativeViewportReported": {
+        "width": 1920,
+        "height": 1080,
+        "source": "Actual per-client viewport size read by native tools in the final capture session, reported by root"
+      },
+      "qualityVerification": {
+        "method": "Native SystemLibrary reads in the final capture session, reported by root",
+        "values": {
+          "sg.ViewDistanceQuality": 1,
+          "sg.AntiAliasingQuality": 1,
+          "sg.ShadowQuality": 1,
+          "sg.GlobalIlluminationQuality": 1,
+          "sg.ReflectionQuality": 1,
+          "sg.PostProcessQuality": 1,
+          "sg.TextureQuality": 1,
+          "sg.EffectsQuality": 1,
+          "sg.FoliageQuality": 1,
+          "sg.ShadingQuality": 1
+        }
+      },
+      "localWindowConfiguration": {
+        "newWindowHeight": 1078,
+        "clientHeight": 1078,
+        "observedViewportHeight": 1080,
+        "scope": "Local UE floating-window offset workaround; actual viewport dimensions were verified."
+      },
+      "usage": "Final local training network client preview. The full original PNG includes title and border around an actual 1920×1080 viewport; pixels were not cropped or resampled."
+    },
+    {
+      "publicPath": "/media/training/client-2.png",
+      "sourceAsset": "/TrainingRange/Maps/L_TrainingRange",
+      "experience": "/TrainingRange/Experiences/B_TrainingRange",
+      "sourceMapSha256": "94785156736ba55482ec3fe5bac914cf4d28c327f6a39953b9ab73fb68e99f36",
+      "kind": "native-network-client-preview-window-capture",
+      "client": 2,
+      "captureTool": "Unreal native SlateInspector Screenshot",
+      "windowId": "w35",
+      "captureReportedBy": "root agent operating native LyraTraining editor tools",
+      "capturedAt": "2026-09-13T11:35:56.3378597Z",
+      "capturedAtBasis": "Final overwritten file LastWriteTimeUtc.",
+      "sha256": "9fee8f2b915ce77668cb85957a2b19cfc53b61dc0ebc34c25ee466fe8af8fcd5",
+      "bytes": 2834740,
+      "width": 1926,
+      "height": 1118,
+      "includesTitleBar": true,
+      "pixelsModified": false,
+      "nativeScale": 1,
+      "nativeViewportReported": {
+        "width": 1920,
+        "height": 1080,
+        "source": "Actual per-client viewport size read by native tools in the final capture session, reported by root"
+      },
+      "qualityVerification": {
+        "method": "Native SystemLibrary reads in the final capture session, reported by root",
+        "values": {
+          "sg.ViewDistanceQuality": 1,
+          "sg.AntiAliasingQuality": 1,
+          "sg.ShadowQuality": 1,
+          "sg.GlobalIlluminationQuality": 1,
+          "sg.ReflectionQuality": 1,
+          "sg.PostProcessQuality": 1,
+          "sg.TextureQuality": 1,
+          "sg.EffectsQuality": 1,
+          "sg.FoliageQuality": 1,
+          "sg.ShadingQuality": 1
+        }
+      },
+      "localWindowConfiguration": {
+        "newWindowHeight": 1078,
+        "clientHeight": 1078,
+        "observedViewportHeight": 1080,
+        "scope": "Local UE floating-window offset workaround; actual viewport dimensions were verified."
+      },
+      "usage": "Final local training network client preview. The full original PNG includes title and border around an actual 1920×1080 viewport; pixels were not cropped or resampled."
+    },
+    {
+      "publicPath": "/media/training/packaged-preview.png",
+      "sourceAsset": "/TrainingRange/Maps/L_TrainingRange",
+      "experience": "/TrainingRange/Experiences/B_TrainingRange",
+      "kind": "native-packaged-game-viewport-capture",
+      "captureTool": "UE FScreenshotRequest::RequestScreenshot with showUI=true and restrictToGameViewport=true",
+      "original": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be\\training-package.png",
+      "capturedAt": "2026-09-13T20:40:41.768238+00:00",
+      "processId": 6700,
+      "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+      "sha256": "7f352785906d4a002f5bf34bbbbdd6e90459c7aa749c09326dde9a1460b6e3ab",
+      "bytes": 2774573,
+      "width": 1920,
+      "height": 1080,
+      "includesTitleBar": false,
+      "pixelsModified": false,
+      "sourceMapSha256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+      "executable": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive\\Windows\\LyraStarterGame\\Binaries\\Win64\\LyraGame.exe",
+      "executableSha256": "c69ca4a481af2da0ed0e6e861e253c68c80adc5253f5879c3368c3bbfe889970",
+      "archiveDirectory": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\Archive",
+      "qualityVerification": {
+        "width": 1920,
+        "height": 1080,
+        "viewportHasFocus": true,
+        "sg.ViewDistanceQuality": 1,
+        "sg.AntiAliasingQuality": 1,
+        "sg.ShadowQuality": 1,
+        "sg.GlobalIlluminationQuality": 1,
+        "sg.ReflectionQuality": 1,
+        "sg.PostProcessQuality": 1,
+        "sg.TextureQuality": 1,
+        "sg.EffectsQuality": 1,
+        "sg.FoliageQuality": 1,
+        "sg.ShadingQuality": 1
+      },
+      "runtimeEvidence": "verification/training-package-runtime-first-run.json",
+      "runtimeEvidenceSha256": "7f30123b873f2df96099b527a352b12ecd016739b6c76ce431f876dd61185c40",
+      "packageEvidence": "verification/training-package.json",
+      "captionScope": "First actual packaged single-player run: 100 health, reloaded 12/47 pistol HUD, Hubert nameplate, inherited waiting-for-players Warmup overlay. Native yellow MoviePlayer window-transfer warning is preserved. No claim of a warning-free frame, completed scoring round or packaged multiplayer."
+    }
+  ],
+  "runtime": {
+    "evidence": "verification/training-play.json",
+    "evidenceSha256": "06ef23a1b705c4378ffe1f1ccd93bd27aee7cab0d0426e8936c8bf26a5e058cc",
+    "verifiedAt": "2026-09-13T11:25:11.957972+00:00",
+    "status": "passed",
+    "checks": 9,
+    "method": "Slate post-tick sampling and Enhanced Input console forced keys",
+    "scope": "Single local training PIE: movement, jump, granted Dash activation, ammo, and initialization only.",
+    "notCovered": [
+      "multiplayer replication",
+      "packaged build",
+      "damage correctness",
+      "bot decision making",
+      "UI navigation"
+    ]
+  },
+  "mapSnapshots": [
+    {
+      "sha256": "4b78ab426dd50a17aaf383789f24350b1a19356e89b1702fc45079c371430b84",
+      "hashVerifiedAt": "2026-09-13T11:28:12.617Z",
+      "description": "Earlier saved training map before the final TextRender orientation/color correction."
+    },
+    {
+      "sha256": "94785156736ba55482ec3fe5bac914cf4d28c327f6a39953b9ab73fb68e99f36",
+      "hashVerifiedAt": "2026-09-13T11:39:11.280Z",
+      "description": "Earlier saved map used by the two-client PIE screenshots before navigation was rebuilt."
+    },
+    {
+      "sha256": "8334a40e8118d1ef4d7a71152e7d5eb034ebb503e856f66a32ba491a223fb07f",
+      "hashVerifiedAt": "2026-09-13T17:08:08.785346+00:00",
+      "description": "Native navigation map used by the final 17:08 UTC single-PIE screenshot, before the final explicit editor Save."
+    }
+  ],
+  "networkRuntime": {
+    "status": "passed",
+    "evidence": "verification/training-network.json",
+    "evidenceSha256": "911f91ce614b89acad46eb0afb7340fb2320700f464126a6006d64719be4f8b7",
+    "verifiedAt": "2026-09-13T11:32:15.546654+00:00",
+    "checks": 5,
+    "method": "Two native client PIE worlds with a dedicated server, Enhanced Input forced keys and replicated state sampling",
+    "scope": "Local PIE networking; separate packaged executables are checked independently.",
+    "viewportSizes": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "notCovered": [
+      "standalone packaged executables",
+      "pickup contention",
+      "score and respawn correctness",
+      "physical controller navigation"
+    ]
+  },
+  "previousFirstPreview": {
+    "sourceAsset": "/TrainingRange/Maps/L_TrainingRange",
+    "experience": "/TrainingRange/Experiences/B_TrainingRange",
+    "kind": "native-editor-preview-window-capture",
+    "captureTool": "Unreal native SlateInspector Screenshot",
+    "windowId": "w7",
+    "captureReportedBy": "root agent operating the native LyraTraining editor tools",
+    "capturedAt": "2026-09-13T11:20:29.1512004Z",
+    "capturedAtBasis": "Original file LastWriteTimeUtc; preserves the actual capture write timestamp.",
+    "sha256": "01b60d7e4c2d547b3d068bbbdb681233793482d4ff06cda2ec2cbcbb2431686e",
+    "bytes": 2934737,
+    "width": 1926,
+    "height": 1120,
+    "includesTitleBar": true,
+    "pixelsModified": false,
+    "requestedViewport": {
+      "width": 1920,
+      "height": 1080,
+      "quality": "Medium"
+    },
+    "nativeViewportReported": {
+      "width": 1920,
+      "height": 1082,
+      "source": "get_viewport_size in the capture session, reported by root"
+    },
+    "usage": "Editor preview window illustration. The full 1926×1120 image includes the window title/border; it is not the final 1920×1080 viewport capture.",
+    "sourceMapSha256": "4b78ab426dd50a17aaf383789f24350b1a19356e89b1702fc45079c371430b84",
+    "replacedPublicPath": "/media/training/first-preview.png"
+  },
+  "prepareRerun": {
+    "passed": true,
+    "evidence": "verification/training-prepare-rerun.json",
+    "scope": "Fresh commandlet with existing assets, then same-process repeat with retained native World wrapper; both passed."
+  },
+  "packagedRuntime": {
+    "passed": true,
+    "scope": "Two sequential runs of the same Development packaged single-player executable; 11/11 each, both exit0.",
+    "latestEvidence": "verification/training-package-runtime.json",
+    "latestEvidenceSha256": "b4d1ccf47ce5316ed8d90e50f146231fabe1c111d3771e51a533ddb990039e6a",
+    "firstRunEvidence": "verification/training-package-runtime-first-run.json",
+    "firstRunEvidenceSha256": "7f30123b873f2df96099b527a352b12ecd016739b6c76ce431f876dd61185c40",
+    "packageEvidence": "verification/training-package.json",
+    "packageEvidenceSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+    "logAnalysisEvidence": "verification/training-package-log-analysis.json",
+    "repeatScreenshot": {
+      "original": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\training-package.png",
+      "sha256": "f4885db296532bd45dd28201db410dfa96e4c803183b073e4c92e5ac1b1a3e2e",
+      "width": 1920,
+      "height": 1080,
+      "pixelsModified": false,
+      "scope": "Second run: 12/46 HUD and native text-translation-conflict warning; preserved in original runtime artifacts, not used as the first-run public image."
+    },
+    "notCovered": [
+      "packaged networking",
+      "packaged pickup and respawn",
+      "four-direction Dash montage correctness",
+      "round scoring",
+      "audio performance or resolution of first-run queue stall"
+    ]
+  }
+}

@@ -1,0 +1,3069 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-13T14:38:19.210317+00:00",
+  "engine": "UE 5.8.1",
+  "project": "F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject",
+  "purpose": "最终真实配置截图采集清单。只读依据源码/资产生成报告/教程整理；本文件不代表截图采集、运行、Cook 或发布验收已完成。",
+  "status": "all-planned-configuration-groups-captured",
+  "captureGroups": 58,
+  "captureRules": [
+    "UE MCP 每次由明确交接的单个代理独占；每次调用前核验 MMORPG 项目路径和 TCP8000 拥有 PID，顺序执行。",
+    "初始规划只读；实际采集与补帧状态记录在 captureProgress / verification/configuration-mmorpg-review.json。",
+    "先完成当前源码对应 Editor 构建和必要受影响资产 Compile/Save；避免重跑完整 prepare_content.py 改变已验证的 Blueprint GUID。",
+    "截图为 Unreal 原生 Slate/资产编辑器/BlueprintScreenshotTool 输出，保存原始像素；记录实际 UTC、图像头尺寸、文件 SHA-256、当前 sourceAsset SHA 和编辑器页/选中项。",
+    "操作步骤写入口 → 点击/展开 → 字段和值 → 解释 → Save/Compile/必要重启 → 重开核对；本计划的 read-only 拍摄不重复修改已验证值。",
+    "截图内不能出现会话/服务器密钥、密码和测试登录数据。输入框资产默认空。UE 内置资源和 Lyra 依赖只登记本地来源，不复制官方二进制到公开教程包。",
+    "采集时读取真实 UI 标签；源 C++ 属性不一定都有 Details 可配项。计划中 requiresCaptureConfirmation 的项目必须用实际值更新，不能由计划倒推截图内容。",
+    "多个字段无法清晰同屏就拆图，保持前后步骤连续；不将不同窗口拼为一个虚构原生界面。"
+  ],
+  "compiledAssetBaseline": {
+    "report": "verification/mmorpg-original-assets-review.json",
+    "originalAssets": 30,
+    "designerAssets": 7,
+    "canvasCountAcrossDesignerAssets": 0,
+    "actualMVVMBindings": 8,
+    "inputActions": 7,
+    "physicalMappings": 17,
+    "reportedNativeCompileTime": "2026-09-13T13:05:28Z",
+    "scope": "原始30资产生成/保存成功；新增死亡功能仅精确Compile/Save三份BP。当前截图任务仍未执行，最终Cook单独核对。",
+    "preciseBlueprintUpdate": {
+      "evidence": "verification/mmorpg-death-blueprints.json",
+      "verifiedAt": "2026-09-13T13:53:00.818Z",
+      "assets": 3,
+      "graphsReconstructed": false,
+      "allThirtyAssetHashesVerified": "verification/mmorpg-death-assets-sync.json"
+    },
+    "buttonContentSlotUpdate": {
+      "evidence": "verification/mmorpg-button-slots.json",
+      "assets": 7,
+      "buttons": 21,
+      "compiledAndSaved": true,
+      "widgetTreesReconstructed": false,
+      "bindingsReconstructed": false,
+      "sourceSync": "verification/mmorpg-button-slots-sync.json"
+    }
+  },
+  "localizationBaseline": {
+    "completedReport": "verification/mmorpg-localization.json",
+    "completedNativeKeys": 84,
+    "designerKeys": 45,
+    "runtimeKeys": 39,
+    "pipelineCompletedAt": "2026-09-13T13:54:02.1727551Z",
+    "copiedOriginalFiles": 8,
+    "pipelineProvenance": "source-evidence/mmorpg-localization.json",
+    "runtimeReport": "verification/mmorpg-rendered-showcase.json",
+    "runtimeCompletedAt": "2026-09-13T14:06:34.1210234Z",
+    "programmaticCultureSwitchVerified": true,
+    "freshProcessPreferenceRestoreVerified": true,
+    "physicalInputVerified": false,
+    "packagedResourcesVerified": false,
+    "loadingPathConfig": "examples/MMORPG/Config/DefaultGame.ini",
+    "loadingPathSection": "Internationalization",
+    "loadingPathEntry": "+LocalizationPaths=%GAMEDIR%Content/Localization/MMO",
+    "loadingPathReason": "FPaths::GetGameLocalizationPaths() reads GGameIni; an entry in DefaultEngine.ini did not configure the fresh game process.",
+    "dataRoundTripReport": "verification/backend-internationalized-data.json"
+  },
+  "captures": [
+    {
+      "id": "project-plugins",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Edit → Plugins",
+      "orderedSteps": [
+        "确认编辑器标题是 MMORPG；打开 Edit → Plugins。",
+        "依次搜索 MMO、Common、Enhanced Input、Model View ViewModel；把同一搜索结果中的启用状态放在一张图内。",
+        "只读截图；新手第一次启用插件时勾选后按 Restart Now，重启再核对。"
+      ],
+      "expectedVisibleValues": {
+        "enabledGroups": [
+          [
+            "MMOFramework",
+            "MMOIntegration",
+            "MMODocTools",
+            "MMOCore"
+          ],
+          [
+            "CommonUI",
+            "CommonGame",
+            "UIExtension"
+          ],
+          [
+            "EnhancedInput",
+            "ModelViewViewModel"
+          ]
+        ],
+        "splitScreens": "至少各搜索组一张；不是在同一搜索框同时输入全部名字。"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/MMORPG.uproject",
+        "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "project-maps-modes",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Edit → Project Settings → Project → Maps & Modes",
+      "orderedSteps": [
+        "清空设置搜索；展开 Default Maps、Default Modes、Game Instance。",
+        "显示三种默认地图、Default GameMode 和 Game Instance Class；下方字段被截断时补第二张。",
+        "手工设置后关闭设置并正常重启编辑器，再次进入同页核对 Config 已持久化。"
+      ],
+      "expectedVisibleValues": {
+        "editorStartupMap": "/Engine/Maps/Entry",
+        "gameDefaultMap": "/Engine/Maps/Entry",
+        "serverDefaultMap": "/Engine/Maps/Entry",
+        "defaultGameMode": "/Game/MMO/BP_MMOGameMode.BP_MMOGameMode_C",
+        "gameInstanceClass": "/Script/MMORPG.MMOGameInstance"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "一、设置地图、GameMode 与 GameInstance"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEngine.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "replacesHistoricalImage": "/media/configuration/mmorpg/maps-modes.png",
+      "caution": "使用 BP_MMOGameMode 生成类，不用早期只显示原生 MMOGameMode 的截图充当最终配置。世界设置的关卡覆盖若非 None，也必须记录，避免遮蔽项目默认值。"
+    },
+    {
+      "id": "game-mode-experience",
+      "section": "Experience",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/BP_MMOGameMode",
+      "editorPage": "Blueprint Editor → Class Settings / Class Defaults",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/BP_MMOGameMode，双击打开。",
+        "切换 Class Defaults；若 Details 缺失，用 Window 菜单恢复。",
+        "Class Settings 核对原生 Parent Class MMOGameMode；然后 Class Defaults 搜索 Default Experience。",
+        "展开 Experience 分类和 Primary Asset Id 选择器，显示类型和资产名；不要把 DataAsset 写成 Blueprint 的 _C 路径。",
+        "手工选择 DA_MMOExperience 后 Compile、Save，重开确认。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOGameMode",
+        "defaultExperience": "MMOExperience:DA_MMOExperience"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "一、设置地图、GameMode 与 GameInstance"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/prepare_content.py",
+        "verification/mmorpg-game-mode.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "project-common-default-classes",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Project Settings → Engine → General Settings → Default Classes",
+      "orderedSteps": [
+        "进入 General Settings，展开 Default Classes 的高级项；搜索 Game Viewport Client Class。",
+        "核对该行，再清空搜索或改为 Local Player Class，保留字段标签各拍一张；不要把两次搜索拼成伪同屏。",
+        "手工修改两个类后正常重启工程，确认新建 LocalPlayer/Viewport 使用新类。"
+      ],
+      "expectedVisibleValues": {
+        "gameViewportClientClassName": "/Script/CommonUI.CommonGameViewportClient",
+        "localPlayerClassName": "/Script/CommonGame.CommonLocalPlayer"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "二、选择 CommonUI 的视口类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEngine.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "additionalTeachingLocations": [
+        {
+          "file": "content/docs/08-mmorpg/configuration.mdx",
+          "heading": "三、选择 CommonLocalPlayer"
+        }
+      ]
+    },
+    {
+      "id": "project-enhanced-default-classes",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Project Settings → Engine → Input → Default Classes",
+      "orderedSteps": [
+        "进入 Input，展开 Default Classes；如版本 UI 把两类分在搜索结果中，分别搜索名称。",
+        "显示 Default Player Input Class、Default Input Component Class。",
+        "手工修改后正常重启，以创建新的 PlayerInput 和组件实例。"
+      ],
+      "expectedVisibleValues": {
+        "defaultPlayerInputClass": "/Script/EnhancedInput.EnhancedPlayerInput",
+        "defaultInputComponentClass": "/Script/EnhancedInput.EnhancedInputComponent"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "四、设置 Enhanced Input 的两个默认类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultInput.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "project-common-input",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Project Settings → Game → Common Input Settings",
+      "orderedSteps": [
+        "搜索 Common Input，打开对应设置页；显示 Enable Enhanced Input Support 和 Input Data。",
+        "展开高级项至 Input Data 的类型/选择器可见；手工改值后重启核对。"
+      ],
+      "expectedVisibleValues": {
+        "enableEnhancedInputSupport": true,
+        "inputData": "/Script/MMORPG.MMOInputData"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "五、接通 CommonInput 的返回动作"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini",
+        "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "UIBackAction 是 MMOInputData 构造函数的原生子对象，Escape/B 的 UI Mapping Context 由根布局建立，不存在需要在 Content Browser 打开的同名教学资产。"
+    },
+    {
+      "id": "project-layer-input-tags",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Project Settings → Project → Gameplay Tags → Gameplay Tag List",
+      "orderedSteps": [
+        "展开 UI.Layer、UI.Slot，再展开 InputTag.MMO，按两个可读分组采集。",
+        "核对全部七个输入标签，不只拍折叠父标签。手工新增后保存 Config，再重开选择器。"
+      ],
+      "expectedVisibleValues": {
+        "uiTags": [
+          "UI.Layer.Game",
+          "UI.Layer.Menu",
+          "UI.Layer.Modal",
+          "UI.Slot.Status"
+        ],
+        "inputTags": [
+          "InputTag.MMO.Move",
+          "InputTag.MMO.Look",
+          "InputTag.MMO.Target",
+          "InputTag.MMO.Attack",
+          "InputTag.MMO.Spell",
+          "InputTag.MMO.Inventory",
+          "InputTag.MMO.Settings"
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/layers-input.mdx",
+        "heading": "配置入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGameplayTags.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "asset-manager-types",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Project Settings → Game → Asset Manager → Primary Asset Types to Scan",
+      "orderedSteps": [
+        "展开 Primary Asset Types to Scan，每个新增条目展开 Directories 和 Rules。",
+        "按每屏能清晰显示的 1–2 个条目分屏；五个条目都必须看到 Primary Asset Type、Base Class、目录与 Cook Rule。",
+        "修改后关闭设置，核对 DefaultGame.ini；重启编辑器并重新打开 DataAsset Picker 验证可找到 Primary Asset Id。"
+      ],
+      "expectedVisibleValues": {
+        "entries": [
+          {
+            "type": "MMOInputConfig",
+            "baseClass": "/Script/MMOFramework.MMOInputConfig",
+            "directory": "/Game/MMO/Input"
+          },
+          {
+            "type": "MMOExperience",
+            "baseClass": "/Script/MMOFramework.MMOExperienceDefinition",
+            "directory": "/Game/MMO/Experiences"
+          },
+          {
+            "type": "MMOPawnData",
+            "baseClass": "/Script/MMOFramework.MMOPawnData",
+            "directory": "/Game/MMO/Pawns"
+          },
+          {
+            "type": "MMOAbilitySet",
+            "baseClass": "/Script/MMOFramework.MMOAbilitySet",
+            "directory": "/Game/MMO/Abilities"
+          },
+          {
+            "type": "GameFeatureData",
+            "baseClass": "/Script/GameFeatures.GameFeatureData",
+            "directory": "/MMOCore"
+          }
+        ],
+        "allEntries": {
+          "hasBlueprintClasses": false,
+          "isEditorOnly": false,
+          "cookRule": "AlwaysCook",
+          "priority": -1,
+          "chunkId": -1,
+          "applyRecursively": true
+        }
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "六、让 Asset Manager 扫描 GameFeatureData"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "feature-data-actions",
+      "section": "Game Feature",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/MMOCore/MMOCore",
+      "editorPage": "Game Feature Data Editor → Actions",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /MMOCore/MMOCore，双击打开。",
+        "切换 Details；若 Details 缺失，用 Window 菜单恢复。",
+        "Content Browser 的 Settings 勾选 Show Plugin Content 后定位 MMOCore。",
+        "展开 Actions 中 Add Components 和 Component List，保留 Actor Class、Component Class、客户端/服务器开关。",
+        "记录编辑器实际 Current State/Initial State；此图中的状态只是当前编辑器插件状态，游戏由 Experience 请求激活。"
+      ],
+      "expectedVisibleValues": {
+        "action": "GameFeatureAction_AddComponents",
+        "actorClass": "/Script/ModularGameplayActors.ModularGameStateBase",
+        "componentClass": "/Script/MMOCore.MMOZoneComponent",
+        "clientComponent": true,
+        "serverComponent": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "七、配置并激活 MMOCore 数据资产"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/prepare_content.py",
+        "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+        "examples/MMORPG/Plugins/GameFeatures/MMOCore/MMOCore.uplugin"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "requiresCaptureConfirmation": [
+        "插件编辑器当前状态文字；不得依据配置文件推断本次已 Active。"
+      ],
+      "caution": "Add Components 匹配原生 ModularGameStateBase；当前 AMMOGameState 继承该类并接收组件。不要把匹配父类误标为资产直接配置 MMOGameState。"
+    },
+    {
+      "id": "ui-policy-final-layout",
+      "section": "UI Policy",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/BP_MMOUIPolicy",
+      "editorPage": "Blueprint Editor → Class Defaults → Layout Class",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/BP_MMOUIPolicy，双击打开。",
+        "切换 Class Defaults；若 Details 缺失，用 Window 菜单恢复。",
+        "Class Settings 核对原生父类 MMOUIPolicy；切换 Class Defaults 搜索 Layout Class。",
+        "显示 WBP_MMOLayout 资产选择器；可用浏览按钮定位实际资产。",
+        "手工设置后 Compile、Save；Config 中 DefaultUIPolicyClass 指向此 Policy 的生成类，正常重启再运行。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOUIPolicy",
+        "layoutClass": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout_C",
+        "configReference": "/Game/UI/BP_MMOUIPolicy.BP_MMOUIPolicy_C"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "八、配置实际使用的 UI Policy"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini",
+        "examples/MMORPG/ui-designer-contract.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "DefaultUIPolicyClass 是 MMOUIManager 的 Config 字段，不要求这张 BP Details 截图显示它。旧图 LayoutClass=原生 MMORootLayout 已过时。"
+    },
+    {
+      "id": "designer-root-stacks",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_MMOLayout",
+      "editorPage": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_MMOLayout，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Hierarchy，保留 Designer 预览和树中变量名。Class Settings 核对 Parent Class；若父类没有出现在当前 Designer 标题中，补一张 Class Settings，不猜测父类。",
+        "选中 GameLayer，展开 Slot (Overlay Slot) 与转场设置；再依次选择 MenuLayer、ModalLayer，核对三者一致。",
+        "只读核对；如为教学手工重建，先补齐所有必需控件，再 Compile、Save，重开核对。不要先编译空 BindWidget 树。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMORootLayout",
+        "mandatoryWidgets": {
+          "GameLayer": "CommonActivatableWidgetStack",
+          "MenuLayer": "CommonActivatableWidgetStack",
+          "ModalLayer": "CommonActivatableWidgetStack"
+        },
+        "isVariableForAllMandatoryWidgets": true,
+        "root": "Overlay LayerLayout",
+        "childOrder": [
+          "GameLayer",
+          "MenuLayer",
+          "ModalLayer"
+        ],
+        "overlaySlotHorizontalAlignment": "Fill",
+        "overlaySlotVerticalAlignment": "Fill",
+        "transitionDuration": 0.16,
+        "canvasCount": 0
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "三、建立根布局的 CommonUI 三层"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_MMOLayout-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "三种 Gameplay Tag 由 NativeOnInitialized 的 RegisterLayer 注册，不是 Stack 的虚构 Designer 属性。标签映射用相邻 C++ 代码解释。"
+    },
+    {
+      "id": "designer-root-screen-classes",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_MMOLayout",
+      "editorPage": "Widget Blueprint Editor → Class Defaults → UI → Screens",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_MMOLayout，双击打开。",
+        "切换 Class Defaults；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 UI → Screens，清空 Details 搜索；五行软类引用必须同屏可读。",
+        "逐行核对 WBP 名；替换某个 Panel 后 Compile、Save，重新进入游戏才检查实际实例。"
+      ],
+      "expectedVisibleValues": {
+        "LoginClass": "/Game/UI/WBP_Login.WBP_Login_C",
+        "HUDClass": "/Game/UI/WBP_PlayerHUD.WBP_PlayerHUD_C",
+        "InventoryClass": "/Game/UI/WBP_Inventory.WBP_Inventory_C",
+        "SettingsClass": "/Game/UI/WBP_Settings.WBP_Settings_C",
+        "ConfirmClass": "/Game/UI/WBP_Confirm.WBP_Confirm_C"
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "九、把实际资产接到 UI Policy 和层栈"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+        "examples/MMORPG/ui-designer-contract.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "designer-login-account",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Login",
+      "editorPage": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Login，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Hierarchy，保留 Designer 预览和树中变量名。Class Settings 核对 Parent Class；若父类没有出现在当前 Designer 标题中，补一张 Class Settings，不猜测父类。",
+        "先框取完整登录预览和 Hierarchy 上半；选中 Password 显示 Is Password=true、空 Text 和 Hint Text。",
+        "只读核对；如为教学手工重建，先补齐所有必需控件，再 Compile、Save，重开核对。不要先编译空 BindWidget 树。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOLoginPanel",
+        "mandatoryWidgets": {
+          "Form": "VerticalBox",
+          "Username": "EditableTextBox",
+          "Password": "EditableTextBox",
+          "CharacterName": "EditableTextBox",
+          "CharacterList": "ComboBoxString",
+          "Message": "TextBlock",
+          "LoginButton": "Button",
+          "RegisterButton": "Button",
+          "RefreshButton": "Button",
+          "CreateButton": "Button",
+          "JoinButton": "Button"
+        },
+        "isVariableForAllMandatoryWidgets": true,
+        "parentHierarchy": "ScreenLayout (Overlay) → PanelWidth (SizeBox, Width Override 680) → PanelBackground (Border) → Form (VerticalBox)",
+        "accountChildren": [
+          "Title",
+          "AccountTitle",
+          "Username",
+          "Password",
+          "AccountActions → LoginButton / RegisterButton"
+        ],
+        "passwordIsPassword": true,
+        "UsernameText": "",
+        "PasswordText": "",
+        "panelPlacement": "center / center; Overlay Slot Padding 24"
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "五、制作登录和角色选择界面"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Login-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "designer-login-character",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Login",
+      "editorPage": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Login，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Hierarchy，保留 Designer 预览和树中变量名。Class Settings 核对 Parent Class；若父类没有出现在当前 Designer 标题中，补一张 Class Settings，不猜测父类。",
+        "Hierarchy 向下滚到角色区；展开 CharacterActions，选中 CharacterList 显示默认项为空、Max List Height 240。",
+        "只读核对；如为教学手工重建，先补齐所有必需控件，再 Compile、Save，重开核对。不要先编译空 BindWidget 树。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOLoginPanel",
+        "mandatoryWidgets": {
+          "Form": "VerticalBox",
+          "Username": "EditableTextBox",
+          "Password": "EditableTextBox",
+          "CharacterName": "EditableTextBox",
+          "CharacterList": "ComboBoxString",
+          "Message": "TextBlock",
+          "LoginButton": "Button",
+          "RegisterButton": "Button",
+          "RefreshButton": "Button",
+          "CreateButton": "Button",
+          "JoinButton": "Button"
+        },
+        "isVariableForAllMandatoryWidgets": true,
+        "characterChildren": [
+          "CharacterTitle",
+          "CharacterName",
+          "CreateButton",
+          "CharacterListLabel",
+          "CharacterList",
+          "CharacterActions → RefreshButton / JoinButton",
+          "Message"
+        ],
+        "characterNameText": "",
+        "characterListDefaultOptions": [],
+        "characterListMaxListHeight": 240,
+        "menuButtonsFocusable": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "五、制作登录和角色选择界面"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Login-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "不输入或显示测试账号、密码、会话令牌。用户创建角色属于运行数据，不写进 WBP 默认值。"
+    },
+    {
+      "id": "designer-common-style",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Login",
+      "editorPage": "Designer → Details → Slot / Appearance / Style",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Login，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "选 PanelBackground 展开 Padding 与 Brush Color；选 PanelWidth 展开 Width Override。",
+        "选 Username 展开 Style → Text Style → Font；显示字体字号及文本/背景对比。",
+        "选 LoginButton 展开 Normal/Hovered/Pressed 与内部 Label；若一屏不能展示三类属性，各补一张选中项截图。",
+        "选中 Button 内部的 Label，展开 Slot (Button Slot) 显示 Horizontal Alignment=Fill，再显示 TextBlock Justification=Center、Auto Wrap=true；这是两个不同层级的设置。"
+      ],
+      "expectedVisibleValues": {
+        "panelWidth": 680,
+        "panelPadding": 24,
+        "panelBrushLinearRGBA": [
+          0.035,
+          0.052,
+          0.09,
+          1
+        ],
+        "bodyFontSize": 18,
+        "inputMinDesiredHeight": 44,
+        "buttonMinDesiredHeight": 46,
+        "buttonLabelAlignment": "Center",
+        "buttonLabelAutoWrapText": true,
+        "buttonLabelSlotHorizontalAlignment": "Fill",
+        "buttonLabelTextJustification": "Center"
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "四、统一面板布局和样式"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "verification/mmorpg-button-slots.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "UE 5.8.1 FEditableTextBoxStyle 使用 TextStyle.Font，不能写成不存在的 Style.Font。RGBA 明确为线性值，取色器若显示 sRGB 不直接比较十六进制。"
+    },
+    {
+      "id": "designer-mana-layout",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_ManaStatus",
+      "editorPage": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_ManaStatus，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Hierarchy，保留 Designer 预览和树中变量名。Class Settings 核对 Parent Class；若父类没有出现在当前 Designer 标题中，补一张 Class Settings，不猜测父类。",
+        "选 ManaBar 展开 Progress；再选 ManaBarSize 显示 Min Desired Height=14，不把 SizeBox 的字段写成 ProgressBar 属性。",
+        "只读核对；如为教学手工重建，先补齐所有必需控件，再 Compile、Save，重开核对。不要先编译空 BindWidget 树。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/UMG.UserWidget",
+        "mandatoryWidgets": {
+          "ManaText": "TextBlock",
+          "ManaBar": "ProgressBar"
+        },
+        "isVariableForAllMandatoryWidgets": true,
+        "hierarchy": "ManaLayout (VerticalBox) → ManaText; ManaBarSize (SizeBox) → ManaBar",
+        "fontSize": 18,
+        "barMinDesiredHeight": 14,
+        "defaultPercent": 1,
+        "fillColorLinearRGBA": [
+          0.08,
+          0.5,
+          1,
+          1
+        ],
+        "textTableKey": "Mana.Preview"
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "六、制作可复用法力控件和真实 MVVM 绑定"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_ManaStatus-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "mvvm-mana-source",
+      "section": "MVVM",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_ManaStatus",
+      "editorPage": "Widget Blueprint Editor → Window → Viewmodels",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_ManaStatus，双击打开。",
+        "切换 Viewmodels；若 Details 缺失，用 Window 菜单恢复。",
+        "选中 PlayerVM；展开来源设置，显示 Viewmodel Class、实例名和 Creation Type。",
+        "Manual 来源由运行时注入；不选择 Create Instance，也不创建与 LocalPlayer 无关的副本。"
+      ],
+      "expectedVisibleValues": {
+        "name": "PlayerVM",
+        "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+        "creationType": "Manual",
+        "optional": true,
+        "createSetterFunction": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "六、制作可复用法力控件和真实 MVVM 绑定"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_ManaStatus-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "MVVM 绑定在 UMVVMBlueprintView 里，不是 EventGraph 节点。截图实际显示的标签若与英文预期有空格/翻译差异，图注同时保留源属性名；不得为了匹配计划伪造字段。"
+    },
+    {
+      "id": "mvvm-mana-bindings",
+      "section": "MVVM",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_ManaStatus",
+      "editorPage": "Widget Blueprint Editor → Window → View Bindings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_ManaStatus，双击打开。",
+        "切换 View Bindings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开全部绑定，显示 Source、Destination、Binding Mode。",
+        "选中绑定的执行配置，显示 Override Execution Mode / Immediate；若此面板只能显示一行，补选中其余行的截图。",
+        "Compile、Save 属于手工创建后的步骤；当前采集只读核对已经成功编译的资产。"
+      ],
+      "expectedVisibleValues": {
+        "bindings": [
+          {
+            "source": "PlayerVM.ManaLabel",
+            "destination": "ManaText.Text",
+            "mode": "One Way to Destination",
+            "executionOverride": "Immediate",
+            "enabled": true
+          },
+          {
+            "source": "PlayerVM.ManaFraction",
+            "destination": "ManaBar.Percent",
+            "mode": "One Way to Destination",
+            "executionOverride": "Immediate",
+            "enabled": true
+          }
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "六、制作可复用法力控件和真实 MVVM 绑定"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_ManaStatus-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "MVVM 绑定在 UMVVMBlueprintView 里，不是 EventGraph 节点。截图实际显示的标签若与英文预期有空格/翻译差异，图注同时保留源属性名；不得为了匹配计划伪造字段。"
+    },
+    {
+      "id": "designer-hud-layout",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_PlayerHUD",
+      "editorPage": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_PlayerHUD，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Hierarchy，保留 Designer 预览和树中变量名。Class Settings 核对 Parent Class；若父类没有出现在当前 Designer 标题中，补一张 Class Settings，不猜测父类。",
+        "展开 Hierarchy 中 AbilityActions、MenuActions；选中 ManaStatus，保留其真实 WBP 类型与 Designer 预览。",
+        "必要时用上下两张 Hierarchy 补齐全部变量，不能把嵌套 ManaStatus 的内部两控件误当 HUD 自己的控件。",
+        "只读核对；如为教学手工重建，先补齐所有必需控件，再 Compile、Save，重开核对。不要先编译空 BindWidget 树。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOHUDPanel",
+        "mandatoryWidgets": {
+          "Values": "TextBlock",
+          "ManaStatus": "WBP_ManaStatus",
+          "TargetText": "TextBlock",
+          "TargetHealthBar": "ProgressBar",
+          "CooldownText": "TextBlock",
+          "InputHintText": "TextBlock",
+          "TargetButton": "Button",
+          "AttackButton": "Button",
+          "SpellButton": "Button",
+          "InventoryButton": "Button",
+          "SettingsButton": "Button"
+        },
+        "isVariableForAllMandatoryWidgets": true,
+        "panelWidth": 540,
+        "placement": "left / top; Overlay Slot Padding 24",
+        "body": "HUDLayout (VerticalBox)",
+        "nestedWidget": "/Game/UI/WBP_ManaStatus.WBP_ManaStatus_C named ManaStatus",
+        "bodySections": [
+          "Title",
+          "Values",
+          "ManaStatus",
+          "TargetHeading",
+          "TargetText",
+          "TargetHealthBar",
+          "CooldownText",
+          "AbilityActions",
+          "MenuActions",
+          "InputHintText"
+        ],
+        "inputHintFontSize": 15,
+        "inputHintAutoWrapText": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "七、制作 HUD、目标与技能快捷入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_PlayerHUD-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "designer-hud-focus",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_PlayerHUD",
+      "editorPage": "Designer → Details → Interaction → Is Focusable",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_PlayerHUD，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "Ctrl 多选 TargetButton、AttackButton、SpellButton、InventoryButton、SettingsButton。",
+        "展开 Interaction，显示共同 Is Focusable=false，保留五个选中名称；若多选不能显示共同属性，逐个补拍。",
+        "与设置面板的可聚焦 Button 对照；手工调整后 Compile、Save。"
+      ],
+      "expectedVisibleValues": {
+        "buttons": [
+          "TargetButton",
+          "AttackButton",
+          "SpellButton",
+          "InventoryButton",
+          "SettingsButton"
+        ],
+        "isFocusable": false,
+        "isVariable": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "七、制作 HUD、目标与技能快捷入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "HUD 保留 CommonUI Activation Focus 支持以参与输入路由；无默认目标并关闭 Auto Restore Focus。不要教读者把支持总开关关闭。"
+    },
+    {
+      "id": "mvvm-hud-source",
+      "section": "MVVM",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_PlayerHUD",
+      "editorPage": "Widget Blueprint Editor → Window → Viewmodels",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_PlayerHUD，双击打开。",
+        "切换 Viewmodels；若 Details 缺失，用 Window 菜单恢复。",
+        "选中 PlayerVM；展开来源设置，显示 Viewmodel Class、实例名和 Creation Type。",
+        "Manual 来源由运行时注入；不选择 Create Instance，也不创建与 LocalPlayer 无关的副本。"
+      ],
+      "expectedVisibleValues": {
+        "name": "PlayerVM",
+        "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+        "creationType": "Manual",
+        "optional": true,
+        "createSetterFunction": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "七、制作 HUD、目标与技能快捷入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_PlayerHUD-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "MVVM 绑定在 UMVVMBlueprintView 里，不是 EventGraph 节点。截图实际显示的标签若与英文预期有空格/翻译差异，图注同时保留源属性名；不得为了匹配计划伪造字段。"
+    },
+    {
+      "id": "mvvm-hud-bindings",
+      "section": "MVVM",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_PlayerHUD",
+      "editorPage": "Widget Blueprint Editor → Window → View Bindings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_PlayerHUD，双击打开。",
+        "切换 View Bindings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开全部绑定，显示 Source、Destination、Binding Mode。",
+        "选中绑定的执行配置，显示 Override Execution Mode / Immediate；若此面板只能显示一行，补选中其余行的截图。",
+        "Compile、Save 属于手工创建后的步骤；当前采集只读核对已经成功编译的资产。"
+      ],
+      "expectedVisibleValues": {
+        "bindings": [
+          {
+            "source": "PlayerVM.StatusText",
+            "destination": "Values.Text",
+            "mode": "One Way to Destination",
+            "executionOverride": "Immediate",
+            "enabled": true
+          },
+          {
+            "source": "PlayerVM.TargetLabel",
+            "destination": "TargetText.Text",
+            "mode": "One Way to Destination",
+            "executionOverride": "Immediate",
+            "enabled": true
+          },
+          {
+            "source": "PlayerVM.TargetFraction",
+            "destination": "TargetHealthBar.Percent",
+            "mode": "One Way to Destination",
+            "executionOverride": "Immediate",
+            "enabled": true
+          },
+          {
+            "source": "PlayerVM.CooldownLabel",
+            "destination": "CooldownText.Text",
+            "mode": "One Way to Destination",
+            "executionOverride": "Immediate",
+            "enabled": true
+          },
+          {
+            "source": "PlayerVM.InputHint",
+            "destination": "InputHintText.Text",
+            "mode": "One Way to Destination",
+            "executionOverride": "Immediate",
+            "enabled": true
+          }
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "七、制作 HUD、目标与技能快捷入口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_PlayerHUD-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "MVVM 绑定在 UMVVMBlueprintView 里，不是 EventGraph 节点。截图实际显示的标签若与英文预期有空格/翻译差异，图注同时保留源属性名；不得为了匹配计划伪造字段。"
+    },
+    {
+      "id": "designer-inventory-layout",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Inventory",
+      "editorPage": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Inventory，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Hierarchy，保留 Designer 预览和树中变量名。Class Settings 核对 Parent Class；若父类没有出现在当前 Designer 标题中，补一张 Class Settings，不猜测父类。",
+        "选中 PotionButton 显示 Is Focusable=true；预览使用字符串表默认文案，不往资产填测试背包。",
+        "只读核对；如为教学手工重建，先补齐所有必需控件，再 Compile、Save，重开核对。不要先编译空 BindWidget 树。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOInventoryPanel",
+        "mandatoryWidgets": {
+          "Message": "TextBlock",
+          "PotionButton": "Button",
+          "CloseButton": "Button"
+        },
+        "isVariableForAllMandatoryWidgets": true,
+        "panelWidth": 600,
+        "placement": "center / center",
+        "body": "InventoryLayout (VerticalBox)",
+        "childOrder": [
+          "Title",
+          "Message",
+          "PotionButton",
+          "CloseButton"
+        ],
+        "menuButtonsFocusable": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Inventory-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "mvvm-inventory-source",
+      "section": "MVVM",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Inventory",
+      "editorPage": "Widget Blueprint Editor → Window → Viewmodels",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Inventory，双击打开。",
+        "切换 Viewmodels；若 Details 缺失，用 Window 菜单恢复。",
+        "选中 PlayerVM；展开来源设置，显示 Viewmodel Class、实例名和 Creation Type。",
+        "Manual 来源由运行时注入；不选择 Create Instance，也不创建与 LocalPlayer 无关的副本。"
+      ],
+      "expectedVisibleValues": {
+        "name": "PlayerVM",
+        "viewModelClass": "/Script/MMORPG.MMOPlayerViewModel",
+        "creationType": "Manual",
+        "optional": true,
+        "createSetterFunction": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_Inventory-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "MVVM 绑定在 UMVVMBlueprintView 里，不是 EventGraph 节点。截图实际显示的标签若与英文预期有空格/翻译差异，图注同时保留源属性名；不得为了匹配计划伪造字段。"
+    },
+    {
+      "id": "mvvm-inventory-binding",
+      "section": "MVVM",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Inventory",
+      "editorPage": "Widget Blueprint Editor → Window → View Bindings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Inventory，双击打开。",
+        "切换 View Bindings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开全部绑定，显示 Source、Destination、Binding Mode。",
+        "选中绑定的执行配置，显示 Override Execution Mode / Immediate；若此面板只能显示一行，补选中其余行的截图。",
+        "Compile、Save 属于手工创建后的步骤；当前采集只读核对已经成功编译的资产。"
+      ],
+      "expectedVisibleValues": {
+        "bindings": [
+          {
+            "source": "PlayerVM.InventoryLabel",
+            "destination": "Message.Text",
+            "mode": "One Way to Destination",
+            "executionOverride": "Immediate",
+            "enabled": true
+          }
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "verification/WBP_Inventory-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "MVVM 绑定在 UMVVMBlueprintView 里，不是 EventGraph 节点。截图实际显示的标签若与英文预期有空格/翻译差异，图注同时保留源属性名；不得为了匹配计划伪造字段。"
+    },
+    {
+      "id": "designer-settings-layout",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Settings",
+      "editorPage": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Settings，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Hierarchy，保留 Designer 预览和树中变量名。Class Settings 核对 Parent Class；若父类没有出现在当前 Designer 标题中，补一张 Class Settings，不猜测父类。",
+        "展开画质与语言两个 HorizontalBox；选中 ChineseButton，展开其 Label 文本的字符串表来源，显示 Language.Chinese。",
+        "只读核对；如为教学手工重建，先补齐所有必需控件，再 Compile、Save，重开核对。不要先编译空 BindWidget 树。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOSettingsPanel",
+        "mandatoryWidgets": {
+          "LowQualityButton": "Button",
+          "MediumQualityButton": "Button",
+          "HighQualityButton": "Button",
+          "LogoutButton": "Button",
+          "CloseButton": "Button",
+          "ChineseButton": "Button",
+          "EnglishButton": "Button"
+        },
+        "isVariableForAllMandatoryWidgets": true,
+        "panelWidth": 600,
+        "placement": "center / center",
+        "body": "SettingsLayout (VerticalBox)",
+        "grouping": [
+          "QualityHeading; LowQualityButton / MediumQualityButton / HighQualityButton in one HorizontalBox",
+          "LanguageHeading; ChineseButton / EnglishButton in one HorizontalBox",
+          "LogoutButton",
+          "CloseButton"
+        ],
+        "allSevenButtonsFocusable": true,
+        "viewModelSources": []
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Settings-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "按钮固定文字属于 Designer；en/zh-Hans 的切换、ApplySettings 和文化保存由 C++ 业务实现。截图按钮本身不能证明运行切换和重启持久化已通过。"
+    },
+    {
+      "id": "designer-confirm-layout",
+      "section": "Designer",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Confirm",
+      "editorPage": "Widget Blueprint Editor → Designer / Hierarchy / Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Confirm，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Hierarchy，保留 Designer 预览和树中变量名。Class Settings 核对 Parent Class；若父类没有出现在当前 Designer 标题中，补一张 Class Settings，不猜测父类。",
+        "选中 ModalScrim，展示颜色与 Visibility；保留它在 Hierarchy 中位于 PanelWidth 之前。",
+        "只读核对；如为教学手工重建，先补齐所有必需控件，再 Compile、Save，重开核对。不要先编译空 BindWidget 树。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOConfirmPanel",
+        "mandatoryWidgets": {
+          "ConfirmButton": "Button",
+          "CancelButton": "Button"
+        },
+        "isVariableForAllMandatoryWidgets": true,
+        "hierarchy": "ScreenLayout (Overlay) → ModalScrim (Border), PanelWidth (SizeBox)",
+        "modalScrimLinearRGBA": [
+          0,
+          0,
+          0,
+          0.62
+        ],
+        "modalScrimVisibility": "HitTestInvisible",
+        "panelWidth": 600,
+        "content": [
+          "Title",
+          "Explanation",
+          "ConfirmButton",
+          "CancelButton"
+        ],
+        "buttonsFocusable": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/designer.mdx",
+        "heading": "八、制作背包、设置与模态确认"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-contract.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+        "verification/WBP_Confirm-designer.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "ModalScrim 只画遮罩；CommonUI Modal 栈接管输入。取消默认焦点由 C++ NativeConstruct 设置为 CancelButton，不是假造 Designer 绑定。"
+    },
+    {
+      "id": "string-table-source-data",
+      "section": "Localization",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Localization/ST_MMO",
+      "editorPage": "String Table Editor",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Localization/ST_MMO，双击打开。",
+        "切换 String Table Editor；若 Details 缺失，用 Window 菜单恢复。",
+        "新手入口为 Content Browser → 创建资产 → Data → String Table；现有资产双击即可。",
+        "显示 Namespace 与 Key/Source String 表头，先定位 Login.Title，再定位 Settings.Title 与 Language.Chinese/English。",
+        "按实际可读范围分屏；45 项完整列表由 ui-designer-strings.json 辅助，截图不用缩小到 45 行挤满一屏。保存后重开核对。"
+      ],
+      "expectedVisibleValues": {
+        "namespace": "MMOUI",
+        "sourceCulture": "en",
+        "entries": 45,
+        "samples": [
+          [
+            "Login.Title",
+            "Begin your journey"
+          ],
+          [
+            "Settings.Title",
+            "Settings"
+          ],
+          [
+            "Language.Chinese",
+            "Simplified Chinese"
+          ],
+          [
+            "Language.English",
+            "English"
+          ]
+        ],
+        "tableObjectPath": "/Game/Localization/ST_MMO.ST_MMO"
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "创建字符串表并在 Designer 引用"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-strings.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "表只保存英文 Source 和稳定 Key；中文来自 Localization 目标，不能将 Key 重命名为中文标签。"
+    },
+    {
+      "id": "designer-text-string-table-reference",
+      "section": "Localization",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/UI/WBP_Settings",
+      "editorPage": "Designer → Title TextBlock → Content → Text → advanced text/string-table selector",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/UI/WBP_Settings，双击打开。",
+        "切换 Designer；若 Details 缺失，用 Window 菜单恢复。",
+        "选 Title，展开 Content → Text，打开文本字段右侧本地化/字符串表菜单。",
+        "显示 String Table 指向 ST_MMO 与 Key=Settings.Title；保留 Hierarchy 中 Title 和资产标题。",
+        "使用 Choose/Select String Table 的实际控件；选择后 Compile、Save。采集不要断开已有表引用。"
+      ],
+      "expectedVisibleValues": {
+        "stringTable": "/Game/Localization/ST_MMO.ST_MMO",
+        "key": "Settings.Title",
+        "englishSource": "Settings"
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "创建字符串表并在 Designer 引用"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/ui-designer-strings.json",
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "这是 FText 字符串表引用，不是运行时 DataTable Row；Table ID、Namespace、Key 是三个不同概念。"
+    },
+    {
+      "id": "localization-dashboard-target",
+      "section": "Localization",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Tools → Localization Dashboard → Game Targets → MMO",
+      "orderedSteps": [
+        "打开 Localization Dashboard，选择 Game Targets 下 MMO；如果菜单位置不同，使用 Tools 搜索真实命令并在图注记录实际入口。",
+        "显示目标名称、Loading Policy、Native Culture 与 Supported Cultures。",
+        "截图只读，不在其他任务运行期间点击 Gather/Compile；手工配置后保存目标并重开 Dashboard。"
+      ],
+      "expectedVisibleValues": {
+        "target": "MMO",
+        "loadingPolicy": "Game",
+        "nativeCulture": "en",
+        "supportedCultures": [
+          "en",
+          "zh-Hans"
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "在 Localization Dashboard 配置目标"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEditor.ini",
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "requiresCaptureConfirmation": [
+        "Dashboard 实际字数/翻译率与原生84key流水线分别记录；字数不等于FText key数量。"
+      ],
+      "caution": "Game加载路径位于DefaultGame.ini的Internationalization段。Dashboard Loading Policy配置截图之外，用精确INI代码解释路径；不要在不存在的Details字段填LocalizationPaths。",
+      "additionalEditorPage": {
+        "entry": "Edit → Editor Preferences → search Preview Game Language",
+        "expected": "简体中文 / zh-Hans when previewing Chinese game text in PIE; clear override before independent saved-preference tests.",
+        "steps": [
+          "搜索 Preview Game Language，选择实际可用文化并保留该属性标签。",
+          "分别说明 Editor 语言、Game Preview 语言和 GameUserSettings 保存文化；不把 PIE CurrentCulture=zh-Hans 单独当加载了游戏中文资源的证明。"
+        ],
+        "source": "E:/UnrealEngine/Engine/Source/Editor/InternationalizationSettings/Private/InternationalizationSettingsModelDetails.cpp",
+        "teachingLocation": {
+          "file": "content/docs/09-mmo-ui/localization.mdx",
+          "heading": "在游戏内切换并验收"
+        }
+      }
+    },
+    {
+      "id": "localization-dashboard-text-gather",
+      "section": "Localization",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Localization Dashboard → MMO → Gather Text → From Text Files",
+      "orderedSteps": [
+        "选择 MMO，展开 Gather from Text Files、Search Directories 和 File Extensions。",
+        "显示所有两条目录、h/cpp 两个扩展和 Editor Only 关闭；如字段较多，分上下两张保留栏目标题。"
+      ],
+      "expectedVisibleValues": {
+        "enabled": true,
+        "searchDirectories": [
+          "Source/MMORPG",
+          "Plugins/MMOFramework/Source"
+        ],
+        "extensions": [
+          "h",
+          "cpp"
+        ],
+        "gatherEditorOnlyData": false
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "在 Localization Dashboard 配置目标"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEditor.ini",
+        "examples/MMORPG/Config/Localization/MMO_Gather.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "localization-dashboard-package-gather",
+      "section": "Localization",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Localization Dashboard → MMO → Gather Text → From Packages",
+      "orderedSteps": [
+        "展开 Gather from Packages、Include Path Wildcards 和 File Extensions。",
+        "显示 UI 通配符和 String Table 精确路径；再展开 Compile Text 的来源/格式验证开关另拍一张。"
+      ],
+      "expectedVisibleValues": {
+        "enabled": true,
+        "includePathWildcards": [
+          "Content/UI/*",
+          "Content/Localization/ST_MMO.uasset"
+        ],
+        "extension": "uasset",
+        "gatherEditorOnlyData": false,
+        "compile": {
+          "skipSourceCheck": false,
+          "validateFormatPatterns": true,
+          "validateSafeWhitespace": true
+        }
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "在 Localization Dashboard 配置目标"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultEditor.ini",
+        "examples/MMORPG/Config/Localization/MMO_Compile.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "project-packaging-cultures",
+      "section": "Localization",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Project Settings → Project → Packaging → Internationalization",
+      "orderedSteps": [
+        "打开 Packaging，搜索 Internationalization；展开 Internationalization Support / Localizations to Package。",
+        "显示 EFIGSCJK 和 en、zh-Hans；不要把支持的 ICU 数据范围与本项目实际 staged cultures 混淆。",
+        "手工配置保存到 DefaultGame.ini；真正 Cook 和独立客户端切换使用后续单独报告。"
+      ],
+      "expectedVisibleValues": {
+        "internationalizationPreset": "EFIGSCJK",
+        "culturesToStage": [
+          "en",
+          "zh-Hans"
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/localization.mdx",
+        "heading": "配置加载路径、字体和打包"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "configCompanion": {
+        "file": "examples/MMORPG/Config/DefaultGame.ini",
+        "section": "Internationalization",
+        "entry": "+LocalizationPaths=%GAMEDIR%Content/Localization/MMO"
+      }
+    },
+    {
+      "id": "project-packaging-content",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Project Settings → Project → Packaging → Advanced",
+      "orderedSteps": [
+        "清空搜索，展开 List of Maps to Include 和 Additional Asset Directories to Cook。",
+        "展开四个目录与地图项，显示 Cook All 关闭；若同屏不可读分两张。"
+      ],
+      "expectedVisibleValues": {
+        "cookAll": false,
+        "mapsToCook": [
+          "/Engine/Maps/Entry"
+        ],
+        "directoriesToAlwaysCook": [
+          "/MMOCore",
+          "/Game/UI",
+          "/Game/Localization",
+          "/Game/MMO"
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/migration.mdx",
+        "heading": "逐项启用插件和项目配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "Manny/动画引用由真实资产依赖和 PawnData 的软引用加载清单连接，不凭此目录列表宣称官方 128 个模板文件全部发布或 Cook 已通过。"
+    },
+    {
+      "id": "experience-default-pawn-feature",
+      "section": "Experience",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Experiences/DA_MMOExperience",
+      "editorPage": "Data Asset Editor → Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/Experiences/DA_MMOExperience，双击打开。",
+        "切换 Details；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Default Pawn Data、Game Features to Enable 和 Action Sets。",
+        "保留资源标题与类型 MMOExperienceDefinition；手工用 Data Asset 创建菜单选该原生类，不创建 Blueprint Class 替代。",
+        "设置后 Save；已保存资产的 Primary Asset Id 由 GetPrimaryAssetId 生成，可用 GameMode 的选择器核对。"
+      ],
+      "expectedVisibleValues": {
+        "class": "/Script/MMOFramework.MMOExperienceDefinition",
+        "defaultPawnData": "/Game/MMO/Pawns/DA_MMOPlayer",
+        "gameFeaturesToEnable": [
+          "MMOCore"
+        ],
+        "actionSets": [],
+        "primaryAssetId": "MMOExperience:DA_MMOExperience"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "逐项创建 Experience、PawnData 与 AbilitySet"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "verification/mmorpg-experience-assets.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "requiresCaptureConfirmation": [
+        "Actions 为空应在实际资产窗口核对；生成器显式重置 ActionSets，但未使用 Actions 构建玩法，不能凭源码推断任何后续手工条目。"
+      ]
+    },
+    {
+      "id": "pawn-data-class-input-animation",
+      "section": "Experience",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Pawns/DA_MMOPlayer",
+      "editorPage": "Data Asset Editor → Pawn / Abilities / Input / Animation",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/Pawns/DA_MMOPlayer，双击打开。",
+        "切换 Details；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Pawn、Abilities 的 Ability Sets 数组、Input、Animation。",
+        "显示全部五个引用，必要时分上下两张，不能只展示 PawnClass。",
+        "手工选择资产后 Save；类引用使用生成类，数据引用使用 DataAsset 本身。"
+      ],
+      "expectedVisibleValues": {
+        "pawnClass": "/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter_C",
+        "abilitySets": [
+          "/Game/MMO/Abilities/DA_MMOAbilities"
+        ],
+        "inputMappingContext": "/Game/MMO/Input/IMC_MMOPlayer",
+        "inputConfig": "/Game/MMO/Input/DA_MMOInputConfig",
+        "animInstanceClass": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter_C"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "逐项创建 Experience、PawnData 与 AbilitySet"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "ability-set-grants",
+      "section": "Experience",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Abilities/DA_MMOAbilities",
+      "editorPage": "Data Asset Editor → Abilities",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/Abilities/DA_MMOAbilities，双击打开。",
+        "切换 Details；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Granted Abilities 的索引 0、1，显示 Ability、Level、Input ID、Input Tag。",
+        "同时显示 Granted Effects 和 Granted Attributes 长度 0。",
+        "手工设置后 Save；授予发生在服务器初始化链，打开此资产本身不会授予技能。"
+      ],
+      "expectedVisibleValues": {
+        "grants": [
+          {
+            "ability": "/Script/MMORPG.MMOAttackAbility",
+            "level": 1,
+            "inputId": 0,
+            "inputTag": "None / empty"
+          },
+          {
+            "ability": "/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C",
+            "level": 1,
+            "inputId": 1,
+            "inputTag": "None / empty"
+          }
+        ],
+        "grantedEffects": [],
+        "grantedAttributes": []
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "逐项创建 Experience、PawnData 与 AbilitySet"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "当前 builder 不向 AbilitySet.InputTag 写值；七个语义 Tag 放在 DA_MMOInputConfig，角色分发到输入 ID 0/1。不能拍图注释成 AbilitySet 已按 Tag 授予。"
+    },
+    {
+      "id": "input-config-semantic-tags",
+      "section": "Input",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Input/DA_MMOInputConfig",
+      "editorPage": "Data Asset Editor → Native Input Actions",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/Input/DA_MMOInputConfig，双击打开。",
+        "切换 Details；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Native Input Actions，逐项展开索引 0–6。",
+        "按 0–3、4–6 两屏拍清 Input Action 与 Input Tag 的配对；Save 后回 PawnData 核对引用。"
+      ],
+      "expectedVisibleValues": {
+        "entries": [
+          {
+            "action": "/Game/MMO/Input/IA_Move",
+            "tag": "InputTag.MMO.Move"
+          },
+          {
+            "action": "/Game/MMO/Input/IA_Look",
+            "tag": "InputTag.MMO.Look"
+          },
+          {
+            "action": "/Game/MMO/Input/IA_Target",
+            "tag": "InputTag.MMO.Target"
+          },
+          {
+            "action": "/Game/MMO/Input/IA_Attack",
+            "tag": "InputTag.MMO.Attack"
+          },
+          {
+            "action": "/Game/MMO/Input/IA_Spell",
+            "tag": "InputTag.MMO.Spell"
+          },
+          {
+            "action": "/Game/MMO/Input/IA_Inventory",
+            "tag": "InputTag.MMO.Inventory"
+          },
+          {
+            "action": "/Game/MMO/Input/IA_Settings",
+            "tag": "InputTag.MMO.Settings"
+          }
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "examples/MMORPG/Config/DefaultGameplayTags.ini"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "input-action-value-types",
+      "section": "Input",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Input",
+      "editorPage": "Input Action Editor → Action → Value Type",
+      "orderedSteps": [
+        "依次打开 IA_Move、IA_Look，显示 Value Type=Axis2D。",
+        "依次打开 IA_Target、IA_Attack、IA_Spell、IA_Inventory、IA_Settings，显示 Value Type=Boolean。",
+        "每种类型至少一张完整字段说明图，其余资产以独立可见标题/属性图补齐；不要把某个资产设置推断到其余六个。"
+      ],
+      "expectedVisibleValues": {
+        "actions": [
+          {
+            "path": "/Game/MMO/Input/IA_Move",
+            "valueType": "Axis2D"
+          },
+          {
+            "path": "/Game/MMO/Input/IA_Look",
+            "valueType": "Axis2D"
+          },
+          {
+            "path": "/Game/MMO/Input/IA_Target",
+            "valueType": "Boolean"
+          },
+          {
+            "path": "/Game/MMO/Input/IA_Attack",
+            "valueType": "Boolean"
+          },
+          {
+            "path": "/Game/MMO/Input/IA_Spell",
+            "valueType": "Boolean"
+          },
+          {
+            "path": "/Game/MMO/Input/IA_Inventory",
+            "valueType": "Boolean"
+          },
+          {
+            "path": "/Game/MMO/Input/IA_Settings",
+            "valueType": "Boolean"
+          }
+        ]
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "captureSet": "7 个资产设置视图；若原生 Property Matrix 支持同时真实显示这 7 个资产和 ValueType，可改用该原生矩阵完整截图并记录工具入口。"
+    },
+    {
+      "id": "input-mapping-move",
+      "section": "Input",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Input/IMC_MMOPlayer",
+      "editorPage": "Input Mapping Context Editor → Mappings → Move: 5 physical mappings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/Input/IMC_MMOPlayer，双击打开。",
+        "切换 Mappings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 IA_Move 的全部 5 行；展开 A/W/S 的 Modifiers，特别保留 S 的 Negate → Swizzle 顺序。",
+        "需要时分两屏：D/A/W；S/Gamepad_Left2D；不要只拍 Modifier 数组长度。"
+      ],
+      "expectedVisibleValues": {
+        "mappings": [
+          {
+            "key": "D",
+            "modifiers": []
+          },
+          {
+            "key": "A",
+            "modifiers": [
+              {
+                "type": "Negate",
+                "X": true,
+                "Y": true,
+                "Z": true
+              }
+            ]
+          },
+          {
+            "key": "W",
+            "modifiers": [
+              {
+                "type": "Swizzle Input Axis Values",
+                "order": "YXZ"
+              }
+            ]
+          },
+          {
+            "key": "S",
+            "modifiers": [
+              {
+                "type": "Negate",
+                "X": true,
+                "Y": true,
+                "Z": true
+              },
+              {
+                "type": "Swizzle Input Axis Values",
+                "order": "YXZ"
+              }
+            ]
+          },
+          {
+            "key": "Gamepad_Left2D",
+            "modifiers": []
+          }
+        ],
+        "fullAssetMappingCount": 17
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "localEngineReference": "E:/UnrealEngine/Engine/Plugins/EnhancedInput/Source/EnhancedInput/Public/InputModifiers.h: UInputModifierNegate defaults X/Y/Z=true; UInputModifierSwizzleAxis Order=YXZ."
+    },
+    {
+      "id": "input-mapping-look",
+      "section": "Input",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Input/IMC_MMOPlayer",
+      "editorPage": "Input Mapping Context Editor → Mappings → Look: 2 physical mappings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/Input/IMC_MMOPlayer，双击打开。",
+        "切换 Mappings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 IA_Look 的两行。"
+      ],
+      "expectedVisibleValues": {
+        "mappings": [
+          {
+            "key": "Mouse2D"
+          },
+          {
+            "key": "Gamepad_Right2D"
+          }
+        ],
+        "fullAssetMappingCount": 17
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "localEngineReference": "E:/UnrealEngine/Engine/Plugins/EnhancedInput/Source/EnhancedInput/Public/InputModifiers.h: UInputModifierNegate defaults X/Y/Z=true; UInputModifierSwizzleAxis Order=YXZ."
+    },
+    {
+      "id": "input-mapping-combat",
+      "section": "Input",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Input/IMC_MMOPlayer",
+      "editorPage": "Input Mapping Context Editor → Mappings → Target/Attack/Spell: 6 physical mappings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/Input/IMC_MMOPlayer，双击打开。",
+        "切换 Mappings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Target、Attack、Spell 三组；各保留键盘和手柄两行。"
+      ],
+      "expectedVisibleValues": {
+        "mappings": [
+          {
+            "action": "IA_Target",
+            "keys": [
+              "Tab",
+              "Gamepad_FaceButton_Top (Y)"
+            ]
+          },
+          {
+            "action": "IA_Attack",
+            "keys": [
+              "One (1)",
+              "Gamepad_FaceButton_Bottom (A)"
+            ]
+          },
+          {
+            "action": "IA_Spell",
+            "keys": [
+              "Two (2)",
+              "Gamepad_FaceButton_Left (X)"
+            ]
+          }
+        ],
+        "fullAssetMappingCount": 17
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "localEngineReference": "E:/UnrealEngine/Engine/Plugins/EnhancedInput/Source/EnhancedInput/Public/InputModifiers.h: UInputModifierNegate defaults X/Y/Z=true; UInputModifierSwizzleAxis Order=YXZ."
+    },
+    {
+      "id": "input-mapping-menus",
+      "section": "Input",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/MMO/Input/IMC_MMOPlayer",
+      "editorPage": "Input Mapping Context Editor → Mappings → Inventory/Settings: 4 physical mappings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/MMO/Input/IMC_MMOPlayer，双击打开。",
+        "切换 Mappings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Inventory 和 Settings 两组。",
+        "P 用于设置；Escape/B 属于原生 CommonUI 返回 Context，不应添加在此 Context 抢占返回。"
+      ],
+      "expectedVisibleValues": {
+        "mappings": [
+          {
+            "action": "IA_Inventory",
+            "keys": [
+              "I",
+              "Gamepad_Special_Left (View)"
+            ]
+          },
+          {
+            "action": "IA_Settings",
+            "keys": [
+              "P",
+              "Gamepad_Special_Right (Menu)"
+            ]
+          }
+        ],
+        "fullAssetMappingCount": 17
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/character-gas.mdx",
+        "heading": "输入与目标选择"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "localEngineReference": "E:/UnrealEngine/Engine/Plugins/EnhancedInput/Source/EnhancedInput/Public/InputModifiers.h: UInputModifierNegate defaults X/Y/Z=true; UInputModifierSwizzleAxis Order=YXZ."
+    },
+    {
+      "id": "character-manny-mesh-animation",
+      "section": "Animation",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Tutorial/BP_MMOCharacter",
+      "editorPage": "Blueprint Editor → Components → inherited Mesh → Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Tutorial/BP_MMOCharacter，双击打开。",
+        "切换 Viewport；若 Details 缺失，用 Window 菜单恢复。",
+        "Components 选择继承的 Mesh；保留 Capsule、SpringArm、Camera 与角色预览可辨认的 Manny。",
+        "Details 展开 Mesh 与 Animation，显示 Skeletal Mesh Asset、Animation Mode 和 Anim Class。",
+        "手工设置后 Compile、Save；重开和生成实例后分别核对，不把类默认对象配置截图当运行角色截图。"
+      ],
+      "expectedVisibleValues": {
+        "parent": "/Script/MMORPG.MMOCharacter",
+        "skeletalMeshAsset": "/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple",
+        "animationMode": "Use Animation Blueprint",
+        "animClass": "/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter_C"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "在角色蓝图设置模型与动画类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-character-defaults.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "Manny 来自本机合法引擎模板依赖，原始网格不在公开教学包；不能把早期 Cone 组件预览图作为最终 Manny 证据。"
+    },
+    {
+      "id": "character-mesh-transform-collision",
+      "section": "Animation",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Tutorial/BP_MMOCharacter",
+      "editorPage": "Blueprint Editor → inherited Mesh → Transform / Collision",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Tutorial/BP_MMOCharacter，双击打开。",
+        "切换 Viewport；若 Details 缺失，用 Window 菜单恢复。",
+        "选 inherited Mesh，展开 Transform 与 Collision；显示 Relative Location/Rotation 和 Collision Presets。",
+        "选 Capsule 核对 Capsule Half Height；如不能与 Mesh 同屏显示，补第二张，不猜測 -88 的来源。"
+      ],
+      "expectedVisibleValues": {
+        "meshRelativeLocation": [
+          0,
+          0,
+          -88
+        ],
+        "meshRelativeRotation": {
+          "pitch": 0,
+          "yaw": -90,
+          "roll": 0
+        },
+        "collisionProfile": "CharacterMesh",
+        "capsuleHalfHeight": 88
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "在角色蓝图设置模型与动画类"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-character-defaults.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "animation-layer-interface",
+      "section": "Animation",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Characters/MMO/ALI_MMOCharacter",
+      "editorPage": "Animation Layer Interface Editor → My Blueprint → Animation Layers",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Characters/MMO/ALI_MMOCharacter，双击打开。",
+        "切换 My Blueprint；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Animation Layers，选择 Locomotion，显示名称和输出 Pose 接口。",
+        "手工创建入口是 Animation → Animation Layer Interface；添加层后 Compile、Save。"
+      ],
+      "expectedVisibleValues": {
+        "assetType": "Animation Layer Interface",
+        "layerName": "Locomotion",
+        "output": "Pose"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "手动创建动画层接口"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-animation-assets.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "caution": "ALI 是接口资产，不为它设置 Manny Skeleton 或错误声称其 Parent Class=MMOAnimInstance。真正两个 Anim Blueprint 才设置原生父类和骨架。"
+    },
+    {
+      "id": "animation-unarmed-class-settings",
+      "section": "Animation",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOUnarmed",
+      "editorPage": "Animation Blueprint Editor → Class Settings / Preview Scene Settings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Characters/MMO/ABP_MMOUnarmed，双击打开。",
+        "切换 Class Settings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Class Options 的 Parent Class 和 Implemented Interfaces。",
+        "打开 Preview Scene Settings，显示 Preview Mesh；骨架在资产信息/创建时的 Skeleton 选择器中核对并保留原生路径。",
+        "手工添加 ALI 接口后 Compile、Save，My Blueprint 应出现 Locomotion。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOAnimInstance",
+        "implementedInterface": "/Game/Characters/MMO/ALI_MMOCharacter.ALI_MMOCharacter_C",
+        "previewMesh": "/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple",
+        "targetSkeletonRule": "SKM_Manny_Simple.GetSkeleton(); record the native resolved skeleton path at capture time"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建无武器层实现"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-animation-assets.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "requiresCaptureConfirmation": [
+        "Skeleton 的完整原生路径由实际网格引用读取；不要凭名字猜 SK_Mannequin 的目录。"
+      ]
+    },
+    {
+      "id": "animation-main-class-settings",
+      "section": "Animation",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOCharacter",
+      "editorPage": "Animation Blueprint Editor → Class Settings / Preview Scene Settings",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Characters/MMO/ABP_MMOCharacter，双击打开。",
+        "切换 Class Settings；若 Details 缺失，用 Window 菜单恢复。",
+        "展开 Class Options 的 Parent Class 和 Implemented Interfaces。",
+        "打开 Preview Scene Settings，显示 Preview Mesh；骨架在资产信息/创建时的 Skeleton 选择器中核对并保留原生路径。",
+        "手工添加 ALI 接口后 Compile、Save，My Blueprint 应出现 Locomotion。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOAnimInstance",
+        "implementedInterface": "/Game/Characters/MMO/ALI_MMOCharacter.ALI_MMOCharacter_C",
+        "previewMesh": "/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple",
+        "targetSkeletonRule": "SKM_Manny_Simple.GetSkeleton(); record the native resolved skeleton path at capture time"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建主动画蓝图"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-animation-assets.json"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "requiresCaptureConfirmation": [
+        "Skeleton 的完整原生路径由实际网格引用读取；不要凭名字猜 SK_Mannequin 的目录。"
+      ]
+    },
+    {
+      "id": "animation-unarmed-locomotion-graph",
+      "section": "Animation graph",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOUnarmed",
+      "editorPage": "Animation Blueprint Editor → Locomotion graph",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Characters/MMO/ABP_MMOUnarmed，双击打开。",
+        "切换 Locomotion；若 Details 缺失，用 Window 菜单恢复。",
+        "用 BlueprintScreenshotTool 原生完整图导出，Zoom=1；保留全部六节点和连线。",
+        "配套编辑器截图保留资产标题与图名，用于证明不是另一个资产的图。"
+      ],
+      "expectedVisibleValues": {
+        "totalGraphNodes": 6,
+        "nodes": [
+          "GroundSpeed",
+          "BlendSpace Player BS_Idle_Walk_Run",
+          "Sequence Player MM_Fall_Loop",
+          "Is Falling",
+          "Blend Poses by bool",
+          "Output Pose"
+        ],
+        "flow": [
+          "GroundSpeed → BlendSpace X",
+          "BlendSpace → False Pose",
+          "MM_Fall_Loop → True Pose",
+          "Is Falling → Active Value",
+          "Blend → Output Pose"
+        ],
+        "nativeText": "/blueprints/mmorpg/mmo-unarmed-locomotion.txt",
+        "copiedNodes": 5,
+        "outputPosePreservedDuringRoundTrip": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建无武器层实现"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-animation-assets.json"
+      ],
+      "framing": "BlueprintScreenshotTool full graph, scale 1:1, no post resize. Record graph zoom=1, native dimensions, source path/time/SHA and current asset SHA."
+    },
+    {
+      "id": "animation-unarmed-node-assets",
+      "section": "Animation",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOUnarmed",
+      "editorPage": "Locomotion graph → selected BlendSpace / Sequence nodes → Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Characters/MMO/ABP_MMOUnarmed，双击打开。",
+        "切换 Locomotion；若 Details 缺失，用 Window 菜单恢复。",
+        "选 BlendSpace Player，展开 Settings 显示 Blend Space 引用。",
+        "选 Fall Sequence Player，显示 Sequence 引用与 Loop Animation=true，第二张保留该节点被选中。",
+        "选 Blend Poses by bool 显示实际输入引脚关系；GroundSpeed 与 IsFalling 是原生父类字段，不需要 EventGraph 每帧 Cast Pawn。"
+      ],
+      "expectedVisibleValues": {
+        "blendSpace": "/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run",
+        "sequence": "/Game/Characters/Mannequins/Anims/Unarmed/Jump/MM_Fall_Loop",
+        "sequenceLoop": true,
+        "falsePose": "locomotion BlendSpace",
+        "truePose": "fall loop",
+        "activeValue": "bIsFalling"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建无武器层实现"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "animation-main-linked-graph",
+      "section": "Animation graph",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOCharacter",
+      "editorPage": "Animation Blueprint Editor → AnimGraph",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Characters/MMO/ABP_MMOCharacter，双击打开。",
+        "切换 AnimGraph；若 Details 缺失，用 Window 菜单恢复。",
+        "用 BlueprintScreenshotTool 原生导出全图，Zoom=1，完整保留三节点。",
+        "资产原生复制文本只包含可复制的两个节点，Output Pose 是目标图保留节点；图注必须区分节点计数。"
+      ],
+      "expectedVisibleValues": {
+        "totalGraphNodes": 3,
+        "flow": "Linked Anim Layer Locomotion → Slot DefaultSlot → Output Pose",
+        "nativeText": "/blueprints/mmorpg/mmo-character-animgraph.txt",
+        "copiedNodes": 2
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建主动画蓝图"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "verification/mmorpg-animation-assets.json"
+      ],
+      "framing": "BlueprintScreenshotTool full graph, scale 1:1, no post resize. Record current asset SHA and native node text SHA."
+    },
+    {
+      "id": "animation-linked-layer-settings",
+      "section": "Animation",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOCharacter",
+      "editorPage": "AnimGraph → select Linked Anim Layer → Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Characters/MMO/ABP_MMOCharacter，双击打开。",
+        "切换 AnimGraph；若 Details 缺失，用 Window 菜单恢复。",
+        "选 Linked Anim Layer，展开 Settings/Instance Class，显示 Interface、Layer 和 Instance Class 的实际可编辑标签。",
+        "节点标题 Locomotion 和右侧 ABP_MMOUnarmed 引用必须可读；若 Interface 只在节点创建上下文体现，保留 Class Settings 实现接口图及节点标题，不伪造 Details 行。",
+        "手工选择 Instance Class 后 Compile、Save；运行时切换装备可替换层实现，此教学当前使用 Unarmed。"
+      ],
+      "expectedVisibleValues": {
+        "interface": "/Game/Characters/MMO/ALI_MMOCharacter.ALI_MMOCharacter_C",
+        "layer": "Locomotion",
+        "instanceClass": "/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed_C"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建主动画蓝图"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。",
+      "requiresCaptureConfirmation": [
+        "UE 5.8.1 节点 Details 的实际显示字段名；FMemberReference/InterfaceGuid 为内部连接数据，不是要求新手填 UUID 的属性。"
+      ]
+    },
+    {
+      "id": "animation-slot-settings",
+      "section": "Animation",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Characters/MMO/ABP_MMOCharacter",
+      "editorPage": "AnimGraph → select Slot → Details",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Characters/MMO/ABP_MMOCharacter，双击打开。",
+        "切换 AnimGraph；若 Details 缺失，用 Window 菜单恢复。",
+        "选 Slot，显示 Slot Name=DefaultSlot；保留它连接 Linked Layer 与 Output Pose 的位置。",
+        "如需打开 Anim Slot Manager 核对 DefaultGroup/DefaultSlot，使用原生窗口另拍；不创建未使用的新 Slot。"
+      ],
+      "expectedVisibleValues": {
+        "slotName": "DefaultSlot",
+        "inputPose": "Linked Anim Layer Locomotion",
+        "output": "Output Pose"
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/animation.mdx",
+        "heading": "创建主动画蓝图"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "spell-blueprint-defaults",
+      "section": "GAS",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Tutorial/GA_ArcaneBolt",
+      "editorPage": "Blueprint Editor → Class Defaults",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Tutorial/GA_ArcaneBolt，双击打开。",
+        "切换 Class Defaults；若 Details 缺失，用 Window 菜单恢复。",
+        "Class Settings 核对父类 MMOSpellAbility；Class Defaults 展开 Ability 的网络/实例化策略和 Cost/Cooldown 引用。",
+        "搜索 Damage 和 Range；如与策略不在同屏，补第二张。Compile、Save 属于手工创建后的步骤。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOSpellAbility",
+        "instancingPolicy": "Instanced Per Actor",
+        "netExecutionPolicy": "Server Only",
+        "costGameplayEffectClass": "/Script/MMORPG.MMOSpellCost",
+        "cooldownGameplayEffectClass": "/Script/MMORPG.MMOSpellCooldown",
+        "damage": 40,
+        "range": 1200
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "十、观察技能的执行、消耗与冷却配置"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "target-replication-defaults",
+      "section": "GAS",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Tutorial/BP_MMOTrainingTarget",
+      "editorPage": "Blueprint Editor → Class Defaults → Replication",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Tutorial/BP_MMOTrainingTarget，双击打开。",
+        "切换 Class Defaults；若 Details 缺失，用 Window 菜单恢复。",
+        "Class Settings 核对 MMOTrainingTarget；Class Defaults 搜索 Replicates。",
+        "显示 Replicates；原生 Health 的 RepNotify 说明用 C++ 字段定位，不把继承属性误教成新建 Blueprint 变量。"
+      ],
+      "expectedVisibleValues": {
+        "parentClass": "/Script/MMORPG.MMOTrainingTarget",
+        "replicates": true
+      },
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/configuration.mdx",
+        "heading": "十一、核对训练目标复制"
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp"
+      ],
+      "framing": "原生完整窗口/面板截图，保留资产标题、选中项和属性名；不缩放导出图片。若展开项不在同屏，按下面的分屏说明补拍，不以不可读的缩小图替代。"
+    },
+    {
+      "id": "backend-health-final-graph",
+      "section": "Blueprint graph",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": "/Game/Tutorial/BP_BackendHealth",
+      "editorPage": "Blueprint Editor → EventGraph",
+      "orderedSteps": [
+        "在 MMORPG 的 Content Browser 定位 /Game/Tutorial/BP_BackendHealth，双击打开。",
+        "切换 EventGraph；若 Details 缺失，用 Window 菜单恢复。",
+        "从当前最终资产使用 BlueprintScreenshotTool 原生全图导出，Zoom=1。",
+        "对照最新 backend-health-roundtrip.json 和 native text 哈希，保留四节点引脚名与线路。"
+      ],
+      "expectedVisibleValues": {
+        "graphNodeCount": 4,
+        "nativeText": "/blueprints/mmorpg/backend-health.txt",
+        "nodeImportCount": 4
+      },
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/blueprint-workflow.mdx",
+        "heading": "原生节点文本与截图"
+      },
+      "sourceFiles": [
+        "verification/backend-health-roundtrip.json"
+      ],
+      "framing": "原生全图 1:1；不要复用旧资产 GUID/哈希对应的历史 health 图。此截图不等于 HTTP 实际执行证据。"
+    },
+    {
+      "id": "project-windows-dx12-sm6",
+      "section": "Project configuration",
+      "status": "planned-not-captured-by-this-task",
+      "assetPath": null,
+      "editorPage": "Project Settings → Platforms → Windows → Targeted RHIs / D3D12 Targeted Shader Formats",
+      "orderedSteps": [
+        "正常保存并重启 MMORPG 后打开 Project Settings → Platforms → Windows。",
+        "展开 Default RHI、Targeted RHIs、D3D11/D3D12/Vulkan Shader Formats；只读核对已保存的 Windows 专用配置。",
+        "显示 Default RHI=DirectX 12，D3D12 仅 SM6，D3D11/Vulkan 为空；分屏也应保留各栏目标题。",
+        "中等画质仍属于独立 Scalability 配置，不能把 Shader Model 6 注释成更高画质档。"
+      ],
+      "expectedVisibleValues": {
+        "defaultGraphicsRHI": "DefaultGraphicsRHI_DX12",
+        "targetedRHIs": [],
+        "D3D11TargetedShaderFormats": [],
+        "D3D12TargetedShaderFormats": [
+          "PCD3D_SM6"
+        ],
+        "VulkanTargetedShaderFormats": []
+      },
+      "sourceFiles": [
+        "examples/MMORPG/Config/Windows/WindowsEngine.ini"
+      ],
+      "teachingLocation": {
+        "file": "content/docs/08-mmorpg/run-lab.mdx",
+        "heading": "独立目标、Cook 与实际产物启动"
+      },
+      "framing": "原生设置窗口截图，保留页名/字段名；不改PNG像素。",
+      "requiresCaptureConfirmation": [
+        "此配置在 PID37428 已运行期间才写入；捕获前需确认原生设置实例已重载新配置，必要时安排下一次正常重启后补图。旧缓存值不能当最终配置。"
+      ]
+    },
+    {
+      "id": "health-explicit-cook-label",
+      "assetPath": "/Game/MMO/Labels/DA_TutorialExamples",
+      "editorPage": "PrimaryAssetLabel Editor → Details",
+      "teachingLocation": {
+        "file": "content/docs/09-mmo-ui/blueprint-workflow.mdx",
+        "heading": "为健康检查蓝图声明 Cook 依赖"
+      },
+      "sourceFiles": [
+        "scripts/mmorpg/prepare-health-cook-label.py",
+        "examples/MMORPG/Config/DefaultGame.ini"
+      ],
+      "expectedVisibleFields": {
+        "Rules.CookRule": "AlwaysCook",
+        "ExplicitBlueprints": [
+          "BP_BackendHealth_C"
+        ]
+      },
+      "status": "awaiting-native-capture"
+    }
+  ],
+  "documentationReview": {
+    "checkedAt": "2026-09-13T13:36:11.764Z",
+    "kind": "static source and documentation comparison",
+    "filesChanged": [
+      "content/docs/09-mmo-ui/viewmodels.mdx",
+      "content/docs/09-mmo-ui/layers-input.mdx",
+      "content/docs/09-mmo-ui/designer.mdx",
+      "content/docs/09-mmo-ui/index.mdx"
+    ],
+    "confirmed": [
+      {
+        "claim": "全部 7 个实际界面由 Editor-only builder 写入真实 WidgetBlueprint Designer；runtime CPP 无 ConstructWidget 视觉构树。",
+        "source": [
+          "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+          "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+          "examples/MMORPG/ui-designer-contract.json"
+        ],
+        "evidence": [
+          "verification/ui-designer-assets.json",
+          "verification/mmorpg-original-assets-review.json"
+        ]
+      },
+      {
+        "claim": "BindPlayer 在 State/Pawn 都相同时早返回；变化时先 Unbind，移除旧属性/进度/目标/效果委托并清计时器。",
+        "source": [
+          "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+        ],
+        "symbols": [
+          "UMMOPlayerViewModel::BindPlayer",
+          "UMMOPlayerViewModel::Unbind"
+        ]
+      },
+      {
+        "claim": "冷却计时器 0.1 秒，仅有剩余冷却时运行，只调用 RefreshCooldown，不遍历背包；无自定义 Widget Tick/逐帧 UMG 函数绑定。",
+        "source": [
+          "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+        ],
+        "symbols": [
+          "UMMOPlayerViewModel::RefreshCooldown",
+          "UMMOPlayerViewModel::RefreshInventory"
+        ]
+      },
+      {
+        "claim": "HUD 5 + ManaStatus 2 + Inventory 1 条真实 MVVM 绑定；Manual PlayerVM 在 Construct 后注入、Destruct 时清空。",
+        "source": [
+          "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+          "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+          "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp"
+        ],
+        "evidence": [
+          "verification/ui-designer-assets.json"
+        ]
+      },
+      {
+        "claim": "菜单从软类引用 LoadSynchronous 加载；已在文档明确首次未缓存类可能阻塞，软引用不等于异步加载。",
+        "source": [
+          "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+        ],
+        "symbols": [
+          "UMMORootLayout::ShowInventory",
+          "UMMORootLayout::ShowSettings",
+          "UMMORootLayout::ShowConfirm"
+        ]
+      },
+      {
+        "claim": "三栈 NativeOnInitialized 注册；UIExtension 数据/扩展点按当前 LocalPlayer 匹配并对称清理。",
+        "source": [
+          "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp"
+        ],
+        "symbols": [
+          "UMMORootLayout::NativeOnInitialized",
+          "UMMORootLayout::NativeDestruct",
+          "UMMOHUDPanel::NativeConstruct",
+          "UMMOHUDPanel::NativeDestruct"
+        ]
+      },
+      {
+        "claim": "HUD 不提供默认按钮焦点，5 Button 不可聚焦；Menu/Modal 按钮可聚焦。I/View 背包、P/Menu 设置、Escape/B 返回。",
+        "source": [
+          "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+          "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+          "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+        ],
+        "evidence": [
+          "verification/mmorpg-original-assets-review.json"
+        ]
+      }
+    ],
+    "notClaimed": [
+      "没有实际 Slate Insights 帧预算测量；零 Canvas、事件驱动设计和控件数量本身不是性能通过证据。",
+      "未宣称所有资源异步预载、全部按钮均 CommonButtonBase、完整 MVVM 无限大背包 ListView 虚拟化。当前背包是有限教学文本列表。",
+      "22张最终Designer/Manny截图与程序化文化切换/新进程偏好恢复已有独立通过报告；这不代替实体手柄/Slate输入、中文IME、最终配置界面截图或打包资源验证。"
+    ]
+  },
+  "sourceSnapshots": [
+    {
+      "file": "content/docs/08-mmorpg/animation.mdx",
+      "bytes": 12249,
+      "sha256": "477ca9dd96905f54e63c30b073010de15834c0e03f9871c285a1f348a9eb7d85"
+    },
+    {
+      "file": "content/docs/08-mmorpg/character-gas.mdx",
+      "bytes": 16318,
+      "sha256": "6facb97f087c817ddb05ebd8f9bf0bacce59077210fd24f24430f4cb6dbab0d7"
+    },
+    {
+      "file": "content/docs/08-mmorpg/configuration.mdx",
+      "bytes": 26460,
+      "sha256": "f59745b84770d0ffffaee45447a01b4b53e0fa810afa684da6305813b73c53e9"
+    },
+    {
+      "file": "content/docs/08-mmorpg/migration.mdx",
+      "bytes": 13691,
+      "sha256": "69a3a369de4c3f9950df2dd7c68aae40512865dd8491c13f47774211eb3ef6d5"
+    },
+    {
+      "file": "content/docs/09-mmo-ui/blueprint-workflow.mdx",
+      "bytes": 14084,
+      "sha256": "c43ed6e7d6834c93d90d92bcbf8dd88a5e155019ba26916bfdb7ca2d407c2deb"
+    },
+    {
+      "file": "content/docs/09-mmo-ui/designer.mdx",
+      "bytes": 20645,
+      "sha256": "699d399d5580030ada53ff0a50c25c2763a3f98982c112a54be0f52b0642ead0"
+    },
+    {
+      "file": "content/docs/09-mmo-ui/layers-input.mdx",
+      "bytes": 10185,
+      "sha256": "f0b2427e4665129a775d2da5c42660569480e61adabd712384fa41067fd4ade2"
+    },
+    {
+      "file": "content/docs/09-mmo-ui/localization.mdx",
+      "bytes": 15842,
+      "sha256": "6cc37af40d6850db22e940fb985fb73fece042129da2bf10f4775ce7bc47aaf6"
+    },
+    {
+      "file": "content/docs/09-mmo-ui/viewmodels.mdx",
+      "bytes": 7260,
+      "sha256": "6c5d1fa88b6e82b95d56d661ecf0a9a4b66ec0470d35cbf59864c46fadb25b5f"
+    },
+    {
+      "file": "examples/MMORPG/Config/DefaultEditor.ini",
+      "bytes": 1196,
+      "sha256": "44b9fdc952263ed58f84e497855ca7b2f7bfc7544fe6889fb4e5b228b8e053b4"
+    },
+    {
+      "file": "examples/MMORPG/Config/DefaultEngine.ini",
+      "bytes": 515,
+      "sha256": "f3b9c22cb8eae29bf52b47370a7bd1064bceeb4e7dbe95663b255fb4bf605d5d"
+    },
+    {
+      "file": "examples/MMORPG/Config/DefaultGame.ini",
+      "bytes": 2227,
+      "sha256": "c0fcb08af5b1a5b5788a8aa7153e654b6795de143c6da133f869e79ee383b474"
+    },
+    {
+      "file": "examples/MMORPG/Config/DefaultGameplayTags.ini",
+      "bytes": 854,
+      "sha256": "218487f11c1083e88db9e6a54d18a8e89cbe54dc71f92b5a09610fb346ce7113"
+    },
+    {
+      "file": "examples/MMORPG/Config/DefaultInput.ini",
+      "bytes": 171,
+      "sha256": "a1e822a22fba08a06c2308d23dcc64804cc64fb568bb70cadb35d27b3ab686c0"
+    },
+    {
+      "file": "examples/MMORPG/Config/Localization/MMO_Compile.ini",
+      "bytes": 383,
+      "sha256": "c802c432b86c9093ba2f11514da7fad0a753f36025ef86f8766fe9aff4a8a59e"
+    },
+    {
+      "file": "examples/MMORPG/Config/Localization/MMO_Gather.ini",
+      "bytes": 755,
+      "sha256": "b0d8c564d8b43dc3c6f2b891c282392a237a6af385b35d870a4db697ab7187bb"
+    },
+    {
+      "file": "examples/MMORPG/Config/Windows/WindowsEngine.ini",
+      "bytes": 429,
+      "sha256": "0a3722ba67385c8b5ffc297e3f56398fa9c8698ea826676090561a43dd7dd652"
+    },
+    {
+      "file": "examples/MMORPG/MMORPG.uproject",
+      "bytes": 1076,
+      "sha256": "d3c9cad1724437b03f9b97f3e40cae092d2d19ced48b199a3d9f3aeb82556f57"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/GameFeatures/MMOCore/MMOCore.uplugin",
+      "bytes": 463,
+      "sha256": "a74a2750db17b63b9657d7ea310f920077790a998322cfa3872a3d19fd21d58b"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+      "bytes": 3280,
+      "sha256": "7b1ca24e2fb168b9a9b1ade3aef6c935073ad5950ddc82f28333d3466461fdd3"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin",
+      "bytes": 765,
+      "sha256": "5d9f6fbb0156eea93ae51690f07dc3f22e227ef4759a1c2adda4991702c4e6d9"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+      "bytes": 20357,
+      "sha256": "556c8c41562c5df1cf6663c866a72ed26edba487ca5ad546275bc7f251b14e1a"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+      "bytes": 23551,
+      "sha256": "17f3aaeafb7dae8d37db857b1f65b7f9a84a99eb14b2c84b46dc4afbfc2d459a"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+      "bytes": 12483,
+      "sha256": "b637cdda5b4c2352f3c61a5a13e06374dbe37e503733944346ff99e08190c8fa"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+      "bytes": 6329,
+      "sha256": "fff2096fb8d3f8ca78dacb545b6e744b8b4cc01db24fa9116e11d727511b5ce1"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+      "bytes": 2486,
+      "sha256": "c1626ad34db0166bee05d52a1672816af74e311d4ea989e85c65540d0f8f56c9"
+    },
+    {
+      "file": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h",
+      "bytes": 1213,
+      "sha256": "aecbe35a36c2a741f6ed6a4ab16374abc37fd82327fb9dcea1e288a95fc33c84"
+    },
+    {
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp",
+      "bytes": 46329,
+      "sha256": "bd7e08cc4dad9d53030f9c58f9b7a9f3b30b7fa4adf8c482d5a5e233f5f5203a"
+    },
+    {
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "bytes": 29573,
+      "sha256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808"
+    },
+    {
+      "file": "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+      "bytes": 12508,
+      "sha256": "5e61e24ed46045ad2bc260c07dbc1480d7e9cd1ce3dc500ed4df36c610d0f228"
+    },
+    {
+      "file": "examples/MMORPG/localization-runtime-zh-Hans.json",
+      "bytes": 6719,
+      "sha256": "4240a936ca703cab503cb75ca88d9733d0cff23cf20f612d0e3f6a3c64153188"
+    },
+    {
+      "file": "examples/MMORPG/prepare_content.py",
+      "bytes": 9795,
+      "sha256": "75445e9d04fc442b2c132e35bf0791ced549223896b9679299e6534aef3759b6"
+    },
+    {
+      "file": "examples/MMORPG/ui-designer-contract.json",
+      "bytes": 6128,
+      "sha256": "0a273b7185a31fbf754c51ab5ed524507ef3cf2aed61544aa5e1752166a6ff07"
+    },
+    {
+      "file": "examples/MMORPG/ui-designer-strings.json",
+      "bytes": 4033,
+      "sha256": "b5fe340009b6fa462d4f224d6c8d80783cbb14ad0bc48f99434b61efacb94468"
+    },
+    {
+      "file": "verification/WBP_Confirm-designer.json",
+      "bytes": 2242,
+      "sha256": "6f298e4c2ec8d461bf3290a9e1e82a56b10421e6025e2450551c1def63146e71"
+    },
+    {
+      "file": "verification/WBP_Inventory-designer.json",
+      "bytes": 2304,
+      "sha256": "fd593cb0005d7bd59b53186a6c5fd9c9bdddb8d0584de254dbf2c32cc608435a"
+    },
+    {
+      "file": "verification/WBP_Login-designer.json",
+      "bytes": 5080,
+      "sha256": "dccbd524d7d5c65b521d05fe3968e0810a101766fb87ba01b22732db5b4a1ad4"
+    },
+    {
+      "file": "verification/WBP_MMOLayout-designer.json",
+      "bytes": 1238,
+      "sha256": "56f19ace10cf149fd7125e4d154d784e7d4b6d6b12b9a36dc0ae504d2af27a50"
+    },
+    {
+      "file": "verification/WBP_ManaStatus-designer.json",
+      "bytes": 1379,
+      "sha256": "537e326d0ec30d7da4eb668c29b35bc25dcd7d98da1ca98a1a291559319f5aa6"
+    },
+    {
+      "file": "verification/WBP_PlayerHUD-designer.json",
+      "bytes": 4680,
+      "sha256": "1c9992a6954e613e591954f21a64714a2d0e2e0308f32dd73830956170bbb786"
+    },
+    {
+      "file": "verification/WBP_Settings-designer.json",
+      "bytes": 4400,
+      "sha256": "d50fe031e4ab16aab375bff802eaf19d8c1f05c31a221a1a76383562f29d1239"
+    },
+    {
+      "file": "verification/backend-health-roundtrip.json",
+      "bytes": 1260,
+      "sha256": "f1d5641eab71bb4cd2895b4a35f6d77dd81f7874e80853e55f51a9b27751b15b"
+    },
+    {
+      "file": "verification/mmorpg-animation-assets.json",
+      "bytes": 2006,
+      "sha256": "538f1c0aba7c2e98b0793cd2f64e8e0588dff8a770b59adbebe1e54d32787c58"
+    },
+    {
+      "file": "verification/mmorpg-button-slots.json",
+      "bytes": 7874,
+      "sha256": "b07de629e332b24f8f210eae2566b8c81d3e9131186be22bff71282271c6c318"
+    },
+    {
+      "file": "verification/mmorpg-character-defaults.json",
+      "bytes": 433,
+      "sha256": "fae73cd527687c60e61477ab71f0bcad02b7e87cadee36ee6dbb6581848c454e"
+    },
+    {
+      "file": "verification/mmorpg-experience-assets.json",
+      "bytes": 838,
+      "sha256": "cffdaebddec738b6023d82666fd95ef09bd4fe87faef8e8be2842d9e84e3c1eb"
+    },
+    {
+      "file": "verification/mmorpg-game-mode.json",
+      "bytes": 211,
+      "sha256": "c05ff625086b3110977829462a284c0fac15a29a67edf361d5538df1d254856b"
+    }
+  ],
+  "latestSourceUpdateNote": "Button content slots now Fill; prior 22 runtime images retain pre-fix asset hashes. New actual Medium-button ApplyNonResolutionSettings implementation awaits next coordinated build and rendered regression.",
+  "lastCaptureReviewAt": "2026-09-13T16:55:19.345621+00:00",
+  "captureCoverage": [
+    {
+      "id": "project-plugins",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-plugins-common.png",
+        "public/media/configuration/mmorpg/project-plugins-mvvm.png",
+        "public/media/configuration/mmorpg/project-plugins-enhanced-input.png",
+        "public/media/configuration/mmorpg/project-plugins-game-features.png",
+        "public/media/configuration/mmorpg/project-plugins-modular-gameplay.png",
+        "public/media/configuration/mmorpg/project-plugins-ui-extension.png",
+        "public/media/configuration/mmorpg/project-plugins-mmo.png"
+      ]
+    },
+    {
+      "id": "project-maps-modes",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-maps-modes.png"
+      ]
+    },
+    {
+      "id": "game-mode-experience",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/game-mode-experience.png"
+      ]
+    },
+    {
+      "id": "project-common-default-classes",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-common-local-player.png",
+        "public/media/configuration/mmorpg/project-common-viewport-client.png"
+      ]
+    },
+    {
+      "id": "project-enhanced-default-classes",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-enhanced-player-input.png",
+        "public/media/configuration/mmorpg/project-enhanced-input-component.png"
+      ]
+    },
+    {
+      "id": "project-common-input",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-common-input.png"
+      ]
+    },
+    {
+      "id": "project-layer-input-tags",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-ui-layer-tags.png",
+        "public/media/configuration/mmorpg/project-input-tags.png"
+      ]
+    },
+    {
+      "id": "asset-manager-types",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/asset-scan-mmoinputconfig.png",
+        "public/media/configuration/mmorpg/asset-scan-mmoexperience.png",
+        "public/media/configuration/mmorpg/asset-scan-mmopawndata.png",
+        "public/media/configuration/mmorpg/asset-scan-mmoabilityset.png",
+        "public/media/configuration/mmorpg/asset-scan-gamefeaturedata.png",
+        "public/media/configuration/mmorpg/asset-scan-primaryassetlabel-fresh.png"
+      ]
+    },
+    {
+      "id": "feature-data-actions",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/feature-data-actions.png"
+      ]
+    },
+    {
+      "id": "ui-policy-final-layout",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/ui-policy-final-layout.png"
+      ]
+    },
+    {
+      "id": "designer-root-stacks",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-root-stacks-fill.png",
+        "public/media/configuration/mmorpg/designer-root-stacks-transition.png"
+      ]
+    },
+    {
+      "id": "designer-root-screen-classes",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-root-screen-classes.png"
+      ]
+    },
+    {
+      "id": "designer-login-account",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-login-account.png"
+      ]
+    },
+    {
+      "id": "designer-login-character",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-login-character.png"
+      ]
+    },
+    {
+      "id": "designer-common-style",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-button-label-slot.png"
+      ]
+    },
+    {
+      "id": "designer-mana-layout",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/mvvm-mana-bindings.png",
+        "public/media/configuration/mmorpg/designer-mana-layout.png"
+      ]
+    },
+    {
+      "id": "mvvm-mana-source",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/mvvm-mana-source.png"
+      ]
+    },
+    {
+      "id": "mvvm-mana-bindings",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/mvvm-mana-bindings.png"
+      ]
+    },
+    {
+      "id": "designer-hud-layout",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-hud-layout.png"
+      ]
+    },
+    {
+      "id": "designer-hud-focus",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-hud-focus.png"
+      ]
+    },
+    {
+      "id": "mvvm-hud-source",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/mvvm-hud-source.png"
+      ]
+    },
+    {
+      "id": "mvvm-hud-bindings",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/mvvm-hud-bindings.png"
+      ]
+    },
+    {
+      "id": "designer-inventory-layout",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-inventory-layout.png"
+      ]
+    },
+    {
+      "id": "mvvm-inventory-source",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/mvvm-inventory-source.png"
+      ]
+    },
+    {
+      "id": "mvvm-inventory-binding",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/mvvm-inventory-binding.png"
+      ]
+    },
+    {
+      "id": "designer-settings-layout",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-settings-layout.png"
+      ]
+    },
+    {
+      "id": "designer-confirm-layout",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-confirm-layout.png"
+      ]
+    },
+    {
+      "id": "string-table-source-data",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/string-table-source-data.png"
+      ]
+    },
+    {
+      "id": "designer-text-string-table-reference",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/designer-text-string-table-reference.png"
+      ]
+    },
+    {
+      "id": "localization-dashboard-target",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/localization-dashboard-target.png",
+        "public/media/configuration/mmorpg/localization-dashboard-target-final.png"
+      ]
+    },
+    {
+      "id": "localization-dashboard-text-gather",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/localization-dashboard-text-gather.png"
+      ]
+    },
+    {
+      "id": "localization-dashboard-package-gather",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/localization-dashboard-package-gather.png"
+      ]
+    },
+    {
+      "id": "project-packaging-cultures",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-packaging-internationalization.png",
+        "public/media/configuration/mmorpg/project-packaging-english.png",
+        "public/media/configuration/mmorpg/project-packaging-chinese.png"
+      ]
+    },
+    {
+      "id": "project-packaging-content",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-packaging-always-cook.png",
+        "public/media/configuration/mmorpg/project-packaging-map.png"
+      ]
+    },
+    {
+      "id": "experience-default-pawn-feature",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/experience-default-pawn-feature.png"
+      ]
+    },
+    {
+      "id": "pawn-data-class-input-animation",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/pawn-data-class-input-animation.png"
+      ]
+    },
+    {
+      "id": "ability-set-grants",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/ability-set-grants.png"
+      ]
+    },
+    {
+      "id": "input-config-semantic-tags",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/input-config-move-look-combat.png",
+        "public/media/configuration/mmorpg/input-config-spell-inventory-settings.png"
+      ]
+    },
+    {
+      "id": "input-action-value-types",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/input-action-move.png",
+        "public/media/configuration/mmorpg/input-action-look.png",
+        "public/media/configuration/mmorpg/input-action-target.png",
+        "public/media/configuration/mmorpg/input-action-attack.png",
+        "public/media/configuration/mmorpg/input-action-spell.png",
+        "public/media/configuration/mmorpg/input-action-inventory.png",
+        "public/media/configuration/mmorpg/input-action-settings.png"
+      ]
+    },
+    {
+      "id": "input-mapping-move",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/input-mapping-s-modifiers.png",
+        "public/media/configuration/mmorpg/input-mapping-a-negate.png",
+        "public/media/configuration/mmorpg/input-mapping-w-swizzle.png"
+      ]
+    },
+    {
+      "id": "input-mapping-look",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/input-mapping-all-17.png"
+      ]
+    },
+    {
+      "id": "input-mapping-combat",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/input-mapping-all-17.png"
+      ]
+    },
+    {
+      "id": "input-mapping-menus",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/input-mapping-all-17.png"
+      ]
+    },
+    {
+      "id": "character-manny-mesh-animation",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/character-manny-mesh-animation.png",
+        "public/media/configuration/mmorpg/character-manny-component-preview.png"
+      ]
+    },
+    {
+      "id": "character-mesh-transform-collision",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/character-mesh-transform-collision.png"
+      ]
+    },
+    {
+      "id": "animation-layer-interface",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/animation-layer-interface.png"
+      ]
+    },
+    {
+      "id": "animation-unarmed-class-settings",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/animation-unarmed-class-settings.png"
+      ]
+    },
+    {
+      "id": "animation-main-class-settings",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/animation-main-class-settings.png"
+      ]
+    },
+    {
+      "id": "animation-unarmed-locomotion-graph",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/mmorpg/mmo-unarmed-locomotion.png"
+      ]
+    },
+    {
+      "id": "animation-unarmed-node-assets",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/animation-unarmed-blendspace-details.png",
+        "public/media/configuration/mmorpg/animation-unarmed-fall-details.png"
+      ]
+    },
+    {
+      "id": "animation-main-linked-graph",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/mmorpg/mmo-character-animgraph.png"
+      ]
+    },
+    {
+      "id": "animation-linked-layer-settings",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/animation-linked-layer-settings.png"
+      ]
+    },
+    {
+      "id": "animation-slot-settings",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/animation-slot-settings.png"
+      ]
+    },
+    {
+      "id": "spell-blueprint-defaults",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/spell-blueprint-defaults.png"
+      ]
+    },
+    {
+      "id": "target-replication-defaults",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/target-replication-defaults.png"
+      ]
+    },
+    {
+      "id": "backend-health-final-graph",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/mmorpg/backend-health-graph.png"
+      ]
+    },
+    {
+      "id": "project-windows-dx12-sm6",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/project-windows-default-dx12.png",
+        "public/media/configuration/mmorpg/project-windows-d3d12-sm6.png",
+        "public/media/configuration/mmorpg/project-windows-targeted-formats.png"
+      ]
+    },
+    {
+      "id": "health-explicit-cook-label",
+      "status": "captured",
+      "publicPaths": [
+        "public/media/configuration/mmorpg/health-explicit-cook-label.png"
+      ]
+    }
+  ],
+  "captureProgress": {
+    "nativeConfigurationImages": 97,
+    "historicalImages": 12,
+    "windowImages": {
+      "37428": 79,
+      "30180": 6
+    },
+    "coveredGroups": 58,
+    "totalGroups": 58,
+    "pendingSupplements": [],
+    "normalEditorClosures": [
+      {
+        "editorPid": 37428,
+        "confirmedAt": "2026-09-13T16:31:42.1576058Z",
+        "allSavedBeforeClose": true,
+        "tcp8000Absent": true
+      },
+      {
+        "editorPid": 30180,
+        "logExitedAt": "2026-09-13T16:52:54.405Z",
+        "confirmedAt": "2026-09-13T16:53:09.2298581Z",
+        "allSavedBeforeClose": true,
+        "tcp8000Absent": true
+      }
+    ],
+    "freshVerifiedSettings": [
+      "DirectX 12 and only D3D12 SM6",
+      "PrimaryAssetLabel IsEditorOnly=false /Game/MMO/Labels AlwaysCook",
+      "MMO Dashboard 404/404/404 words 100% and Clear conflict status"
+    ]
+  }
+}

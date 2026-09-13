@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "databaseUTF8Matches": true,
+      "passed": true,
+      "name": "教学旅人·一",
+      "createResponseMatches": true
+    },
+    {
+      "databaseUTF8Matches": true,
+      "passed": true,
+      "name": "Élodie des bois",
+      "createResponseMatches": true
+    },
+    {
+      "databaseUTF8Matches": true,
+      "passed": true,
+      "name": "旅人の記録",
+      "createResponseMatches": true
+    },
+    {
+      "passed": true,
+      "name": "Names survive logout and a new login session"
+    }
+  ],
+  "completedAt": "2026-09-13T13:20:22.9585708Z",
+  "startedAt": "2026-09-13T13:20:22.2707821Z",
+  "scope": "Actual UTF-8 HTTP/JSON and PostgreSQL round trip; does not claim glyph rendering, IME input or Unicode normalization."
+}

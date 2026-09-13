@@ -1,0 +1,183 @@
+{
+  "startedAt": "2026-09-13T19:34:25.4755441Z",
+  "passed": true,
+  "scope": "Pre-package full Editor target refresh after shared engine BuildId changed; no asset generation, Editor launch, Cook or gameplay performed by this script",
+  "project": "F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+  "target": "LyraEditor",
+  "platform": "Win64",
+  "configuration": "Development",
+  "nativeBuildRequested": true,
+  "arguments": [
+    "LyraEditor",
+    "Win64",
+    "Development",
+    "-Project=F:\\UE\\LyraDocLabs\\LyraTraining\\LyraStarterGame.uproject",
+    "-EnablePlugin=BlueprintScreenshotTool+LyraDocTools+TrainingRange+ModelContextProtocol+ToolsetRegistry+AllToolsets",
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-NoUBA",
+    "-MaxParallelActions=3"
+  ],
+  "sourceMapSHA256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+  "busyProcessCount": 0,
+  "tcp8000Listeners": 0,
+  "before": {
+    "engineBuildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+    "manifests": [
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "LyraEditor",
+          "LyraGame"
+        ]
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\BlueprintScreenshotTool\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "BlueprintScreenshotTool"
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraDocTools\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "LyraDocTools"
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "TrainingRangeVerification"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\ModelContextProtocol\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "ModelContextProtocol",
+          "ModelContextProtocolEditor",
+          "ModelContextProtocolEditorTests",
+          "ModelContextProtocolEngine",
+          "ModelContextProtocolEngineTests",
+          "ModelContextProtocolTests"
+        ]
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\ToolsetRegistry\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "ToolsetRegistry"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\Toolsets\\EditorToolset\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "EditorToolset"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\Toolsets\\SlateInspectorToolset\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "SlateInspectorToolset",
+          "SlateInspectorToolsetTests"
+        ]
+      }
+    ]
+  },
+  "after": {
+    "engineBuildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+    "manifests": [
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "LyraEditor",
+          "LyraGame"
+        ]
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\BlueprintScreenshotTool\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "BlueprintScreenshotTool"
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\LyraDocTools\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "LyraDocTools"
+      },
+      {
+        "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Plugins\\GameFeatures\\TrainingRange\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "TrainingRangeVerification"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\ModelContextProtocol\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "ModelContextProtocol",
+          "ModelContextProtocolEditor",
+          "ModelContextProtocolEditorTests",
+          "ModelContextProtocolEngine",
+          "ModelContextProtocolEngineTests",
+          "ModelContextProtocolTests"
+        ]
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\ToolsetRegistry\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "ToolsetRegistry"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\Toolsets\\EditorToolset\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": "EditorToolset"
+      },
+      {
+        "path": "E:\\UnrealEngine\\Engine\\Plugins\\Experimental\\Toolsets\\SlateInspectorToolset\\Binaries\\Win64\\UnrealEditor.modules",
+        "exists": true,
+        "buildId": "edea13a7-c914-4603-96c4-02e0279a216e",
+        "matchesEngine": true,
+        "modules": [
+          "SlateInspectorToolset",
+          "SlateInspectorToolsetTests"
+        ]
+      }
+    ]
+  },
+  "aggregatorPlugin": {
+    "name": "AllToolsets",
+    "hasNativeModules": false,
+    "manifestRequired": false,
+    "reason": "The actual descriptor contains dependency Plugins only; verify their native module manifests instead."
+  },
+  "previousValidationIssue": "verification/training-package-editor-refresh-first-check.json preserved: native build succeeded, but the initial checker incorrectly required a manifest for the module-free AllToolsets aggregator.",
+  "log": "F:\\UE\\LyraDoc\\verification\\training-package-editor-refresh.log",
+  "exitCode": 0,
+  "error": null,
+  "finishedAt": "2026-09-13T19:34:33.6175843Z"
+}

@@ -1,0 +1,8 @@
+{
+  "at": "2026-09-13T17:22:02.950387+00:00",
+  "passed": true,
+  "scope": "Exact on-disk path casing for website local imports and MDX public file references; this does not execute Linux or replace GitHub Actions.",
+  "localImports": 22,
+  "publicReferences": 143,
+  "errors": []
+}

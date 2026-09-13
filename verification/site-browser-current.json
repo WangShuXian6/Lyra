@@ -1,0 +1,407 @@
+{
+  "releaseReady": false,
+  "harnessCorrection": "Wait for the Next client navigation URL after Back and Forward before asserting, instead of assuming the Promise means the router committed synchronously.",
+  "pages": {
+    "at": "2026-09-13T17:11:06.795Z",
+    "basePath": "/Lyra",
+    "checks": [
+      {
+        "name": "home navigation",
+        "passed": true
+      },
+      {
+        "name": "Blueprint 1:1 intrinsic size",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            2385,
+            1172
+          ],
+          "rendered": [
+            2385,
+            1172
+          ],
+          "canvas": [
+            834,
+            620
+          ]
+        }
+      },
+      {
+        "name": "Blueprint drag scroll",
+        "passed": true,
+        "evidence": [
+          684,
+          120
+        ]
+      },
+      {
+        "name": "Blueprint fit width",
+        "passed": true
+      },
+      {
+        "name": "Blueprint native text download",
+        "passed": true,
+        "evidence": "/Lyra/blueprints/lyra/jump-event-graph.txt"
+      },
+      {
+        "name": "C++ code clipboard",
+        "passed": true,
+        "evidence": {
+          "characters": 139
+        }
+      },
+      {
+        "name": "static search 背包",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search 冲刺",
+        "passed": true,
+        "evidence": {
+          "results": 28
+        }
+      },
+      {
+        "name": "static search 角色",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search 国际化",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search ULyraHeroComponent",
+        "passed": true,
+        "evidence": {
+          "results": 10
+        }
+      },
+      {
+        "name": "search result navigation and refresh",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3012/Lyra/docs/11-reference/publishing/#%E6%A3%80%E6%9F%A5%E6%A0%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E5%AD%90%E8%B7%AF%E5%BE%84"
+      },
+      {
+        "name": "browser back and forward",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3012/Lyra/docs/11-reference/publishing/#%E6%A3%80%E6%9F%A5%E6%A0%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E5%AD%90%E8%B7%AF%E5%BE%84"
+      },
+      {
+        "name": "ImageZoom open and Escape close",
+        "passed": true,
+        "evidence": "/Lyra/_next/static/media/shooter-gym.386xsgtero_ah.png"
+      },
+      {
+        "name": "theme persists after reload",
+        "passed": true
+      },
+      {
+        "name": "375px home no overflow",
+        "passed": true
+      },
+      {
+        "name": "375px native graph contained",
+        "passed": true,
+        "evidence": {
+          "width": 375,
+          "documentWidth": 375,
+          "canvas": 341
+        }
+      },
+      {
+        "name": "mobile sidebar opens",
+        "passed": true
+      },
+      {
+        "name": "two native animation graphs present",
+        "passed": true
+      },
+      {
+        "name": "mobile animation graph 0 is native and contained",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            1717,
+            947
+          ],
+          "rendered": [
+            1717,
+            947
+          ],
+          "pageWidth": 375
+        }
+      },
+      {
+        "name": "mobile animation graph 1 is native and contained",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            1417,
+            437
+          ],
+          "rendered": [
+            1417,
+            437
+          ],
+          "pageWidth": 375
+        }
+      },
+      {
+        "name": "mobile root-layout graph is native and contained",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            1648,
+            1264
+          ],
+          "rendered": [
+            1648,
+            1264
+          ],
+          "pageWidth": 375
+        }
+      },
+      {
+        "name": "localization deep refresh and mobile reading",
+        "passed": true
+      },
+      {
+        "name": "publishing deep refresh and mobile reading",
+        "passed": true
+      },
+      {
+        "name": "no browser runtime or HTTP errors",
+        "passed": true,
+        "evidence": []
+      }
+    ],
+    "searches": {
+      "背包": 60,
+      "冲刺": 28,
+      "角色": 60,
+      "国际化": 60,
+      "ULyraHeroComponent": 10
+    },
+    "screenshots": [
+      "output/playwright/pages-home-desktop.png",
+      "output/playwright/pages-blueprint-native.png",
+      "output/playwright/pages-symbol-search.png",
+      "output/playwright/pages-game-image-zoom.png",
+      "output/playwright/pages-theme-switched.png",
+      "output/playwright/pages-home-mobile.png",
+      "output/playwright/pages-blueprint-mobile.png",
+      "output/playwright/pages-animation-0-mobile.png",
+      "output/playwright/pages-animation-1-mobile.png",
+      "output/playwright/pages-root-layout-mobile.png",
+      "output/playwright/pages-localization-mobile.png"
+    ],
+    "runtimeErrors": []
+  },
+  "browserMode": "headless Chromium via Playwright CLI; no editor focus change",
+  "buildLogSHA256": "eb5c52b3883144e775dc9fc980fbf4a2eb10b155a4ef7508e12cb8cb3710fad8",
+  "scriptSHA256": "ce5f796497fec2daea4d5eee4deb06b3e8695c9e246dd7ad476132633c45c378",
+  "scope": "64-document static exports; root 24 browser checks, /Lyra 25 including the final native root-layout graph. Final Training/MMORPG packaged images and final runtime report downloads will require regeneration and export checks.",
+  "checkedAt": "2026-09-13T17:12:20.9093659Z",
+  "root": {
+    "at": "2026-09-13T17:08:10.353Z",
+    "basePath": "/",
+    "checks": [
+      {
+        "name": "home navigation",
+        "passed": true
+      },
+      {
+        "name": "Blueprint 1:1 intrinsic size",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            2385,
+            1172
+          ],
+          "rendered": [
+            2385,
+            1172
+          ],
+          "canvas": [
+            834,
+            620
+          ]
+        }
+      },
+      {
+        "name": "Blueprint drag scroll",
+        "passed": true,
+        "evidence": [
+          684,
+          120
+        ]
+      },
+      {
+        "name": "Blueprint fit width",
+        "passed": true
+      },
+      {
+        "name": "Blueprint native text download",
+        "passed": true,
+        "evidence": "/blueprints/lyra/jump-event-graph.txt"
+      },
+      {
+        "name": "C++ code clipboard",
+        "passed": true,
+        "evidence": {
+          "characters": 139
+        }
+      },
+      {
+        "name": "static search 背包",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search 冲刺",
+        "passed": true,
+        "evidence": {
+          "results": 28
+        }
+      },
+      {
+        "name": "static search 角色",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search 国际化",
+        "passed": true,
+        "evidence": {
+          "results": 60
+        }
+      },
+      {
+        "name": "static search ULyraHeroComponent",
+        "passed": true,
+        "evidence": {
+          "results": 10
+        }
+      },
+      {
+        "name": "search result navigation and refresh",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3012/docs/11-reference/publishing/#%E6%A3%80%E6%9F%A5%E6%A0%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E5%AD%90%E8%B7%AF%E5%BE%84"
+      },
+      {
+        "name": "browser back and forward",
+        "passed": true,
+        "evidence": "http://127.0.0.1:3012/docs/11-reference/publishing/#%E6%A3%80%E6%9F%A5%E6%A0%B9%E8%B7%AF%E5%BE%84%E4%B8%8E%E5%AD%90%E8%B7%AF%E5%BE%84"
+      },
+      {
+        "name": "ImageZoom open and Escape close",
+        "passed": true,
+        "evidence": "/_next/static/media/shooter-gym.386xsgtero_ah.png"
+      },
+      {
+        "name": "theme persists after reload",
+        "passed": true
+      },
+      {
+        "name": "375px home no overflow",
+        "passed": true
+      },
+      {
+        "name": "375px native graph contained",
+        "passed": true,
+        "evidence": {
+          "width": 375,
+          "documentWidth": 375,
+          "canvas": 341
+        }
+      },
+      {
+        "name": "mobile sidebar opens",
+        "passed": true
+      },
+      {
+        "name": "two native animation graphs present",
+        "passed": true
+      },
+      {
+        "name": "mobile animation graph 0 is native and contained",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            1717,
+            947
+          ],
+          "rendered": [
+            1717,
+            947
+          ],
+          "pageWidth": 375
+        }
+      },
+      {
+        "name": "mobile animation graph 1 is native and contained",
+        "passed": true,
+        "evidence": {
+          "natural": [
+            1417,
+            437
+          ],
+          "rendered": [
+            1417,
+            437
+          ],
+          "pageWidth": 375
+        }
+      },
+      {
+        "name": "localization deep refresh and mobile reading",
+        "passed": true
+      },
+      {
+        "name": "publishing deep refresh and mobile reading",
+        "passed": true
+      },
+      {
+        "name": "no browser runtime or HTTP errors",
+        "passed": true,
+        "evidence": []
+      }
+    ],
+    "searches": {
+      "背包": 60,
+      "冲刺": 28,
+      "角色": 60,
+      "国际化": 60,
+      "ULyraHeroComponent": 10
+    },
+    "screenshots": [
+      "output/playwright/root-home-desktop.png",
+      "output/playwright/root-blueprint-native.png",
+      "output/playwright/root-symbol-search.png",
+      "output/playwright/root-game-image-zoom.png",
+      "output/playwright/root-theme-switched.png",
+      "output/playwright/root-home-mobile.png",
+      "output/playwright/root-blueprint-mobile.png",
+      "output/playwright/root-animation-0-mobile.png",
+      "output/playwright/root-animation-1-mobile.png",
+      "output/playwright/root-localization-mobile.png"
+    ],
+    "runtimeErrors": []
+  },
+  "pagesScriptSHA256": "48c059cdeaa5a736600b2c92dbf036dae6ece5ee45ae8b113dff4320decb5255",
+  "pagesBuildLogSHA256": "222976cc370308219798edaee647d4eb25662463a0a7095c4109459973e67c1a"
+}

@@ -1,0 +1,15 @@
+{
+  "sourceScriptSha256": "01f589f9f712a23451da382236b63d01790b77dd0cd8324ea7b8dfbdef0a3dd4",
+  "interruptedReport": "verification/training-prepare-navigation-failure-interrupted.json",
+  "process": {
+    "exitCode": 3,
+    "finishedAt": "2026-09-13T16:56:19.5610551Z",
+    "pid": 12964
+  },
+  "status": "native-crash",
+  "scope": "First new Python commandlet process using existing Training assets; second pass not reached",
+  "oldWorldGcFailure": "verification/training-prepare-repeat.json",
+  "nativeCause": "FEditorBuildUtils::EditorBuild at EditorBuildUtils.cpp:573 dereferenced graphical build UI in Python commandlet after BUILDPATHS; navigation async-load lock was 0x20",
+  "log": "verification/training-prepare-navigation-failure.log",
+  "passed": false
+}

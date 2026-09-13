@@ -1,0 +1,1086 @@
+Running AutomationTool...
+Using bundled DotNet SDK version: 10.0 win-x64
+Starting AutomationTool...
+Parsing command line: -NoCompileUAT -NoCompile -NoAutoSDK BuildCookRun -project=F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -nop4 -unattended -utf8output -nocompileeditor -client -server -platform=Win64 -serverplatform=Win64 -clientconfig=Development -serverconfig=Development -stage -pak -iostore -ubtargs="-NoUBA -MaxParallelActions=3" -additionalcookeroptions="-NullRHI -Multiprocess -CookProcessCount=1 -corelimit=3 -ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False" -cook
+Initializing script modules...
+Total script module initialization time: 0.42 s.
+Using D:\program\0-editer\vs2022\MSBuild\Current\Bin\MSBuild.exe
+Executing commands...
+Setting up ProjectParams for F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject
+********** COOK COMMAND STARTED **********
+Running UnrealEditor Cook for project F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject
+Commandlet log file is E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Cook-2026.09.14-03.02.04.txt
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealEditor-Cmd.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" -run=Cook  -TargetPlatform=WindowsClient+WindowsServer  -unversioned -NullRHI -Multiprocess -CookProcessCount=1 -corelimit=3 -ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -fileopenlog -abslog="E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Cook-2026.09.14-03.02.04.txt" -stdout -CrashForUAT -unattended -NoLogTimes
+LogInit: Display: Running engine for game: MMORPG
+LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,region'
+LogTrace: Display: Control listening on port 1985
+LogCsvProfiler: Display: Metadata set : platform="Windows"
+LogCsvProfiler: Display: Metadata set : config="Development"
+LogCsvProfiler: Display: Metadata set : buildversion="UE5-CL-0"
+LogCsvProfiler: Display: Metadata set : engineversion="5.8.1-0+UE5"
+LogCsvProfiler: Display: Metadata set : enginereleaseversion="5.8.1"
+LogCsvProfiler: Display: Metadata set : os="Windows 11 (25H2) [10.0.26200.8457] "
+LogCsvProfiler: Display: Metadata set : cpu="GenuineIntel|12th Gen Intel(R) Core(TM) i5-12490F"
+LogCsvProfiler: Display: Metadata set : pgoenabled="0"
+LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
+LogCsvProfiler: Display: Metadata set : ltoenabled="0"
+LogCsvProfiler: Display: Metadata set : asan="0"
+LogCsvProfiler: Display: Metadata set : mergedmodules="0"
+LogCsvProfiler: Display: Metadata set : compacttset="0"
+LogCsvProfiler: Display: Metadata set : commandline="" F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject -run=Cook -TargetPlatform=WindowsClient+WindowsServer -unversioned -NullRHI -Multiprocess -CookProcessCount=1 -corelimit=3 -ini:Engine:[DevOptions.Shaders]:NumUnusedShaderCompilingThreads=1,[DevOptions.Shaders]:NumUnusedShaderCompilingThreadsDuringGame=1,[DevOptions.Shaders]:bForceUseSCWMemoryPressureLimits=False,[SystemSettings]:r.ForceAllCoresForShaderCompiling=0 -ini:EditorPerProjectUserSettings:[/Script/ModelContextProtocolEngine.ModelContextProtocolSettings]:bAutoStartServer=False -fileopenlog -abslog=E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Cook-2026.09.14-03.02.04.txt -stdout -CrashForUAT -unattended -NoLogTimes""
+LogCsvProfiler: Display: Metadata set : loginid="b88a7139400b436c9bc330924bae3246"
+LogCsvProfiler: Display: Metadata set : llm="0"
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogCsvProfiler: Display: Metadata set : zenstreaming="0"
+LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
+LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
+LogAssetRegistry: Display: FindShardedCacheFiles: 0 via .ref, 0 via migration fallback, 0 total
+LogAssetRegistry: Display: No AssetDiscovery cache present at F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistryDiscovery.bin. AssetRegistry discovery of files will be uncached.
+LogConfig: Display: Loading Android ini files took 0.02 seconds
+LogConfig: Display: Loading IOS ini files took 0.01 seconds
+LogConfig: Display: Loading Linux ini files took 0.02 seconds
+LogConfig: Display: Loading LinuxArm64 ini files took 0.02 seconds
+LogConfig: Display: Loading Mac ini files took 0.01 seconds
+LogConfig: Display: Loading TVOS ini files took 0.02 seconds
+LogConfig: Display: Loading Unix ini files took 0.02 seconds
+LogConfig: Display: Loading VulkanPC ini files took 0.02 seconds
+LogConfig: Display: Loading Windows ini files took 0.02 seconds
+LogConfig: Display: Loading VisionOS ini files took 0.02 seconds
+RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+LogAsyncCompilation: Display: MemorySharingInfo: UsedMemory=262MiB, MaxMemoryAvailable=51013MiB
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogHAL: Display: Platform has ~ 32 GB [34164105216 / 34359738368 / 32], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+LogVirtualTexturing: Display: Recreating virtual texture pools.
+LogCsvProfiler: Display: Metadata set : extradevelopmentmemorymb="0"
+LogObj: Display: Attempting to load config data for Default__DownlinkBandwidthManagerConfig before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+LogTextureFormatASTC: Display: ASTCEnc version 5.0.1 library loaded
+LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatASTC
+LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatETC2
+LogTextureFormatOodle: Display: Oodle Texture TFO init; latest sdk version = 2.9.16
+LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.16.dll
+LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatOodle
+LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatUncompressed
+LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Android'
+LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Linux'
+LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'LinuxArm64'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsEditor'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+LogTargetPlatformManager: Display: Building Assets For WindowsServer
+LogTargetPlatformManager: Display: Building Assets For WindowsClient
+LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+LogObj: Display: Attempting to load config data for Default__SlateThemeManager before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+LogCsvProfiler: Display: Metadata set : verbatimrhiname="Null"
+LogCsvProfiler: Display: Metadata set : rhiname="Null"
+LogCsvProfiler: Display: Metadata set : rhifeaturelevel="SM6"
+LogCsvProfiler: Display: Metadata set : shaderplatform="PCD3D_SM6"
+LogCsvProfiler: Display: Metadata set : gpu=""
+LogCsvProfiler: Display: Metadata set : gpudriver=""
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Launching executable 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\air\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 27112  --child-id Zen_27112_Startup'
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogDerivedDataCache: Display: ZenLocal: Using ZenServer HTTP service at [::1] with namespace ue.ddc. Status: OK!.
+LogDerivedDataCache: Display: ../../../Engine/DerivedDataCache: Performance: Latency=0.09ms. RandomReadSpeed=356.89MBs, RandomWriteSpeed=453.71MBs. Assigned SpeedClass 'Local'
+LogUbaHorde: Display: UBA/Horde Configuration [Uba.Provider.Horde]: Not Enabled
+LogShaderCompilers: Display: No distributed shader compiler controller found
+LogShaderCompilers: Display: Using 2 local workers for shader compilation
+LogShaderCompilers: Display: Compiling shader autogen file: F:/UE/LyraDocLabs/MMORPG/Intermediate/ShaderAutogen/PCD3D_SM6/AutogenShaderHeaders.ush
+LogShaderCompilers: Display: Autogen file is unchanged, skipping write.
+LogEditorDomain: Display: EditorDomain is Disabled
+LogAssetRegistry: Display: AssetDataGatherer spent 0.000s loading caches from F:/UE/LyraDocLabs/MMORPG/Intermediate/CachedAssetRegistry.
+LogDeviceProfileManager: Display: Deviceprofile LinuxArm64Editor not found.
+LogDeviceProfileManager: Display: Deviceprofile LinuxArm64 not found.
+LogCsvProfiler: Display: Metadata set : deviceprofile="WindowsEditor"
+LogStreaming: Display: FlushAsyncLoading(1): 1 QueuedPackages, 0 AsyncPackages
+LogTextureEncodingSettings: Display: Texture Encode Speed: Final (cook).
+LogTextureEncodingSettings: Display: Oodle Texture Encode Speed settings: Fast: RDO Off Lambda=0, Effort=Normal Final: RDO Off Lambda=0, Effort=Normal
+LogTextureEncodingSettings: Display: Shared linear texture encoding: Disabled
+LogMeshReduction: Display: Using QuadricMeshReduction for automatic static mesh reduction
+LogMeshReduction: Display: Using SkeletalMeshReduction for automatic skeletal mesh reduction
+LogMeshReduction: Display: Using ProxyLODMeshReduction for automatic mesh merging
+LogMeshReduction: Display: No distributed automatic mesh merging module available
+LogVirtualization: Display: VirtualizationSystem name found in ini file: None
+LogVirtualization: Display: FNullVirtualizationSystem mounted, virtualization will be disabled
+LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize started...
+LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize took 8.518 ms
+LogMetaSound: Display: MetaSound Page Target Initialized to 'Default'
+LogAudio: Display: Registering Engine Module Parameter Interfaces...
+LogSemanticSearch: Warning: Saved index type (0) does not match current settings (1), discarding
+LogSemanticSearch: Display: No codebook found, creating flat index
+LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+LogToolsetRegistry: Display: Registering Toolset ToolsetRegistry.AgentSkillToolset
+LogGameFeatures: Display: Game feature 'MMOCore' transitioned successfully. Ending state: Registered [Registered, Active]
+LogGameFeatures: Display: Total built in plugin load time 0.0544s
+LogCsvProfiler: Display: Metadata set : largeworldcoordinates="1"
+LogCsvProfiler: Display: Metadata set : raytracing="0"
+LogToolsetRegistry: Display: Registering Toolset AutomationTestToolset.AutomationTestToolset
+LogToolsetRegistry: Display: Registering Toolset DataflowAgent.DataflowAgentToolset
+LogToolsetRegistry: Display: Registering Toolset ConfigSettingsToolset.ConfigSettingsToolset
+LogToolsetRegistry: Display: Registering Toolset EditorToolset.EditorAppToolset
+LogToolsetRegistry: Display: Registering Toolset EditorToolset.LogsToolset
+LogToolsetRegistry: Display: Registering Toolset GameFeaturesToolset.GameFeaturesToolset
+LogToolsetRegistry: Display: Registering Toolset DataRegistryToolset.DataRegistryTools
+LogToolsetRegistry: Display: Registering Toolset GameplayTagsToolset.GameplayTagsToolset
+LogToolsetRegistry: Display: Registering Toolset GASToolsets.GameplayCueToolset
+LogToolsetRegistry: Display: Registering Toolset GASToolsets.AttributeSetToolset
+LogToolsetRegistry: Display: Registering Toolset GASToolsets.AbilitySystemInspectorToolset
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_Info
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_Component
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_Blueprint
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_System
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_Assets
+LogToolsetRegistry: Display: Registering Toolset PhysicsToolsets.PhysicsAssetToolset
+LogToolsetRegistry: Display: Registering Toolset PCGToolset.PCGToolset
+LogToolsetRegistry: Display: Registering Toolset PCGToolset.PCGSpatialToolset
+LogToolsetRegistry: Display: Registering Toolset PluginToolset.PluginToolset
+LogToolsetRegistry: Display: Registering Toolset SemanticSearchToolset.SemanticSearchToolset
+LogToolsetRegistry: Display: Registering Toolset SlateInspectorToolset.SlateInspectorToolset
+LogToolsetRegistry: Display: Registering Toolset WorldConditionsToolset.WorldConditionTools
+LogToolsetRegistry: Display: Registering Toolset UMGToolSet.UMGToolSet
+LogCook: Display: CookProcessCount=1. CookMultiprocess is disabled and the cooker is running as a single process.
+LogCook: Display: CookSettings for Memory:
+	MemoryMaxUsedVirtual 0MiB
+	MemoryMaxUsedPhysical 0MiB
+	MemoryMinFreeVirtual 2048MiB
+	MemoryMinFreePhysical 2048MiB
+	MemoryTriggerGCAtPressureLevel None
+	SoftGCMemoryUseTrigger disabled
+	SoftGCTimeBudgetTrigger enabled (0.05 budget, 30s min period)
+LogCook: Display: SkipOnlyEditorOnly is enabled, unsolicited packages will not be cooked unless they are referenced from the cooked version of the instigator package.
+LogCook: Display: ---- Pre Content Initialisation: End ----
+LogCook: Display: ---- Post Content Initialisation: Start ----
+LogEditorDomain: Display: Cycle detected in parents of class /Script/RigVMDeveloper.RigVMUnitNode. Allow flags for editordomain and incremental cooking will be invalid.
+LogZenStore: Display: Establishing oplog 'MMORPG.e5f11b78/EditorDomain'
+LogZenStore: Display: Zen project 'MMORPG.e5f11b78' created
+LogZenStore: Display: Zen oplog 'MMORPG.e5f11b78/EditorDomain' created
+LogCook: Display: Waiting for Asset Registry
+LogAssetRegistry: Display: Starting OnFilesLoaded.Broadcast
+LogAssetRegistry: Display: Completed OnFilesLoaded.Broadcast: 0.021s
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 0 .ref files found, 0 referenced binaries
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 0 total binaries, 0 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+LogCook: Display: INCREMENTAL COOK DEPENDENCIES: Enabled. Incremental Cook Dependencies are enabled in Editor.ini:[CookSettings]:LegacyIterative=false.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogZenStore: Display: Establishing oplog 'MMORPG.e5f11b78/WindowsServer'
+LogZenStore: Display: Zen project 'MMORPG.e5f11b78' already exists
+LogStorageServerPlatformFile: Display: Found 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsServer/ue.projectstore'
+LogStorageServerPlatformFile: Display: Using connection settings from ue.projectstore: HostAddrs='[::1]+192.168.1.5+10.112.175.233' and HostPort='8558'
+LogStorageServerPlatformFile: Display: Found 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsServer/ue.projectstore'
+LogStorageServerPlatformFile: Display: Using password authentication from ue.projectstore
+LogStorageServerPlatformFile: Display: Using settings from ue.projectstore: ServerProject='MMORPG.e5f11b78' and ServerPlatform='WindowsServer'
+LogStorageServerConnection: Display: Creating zen store connection to [::1]:8558 ("::1").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/MMORPG.e5f11b78/oplog/WindowsServer: oplog WindowsServer not found in project MMORPG.e5f11b78
+LogStorageServerConnection: Display: Creating zen store connection to 192.168.1.5:8558 ("192.168.1.5").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/MMORPG.e5f11b78/oplog/WindowsServer: oplog WindowsServer not found in project MMORPG.e5f11b78
+LogStorageServerConnection: Display: Creating zen store connection to 10.112.175.233:8558 ("10.112.175.233").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/MMORPG.e5f11b78/oplog/WindowsServer: oplog WindowsServer not found in project MMORPG.e5f11b78
+LogStorageServerConnection: Display: Creating zen store connection to hostname://DESKTOP-C9JS8TO:8558 ("192.168.1.5").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/MMORPG.e5f11b78/oplog/WindowsServer: oplog WindowsServer not found in project MMORPG.e5f11b78
+LogStorageServerPlatformFile: Display: Failed to initialize connection to any of [ [::1], 192.168.1.5, 10.112.175.233, hostname://DESKTOP-C9JS8TO ]
+LogZenStore: Display: Establishing oplog 'MMORPG.e5f11b78/WindowsClient'
+LogZenStore: Display: Zen project 'MMORPG.e5f11b78' already exists
+LogStorageServerPlatformFile: Display: Found 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsClient/ue.projectstore'
+LogStorageServerPlatformFile: Display: Using connection settings from ue.projectstore: HostAddrs='[::1]+192.168.1.5+10.112.175.233' and HostPort='8558'
+LogStorageServerPlatformFile: Display: Found 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsClient/ue.projectstore'
+LogStorageServerPlatformFile: Display: Using password authentication from ue.projectstore
+LogStorageServerPlatformFile: Display: Using settings from ue.projectstore: ServerProject='MMORPG.e5f11b78' and ServerPlatform='WindowsClient'
+LogStorageServerConnection: Display: Creating zen store connection to [::1]:8558 ("::1").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/MMORPG.e5f11b78/oplog/WindowsClient: oplog WindowsClient not found in project MMORPG.e5f11b78
+LogStorageServerConnection: Display: Creating zen store connection to 192.168.1.5:8558 ("192.168.1.5").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/MMORPG.e5f11b78/oplog/WindowsClient: oplog WindowsClient not found in project MMORPG.e5f11b78
+LogStorageServerConnection: Display: Creating zen store connection to 10.112.175.233:8558 ("10.112.175.233").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/MMORPG.e5f11b78/oplog/WindowsClient: oplog WindowsClient not found in project MMORPG.e5f11b78
+LogStorageServerConnection: Display: Creating zen store connection to hostname://DESKTOP-C9JS8TO:8558 ("192.168.1.5").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/MMORPG.e5f11b78/oplog/WindowsClient: oplog WindowsClient not found in project MMORPG.e5f11b78
+LogStorageServerPlatformFile: Display: Failed to initialize connection to any of [ [::1], 192.168.1.5, 10.112.175.233, hostname://DESKTOP-C9JS8TO ]
+LogCook: Display: CalculateGlobalDependenciesHash(WindowsServer):
+LogCook: Display: 	FGuid CookIncrementalVersion = ffa12fdc-c822-1fe2-7757-627a12f1d3a7
+LogCook: Display: 	[Editor]:CookSettings.ProjectCookIncrementalVersion = 00000000-0000-0000-0000-000000000000
+LogCook: Display: 	[Engine]:Core.System.CanStripEditorOnlyExportsAndImports = True
+LogCook: Display: 	[Engine]:Core.System.CanSkipEditorReferencedPackagesWhenCooking = False
+LogCook: Display: 	CanUseUnversionedPropertySerialization = False
+LogCook: Display: 	[Editor]:CookSettings.AutomaticOptionalInclusionAssetType = /Script/Niagara.NiagaraScript, /Script/Niagara.NiagaraEmitter, /Script/Niagara.NiagaraSystem, /Script/NiagaraEditor.NiagaraParameterDefinitions, /Script/Niagara.NiagaraEffectType, /Script/Niagara.NiagaraValidationRuleSet, /Script/OptimusCore.OptimusDeformer
+LogCook: Display: 	IsCookFlagSet(ECookInitializationFlags::Unversioned) = True
+LogCook: Display: 	FCoreRedirects::AppendHashOfGlobalRedirects = fe5a080db1cc595e457c0ef9ba3ac05da1419b4ea3ea63b8b4d6a51a40454fbf
+LogCook: Display: 	GlobalDependenciesHash(WindowsServer) = 76ff057de289f2b3a98d56a24aa3c33c9fac5d81e0711b441685bcffff75f5dd
+LogCook: Display: CalculateGlobalDependenciesHash(WindowsClient):
+LogCook: Display: 	FGuid CookIncrementalVersion = ffa12fdc-c822-1fe2-7757-627a12f1d3a7
+LogCook: Display: 	[Editor]:CookSettings.ProjectCookIncrementalVersion = 00000000-0000-0000-0000-000000000000
+LogCook: Display: 	[Engine]:Core.System.CanStripEditorOnlyExportsAndImports = True
+LogCook: Display: 	[Engine]:Core.System.CanSkipEditorReferencedPackagesWhenCooking = False
+LogCook: Display: 	CanUseUnversionedPropertySerialization = True
+LogCook: Display: 	[Editor]:CookSettings.AutomaticOptionalInclusionAssetType = /Script/Niagara.NiagaraScript, /Script/Niagara.NiagaraEmitter, /Script/Niagara.NiagaraSystem, /Script/NiagaraEditor.NiagaraParameterDefinitions, /Script/Niagara.NiagaraEffectType, /Script/Niagara.NiagaraValidationRuleSet, /Script/OptimusCore.OptimusDeformer
+LogCook: Display: 	IsCookFlagSet(ECookInitializationFlags::Unversioned) = True
+LogCook: Display: 	FCoreRedirects::AppendHashOfGlobalRedirects = fe5a080db1cc595e457c0ef9ba3ac05da1419b4ea3ea63b8b4d6a51a40454fbf
+LogCook: Display: 	GlobalDependenciesHash(WindowsClient) = 03442de9241da3628af114383ab2641ebabfb07d3edd0e7c1c53205df68dbb91
+LogCook: Display: FULL COOK: Incremental Cooks are disabled by default in Editor.ini:[CookSettings]:CookIncrementalDefaultIncremental=false, and commandline did not specify -forcerecook=false. Deleting previously cooked packages for platform WindowsServer and recooking all packages discovered in the current cook.
+LogCook: Display: FULL COOK: Incremental Cooks are disabled by default in Editor.ini:[CookSettings]:CookIncrementalDefaultIncremental=false, and commandline did not specify -forcerecook=false. Deleting previously cooked packages for platform WindowsClient and recooking all packages discovered in the current cook.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogZenStore: Display: Deleting oplog 'MMORPG.e5f11b78/WindowsServer' if it exists
+LogZenStoreWriter: Display: Deleting F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsServer/...
+LogZenStore: Display: Zen oplog 'MMORPG.e5f11b78/WindowsServer' created
+LogZenStore: Display: Deleting oplog 'MMORPG.e5f11b78/WindowsClient' if it exists
+LogZenStoreWriter: Display: Deleting F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsClient/...
+LogZenStore: Display: Zen oplog 'MMORPG.e5f11b78/WindowsClient' created
+LogCook: Display: Sandbox cleanup took 9.526 seconds for platforms WindowsServer WindowsClient
+LogCook: Display: Compiling global changed shaders for platform 'WindowsServer'
+LogCook: Display: Compiling global changed shaders for platform 'WindowsClient'
+LogShaderLibrary: Display:
+LogShaderLibrary: Display: Shader Library 'Global' (PCD3D_SM6-PCD3D_SM6) Stats:
+LogShaderLibrary: Display: =================
+LogShaderLibrary: Display: Assets: 1, Unique Shadermaps: 461 (46100.00%)
+LogShaderLibrary: Display: Total Shaders: 8097, Unique Shaders: 8095 (99.98%)
+LogShaderLibrary: Display: Total Shader Size: 97.01mb, Unique Shaders Size: 97.01mb (100.00%)
+LogShaderLibrary: Display: === Extended info:
+LogShaderLibrary: Display: Minimum number of shaders in shadermap: 1
+LogShaderLibrary: Display: Median number of shaders in shadermap: 3
+LogShaderLibrary: Display: Maximum number of shaders in shadermap: 530
+LogShaderLibrary: Display: Number of shadermaps referencing top 10 most shared shaders:
+LogShaderLibrary: Display:     2, 2, 1, 1, 1, 1, 1, 1, 1, 1
+LogShaderLibrary: Display: Unique shaders itemization (sorted by compressed size):
+LogShaderLibrary: Display: SF_Compute: 5931 shaders (73.27%), compressed size: 74.43 MB (12.85 KB avg per shader), uncompressed size: 98.45 MB (17.00 KB avg per shader)
+LogShaderLibrary: Display: SF_Pixel: 2025 shaders (25.02%), compressed size: 22.21 MB (11.23 KB avg per shader), uncompressed size: 29.19 MB (14.76 KB avg per shader)
+LogShaderLibrary: Display: SF_Vertex: 135 shaders (1.67%), compressed size: 0.35 MB (2.69 KB avg per shader), uncompressed size: 0.44 MB (3.35 KB avg per shader)
+LogShaderLibrary: Display: SF_Geometry: 3 shaders (0.04%), compressed size: 0.01 MB (2.15 KB avg per shader), uncompressed size: 0.01 MB (3.31 KB avg per shader)
+LogShaderLibrary: Display: SF_WorkGraphComputeNode: 1 shaders (0.01%), compressed size: 0.00 MB (2.75 KB avg per shader), uncompressed size: 0.00 MB (3.35 KB avg per shader)
+LogShaderLibrary: Display: Textual dump saved to 'F:/UE/LyraDocLabs/MMORPG/Saved/Shaders/PCD3D_SM6-PCD3D_SM6/ShaderDebug-Global-PCD3D_SM6-PCD3D_SM6/Dump.txt'
+LogShaderLibrary: Display: =================
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogCook: Display: Discovering localized assets for cultures: en, zh, zh-Hans
+LogCook: Display: Found 0 localized assets
+LogCook: Display: ---- Post Content Initialisation: End ----
+LogCook: Display: Cooked packages 0 Packages Remain 477 Total 477
+LogCook: Display: Cook Diagnostics: OpenFileHandles=277, VirtualMemory=2632MiB, VirtualMemoryAvailable=17335MiB
+LogMaterial: Display: Missing cached shadermap for /Landmass/Landscape/BlueprintBrushes/Materials/Internal/BrushBounds.BrushBounds in PCD3D_SM6, Default, SM6, Game (DDC key hash: aabad46e47397ae9e967f3159b6c984c0be21db2), compiling.
+LogMaterial: Display: Missing cached shadermap for /SpeedTreeImporter/SpeedTree9/SpeedTreeMaster.SpeedTreeMaster in PCD3D_SM6, Default, SM6, Game (DDC key hash: c3c31cdb73eb0bdbb99464bacdaded01b181a713), compiling.
+LogMaterial: Display: Missing cached shadermap for /SpeedTreeImporter/SpeedTree9/SpeedTreeBillboardMaster.SpeedTreeBillboardMaster in PCD3D_SM6, Default, SM6, Game (DDC key hash: a65719b7b82c675ba9e060a30c6e499b113a5828), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/Widget3DPassThrough_Translucent_OneSided.Widget3DPassThrough_Translucent_OneSided in PCD3D_SM6, Default, SM6, Game (DDC key hash: bfbb86f80596864009f6be6935470f3aeae54617), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/Widget3DPassThrough_Opaque_OneSided.Widget3DPassThrough_Opaque_OneSided in PCD3D_SM6, Default, SM6, Game (DDC key hash: aa222379b3498cf2499cfd4d9606a63c3419ab7d), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/Widget3DPassThrough_Masked_OneSided.Widget3DPassThrough_Masked_OneSided in PCD3D_SM6, Default, SM6, Game (DDC key hash: 880557b53785e9ce558fb020d074ba49325b9e0b), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorLandscapeResources/LandscapeLayerUsageMaterial.LandscapeLayerUsageMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 14a229e98dbdbc4929fb0d6a18049460c7de424d), compiling.
+LogMaterial: Display: Missing cached shadermap for /Game/Characters/Mannequins/Materials/Manny/MI_Manny_02_New.MI_Manny_02_New in PCD3D_SM6, Default, SM6, Game (DDC key hash: 6476e42b36ec430d3d09f072bad4dc5df0b6cef9), compiling.
+LogCook: Display: Garbage collection triggered (Soft). Triggered by conditions:
+  CookSettings.SoftGCTimeTrigger: Periodic triggering of SoftGC: No duration data.
+LogCookCommandlet: Display: GarbageCollection... (Periodic GC)
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/M_ClearCoat.M_ClearCoat in PCD3D_SM6, Default, SM6, Game (DDC key hash: 59b774633598dd23d968d41b7dc0910e15b628e3), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/Dataflow/DataflowSelection.DataflowSelection in PCD3D_SM6, Default, SM6, Game (DDC key hash: 6fb33a641b4a469d0a5cb5aec5a3ccafd92aaba8), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/DefaultTextMaterialOpaque.DefaultTextMaterialOpaque in PCD3D_SM6, Default, SM6, Game (DDC key hash: 36ab486c34fb6f126ba05bae1b6975a83eaa4828), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 030fd2aa2cc935652fb3eda8f166c689e17659e0), compiling. Is special engine material.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/FlattenMaterial.FlattenMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 53bf4d210ac36a0fe724a5449feb4baf6fe62f3a), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/FlattenMaterial_VT.FlattenMaterial_VT in PCD3D_SM6, Default, SM6, Game (DDC key hash: 9920a3ee445da9a9bc3738f364518cdc46f43214), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/FlattenMaterial_WS_Normal_VT.FlattenMaterial_WS_Normal_VT in PCD3D_SM6, Default, SM6, Game (DDC key hash: db4acbd676f9a83d8343b994eb8a73dc2e300d0e), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Blend_DS.MI_Sheen_Blend_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: acbadb909bea2e7977a3e24c03d8c3f1be055442), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Mask_DS.MI_Sheen_Mask_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 113ef33abea99848cf98442afae284c3d86fdc44), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Opaque_DS.MI_Sheen_Opaque_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 9188d3e36a6b21e57c47bb6aa126de3849672269), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Blend.MI_Sheen_Blend in PCD3D_SM6, Default, SM6, Game (DDC key hash: acd18c1a569fe21f19853076da91c17ed78e889c), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Mask.MI_Sheen_Mask in PCD3D_SM6, Default, SM6, Game (DDC key hash: ae45f6972f94f8e87f4d09784f7fe3fc4914455b), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/M_Sheen.M_Sheen in PCD3D_SM6, Default, SM6, Game (DDC key hash: 867a3d9b93898091a31839cb341786864c31c7f6), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Default_Blend_DS.MI_Default_Blend_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 5efe4ad7f6978288c3193890da75d1f4f1294dd5), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Default_Mask_DS.MI_Default_Mask_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 4287939af0a6a9187fffca4d24bc6a5714c1e92c), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Default_Opaque_DS.MI_Default_Opaque_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 578918dadcd94adc41d98a31f4d8bb5c9d13783b), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Default_Blend.MI_Default_Blend in PCD3D_SM6, Default, SM6, Game (DDC key hash: bb9cbc73c849213d6e12507d46833dc3ea67b295), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Default_Mask.MI_Default_Mask in PCD3D_SM6, Default, SM6, Game (DDC key hash: 64d5471472830e32902889aaa2d00135c68eb1ee), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/Widget3DPassThrough_Translucent.Widget3DPassThrough_Translucent in PCD3D_SM6, Default, SM6, Game (DDC key hash: fc4e2b5e36fe3c1679b1783efc02048503c5b0a5), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/Widget3DPassThrough_Opaque.Widget3DPassThrough_Opaque in PCD3D_SM6, Default, SM6, Game (DDC key hash: 859c510163423378719a333e01809e0d3237e635), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/Widget3DPassThrough_Masked.Widget3DPassThrough_Masked in PCD3D_SM6, Default, SM6, Game (DDC key hash: 7ed9eac48251331c95f2023bb03df10d235c7bfa), compiling.
+LogMaterial: Display: Missing cached shadermap for /Landmass/Landscape/BlueprintBrushes/Materials/Sprite/M_BrushSprite_01.M_BrushSprite_01 in PCD3D_SM6, Default, SM6, Game (DDC key hash: 5a430d79ffffc2afd73935dada09ec0d0f530d85), compiling.
+LogMaterial: Display: Missing cached shadermap for /Game/Characters/Mannequins/Materials/M_Mannequin.M_Mannequin in PCD3D_SM6, Default, SM6, Game (DDC key hash: 8895e240501f089eead18bcfb287d0481d13c0c3), compiling.
+LogMaterial: Display: Missing cached shadermap for /MeshModelingToolsetExp/Materials/PointSetOverlaidComponentMaterial.PointSetOverlaidComponentMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: dba8b36d3cdf3fe3a71349e15f63852fbba1a064), compiling.
+LogMaterial: Display: Missing cached shadermap for /MeshModelingToolsetExp/Materials/LineSetOverlaidComponentMaterial.LineSetOverlaidComponentMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: d6e8daeb931d6bc497c9a9b6fa21907015194126), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorLandscapeResources/MaskBrushMaterial_MaskedRegion.MaskBrushMaterial_MaskedRegion in PCD3D_SM6, Default, SM6, Game (DDC key hash: ca68405153bdd9f728f9405caedeb14a9307a55c), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/VREditor/SnapGrid/SnapGridMaterial.SnapGridMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 7522ed24c3dcf305f3f8ad7feee8dddb844c903c), compiling.
+LogMaterial: Display: Missing cached shadermap for /Paper2D/OpaqueUnlitSpriteMaterial.OpaqueUnlitSpriteMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: d9dfd320968ef474976aa62d1ce67c88d8910fcd), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorLandscapeResources/SelectBrushMaterial_SelectedRegion.SelectBrushMaterial_SelectedRegion in PCD3D_SM6, Default, SM6, Game (DDC key hash: 1f56eacc92a6966048e4be63a9ee42dadad1b0ee), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/DefaultMaterial.DefaultMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: c3a55f88756d451226c967031b7b2c022cbc56c6), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/DefaultDeferredDecalMaterial.DefaultDeferredDecalMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 04868d97f4d40785fbf7014e9d7f542a06d7a75c), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/DefaultPostProcessMaterial.DefaultPostProcessMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 4390ff641d1a970cfd15d082f8b7bae07cc578b8), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineDebugMaterials/M_VolumeRenderSphereTracePP.M_VolumeRenderSphereTracePP in PCD3D_SM6, Default, SM6, Game (DDC key hash: a5deab5115b5f994e07139ee17f57e338d5bcf12), compiling.
+LogMaterial: Display: Missing cached shadermap for /HairStrands/Materials/HairDebugMaterial.HairDebugMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 483b84cf68aaa8cfd208816e78c01c95273af543), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/VREditor/TransformGizmo/TransformGizmoMaterial.TransformGizmoMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 280cd4cce6c241976e7167a53826a57a27ed177a), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/Dataflow/M_Dataflow_CheckerBoard.M_Dataflow_CheckerBoard in PCD3D_SM6, Default, SM6, Game (DDC key hash: 743c1d70e40a47b6c144009afcfa71d776002207), compiling.
+LogMaterial: Display: Missing cached shadermap for /ControlRig/M_Manip.M_Manip in PCD3D_SM6, Default, SM6, Game (DDC key hash: 61b74c10cf16ddfd330b80f8936340dada79b2c5), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/PhAT_JointLimitMaterial.PhAT_JointLimitMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 5e901ecb6e05c810fd72ce1a66a2fc3983c767d0), compiling.
+LogMaterial: Display: Missing cached shadermap for /Paper2D/DefaultSpriteMaterial.DefaultSpriteMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: edb04eb051aa2b46d6c501eb6daaec074b294573), compiling.
+LogMaterial: Display: Missing cached shadermap for /CommonUI/VideoPlayerMaterial.VideoPlayerMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 43d4dad47ad4c57a0107870863eea6d4efdf1649), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorLandscapeResources/LayerVisMaterial.LayerVisMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: bc845895ec1cfe3144362c9fd80cd2a16750b1a4), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorLandscapeResources/SelectBrushMaterial.SelectBrushMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 47d69a9800ac1ef0c5e840e5aa7e4ce66a0d6f7c), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorLandscapeResources/ColorMaskBrushMaterial.ColorMaskBrushMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 76aeb5083c9af4b98e1be572a7a5adac88502277), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorLandscapeResources/LandscapeDirtyMaterial.LandscapeDirtyMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 5a7a5c9ac93f86aa43669d0856367e10bbc8f458), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/EmissiveMeshMaterial.EmissiveMeshMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 65fef6bd040081f9678f13516065a2a774efb47b), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/M_InvalidLightmapSettings.M_InvalidLightmapSettings in PCD3D_SM6, Default, SM6, Game (DDC key hash: 52539acf1337f2095e93ede40e76b28111a5502b), compiling.
+LogCook: Display: Cooked packages 119 Packages Remain 458 Total 577
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/M_Default.M_Default in PCD3D_SM6, Default, SM6, Game (DDC key hash: 9b4ca91892207fd5007f9153bf95efaef324cec6), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Blend_DS.MI_ClearCoat_Blend_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: cdf89af876272d2cf6f317f1afdc3dd71e47e641), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Mask_DS.MI_ClearCoat_Mask_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 428f9560afe3c6ca6425d3496433282a8d3fc2ab), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Opaque_DS.MI_ClearCoat_Opaque_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 11db1f46217ab9b42ee45bc1f7134536c30610ec), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Blend.MI_ClearCoat_Blend in PCD3D_SM6, Default, SM6, Game (DDC key hash: d9b68bc1f88455ad25da1ecaf96394ce3f6a8f04), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Mask.MI_ClearCoat_Mask in PCD3D_SM6, Default, SM6, Game (DDC key hash: 54ce6849404181a57374f8c67b04c7dd4a73da9a), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Transmission_DS.MI_Transmission_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 6003dc9419bf977023ee4112cc753544ead55648), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/M_Transmission.M_Transmission in PCD3D_SM6, Default, SM6, Game (DDC key hash: fe2a85d531e461339dbf973f393c5272e9efbed0), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Blend_DS.MI_Unlit_Blend_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: d40b36435b2db8d3fc4c6ed06579fc7372b3ce09), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Mask_DS.MI_Unlit_Mask_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: a46a63a9cb5bc3afe3a39c254322557ea823f26c), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Mask_DS.MI_SpecularGlossiness_Mask_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 2e013e167295d3781d9aef5bc3c88f3a7f40a920), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Opaque_DS.MI_SpecularGlossiness_Opaque_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: b608829630eeff91371f29ab06ebc7d046cd25a6), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Blend.MI_SpecularGlossiness_Blend in PCD3D_SM6, Default, SM6, Game (DDC key hash: b4990ce677d4effd5ce5f06904881f974347f488), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Mask.MI_SpecularGlossiness_Mask in PCD3D_SM6, Default, SM6, Game (DDC key hash: bb443eeaa6b845f254243f6914baa152b7a2840f), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/M_SpecularGlossiness.M_SpecularGlossiness in PCD3D_SM6, Default, SM6, Game (DDC key hash: 2ac18ebb1891779c1b8e6b0419f0fbfd9bc73a5a), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/Substrate/M_GLTF.M_GLTF in PCD3D_SM6, Default, SM6, Game (DDC key hash: 12d4ea2cda420c52158756a7fcfa212c887cbfd5), compiling.
+LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.13.dll
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Opaque_DS.MI_Unlit_Opaque_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: 5f9d657f1f9b80713f85c9bd4d60754503362e43), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Blend.MI_Unlit_Blend in PCD3D_SM6, Default, SM6, Game (DDC key hash: e88e0fe7166230de04519232ef2fce752e9450ec), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Mask.MI_Unlit_Mask in PCD3D_SM6, Default, SM6, Game (DDC key hash: 28c89996604dfbc452ef282ba6f19d22dc76d8cb), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/M_Unlit.M_Unlit in PCD3D_SM6, Default, SM6, Game (DDC key hash: 9adb3e8b38b7b6e9860f5856a4e7dc0483cbe33d), compiling.
+LogMaterial: Display: Missing cached shadermap for /CommonUI/M_UI_HoldProgress.M_UI_HoldProgress in PCD3D_SM6, Default, SM6, Game (DDC key hash: 5c1940722db437eaff180dd741bac967f1675037), compiling.
+LogMaterial: Display: Missing cached shadermap for /CommonUI/M_UI_VirtualPointer.M_UI_VirtualPointer in PCD3D_SM6, Default, SM6, Game (DDC key hash: 7c83c3f8458f406979f625379e622300cd00ef73), compiling.
+LogMaterial: Display: Missing cached shadermap for /InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Blend_DS.MI_SpecularGlossiness_Blend_DS in PCD3D_SM6, Default, SM6, Game (DDC key hash: d600f1a1d1d0ae814eadde03c1c6b10af88358c4), compiling.
+LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.5.dll
+LogCook: Display: Cooked packages 140 Packages Remain 437 Total 577
+LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.11.dll
+LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.12.dll
+LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.15.dll
+LogCook: Display: Cooked packages 229 Packages Remain 348 Total 577
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_HalfCircle_3mm（所需内存估计：0.235546MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_HalfCircle_1mm（所需内存估计：0.235546MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Diamond_solid（所需内存估计：0.061016MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Diamond_3mm（所需内存估计：2.714615MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Diamond_1mm（所需内存估计：4.374279MB）…
+LogStaticMesh: Display: 正在等待静态网格体就绪0/51（/ControlRig/Controls/ControlRig_Diamond_3mm）……
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Circle_solid（所需内存估计：0.203843MB）…
+LogStaticMesh: Display: 正在等待静态网格体就绪1/51（/ControlRig/Controls/ControlRig_Diamond_1mm）……
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Circle_3mm（所需内存估计：0.410624MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Circle_1mm（所需内存估计：0.410624MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Box_solid（所需内存估计：0.029066MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Box_3mm（所需内存估计：1.371086MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Box_1mm（所需内存估计：2.990135MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow_solid（所需内存估计：0.048793MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow_3mm（所需内存估计：0.100496MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow_1mm（所需内存估计：0.100496MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow4_solid（所需内存估计：0.160604MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow4_3mm（所需内存估计：0.32412MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow4_1mm（所需内存估计：0.32412MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow2_solid（所需内存估计：0.081424MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow2_3mm（所需内存估计：0.159403MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Arrow2_1mm（所需内存估计：0.159403MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Sphere_solid（所需内存估计：1.436255MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Wedge_3mm（所需内存估计：2.342857MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Wedge_1mm（所需内存估计：2.367104MB）…
+LogStaticMesh: Display: 正在等待静态网格体就绪18/51（/ControlRig/Controls/ControlRig_Wedge_3mm）……
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Triangle_solid（所需内存估计：0.022491MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Triangle_3mm（所需内存估计：0.047892MB）…
+LogStaticMesh: Display: 正在等待静态网格体就绪19/51（/ControlRig/Controls/ControlRig_Wedge_1mm）……
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Triangle_1mm（所需内存估计：0.047892MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Star4_solid（所需内存估计：0.055368MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Star4_3mm（所需内存估计：0.113621MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Star4_1mm（所需内存估计：0.113621MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Square_solid（所需内存估计：0.029066MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Square_3mm（所需内存估计：0.061016MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Square_1mm（所需内存估计：0.061016MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Sphere_3mm（所需内存估计：2.238556MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Sphere_1mm（所需内存估计：2.876341MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_RoundedTriangle_solid（所需内存估计：0.247769MB）…
+LogStaticMesh: Display: 正在等待静态网格体就绪30/51（/ControlRig/Controls/ControlRig_Sphere_1mm）……
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_RoundedTriangle_3mm（所需内存估计：0.554926MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_RoundedTriangle_1mm（所需内存估计：0.517355MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_RoundedSquare_solid（所需内存估计：0.45485MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_RoundedSquare_3mm（所需内存估计：1.063242MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_RoundedSquare_1mm（所需内存估计：0.937765MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_QuarterCircle_solid（所需内存估计：0.066443MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_QuarterCircle_3mm（所需内存估计：0.123194MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_QuarterCircle_1mm（所需内存估计：0.135744MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Pyramid_solid（所需内存估计：0.06392MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Pyramid_3mm（所需内存估计：1.775955MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Pyramid_1mm（所需内存估计：2.881575MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Octagon_solid（所需内存估计：0.055368MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Octagon_3mm（所需内存估计：0.113621MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Octagon_1mm（所需内存估计：0.113621MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Hexagon_solid（所需内存估计：0.042217MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Hexagon_3mm（所需内存估计：0.087372MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Hexagon_1mm（所需内存估计：0.087372MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_HalfCircle_solid（所需内存估计：0.116344MB）…
+LogStaticMesh: Display: 正在构建静态网格体ControlRig_Wedge_solid（所需内存估计：1.080232MB）…
+LogStaticMesh: Display: 正在等待静态网格体就绪50/51（/ControlRig/Controls/ControlRig_Wedge_solid）……
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/PreviewShadowIndicatorMaterial.PreviewShadowIndicatorMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: f65138c0899701e1aa8c1ae4d0e9a97eba4d7d0c), compiling.
+LogCook: Display: Garbage collection triggered (Soft). Triggered by conditions:
+  CookSettings.SoftGCTimeTrigger: Periodic triggering of SoftGC: SoftGCTimeFractionBudget == 0.050. TimeSinceLastGCSeconds == 31.060. CurrentTimeBudget == 1.635. ExpectedDuration == 0.035.
+LogCook: Display: Cooked packages 233 Packages Remain 344 Total 577
+LogCook: Display: Cook Diagnostics: OpenFileHandles=4050, VirtualMemory=2662MiB, VirtualMemoryAvailable=17207MiB
+LogCookCommandlet: Display: GarbageCollection... (Periodic GC)
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/DefaultLightFunctionMaterial.DefaultLightFunctionMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 547ae15f069575ae0f450990119f1d0c2da78b12), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/WidgetVertexColorMaterial.WidgetVertexColorMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: c9518b09d3b136881a20221288476093734e52b5), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/Camera/CineMat.CineMat in PCD3D_SM6, Default, SM6, Game (DDC key hash: c7084c0a52db832c4e3b38504eead2c26588f563), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorLandscapeResources/SplineEditorMeshMat.SplineEditorMeshMat in PCD3D_SM6, Default, SM6, Game (DDC key hash: cddc9e8289721e249dbed9107bdd32fbb514ba1c), compiling.
+LogMaterial: Display: Missing cached shadermap for /HairStrands/Materials/HairDefaultMaterial.HairDefaultMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 1cfce06b18d0a3344359d6c450b1bac8fc43364d), compiling.
+LogMaterial: Display: Missing cached shadermap for /HairStrands/Materials/HairCardsDefaultMaterial.HairCardsDefaultMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 813d24c97f3345d6ff03da64fefca1b9442b6fbe), compiling.
+LogMaterial: Display: Missing cached shadermap for /HairStrands/Materials/HairMeshesDefaultMaterial.HairMeshesDefaultMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 2222d5f5db71be7f913fd60e8270608b1c374358), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/VREditor/TransformGizmo/TranslucentTransformGizmoMaterial.TranslucentTransformGizmoMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 47c41e4254879aa376ec96959fdf1ba1d1fa394d), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineDebugMaterials/M_SimpleUnlitTranslucent.M_SimpleUnlitTranslucent in PCD3D_SM6, Default, SM6, Game (DDC key hash: 2d8c80d7a060de9f3a11240173a1b50a538f1770), compiling.
+LogMaterial: Display: Missing cached shadermap for /ControlRig/Controls/ControlRigXRayMaterial.ControlRigXRayMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 7ea871d11150aefbb1ec3999f987696c537924ce), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/VREditor/TransformGizmo/Main.Main in PCD3D_SM6, Default, SM6, Game (DDC key hash: 45a986e7c30e710e91642742d3812b2a2c71c65c), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/VREditor/TransformGizmo/Xray.Xray in PCD3D_SM6, Default, SM6, Game (DDC key hash: d70fbad04040b7e56e60dc1acecf5f6ebbdd7005), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: c1d839054afa0c3a06cbd13817cf10e0534d4bff), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/Dataflow/DataflowVertexMaterial.DataflowVertexMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 3c64fadcf3b1e408972911056c5de4bd238dc845), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/Dataflow/DataflowTwoSidedVertexMaterial.DataflowTwoSidedVertexMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 618def062266494324d47764ad745ebed1f78f9f), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/Dataflow/DataflowTwoSidedVertexMaterial.SculptMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 1655699c6322535a6eb7b410e1fe1783ad187778), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/NaniteHiddenSectionMaterial.NaniteHiddenSectionMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 5ce661946c1def8f0f8d7b12122f6d9c69a6fb49), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/RemoveSurfaceMaterial.RemoveSurfaceMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 65d41d396f715999bbe2dceff4cb40261eb1ab2d), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineDebugMaterials/DebugMeshMaterial.DebugMeshMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 4e2e4f2378b6250af9e4b26840313971dc32a8be), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/GizmoMaterial.GizmoMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 981b07c4dc2e4394c23bc1d89f56dd95cd267b46), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/PhAT_UnselectedMaterial.PhAT_UnselectedMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 14ee580eae28c5b787a1aad6cf88bbda27aab0af), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EditorMaterials/PhAT_NoCollisionMaterial.PhAT_NoCollisionMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 1b30ed37c34a5d0d44cb408566c995de635afc44), compiling.
+LogCook: Display: Cooked packages 262 Packages Remain 315 Total 577
+LogTexture: Display: 正在构建纹理TwoD：/Engine/MobileResources/HUD/VirtualJoystick_Background.VirtualJoystick_Background (BGRA8, 256x256 x1x1x1)（预计所需内存：3.249992 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理TwoD：/Engine/MobileResources/HUD/VirtualJoystick_Thumb.VirtualJoystick_Thumb (BGRA8, 64x64 x1x1x1)（预计所需内存：1.140617 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理TwoD：/InterchangeAssets/Utilities/New_LUT.New_LUT (RGBA16F, 3813x1192 x1x1x1)（预计所需内存：105.028992 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineMaterials/DefaultDiffuse.DefaultDiffuse (TFO_AutoDXT, 1024x1024 x1x1x1)（预计所需内存：72.999984 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EditorResources/S_Trigger.S_Trigger is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EditorResources/S_Trigger.S_Trigger (BGRA8, 256x256 x1x1x1)（预计所需内存：3.249992 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EngineResources/DefaultTexture.DefaultTexture is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineResources/DefaultTexture.DefaultTexture (TFO_DXT1, 128x128 x1x1x1)（预计所需内存：2.864554 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EditorResources/S_Solver.S_Solver is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EditorResources/S_Solver.S_Solver (BGRA8, 256x256 x1x1x1)（预计所需内存：3.249992 MB）编码速度：Final
+LogTexture: Display: Texture /Water/Icons/WaterZoneActorSprite.WaterZoneActorSprite is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Water/Icons/WaterZoneActorSprite.WaterZoneActorSprite (TFO_AutoDXT, 256x256 x1x1x1)（预计所需内存：11.333209 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/VREditor/LaserPointer/VR_LaserPower_01.VR_LaserPower_01 is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/VREditor/LaserPointer/VR_LaserPower_01.VR_LaserPower_01 (TFO_AutoDXT, 512x512 x1x1x1)（预计所需内存：23.583323 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EditorMaterials/ParticleSystems/PSysThumbnail_NoImage.PSysThumbnail_NoImage is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EditorMaterials/ParticleSystems/PSysThumbnail_NoImage.PSysThumbnail_NoImage (TFO_AutoDXT, 256x256 x1x1x1)（预计所需内存：11.333209 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EditorMaterials/ParticleSystems/PSysThumbnail_OOD.PSysThumbnail_OOD is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EditorMaterials/ParticleSystems/PSysThumbnail_OOD.PSysThumbnail_OOD (TFO_AutoDXT, 128x128 x1x1x1)（预计所需内存：3.583295 MB）编码速度：Final
+LogTexture: Display: Texture /Paper2D/PlaceholderTextures/DummySpriteTexture.DummySpriteTexture is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Paper2D/PlaceholderTextures/DummySpriteTexture.DummySpriteTexture (TFO_AutoDXT, 128x128 x1x1x1)（预计所需内存：3.583295 MB）编码速度：Final
+LogTexture: Display: Texture /SpeedTreeImporter/SpeedTree9/game_wind_noise.game_wind_noise is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/SpeedTreeImporter/SpeedTree9/game_wind_noise.game_wind_noise (BGRA8, 1024x1024 x1x1x1)（预计所需内存：25.000 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EditorResources/S_Terrain.S_Terrain is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EditorResources/S_Terrain.S_Terrain (BGRA8, 256x256 x1x1x1)（预计所需内存：3.249992 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EngineMaterials/InvalidLightmapSettings.InvalidLightmapSettings is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineMaterials/InvalidLightmapSettings.InvalidLightmapSettings (TFO_AutoDXT, 512x512 x1x1x1)（预计所需内存：23.583323 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineMaterials/DefaultWhiteGrid.DefaultWhiteGrid (TFO_AutoDXT, 128x128 x1x1x1)（预计所需内存：3.583295 MB）编码速度：Final
+LogTexture: Display: Texture /Water/Icons/WaterErrorSprite.WaterErrorSprite is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Water/Icons/WaterErrorSprite.WaterErrorSprite (TFO_AutoDXT, 256x256 x1x1x1)（预计所需内存：11.333209 MB）编码速度：Final
+LogTexture: Display: Texture /Water/Icons/WaterLandscapeBrushSprite.WaterLandscapeBrushSprite is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Water/Icons/WaterLandscapeBrushSprite.WaterLandscapeBrushSprite (TFO_AutoDXT, 256x256 x1x1x1)（预计所需内存：11.333209 MB）编码速度：Final
+LogTexture: Display: Texture /Engine/EditorMaterials/PreviewShadowIndicator.PreviewShadowIndicator is missing streaming mips when loading for an inline request. The texture will be rebuilt.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EditorMaterials/PreviewShadowIndicator.PreviewShadowIndicator (BGRA8, 512x512 x1x1x1)（预计所需内存：9.999992 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理Array：/Engine/EngineMaterials/Substrate/GLints/AGlintTex2dArray.AGlintTex2dArray (RGBA16F, 64x1 x1024x1x1)（预计所需内存：3.833324 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理Array：/Engine/EngineMaterials/Substrate/Glints2/AGlintTex2dArray2.AGlintTex2dArray2 (RGBA16F, 64x1 x2048x1x1)（预计所需内存：6.666649 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineMaterials/DefaultCalibrationGrayscale.DefaultCalibrationGrayscale (BGRA8, 1920x1080 x1x1x1)（预计所需内存：66.258789 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineMaterials/DefaultCalibrationColor.DefaultCalibrationColor (TFO_AutoDXT, 1920x1080 x1x1x1)（预计所需内存：143.382812 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineResources/FilmGrains/Marcie_Grain_v3_128_M2_000.Marcie_Grain_v3_128_M2_000 (TFO_BC7, 128x128 x1x1x1)（预计所需内存：2.395814 MB）编码速度：Final
+LogCook: Display: Cooked packages 293 Packages Remain 284 Total 577
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineMaterials/SMAAAreaTex.SMAAAreaTex (BGRA8, 160x560 x1x1x1)（预计所需内存：4.076157 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineMaterials/FastBlueNoise_scalar_128x128x8.FastBlueNoise_scalar_128x128x8 (G8, 128x1025 x1x1x1)（预计所需内存：5.0039 MB）编码速度：Final
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineResources/Development/ZenLogo_64.ZenLogo_64 (TFO_AutoDXT, 64x64 x1x1x1)（预计所需内存：1.645795 MB）编码速度：Final
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineDebugMaterials/DebugEditorMaterial.DebugEditorMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: eb222a0ec4a08c674cc38cb663bebfaff71797ff), compiling.
+LogTexture: Display: 正在构建纹理TwoD：/Engine/EngineMaterials/SMAASearchTex.SMAASearchTex (BGRA8, 64x16 x1x1x1)（预计所需内存：1.032219 MB）编码速度：Final
+LogMaterial: Display: Missing cached shadermap for /ControlRig/Controls/ControlRigGizmoMaterial.ControlRigGizmoMaterial in PCD3D_SM6, Default, SM6, Game (DDC key hash: 45c13e3127f59b7e9809fd98fc0e84b150a7aed9), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/PPM_DefaultCalibrationGrayscale.PPM_DefaultCalibrationGrayscale in PCD3D_SM6, Default, SM6, Game (DDC key hash: 20c06176cb28e6f396d56fa0982b7fbe52759871), compiling.
+LogMaterial: Display: Missing cached shadermap for /Engine/EngineMaterials/PPM_DefaultCalibrationColor.PPM_DefaultCalibrationColor in PCD3D_SM6, Default, SM6, Game (DDC key hash: 451de5eb06d87119b5e7ff5b1a78a5e4ba3a25a1), compiling.
+LogCook: Display: Cooked packages 481 Packages Remain 96 Total 577
+LogCook: Display: Cooked packages 482 Packages Remain 95 Total 577
+LogCook: Display: Cooked packages 483 Packages Remain 94 Total 577
+LogCook: Display: Cooked packages 484 Packages Remain 93 Total 577
+LogCook: Display: Cooked packages 486 Packages Remain 91 Total 577
+LogCook: Display: Cooked packages 489 Packages Remain 88 Total 577
+LogCook: Display: Cooked packages 492 Packages Remain 85 Total 577
+LogCook: Display: Cooked packages 493 Packages Remain 84 Total 577
+LogCook: Display: Garbage collection triggered (Soft). Triggered by conditions:
+  CookSettings.SoftGCTimeTrigger: Periodic triggering of SoftGC: SoftGCTimeFractionBudget == 0.050. TimeSinceLastGCSeconds == 30.008. CurrentTimeBudget == 1.579. ExpectedDuration == 0.093.
+LogCookCommandlet: Display: GarbageCollection... (Periodic GC)
+LogCook: Display: Cook Diagnostics: OpenFileHandles=1358, VirtualMemory=2768MiB, VirtualMemoryAvailable=17178MiB
+LogCook: Display: Cooked packages 493 Packages Remain 84 Total 577
+LogCook: Display: Cooked packages 494 Packages Remain 83 Total 577
+LogCook: Display: Cooked packages 495 Packages Remain 82 Total 577
+LogCook: Display: Cooked packages 496 Packages Remain 81 Total 577
+LogCook: Display: Cooked packages 498 Packages Remain 79 Total 577
+LogCook: Display: Cooked packages 499 Packages Remain 78 Total 577
+LogCook: Display: Cooked packages 499 Packages Remain 78 Total 577
+LogCook: Display: Cooked packages 499 Packages Remain 78 Total 577
+LogCook: Display: Cooked packages 500 Packages Remain 77 Total 577
+LogCook: Display: Cooked packages 501 Packages Remain 76 Total 577
+LogCook: Display: Cooked packages 510 Packages Remain 67 Total 577
+LogCook: Display: Garbage collection triggered (Soft). Triggered by conditions:
+  CookSettings.SoftGCTimeTrigger: Periodic triggering of SoftGC: SoftGCTimeFractionBudget == 0.050. TimeSinceLastGCSeconds == 30.008. CurrentTimeBudget == 1.579. ExpectedDuration == 0.083.
+LogCookCommandlet: Display: GarbageCollection... (Periodic GC)
+LogCook: Display: Cook Diagnostics: OpenFileHandles=1377, VirtualMemory=2768MiB, VirtualMemoryAvailable=17039MiB
+LogCook: Display: Cooked packages 511 Packages Remain 66 Total 577
+LogCook: Display: Cooked packages 513 Packages Remain 64 Total 577
+LogCook: Display: Cooked packages 515 Packages Remain 62 Total 577
+LogCook: Display: Cooked packages 516 Packages Remain 61 Total 577
+LogCook: Display: Cooked packages 518 Packages Remain 59 Total 577
+LogCook: Display: Cooked packages 520 Packages Remain 58 Total 578
+LogCook: Display: Cooked packages 522 Packages Remain 56 Total 578
+LogCook: Display: Cooked packages 522 Packages Remain 56 Total 578
+LogCook: Display: Cooked packages 523 Packages Remain 55 Total 578
+LogCook: Display: Garbage collection triggered (Soft). Triggered by conditions:
+  CookSettings.SoftGCTimeTrigger: Periodic triggering of SoftGC: SoftGCTimeFractionBudget == 0.050. TimeSinceLastGCSeconds == 30.010. CurrentTimeBudget == 1.579. ExpectedDuration == 0.067.
+LogCookCommandlet: Display: GarbageCollection... (Periodic GC)
+LogCook: Display: Cook Diagnostics: OpenFileHandles=1381, VirtualMemory=2768MiB, VirtualMemoryAvailable=17014MiB
+LogCook: Display: Cooked packages 524 Packages Remain 54 Total 578
+LogCook: Display: Cooked packages 525 Packages Remain 53 Total 578
+LogCook: Display: Cooked packages 526 Packages Remain 52 Total 578
+LogCook: Display: Cooked packages 528 Packages Remain 50 Total 578
+LogCook: Display: Cooked packages 529 Packages Remain 49 Total 578
+LogCook: Display: Cooked packages 530 Packages Remain 48 Total 578
+LogCook: Display: Cooked packages 532 Packages Remain 46 Total 578
+LogCook: Display: Cooked packages 534 Packages Remain 44 Total 578
+LogCook: Display: Cooked packages 537 Packages Remain 41 Total 578
+LogCook: Display: Cooked packages 538 Packages Remain 40 Total 578
+LogCook: Display: Garbage collection triggered (Soft). Triggered by conditions:
+  CookSettings.SoftGCTimeTrigger: Periodic triggering of SoftGC: SoftGCTimeFractionBudget == 0.050. TimeSinceLastGCSeconds == 30.009. CurrentTimeBudget == 1.579. ExpectedDuration == 0.057.
+LogCookCommandlet: Display: GarbageCollection... (Periodic GC)
+LogCook: Display: Cooked packages 543 Packages Remain 35 Total 578
+LogCook: Display: Cooked packages 547 Packages Remain 31 Total 578
+LogCook: Display: Cook Diagnostics: OpenFileHandles=1404, VirtualMemory=2768MiB, VirtualMemoryAvailable=17175MiB
+LogCook: Display: Cooked packages 548 Packages Remain 30 Total 578
+LogCook: Display: Cooked packages 548 Packages Remain 30 Total 578
+LogCook: Display: Cooked packages 552 Packages Remain 26 Total 578
+LogCook: Display: Cooked packages 556 Packages Remain 22 Total 578
+LogCook: Display: Cooked packages 558 Packages Remain 20 Total 578
+LogCook: Display: Cooked packages 559 Packages Remain 19 Total 578
+LogCook: Display: Cooked packages 560 Packages Remain 18 Total 578
+LogCook: Display: Cooked packages 561 Packages Remain 17 Total 578
+LogCook: Display: Cooked packages 564 Packages Remain 14 Total 578
+LogCook: Display: Cooked packages 565 Packages Remain 13 Total 578
+LogShaderCompilers: Display: ================================================
+LogShaderCompilers: Display: === FShaderJobCache stats ===
+LogShaderCompilers: Display: Total job queries 15,174, among them cache hits 2,604 (17.16%), DDC hits 9,968 (65.69%), Duplicates 883 (5.82%)
+LogShaderCompilers: Display: Tracking 11,687 distinct input hashes that result in 10,181 distinct outputs (87.11%)
+LogShaderCompilers: Display: RAM used: 125.78 MiB of 1.60 GiB budget. Usage: 7.68%
+LogShaderCompilers: Display: === Shader Compilation stats ===
+LogShaderCompilers: Display: Shaders Compiled: 1,613
+LogShaderCompilers: Display: Jobs assigned 1,633, completed 1,613 (98.78%)
+LogShaderCompilers: Display: Average time worker was idle: 0.00 s
+LogShaderCompilers: Display: Time job spent in pending queue: average 70.24 s, longest 165.47 s
+LogShaderCompilers: Display: Job execution time: average 2.16 s, max 8.02 s
+LogShaderCompilers: Display: Job life time (pending + execution): average 71.23 s, max 165.48
+LogShaderCompilers: Display: Shader code size: total 20.72 MiB, numShaders 1,730, average 12.264 KiB, min 1.305 KiB, max 64.66 KiB
+LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 179.38 s
+LogShaderCompilers: Display: Jobs were issued in 177 batches (only local compilation was used), average 9.23 jobs/batch
+LogShaderCompilers: Display: Average processing rate: 8.99 jobs/sec
+LogShaderCompilers: Display: Total thread time: 345.688 s
+LogShaderCompilers: Display: Total thread preprocess time: 104.275 s
+LogShaderCompilers: Display: Percentage time preprocessing: 30.16%
+LogShaderCompilers: Display: Effective parallelization: 1.93 (times faster than compiling all shaders on one thread). Compare with number of workers: 2 - 0.963573
+LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+LogShaderCompilers: Display:                                        FMicropolyRasterizeCS (compiled   25 times, average 1.01 sec, max 1.79 sec, min 0.30 sec)
+LogShaderCompilers: Display:                                                 FLumenCardCS (compiled   12 times, average 0.64 sec, max 0.82 sec, min 0.51 sec)
+LogShaderCompilers: Display:    TBasePassPSFSelfShadowedCachedPointIndirectLightingPolicy (compiled   11 times, average 0.60 sec, max 1.12 sec, min 0.34 sec)
+LogShaderCompilers: Display:             TBasePassPSFSelfShadowedVolumetricLightmapPolicy (compiled   12 times, average 0.55 sec, max 1.02 sec, min 0.31 sec)
+LogShaderCompilers: Display:                   TBasePassPSFSelfShadowedTranslucencyPolicy (compiled   11 times, average 0.55 sec, max 0.95 sec, min 0.31 sec)
+LogShaderCompilers: Display: Top 5 shader types by total compile time:
+LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 8.88% of total time (compiled  142 times, average 0.22 sec, max 0.94 sec, min 0.10 sec)
+LogShaderCompilers: Display:                                        FMicropolyRasterizeCS - 7.33% of total time (compiled   25 times, average 1.01 sec, max 1.79 sec, min 0.30 sec)
+LogShaderCompilers: Display:      TBasePassPSFPrecomputedVolumetricLightmapLightingPolicy - 6.54% of total time (compiled   86 times, average 0.26 sec, max 0.97 sec, min 0.12 sec)
+LogShaderCompilers: Display:                TBasePassPSFCachedPointIndirectLightingPolicy - 6.44% of total time (compiled   86 times, average 0.26 sec, max 1.04 sec, min 0.13 sec)
+LogShaderCompilers: Display:            TVelocityPS<EVelocityPassMode::Velocity_Standard> - 5.36% of total time (compiled   66 times, average 0.28 sec, max 0.47 sec, min 0.15 sec)
+LogShaderCompilers: Display: === Material stats ===
+LogShaderCompilers: Display: Materials Cooked:        214
+LogShaderCompilers: Display: Materials Translated:    104
+LogShaderCompilers: Display: Material Total Translate Time: 0.21 s
+LogShaderCompilers: Display: Material Translation Only: 0.16 s (74%)
+LogShaderCompilers: Display: Material DDC Serialization Only: 0.00 s (0%)
+LogShaderCompilers: Display: Material Cache Hits: 0 (0%)
+LogShaderCompilers: Display: ================================================
+LogCook: Display: Cooked packages 567 Packages Remain 11 Total 578
+LogCook: Display: Garbage collection triggered (Soft). Triggered by conditions:
+  CookSettings.SoftGCTimeTrigger: Periodic triggering of SoftGC: SoftGCTimeFractionBudget == 0.050. TimeSinceLastGCSeconds == 30.002. CurrentTimeBudget == 1.579. ExpectedDuration == 0.053.
+LogCookCommandlet: Display: GarbageCollection... (Periodic GC)
+LogCook: Display: Cooked packages 569 Packages Remain 9 Total 578
+LogCook: Display: Cooked packages 571 Packages Remain 7 Total 578
+LogCook: Display: Cook Diagnostics: OpenFileHandles=1445, VirtualMemory=2768MiB, VirtualMemoryAvailable=17219MiB
+LogCook: Display: Cooked packages 573 Packages Remain 5 Total 578
+LogCook: Display: Cooked packages 575 Packages Remain 3 Total 578
+LogCook: Display: Cooked packages 578 Packages Remain 0 Total 578
+LogCook: Display: Cook Diagnostics: OpenFileHandles=1459, VirtualMemory=2768MiB, VirtualMemoryAvailable=17205MiB
+LogCook: Display: ---- Finalisation: Start ----
+LogShaderCompilers: Display: ================================================
+LogShaderCompilers: Display: === FShaderJobCache stats ===
+LogShaderCompilers: Display: Total job queries 15,174, among them cache hits 2,604 (17.16%), DDC hits 9,968 (65.69%), Duplicates 883 (5.82%)
+LogShaderCompilers: Display: Tracking 11,687 distinct input hashes that result in 10,210 distinct outputs (87.36%)
+LogShaderCompilers: Display: RAM used: 126.24 MiB of 1.60 GiB budget. Usage: 7.70%
+LogShaderCompilers: Display: === Shader Compilation stats ===
+LogShaderCompilers: Display: Shaders Compiled: 1,719
+LogShaderCompilers: Display: Jobs assigned 1,719, completed 1,719 (100%)
+LogShaderCompilers: Display: Average time worker was idle: 0.00 s
+LogShaderCompilers: Display: Time job spent in pending queue: average 75.23 s, longest 175.75 s
+LogShaderCompilers: Display: Job execution time: average 2.15 s, max 8.02 s
+LogShaderCompilers: Display: Job life time (pending + execution): average 77.38 s, max 175.97
+LogShaderCompilers: Display: Shader code size: total 22.472 MiB, numShaders 1,841, average 12.499 KiB, min 1.305 KiB, max 64.66 KiB
+LogShaderCompilers: Display: Time at least one job was in flight (either pending or executed): 190.10 s
+LogShaderCompilers: Display: Jobs were issued in 189 batches (only local compilation was used), average 9.10 jobs/batch
+LogShaderCompilers: Display: Average processing rate: 9.04 jobs/sec
+LogShaderCompilers: Display: Total thread time: 367.886 s
+LogShaderCompilers: Display: Total thread preprocess time: 106.066 s
+LogShaderCompilers: Display: Percentage time preprocessing: 28.83%
+LogShaderCompilers: Display: Effective parallelization: 1.94 (times faster than compiling all shaders on one thread). Compare with number of workers: 2 - 0.967607
+LogShaderCompilers: Display: Top 5 most expensive shader types by average time:
+LogShaderCompilers: Display:                                        FMicropolyRasterizeCS (compiled   25 times, average 1.01 sec, max 1.79 sec, min 0.30 sec)
+LogShaderCompilers: Display:                                                 FLumenCardCS (compiled   12 times, average 0.64 sec, max 0.82 sec, min 0.51 sec)
+LogShaderCompilers: Display:    TBasePassPSFSelfShadowedCachedPointIndirectLightingPolicy (compiled   12 times, average 0.58 sec, max 1.12 sec, min 0.34 sec)
+LogShaderCompilers: Display:             TBasePassPSFSelfShadowedVolumetricLightmapPolicy (compiled   12 times, average 0.55 sec, max 1.02 sec, min 0.31 sec)
+LogShaderCompilers: Display:                   TBasePassPSFSelfShadowedTranslucencyPolicy (compiled   12 times, average 0.53 sec, max 0.95 sec, min 0.31 sec)
+LogShaderCompilers: Display: Top 5 shader types by total compile time:
+LogShaderCompilers: Display:                                 TBasePassPSFNoLightMapPolicy - 9.01% of total time (compiled  152 times, average 0.22 sec, max 0.94 sec, min 0.10 sec)
+LogShaderCompilers: Display:                                        FMicropolyRasterizeCS - 6.89% of total time (compiled   25 times, average 1.01 sec, max 1.79 sec, min 0.30 sec)
+LogShaderCompilers: Display:      TBasePassPSFPrecomputedVolumetricLightmapLightingPolicy - 6.79% of total time (compiled   96 times, average 0.26 sec, max 0.97 sec, min 0.12 sec)
+LogShaderCompilers: Display:                TBasePassPSFCachedPointIndirectLightingPolicy - 6.78% of total time (compiled   96 times, average 0.26 sec, max 1.04 sec, min 0.13 sec)
+LogShaderCompilers: Display:            TVelocityPS<EVelocityPassMode::Velocity_Standard> - 5.20% of total time (compiled   68 times, average 0.28 sec, max 0.47 sec, min 0.15 sec)
+LogShaderCompilers: Display: === Material stats ===
+LogShaderCompilers: Display: Materials Cooked:        238
+LogShaderCompilers: Display: Materials Translated:    104
+LogShaderCompilers: Display: Material Total Translate Time: 0.21 s
+LogShaderCompilers: Display: Material Translation Only: 0.16 s (74%)
+LogShaderCompilers: Display: Material DDC Serialization Only: 0.00 s (0%)
+LogShaderCompilers: Display: Material Cache Hits: 0 (0%)
+LogShaderCompilers: Display: ================================================
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogCook: Display: CookArtifact 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsServer/MMORPG/Metadata/ValidationCookArtifact.json' saved.
+LogCook: Display: CookArtifact 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsClient/MMORPG/Metadata/ValidationCookArtifact.json' saved.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogAssetRegistryGenerator: Display: Saving asset registry v24.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogAssetRegistryGenerator: Display: Generated development asset registry F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsServer/MMORPG/Metadata/DevelopmentAssetRegistry.bin num assets 596, size is 433.79kb, XxHash64[LE] = 0x4F6BC3D4D1633766, waited on hash 0.00 seconds
+LogAssetRegistryGenerator: Display: Generated asset registry num assets 586, size is 169.76kb
+LogCook: Display: Dependent plugin "UAF" referenced by "IK Rig" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "UAFAnimGraph" referenced by "IK Rig" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "SteamShared" referenced by "EOS Shared" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "OnlineSubsystemGDK" referenced by "Online Framework Plugin" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogAssetRegistryGenerator: Display: Saving asset registry v24.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogAssetRegistryGenerator: Display: Generated development asset registry F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsClient/MMORPG/Metadata/DevelopmentAssetRegistry.bin num assets 596, size is 473.24kb, XxHash64[LE] = 0x4DA2C5CB7260C666, waited on hash 0.00 seconds
+LogAssetRegistryGenerator: Display: Generated asset registry num assets 588, size is 170.00kb
+LogShaderLibrary: Display:
+LogShaderLibrary: Display: Shader Library 'MMORPG' (PCD3D_SM6-PCD3D_SM6) Stats:
+LogShaderLibrary: Display: =================
+LogShaderLibrary: Display: Assets: 105, Unique Shadermaps: 106 (100.95%)
+LogShaderLibrary: Display: Total Shaders: 2928, Unique Shaders: 2136 (72.95%)
+LogShaderLibrary: Display: Total Shader Size: 25.20mb, Unique Shaders Size: 20.00mb (79.36%)
+LogShaderLibrary: Display: === Extended info:
+LogShaderLibrary: Display: Minimum number of shaders in shadermap: 1
+LogShaderLibrary: Display: Median number of shaders in shadermap: 13
+LogShaderLibrary: Display: Maximum number of shaders in shadermap: 984
+LogShaderLibrary: Display: Number of shadermaps referencing top 10 most shared shaders:
+LogShaderLibrary: Display:     26, 25, 17, 17, 17, 17, 17, 16, 16, 15
+LogShaderLibrary: Display: Unique shaders itemization (sorted by compressed size):
+LogShaderLibrary: Display: SF_Pixel: 985 shaders (46.11%), compressed size: 7.97 MB (8.28 KB avg per shader), uncompressed size: 10.48 MB (10.90 KB avg per shader)
+LogShaderLibrary: Display: SF_Compute: 431 shaders (20.18%), compressed size: 6.69 MB (15.89 KB avg per shader), uncompressed size: 8.93 MB (21.21 KB avg per shader)
+LogShaderLibrary: Display: SF_Vertex: 599 shaders (28.04%), compressed size: 4.21 MB (7.20 KB avg per shader), uncompressed size: 5.57 MB (9.52 KB avg per shader)
+LogShaderLibrary: Display: SF_Mesh: 121 shaders (5.66%), compressed size: 1.14 MB (9.62 KB avg per shader), uncompressed size: 1.37 MB (11.62 KB avg per shader)
+LogShaderLibrary: Display: Textual dump saved to 'F:/UE/LyraDocLabs/MMORPG/Saved/Shaders/PCD3D_SM6-PCD3D_SM6/ShaderDebug-MMORPG-PCD3D_SM6-PCD3D_SM6/Dump.txt'
+LogShaderLibrary: Display: =================
+LogCook: Display: Dependent plugin "UAF" referenced by "IK Rig" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "UAFAnimGraph" referenced by "IK Rig" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "SteamShared" referenced by "EOS Shared" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "OnlineSubsystemGDK" referenced by "Online Framework Plugin" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Finalize package store(s)...
+LogZenStoreWriter: Display: Flushing...
+LogZenStoreWriter: Display: Saving Zen filesystem manifest 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsServer/MMORPG/Metadata/zenfs.manifest'
+LogZenStoreWriter: Display: Output:	51591 Public runtime script objects
+LogZenStoreWriter: Display: Flushing...
+LogZenStoreWriter: Display: Saving Zen filesystem manifest 'F:/UE/LyraDocLabs/MMORPG/Saved/Cooked/WindowsClient/MMORPG/Metadata/zenfs.manifest'
+LogZenStoreWriter: Display: Output:	51591 Public runtime script objects
+LogCook: Display: Cook by the book total time in tick 191.068932s total time 246.368988
+LogCook: Display: Peak Used virtual 3111 MiB Peak Used physical 3179 MiB
+LogCook: Display: Packages Cooked: 568, Packages Incrementally Skipped: 0, Packages Skipped by Platform: 10, Total Packages: 578
+LogCookStats: Display: Hierarchy Timer Information:
+LogCookStats: Display:   Root: 0.000s (0)
+LogCookStats: Display:     CleanSandbox: 9.526s (1)
+LogCookStats: Display:     CollectFilesToCook: 0.003s (1)
+LogCookStats: Display:       CookModificationDelegate: 0.000s (1)
+LogCookStats: Display:     GenerateLongPackageName: 0.000s (1)
+LogCookStats: Display:     TickMainCookLoop: 191.069s (8)
+LogCookStats: Display:       PumpPollables: 0.148s (96)
+LogCookStats: Display:       PumpRequests: 0.016s (20)
+LogCookStats: Display:       LoadPackageForCooking: 1.606s (3701)
+LogCookStats: Display:       ValidateSourcePackage: 0.000s (578)
+LogCookStats: Display:       SavingPackages: 30.170s (16050)
+LogCookStats: Display:         PollPendingCookedPlatformDatas: 1.183s (1018350)
+LogCookStats: Display:         PrepareSave: 18.778s (1017947)
+LogCookStats: Display:         PrecachePlatformDataForNextPackage: 0.540s (577)
+LogCookStats: Display:           PrepareSave: 0.540s (890)
+LogCookStats: Display:         SaveCookedPackage: 9.160s (578)
+LogCookStats: Display:           GEditorSavePackage: 8.883s (1156)
+LogCookStats: Display:             VerifyCanCookPackage: 0.005s (1138)
+LogCookStats: Display:           TargetDomainDependencies: 0.174s (1156)
+LogCookStats: Display:         ClearAllCachedCookedPlatformData: 0.012s (578)
+LogCookStats: Display:       WaitForAsync: 153.355s (9434364)
+LogCookStats: Display:       PostLoadPackageFixup: 0.000s (1)
+LogCookStats: Display:     CookByTheBookFinished: 0.421s (1)
+LogCookStats: Display:       SavingCurrentIniSettings: 0.028s (1)
+LogCookStats: Display:         ProcessingAccessedStrings: 0.003s (2)
+LogCookStats: Display:       ChunkGeneration: 0.022s (1)
+LogCookStats: Display:       FinishPopulateShaderLibrary: 0.000s (2)
+LogCookStats: Display:       CalculateReferencedSet: 0.000s (2)
+LogCookStats: Display:       CookArtifacts.UpdateOplogPackages: 0.021s (2)
+LogCookStats: Display:       PruneShaderLibrary: 0.000s (1)
+LogCookStats: Display:       GeneratorPreSave: 0.000s (2)
+LogCookStats: Display:       BuildChunkManifest: 0.018s (2)
+LogCookStats: Display:         FixupPackageDependenciesForChunks: 0.011s (2)
+LogCookStats: Display:       SaveManifests: 0.000s (2)
+LogCookStats: Display:       SaveAssetRegistry: 0.046s (2)
+LogCookStats: Display:       WriteCookerOpenOrder: 0.004s (2)
+LogCookStats: Display:       WriteCookMetadata: 0.002s (2)
+LogCookStats: Display:       WriteReferencedSet: 0.002s (2)
+LogCookStats: Display:       FinalizePackageStore: 0.233s (1)
+LogCookStats: Display: Misc Cook Stats
+LogCookStats: Display: ===============
+LogCookStats: Display: Niagara
+LogCookStats: Display:     NiagaraScriptTranslationCount=0
+LogCookStats: Display:     NiagaraCpuScriptCompileCount=0
+LogCookStats: Display:     NiagaraCpuScriptDdcCacheHitCount=0
+LogCookStats: Display:     NiagaraCpuScriptDdcCacheMissCount=0
+LogCookStats: Display:     NiagaraGpuScriptCompileCount=0
+LogCookStats: Display:     NiagaraGpuScriptDdcCacheHitCount=0
+LogCookStats: Display:     NiagaraGpuScriptDdcCacheMissCount=0
+LogCookStats: Display:     NiagaraSystemWaitForCompilationCompleteTime=0.000000
+LogCookStats: Display: Validation
+LogCookStats: Display:     Stats=[]
+LogCookStats: Display: ComputeKernelShader.Misc
+LogCookStats: Display:     ShadersCompiled=129
+LogCookStats: Display: NiagaraShader.Misc
+LogCookStats: Display:     ShadersCompiled=0
+LogCookStats: Display: ShaderCompiler
+LogCookStats: Display:     BlockingTimeSec=49.775550
+LogCookStats: Display:     AsyncCompileTimeSec=379.992090
+LogCookStats: Display:     GlobalBeginCompileShaderTimeSec=0.543017
+LogCookStats: Display:     GlobalBeginCompileShaderCalls=15334
+LogCookStats: Display:     ProcessAsyncResultsTimeSec=32.816336
+LogCookStats: Display: GlobalShader.Misc
+LogCookStats: Display:     ShadersCompiled=10246
+LogCookStats: Display: Material
+LogCookStats: Display:     FinishCacheShadersSec=0.717694
+LogCookStats: Display: Cook.Profile.Params
+LogCookStats: Display:     CookProject=MMORPG
+LogCookStats: Display:     CookCultures=
+LogCookStats: Display:     CookLabel=
+LogCookStats: Display:     TargetPlatforms=WindowsServer+WindowsClient
+LogCookStats: Display:     IsCookAll=false
+LogCookStats: Display:     IsCookOnTheFly=false
+LogCookStats: Display:     IsIncrementalCook=false
+LogCookStats: Display:     IsIterativeCook=false
+LogCookStats: Display:     IsFastCook=false
+LogCookStats: Display:     IsUnversioned=true
+LogCookStats: Display: CookOnTheFlyServer.Package.Load
+LogCookStats: Display:     NumRequestedLoads=3279
+LogCookStats: Display:     NumPackagesLoaded=3387
+LogCookStats: Display:     NumInlineLoads=108
+LogCookStats: Display: CookOnTheFlyServer.Package.Save
+LogCookStats: Display:     NumPackagesIncrementallySkipped=0
+LogCookStats: Display: CookOnTheFlyServer.QueueSize
+LogCookStats: Display:     PeakRequest=577
+LogCookStats: Display:     PeakLoad=167
+LogCookStats: Display:     PeakSave=259
+LogCookStats: Display: Package.Load
+LogCookStats: Display:     LoadPackageTimeSec=1.832336
+LogCookStats: Display: Package.Save
+LogCookStats: Display:     NumPackagesSaved=1156
+LogCookStats: Display:     SavePackageTimeSec=8.838234
+LogCookStats: Display:     TagPackageExportsPresaveTimeSec=0.000000
+LogCookStats: Display:     TagPackageExportsTimeSec=0.000000
+LogCookStats: Display:     FullyLoadLoadersTimeSec=0.000000
+LogCookStats: Display:     ResetLoadersTimeSec=0.000000
+LogCookStats: Display:     TagPackageExportsGetObjectsWithOuter=0.000000
+LogCookStats: Display:     TagPackageExportsGetObjectsWithMarks=0.000000
+LogCookStats: Display:     SerializeImportsTimeSec=0.000000
+LogCookStats: Display:     SortExportsSeekfreeInnerTimeSec=0.000000
+LogCookStats: Display:     SerializeExportsTimeSec=0.000000
+LogCookStats: Display:     SerializeBulkDataTimeSec=0.005133
+LogCookStats: Display:     AsyncWriteTimeSec=0.000000
+LogCookStats: Display:     MBWritten=0.000000
+LogCookStats: Display: Package.DifferentPackagesSizeMBPerAsset
+LogCookStats: Display: Package.NumberOfDifferencesInPackagesPerAsset
+LogCookStats: Display: Package.PackageDifferencesSizeMBPerAsset
+LogCookStats: Display: Package.DiffTotal
+LogCookStats: Display:     NumberOfDifferentPackages=0
+LogCookStats: Display:     DifferentPackagesSizeMB=0.000000
+LogCookStats: Display:     NumberOfDifferencesInPackages=0
+LogCookStats: Display:     PackageDifferencesSizeMB=0.000000
+LogCookStats: Display: UnversionedProperties
+LogCookStats: Display:     SavedStructs=0
+LogCookStats: Display:     SavedMB=0
+LogCookStats: Display:     EquivalentTaggedMB=0
+LogCookStats: Display:     CompressionRatio=-nan(ind)
+LogCookStats: Display:     BitfieldWasteKB=0
+LogCookStats: Display:
+LogCookStats: Display: Cook Profile
+LogCookStats: Display: ============
+LogCookStats: Display:  0.CookWallTimeSec=259.077270
+LogCookStats: Display:  0. 0.StartupWallTimeSec=12.407496
+LogCookStats: Display:  0. 1.CookProcessingTime=246.669774
+LogCookStats: Display:  0. 1. 1.StartCookByTheBookTimeSec=54.852966
+LogCookStats: Display:  0. 1. 1. 0.BlockOnAssetRegistryTimeSec=0.937115
+LogCookStats: Display:  0. 1. 1. 1.GameCookModificationDelegateTimeSec=0.000145
+LogCookStats: Display:  0. 1. 2.TickCookOnTheSideTimeSec=181.797741
+LogCookStats: Display:  0. 1. 2. 0.TickCookOnTheSideLoadPackagesTimeSec=1.606702
+LogCookStats: Display:  0. 1. 2. 1.TickCookOnTheSideSaveCookedPackageTimeSec=9.160036
+LogCookStats: Display:  0. 1. 2. 1. 0.TickCookOnTheSideResolveRedirectorsTimeSec=0.000000
+LogCookStats: Display:  0. 1. 2. 2.TickCookOnTheSidePrepareSaveTimeSec=19.360423
+LogCookStats: Display:  0. 1. 3.TickLoopGCTimeSec=0.316929
+LogCookStats: Display:  0. 1. 4.TickLoopRecompileShaderRequestsTimeSec=0.000000
+LogCookStats: Display:  0. 1. 5.TickLoopShaderProcessAsyncResultsTimeSec=0.134788
+LogCookStats: Display:  0. 1. 6.TickLoopProcessDeferredCommandsTimeSec=0.000073
+LogCookStats: Display:  0. 1. 7.TickLoopTickCommandletStatsTimeSec=0.000015
+LogCookStats: Display:  0. 1. 8.TickLoopFlushRenderingCommandsTimeSec=0.012097
+LogCookStats: Display:  0. 1. 9.ShaderFlushTimeSec=0.000000
+LogCookStats: Display:  0. 1. 10.ValidationTimeSec=0.000142
+LogCookStats: Display:
+LogCookStats: Display: DDC Summary Stats
+LogCookStats: Display: =================
+LogCookStats: Display: BackEnd         =   Default
+LogCookStats: Display: HasLocalCache   =      true
+LogCookStats: Display: HasSharedCache  =     false
+LogCookStats: Display: HasCloudCache   =     false
+LogCookStats: Display: HasZenCache     =      true
+LogCookStats: Display: TotalGetHits    =     10305
+LogCookStats: Display: TotalGetMisses  =      5651
+LogCookStats: Display: TotalGets       =     15956
+LogCookStats: Display: TotalGetHitPct  =  0.645839
+LogCookStats: Display: GetMissPct      =  0.354161
+LogCookStats: Display: TotalPutHits    =      5666
+LogCookStats: Display: TotalPutMisses  =         0
+LogCookStats: Display: TotalPuts       =      5666
+LogCookStats: Display: TotalPutHitPct  =  1.000000
+LogCookStats: Display: PutMissPct      =  0.000000
+LogCookStats: Display: LocalGetHits    =     10271
+LogCookStats: Display: LocalGetMisses  =      5651
+LogCookStats: Display: LocalGetTotal   =     15922
+LogCookStats: Display: LocalGetHitPct  =  0.645082
+LogCookStats: Display: SharedGetHits   =         0
+LogCookStats: Display: SharedGetTotal  =         0
+LogCookStats: Display: SharedGetHitPct =  0.000000
+LogCookStats: Display: ZenLocalGetHits =     10271
+LogCookStats: Display: ZenLocalGetTotal=     15922
+LogCookStats: Display: ZenLocalGetHitPct=  0.645082
+LogCookStats: Display: ZenRemoteGetHits=         0
+LogCookStats: Display: ZenRemoteGetTotal=         0
+LogCookStats: Display: ZenRemoteGetHitPct=  0.000000
+LogCookStats: Display: ZenRemoteReadSpeed=  0.000000
+LogCookStats: Display: ZenRemoteWriteSpeed=  0.000000
+LogCookStats: Display: ZenRemoteLatency=  0.000000
+LogCookStats: Display: CloudGetHits    =         0
+LogCookStats: Display: CloudGetTotal   =         0
+LogCookStats: Display: CloudGetHitPct  =  0.000000
+LogCookStats: Display: LocalLatency    =  0.310283
+LogCookStats: Display: LocalReadSpeed  =  4.386849
+LogCookStats: Display: LocalWriteSpeed =105.975770
+LogCookStats: Display: SharedLatency   =  0.000000
+LogCookStats: Display: SharedReadSpeed =  0.000000
+LogCookStats: Display: SharedWriteSpeed=  0.000000
+LogCookStats: Display: CloudLatency    =  0.000000
+LogCookStats: Display: CloudReadSpeed  =  0.000000
+LogCookStats: Display: CloudWriteSpeed =  0.000000
+LogCookStats: Display:
+LogCookStats: Display: DDC Resource Stats
+LogCookStats: Display: =======================================================================================================
+LogCookStats: Display: Asset Type                          Total Time (Sec)  GameThread Time (Sec)  Assets Built  MB Processed
+LogCookStats: Display: ----------------------------------  ----------------  ---------------------  ------------  ------------
+LogCookStats: Display: StaticMesh                                     12.47                   0.00            54          0.53
+LogCookStats: Display: Shader                                          7.74                   0.00          1719        120.37
+LogCookStats: Display: BulkDataList                                    3.80                   0.00          3104          0.00
+LogCookStats: Display: GlobalShader                                    1.68                   0.37           461          0.00
+LogCookStats: Display: MaterialShader                                  0.77                   0.44           104          0.00
+LogCookStats: Display: Texture                                         0.18                   0.00            62          7.83
+LogCookStats: Display: NavCollision                                    0.18                   0.00            54          0.02
+LogCookStats: Display: CardRepresentation                              0.09                   0.00            54          0.01
+LogCookStats: Display: MaterialTranslation                             0.09                   0.00            51          0.00
+LogCookStats: Display: STREAMEDAUDIO                                   0.02                   0.00             0          0.09
+LogCookStats: Display: AnimationSequence                               0.01                   0.00             0          0.61
+LogCookStats: Display: SkeletalMesh                                    0.01                   0.00             0          6.77
+LogCookStats: Display: Audio                                           0.00                   0.00             0          0.09
+LogCookStats: Display: CKERSM                                          0.00                   0.00             3          0.00
+LogCookStats: Display: BodySetup                                       0.00                   0.00             0          0.42
+LogCookStats: Display:
+LogCookStats: Display: Accumulated DDC Resource Stats Per Asset Type
+LogCookStats: Display: =======================================================================================================
+LogCookStats: Display: AnimationSequence                               0.01                   0.00             0          0.61
+LogCookStats: Display: Audio                                           0.00                   0.00             0          0.09
+LogCookStats: Display: CardRepresentation                              0.09                   0.00            54          0.01
+LogCookStats: Display: DistanceField                                   0.00                   0.00             0          0.00
+LogCookStats: Display: MaterialShader                                  0.77                   0.44           104          0.00
+LogCookStats: Display: MaterialTranslation                             0.09                   0.00            51          0.00
+LogCookStats: Display: NiagaraScript                                   0.00                   0.00             0          0.00
+LogCookStats: Display: SkeletalMesh                                    0.01                   0.00             0          6.77
+LogCookStats: Display: StaticMesh                                     12.47                   0.00            54          0.53
+LogCookStats: Display: Texture                                         0.18                   0.00            62          7.83
+LogCookStats: Display: Other                                          13.42                   0.37          5341        120.90
+LogPackageBuildDependencyTracker: Display: Package Accesses (121 referencing packages with a total of 1147 unique accesses)
+LogConfigBuildDependencyTracker: Display: Config Accesses (311 referencing packages with a total of 756 unique accesses). 1899 unique accesses that were not associated with a package.
+LogCook: Display: ---- Finalisation: End ----
+LogCook: Display: Done!
+LogSavePackage: Display: Took 0.001447s to verify the EDL loading graph.
+LogInit: Display:
+LogInit: Display: Warning/Error Summary (Unique only)
+LogInit: Display: -----------------------------------
+LogInit: Display: LogSemanticSearch: Warning: Saved index type (0) does not match current settings (1), discarding
+LogInit: Display:
+LogInit: Display: Success - 0 error(s), 1 warning(s)
+LogInit: Display:
+
+Execution of commandlet took:  4m 6s (246.67 seconds), PeakPhysMemoryMB=3179 MB, PeakVirtMemoryMB=3111 MB
+LogToolsetRegistry: Display: Unregistering Toolset ToolsetRegistry.AgentSkillToolset
+LogToolsetRegistry: Display: Unregistering Toolset AutomationTestToolset.AutomationTestToolset
+LogToolsetRegistry: Display: Unregistering Toolset SlateInspectorToolset.SlateInspectorToolset
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 0 .ref files found, 0 referenced binaries
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 0 total binaries, 0 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+LogStreaming: Display: ============ Loader Stats ============
+LogStreaming: Display: Unique Partial Flushes: 0
+LogStreaming: Display: ============ Loader Stats End ============
+LogShaderCompilers: Display: Exiting ShaderCompilingThread
+Took 260.54s to run UnrealEditor-Cmd.exe, ExitCode=0
+Cook command time: 261.19 s
+********** COOK COMMAND COMPLETED **********
+********** STAGE COMMAND STARTED **********
+Creating Staging Manifest...
+Patching bootstrap executable; F:\UE\LyraDocLabs\MMORPG\Intermediate\Staging\MMORPGClient.exe
+Begin update resource 'F:\UE\LyraDocLabs\MMORPG\Intermediate\Staging\MMORPGClient.exe' (0)
+Add resource 101, length 104 (True)
+Add resource 1, length 1996 (True)
+Add resource 2, length 2447 (True)
+Add resource 3, length 2535 (True)
+Add resource 4, length 3037 (True)
+Add resource 5, length 3244 (True)
+Add resource 6, length 3531 (True)
+Add resource 7, length 6931 (True)
+Add resource 201, length 78 (True)
+Add resource 202, length 14 (True)
+Add resource 205, length 2 (True)
+End update resource (True/0)
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Engine.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Category.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PropertyNames.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Windows\WindowsEditorSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorKeyBindings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseSourceControlSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseLightmass.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditor.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Windows\WindowsEditorPerProjectUserSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Keywords.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\Editor.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\RepairData.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorPerProjectUserSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseUnrealInsightsSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BasePakFileRules.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PortableObjectExport.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\ToolTips.ini
+Excluding config file E:\UnrealEngine\Engine\Config\BaseEditorSettings.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\PortableObjectImport.ini
+Excluding config file E:\UnrealEngine\Engine\Config\Localization\WordCount.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\WindowsInput.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\WindowsGame.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\DataDrivenPlatformInfo.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsInput.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseInput.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseHardware.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseGameUserSettings.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseGame.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseDeviceProfiles.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseCompat.ini
+Including config file E:\UnrealEngine\Engine\Config\Base.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseMaterialExpressions.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseInstallBundle.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseScalability.ini
+Including config file E:\UnrealEngine\Engine\Config\BaseRuntimeOptions.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsGame.ini
+Including config file E:\UnrealEngine\Engine\Config\Windows\BaseWindowsEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\VulkanPC\DataDrivenPlatformInfo.ini
+Including config file E:\UnrealEngine\Engine\Config\PluginBase.ini
+Including config file E:\UnrealEngine\Engine\Config\DefaultEngine.ini
+Including config file E:\UnrealEngine\Engine\Config\ConsoleVariables.ini
+Including config file E:\UnrealEngine\Engine\Config\ConfigRedirects.ini
+Including config file E:\UnrealEngine\Engine\Config\Layouts\UE4ClassicLayout.ini
+Including config file E:\UnrealEngine\Engine\Config\Layouts\DefaultLayout.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEditor.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Export.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Gather.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Compile.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_Import.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\Localization\MMO_GenerateReports.ini
+Excluding config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEditorPerProjectUserSettings.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGameUserSettings.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGameplayTags.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultGame.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultInput.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\DefaultEngine.ini
+Including config file F:\UE\LyraDocLabs\MMORPG\Config\Windows\WindowsEngine.ini
+Reading oplog from Zen...
+Running UnrealPak with arguments: "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" IoStore -StartZenServerForStage -SponsorProcessID=7308 -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -unattended
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" IoStore -StartZenServerForStage -SponsorProcessID=7308 -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -unattended
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogPakFile: Display: ProjectDir: F:/UE/LyraDocLabs/MMORPG/
+LogIoStore: Display: ==================== IoStore Utils ====================
+LogIoStore: Display: Using command line for crypto configuration
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Launching executable 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\air\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 31264  --child-id Zen_31264_Startup'
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogPakFile: Display: UnrealPak executed in 4.628190 seconds
+Took 5.03s to run UnrealPak.exe, ExitCode=0
+ZenServer at [::1]:8558 not ready after StartZenServerForStage attempt 1/3; retrying.
+Running UnrealPak with arguments: "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" IoStore -StartZenServerForStage -SponsorProcessID=7308 -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -unattended
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" IoStore -StartZenServerForStage -SponsorProcessID=7308 -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -unattended
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogPakFile: Display: ProjectDir: F:/UE/LyraDocLabs/MMORPG/
+LogIoStore: Display: ==================== IoStore Utils ====================
+LogIoStore: Display: Using command line for crypto configuration
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogPakFile: Display: UnrealPak executed in 3.035560 seconds
+Took 3.27s to run UnrealPak.exe, ExitCode=0
+ZenServer at [::1]:8558 not ready after StartZenServerForStage attempt 2/3; retrying.
+Running UnrealPak with arguments: "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" IoStore -StartZenServerForStage -SponsorProcessID=7308 -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -unattended
+Running: E:\UnrealEngine\Engine\Binaries\Win64\UnrealPak.exe "F:\UE\LyraDocLabs\MMORPG\MMORPG.uproject" IoStore -StartZenServerForStage -SponsorProcessID=7308 -ProjectStore="F:\UE\LyraDocLabs\MMORPG\Saved\Cooked\WindowsClient\ue.projectstore" -unattended
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogPakFile: Display: ProjectDir: F:/UE/LyraDocLabs/MMORPG/
+LogIoStore: Display: ==================== IoStore Utils ====================
+LogIoStore: Display: Using command line for crypto configuration
+LogZenServiceInstance: Display: Launching zen utility 'E:/UnrealEngine/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'E:/UnrealEngine/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/air/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogPakFile: Display: UnrealPak executed in 2.028115 seconds
+Took 2.27s to run UnrealPak.exe, ExitCode=0
+ZenServer at [::1]:8558 not ready after StartZenServerForStage attempt 3/3; retrying.
+Failed sending oplog request to Zen at [::1]:8558: ZenServer is not running (or is not responding), even after attempting to AutoLaunch (3 attempts).
+(see E:\UnrealEngine\Engine\Programs\AutomationTool\Saved\Logs\Log.txt for full exception trace)
+AutomationTool executed for 0h 6m 17s
+AutomationTool exiting with ExitCode=1 (Error_Unknown)
+BUILD FAILED

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-13T16:55:55.547700+00:00",
+  "finishedAt": null,
+  "status": "running",
+  "passed": false,
+  "processId": 12964,
+  "scope": "Fresh native Python commandlet process using existing lab assets, then same-process preparation while retaining the first Training World reference.",
+  "notCovered": [
+    "empty-directory asset creation",
+    "PIE gameplay",
+    "Cook",
+    "packaged runtime"
+  ],
+  "historicalFailureReport": "verification/training-prepare-repeat.json",
+  "runs": [
+    {
+      "phase": "fresh-commandlet-process",
+      "startedAt": "2026-09-13T16:55:55.884436+00:00",
+      "passed": false,
+      "worldBefore": "/Temp/Untitled_0.Untitled",
+      "processId": 12964
+    }
+  ],
+  "errors": [],
+  "project": "F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject",
+  "engine": "5.8.1-0+UE5",
+  "pythonCommandletArgumentVerified": true,
+  "labPreparationScript": {
+    "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\prepare_training.py",
+    "bytes": 6484,
+    "sha256": "01f589f9f712a23451da382236b63d01790b77dd0cd8324ea7b8dfbdef0a3dd4"
+  },
+  "repositoryPreparationScript": {
+    "path": "F:\\UE\\LyraDoc\\examples\\LyraTraining\\prepare_training.py",
+    "bytes": 6484,
+    "sha256": "01f589f9f712a23451da382236b63d01790b77dd0cd8324ea7b8dfbdef0a3dd4"
+  },
+  "initialEditorWorld": "/Temp/Untitled_0.Untitled",
+  "initialAssets": {
+    "/TrainingRange/Experiences/B_TrainingRange": true,
+    "/TrainingRange/Game/HeroData_Training": true,
+    "/TrainingRange/Game/AbilitySet_TrainingHero": true,
+    "/TrainingRange/Game/GA_TrainingDash": true,
+    "/TrainingRange/TrainingRange": true,
+    "/TrainingRange/Maps/L_TrainingRange": true
+  }
+}

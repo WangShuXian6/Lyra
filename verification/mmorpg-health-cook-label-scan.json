@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-09-13T16:45:12.188250+00:00",
+  "passed": true,
+  "assetsModified": false,
+  "cookExecuted": false,
+  "scan": [
+    {
+      "hasBlueprintClasses": false,
+      "isEditorOnly": false,
+      "directories": [
+        "/Game/MMO/Labels"
+      ],
+      "alwaysCook": true
+    }
+  ],
+  "primaryAssetId": "PrimaryAssetLabel:DA_TutorialExamples",
+  "explicitBlueprints": [
+    "/Game/Tutorial/BP_BackendHealth.BP_BackendHealth_C"
+  ],
+  "runtimeLabel": false,
+  "directoryLabel": false,
+  "assetSHA256": "1db58affde2f7321e37837e8f1d3bb10b53838d85f9aa9291bbd6541c6ff9560",
+  "configSHA256": "64e2f33a72d3124f9cba03ba10f6e80de795f4782f12d9b758da088290508941",
+  "validationProcessId": 30180,
+  "validationStartedAt": "2026-09-13T16:45:12.188250+00:00",
+  "validationCompletedAt": "2026-09-13T16:45:12.202214+00:00"
+}

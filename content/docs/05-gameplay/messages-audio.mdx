@@ -1,0 +1,73 @@
+---
+title: 消息路由、Gameplay Cue 与音效
+description: 区分本地事件通知、网络传输和视听表现，避免误把 BroadcastMessage 当 RPC。
+---
+
+## 学习目标与前置条件
+
+前置：GAS、背包变化。目标是在增加击杀提示或脚步音时选择正确通道。依据本机 GameplayMessageRouter、Messages、Feedback 与 Audio，核对于 2026-09-13，UE 5.8.1。
+
+`UGameplayMessageSubsystem` 继承 **UGameInstanceSubsystem**。发布者和订阅者约定 GameplayTag 通道与 USTRUCT 消息格式，不需要直接持有对方 Widget。消息广播本身不会自动穿过网络。
+
+## 操作步骤
+
+1. Rider 打开 `Plugins/GameplayMessageRouter/Source/GameplayMessageRuntime/Public/GameFramework/GameplayMessageSubsystem.h`，找到 RegisterListener、BroadcastMessage 与监听句柄。
+2. 查 InventoryManager 的 `BroadcastChangeMessage`，记录消息里 InventoryOwner、Instance、NewCount、Delta。
+3. 查 `Source/LyraGame/Messages/LyraVerbMessage.h` 和 `LyraVerbMessageReplication.cpp`，区分消息结构与专门的复制桥接。
+4. 查看 Gameplay Cue Manager 和 `LyraGameFeature_AddGameplayCuePaths`，确认插件 Cue 的扫描路径如何加入与移除。
+5. 打开角色动画中的脚步 Notify，查 `UAnimNotify_LyraContextEffects` 和 `ULyraContextEffectsSubsystem`，沿上下文标签到音效/特效资源。
+
+## 从技能找到真正的 Gameplay Cue
+
+先做只读追踪。打开 `/ShooterCore/Game/Dash/GA_Hero_Dash` 的 EventGraph，找到 Gameplay Cue 的添加、执行或移除节点，记录 **Gameplay Cue Tag** 和目标 Actor。再打开本机存在的 `/ShooterCore/GameplayCues/GCNL_Dash`，在 **Class Defaults** 查看它的 **Gameplay Cue Tag**，核对是否与调用方一致；资产文件名只是查找线索，标签字段才是路由依据。
+
+在 Cue 蓝图的 **Class Settings** 查看父类，然后在 **My Blueprint → Overrides** 对照父类支持的事件。UE 5.8.1 的 `GameplayCueNotify_Actor.h` 将 `OnActive` 显示为 **On Burst**、`WhileActive` 显示为 **On Become Relevant**、`OnRemove` 显示为 **On Cease Relevant**；因此直接搜索旧教程的 OnActive 节点名可能找不到。沿事件检查创建了哪些 Niagara、音效或 UI 对象，以及停止、取消和死亡时由谁清理。不要为了让事件出现而更换原 Cue 的父类。
+
+### 为自己的 Game Feature 注册 Cue 目录
+
+项目基础扫描配置位于 `Config/DefaultGame.ini` 的 `[/Script/GameplayAbilities.AbilitySystemGlobals]`：`GlobalGameplayCueManagerClass=/Script/LyraGame.LyraGameplayCueManager`，基础路径包含 `/Game/GameplayCueNotifies` 与 `/Game/GameplayCues`。这些 `/Game` 路径不会自动代表所有插件目录。
+
+若练习在 TrainingRange 中新增自己的 Cue，操作链为：
+
+1. 在 **TrainingRange Content** 建立 `GameplayCues` 文件夹。先复制需要实验的 Cue 为独立资产，再设置自己的 `GameplayCue.*` 标签；需要新标签时从 **Project Settings → Gameplay Tags → Gameplay Tag List → Manage Gameplay Tags** 添加，并确认标签写入可随项目提交的 Config 来源。
+2. 打开 **`/TrainingRange/TrainingRange` GameFeatureData**，在 **Actions** 新增 **Add Gameplay Cue Path**，展开 **Directory Paths To Add**。该动作构造函数默认填 `/GameplayCues`；Policy 会把这种相对插件路径修正为 `/TrainingRange/GameplayCues`。这是内容包路径，不是磁盘上的 `F:/.../Content` 路径。
+3. 保存 GameFeatureData。它是数据资产，没有 Compile 按钮。Cue 蓝图和引用该标签的技能副本则先 **Compile**，确认 Compiler Results 无错误，再 **Save**。
+4. 保存工作并重新打开实验工程，让 Feature 重新注册。进入训练 Experience 后触发技能，预期表现出现；取消、死亡或状态结束时预期清理完成。分别保留 Cue 事件日志与实际画面，再判断练习是否通过。
+
+这项路径动作必须放在 **GameFeatureData.Actions**。本机 `LyraGameFeaturePolicy.cpp` 的 `ULyraGameFeature_AddGameplayCuePaths::OnGameFeatureRegistering` 只遍历 `GameFeatureData->GetActions()`，在 **Registering** 时增加扫描路径，在 **Unregistering** 时移除；把它仅放入 Experience 或 ActionSet 不会被这段注册扫描发现。只结束 PIE 不一定让进程中的插件重新注册，因此修改路径后的首次验证应重开工程。
+
+以上新增 Cue 是源码支持的操作练习，当前训练场配套增量没有创建这项新资产，也没有把它计入 9/9 或 4/4 的运行通过范围。
+
+## C++：背包广播的实际含义
+
+```cpp
+UGameplayMessageSubsystem& MessageSystem =
+    UGameplayMessageSubsystem::Get(OwnerComponent->GetWorld());
+MessageSystem.BroadcastMessage(TAG_Lyra_Inventory_Message_StackChanged, Message);
+```
+
+`Get` 接受 World 上下文用于找到所属 GameInstance，不改变子系统生命周期。网络接收端的 FastArray 回调也可以在自己的实例中发出本地消息，从而更新本地 UI。来源过滤和移除监听同样重要。
+
+## 三条不同通道
+
+| 需求 | 合适的入口 | 必须检查 |
+|---|---|---|
+| 当前客户端刷新背包格子 | GameplayMessage / 属性委托 | 拥有者过滤、生命周期 |
+| 服务器告知客户端权威状态 | UE 属性复制、RPC 或已有消息复制桥 | 网络权限、可靠性和数据量 |
+| 技能命中、持续状态的视听效果 | Gameplay Cue | 标签、Cue 路径、预测与移除 |
+
+Gameplay Cue 用于表现，不能成为唯一的伤害计算位置。没有音频设备的服务器仍应正确判定伤害。持续 Cue 必须有移除时机；一次 Burst 与附着持续特效需要不同生命周期。
+
+## 环境音与设置
+
+`ULyraContextEffectsSubsystem` 结合动作和环境上下文选择效果资源，适合脚步落在不同材质上的变化。`ULyraAudioMixEffectsSubsystem` 和 `ULyraAudioSettings` 处理音频混音配置，用户音量最终又与 LyraSettingsLocal 等设置相连。
+
+要定位脚步缺声，打开正在使用的 Animation Sequence，在 **Notifies** 轨道单击实际的 **Play Context Effects** 通知，检查 Details 的 **Effect**、**Attached / Socket Name**、**Perform Trace / Trace Properties**；使用物理表面作为上下文时需要实际 Trace 结果。再打开 `/Game/ContextEffects/CFX_DefaultSkin`，展开 **Context Effects** 的 **Effect Tag、Context、Effects**，对照通知标签与声音/特效软引用。最后在该角色实际使用的 Context Effect Component 中检查 **Default Context Effects Libraries**，不能因为内容浏览器里存在这个库就假定运行角色已加载它。
+
+通知中的 **Preview Context Effects Library / Preview Contexts** 只用于编辑器预览，不能替代运行组件的库配置。只读检查无需保存；修改自己的动画、效果库或组件蓝图后，分别保存对应资产，组件蓝图先 Compile 再 Save，然后在 PIE 的真实地面材质上复测。这些字段定义位于 `Source/LyraGame/Feedback/ContextEffects/AnimNotify_LyraContextEffects.h`、`LyraContextEffectsLibrary.h` 和 `LyraContextEffectComponent.h`。
+
+把音量滑块绑定到正确设置模型比直接修改单个声音组件更可靠，否则切换地图或重新生成角色后会失效。音效缺失时先检查资源、上下文标签、音量/混音和 Cue 路径，再检查音频设备。
+
+## 预期结果、排障与练习
+
+你应能解释每条消息在哪个 GameInstance 产生，哪些数据真正复制。重复提示查重复监听；旧界面已关闭仍回调则查句柄注销。练习：为“击杀敌人后加分、弹出文字并播放音效”画三条链，标明计分在服务器、UI 在所属客户端、音效表现的广播范围。

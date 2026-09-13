@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-13T20:52:35.545976+00:00",
+  "scope": "Training Development package and two sequential native single-player runs of the same executable; not an audio performance qualification.",
+  "packageReport": "verification/training-package.json",
+  "packageReportSha256": "5d76bb4eae476676aa14d923e4f84f24318df7fe72e6fe0e549a54e580a3e76b",
+  "sourceMapSha256": "59126aa6cd69f7da51b2a15ffe311012f7458f555d2ca5652238985fe3cb51c3",
+  "executableSha256": "c69ca4a481af2da0ed0e6e861e253c68c80adc5253f5879c3368c3bbfe889970",
+  "package": {
+    "passed": true,
+    "exitCode": 0,
+    "startedAt": "2026-09-13T19:34:46.1318875Z",
+    "finishedAt": "2026-09-13T20:39:46.1922352Z",
+    "log": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTraining\\20260913-193445-abe6db\\training-package.log",
+    "logSha256": "710ff4273e2383a05f0a8fbef46d413e34fab9340d6b5a4d555b38f5ef346f76",
+    "gameBuildActions": 1021,
+    "nativeBuildSeconds": 3678.09,
+    "cookNativeSeconds": 96.34,
+    "cookCommandSeconds": 96.54,
+    "cookProcessedPackages": 4087,
+    "cookRemainingPackages": 0,
+    "cookErrors": 0,
+    "cookWarnings": 299,
+    "localShaderWorkers": 2,
+    "cppParallelActionLimit": 3,
+    "cookLog": "E:\\UnrealEngine\\Engine\\Programs\\AutomationTool\\Saved\\Logs\\Cook-2026.09.14-04.37.47.txt",
+    "cookLogSha256": "7a8d8b11abb28cc9ef255421afdeaca215395da93bb28e333af12591418e1ac7",
+    "cookAttempts": 1,
+    "cookLogArchiveNote": "CommandletUtils.cs:435-437 copies the running Saved/Cook-2026.09.14-04.36.10.txt to the completed Saved/Logs/Cook-2026.09.14-04.37.47.txt. This is one Cook process (PID 22244), not a retry.",
+    "stageSeconds": 90.84,
+    "archiveSeconds": 27.91,
+    "buildCookRunSeconds": 3898.99,
+    "localServiceProxyBypasses": [
+      "localhost",
+      "127.0.0.1",
+      "::1",
+      "[::1]"
+    ],
+    "systemProxyConfigurationChanged": false
+  },
+  "runs": [
+    {
+      "run": "first",
+      "report": "verification/training-package-runtime-first-run.json",
+      "reportSha256": "7f30123b873f2df96099b527a352b12ecd016739b6c76ce431f876dd61185c40",
+      "passed": true,
+      "checks": 11,
+      "processId": 6700,
+      "exitCode": 0,
+      "startedAt": "2026-09-13T20:40:13.9935659Z",
+      "finishedAt": "2026-09-13T20:41:23.5460416Z",
+      "nativeElapsedSeconds": 23.303365997970104,
+      "log": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be\\game.log",
+      "logSha256": "292256e6bcbf83b0e4dbbb0fe1d267ed51b76371279f052d15f0681f1aad6f9c",
+      "nativeReport": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be\\runtime.json",
+      "nativeReportSha256": "1032098d55ecdeb5bf7ab88bb8b949965a2e6b624755c66da5d833f0367fabe9",
+      "errorCount": 1,
+      "errors": [
+        "[2026.09.13-20.40.29:819][179]LogAudioMixer: Error: Command Queue 0 has grown to 1203kb, containing 11162 cmds, last complete pump was 1.24113 seconds ago."
+      ],
+      "audioRenderStallCount": 1,
+      "audioBufferUnderrunDisplayCount": 3,
+      "moviePlayerWindowWarningCount": 1,
+      "textTranslationConflictWarningCount": 297,
+      "screenshot": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204013-5bd2be\\training-package.png",
+      "screenshotSha256": "7f352785906d4a002f5bf34bbbbdd6e90459c7aa749c09326dde9a1460b6e3ab",
+      "width": 1920,
+      "height": 1080,
+      "measurements": {
+        "movement": {
+          "input": "Input.+key W 1",
+          "distanceCm": 212.0985095943189,
+          "forwardDistanceCm": 212.0985095943189,
+          "verticalDisplacementCm": 0,
+          "sampledFrames": 46,
+          "elapsedSeconds": 0.611098900437355
+        },
+        "dash-input-activation": {
+          "input": "Input.+key LeftShift 1 (while W is held)",
+          "abilitySpecActiveObserved": true,
+          "nativeActivationCallbackObserved": true,
+          "distanceCm": 773.0783023524232,
+          "sampledFrames": 34,
+          "elapsedSeconds": 8.7709292024374
+        },
+        "fire-ammo": {
+          "input": "Input.+key LeftMouseButton 1",
+          "magazineBefore": 12,
+          "magazineAfter": 11,
+          "viewportHasFocus": true,
+          "sampledFrames": 2,
+          "elapsedSeconds": 0.025205697864294052,
+          "observedActiveAbilityClasses": [
+            "/ShooterCore/Game/Respawn/GA_AutoRespawn.GA_AutoRespawn_C",
+            "/ShooterCore/Game/GA_QuickbarSlots.GA_QuickbarSlots_C",
+            "/Game/Weapons/GA_Weapon_AutoReload.GA_Weapon_AutoReload_C",
+            "/ShooterCore/Weapons/Pistol/GA_Weapon_Fire_Pistol.GA_Weapon_Fire_Pistol_C"
+          ]
+        },
+        "reload-ammo": {
+          "input": "Input.+key R 1",
+          "magazineBefore": 11,
+          "magazineAfter": 12,
+          "spareBefore": 48,
+          "spareAfter": 47,
+          "sampledFrames": 85,
+          "elapsedSeconds": 1.1147036030888557
+        }
+      }
+    },
+    {
+      "run": "repeat",
+      "report": "verification/training-package-runtime.json",
+      "reportSha256": "b4d1ccf47ce5316ed8d90e50f146231fabe1c111d3771e51a533ddb990039e6a",
+      "passed": true,
+      "checks": 11,
+      "processId": 22876,
+      "exitCode": 0,
+      "startedAt": "2026-09-13T20:45:31.4225212Z",
+      "finishedAt": "2026-09-13T20:45:51.3639898Z",
+      "nativeElapsedSeconds": 10.39879859983921,
+      "log": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\game.log",
+      "logSha256": "92642c2a56fdb23efdd05a7eba12920963a2d086446b89731365e58a25686de9",
+      "nativeReport": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\runtime.json",
+      "nativeReportSha256": "8295d987036ed4ab2367701d3f85aa00e297e12f9bf1c356ebe3aed72412b437",
+      "errorCount": 0,
+      "errors": [],
+      "audioRenderStallCount": 0,
+      "audioBufferUnderrunDisplayCount": 1,
+      "moviePlayerWindowWarningCount": 1,
+      "textTranslationConflictWarningCount": 297,
+      "screenshot": "F:\\UE\\LyraDocLabs\\Artifacts\\LyraTrainingRuntime\\20260913-204531-c89c88\\training-package.png",
+      "screenshotSha256": "f4885db296532bd45dd28201db410dfa96e4c803183b073e4c92e5ac1b1a3e2e",
+      "width": 1920,
+      "height": 1080,
+      "measurements": {
+        "movement": {
+          "input": "Input.+key W 1",
+          "distanceCm": 213.20627971730028,
+          "forwardDistanceCm": 213.20627971730028,
+          "verticalDisplacementCm": 0,
+          "sampledFrames": 51,
+          "elapsedSeconds": 0.6095604002475739
+        },
+        "dash-input-activation": {
+          "input": "Input.+key LeftShift 1 (while W is held)",
+          "abilitySpecActiveObserved": true,
+          "nativeActivationCallbackObserved": true,
+          "distanceCm": 1003.7043825478427,
+          "sampledFrames": 54,
+          "elapsedSeconds": 0.8071353994309902
+        },
+        "fire-ammo": {
+          "input": "Input.+key LeftMouseButton 1",
+          "magazineBefore": 11,
+          "magazineAfter": 10,
+          "viewportHasFocus": true,
+          "sampledFrames": 2,
+          "elapsedSeconds": 0.02067609876394272,
+          "observedActiveAbilityClasses": [
+            "/ShooterCore/Game/Respawn/GA_AutoRespawn.GA_AutoRespawn_C",
+            "/ShooterCore/Game/GA_QuickbarSlots.GA_QuickbarSlots_C",
+            "/Game/Weapons/GA_Weapon_AutoReload.GA_Weapon_AutoReload_C",
+            "/ShooterCore/Weapons/Pistol/GA_Weapon_Fire_Pistol.GA_Weapon_Fire_Pistol_C"
+          ]
+        },
+        "reload-ammo": {
+          "input": "Input.+key R 1",
+          "magazineBefore": 10,
+          "magazineAfter": 12,
+          "spareBefore": 48,
+          "spareAfter": 46,
+          "sampledFrames": 101,
+          "elapsedSeconds": 1.1056097000837326
+        }
+      }
+    }
+  ],
+  "sourceReview": [
+    {
+      "file": "Engine/Source/Runtime/AudioMixer/Private/AudioMixerSourceManager.cpp",
+      "symbol": "FMixerSourceManager::AudioMixerThreadCommand",
+      "lines": [
+        4241,
+        4250,
+        4255
+      ],
+      "finding": "Queue reallocation beyond the initial 1 MiB threshold emits Error and calls DoStallDiagnostics; the diagnostic optionally dumps call stacks synchronously.",
+      "sha256": "a293503bd5b4efe781ee899863e301e108abeabc32a5f41df707acd342cb4ec2"
+    },
+    {
+      "file": "Engine/Source/Runtime/AudioMixer/Private/AudioMixerSourceManager.cpp",
+      "symbol": "FMixerSourceManager::UpdatePendingReleaseData",
+      "lines": [
+        4420,
+        4441
+      ],
+      "finding": "Removal from PendingSourceBuffers can destroy its shared source buffer. The first-run captured stack traverses this removal into the MetaSound generator destructor.",
+      "sha256": "a293503bd5b4efe781ee899863e301e108abeabc32a5f41df707acd342cb4ec2"
+    },
+    {
+      "file": "Engine/Plugins/Runtime/Metasound/Source/MetasoundGenerator/Private/MetasoundGenerator.cpp",
+      "symbol": "FMetasoundConstGraphGenerator::~FMetasoundConstGraphGenerator",
+      "lines": [
+        1076,
+        1083
+      ],
+      "finding": "When BuilderTask exists the destructor calls EnsureCompletion. The first-run audio-render-thread stack was waiting inside this call.",
+      "sha256": "88d4dd0c26032f7ad6b064b7040c005559d180838060fdf1581dee018babc4f4"
+    },
+    {
+      "file": "Engine/Source/Runtime/AudioMixer/Private/AudioMixerSourceBuffer.cpp",
+      "symbol": "FMixerSourceBuffer::IsAsyncTaskDone",
+      "lines": [
+        686,
+        693
+      ],
+      "finding": "This completion condition concerns AsyncRealtimeAudioTask, not the generator internal graph BuilderTask. Release can therefore still wait on a graph build.",
+      "sha256": "08b17897ff58fa02c304ca5361990b233e6b774b08c5e194837bcead19d409a8"
+    },
+    {
+      "file": "Engine/Source/Runtime/MoviePlayer/Private/DefaultGameMoviePlayer.cpp",
+      "symbol": "FDefaultGameMoviePlayer::PassLoadingScreenWindowBackToGame",
+      "lines": [
+        295,
+        304
+      ],
+      "finding": "Warning occurs when the stored MainWindow is invalid or GEngine is not a UGameEngine. LaunchEngineLoop.cpp calls this before GEngine->Init; this is distinct from CommonLoadingScreen readiness.",
+      "sha256": "fdf0d6336d378276bdbecb0dc10804c9b4f54b576a93c0275c7b8228b76e5fab"
+    }
+  ],
+  "interpretation": {
+    "firstRunAudioErrorResolved": false,
+    "repeatDidNotReproduceQueueErrorOrReleaseStall": true,
+    "audioDisabledForRepeat": false,
+    "logSuppressionAddedForRepeat": false,
+    "executableOrConfigModifiedBetweenRuns": false,
+    "limits": "First-run log gap from 20:40:29.820 to 20:40:38.167 includes native call-stack diagnostics and cannot be attributed entirely to the original audio wait. One repeat without the queue error is not proof of a cold-start cause, an engine fix, or acceptable audio latency. Both runs still report an audio buffer underrun and startup/localization warnings.",
+    "warmup": "The inherited ShooterGame.GamePhase.Warmup remained active. Waiting-for-players UI is not evidence of an unloaded Experience. Round scoring and packaged multiplayer are not covered."
+  },
+  "nativeCleanup": {
+    "verifiedAt": "2026-09-13T20:51:53.0818954Z",
+    "nativeProcessCount": 0,
+    "nativeProcesses": [],
+    "tcp8000Listeners": 0
+  }
+}
