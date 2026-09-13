@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "auditedAt": "2026-09-13T21:25:38.531508+00:00",
-  "status": "ready-to-publish",
+  "auditedAt": "2026-09-13T21:36:35.000904+00:00",
+  "status": "complete",
   "localAcceptancePassed": true,
-  "releaseReady": false,
+  "releaseReady": true,
   "scope": "Root integration review linking actual local, build, runtime, browser, archive and deployment evidence. Each linked report retains its original scope and date.",
   "evidence": [
     {
@@ -225,8 +225,8 @@
     {
       "name": "Static search file URL regression",
       "path": "verification/site-search-url-issue.json",
-      "bytes": 2925,
-      "sha256": "ecf59ca7b519791a4ddf82ca1dd10b7decb458a8b876fdf248a0a12f52e68f49",
+      "bytes": 3367,
+      "sha256": "7ec91bc6aaa56a302b5dc7b7de920ef713c72e11003a0ba3e87bfeb32c902ef0",
       "passed": true,
       "scope": "Actual first deployment search failure, its file-versus-directory cause, and subsequent correction. Local tests and CI success did not establish that the initial Pages search URL worked."
     },
@@ -250,14 +250,20 @@
       "name": "Final candidate and archive credential/asset audit",
       "path": "verification/release-files-audit.json",
       "bytes": 2269,
-      "sha256": "8d78fe8ec4289164aa1f520fd9c860192981fd085ad8de1cd4e2456f31fad7fd",
+      "sha256": "7bf98a99dbe51ff46e4501f4ddae07b4ad8548b5e8060247193f775670501c3c",
       "passed": true,
       "scope": "Read-only Git cached/non-ignored untracked working-tree candidates, indexed blobs, and in-memory tar.gz/zip members. This audit does not establish gameplay, builds, deployment or complete release acceptance."
+    },
+    {
+      "name": "GitHub Pages deployment and online verification",
+      "path": "verification/github-pages-deployment.json",
+      "bytes": 17436,
+      "sha256": "6d1812d3d8e9368c21b34c03e21f6854eabc36f7018c40a68d67dffd378908f2",
+      "passed": true,
+      "scope": "Actual HTTPS main push, successful Ubuntu root and /Lyra checks, Pages workflow deployment, and a fresh browser on the public site. Records the corrected site revision; a later evidence-only commit does not change application content."
     }
   ],
-  "pending": [
-    "GitHub Pages deployment and online verification"
-  ],
+  "pending": [],
   "reviewedFileAuditWarnings": [
     {
       "path": "content/docs/10-backend/authentication.mdx",

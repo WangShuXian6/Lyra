@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "recordedAt": "2026-09-13T21:13:01.427833+00:00",
-  "passed": false,
+  "passed": true,
   "scope": "Actual first deployment search failure, its file-versus-directory cause, and subsequent correction. Local tests and CI success did not establish that the initial Pages search URL worked.",
   "initialCommit": "b9329bb6180069245cc46215f9af27940116afc4",
   "initialWorkflowRun": "https://github.com/WangShuXian6/Lyra/actions/runs/34782676444",
@@ -33,11 +33,18 @@
     "browserReport": "verification/site-browser-final-content.json",
     "browserReportSHA256": "3c2a10fa9ab9ef05af39bb1c40312a9e34f9920f226cf1a5b29b715d78316797",
     "checksPerBasePath": 12,
-    "onlineVerified": false,
+    "onlineVerified": true,
     "historicalLocalLogsDirectory": ".local/site-before-search-url-fix",
     "buildRecoveries": [
       "After renaming the route, an obsolete .next/dev/types validator still imported the removed route. The single generated file was preserved in .local as text; normal next typegen regenerated the current production validators.",
       "A repeated Windows archive rename returned EPERM. Identical archives are still regenerated and validated but no longer replaced; changed output is staged outside public. The failed temporary archive was verified against its expected SHA and preserved in .local."
-    ]
-  }
+    ],
+    "onlineVerifiedAt": "2026-09-13T21:32:41.026Z",
+    "deployedCommit": "fc8465a188b4a5723b7be214c3c8fa453699a515",
+    "workflowRun": "https://github.com/WangShuXian6/Lyra/actions/runs/34783791968",
+    "onlineChecks": 12,
+    "onlineReport": "verification/github-pages-deployment.json",
+    "onlineReportSHA256": "6d1812d3d8e9368c21b34c03e21f6854eabc36f7018c40a68d67dffd378908f2"
+  },
+  "resolvedAt": "2026-09-13T21:34:35.377482+00:00"
 }

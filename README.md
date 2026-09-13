@@ -4,7 +4,7 @@
 
 MMORPG 使用 UE 模板 Manny、可编辑的 Widget Blueprint Designer、事件驱动的 ViewModel，以及英文/简体中文字符串表和完整本地化流水线。教程保留 C++、原生蓝图文本、配置截图和实际运行证据。
 
-目标站点：[wangshuxian6.github.io/Lyra](https://wangshuxian6.github.io/Lyra/)。站点部署状态以 GitHub Actions 的实际结果为准。
+在线阅读：[wangshuxian6.github.io/Lyra](https://wangshuxian6.github.io/Lyra/)。已完成 [GitHub Pages 自动部署](https://github.com/WangShuXian6/Lyra/actions/runs/34783791968)及真实线上浏览器验收：中文与 C++ 搜索、深层页面刷新、原图放大、移动端和两个下载包的 SHA-256 共 12 项通过。完整证据见 [发布记录](verification/github-pages-deployment.json)与[交付验收](verification/release-audit.json)。
 
 ## 文档站
 
@@ -60,7 +60,7 @@ pnpm serve
 
 ## 发布
 
-`.github/workflows/pages.yml` 在 PR 中检查根路径和 `/Lyra` 两套静态导出。推送到 `main` 或合并 PR 导致 `main` 更新后自动发布 GitHub Pages；也可手动触发。仓库 Pages 发布源需要选择 GitHub Actions。
+`.github/workflows/pages.yml` 在 PR 中检查根路径和 `/Lyra` 两套静态导出。推送到 `main` 或合并 PR 导致 `main` 更新后自动发布 GitHub Pages；也可手动触发。仓库已启用 GitHub Actions 发布源与 HTTPS；两套 Ubuntu 检查均已通过，包括重新生成示例下载包并逐字节比较。
 
 部署失败时查看相应 workflow 的失败步骤。回退使用新建 revert 提交，保留部署历史。不要把本地 UE 缓存、数据库、密钥、第三方私有库或官方基础资源提交到此仓库。
 

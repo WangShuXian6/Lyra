@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "startedAt": "2026-09-13T21:24:42.2935678Z",
-  "finishedAt": "2026-09-13T21:25:16.1341472Z",
+  "startedAt": "2026-09-13T21:35:42.6664467Z",
+  "finishedAt": "2026-09-13T21:36:15.2516989Z",
   "status": "passed-with-warnings",
   "passed": true,
   "releaseReady": false,
   "scope": "Read-only Git cached/non-ignored untracked working-tree candidates, indexed blobs, and in-memory tar.gz/zip members. This audit does not establish gameplay, builds, deployment or complete release acceptance.",
   "enumeration": "git ls-files --cached --others --exclude-standard -z",
-  "candidateCount": 729,
+  "candidateCount": 730,
   "candidateSetChangedDuringAudit": false,
   "assetInventory": {
     "path": "verification/mmorpg-assets.json",
@@ -23,11 +23,11 @@
     "valuesOrSecretHashesRecorded": false
   },
   "statistics": {
-    "indexBlobsScanned": 729,
-    "bytesScanned": 220999863,
-    "filesScanned": 729,
-    "archiveEntriesScanned": 644,
+    "bytesScanned": 221040234,
+    "filesScanned": 730,
+    "indexBlobsScanned": 730,
     "unreadable": 0,
+    "archiveEntriesScanned": 644,
     "assetsChecked": 124
   },
   "largeFileWarningMiB": 10,
