@@ -50,8 +50,48 @@ HeroComponent 收集输入标签，ASC 缓存 Pressed/Held/Released 句柄，在
 
 同一个 Pawn 在服务器、所属客户端和其他客户端上承担不同角色。本地控制关系影响是否读取输入，Authority 决定是否能执行权威状态修改。`IsLocallyControlled()` 与 `HasAuthority()` 不是同义词；监听服务器中的主机玩家同时满足两者，因此只测试主机容易漏掉客户端问题。
 
+{/* full-guide-begin */}
+
+## 对照初始化代码理解一次重生
+
+![重生时保持状态、替换身体](/media/guide-diagrams/03-character-player-pawn.svg)
+
+**读图**：“更持久”只描述会话生命周期。程序退出后想恢复角色，必须进入持久化章节的明确保存流程。
+源码：`Source/LyraGame/Character/LyraPawnExtensionComponent.cpp`，本机第 141–149 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+AbilitySystemComponent = InASC;
+AbilitySystemComponent->InitAbilityActorInfo(InOwnerActor, Pawn);
+
+if (ensure(PawnData))
+{
+	InASC->SetTagRelationshipMapping(PawnData->TagRelationshipMapping);
+}
+
+OnAbilitySystemInitialized.Broadcast();
+```
+
+这段在 `InitializeAbilitySystem` 的检查/旧引用清理之后执行。第一行保存要用的 ASC；`InitAbilityActorInfo(InOwnerActor, Pawn)` 同时传入两个不同对象：谁拥有能力系统，以及能力作用于哪个身体。随后按 PawnData 设置标签关系，最后通知订阅者 ASC 已就绪。
+
+### 在运行中观察，不要只看静态蓝图
+
+1. 在教学副本 PIE，按 `Shift+F1` 释放鼠标。
+2. 在运行世界的 Outliner 搜索当前角色；确认选择的是 PIE World 的实例，再看 Components。选到编辑器 World 的原始 Actor 不能代表运行实例。
+3. 在 Rider 的这行设断点并调试对应进程，分别查看 `InOwnerActor`、`Pawn`、`InASC` 的类型和对象名。先只读值，不修改内存。
+4. 触发一次正常重生，再记录三项。新 Pawn 名字/地址可变，ASC 与 PlayerState 的延续要以当前流程实测为准。
+
+**定位原则**：血条仍跟旧身体时查订阅对象和解绑；输入没有重新接通时查新 Pawn 的 Hero 初始化；不要通过复制整套 PlayerState 来“修复”一个 UI 的旧引用。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 应该能指出 ASC Owner 与 Avatar，以及死亡后需要重新绑定的对象。远端玩家 UI 读不到对方 PlayerController 时，检查设计是否错误依赖了不在该客户端存在的对象。重生后血条不刷新时，查旧 Pawn 委托解绑和新 ASC/HealthComponent 接入。
 
 练习：为体力、当前锁定目标、聊天输入框、角色数据库 ID 选择存储层，分别写出可见对象、修改权限和保存时机。将“适合放在哪个 UObject”与“是否长期持久化”分开作答。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验一只改变 PawnData 的 DefaultCameraMode，保留 PawnClass 和 AbilitySets，确认角色仍使用原来的移动与技能。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

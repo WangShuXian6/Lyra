@@ -1,0 +1,2057 @@
+{
+  "checkedAt": "2026-09-15T10:56:47.676256+08:00",
+  "passed": true,
+  "preview": "http://127.0.0.1:3015/Lyra/",
+  "scope": "84 illustrated pages at desktop/mobile, actual clipboard output for every complete source file, native Blueprint downloads, image zoom, Chinese course search and deep refresh on static /Lyra export. No online publication.",
+  "pages": [
+    {
+      "route": "/docs/01-start/environment/",
+      "viewport": 1440,
+      "title": "环境、版本与安全的第一次构建 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/first-session/",
+      "viewport": 1440,
+      "title": "第一次进入 Lyra：地图与游戏模式 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/",
+      "viewport": 1440,
+      "title": "从零认识 Lyra · Lyra 学习手册",
+      "headings": 7,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/live-coding/",
+      "viewport": 1440,
+      "title": "关闭 Live Coding：按图设置与验证 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/project-map/",
+      "viewport": 1440,
+      "title": "工程地图：源码、资产、插件如何对应 · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/ue-basics/",
+      "viewport": 1440,
+      "title": "UE 零基础：认界面、读配置与第一段代码 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/asset-manager/",
+      "viewport": 1440,
+      "title": "Asset Manager、软引用与 Cook · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/experience/",
+      "viewport": 1440,
+      "title": "Experience：一局游戏怎样被组装 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/game-features/",
+      "viewport": 1440,
+      "title": "Game Features 与 ActionSet 的职责 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/",
+      "viewport": 1440,
+      "title": "从启动到 GameplayReady · Lyra 学习手册",
+      "headings": 5,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/initialization/",
+      "viewport": 1440,
+      "title": "PawnData 与初始化状态链 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/loading-online/",
+      "viewport": 1440,
+      "title": "加载画面、用户初始化与在线会话 · Lyra 学习手册",
+      "headings": 7,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/modification-workshop/",
+      "viewport": 1440,
+      "title": "理解之后动手改：六个 Lyra 改造实验 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/plugin-atlas/",
+      "viewport": 1440,
+      "title": "Lyra 插件总览：每个插件做什么、怎样接到游戏 · Lyra 学习手册",
+      "headings": 16,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/camera-animation/",
+      "viewport": 1440,
+      "title": "相机模式、动画层与角色外观 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/enhanced-input/",
+      "viewport": 1440,
+      "title": "从按键到 InputTag，再到技能 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/",
+      "viewport": 1440,
+      "title": "角色、输入与表现的分工 · Lyra 学习手册",
+      "headings": 4,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/jump-blueprint/",
+      "viewport": 1440,
+      "title": "蓝图阅读实战：跳跃技能的完整事件图 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/player-pawn/",
+      "viewport": 1440,
+      "title": "PlayerController、PlayerState 与 Pawn · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/ability-sets/",
+      "viewport": 1440,
+      "title": "AbilitySet、技能激活与标签关系 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/dash-blueprint/",
+      "viewport": 1440,
+      "title": "蓝图阅读实战：冲刺方向与动画选择 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/effects-health/",
+      "viewport": 1440,
+      "title": "属性、费用、冷却、伤害与死亡 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/",
+      "viewport": 1440,
+      "title": "GAS：从拥有技能到完成一次行动 · Lyra 学习手册",
+      "headings": 4,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/prediction/",
+      "viewport": 1440,
+      "title": "GAS 预测与多人验证 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/",
+      "viewport": 1440,
+      "title": "让系统组成一局可玩的游戏 · Lyra 学习手册",
+      "headings": 5,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/interaction/",
+      "viewport": 1440,
+      "title": "交互：发现目标、显示提示、执行能力 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/inventory-equipment/",
+      "viewport": 1440,
+      "title": "Inventory、Equipment 与 QuickBar · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/messages-audio/",
+      "viewport": 1440,
+      "title": "消息路由、Gameplay Cue 与音效 · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/teams-bots/",
+      "viewport": 1440,
+      "title": "队伍、机器人、计分与对局阶段 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/weapons/",
+      "viewport": 1440,
+      "title": "从开火键到命中反馈 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/common-game/",
+      "viewport": 1440,
+      "title": "CommonGame、LocalPlayer 与 UI Policy · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/commonui-input/",
+      "viewport": 1440,
+      "title": "CommonUI、焦点与返回操作 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/extensions/",
+      "viewport": 1440,
+      "title": "UIExtension：让玩法提供自己的 HUD 内容 · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/",
+      "viewport": 1440,
+      "title": "UI：从输入到数据展示 · Lyra 学习手册",
+      "headings": 4,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/settings-mvvm/",
+      "viewport": 1440,
+      "title": "设置系统与 MVVM 的边界 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/dash-and-blueprints/",
+      "viewport": 1440,
+      "title": "读取、复制与调试训练冲刺蓝图 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/feature-and-experience/",
+      "viewport": 1440,
+      "title": "创建训练场 Game Feature、地图与 Experience · Lyra 学习手册",
+      "headings": 14,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/",
+      "viewport": 1440,
+      "title": "做出自己的 Lyra 射击训练场 · Lyra 学习手册",
+      "headings": 6,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/multiplayer-and-package/",
+      "viewport": 1440,
+      "title": "联机、Cook 与训练场验收 · Lyra 学习手册",
+      "headings": 15,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/weapons-hud-bots/",
+      "viewport": 1440,
+      "title": "接通武器、交互、HUD 与机器人 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/animation/",
+      "viewport": 1440,
+      "title": "UE 自带角色与模块化动画 · Lyra 学习手册",
+      "headings": 14,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/asset-construction/",
+      "viewport": 1440,
+      "title": "资产施工清单：蓝图、节点、输入与 UI 逐项搭建 · Lyra 学习手册",
+      "headings": 16,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/character-gas/",
+      "viewport": 1440,
+      "title": "角色初始化、GAS 与基础战斗 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/configuration/",
+      "viewport": 1440,
+      "title": "对照真实界面完成项目与资产配置 · Lyra 学习手册",
+      "headings": 23,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/from-zero/",
+      "viewport": 1440,
+      "title": "MMORPG 从零复刻：按步骤写代码、搭蓝图与配置 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/",
+      "viewport": 1440,
+      "title": "从空白工程到单区域 RPG · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/migration/",
+      "viewport": 1440,
+      "title": "依赖迁移与 Game Feature · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/network-persistence/",
+      "viewport": 1440,
+      "title": "服务器准入与持久化生命周期 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/run-lab/",
+      "viewport": 1440,
+      "title": "运行两个客户端并验收 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/animation/",
+      "viewport": 1440,
+      "title": "动画数据接口：完整文件 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/backend/",
+      "viewport": 1440,
+      "title": "后端 Program 与数据库：完整文件 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/build/",
+      "viewport": 1440,
+      "title": "工程入口与构建目标：完整文件 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/config/",
+      "viewport": 1440,
+      "title": "项目配置与界面契约：完整文件 · Lyra 学习手册",
+      "headings": 24,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/editor-tools/",
+      "viewport": 1440,
+      "title": "资产核对与生成工具：完整文件 · Lyra 学习手册",
+      "headings": 20,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/framework/",
+      "viewport": 1440,
+      "title": "数据定义与初始化框架：完整文件 · Lyra 学习手册",
+      "headings": 23,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/gameplay/",
+      "viewport": 1440,
+      "title": "角色、战斗与存档代码：完整文件 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/http/",
+      "viewport": 1440,
+      "title": "协议与 HTTP 模块：完整文件 · Lyra 学习手册",
+      "headings": 17,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/",
+      "viewport": 1440,
+      "title": "MMORPG 完整源码书 · Lyra 学习手册",
+      "headings": 1,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/input-health/",
+      "viewport": 1440,
+      "title": "输入、死亡与验证代码：完整文件 · Lyra 学习手册",
+      "headings": 14,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/skeleton/",
+      "viewport": 1440,
+      "title": "00 空白工程骨架：完整文件 · Lyra 学习手册",
+      "headings": 15,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/ui/",
+      "viewport": 1440,
+      "title": "UI 与 ViewModel 的完整父类：完整文件 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/zone/",
+      "viewport": 1440,
+      "title": "Game Feature 与区域内容：完整文件 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/blueprint-workflow/",
+      "viewport": 1440,
+      "title": "让 C++ 与蓝图共同承担教学 · Lyra 学习手册",
+      "headings": 14,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/designer/",
+      "viewport": 1440,
+      "title": "在 UMG Designer 中制作全部游戏界面 · Lyra 学习手册",
+      "headings": 16,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/",
+      "viewport": 1440,
+      "title": "MMORPG 界面的数据与交互边界 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/layers-input/",
+      "viewport": 1440,
+      "title": "CommonUI 层栈、输入与焦点 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/localization/",
+      "viewport": 1440,
+      "title": "国际化：中英文、字符串表与打包 · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/viewmodels/",
+      "viewport": 1440,
+      "title": "GAS、复制通知与 FieldNotify · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/authentication/",
+      "viewport": 1440,
+      "title": "登录、票据与角色租约 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/database/",
+      "viewport": 1440,
+      "title": "PostgreSQL 初始化与迁移 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/deployment/",
+      "viewport": 1440,
+      "title": "部署、故障处理与后续演进 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/",
+      "viewport": 1440,
+      "title": "用 UE 模块实现独立后端 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/persistence/",
+      "viewport": 1440,
+      "title": "角色快照、事务与幂等保存 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/program-and-workers/",
+      "viewport": 1440,
+      "title": "Program 主循环与有界工作队列 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/run-and-test/",
+      "viewport": 1440,
+      "title": "构建、启动与接口验收 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/blueprint-screenshots/",
+      "viewport": 1440,
+      "title": "蓝图 1:1 全图截图：安装、修复与导出 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/glossary/",
+      "viewport": 1440,
+      "title": "术语表与源码速查 · Lyra 学习手册",
+      "headings": 5,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/",
+      "viewport": 1440,
+      "title": "排障、性能与版本查阅 · Lyra 学习手册",
+      "headings": 5,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/performance/",
+      "viewport": 1440,
+      "title": "性能定位：先测量，再选择优化层 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/publishing/",
+      "viewport": 1440,
+      "title": "文档站构建与 GitHub Pages 发布 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/troubleshooting/",
+      "viewport": 1440,
+      "title": "按现象排障：从日志定位到调用链 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/upgrades/",
+      "viewport": 1440,
+      "title": "版本升级、来源清单与可复现验证 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/downloads/",
+      "viewport": 1440,
+      "title": "配套资料与复现 · Lyra 学习手册",
+      "headings": 6,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/",
+      "viewport": 1440,
+      "title": "学习路线 · Lyra 学习手册",
+      "headings": 7,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/environment/",
+      "viewport": 390,
+      "title": "环境、版本与安全的第一次构建 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/first-session/",
+      "viewport": 390,
+      "title": "第一次进入 Lyra：地图与游戏模式 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/",
+      "viewport": 390,
+      "title": "从零认识 Lyra · Lyra 学习手册",
+      "headings": 7,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/live-coding/",
+      "viewport": 390,
+      "title": "关闭 Live Coding：按图设置与验证 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/project-map/",
+      "viewport": 390,
+      "title": "工程地图：源码、资产、插件如何对应 · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/01-start/ue-basics/",
+      "viewport": 390,
+      "title": "UE 零基础：认界面、读配置与第一段代码 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/asset-manager/",
+      "viewport": 390,
+      "title": "Asset Manager、软引用与 Cook · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/experience/",
+      "viewport": 390,
+      "title": "Experience：一局游戏怎样被组装 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/game-features/",
+      "viewport": 390,
+      "title": "Game Features 与 ActionSet 的职责 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/",
+      "viewport": 390,
+      "title": "从启动到 GameplayReady · Lyra 学习手册",
+      "headings": 5,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/initialization/",
+      "viewport": 390,
+      "title": "PawnData 与初始化状态链 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/loading-online/",
+      "viewport": 390,
+      "title": "加载画面、用户初始化与在线会话 · Lyra 学习手册",
+      "headings": 7,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/modification-workshop/",
+      "viewport": 390,
+      "title": "理解之后动手改：六个 Lyra 改造实验 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/02-architecture/plugin-atlas/",
+      "viewport": 390,
+      "title": "Lyra 插件总览：每个插件做什么、怎样接到游戏 · Lyra 学习手册",
+      "headings": 16,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/camera-animation/",
+      "viewport": 390,
+      "title": "相机模式、动画层与角色外观 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/enhanced-input/",
+      "viewport": 390,
+      "title": "从按键到 InputTag，再到技能 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/",
+      "viewport": 390,
+      "title": "角色、输入与表现的分工 · Lyra 学习手册",
+      "headings": 4,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/jump-blueprint/",
+      "viewport": 390,
+      "title": "蓝图阅读实战：跳跃技能的完整事件图 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/03-character/player-pawn/",
+      "viewport": 390,
+      "title": "PlayerController、PlayerState 与 Pawn · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/ability-sets/",
+      "viewport": 390,
+      "title": "AbilitySet、技能激活与标签关系 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/dash-blueprint/",
+      "viewport": 390,
+      "title": "蓝图阅读实战：冲刺方向与动画选择 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/effects-health/",
+      "viewport": 390,
+      "title": "属性、费用、冷却、伤害与死亡 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/",
+      "viewport": 390,
+      "title": "GAS：从拥有技能到完成一次行动 · Lyra 学习手册",
+      "headings": 4,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/04-gas/prediction/",
+      "viewport": 390,
+      "title": "GAS 预测与多人验证 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/",
+      "viewport": 390,
+      "title": "让系统组成一局可玩的游戏 · Lyra 学习手册",
+      "headings": 5,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/interaction/",
+      "viewport": 390,
+      "title": "交互：发现目标、显示提示、执行能力 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/inventory-equipment/",
+      "viewport": 390,
+      "title": "Inventory、Equipment 与 QuickBar · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/messages-audio/",
+      "viewport": 390,
+      "title": "消息路由、Gameplay Cue 与音效 · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/teams-bots/",
+      "viewport": 390,
+      "title": "队伍、机器人、计分与对局阶段 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/05-gameplay/weapons/",
+      "viewport": 390,
+      "title": "从开火键到命中反馈 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/common-game/",
+      "viewport": 390,
+      "title": "CommonGame、LocalPlayer 与 UI Policy · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/commonui-input/",
+      "viewport": 390,
+      "title": "CommonUI、焦点与返回操作 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/extensions/",
+      "viewport": 390,
+      "title": "UIExtension：让玩法提供自己的 HUD 内容 · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/",
+      "viewport": 390,
+      "title": "UI：从输入到数据展示 · Lyra 学习手册",
+      "headings": 4,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/06-ui/settings-mvvm/",
+      "viewport": 390,
+      "title": "设置系统与 MVVM 的边界 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/dash-and-blueprints/",
+      "viewport": 390,
+      "title": "读取、复制与调试训练冲刺蓝图 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/feature-and-experience/",
+      "viewport": 390,
+      "title": "创建训练场 Game Feature、地图与 Experience · Lyra 学习手册",
+      "headings": 14,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/",
+      "viewport": 390,
+      "title": "做出自己的 Lyra 射击训练场 · Lyra 学习手册",
+      "headings": 6,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/multiplayer-and-package/",
+      "viewport": 390,
+      "title": "联机、Cook 与训练场验收 · Lyra 学习手册",
+      "headings": 15,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/07-training/weapons-hud-bots/",
+      "viewport": 390,
+      "title": "接通武器、交互、HUD 与机器人 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/animation/",
+      "viewport": 390,
+      "title": "UE 自带角色与模块化动画 · Lyra 学习手册",
+      "headings": 14,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/asset-construction/",
+      "viewport": 390,
+      "title": "资产施工清单：蓝图、节点、输入与 UI 逐项搭建 · Lyra 学习手册",
+      "headings": 16,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/character-gas/",
+      "viewport": 390,
+      "title": "角色初始化、GAS 与基础战斗 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/configuration/",
+      "viewport": 390,
+      "title": "对照真实界面完成项目与资产配置 · Lyra 学习手册",
+      "headings": 23,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/from-zero/",
+      "viewport": 390,
+      "title": "MMORPG 从零复刻：按步骤写代码、搭蓝图与配置 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/",
+      "viewport": 390,
+      "title": "从空白工程到单区域 RPG · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/migration/",
+      "viewport": 390,
+      "title": "依赖迁移与 Game Feature · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/network-persistence/",
+      "viewport": 390,
+      "title": "服务器准入与持久化生命周期 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/run-lab/",
+      "viewport": 390,
+      "title": "运行两个客户端并验收 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/animation/",
+      "viewport": 390,
+      "title": "动画数据接口：完整文件 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/backend/",
+      "viewport": 390,
+      "title": "后端 Program 与数据库：完整文件 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/build/",
+      "viewport": 390,
+      "title": "工程入口与构建目标：完整文件 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/config/",
+      "viewport": 390,
+      "title": "项目配置与界面契约：完整文件 · Lyra 学习手册",
+      "headings": 24,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/editor-tools/",
+      "viewport": 390,
+      "title": "资产核对与生成工具：完整文件 · Lyra 学习手册",
+      "headings": 20,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/framework/",
+      "viewport": 390,
+      "title": "数据定义与初始化框架：完整文件 · Lyra 学习手册",
+      "headings": 23,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/gameplay/",
+      "viewport": 390,
+      "title": "角色、战斗与存档代码：完整文件 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/http/",
+      "viewport": 390,
+      "title": "协议与 HTTP 模块：完整文件 · Lyra 学习手册",
+      "headings": 17,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/",
+      "viewport": 390,
+      "title": "MMORPG 完整源码书 · Lyra 学习手册",
+      "headings": 1,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/input-health/",
+      "viewport": 390,
+      "title": "输入、死亡与验证代码：完整文件 · Lyra 学习手册",
+      "headings": 14,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/skeleton/",
+      "viewport": 390,
+      "title": "00 空白工程骨架：完整文件 · Lyra 学习手册",
+      "headings": 15,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/ui/",
+      "viewport": 390,
+      "title": "UI 与 ViewModel 的完整父类：完整文件 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/08-mmorpg/source/zone/",
+      "viewport": 390,
+      "title": "Game Feature 与区域内容：完整文件 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/blueprint-workflow/",
+      "viewport": 390,
+      "title": "让 C++ 与蓝图共同承担教学 · Lyra 学习手册",
+      "headings": 14,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/designer/",
+      "viewport": 390,
+      "title": "在 UMG Designer 中制作全部游戏界面 · Lyra 学习手册",
+      "headings": 16,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/",
+      "viewport": 390,
+      "title": "MMORPG 界面的数据与交互边界 · Lyra 学习手册",
+      "headings": 8,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/layers-input/",
+      "viewport": 390,
+      "title": "CommonUI 层栈、输入与焦点 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/localization/",
+      "viewport": 390,
+      "title": "国际化：中英文、字符串表与打包 · Lyra 学习手册",
+      "headings": 12,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/09-mmo-ui/viewmodels/",
+      "viewport": 390,
+      "title": "GAS、复制通知与 FieldNotify · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/authentication/",
+      "viewport": 390,
+      "title": "登录、票据与角色租约 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/database/",
+      "viewport": 390,
+      "title": "PostgreSQL 初始化与迁移 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/deployment/",
+      "viewport": 390,
+      "title": "部署、故障处理与后续演进 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/",
+      "viewport": 390,
+      "title": "用 UE 模块实现独立后端 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/persistence/",
+      "viewport": 390,
+      "title": "角色快照、事务与幂等保存 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/program-and-workers/",
+      "viewport": 390,
+      "title": "Program 主循环与有界工作队列 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/10-backend/run-and-test/",
+      "viewport": 390,
+      "title": "构建、启动与接口验收 · Lyra 学习手册",
+      "headings": 13,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/blueprint-screenshots/",
+      "viewport": 390,
+      "title": "蓝图 1:1 全图截图：安装、修复与导出 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/glossary/",
+      "viewport": 390,
+      "title": "术语表与源码速查 · Lyra 学习手册",
+      "headings": 5,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/",
+      "viewport": 390,
+      "title": "排障、性能与版本查阅 · Lyra 学习手册",
+      "headings": 5,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/performance/",
+      "viewport": 390,
+      "title": "性能定位：先测量，再选择优化层 · Lyra 学习手册",
+      "headings": 11,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/publishing/",
+      "viewport": 390,
+      "title": "文档站构建与 GitHub Pages 发布 · Lyra 学习手册",
+      "headings": 10,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/troubleshooting/",
+      "viewport": 390,
+      "title": "按现象排障：从日志定位到调用链 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/11-reference/upgrades/",
+      "viewport": 390,
+      "title": "版本升级、来源清单与可复现验证 · Lyra 学习手册",
+      "headings": 9,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/downloads/",
+      "viewport": 390,
+      "title": "配套资料与复现 · Lyra 学习手册",
+      "headings": 6,
+      "passed": true,
+      "issues": []
+    },
+    {
+      "route": "/docs/",
+      "viewport": 390,
+      "title": "学习路线 · Lyra 学习手册",
+      "headings": 7,
+      "passed": true,
+      "issues": []
+    }
+  ],
+  "clipboard": {
+    "checkedAt": "2026-09-15T02:47:02.327Z",
+    "files": [
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "Config/DefaultEditorPerProjectUserSettings.ini",
+        "characters": 107,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "Config/DefaultEngine.ini",
+        "characters": 147,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "Source/MMORPG/MMORPG.Build.cs",
+        "characters": 292,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "Source/MMORPG/MMORPG.cpp",
+        "characters": 107,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "Source/MMORPG.Target.cs",
+        "characters": 328,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "Source/MMORPGEditor.Target.cs",
+        "characters": 342,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "Source/MMORPGClient.Target.cs",
+        "characters": 342,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "Source/MMORPGServer.Target.cs",
+        "characters": 342,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/skeleton/",
+        "target": "MMORPG.uproject",
+        "characters": 290,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/build/",
+        "target": "MMORPG.uproject",
+        "characters": 1075,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/build/",
+        "target": "Source/MMORPG.Target.cs",
+        "characters": 328,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/build/",
+        "target": "Source/MMORPG/MMORPG.Build.cs",
+        "characters": 806,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/build/",
+        "target": "Source/MMORPG/MMORPG.cpp",
+        "characters": 107,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/build/",
+        "target": "Source/MMORPGClient.Target.cs",
+        "characters": 342,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/build/",
+        "target": "Source/MMORPGEditor.Target.cs",
+        "characters": 342,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/build/",
+        "target": "Source/MMORPGServer.Target.cs",
+        "characters": 342,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "MMORPG.uproject",
+        "characters": 626,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+        "characters": 2485,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h",
+        "characters": 956,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h",
+        "characters": 1682,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h",
+        "characters": 3311,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h",
+        "characters": 755,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h",
+        "characters": 1360,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h",
+        "characters": 1212,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h",
+        "characters": 2973,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/MMOFramework.uplugin",
+        "characters": 606,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs",
+        "characters": 430,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp",
+        "characters": 2748,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp",
+        "characters": 1463,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp",
+        "characters": 12561,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp",
+        "characters": 1063,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp",
+        "characters": 648,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/framework/",
+        "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp",
+        "characters": 6175,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "MMORPG.uproject",
+        "characters": 693,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h",
+        "characters": 1903,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h",
+        "characters": 776,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Source/MMOContracts/Public/MMOContracts.h",
+        "characters": 1703,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Plugins/MMOIntegration/MMOIntegration.uplugin",
+        "characters": 283,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs",
+        "characters": 331,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp",
+        "characters": 3628,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs",
+        "characters": 331,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp",
+        "characters": 2142,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Source/MMOContracts/MMOContracts.Build.cs",
+        "characters": 217,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/http/",
+        "target": "Source/MMOContracts/Private/MMOContracts.cpp",
+        "characters": 2677,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/gameplay/",
+        "target": "Source/MMORPG/Public/MMOGameplay.h",
+        "characters": 10957,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/gameplay/",
+        "target": "Source/MMORPG/Private/MMOExperienceGameplay.cpp",
+        "characters": 5128,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/gameplay/",
+        "target": "Source/MMORPG/Private/MMOGameplay.cpp",
+        "characters": 48501,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/input-health/",
+        "target": "Source/MMORPG/Public/MMOHealthComponent.h",
+        "characters": 1450,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/input-health/",
+        "target": "Source/MMORPG/Private/MMOAbilityInputValidation.cpp",
+        "characters": 2841,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/input-health/",
+        "target": "Source/MMORPG/Private/MMOAnimationValidation.cpp",
+        "characters": 3985,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/input-health/",
+        "target": "Source/MMORPG/Private/MMODeathValidation.cpp",
+        "characters": 4654,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/input-health/",
+        "target": "Source/MMORPG/Private/MMOHealthComponent.cpp",
+        "characters": 3735,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/input-health/",
+        "target": "Source/MMORPG/Private/MMOInputGameplay.cpp",
+        "characters": 2720,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/input-health/",
+        "target": "Source/MMORPG/Private/MMOLocalizationValidation.cpp",
+        "characters": 3492,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/input-health/",
+        "target": "Source/MMORPG/Private/MMORespawnGameplay.cpp",
+        "characters": 2192,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/ui/",
+        "target": "Source/MMORPG/Public/MMOUI.h",
+        "characters": 12507,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/ui/",
+        "target": "Source/MMORPG/Private/MMOUI.cpp",
+        "characters": 29170,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/animation/",
+        "target": "Source/MMORPG/Public/MMOAnimInstance.h",
+        "characters": 1405,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/animation/",
+        "target": "Source/MMORPG/Private/MMOAnimInstance.cpp",
+        "characters": 2016,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/zone/",
+        "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h",
+        "characters": 1065,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/zone/",
+        "target": "Plugins/GameFeatures/MMOCore/MMOCore.uplugin",
+        "characters": 462,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/zone/",
+        "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs",
+        "characters": 332,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/zone/",
+        "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+        "characters": 4333,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/backend/",
+        "target": "Source/MMOPersistence/Public/MMOPersistence.h",
+        "characters": 382,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/backend/",
+        "target": "Source/MMOBackendService.Target.cs",
+        "characters": 1197,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/backend/",
+        "target": "Source/MMOBackendService/MMOBackendService.Build.cs",
+        "characters": 340,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/backend/",
+        "target": "Source/MMOBackendService/Private/MMOBackendService.cpp",
+        "characters": 7994,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/backend/",
+        "target": "Source/MMOPersistence/MMOPersistence.Build.cs",
+        "characters": 296,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/backend/",
+        "target": "Source/MMOPersistence/Private/MMOPersistence.cpp",
+        "characters": 17966,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/backend/",
+        "target": "Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs",
+        "characters": 1391,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/DefaultEditor.ini",
+        "characters": 1195,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/DefaultEngine.ini",
+        "characters": 509,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/DefaultGame.ini",
+        "characters": 2611,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/DefaultGameUserSettings.ini",
+        "characters": 544,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/DefaultGameplayTags.ini",
+        "characters": 853,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/DefaultInput.ini",
+        "characters": 168,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/Localization/MMO_Compile.ini",
+        "characters": 382,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/Localization/MMO_Export.ini",
+        "characters": 506,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/Localization/MMO_Gather.ini",
+        "characters": 953,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/Localization/MMO_GenerateReports.ini",
+        "characters": 388,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/Localization/MMO_Import.ini",
+        "characters": 431,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "Config/Windows/WindowsEngine.ini",
+        "characters": 428,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "backend/migrations/001_initial.sql",
+        "characters": 2089,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "backend/migrations/002_state_constraints.sql",
+        "characters": 451,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "dependencies.json",
+        "characters": 1483,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "localization-runtime-zh-Hans.json",
+        "characters": 5510,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "ui-designer-contract.json",
+        "characters": 5989,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/config/",
+        "target": "ui-designer-strings.json",
+        "characters": 3676,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h",
+        "characters": 801,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h",
+        "characters": 798,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h",
+        "characters": 1356,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/MMODocTools.uplugin",
+        "characters": 764,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs",
+        "characters": 712,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+        "characters": 25068,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+        "characters": 23550,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+        "characters": 12488,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp",
+        "characters": 6846,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp",
+        "characters": 11624,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp",
+        "characters": 85,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+        "characters": 6331,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "prepare_content.py",
+        "characters": 9790,
+        "passed": true
+      },
+      {
+        "route": "/docs/08-mmorpg/source/editor-tools/",
+        "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h",
+        "characters": 1372,
+        "passed": true
+      }
+    ],
+    "checks": [
+      {
+        "name": "Search index contains complete source and new course",
+        "passed": true
+      },
+      {
+        "name": "/blueprints/mmorpg/backend-health.txt",
+        "passed": true
+      },
+      {
+        "name": "/blueprints/mmorpg/mmo-character-animgraph.txt",
+        "passed": true
+      },
+      {
+        "name": "/blueprints/mmorpg/mmo-unarmed-locomotion.txt",
+        "passed": true
+      }
+    ],
+    "screenshots": [
+      "output/playwright/copy-course-complete-source-desktop.png"
+    ],
+    "errors": [],
+    "passed": true
+  },
+  "interactions": {
+    "checkedAt": "2026-09-15T02:55:02.647Z",
+    "checks": [
+      {
+        "name": "Configuration screenshot opens zoom dialog",
+        "passed": true
+      },
+      {
+        "name": "Escape closes image zoom",
+        "passed": true
+      },
+      {
+        "name": "Chinese search reaches course and deep refresh works",
+        "passed": true
+      },
+      {
+        "name": "Expanded complete file stays inside mobile viewport",
+        "passed": true
+      }
+    ],
+    "screenshots": [
+      "output/playwright/copy-course-asset-zoom-desktop.png",
+      "output/playwright/copy-course-chinese-search.png",
+      "output/playwright/copy-course-main-mobile.png",
+      "output/playwright/copy-course-complete-source-mobile.png",
+      "output/playwright/copy-course-workshop-desktop.png"
+    ],
+    "passed": true
+  },
+  "finalNavigationCopyReview": {
+    "passed": true,
+    "scope": "15 new/changed course pages reviewed again at two widths after removing repetitive source-book navigation wording from search results.",
+    "checks": 30,
+    "checkedAt": "2026-09-15T02:55:48.251Z",
+    "errors": []
+  },
+  "build": {
+    "passed": true,
+    "logSHA256": "3b7e5750d1384bef83f713a4916a565a7394a249ff4a0eea84bf01995539b585"
+  },
+  "exportCheck": {
+    "passed": true,
+    "logSHA256": "89c0a89408e8f2d0f848ded241c4e08388e1d90f4840404521f162d0f9034815",
+    "htmlPages": 88,
+    "documents": 84,
+    "publicFiles": 241
+  },
+  "sourceProof": {
+    "exactLyraExcerpts": 59,
+    "localPluginEntries": 22,
+    "completeDisplays": 102,
+    "uniqueSourcePaths": 98,
+    "sourceLines": 6634,
+    "manifestSHA256": "59cdc55cea6a010721f0e716256b93035dda06e5c93d2f779037e0bba449f707"
+  },
+  "runtime": {
+    "freshSourceStages": 4,
+    "clientResults": 8,
+    "finalSaveCallbacksVerified": true,
+    "assetsCreatedBy": "Native editor APIs, not manual-click replay",
+    "renderedThisRun": false,
+    "freshPackagedCookThisRun": false
+  },
+  "whitespaceReview": "Three whitespace notices are retained inside exact quoted source excerpts; CRLF is treated as line endings. No excerpt was silently altered to satisfy a style check.",
+  "errors": []
+}

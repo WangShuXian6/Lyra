@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="658" viewBox="0 0 1120 658" role="img" aria-labelledby="title desc">
+<title id="title">冲刺方向函数只负责选择表现</title><desc id="desc">先读函数输入输出，再读每条分支。选择了前冲动画不等于已经执行角色位移。</desc>
+<defs><marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#7aa6b2"/></marker></defs>
+<rect width="1120" height="658" rx="18" fill="#112027"/>
+<g font-family="Noto Sans SC,Microsoft YaHei,sans-serif">
+<text x="42" y="48" fill="#f1f5f6" font-size="27" font-weight="700">冲刺方向函数只负责选择表现</text>
+<text x="42" y="80" fill="#9db4bd" font-size="17">关系示意图 · 按序号阅读 · 不是编辑器截图</text>
+<rect x="42" y="110" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="142" r="18" fill="#b6d588"/>
+<text x="78" y="149" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">1</text>
+<text x="112" y="148" fill="#f1f5f6" font-size="23" font-weight="700">输入：面朝与移动方向</text>
+<text x="112" y="178" fill="#d3e1e6" font-size="18">两个 Vector 含义不同，即使引脚类型相同也不能互换。</text>
+<path d="M560,211 V230" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="238" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="270" r="18" fill="#b6d588"/>
+<text x="78" y="277" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">2</text>
+<text x="112" y="276" fill="#f1f5f6" font-size="23" font-weight="700">计算：移动角度减面朝角度</text>
+<text x="112" y="306" fill="#d3e1e6" font-size="18">归一化后取 Yaw，用绝对值和正负号判断方向。</text>
+<path d="M560,339 V358" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="366" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="398" r="18" fill="#b6d588"/>
+<text x="78" y="405" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">3</text>
+<text x="112" y="404" fill="#f1f5f6" font-size="23" font-weight="700">分支：前、后、侧向区间</text>
+<text x="112" y="434" fill="#d3e1e6" font-size="18">严格小于 45、严格大于 135，剩余用 Yaw 符号分左右。</text>
+<path d="M560,467 V486" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="494" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="526" r="18" fill="#b6d588"/>
+<text x="78" y="533" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">4</text>
+<text x="112" y="532" fill="#f1f5f6" font-size="23" font-weight="700">输出：Montage 与偏向前方标记</text>
+<text x="112" y="562" fill="#d3e1e6" font-size="18">返回给调用者；位移、费用和冷却由外层技能继续处理。</text>
+</g></svg>

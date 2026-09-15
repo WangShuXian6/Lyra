@@ -1,3 +1,4 @@
+#include "MMODocProjectGuard.h"
 #include "MMODocExperienceTools.h"
 #include "MMOAbilitySet.h"
 #include "Dom/JsonObject.h"
@@ -52,7 +53,7 @@ FString UMMODocExperienceTools::ConfigureTaggedAbilityInputs(UObject* AbilityAss
     FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath());
     FPaths::NormalizeFilename(Project);
     Report->SetStringField(TEXT("project"), Project);
-    if (!IsInGameThread() || !Project.Equals(TEXT("F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject"), ESearchCase::IgnoreCase))
+    if (!IsInGameThread() || !IsMMODocProject())
         return Fail(TEXT("Requires the game thread of the exact isolated MMORPG lab project."));
     auto* Abilities = Cast<UMMOAbilitySet>(AbilityAsset);
     if (!IsValid(Abilities) || Abilities->HasAnyFlags(RF_ClassDefaultObject | RF_Transient)

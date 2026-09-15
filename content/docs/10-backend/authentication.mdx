@@ -77,6 +77,46 @@ Authorization: Bearer <login-token>
 | 403 `invalid_lease` | 租约无效、已释放或过期 | 停止角色持久化写入，并结束该游戏会话 |
 | 503 `busy` | 工作队列满 | 退避重试，保持按钮状态清晰 |
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 用登录画面对应接口阶段
+![真实 MMORPG 登录和角色选择界面](/media/mmorpg/mmo-B-login.png)
+
+**看图操作**：左侧账号表单用于 register/login；角色列表与建角使用登录会话；进入世界按钮申请 join-ticket。图中输入为空，不含真实凭据。进入游戏后的保存由游戏服务器执行。
+![登录凭据怎样换成角色写权限](/media/guide-diagrams/10-backend-authentication.svg)
+
+**读图**：这不是逐次加密同一个密码。每种凭据有独立用途、持有者和有效期，数据库保存其摘要。
+
+### 一次性随机令牌的实际生成代码
+源码：`examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp`，本机第 47–51 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+FString Token()
+{
+    unsigned char Bytes[32]; char Hex[65]; randombytes_buf(Bytes,sizeof(Bytes));
+    sodium_bin2hex(Hex,sizeof(Hex),Bytes,sizeof(Bytes)); return UTF8_TO_TCHAR(Hex);
+}
+```
+
+32 个随机字节编码成 64 个十六进制字符；字符更长只是编码表示，不意味着随机量翻倍。Hex 额外留一位用于字符串结束符。后续 Hash 函数产生数据库用于查找的摘要，不能用密码哈希字符串当作同一个登录 token。
+
+### 为什么取得锁以后还要再验证一次
+
+设请求 A 先查到登录有效，但等待账号锁；请求 B 在此期间完成退出。A 拿到锁后若沿用旧结论，可能给已退出的会话发新票据。本机在锁内重新查询会话，并用实际时间检查过期，才继续角色/票据操作。
+
+| 调用 | 谁发起 | 返回成功后下一步 |
+|---|---|---|
+| register | 客户端 | 取得 accountId 后登录 |
+| login | 客户端 | 保存本次 token，读取角色列表 |
+| join-ticket | 客户端 | 用返回地址和最新票据连接 UE Server |
+| consume-ticket | 游戏服务器 | 装载角色快照，并等 Experience 就绪 |
+
+**练习**：按本章测试脚本执行重复兑换、跨账号角色与已在线账号请求。记录 HTTP 状态和 error.code；不要只写“失败了”。这些是接口合约检查，不是让 UI 自己决定授权。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 用测试脚本分别尝试错误密码、越权角色、客户端令牌调用服务器接口、重复兑换票据、重复在线和过期租约。它们应返回结构化错误，数据库中的角色状态保持原值。

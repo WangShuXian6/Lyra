@@ -36,8 +36,50 @@ HealthSet 发送属性变化和耗尽事件，HealthComponent 提供更方便的
 
 SetByCaller 需要在 EffectSpec 上设置与资产一致的标签和值；只创建 GE 资产不会自动知道“这次伤害是 20”。对照调用方构造 Spec 的代码和蓝图引脚，而不是只编辑 GE 默认值。
 
+{/* full-guide-begin */}
+
+## 看懂一次真实步枪伤害配置和计算
+
+![步枪伤害效果：执行类 LyraDamageExecution 与 BaseDamage 的 12.0 配置](/media/beginner/whole-guide/rifle-damage-effect.png)
+
+**看图操作**：打开 /ShooterCore/Weapons/Rifle/GE_Damage_RifleAuto 的类默认值，展开 执行 → 索引[0] → 计算修改器 → 索引[0]。图中捕获 Source 的 BaseDamage，操作 Add (Base)，幅度类型 Scalable Float，常量 12.0；下方持续策略是 Instant。
+
+注意外层“修饰符”为 0，并不代表没有伤害：本资产配置的是 **Execution（执行计算）**，其内部计算修改器提供 BaseDamage。12 是这里的配置值，最终扣血仍经过队伍允许、距离和物理材质衰减等条件。
+源码：`Source/LyraGame/AbilitySystem/Executions/LyraDamageExecution.cpp`，本机第 131–137 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+const float DamageDone = FMath::Max(BaseDamage * DistanceAttenuation * PhysicalMaterialAttenuation * DamageInteractionAllowedMultiplier, 0.0f);
+
+if (DamageDone > 0.0f)
+{
+	// Apply a damage modifier, this gets turned into - health on the target
+	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(ULyraHealthSet::GetDamageAttribute(), EGameplayModOp::Additive, DamageDone));
+}
+```
+![从伤害配置到生命变化和死亡通知](/media/guide-diagrams/04-gas-effects-health.svg)
+
+**读图**：例如无衰减且允许伤害时，12 可参与一次 100→88 的扣血计算；这是条件算例，不是保证任何距离或目标都固定扣 12。
+
+### 分开三种时间含义
+
+| 类型 | 你要读什么 | 不能直接推断什么 |
+|---|---|---|
+| Instant | 一次应用时执行的数值修改 | 不代表没有复制通知或后续死亡事件 |
+| 有持续时间的效果 | Duration、Period、相关标签/组件 | 有 Duration 不表示每帧都重复扣数值 |
+| 冷却 | Commit、冷却效果、持续时间和冷却标签 | 仅创建一个名叫 Cooldown 的资产不会阻止技能 |
+
+**验证练习**：先用一类目标、一个固定位置、一次开火观察 `DamageDone` 与 Health 前后值。若没有输出，先检查上游乘数和目标条件；若生命改变但 UI 不变，再查通知/绑定。不要在 UI 的 Tick 中手动减 12 来模仿服务器状态。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 应能观察一次应用只扣一次数值、冷却期间拒绝重新激活、生命耗尽只启动一次死亡流程。重生后 UI 仍显示旧数值时，查属性委托与 Avatar 更换；连续触发死亡则查耗尽边界与状态守卫。
 
 练习：分别画出持续治疗、瞬间伤害和冷却的时间线。指出哪个数值需要复制、哪个只是执行时的元属性，以及独立服务器断开重启后为什么仍需要数据库层恢复角色进度。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验四将 Rifle 的 BaseDamage 从 12 改为 8，并在 Execution 与 HealthSet 两处观察数值，区分基础量和实际扣血。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

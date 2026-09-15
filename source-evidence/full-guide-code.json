@@ -1,0 +1,595 @@
+{
+  "schemaVersion": 1,
+  "excerpts": [
+    {
+      "chapter": "01-start/ue-basics",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Character/LyraPawnData.h",
+      "startLine": 35,
+      "endLine": 41,
+      "sourceSHA256": "a56a5b0504247cbf041e24de1ff9828ec6e0deffb1a1c60ff8c9a451ba47f76c",
+      "excerptSHA256": "122e8d987acc39c45b31773acf6d73c3521a67493b1ed061616bb57801b64da2",
+      "code": "// Class to instantiate for this pawn (should usually derive from ALyraPawn or ALyraCharacter).\nUPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = \"Lyra|Pawn\")\nTSubclassOf<APawn> PawnClass;\n\n// Ability sets to grant to this pawn's ability system.\nUPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = \"Lyra|Abilities\")\nTArray<TObjectPtr<ULyraAbilitySet>> AbilitySets;"
+    },
+    {
+      "chapter": "01-start/environment",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraEditor.Target.cs",
+      "startLine": 12,
+      "endLine": 13,
+      "sourceSHA256": "64163dd928b59c67daabbb8c40d2ff19e608cc5a4f454dc0636e85e6e4fd0e7e",
+      "excerptSHA256": "9f387ae022bedf549a63d8465d0ba3fc7073b9676f8d5a569b4eb355a3288562",
+      "code": "Type = TargetType.Editor;\nExtraModuleNames.AddRange(new string[] { \"LyraGame\", \"LyraEditor\" });"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/GameFeatures/ShooterCore/ShooterCore.uplugin",
+      "startLine": 13,
+      "endLine": 19,
+      "sourceSHA256": "5b7bbaebeeb4a93dafd0842418bcb0c99608dc88928dd53d0db7cd2fcc1881d2",
+      "excerptSHA256": "6e4af36615001cc69ae1bb1e2200df0491f0cb001e000828b6fd8a426a6f736c",
+      "code": "\"CanContainContent\": true,\n\"IsBetaVersion\": false,\n\"IsExperimentalVersion\": false,\n\"Installed\": false,\n\"ExplicitlyLoaded\": true,\n\"EnabledByDefault\": false,\n\"BuiltInInitialFeatureState\": \"Registered\","
+    },
+    {
+      "chapter": "02-architecture/asset-manager",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/System/LyraAssetManager.cpp",
+      "startLine": 40,
+      "endLine": 53,
+      "sourceSHA256": "2ce174daa4e909f25e30f13bb049cf99825358c11fc44c32825269e39b31fb4a",
+      "excerptSHA256": "3d94a35b0b40d3fa518a4bc7b41021bce45285ebe0868a232568056c7dd4e19a",
+      "code": "ULyraAssetManager& ULyraAssetManager::Get()\n{\n\tcheck(GEngine);\n\n\tif (ULyraAssetManager* Singleton = Cast<ULyraAssetManager>(GEngine->AssetManager))\n\t{\n\t\treturn *Singleton;\n\t}\n\n\tUE_LOG(LogLyra, Fatal, TEXT(\"Invalid AssetManagerClassName in DefaultEngine.ini.  It must be set to LyraAssetManager!\"));\n\n\t// Fatal error above prevents this from being called.\n\treturn *NewObject<ULyraAssetManager>();\n}"
+    },
+    {
+      "chapter": "02-architecture/experience",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp",
+      "startLine": 336,
+      "endLine": 348,
+      "sourceSHA256": "87695e320d66175e03bc47315e6272ecdc5826fc2e7095c1290cac44061ea6c4",
+      "excerptSHA256": "2097a27fbe5527c3c5e67fc6da00e10f5e9c80cf114ec39d680c8eaa7aa526b9",
+      "code": "ActivateListOfActions(CurrentExperience->Actions);\nfor (const TObjectPtr<ULyraExperienceActionSet>& ActionSet : CurrentExperience->ActionSets)\n{\n\tif (ActionSet != nullptr)\n\t{\n\t\tActivateListOfActions(ActionSet->Actions);\n\t}\n}\n\nLoadState = ELyraExperienceLoadState::Loaded;\n\nOnExperienceLoaded_HighPriority.Broadcast(CurrentExperience);\nOnExperienceLoaded_HighPriority.Clear();"
+    },
+    {
+      "chapter": "02-architecture/game-features",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/GameModes/LyraExperienceActionSet.h",
+      "startLine": 34,
+      "endLine": 40,
+      "sourceSHA256": "d48195b30636e3e98bdc142251e620caea88df867ad5eff9e8b3518d1e539a11",
+      "excerptSHA256": "067080ccf90c603f93f9e6368714ddcd1f9b5c65e73a686a660219865ed4e231",
+      "code": "// List of actions to perform as this experience is loaded/activated/deactivated/unloaded\nUPROPERTY(EditAnywhere, Instanced, Category=\"Actions to Perform\")\nTArray<TObjectPtr<UGameFeatureAction>> Actions;\n\n// List of Game Feature Plugins this experience wants to have active\nUPROPERTY(EditAnywhere, Category=\"Feature Dependencies\")\nTArray<FString> GameFeaturesToEnable;"
+    },
+    {
+      "chapter": "02-architecture/initialization",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Character/LyraHeroComponent.cpp",
+      "startLine": 113,
+      "endLine": 127,
+      "sourceSHA256": "d036b6bbbf0fc8170cb31d0f3271d887d44f1b683db564f0e036f74b0e68d3e7",
+      "excerptSHA256": "c4be4a8c45bdf78daf3c0679212130a34dcaad6770587fe98341c617745b8d6e",
+      "code": "const bool bIsLocallyControlled = Pawn->IsLocallyControlled();\nconst bool bIsBot = Pawn->IsBotControlled();\n\nif (bIsLocallyControlled && !bIsBot)\n{\n\tALyraPlayerController* LyraPC = GetController<ALyraPlayerController>();\n\n\t// The input component and local player is required when locally controlled.\n\tif (!Pawn->InputComponent || !LyraPC || !LyraPC->GetLocalPlayer())\n\t{\n\t\treturn false;\n\t}\n}\n\nreturn true;"
+    },
+    {
+      "chapter": "02-architecture/loading-online",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp",
+      "startLine": 447,
+      "endLine": 459,
+      "sourceSHA256": "87695e320d66175e03bc47315e6272ecdc5826fc2e7095c1290cac44061ea6c4",
+      "excerptSHA256": "6941dabb17daabd68a80fd1430e0e6a4fc4faf671c8c87aef83394999219a75f",
+      "code": "bool ULyraExperienceManagerComponent::ShouldShowLoadingScreen(FString& OutReason) const\n{\n\tif (LoadState != ELyraExperienceLoadState::Loaded)\n\t{\n\t\tOutReason = TEXT(\"Experience still loading\");\n\t\treturn true;\n\t}\n\telse\n\t{\n\t\treturn false;\n\t}\n}\n"
+    },
+    {
+      "chapter": "02-architecture/loading-online",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/CommonUser/Source/CommonUser/Public/CommonUserSubsystem.h",
+      "startLine": 279,
+      "endLine": 290,
+      "sourceSHA256": "e2be6bcc29681d2e4542b3896e71a453ea5d7732013bbaf69dbfe53e8fa33ae5",
+      "excerptSHA256": "cc54486295fddabbe0edbfae3d88313591b11c8e0c48899ad41261a8963152c8",
+      "code": "/**\n * Tries to start the process of creating or updating a local player, including logging in and creating a player controller.\n * When the process has succeeded or failed, it will broadcast the OnUserInitializeComplete delegate.\n *\n * @param LocalPlayerIndex\tDesired index of LocalPlayer in Game Instance, 0 will be primary player and 1+ for local multiplayer\n * @param PrimaryInputDevice The physical controller that should be mapped to this user, will use the default device if invalid\n * @param bCanUseGuestLogin\tIf true, this player can be a guest without a real Unique Net Id\n *\n * @returns true if the process was started, false if it failed before properly starting\n */\nUFUNCTION(BlueprintCallable, Category = CommonUser)\nCOMMONUSER_API virtual bool TryToInitializeForLocalPlay(int32 LocalPlayerIndex, FInputDeviceId PrimaryInputDevice, bool bCanUseGuestLogin);"
+    },
+    {
+      "chapter": "02-architecture/loading-online",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/UI/Frontend/LyraFrontendStateComponent.cpp",
+      "startLine": 69,
+      "endLine": 73,
+      "sourceSHA256": "6d9e372e61c9cd0bef5223ace41021a7c88bb12c29b85524b20ea6cbb794cf46",
+      "excerptSHA256": "e73403f6cdf0648a8a0a8cc5f685a5c1e9baa565a6e72efbad81d1778286388e",
+      "code": "FControlFlow& Flow = FControlFlowStatics::Create(this, TEXT(\"FrontendFlow\"))\n\t.QueueStep(TEXT(\"Wait For User Initialization\"), this, &ThisClass::FlowStep_WaitForUserInitialization)\n\t.QueueStep(TEXT(\"Try Show Press Start Screen\"), this, &ThisClass::FlowStep_TryShowPressStartScreen)\n\t.QueueStep(TEXT(\"Try Join Requested Session\"), this, &ThisClass::FlowStep_TryJoinRequestedSession)\n\t.QueueStep(TEXT(\"Try Show Main Screen\"), this, &ThisClass::FlowStep_TryShowMainScreen);"
+    },
+    {
+      "chapter": "03-character/player-pawn",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Character/LyraPawnExtensionComponent.cpp",
+      "startLine": 141,
+      "endLine": 149,
+      "sourceSHA256": "f479c9bc242e93fdf82f3e94b6876a36ddc382448fead40781698fafc4522854",
+      "excerptSHA256": "73a6bd0191c9a0d266e989b959d1817173d27e2dab5be07eb892c4d450569688",
+      "code": "AbilitySystemComponent = InASC;\nAbilitySystemComponent->InitAbilityActorInfo(InOwnerActor, Pawn);\n\nif (ensure(PawnData))\n{\n\tInASC->SetTagRelationshipMapping(PawnData->TagRelationshipMapping);\n}\n\nOnAbilitySystemInitialized.Broadcast();"
+    },
+    {
+      "chapter": "03-character/enhanced-input",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Input/LyraInputComponent.h",
+      "startLine": 52,
+      "endLine": 72,
+      "sourceSHA256": "24fca3cb31e5f510bae3133fed22d90e5958dd7bb8ef6273ca0c20640e65fcbb",
+      "excerptSHA256": "74e6a007d686bd05242bce8542499784cc07283e7ea24d47d764bc8ff3e1d5e7",
+      "code": "template<class UserClass, typename PressedFuncType, typename ReleasedFuncType>\nvoid ULyraInputComponent::BindAbilityActions(const ULyraInputConfig* InputConfig, UserClass* Object, PressedFuncType PressedFunc, ReleasedFuncType ReleasedFunc, TArray<uint32>& BindHandles)\n{\n\tcheck(InputConfig);\n\n\tfor (const FLyraInputAction& Action : InputConfig->AbilityInputActions)\n\t{\n\t\tif (Action.InputAction && Action.InputTag.IsValid())\n\t\t{\n\t\t\tif (PressedFunc)\n\t\t\t{\n\t\t\t\tBindHandles.Add(BindAction(Action.InputAction, ETriggerEvent::Triggered, Object, PressedFunc, Action.InputTag).GetHandle());\n\t\t\t}\n\n\t\t\tif (ReleasedFunc)\n\t\t\t{\n\t\t\t\tBindHandles.Add(BindAction(Action.InputAction, ETriggerEvent::Completed, Object, ReleasedFunc, Action.InputTag).GetHandle());\n\t\t\t}\n\t\t}\n\t}\n}"
+    },
+    {
+      "chapter": "03-character/jump-blueprint",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility_Jump.cpp",
+      "startLine": 49,
+      "endLine": 59,
+      "sourceSHA256": "ae85050e8de0c0bc0bd00782c1141ad76e96e138db8e71b3eb942a35b0e41c51",
+      "excerptSHA256": "65dce0f1f64da3a43d52edf070b219aefd5beb84f1ceca85bd37fbac0257461e",
+      "code": "void ULyraGameplayAbility_Jump::CharacterJumpStart()\n{\n\tif (ALyraCharacter* LyraCharacter = GetLyraCharacterFromActorInfo())\n\t{\n\t\tif (LyraCharacter->IsLocallyControlled() && !LyraCharacter->bPressedJump)\n\t\t{\n\t\t\tLyraCharacter->UnCrouch();\n\t\t\tLyraCharacter->Jump();\n\t\t}\n\t}\n}"
+    },
+    {
+      "chapter": "03-character/camera-animation",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Character/LyraHeroComponent.cpp",
+      "startLine": 471,
+      "endLine": 493,
+      "sourceSHA256": "d036b6bbbf0fc8170cb31d0f3271d887d44f1b683db564f0e036f74b0e68d3e7",
+      "excerptSHA256": "b9fab2fe1258bb8f77d0bd7b00fa184ef14587e7e3c3d99c57e5b6cdd4709dfe",
+      "code": "TSubclassOf<ULyraCameraMode> ULyraHeroComponent::DetermineCameraMode() const\n{\n\tif (AbilityCameraMode)\n\t{\n\t\treturn AbilityCameraMode;\n\t}\n\n\tconst APawn* Pawn = GetPawn<APawn>();\n\tif (!Pawn)\n\t{\n\t\treturn nullptr;\n\t}\n\n\tif (ULyraPawnExtensionComponent* PawnExtComp = ULyraPawnExtensionComponent::FindPawnExtensionComponent(Pawn))\n\t{\n\t\tif (const ULyraPawnData* PawnData = PawnExtComp->GetPawnData<ULyraPawnData>())\n\t\t{\n\t\t\treturn PawnData->DefaultCameraMode;\n\t\t}\n\t}\n\n\treturn nullptr;\n}"
+    },
+    {
+      "chapter": "03-character/camera-animation",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Cosmetics/LyraCosmeticAnimationTypes.cpp",
+      "startLine": 10,
+      "endLine": 21,
+      "sourceSHA256": "9b8829203278577cc5ecc3db6dd38f012f99e5947bc99e3b6843cd02f827cff0",
+      "excerptSHA256": "c92dffb3f7603d2a3ddc9cc7ca0c854e139ff722df1d92bde77e345afc1c1cfb",
+      "code": "TSubclassOf<UAnimInstance> FLyraAnimLayerSelectionSet::SelectBestLayer(const FGameplayTagContainer& CosmeticTags) const\n{\n\tfor (const FLyraAnimLayerSelectionEntry& Rule : LayerRules)\n\t{\n\t\tif ((Rule.Layer != nullptr) && CosmeticTags.HasAll(Rule.RequiredTags))\n\t\t{\n\t\t\treturn Rule.Layer;\n\t\t}\n\t}\n\n\treturn DefaultLayer;\n}"
+    },
+    {
+      "chapter": "04-gas/ability-sets",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/AbilitySystem/LyraAbilitySet.cpp",
+      "startLine": 114,
+      "endLine": 120,
+      "sourceSHA256": "5cc3801ede19551a9cde1534e75c41b2781ad5e06245ffa343d745aa303d76e8",
+      "excerptSHA256": "4d118d3fe1d6cadc906a20458728ae047a266f663493aeac113a8acc88ea487f",
+      "code": "ULyraGameplayAbility* AbilityCDO = AbilityToGrant.Ability->GetDefaultObject<ULyraGameplayAbility>();\n\nFGameplayAbilitySpec AbilitySpec(AbilityCDO, AbilityToGrant.AbilityLevel);\nAbilitySpec.SourceObject = SourceObject;\nAbilitySpec.GetDynamicSpecSourceTags().AddTag(AbilityToGrant.InputTag);\n\nconst FGameplayAbilitySpecHandle AbilitySpecHandle = LyraASC->GiveAbility(AbilitySpec);"
+    },
+    {
+      "chapter": "04-gas/ability-sets",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/AbilitySystem/LyraAbilitySystemComponent.cpp",
+      "startLine": 186,
+      "endLine": 200,
+      "sourceSHA256": "f9019ab6219dd508dcfc37c81b2303a437034684f35d07d2231492fb5fce703f",
+      "excerptSHA256": "735816c55c9e1cbc6b250d1932b8751e7000533bdbf807817e09b858a2273406",
+      "code": "void ULyraAbilitySystemComponent::AbilityInputTagPressed(const FGameplayTag& InputTag)\n{\n\tif (InputTag.IsValid())\n\t{\n\t\tfor (const FGameplayAbilitySpec& AbilitySpec : ActivatableAbilities.Items)\n\t\t{\n\t\t\tif (AbilitySpec.Ability && (AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag)))\n\t\t\t{\n\t\t\t\tInputPressedSpecHandles.AddUnique(AbilitySpec.Handle);\n\t\t\t\tInputHeldSpecHandles.AddUnique(AbilitySpec.Handle);\n\t\t\t}\n\t\t}\n\t}\n}\n"
+    },
+    {
+      "chapter": "04-gas/effects-health",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/AbilitySystem/Executions/LyraDamageExecution.cpp",
+      "startLine": 131,
+      "endLine": 137,
+      "sourceSHA256": "89c451359967677632362e8bdcafef7127dcbc76a430a6bdbe311299ca542c0e",
+      "excerptSHA256": "d271350063db57275dbb6e65f08c3c7dc0dc157f2255ef412a1e1528b5038805",
+      "code": "const float DamageDone = FMath::Max(BaseDamage * DistanceAttenuation * PhysicalMaterialAttenuation * DamageInteractionAllowedMultiplier, 0.0f);\n\nif (DamageDone > 0.0f)\n{\n\t// Apply a damage modifier, this gets turned into - health on the target\n\tOutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(ULyraHealthSet::GetDamageAttribute(), EGameplayModOp::Additive, DamageDone));\n}"
+    },
+    {
+      "chapter": "04-gas/prediction",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility_Jump.cpp",
+      "startLine": 16,
+      "endLine": 17,
+      "sourceSHA256": "ae85050e8de0c0bc0bd00782c1141ad76e96e138db8e71b3eb942a35b0e41c51",
+      "excerptSHA256": "a9bb1c3eeb7191622ddf3934dd0888f38448830d7b5a906f38fbb67fc0d22a6e",
+      "code": "InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;\nNetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;"
+    },
+    {
+      "chapter": "05-gameplay/inventory-equipment",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Inventory/LyraInventoryManagerComponent.cpp",
+      "startLine": 80,
+      "endLine": 114,
+      "sourceSHA256": "e34238fd2261db1311e31c59fb58c1a5ab414e496eeb578bcc6f5bd42dd3ac81",
+      "excerptSHA256": "55f5fe4cea63d84b478e468fdc890b9e550f1a64e0426c20f7859f3cbd8cbeb0",
+      "code": "ULyraInventoryItemInstance* FLyraInventoryList::AddEntry(TSubclassOf<ULyraInventoryItemDefinition> ItemDef, int32 StackCount)\n{\n\tULyraInventoryItemInstance* Result = nullptr;\n\n\tcheck(ItemDef != nullptr);\n \tcheck(OwnerComponent);\n\n\tAActor* OwningActor = OwnerComponent->GetOwner();\n\tcheck(OwningActor->HasAuthority());\n\n\n\tFLyraInventoryEntry& NewEntry = Entries.AddDefaulted_GetRef();\n\tNewEntry.Instance = NewObject<ULyraInventoryItemInstance>(OwnerComponent->GetOwner());  //@TODO: Using the actor instead of component as the outer due to UE-127172\n\tNewEntry.Instance->SetItemDef(ItemDef);\n\tfor (ULyraInventoryItemFragment* Fragment : GetDefault<ULyraInventoryItemDefinition>(ItemDef)->Fragments)\n\t{\n\t\tif (Fragment != nullptr)\n\t\t{\n\t\t\tFragment->OnInstanceCreated(NewEntry.Instance);\n\t\t}\n\t}\n\tNewEntry.StackCount = StackCount;\n\tResult = NewEntry.Instance;\n\n\t//const ULyraInventoryItemDefinition* ItemCDO = GetDefault<ULyraInventoryItemDefinition>(ItemDef);\n\tMarkItemDirty(NewEntry);\n\n\treturn Result;\n}\n\nvoid FLyraInventoryList::AddEntry(ULyraInventoryItemInstance* Instance)\n{\n\tunimplemented();\n}\n"
+    },
+    {
+      "chapter": "05-gameplay/weapons",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Weapons/LyraGameplayAbility_RangedWeapon.cpp",
+      "startLine": 530,
+      "endLine": 546,
+      "sourceSHA256": "4bf81f22d1e3c0c31412b078f6a97fcfc20be347263b4b314b81d3084a8d48db",
+      "excerptSHA256": "7df69ab3215bfa0c18ceb15c12b708dd1d7ee86cbc21fcbef90ea09973156780",
+      "code": "\t// See if we still have ammo\n\tif (bIsTargetDataValid && CommitAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo))\n\t{\n\t\t// We fired the weapon, add spread\n\t\tULyraRangedWeaponInstance* WeaponData = GetWeaponInstance();\n\t\tcheck(WeaponData);\n\t\tWeaponData->AddSpread();\n\n\t\t// Let the blueprint do stuff like apply effects to the targets\n\t\tOnRangedWeaponTargetDataReady(LocalTargetDataHandle);\n\t}\n\telse\n\t{\n\t\tUE_LOG(LogLyraAbilitySystem, Warning, TEXT(\"Weapon ability %s failed to commit (bIsTargetDataValid=%d)\"), *GetPathName(), bIsTargetDataValid ? 1 : 0);\n\t\tK2_EndAbility();\n\t}\n}"
+    },
+    {
+      "chapter": "05-gameplay/interaction",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Interaction/Abilities/LyraGameplayAbility_Interact.cpp",
+      "startLine": 78,
+      "endLine": 122,
+      "sourceSHA256": "e76f50302e918522684d09b0090bc8ec7c15ccab20d9fff1748ed7efc74237d8",
+      "excerptSHA256": "e11250999d73b961899e99c5ec529074f566be51b1a5e54d3e19a3f0a2298a64",
+      "code": "void ULyraGameplayAbility_Interact::TriggerInteraction()\n{\n\tif (CurrentOptions.Num() == 0)\n\t{\n\t\treturn;\n\t}\n\n\tUAbilitySystemComponent* AbilitySystem = GetAbilitySystemComponentFromActorInfo();\n\tif (AbilitySystem)\n\t{\n\t\tconst FInteractionOption& InteractionOption = CurrentOptions[0];\n\n\t\tAActor* Instigator = GetAvatarActorFromActorInfo();\n\t\tAActor* InteractableTargetActor = UInteractionStatics::GetActorFromInteractableTarget(InteractionOption.InteractableTarget);\n\n\t\t// Allow the target to customize the event data we're about to pass in, in case the ability needs custom data\n\t\t// that only the actor knows.\n\t\tFGameplayEventData Payload;\n\t\tPayload.EventTag = TAG_Ability_Interaction_Activate;\n\t\tPayload.Instigator = Instigator;\n\t\tPayload.Target = InteractableTargetActor;\n\n\t\t// If needed we allow the interactable target to manipulate the event data so that for example, a button on the wall\n\t\t// may want to specify a door actor to execute the ability on, so it might choose to override Target to be the\n\t\t// door actor.\n\t\tInteractionOption.InteractableTarget->CustomizeInteractionEventData(TAG_Ability_Interaction_Activate, Payload);\n\n\t\t// Grab the target actor off the payload we're going to use it as the 'avatar' for the interaction, and the\n\t\t// source InteractableTarget actor as the owner actor.\n\t\tAActor* TargetActor = const_cast<AActor*>(ToRawPtr(Payload.Target));\n\n\t\t// The actor info needed for the interaction.\n\t\tFGameplayAbilityActorInfo ActorInfo;\n\t\tActorInfo.InitFromActor(InteractableTargetActor, TargetActor, InteractionOption.TargetAbilitySystem);\n\n\t\t// Trigger the ability using event tag.\n\t\tconst bool bSuccess = InteractionOption.TargetAbilitySystem->TriggerAbilityFromGameplayEvent(\n\t\t\tInteractionOption.TargetInteractionAbilityHandle,\n\t\t\t&ActorInfo,\n\t\t\tTAG_Ability_Interaction_Activate,\n\t\t\t&Payload,\n\t\t\t*InteractionOption.TargetAbilitySystem\n\t\t);\n\t}\n}"
+    },
+    {
+      "chapter": "05-gameplay/teams-bots",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/GameModes/LyraBotCreationComponent.cpp",
+      "startLine": 53,
+      "endLine": 78,
+      "sourceSHA256": "aa25e329147d17914f44da98cee800e2a9f5bd26be2d2dedf6feb57d2b60caf1",
+      "excerptSHA256": "55728b6002232f87966d9a6ae1f17a1fe62e0f1643aebba1b997f83ec7aeb4b1",
+      "code": "\t// Determine how many bots to spawn\n\tint32 EffectiveBotCount = NumBotsToCreate;\n\n\t// Give the developer settings a chance to override it\n\tif (GIsEditor)\n\t{\n\t\tconst ULyraDeveloperSettings* DeveloperSettings = GetDefault<ULyraDeveloperSettings>();\n\n\t\tif (DeveloperSettings->bOverrideBotCount)\n\t\t{\n\t\t\tEffectiveBotCount = DeveloperSettings->OverrideNumPlayerBotsToSpawn;\n\t\t}\n\t}\n\n\t// Give the URL a chance to override it\n\tif (AGameModeBase* GameModeBase = GetGameMode<AGameModeBase>())\n\t{\n\t\tEffectiveBotCount = UGameplayStatics::GetIntOption(GameModeBase->OptionsString, TEXT(\"NumBots\"), EffectiveBotCount);\n\t}\n\n\t// Create them\n\tfor (int32 Count = 0; Count < EffectiveBotCount; ++Count)\n\t{\n\t\tSpawnOneBot();\n\t}\n}"
+    },
+    {
+      "chapter": "05-gameplay/messages-audio",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsLibrary.cpp",
+      "startLine": 11,
+      "endLine": 31,
+      "sourceSHA256": "8817a68c029da50e59ab919411ac919093bf9213acbe2b7c542b7aa981e64513",
+      "excerptSHA256": "4e32f771f6979ab4986bcc4da8ca33c3a0b9c0edfb0db42caf05f5deaa5aa1b2",
+      "code": "void ULyraContextEffectsLibrary::GetEffects(const FGameplayTag Effect, const FGameplayTagContainer Context, \n\tTArray<USoundBase*>& Sounds, TArray<UNiagaraSystem*>& NiagaraSystems)\n{\n\t// Make sure Effect is valid and Library is loaded\n\tif (Effect.IsValid() && Context.IsValid() && EffectsLoadState == EContextEffectsLibraryLoadState::Loaded)\n\t{\n\t\t// Loop through Context Effects\n\t\tfor (const auto& ActiveContextEffect : ActiveContextEffects)\n\t\t{\n\t\t\t// Make sure the Effect is an exact Tag Match and ensure the Context has all tags in the Effect (and neither or both are empty)\n\t\t\tif (Effect.MatchesTagExact(ActiveContextEffect->EffectTag)\n\t\t\t\t&& Context.HasAllExact(ActiveContextEffect->Context)\n\t\t\t\t&& (ActiveContextEffect->Context.IsEmpty() == Context.IsEmpty()))\n\t\t\t{\n\t\t\t\t// Get all Matching Sounds and Niagara Systems\n\t\t\t\tSounds.Append(ActiveContextEffect->Sounds);\n\t\t\t\tNiagaraSystems.Append(ActiveContextEffect->NiagaraSystems);\n\t\t\t}\n\t\t}\n\t}\n}"
+    },
+    {
+      "chapter": "06-ui/commonui-input",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/UI/LyraActivatableWidget.cpp",
+      "startLine": 16,
+      "endLine": 30,
+      "sourceSHA256": "35e875c49246dae32a4be15e018a46b852e861d910f94982f7522ca4f6dec3de",
+      "excerptSHA256": "587d74283df7abf5e72ba7d8e905604a5e65d89a2a84d3249590fadfddc64ebf",
+      "code": "TOptional<FUIInputConfig> ULyraActivatableWidget::GetDesiredInputConfig() const\n{\n\tswitch (InputConfig)\n\t{\n\tcase ELyraWidgetInputMode::GameAndMenu:\n\t\treturn FUIInputConfig(ECommonInputMode::All, GameMouseCaptureMode);\n\tcase ELyraWidgetInputMode::Game:\n\t\treturn FUIInputConfig(ECommonInputMode::Game, GameMouseCaptureMode);\n\tcase ELyraWidgetInputMode::Menu:\n\t\treturn FUIInputConfig(ECommonInputMode::Menu, EMouseCaptureMode::NoCapture);\n\tcase ELyraWidgetInputMode::Default:\n\tdefault:\n\t\treturn TOptional<FUIInputConfig>();\n\t}\n}"
+    },
+    {
+      "chapter": "06-ui/common-game",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/CommonGame/Source/Private/PrimaryGameLayout.cpp",
+      "startLine": 89,
+      "endLine": 101,
+      "sourceSHA256": "e2648c6dfdae8f3b0216190ca21ddff68749b7f0c270c2adf03597ba6ce28ca3",
+      "excerptSHA256": "cd10125a0b12aaba55cf3d564399f6470073411fd14e1ba6c0fe300d7a99bf73",
+      "code": "void UPrimaryGameLayout::RegisterLayer(FGameplayTag LayerTag, UCommonActivatableWidgetContainerBase* LayerWidget)\n{\n\tif (!IsDesignTime())\n\t{\n\t\tLayerWidget->OnTransitioningChanged.AddUObject(this, &UPrimaryGameLayout::OnWidgetStackTransitioning);\n\t\t// TODO: Consider allowing a transition duration, we currently set it to 0, because if it's not 0, the\n\t\t//       transition effect will cause focus to not transition properly to the new widgets when using\n\t\t//       gamepad always.\n\t\tLayerWidget->SetTransitionDuration(0.0);\n\n\t\tLayers.Add(LayerTag, LayerWidget);\n\t}\n}"
+    },
+    {
+      "chapter": "06-ui/extensions",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/UIExtension/Source/Private/Widgets/UIExtensionPointWidget.cpp",
+      "startLine": 82,
+      "endLine": 100,
+      "sourceSHA256": "cd6b9b03d7e669870d7c50995d7a8c339b487691378212750d047cba35102930",
+      "excerptSHA256": "b9ae674db0b7dd04e19e8198d3686a3ce6835fb72786f44ac9f899136ae2ba14",
+      "code": "void UUIExtensionPointWidget::RegisterExtensionPoint()\n{\n\tif (UUIExtensionSubsystem* ExtensionSubsystem = GetWorld()->GetSubsystem<UUIExtensionSubsystem>())\n\t{\n\t\tTArray<UClass*> AllowedDataClasses;\n\t\tAllowedDataClasses.Add(UUserWidget::StaticClass());\n\t\tAllowedDataClasses.Append(DataClasses);\n\n\t\tExtensionPointHandles.Add(ExtensionSubsystem->RegisterExtensionPoint(\n\t\t\tExtensionPointTag, ExtensionPointTagMatch, AllowedDataClasses,\n\t\t\tFExtendExtensionPointDelegate::CreateUObject(this, &ThisClass::OnAddOrRemoveExtension)\n\t\t));\n\n\t\tExtensionPointHandles.Add(ExtensionSubsystem->RegisterExtensionPointForContext(\n\t\t\tExtensionPointTag, GetOwningLocalPlayer(), ExtensionPointTagMatch, AllowedDataClasses,\n\t\t\tFExtendExtensionPointDelegate::CreateUObject(this, &ThisClass::OnAddOrRemoveExtension)\n\t\t));\n\t}\n}"
+    },
+    {
+      "chapter": "06-ui/settings-mvvm",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Settings/LyraGameSettingRegistry_Audio.cpp",
+      "startLine": 41,
+      "endLine": 52,
+      "sourceSHA256": "875cc5a73778a5044c098ba5f9122d383468767e08fb42599b1ded0fb4429a26",
+      "excerptSHA256": "1377b50f443493ff7c3844e17bef70b7595a2661f9e7c3a58258ee022e550931",
+      "code": "Setting->SetDevName(TEXT(\"OverallVolume\"));\nSetting->SetDisplayName(LOCTEXT(\"OverallVolume_Name\", \"Overall\"));\nSetting->SetDescriptionRichText(LOCTEXT(\"OverallVolume_Description\", \"Adjusts the volume of everything.\"));\n\nSetting->SetDynamicGetter(GET_LOCAL_SETTINGS_FUNCTION_PATH(GetOverallVolume));\nSetting->SetDynamicSetter(GET_LOCAL_SETTINGS_FUNCTION_PATH(SetOverallVolume));\nSetting->SetDefaultValue(GetDefault<ULyraSettingsLocal>()->GetOverallVolume());\nSetting->SetDisplayFormat(UGameSettingValueScalarDynamic::ZeroToOnePercent);\n\nSetting->AddEditCondition(FWhenPlayingAsPrimaryPlayer::Get());\n\nVolume->AddSetting(Setting);"
+    },
+    {
+      "chapter": "06-ui/settings-mvvm",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/UI/LyraSettingScreen.cpp",
+      "startLine": 34,
+      "endLine": 44,
+      "sourceSHA256": "1d4ce08f6372a4523075cd118f2184dd97606c2b55f88aa80e7ceb6a6cbf3421",
+      "excerptSHA256": "5b6e8578a1039d0a37d4fa4b6c328e1faa9d813b4fe2a59f41ba1d5261527f45",
+      "code": "void ULyraSettingScreen::HandleBackAction()\n{\n\tif (AttemptToPopNavigation())\n\t{\n\t\treturn;\n\t}\n\n\tApplyChanges();\n\n\tDeactivateWidget();\n}"
+    },
+    {
+      "chapter": "07-training/feature-and-experience",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/LyraTraining/prepare_training.py",
+      "startLine": 46,
+      "endLine": 54,
+      "sourceSHA256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823",
+      "excerptSHA256": "95782f832b53ffce956fbb6f2ed82d8ca2314d1683fd7b9a4f9879d5ac9bba9b",
+      "code": "pawn_sets = list(pawn.get_editor_property('ability_sets'))\npawn.set_editor_property('ability_sets', [abilities if x.get_name() == 'AbilitySet_ShooterHero' else x for x in pawn_sets])\nexperience_cdo = unreal.get_default_object(lib.load_blueprint_class(root + '/Experiences/B_TrainingRange'))\nexperience_cdo.set_editor_property('default_pawn_data', pawn)\nfeatures = list(experience_cdo.get_editor_property('game_features_to_enable'))\nif 'TrainingRange' not in features:\n    features.append('TrainingRange')\nexperience_cdo.set_editor_property('game_features_to_enable', features)\nunreal.BlueprintEditorLibrary.compile_blueprint(experience)"
+    },
+    {
+      "chapter": "07-training/dash-and-blueprints",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/LyraTraining/prepare_training.py",
+      "startLine": 39,
+      "endLine": 45,
+      "sourceSHA256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823",
+      "excerptSHA256": "37378ea3391e3ff855fdc43979e1744217f6b3cc8f219c0b10bb48e4abf53049",
+      "code": "dash = clone('/ShooterCore/Game/Dash/GA_Hero_Dash', root + '/Game/GA_TrainingDash')\nunreal.BlueprintEditorLibrary.compile_blueprint(dash)\ndash_class = lib.load_blueprint_class(root + '/Game/GA_TrainingDash')\nbridge = unreal.LyraDocToolsLibrary\nreplaced = bridge.replace_ability_in_set(abilities, lib.load_blueprint_class('/ShooterCore/Game/Dash/GA_Hero_Dash'), dash_class)\nif replaced != 1:\n    raise RuntimeError('Expected exactly one official Dash grant, found ' + str(replaced))"
+    },
+    {
+      "chapter": "07-training/weapons-hud-bots",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Equipment/LyraQuickBarComponent.cpp",
+      "startLine": 86,
+      "endLine": 109,
+      "sourceSHA256": "3fd7904e3f174b1436423aa2ba7da5518c9d88cc9493bfa2d01e27b5396fe8b1",
+      "excerptSHA256": "cd3ebdd87146243d8cd76f1e608906f7b0eab8894b8502b7b806ec07791fdc9d",
+      "code": "void ULyraQuickBarComponent::EquipItemInSlot()\n{\n\tcheck(Slots.IsValidIndex(ActiveSlotIndex));\n\tcheck(EquippedItem == nullptr);\n\n\tif (ULyraInventoryItemInstance* SlotItem = Slots[ActiveSlotIndex])\n\t{\n\t\tif (const UInventoryFragment_EquippableItem* EquipInfo = SlotItem->FindFragmentByClass<UInventoryFragment_EquippableItem>())\n\t\t{\n\t\t\tTSubclassOf<ULyraEquipmentDefinition> EquipDef = EquipInfo->EquipmentDefinition;\n\t\t\tif (EquipDef != nullptr)\n\t\t\t{\n\t\t\t\tif (ULyraEquipmentManagerComponent* EquipmentManager = FindEquipmentManager())\n\t\t\t\t{\n\t\t\t\t\tEquippedItem = EquipmentManager->EquipItem(EquipDef);\n\t\t\t\t\tif (EquippedItem != nullptr)\n\t\t\t\t\t{\n\t\t\t\t\t\tEquippedItem->SetInstigator(SlotItem);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+    },
+    {
+      "chapter": "08-mmorpg/migration",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPGEditor.Target.cs",
+      "startLine": 2,
+      "endLine": 11,
+      "sourceSHA256": "11cb062e048f092b9c15838bd7ff0e631b8d331fbc8f00193b4d7c5171b3e6bc",
+      "excerptSHA256": "c745c51a2cd5615473766658e53c77b0f2875885f373f60c98fcc2a746dccc1e",
+      "code": "public class MMORPGEditorTarget : TargetRules\n{\n    public MMORPGEditorTarget(TargetInfo Target) : base(Target)\n    {\n        Type = TargetType.Editor;\n        DefaultBuildSettings = BuildSettingsVersion.V7;\n        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;\n        ExtraModuleNames.Add(\"MMORPG\");\n    }\n}"
+    },
+    {
+      "chapter": "08-mmorpg/configuration",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Config/DefaultInput.ini",
+      "startLine": 1,
+      "endLine": 3,
+      "sourceSHA256": "a1e822a22fba08a06c2308d23dcc64804cc64fb568bb70cadb35d27b3ab686c0",
+      "excerptSHA256": "b34555edb758f6f60dfb25f36acd8a45774007a58fba8ea36fe9443bd3580ec6",
+      "code": "[/Script/Engine.InputSettings]\nDefaultPlayerInputClass=/Script/EnhancedInput.EnhancedPlayerInput\nDefaultInputComponentClass=/Script/EnhancedInput.EnhancedInputComponent"
+    },
+    {
+      "chapter": "08-mmorpg/character-gas",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp",
+      "startLine": 20,
+      "endLine": 34,
+      "sourceSHA256": "54c263096a0f5d219184b96a37f1e395fba56397e0ee5bd19bdfbb357ab2e7a1",
+      "excerptSHA256": "833b4de823c354b699b83c944c93f5037328b881b48dc3d9c0247b0573177760",
+      "code": "bool UMMOAbilitySystemComponent::TryActivateAbilitiesByInputTag(const FGameplayTag& InputTag)\n{\n    if (!IsOwnerActorAuthoritative() || !InputTag.IsValid()) return false;\n    TArray<FGameplayAbilitySpecHandle> Handles;\n    {\n        ABILITYLIST_SCOPE_LOCK();\n        for (const FGameplayAbilitySpec& Spec : GetActivatableAbilities())\n            if (Spec.Ability && Spec.GetDynamicSpecSourceTags().HasTagExact(InputTag)) Handles.Add(Spec.Handle);\n    }\n    // Activation may invoke callbacks that add or remove specs. The list lock and traversal have ended.\n    bool bAnyActivated = false;\n    for (const FGameplayAbilitySpecHandle Handle : Handles)\n        if (TryActivateAbility(Handle)) bAnyActivated = true;\n    return bAnyActivated;\n}"
+    },
+    {
+      "chapter": "08-mmorpg/animation",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp",
+      "startLine": 39,
+      "endLine": 53,
+      "sourceSHA256": "95c090adf38bddb85d6bf77fbc2bd9ce4d917a7c8c9d9738e023930bebfee793",
+      "excerptSHA256": "5d26a9fa02f93ae9daea33c928050b33ea0624940c1562b6f2319807642da30f",
+      "code": "void UMMOAnimInstance::NativeUpdateAnimation(float DeltaSeconds)\n{\n    Super::NativeUpdateAnimation(DeltaSeconds);\n    // NativeUpdateAnimation runs on the game thread before parallel graph evaluation.\n    // No actor, movement or ASC reads occur in worker-thread Blueprint evaluation.\n    check(IsInGameThread());\n    const ACharacter* Character = Cast<ACharacter>(TryGetPawnOwner());\n    GroundSpeed = Character ? Character->GetVelocity().Size2D() : 0.f;\n    bIsFalling = Character && Character->GetCharacterMovement()->IsFalling();\n    APlayerState* State = Character ? Character->GetPlayerState() : nullptr;\n    // Replicated PlayerState can arrive after the mesh initializes. Rebind only when identity changes.\n    UAbilitySystemComponent* ASC = State ? UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(State) : nullptr;\n    if (ASC && ASC->GetAvatarActor() != Character) ASC = nullptr;\n    InitializeWithAbilitySystem(ASC);\n}"
+    },
+    {
+      "chapter": "08-mmorpg/network-persistence",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp",
+      "startLine": 684,
+      "endLine": 697,
+      "sourceSHA256": "5deb3fc0c3c192877dc84fde7bbb5c3fedbd607abfc27a904fafeda038c92450",
+      "excerptSHA256": "e54507dfb412244ff121835ee1c36fe3e2f4c316157c447b1d43f015e2ef9f53",
+      "code": "auto* Backend = GetGameInstance()->GetSubsystem<UMMOBackendServer>(); if (!Backend) return;\nRecord->bFinal |= bFinal;\nif (auto* PS = Record->Player.Get()) Record->LastSnapshot = PS->MakeSnapshot();\nif (Record->bInFlight || !Record->LastSnapshot) return;\nRecord->bInFlight = true;\nif (!Record->PendingBody)\n{\n    Record->PendingBody = MakeShared<FJsonObject>(); Record->PendingBody->SetStringField(TEXT(\"characterId\"), Record->CharacterID);\n    Record->PendingBody->SetStringField(TEXT(\"leaseToken\"), Record->Lease); Record->PendingBody->SetNumberField(TEXT(\"expectedVersion\"), Record->Version);\n    Record->PendingBody->SetStringField(TEXT(\"requestId\"), FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower)); Record->PendingBody->SetObjectField(TEXT(\"state\"), Record->LastSnapshot);\n    Record->bPendingFinal = Record->bFinal;\n}\n// A lost response must retry exactly the same idempotency key, version and snapshot.\nconst auto Body = Record->PendingBody;"
+    },
+    {
+      "chapter": "08-mmorpg/run-lab",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOExperienceGameplay.cpp",
+      "startLine": 63,
+      "endLine": 79,
+      "sourceSHA256": "4a7a439feb65acadd7bad4f279aae819e34e50ac19ccf44720dd057001a352d0",
+      "excerptSHA256": "84386d0b74dda683b566038280eb259d497bc17d823951702d53488d3e83c9e4",
+      "code": "void AMMOGameMode::TryStartPlayer(APlayerController* Controller)\n{\n    auto* PS = Controller ? Controller->GetPlayerState<AMMOPlayerState>() : nullptr;\n    auto* Experience = UMMOExperienceManagerComponent::FindExperienceManager(GetWorld());\n    if (GetNetMode() != NM_DedicatedServer || !PS || !PS->bCharacterLoaded || Controller->GetPawn()\n        || !Experience || !Experience->IsExperienceReady()) return;\n    if (!PS->SetPawnData(Experience->GetPawnData()))\n    { CastChecked<AMMOPlayerController>(Controller)->ClientBackendError(TEXT(\"pawn_data_invalid\")); Controller->Destroy(); return; }\n    RestartPlayerAtTransform(Controller, FTransform(FRotator::ZeroRotator, PS->SavedPosition));\n    if (auto* Pawn = Cast<AMMOCharacter>(Controller->GetPawn()); Pawn && Pawn->PawnExtension->IsPawnReady())\n    {\n        PS->bSessionReady = true; PS->OnRep_Progress(); PS->ForceNetUpdate();\n        UE_LOG(LogTemp, Display, TEXT(\"MMO GameplayReady character %s: Experience + persistence + Pawn InitState\"), *PS->CharacterID);\n    }\n    else\n    { CastChecked<AMMOPlayerController>(Controller)->ClientBackendError(TEXT(\"pawn_initialization_failed\")); Controller->Destroy(); }\n}"
+    },
+    {
+      "chapter": "09-mmo-ui/layers-input",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 170,
+      "endLine": 179,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "e71f6bc5a82f44a32131d9e0bf01e0675abb22fb829ea2969c0dd1b06ba3fd23",
+      "code": "void UMMORootLayout::NativeOnInitialized()\n{\n    Super::NativeOnInitialized();\n    if (ensure(GameLayer && MenuLayer && ModalLayer))\n    {\n        RegisterLayer(Layer(TEXT(\"UI.Layer.Game\")), GameLayer);\n        RegisterLayer(Layer(TEXT(\"UI.Layer.Menu\")), MenuLayer);\n        RegisterLayer(Layer(TEXT(\"UI.Layer.Modal\")), ModalLayer);\n    }\n}"
+    },
+    {
+      "chapter": "09-mmo-ui/designer",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 51,
+      "endLine": 55,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "647a260a168aaa1051deac9df8c257fbd10a7c06ec4d331d76aa07e75615e020",
+      "code": "static void AssignViewModel(UUserWidget* Widget, UMMOPlayerViewModel* Model)\n{\n    if (Widget) if (auto* View = UMVVMSubsystem::GetViewFromUserWidget(Widget); View && View->IsConstructed())\n        ensure(View->SetViewModel(TEXT(\"PlayerVM\"), TScriptInterface<INotifyFieldValueChanged>(Model)));\n}"
+    },
+    {
+      "chapter": "09-mmo-ui/viewmodels",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 117,
+      "endLine": 123,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "cfa7ed8f6445ffea3c3c7067206114623682f4688c5864f0088ae0f9a4cf4fab",
+      "code": "void UMMOPlayerViewModel::RefreshMana()\n{\n    auto* State = Player.Get();\n    UE_MVVM_SET_PROPERTY_VALUE(Mana, State ? State->Attributes->GetMana() : 0.f);\n    UE_MVVM_SET_PROPERTY_VALUE(ManaFraction, FMath::Clamp(Mana / 100.f, 0.f, 1.f));\n    UE_MVVM_SET_PROPERTY_VALUE(ManaLabel, FText::Format(LOCTEXT(\"ManaValue\", \"Mana {0} / 100\"), FText::AsNumber(FMath::RoundToInt(Mana))));\n}"
+    },
+    {
+      "chapter": "09-mmo-ui/blueprint-workflow",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 365,
+      "endLine": 365,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "84a58820577c36359481e5f1bbf2f862ba578ec1e1cdf7d9b98191116e97b4c3",
+      "code": "VM = Model; AssignViewModel(this, VM); AssignViewModel(ManaStatus, VM);"
+    },
+    {
+      "chapter": "09-mmo-ui/localization",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 440,
+      "endLine": 445,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "61bcb2177d323df8f5fe7aa54b2d9ac669af78c1374e0d81d56e649e6baecfdd",
+      "code": "void UMMOSettingsPanel::ChangeCulture(const FString& Culture)\n{\n    if (UKismetInternationalizationLibrary::SetCurrentCulture(Culture, true))\n        if (auto* Root = Cast<UMMORootLayout>(UPrimaryGameLayout::GetPrimaryGameLayout(GetOwningPlayer())))\n            if (Root->ViewModel) Root->ViewModel->Refresh();\n}"
+    },
+    {
+      "chapter": "10-backend/program-and-workers",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+      "startLine": 82,
+      "endLine": 92,
+      "sourceSHA256": "0582ae1f5eb3e91f0b589606148ed2b29c68bdfcbd98ff9260285dc54f2afe41",
+      "excerptSHA256": "8e0652957c4fd1680a1affc2f85c73ddeb6387584364a75c8ae4e42c0dda8216",
+      "code": "bool Enqueue(MMO::FRequest Request,const FHttpResultCallback& Complete)\n{\n    if(Outstanding.Increment()>32) { Outstanding.Decrement(); return false; }\n    FScopeLock Lock(&Mutex); Pending.Add({MoveTemp(Request),Complete}); return true;\n}\nvoid Pump()\n{\n    FCompleted Done;\n    while(Completed.Dequeue(Done)) { Send(Done.Reply,Done.Complete); Outstanding.Decrement(); }\n}\nint32 Num() const { return Outstanding.GetValue(); }"
+    },
+    {
+      "chapter": "10-backend/database",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/backend/migrations/001_initial.sql",
+      "startLine": 10,
+      "endLine": 15,
+      "sourceSHA256": "9818de7efd8b1aa06994b19937b1dc958aa80efe9f72684b5eac6fa69df716c7",
+      "excerptSHA256": "7e0a9beeec5cadfc5071aec58f6330ed4652cc5cb5d068497bba8cac953c4466",
+      "code": "CREATE TABLE characters(\n id uuid PRIMARY KEY DEFAULT gen_random_uuid(), account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,\n name text NOT NULL CHECK(length(name) BETWEEN 2 AND 24), version bigint NOT NULL DEFAULT 0 CHECK(version>=0),\n state jsonb NOT NULL DEFAULT '{\"level\":1,\"xp\":0,\"health\":100,\"mana\":100,\"inventory\":[],\"position\":{\"x\":0,\"y\":0,\"z\":150}}',\n updated_at timestamptz NOT NULL DEFAULT now(), UNIQUE(account_id,name)\n);"
+    },
+    {
+      "chapter": "10-backend/database",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "startLine": 23,
+      "endLine": 33,
+      "sourceSHA256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443",
+      "excerptSHA256": "700f8dedbb51372b983a5a66ec9281e23e145e73f8824b9c2355c9a83b3a65a8",
+      "code": "FRows Query(PGconn* DB, const ANSICHAR* SQL, const TArray<FString>& Args = {})\n{\n    TArray<TArray<ANSICHAR>> Bytes; TArray<const ANSICHAR*> Values;\n    for (const FString& Arg : Args)\n    {\n        FTCHARToUTF8 Utf8(*Arg); TArray<ANSICHAR>& B=Bytes.AddDefaulted_GetRef();\n        B.Append(Utf8.Get(),Utf8.Length()+1);\n    }\n    for (const auto& B : Bytes) Values.Add(B.GetData());\n    return FRows(PQexecParams(DB,SQL,Args.Num(),nullptr,Values.GetData(),nullptr,nullptr,0));\n}"
+    },
+    {
+      "chapter": "10-backend/authentication",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "startLine": 47,
+      "endLine": 51,
+      "sourceSHA256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443",
+      "excerptSHA256": "4734245acff66113eaf8a773a2a38bbab111d996ce2da55c4feb464b185d3717",
+      "code": "FString Token()\n{\n    unsigned char Bytes[32]; char Hex[65]; randombytes_buf(Bytes,sizeof(Bytes));\n    sodium_bin2hex(Hex,sizeof(Hex),Bytes,sizeof(Bytes)); return UTF8_TO_TCHAR(Hex);\n}"
+    },
+    {
+      "chapter": "10-backend/persistence",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "startLine": 34,
+      "endLine": 40,
+      "sourceSHA256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443",
+      "excerptSHA256": "986c5ba34c3c84d1d43d446c3aad0cf9427a6acf3ec9f90260ef2da612cbb456",
+      "code": "struct FTransaction\n{\n    PGconn* DB; bool Active;\n    explicit FTransaction(PGconn* In):DB(In),Active(Query(DB,\"BEGIN\").Good()) {}\n    ~FTransaction() { if (Active) Query(DB,\"ROLLBACK\"); }\n    bool Commit() { if (!Active) return false; const bool Ok=Query(DB,\"COMMIT\").Good(); Active=false; return Ok; }\n};"
+    },
+    {
+      "chapter": "10-backend/run-and-test",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "scripts/backend/Test-Backend.ps1",
+      "startLine": 50,
+      "endLine": 53,
+      "sourceSHA256": "62b68cf77a0f99572f0de4ab58426f946589ff9fcab5cc4ef228478efe3f643f",
+      "excerptSHA256": "7eceaaa9bbb7a56ee3a75f6db52e76a335d51daf5a72a1285d90ab0ff061c8f4",
+      "code": "$saved=Call-MMO '/v1/server/save' $save $serverToken\nAssert-MMO ($saved.Status -eq 200 -and $saved.Json.version -eq 1) 'transactionally save inventory and progression'\n$retry=Call-MMO '/v1/server/save' $save $serverToken\nAssert-MMO ($retry.Status -eq 200 -and $retry.Json.version -eq 1) 'identical save retry does not increment version'"
+    },
+    {
+      "chapter": "10-backend/deployment",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+      "startLine": 160,
+      "endLine": 167,
+      "sourceSHA256": "0582ae1f5eb3e91f0b589606148ed2b29c68bdfcbd98ff9260285dc54f2afe41",
+      "excerptSHA256": "6db73d34682dc60fc13631aa83ad7fc04c9a3eb0c6b53571b00b97e641789942",
+      "code": "bAccepting=false;\n// Drain accepted transactions before stopping the listeners. SQL/connection timeouts bound each job.\nwhile(Work.Num()>0)\n{\n    Work.Pump(); FTSTicker::GetCoreTicker().Tick(0.01f); FPlatformProcess::Sleep(0.01f);\n}\nconst double FlushUntil=FPlatformTime::Seconds()+0.2;\nwhile(FPlatformTime::Seconds()<FlushUntil) { FTSTicker::GetCoreTicker().Tick(0.01f); FPlatformProcess::Sleep(0.01f); }"
+    },
+    {
+      "chapter": "11-reference/troubleshooting",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp",
+      "startLine": 44,
+      "endLine": 47,
+      "sourceSHA256": "87695e320d66175e03bc47315e6272ecdc5826fc2e7095c1290cac44061ea6c4",
+      "excerptSHA256": "51cf0a14a7b5d00477526428cb5256e6687c18bbec72fe8223842f533bada38a",
+      "code": "float GetExperienceLoadDelayDuration()\n{\n\treturn FMath::Max(0.0f, ExperienceLoadRandomDelayMin + FMath::FRand() * ExperienceLoadRandomDelayRange);\n}"
+    },
+    {
+      "chapter": "11-reference/blueprint-screenshots",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/BlueprintScreenshotTool/Source/BlueprintScreenshotTool/Private/BlueprintScreenshotToolHandler.cpp",
+      "startLine": 128,
+      "endLine": 151,
+      "sourceSHA256": "735209ceed7cbb71211919a8ee2bde1ab4f4e7c49e7c984a77fe1bb8ff03f343",
+      "excerptSHA256": "f0b3ca90d8a47e1efbdbc9df5d566c04d3eccee18496009cb421e988ce4b46cc",
+      "code": "if (SelectedNodes.Num() > 0)\n{\n\tFSlateRect BoundsForSelectedNodes;\n\tInGraphEditor->GetBoundsForSelectedNodes(BoundsForSelectedNodes, Settings->ScreenshotPadding);\n\n\tNewViewLocation = BoundsForSelectedNodes.GetTopLeft();\n\tNewZoomAmount = Settings->ZoomAmount;\n\n\tWindowSizeScale = Settings->ZoomAmount;\n\n\tWindowSize = BoundsForSelectedNodes.GetSize();\n}\nelse\n{\n\tNewViewLocation = CachedViewLocation;\n\tNewZoomAmount = CachedZoomAmount;\n\n\tconst auto DPIScale = FPlatformApplicationMisc::GetDPIScaleFactorAtPoint(0.0f, 0.0f);\n\tconst auto& CachedGeometry = InGraphEditor->GetCachedGeometry();\n\tconst auto SizeOfWidget = CachedGeometry.GetLocalSize();\n\tWindowSize = SizeOfWidget * DPIScale;\n\n\tInGraphEditor->SetViewLocation(NewViewLocation, CachedZoomAmount);\n}"
+    },
+    {
+      "chapter": "11-reference/performance",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Performance/LyraPerformanceStatSubsystem.cpp",
+      "startLine": 30,
+      "endLine": 44,
+      "sourceSHA256": "f0624db16fce70e6508e31c333ba04907de7a73938742b0abc66938f8b0aa292",
+      "excerptSHA256": "48b36d19eac4359648e0941fe04437e50394dfdbf0f753dd4b32c12d597b0dbe",
+      "code": "// Record stats about the frame data\n{\n\tRecordStat(\n\t\tELyraDisplayablePerformanceStat::ClientFPS,\n\t\t(FrameData.TrueDeltaSeconds != 0.0) ?\n\t\t1.0 / FrameData.TrueDeltaSeconds :\n\t\t0.0);\n\n\tRecordStat(ELyraDisplayablePerformanceStat::IdleTime, FrameData.IdleSeconds);\n\tRecordStat(ELyraDisplayablePerformanceStat::FrameTime, FrameData.TrueDeltaSeconds);\n\tRecordStat(ELyraDisplayablePerformanceStat::FrameTime_GameThread, FrameData.GameThreadTimeSeconds);\n\tRecordStat(ELyraDisplayablePerformanceStat::FrameTime_RenderThread, FrameData.RenderThreadTimeSeconds);\n\tRecordStat(ELyraDisplayablePerformanceStat::FrameTime_RHIThread, FrameData.RHIThreadTimeSeconds);\n\tRecordStat(ELyraDisplayablePerformanceStat::FrameTime_GPU, FrameData.GPUTimeSeconds);\t\n}"
+    },
+    {
+      "chapter": "11-reference/publishing",
+      "sourceRoot": "F:/UE/LyraDoc",
+      "file": ".github/workflows/pages.yml",
+      "startLine": 15,
+      "endLine": 20,
+      "sourceSHA256": "f2bb8aebfd6c073e09db796c69af084af4eeff0ba41e00ed04e20e804f1b5f2f",
+      "excerptSHA256": "a456b2ac45849fabefd56134fd1e19b0ff8c4a395e79d753dc95fc753e06f0cb",
+      "code": "strategy:\n  matrix:\n    base-path: ['', '/Lyra']\nenv:\n  NEXT_PUBLIC_BASE_PATH: ${{ matrix.base-path }}\n  NEXT_TELEMETRY_DISABLED: '1'"
+    },
+    {
+      "chapter": "11-reference/glossary",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Source/LyraGame/Character/LyraPawnData.h",
+      "startLine": 37,
+      "endLine": 41,
+      "sourceSHA256": "a56a5b0504247cbf041e24de1ff9828ec6e0deffb1a1c60ff8c9a451ba47f76c",
+      "excerptSHA256": "f4e57e6db46c7f937fb03d0db1b130de4029c6c00a631bd6b1f5f6c32cfd0ab2",
+      "code": "TSubclassOf<APawn> PawnClass;\n\n// Ability sets to grant to this pawn's ability system.\nUPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = \"Lyra|Abilities\")\nTArray<TObjectPtr<ULyraAbilitySet>> AbilitySets;"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/PocketWorlds/Source/Private/PocketLevelSystem.cpp",
+      "startLine": 10,
+      "endLine": 36,
+      "sourceSHA256": "9ebbc8664afa76cd0355b631206e5a273451bd91fff83fc6d0ef36ba7911258c",
+      "excerptSHA256": "6a42ef63b2ecf9d3706ad842e64bb0efaf68fd5cf8012603310245ee17c76068",
+      "code": "UPocketLevelInstance* UPocketLevelSubsystem::GetOrCreatePocketLevelFor(ULocalPlayer* LocalPlayer, UPocketLevel* PocketLevel, FVector DesiredSpawnPoint)\n{\n\tif (PocketLevel == nullptr)\n\t{\n\t\treturn nullptr;\n\t}\n\n\tfloat VerticalBoundsOffset = 0;\n\tfor (UPocketLevelInstance* Instance : PocketInstances)\n\t{\n\t\tif (Instance->LocalPlayer == LocalPlayer && Instance->PocketLevel == PocketLevel)\n\t\t{\n\t\t\treturn Instance;\n\t\t}\n\n\t\tVerticalBoundsOffset += Instance->PocketLevel->Bounds.Z;\n\t}\n\n\tconst FVector SpawnPoint = DesiredSpawnPoint + FVector(0, 0, VerticalBoundsOffset);\n\n\tUPocketLevelInstance* NewInstance = NewObject<UPocketLevelInstance>(this);\n\tNewInstance->Initialize(LocalPlayer, PocketLevel, SpawnPoint);\n\n\tPocketInstances.Add(NewInstance);\n\n\treturn NewInstance;\n}"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/GameSubtitles/Source/Private/SubtitleDisplaySubsystem.cpp",
+      "startLine": 36,
+      "endLine": 40,
+      "sourceSHA256": "c8db5e9289e0413aed9ca534056f765d6d6d2b6dbdbae5084fd06a41686a4467",
+      "excerptSHA256": "4d16e7fb63a602406c82aacab79283e3c865a1134eb801867e9b411ee60c8c17",
+      "code": "void USubtitleDisplaySubsystem::SetSubtitleDisplayOptions(const FSubtitleFormat& InOptions)\n{\n\tSubtitleFormat = InOptions;\n\tDisplayFormatChangedEvent.Broadcast(SubtitleFormat);\n}"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/CommonStartupLoadingScreen/Source/CommonStartupLoadingScreen/Private/CommonStartupLoadingScreen.cpp",
+      "startLine": 34,
+      "endLine": 49,
+      "sourceSHA256": "629e5bc2847b7c0d6b6b08493a8fddfa2ebe6b53567999944de5a08cfa7cef21",
+      "excerptSHA256": "d095aed66093e8dbe75aa78b8923e7f743b6c8120663869b3bf9dc7c9ccd4b21",
+      "code": "void FCommonStartupLoadingScreenModule::StartupModule()\n{\n\t// No need to load these assets on dedicated servers.\n\t// Still want to load them in commandlets so cook catches them\n\tif (!IsRunningDedicatedServer())\n\t{\n\t\tPreLoadingScreen = MakeShared<FCommonPreLoadScreen>();\n\t\tPreLoadingScreen->Init();\n\n\t\tif (!GIsEditor && FApp::CanEverRender() && FPreLoadScreenManager::Get())\n\t\t{\n\t\t\tFPreLoadScreenManager::Get()->RegisterPreLoadScreen(PreLoadingScreen);\n\t\t\tFPreLoadScreenManager::Get()->OnPreLoadScreenManagerCleanUp.AddRaw(this, &FCommonStartupLoadingScreenModule::OnPreLoadScreenManagerCleanUp);\n\t\t}\n\t}\n}"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "sourceRoot": "F:/UE/LyraStarterGame",
+      "file": "Plugins/GameFeatures/TopDownArena/Source/TopDownArenaRuntime/Private/LyraCameraMode_TopDownArenaCamera.cpp",
+      "startLine": 14,
+      "endLine": 30,
+      "sourceSHA256": "da6a884993408abd3c27b50d92467e1b6a5fbf7b7e5ed7e19f371c4f427d9cee",
+      "excerptSHA256": "345650335702a2a63918324f15fbb4a886f12c5f6c5a4406f6f83cfe5757d67f",
+      "code": "void ULyraCameraMode_TopDownArenaCamera::UpdateView(float DeltaTime)\n{\n\tFBox ArenaBounds(FVector(-ArenaWidth, -ArenaHeight, 0.0f), FVector(ArenaWidth, ArenaHeight, 100.0f));\n\n\tconst double BoundsMaxComponent = ArenaBounds.GetSize().GetMax();\n\n\tconst double CameraLoftDistance = BoundsSizeToDistance.GetRichCurveConst()->Eval(BoundsMaxComponent);\n\n\tFVector PivotLocation = ArenaBounds.GetCenter() - DefaultPivotRotation.Vector() * CameraLoftDistance;\n\n\tFRotator PivotRotation = DefaultPivotRotation;\n\n\tView.Location = PivotLocation;\n\tView.Rotation = PivotRotation;\n\tView.ControlRotation = View.Rotation;\n\tView.FieldOfView = FieldOfView;\n}"
+    }
+  ]
+}

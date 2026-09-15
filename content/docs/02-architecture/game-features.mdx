@@ -41,8 +41,53 @@ Experience 激活动作时会设置 `FGameFeatureActivatingContext` 的世界上
 
 `GameFeatureAction_WorldActionBase` 提供世界开始相关的入口；派生动作保存组件请求、扩展句柄和委托，以便停用时回收。新功能实现必须同时设计“进入”和“离开”，否则反复 PIE 或切换世界会出现重复 HUD、重复输入、残留技能。
 
+{/* full-guide-begin */}
+
+## 对着两张动作面板逐项阅读
+
+![StandardComponents：Controller 上的快捷栏组件请求](/media/configuration/training/components-actionset.png)
+
+**看图操作**：从 ShooterCore → Experiences 双击 LAS_ShooterGame_StandardComponents，展开 Actions → Add Components → Component List → 索引 [1]。同时读 Actor Class=Controller、Component Class=B_QuickBarComponent，以及客户端/服务器两个勾。不要只展开外层数组数量。
+![StandardHUD：层布局与多个 HUD 扩展注册](/media/configuration/training/hud-actionset.png)
+
+**看图操作**：双击同文件夹的 LAS_ShooterGame_StandardHUD，展开 Layout 和 Widgets。把 W_ShooterHUDLayout 的 UI.Layer.Game 与 W_QuickBar 的 HUD.Slot.Equipment 分开记录；前者是整层布局，后者是布局内扩展位置。
+源码：`Source/LyraGame/GameModes/LyraExperienceActionSet.h`，本机第 34–40 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+// List of actions to perform as this experience is loaded/activated/deactivated/unloaded
+UPROPERTY(EditAnywhere, Instanced, Category="Actions to Perform")
+TArray<TObjectPtr<UGameFeatureAction>> Actions;
+
+// List of Game Feature Plugins this experience wants to have active
+UPROPERTY(EditAnywhere, Category="Feature Dependencies")
+TArray<FString> GameFeaturesToEnable;
+```
+
+### ActionSet 中每种值的含义
+
+`Actions` 是内嵌动作对象数组，`Instanced` 让每项可以持有自己的配置；`GameFeaturesToEnable` 是插件名字的字符串数组。ActionSet 不包含 PawnData，因此不能把“换角色”和“共享 HUD 注册”当成同一个字段改动。
+
+| 本章对象 | 输入 | 输出 | 停用时需要对应清理 |
+|---|---|---|---|
+| Add Components | Actor 类、组件类、端条件 | 对匹配 Actor 的组件请求 | 释放组件请求句柄 |
+| Add Abilities | Actor 类、技能集 | 授予的技能/效果/属性 | 用保存的授予句柄回收 |
+| Add Input | LocalPlayer、上下文/InputConfig | 映射或动作绑定 | 移除上下文/绑定 |
+| Add Widgets | 层标签、Widget 类、扩展标签 | 层布局与扩展注册 | 移除布局并注销扩展 |
+
+**第一次练习只读**：在纸上把两个截图里的 Controller、B_QuickBarComponent、W_QuickBar、HUD.Slot.Equipment 连起来。前两个负责运行数据和行为，后两个负责显示位置。组件出现在运行中的 Controller 上，并不要求它事先列在角色蓝图 Components 树里。
+
+**做自己的功能时**：在训练副本复制 ActionSet，改一项引用并保存，确认 Experience 引用的是副本，然后 PIE。退出再进入，检查没有重复组件或重复 HUD。不要在一次实验里同时改 Feature 状态、类、标签和根布局，这样无法知道哪一步导致失败。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 你应该能够指出一个运行时组件来自哪个 ActionSet。组件不出现时依次查 Feature 激活、目标 Actor 基类、世界条件、客户端/服务器标记以及组件扩展事件。
 
 练习：为“只在训练场显示靶场计分面板”写依赖清单。面板资产和注册动作放训练场 Feature，共用 UI 根布局留在基础层；停用时保存并注销扩展句柄。此练习是新增界面的设计任务；当前训练场实战验证已有 Shooter HUD 的装配与重生唯一性，未生成这块自定义计分面板。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+完成实验六的 HUD ActionSet 替换，重复进入、退出和重生，验证布局与扩展没有重复注册。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

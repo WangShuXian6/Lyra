@@ -1,3 +1,4 @@
+#include "MMODocProjectGuard.h"
 #include "MMODocExperienceTools.h"
 #include "MMOExperienceDefinition.h"
 #include "MMOPawnData.h"
@@ -88,7 +89,7 @@ FString UMMODocExperienceTools::ConfigureExperienceAssets(UDataAsset* Experience
     auto Encode = [&]() { FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text)); return Text; };
     FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath()); FPaths::NormalizeFilename(Project);
     auto* Experience = Cast<UMMOExperienceDefinition>(ExperienceAsset); auto* Pawn = Cast<UMMOPawnData>(PawnAsset); auto* Abilities = Cast<UMMOAbilitySet>(AbilityAsset);
-    if (!Project.Contains(TEXT("/LyraDocLabs/MMORPG/")) || !Experience || !Pawn || !Abilities
+    if (!IsMMODocProject() || !Experience || !Pawn || !Abilities
         || Experience->GetPathName() != TEXT("/Game/MMO/Experiences/DA_MMOExperience.DA_MMOExperience")
         || Pawn->GetPathName() != TEXT("/Game/MMO/Pawns/DA_MMOPlayer.DA_MMOPlayer")
         || Abilities->GetPathName() != TEXT("/Game/MMO/Abilities/DA_MMOAbilities.DA_MMOAbilities"))
@@ -123,7 +124,7 @@ FString UMMODocExperienceTools::RecompileGameplayBlueprints()
     auto Report = MakeShared<FJsonObject>(); Report->SetBoolField(TEXT("passed"), false);
     auto Encode = [&]() { FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text)); return Text; };
     FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath()); FPaths::NormalizeFilename(Project);
-    if (!Project.Contains(TEXT("/LyraDocLabs/MMORPG/"))) return Encode();
+    if (!IsMMODocProject()) return Encode();
     TArray<TSharedPtr<FJsonValue>> Assets;
     for (const TCHAR* Path : {TEXT("/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter"), TEXT("/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt"), TEXT("/Game/MMO/BP_MMOGameMode.BP_MMOGameMode")})
     {

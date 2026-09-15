@@ -41,6 +41,30 @@ description: 明确游戏服务器、账号服务和数据库的边界，并理�
 
 本机对照源：`Engine/Source/Programs/BlankProgram`、`Engine/Source/Runtime/Online/HTTPServer`。本课程使用 UE 原生 `HTTPServer`，没有引入额外 Web 框架。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![读一个 HTTP 请求的四个位置](/media/guide-diagrams/10-backend-index.svg)
+
+**读图**：网络请求到达、SQL 成功提交、调用方收到响应是不同时间点。后续章节逐个解释这些环节。
+
+### 没写过后端也可以从这五个词开始
+
+| 词 | 简单解释 | 本教程例子 |
+|---|---|---|
+| Route / 路由 | 接口地址中表示操作的路径 | `/v1/characters` |
+| HTTP Method | 对这个路径执行什么类型的请求 | GET 查询，POST 提交操作 |
+| JSON | 用对象、数组、字符串和数字传数据 | inventory 是物品数组 |
+| Status Code | 一次请求处理结果的类别 | 200 成功、400 请求不合约、503 服务暂不可用 |
+| Transaction / 事务 | 一组写入一起成功或一起回滚 | 更新角色并登记这次保存请求 |
+
+先运行 `/health` 再做注册，先读完整错误 JSON 再调整请求。浏览器打开 GET 地址不能替代带 JSON 与授权头的 POST；也不能用网站能访问证明游戏服务器可连接。
+
+后端没有对应的 UE Details 数据库配置面板。配置来自独立进程环境、脚本和 SQL；因此本篇使用源码与流程图，并在账号交互处对照真实游戏界面。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 阅读完后应能画出四个进程/系统之间的连接，并说明客户端为什么看不到数据库连接串。如果一个游戏模块出现 `MMOPersistence` 依赖，请先纠正依赖方向，再继续实现功能。

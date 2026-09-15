@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-09-15T10:53:47.118584+08:00",
+  "project": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG",
+  "engine": "E:/UnrealEngine, source UE 5.8.1",
+  "passed": true,
+  "scope": "Fresh directory, stage 00–03 Editor builds. No finished tutorial Content copied. Final runtime verified separately; fresh Client/Server packaged builds not rerun.",
+  "builds": [
+    {
+      "stage": 0,
+      "target": "MMORPGEditor Win64 Development",
+      "cumulativeFiles": 9,
+      "passed": true,
+      "result": "Succeeded",
+      "seconds": 17.42,
+      "localLog": "F:\\UE\\LyraDoc\\.local\\copy-course-stage0-build.log",
+      "logSHA256": "bc86243591de316ae4b74cc9d848434348a05f3dd24340962f7fb7a5793a481e"
+    },
+    {
+      "stage": 1,
+      "target": "MMORPGEditor Win64 Development",
+      "cumulativeFiles": 25,
+      "passed": true,
+      "result": "Succeeded",
+      "seconds": 46.65,
+      "localLog": "F:\\UE\\LyraDoc\\.local\\copy-course-stage1-build.log",
+      "logSHA256": "65a91f2611286cfd66508cb7043f8d8d1bc31eafd676448f6be809de458ce3f3"
+    },
+    {
+      "stage": 2,
+      "target": "MMORPGEditor Win64 Development",
+      "cumulativeFiles": 35,
+      "passed": true,
+      "result": "Succeeded",
+      "seconds": 13.24,
+      "localLog": "F:\\UE\\LyraDoc\\.local\\copy-course-stage2-build.log",
+      "logSHA256": "44227829c81744f42fe4ae3f681d78773bc5a5298489d03150af34b40d2888a6"
+    },
+    {
+      "stage": 3,
+      "target": "MMORPGEditor Win64 Development",
+      "cumulativeFiles": 164,
+      "passed": true,
+      "result": "Succeeded",
+      "seconds": 43.18,
+      "localLog": "F:\\UE\\LyraDoc\\.local\\copy-course-stage3-build.log",
+      "logSHA256": "704c04c0a5b3eb04a888c76a4ef6ca912e502010729301ea8acb6699dc1a3c09"
+    }
+  ],
+  "sourceBookDisplays": 102,
+  "uniqueSourceBookPaths": 98
+}

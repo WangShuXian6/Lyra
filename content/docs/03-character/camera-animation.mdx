@@ -61,6 +61,79 @@ if ((Rule.Layer != nullptr) && CosmeticTags.HasAll(Rule.RequiredTags))
 
 `FLyraCharacterPartList::SpawnActorForEntry` 明确排除 `NM_DedicatedServer`。外观部件不能承担只有它自己才知道的关键战斗状态；独立服务器可能根本不生成该装饰 Actor。伤害、交互和装备权威数据应来自游戏逻辑对象。
 
+{/* full-guide-begin */}
+
+## 从三张真实面板读相机和武器动画
+
+![CM_ThirdPerson 的 View 字段：80° 视野与上下俯仰限制](/media/beginner/whole-guide/camera-view.png)
+
+**看图操作**：从 PawnData 的 Default Camera Mode 定位 CM_ThirdPerson；打开类默认值，在搜索框输入 View。本机 Field Of View=80，View Pitch Min=-89，Max=89。角度单位是度；调视野不是改角色移动速度。
+![CM_ThirdPerson：碰撞避免与 ThirdPersonOffsetCurve](/media/beginner/whole-guide/camera-offset.png)
+
+**看图操作**：清空 View 搜索，展开碰撞与 Third Person。Target Offset Curve 实际引用 ThirdPersonOffsetCurve；Use Runtime Float Curves 未勾选，所以不要只改下方灰色曲线后期待当前路径生效。
+源码：`Source/LyraGame/Character/LyraHeroComponent.cpp`，本机第 471–493 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+TSubclassOf<ULyraCameraMode> ULyraHeroComponent::DetermineCameraMode() const
+{
+	if (AbilityCameraMode)
+	{
+		return AbilityCameraMode;
+	}
+
+	const APawn* Pawn = GetPawn<APawn>();
+	if (!Pawn)
+	{
+		return nullptr;
+	}
+
+	if (ULyraPawnExtensionComponent* PawnExtComp = ULyraPawnExtensionComponent::FindPawnExtensionComponent(Pawn))
+	{
+		if (const ULyraPawnData* PawnData = PawnExtComp->GetPawnData<ULyraPawnData>())
+		{
+			return PawnData->DefaultCameraMode;
+		}
+	}
+
+	return nullptr;
+}
+```
+
+第一段优先返回技能设置的 AbilityCameraMode；否则找当前 Pawn 的 PawnExtension，再读 PawnData.DefaultCameraMode。任一必要对象不存在，函数可以返回 nullptr。它返回的是模式类，最终相机视图由 CameraComponent/CameraModeStack 继续计算。
+
+因此实验中改默认 80° 却没看见效果时，要先判断是否有技能临时覆盖相机；不要在多个 CameraComponent 里同时改 FOV 来猜。
+![B_WeaponInstance_Rifle 的装备与未装备动画选择规则](/media/beginner/whole-guide/weapon-animation-layers.png)
+
+**看图操作**：打开步枪实例类的 Class Defaults，搜索 Anim，右键 Equipped Anim Set 和 Uneuipped Anim Set 字段名选择“全部展开”。图中 Feminine 标签规则先选对应 Feminine 层；不匹配时分别用 ABP_RifleAnimLayers 与 ABP_UnarmedAnimLayers。
+源码：`Source/LyraGame/Cosmetics/LyraCosmeticAnimationTypes.cpp`，本机第 10–21 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+TSubclassOf<UAnimInstance> FLyraAnimLayerSelectionSet::SelectBestLayer(const FGameplayTagContainer& CosmeticTags) const
+{
+	for (const FLyraAnimLayerSelectionEntry& Rule : LayerRules)
+	{
+		if ((Rule.Layer != nullptr) && CosmeticTags.HasAll(Rule.RequiredTags))
+		{
+			return Rule.Layer;
+		}
+	}
+
+	return DefaultLayer;
+}
+```
+
+`HasAll` 要求角色外观标签包含规则需要的全部标签；找到第一条有效规则就 return，所以顺序有意义。最后的 DefaultLayer 是没有匹配规则的回退。函数只选类，后续还要由装备蓝图把层连接到正确 SkeletalMesh。
+
+**练习拆成两次**：先在副本改默认相机视野并重开 PIE；恢复后，再只更换一项兼容 Skeleton/接口的动画层。每次记录原值、新值、实际引用的副本，以及表现变化，避免把相机距离变化误认成角色大小改变。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 改变相机数据应改变观察视图，同时角色运动保持可解释。武器姿势错误时查动画层选择与资源兼容；重生后外观丢失时查 Controller 到新 Pawn 的部件应用。练习：列出一次步枪切手枪涉及的装备、动画、UI 和输入设备反馈四条路径，标注哪些仅在客户端执行。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验一给出了从 Duplicate、Class Defaults 到 PawnData 引用替换和恢复的完整顺序，可直接按 80→65 度练习。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

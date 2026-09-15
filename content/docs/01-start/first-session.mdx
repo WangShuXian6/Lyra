@@ -59,6 +59,29 @@ EditorStartupMap=/Game/System/DefaultEditorMap/L_DefaultEditorOverview.L_Default
 
 官方资产提供淘汰玩法 `B_ShooterGame_Elimination` 和控制点玩法 `B_LyraShooterGame_ControlPoints`，都在 `/ShooterCore/Experiences`。资产名字证明它们存在；具体默认值以编辑器 Class Defaults 为准。
 
+{/* full-guide-begin */}
+
+## 第一次 PIE 的逐步观察
+
+![打开地图与进入玩法是两次选择](/media/guide-diagrams/01-start-first-session.svg)
+
+**读图**：不要看到主窗口就认定已经进入射击模式。一个地图可以被不同 Experience 组合成不同玩法。
+![项目设置中的四个入口：默认 GameMode、编辑器地图、游戏地图、GameInstance](/media/configuration/training/maps-modes.png)
+
+**看图操作**：从 编辑 → 项目设置 → 地图和模式 进入。先读 Editor Startup Map=L_DefaultEditorOverview，再读 Game Default Map=L_LyraFrontEnd；两行不是同一个启动入口。此图来自既有 UE 5.8.1 教学副本记录，字段用于对照，当前运行结果仍看实际地图和日志。
+
+### 第一轮只练操作，不改配置
+
+1. 打开内容浏览器，启用插件内容，进入 ShooterMaps 的 Maps 目录，找到本章所选射击地图。双击关卡资产后等加载结束，读顶部关卡标签。
+2. 在主窗口 **窗口 → 世界场景设置** 打开面板，清空搜索，再看 **Default Gameplay Experience**。`None` 意味着本地图没有在这行提供覆盖，并不自动说明加载器最终也会选 None。
+3. 单击工具栏绿色三角，在出现的游戏视口内单击获得输入焦点，再测试移动、跳跃和开火。鼠标没有被游戏捕获时，WASD 可能仍在操作编辑器相机。
+4. 用 `Shift+F1` 释放鼠标，打开输出日志，搜索 `Identified experience`，记录实际选择与来源；再点停止按钮结束。
+5. 停止后观察 Outliner：运行中生成的 Pawn/武器会消失。它们是本次运行实例，不能因为停止后找不到就重新创建同名资产。
+
+**检查点**：同时保存三项观察：关卡标签、实际 Experience 日志、能执行的一项动作。只有“看见角色”的截图无法证明输入和技能都接通。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 应该能在 PIE 中观察角色、武器与 HUD，并准确记录所选 Experience。进入后只有观察者相机时，先确认 Experience 加载完成和 PawnData；黑屏或长期加载则看 `LogLyraExperience`，不要先重做灯光。

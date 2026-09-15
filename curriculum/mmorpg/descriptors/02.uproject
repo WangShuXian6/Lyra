@@ -1,0 +1,39 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "",
+  "Category": "Education",
+  "Description": "Lyra patterns rebuilt as a small authenticated multiplayer RPG.",
+  "Modules": [
+    {
+      "Name": "MMORPG",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "GameplayAbilities",
+      "Enabled": true
+    },
+    {
+      "Name": "EnhancedInput",
+      "Enabled": true
+    },
+    {
+      "Name": "ModularGameplay",
+      "Enabled": true
+    },
+    {
+      "Name": "GameFeatures",
+      "Enabled": true
+    },
+    {
+      "Name": "MMOIntegration",
+      "Enabled": true
+    },
+    {
+      "Name": "MMOFramework",
+      "Enabled": true
+    }
+  ]
+}

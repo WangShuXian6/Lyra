@@ -74,6 +74,58 @@ py exec(open(r'F:/UE/LyraDoc/scripts/verify-training-lifecycle.py', encoding='ut
 
 预期链条是：拾取或获得物品 → 快捷栏切换 → 装备授予技能 → 开火消耗弹药 → 伤害/死亡 → HUD 与计分更新。每一步用断点或日志确认所属客户端或服务器，避免把单机运行误认为网络验证。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 用一张配置图解释“快捷栏有枪但不能开火”
+![WID_Rifle 中实例、技能集和外观 Actor 的三组配置](/media/beginner/rifle/wid-rifle-defaults.png)
+
+**看图操作**：切到步枪后，按 WID_Rifle 的 Instance Type、Ability Sets To Grant、Actors To Spawn 分别查运行对象。三组字段互相配合，不能只确认 Actors To Spawn 出现了模型。
+源码：`Source/LyraGame/Equipment/LyraQuickBarComponent.cpp`，本机第 86–109 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void ULyraQuickBarComponent::EquipItemInSlot()
+{
+	check(Slots.IsValidIndex(ActiveSlotIndex));
+	check(EquippedItem == nullptr);
+
+	if (ULyraInventoryItemInstance* SlotItem = Slots[ActiveSlotIndex])
+	{
+		if (const UInventoryFragment_EquippableItem* EquipInfo = SlotItem->FindFragmentByClass<UInventoryFragment_EquippableItem>())
+		{
+			TSubclassOf<ULyraEquipmentDefinition> EquipDef = EquipInfo->EquipmentDefinition;
+			if (EquipDef != nullptr)
+			{
+				if (ULyraEquipmentManagerComponent* EquipmentManager = FindEquipmentManager())
+				{
+					EquippedItem = EquipmentManager->EquipItem(EquipDef);
+					if (EquippedItem != nullptr)
+					{
+						EquippedItem->SetInstigator(SlotItem);
+					}
+				}
+			}
+		}
+	}
+}
+```
+
+函数依次检查槽位有效、槽位有物品、物品有可装备碎片、碎片有装备定义、角色有装备管理器。任一层没有数据，都不能走到最后创建装备。`SetInstigator(SlotItem)` 把装备与原物品关联起来，后续弹药等逻辑才能找到对应实例。
+
+逐层调试时，在 Rider 看局部变量 `SlotItem → EquipInfo → EquipDef → EquipmentManager → EquippedItem`。第一次先看它是否为空，再展开属性；不要一次展开整个对象树。
+
+| 画面变化 | 同时要核对的状态 | 本章对应操作 |
+|---|---|---|
+| 切枪后模型换了 | 活动槽位、装备定义、授予的武器能力 | 切换武器 |
+| 换弹动画播放 | 同一物品的弹匣与备用标签数 | 射击后换弹 |
+| 拾取物消失 | 服务器成功授予、冷却状态开始 | 重叠拾取 |
+| 新角色出现 | 新 Avatar、原 ASC、技能/HUD 各一份 | 死亡重生 |
+
+**完成检查**：把“可见证据”和“对象/数值证据”成对记录。读者自己的运行结果应另存，不覆盖文档保留的历史报告。
+
+{/* full-guide-end */}
+
 ## 排障与练习
 
 物品存在而无法开火时，先查看装备授予的 AbilitySpec；不要首先修改动画。Bot 不动时，先看 NavMesh 和控制器，随后检查行为树。HUD 空白时从 LocalPlayer 与扩展点开始，逐帧 Tick 刷新控件只会掩盖注册问题。

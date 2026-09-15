@@ -66,6 +66,59 @@ Setting->SetDefaultValue(GetDefault<ULyraSettingsLocal>()->GetOverallVolume());
 
 CommonUI 继续负责激活、焦点与输入；ViewModel 负责状态展示；游戏服务器继续负责权威数据。ViewModel 不应直接使用数据库连接，也不通过 UI 属性绑定决定伤害。数据订阅必须随角色变化解绑旧来源、绑定新来源，并立即刷新一次初始快照。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![一个音量滑块怎样应用并保存](/media/guide-diagrams/06-ui-settings-mvvm.svg)
+
+**读图**：Registry 是目录和规则，Local/Shared Settings 是设置状态的存储入口。后续 MMO 战斗 ViewModel 不替代这里的设置保存流程。
+
+### 实际创建 OverallVolume 的代码
+源码：`Source/LyraGame/Settings/LyraGameSettingRegistry_Audio.cpp`，本机第 41–52 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+Setting->SetDevName(TEXT("OverallVolume"));
+Setting->SetDisplayName(LOCTEXT("OverallVolume_Name", "Overall"));
+Setting->SetDescriptionRichText(LOCTEXT("OverallVolume_Description", "Adjusts the volume of everything."));
+
+Setting->SetDynamicGetter(GET_LOCAL_SETTINGS_FUNCTION_PATH(GetOverallVolume));
+Setting->SetDynamicSetter(GET_LOCAL_SETTINGS_FUNCTION_PATH(SetOverallVolume));
+Setting->SetDefaultValue(GetDefault<ULyraSettingsLocal>()->GetOverallVolume());
+Setting->SetDisplayFormat(UGameSettingValueScalarDynamic::ZeroToOnePercent);
+
+Setting->AddEditCondition(FWhenPlayingAsPrimaryPlayer::Get());
+
+Volume->AddSetting(Setting);
+```
+
+DevName 是内部标识；DisplayName 和 Description 使用 LOCTEXT，为本地化保留文本标识。Getter/Setter 的路径指向 LocalSettings 的函数，DefaultValue 读取类默认值。ZeroToOnePercent 说明 0.5 显示成 50%，不是把底层数值写成 50。PrimaryPlayer 条件限制哪个本地玩家能编辑设备级音量。
+
+在 UE 中打开 W_LyraSettingScreen → Designer，Hierarchy 选 Settings_Panel。画布里出现 `{Setting Name}` 或 `No Editor Found` 这类设计占位，不等于真实设置菜单已经加载失败；真实 Registry 由 `ULyraSettingScreen::CreateRegistry` 在运行时创建并绑定 OwningLocalPlayer。
+
+### “返回”并不总是“取消”
+源码：`Source/LyraGame/UI/LyraSettingScreen.cpp`，本机第 34–44 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void ULyraSettingScreen::HandleBackAction()
+{
+	if (AttemptToPopNavigation())
+	{
+		return;
+	}
+
+	ApplyChanges();
+
+	DeactivateWidget();
+}
+```
+
+先尝试退出设置内部的子导航；如果没有子导航可退，就 ApplyChanges 并 DeactivateWidget。取消修改由独立 HandleCancelChangesAction 调用 CancelChanges。按照具体代码解释按钮语义，不能用一般软件习惯猜测。
+
+**练习步骤**：记录原音量 → 改一个值 → 用 Cancel Changes 撤销 → 再改一次并 Apply → 重启核对。用实验副本，写下每个按钮对应的函数。语言设置还需要独立进程检查，本章前面已说明 PIE 的验证边界。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 设置项能显示、应用、取消、恢复默认并正确保存。ViewModel 设计则应明确本地玩家、角色和单个窗口各自的生命周期。练习：为血量百分比、冷却剩余秒数和错误提示写 ViewModel 字段清单，说明更新来源、通知时机及重生时如何重置。

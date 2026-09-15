@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="658" viewBox="0 0 1120 658" role="img" aria-labelledby="title desc">
+<title id="title">换角色时的订阅顺序</title><desc id="desc">以 BindPlayer/Unbind 的实际逻辑阅读。弱引用失效检查不能替代主动解绑仍然存活的旧 Pawn。</desc>
+<defs><marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#7aa6b2"/></marker></defs>
+<rect width="1120" height="658" rx="18" fill="#112027"/>
+<g font-family="Noto Sans SC,Microsoft YaHei,sans-serif">
+<text x="42" y="48" fill="#f1f5f6" font-size="27" font-weight="700">换角色时的订阅顺序</text>
+<text x="42" y="80" fill="#9db4bd" font-size="17">关系示意图 · 按序号阅读 · 不是编辑器截图</text>
+<rect x="42" y="110" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="142" r="18" fill="#b6d588"/>
+<text x="78" y="149" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">1</text>
+<text x="112" y="148" fill="#f1f5f6" font-size="23" font-weight="700">对象没有变化</text>
+<text x="112" y="178" fill="#d3e1e6" font-size="18">PlayerState 与 Pawn 都相同则复用现有绑定。</text>
+<path d="M560,211 V230" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="238" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="270" r="18" fill="#b6d588"/>
+<text x="78" y="277" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">2</text>
+<text x="112" y="276" fill="#f1f5f6" font-size="23" font-weight="700">先解绑旧来源</text>
+<text x="112" y="306" fill="#d3e1e6" font-size="18">移除属性、效果、进度和目标委托，停止旧计时器。</text>
+<path d="M560,339 V358" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="366" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="398" r="18" fill="#b6d588"/>
+<text x="78" y="405" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">3</text>
+<text x="112" y="404" fill="#f1f5f6" font-size="23" font-weight="700">再绑定新来源</text>
+<text x="112" y="434" fill="#d3e1e6" font-size="18">保存新对象，建立各自更新函数的委托。</text>
+<path d="M560,467 V486" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="494" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="526" r="18" fill="#b6d588"/>
+<text x="78" y="533" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">4</text>
+<text x="112" y="532" fill="#f1f5f6" font-size="23" font-weight="700">立即刷新一次</text>
+<text x="112" y="562" fill="#d3e1e6" font-size="18">订阅只能接收之后的变化，初始状态需要主动读取。</text>
+</g></svg>

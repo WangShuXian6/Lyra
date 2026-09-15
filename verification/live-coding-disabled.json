@@ -1,0 +1,177 @@
+{
+  "checkedAt": "2026-09-15T08:04:24.400413+08:00",
+  "engine": "E:/UnrealEngine",
+  "initialEditorProcesses": [],
+  "backupDirectory": "F:\\UE\\LyraDoc\\.local\\live-coding-backup-20260915-080424",
+  "files": [
+    {
+      "path": "F:\\UE\\LyraStarterGame\\Config\\DefaultEditorPerProjectUserSettings.ini",
+      "beforeSection": "[/Script/LiveCoding.LiveCodingSettings]\n",
+      "after": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "existed": true,
+      "explicitValuesAtVerification": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "effectiveValuesWithProjectDefaults": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "verifiedAt": "2026-09-15T08:35:05.733980+08:00",
+      "sha256AtVerification": "0e0acc328e6b84e2251ef2e24aad9fecab72c1ebcd1b2cb4b70135f26bdfb9ed"
+    },
+    {
+      "path": "F:\\UE\\LyraStarterGame\\Saved\\Config\\WindowsEditor\\EditorPerProjectUserSettings.ini",
+      "beforeSection": "[/Script/LiveCoding.LiveCodingSettings]\nbEnabled=False\nbPreloadEngineModules=False\nbPreloadEnginePluginModules=False\nbPreloadProjectModules=True\nbPreloadProjectPluginModules=True\n\n",
+      "after": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "existed": true,
+      "explicitValuesAtVerification": {
+        "bEnabled": "False"
+      },
+      "effectiveValuesWithProjectDefaults": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "verifiedAt": "2026-09-15T08:35:05.733980+08:00",
+      "sha256AtVerification": "bfd68a235db8f79159f2584c198b16bdf8542da0fb896fc6c725814707dd9793"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Config\\DefaultEditorPerProjectUserSettings.ini",
+      "beforeSection": "[/Script/LiveCoding.LiveCodingSettings]\n",
+      "after": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "existed": true,
+      "explicitValuesAtVerification": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "effectiveValuesWithProjectDefaults": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "verifiedAt": "2026-09-15T08:35:05.733980+08:00",
+      "sha256AtVerification": "0e0acc328e6b84e2251ef2e24aad9fecab72c1ebcd1b2cb4b70135f26bdfb9ed"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\LyraTraining\\Saved\\Config\\WindowsEditor\\EditorPerProjectUserSettings.ini",
+      "beforeSection": "[/Script/LiveCoding.LiveCodingSettings]\n",
+      "after": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "existed": true,
+      "explicitValuesAtVerification": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "effectiveValuesWithProjectDefaults": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "verifiedAt": "2026-09-15T08:35:05.733980+08:00",
+      "sha256AtVerification": "470b62efefca638f6d3798c75591c06b5c0fa21df0a9cde89294eeb17dde39a2"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Config\\DefaultEditorPerProjectUserSettings.ini",
+      "beforeSection": "[/Script/LiveCoding.LiveCodingSettings]\n",
+      "after": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "existed": true,
+      "explicitValuesAtVerification": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "effectiveValuesWithProjectDefaults": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "verifiedAt": "2026-09-15T08:35:05.733980+08:00",
+      "sha256AtVerification": "fb38668bc8ea6f7b594f1e9c92924621926fdf180f15feaa8c7ec172c48ebd4e"
+    },
+    {
+      "path": "F:\\UE\\LyraDocLabs\\MMORPG\\Saved\\Config\\WindowsEditor\\EditorPerProjectUserSettings.ini",
+      "beforeSection": "[/Script/LiveCoding.LiveCodingSettings]\n",
+      "after": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "existed": true,
+      "explicitValuesAtVerification": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "effectiveValuesWithProjectDefaults": {
+        "bEnabled": "False",
+        "Startup": "Manual",
+        "bAutomaticallyCompileNewClasses": "False"
+      },
+      "verifiedAt": "2026-09-15T08:35:05.733980+08:00",
+      "sha256AtVerification": "1b414ab4cefbd3173e5d1d533e2751d1cf27788deffdd26afebbc4400c0ad36b"
+    }
+  ],
+  "excludedProjectRestored": "Clawtopia: both files restored byte-for-byte from backup",
+  "excludedProjectVerification": [
+    {
+      "path": "F:/UE/Clawtopia/Config/DefaultEditorPerProjectUserSettings.ini",
+      "matchesOriginalBackup": true,
+      "sha256": "bd20243516ad52b9875baada2e25ddc191a81a9a6e94b6a11699f0352c29a0a3"
+    },
+    {
+      "path": "F:/UE/Clawtopia/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini",
+      "matchesOriginalBackup": true,
+      "sha256": "2399fdced868e51048e97fc08af8cceb9f7d2a87de150f098b2470198aeb57e6"
+    }
+  ],
+  "configSerializationNote": "After the baseline editor reopened, its Saved user INI omitted Startup and bAutomaticallyCompileNewClasses. Those values remain in project defaults and were confirmed on the running settings object. Other teaching projects retain all three explicit Saved entries.",
+  "runtimeVerification": {
+    "checkedAt": "2026-09-15T08:35:05.733980+08:00",
+    "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+    "editorPid": 12344,
+    "nativeMcpPort": 8000,
+    "toolset": "ConfigSettingsToolset.ConfigSettingsToolset",
+    "tool": "GetSectionPropertyValues",
+    "arguments": {
+      "containerName": "Editor",
+      "categoryName": "General",
+      "sectionName": "Live Coding",
+      "propertyNames": [
+        "bEnabled",
+        "Startup",
+        "bAutomaticallyCompileNewClasses"
+      ]
+    },
+    "values": {
+      "bEnabled": false,
+      "Startup": "Manual",
+      "bAutomaticallyCompileNewClasses": false
+    },
+    "liveCodingLaunchOverride": false,
+    "otherTeachingProjects": "Configuration files verified; editors not launched for this task."
+  }
+}

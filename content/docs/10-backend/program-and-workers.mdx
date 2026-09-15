@@ -138,6 +138,42 @@ while (!IsEngineExitRequested())
 
 启动脚本提供 `-ShutdownFile`。停止脚本创建这个文件后，服务先拒绝新请求，再等待已经接收的操作完成，发送剩余响应，最后关闭监听器和线程。退出流程调用 `AppPreExit`、模块卸载和 `AppExit`。关闭进程窗口或硬杀进程不具备同样的排空保证；未提交 PostgreSQL 事务会回滚，已提交但响应丢失的保存应以相同 `requestId` 重试。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 队列为什么还要有完成队列
+源码：`examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp`，本机第 82–92 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+bool Enqueue(MMO::FRequest Request,const FHttpResultCallback& Complete)
+{
+    if(Outstanding.Increment()>32) { Outstanding.Decrement(); return false; }
+    FScopeLock Lock(&Mutex); Pending.Add({MoveTemp(Request),Complete}); return true;
+}
+void Pump()
+{
+    FCompleted Done;
+    while(Completed.Dequeue(Done)) { Send(Done.Reply,Done.Complete); Outstanding.Decrement(); }
+}
+int32 Num() const { return Outstanding.GetValue(); }
+```
+
+Enqueue 先增加 Outstanding；超过 32 就撤销计数并返回 false。锁只保护把任务放入 Pending 的短操作，SQL 不在这把锁里执行。两个工作线程分别处理任务，然后把结果放入 Completed。
+
+Pump 由主线程调用，取出每个完成结果、发送响应，再减少 Outstanding。也就是说计数包含排队、运行和等待发送的任务；不是只看 Pending 数组长度。达到上限时路由返回 503 busy，调用者应等候重试。
+![两工作线程与主线程如何交接](/media/guide-diagrams/10-backend-program-and-workers.svg)
+
+**读图**：队列交换的是请求/响应数据，不能把 Pawn 或 Widget 指针交给数据库线程使用。每条连接只有所属工作线程访问。
+
+### C++ 阅读提示
+
+`MoveTemp` 表示把已有对象的资源转交给后续持有者；后续不要假定被移动对象仍保存原内容。`FScopeLock` 在当前作用域结束时释放锁；`TQueue<..., Mpsc>` 支持多个生产者、一个消费者，正好对应两个 Worker 与一个 Pump。
+
+**断点练习**：在 Database.Execute 和 Pump 各设一个断点，查看 Rider 的 Threads 窗口，记录线程名称。暂停 Worker 时主线程还可工作；暂停整个进程造成的超时则不代表代码本来执行了那么久。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 在 HTTP 路由和 `FMMOPersistence::Execute` 下断点，观察它们的线程 ID 不同。数据库暂时不可用时，服务应返回 503，主循环仍能处理其他请求和退出信号。

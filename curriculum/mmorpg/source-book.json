@@ -1,0 +1,520 @@
+{
+  "groups": [
+    {
+      "id": "skeleton",
+      "title": "00 空白工程骨架",
+      "intro": "这是第一次构建所需的全部骨架文件。按路径复制，保持项目名 MMORPG，再运行 Editor 构建。",
+      "lesson": "/docs/08-mmorpg/from-zero",
+      "reading": "### 为什么这个阶段可以单独编译\n\nMMORPG.cpp 只有模块入口，没有尚未实现的游戏类；Build.cs 只声明引擎基础模块。Target 选择产物，DefaultEngine.ini 选择引擎已有的 Entry。阶段 01/02 只扩展插件描述符，阶段 03 才用完整游戏 Build.cs 和 Config 替换骨架。",
+      "files": [
+        {
+          "source": "curriculum/mmorpg/skeleton/Config/DefaultEditorPerProjectUserSettings.ini",
+          "target": "Config/DefaultEditorPerProjectUserSettings.ini"
+        },
+        {
+          "source": "curriculum/mmorpg/skeleton/Config/DefaultEngine.ini",
+          "target": "Config/DefaultEngine.ini"
+        },
+        {
+          "source": "curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.Build.cs",
+          "target": "Source/MMORPG/MMORPG.Build.cs"
+        },
+        {
+          "source": "curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.cpp",
+          "target": "Source/MMORPG/MMORPG.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG.Target.cs",
+          "target": "Source/MMORPG.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGEditor.Target.cs",
+          "target": "Source/MMORPGEditor.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGClient.Target.cs",
+          "target": "Source/MMORPGClient.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGServer.Target.cs",
+          "target": "Source/MMORPGServer.Target.cs"
+        },
+        {
+          "source": "curriculum/mmorpg/descriptors/00.uproject",
+          "target": "MMORPG.uproject"
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "title": "工程入口与构建目标",
+      "intro": "先复制 00 骨架，再比较 03 的完整依赖。Target 决定构建 Editor、Client、Server 或 Program；Build.cs 决定某一个模块能引用哪些模块。",
+      "lesson": "/docs/08-mmorpg/from-zero",
+      "files": [
+        {
+          "source": "examples/MMORPG/MMORPG.uproject",
+          "target": "MMORPG.uproject"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG.Target.cs",
+          "target": "Source/MMORPG.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/MMORPG.Build.cs",
+          "target": "Source/MMORPG/MMORPG.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/MMORPG.cpp",
+          "target": "Source/MMORPG/MMORPG.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGClient.Target.cs",
+          "target": "Source/MMORPGClient.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGEditor.Target.cs",
+          "target": "Source/MMORPGEditor.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGServer.Target.cs",
+          "target": "Source/MMORPGServer.Target.cs"
+        }
+      ],
+      "reading": "### 代码、插件和构建目标的关系\n\n`.uproject.Modules` 只列游戏运行模块，不需要把所有依赖挨个写进这个数组；依赖来自各 Build.cs。`ExtraModuleNames.Add(\"MMORPG\")` 把游戏模块加入目标。`MMORPG_API` 是模块导出宏，跨模块引用时需要保留。\n\nMMOBackendService 是 Program，自己的 Target 指定 LaunchModuleName；它不是在游戏内 Spawn 的 Actor。先做阶段 00 的轻量版本，再到 03 替换完整 Build.cs 和描述符。"
+    },
+    {
+      "id": "framework",
+      "title": "数据定义与初始化框架",
+      "intro": "先定义 AbilitySet、InputConfig、PawnData、Experience 的字段，再写加载和授予函数，最后写 PawnExtension 的就绪条件。各类都是同一 MMOFramework 模块的组成部分，复制完整一组再编译。",
+      "lesson": "/docs/08-mmorpg/character-gas",
+      "files": [
+        {
+          "source": "curriculum/mmorpg/descriptors/01.uproject",
+          "target": "MMORPG.uproject"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/MMOFramework.uplugin",
+          "target": "Plugins/MMOFramework/MMOFramework.uplugin"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp"
+        }
+      ],
+      "reading": "### 从一个字段追到实际行为\n\n1. `MMOExperienceDefinition` 的 DefaultPawnData 指向 `MMOPawnData`；PawnData 再指向角色类、AbilitySets、输入和动画类。这些软引用是路径，必须被加载后才能取到对象。\n2. `CollectAssetPaths` 把 AbilitySet 中的技能、Effect、属性类加入待加载清单。ExperienceManager 负责等待依赖闭包加载和 GameFeature 激活；不能只加载最外层 Experience。\n3. `GrantToAbilitySystem` 先检查服务器权限和全组类是否已经可用，再添加 AttributeSet、授予能力、应用 Effect，并记录句柄。失败不应留下半套技能。\n4. `TakeFromAbilitySystem` 使用原先句柄清理。一个 `GiveAbility` 对应何时撤销，是改造技能组时必须回答的问题。\n5. PawnExtension 在 `CanChangeInitState` 检查 PawnData、Controller、PlayerState、ASC、输入是否满足当前机器的条件。复制到达顺序不同，所以需要事件重试。\n\n**对照蓝图配置**：在 DA_MMOAbilities 改技能类，在 DA_MMOPlayer 选择这份 AbilitySet，在 DA_MMOExperience 选择 PawnData。代码定义字段和规则，三个资产决定本局实际使用的数据。"
+    },
+    {
+      "id": "http",
+      "title": "协议与 HTTP 模块",
+      "intro": "MMOContracts 定义与校验传输数据；Client 负责玩家请求，Server 负责游戏服凭据。ServerOnly 模块只参与允许服务器代码的目标。三者一起完成 02 阶段。",
+      "lesson": "/docs/10-backend/authentication",
+      "files": [
+        {
+          "source": "curriculum/mmorpg/descriptors/02.uproject",
+          "target": "MMORPG.uproject"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOContracts/Public/MMOContracts.h",
+          "target": "Source/MMOContracts/Public/MMOContracts.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/MMOIntegration.uplugin",
+          "target": "Plugins/MMOIntegration/MMOIntegration.uplugin"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOContracts/MMOContracts.Build.cs",
+          "target": "Source/MMOContracts/MMOContracts.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOContracts/Private/MMOContracts.cpp",
+          "target": "Source/MMOContracts/Private/MMOContracts.cpp"
+        }
+      ],
+      "reading": "### 怎样读一次异步请求\n\n先在 MMOContracts 找请求/响应与校验函数，再在 MMOBackendClient 看 `Request`。调用返回时 HTTP 可能还没完成；结果在完成回调中处理，Pending 集合负责保证只完成一次。请求失败时也要结束 UI 的等待状态。\n\n`UMMORequestAction` 把原生 HTTP 包成 Blueprint Async Action：工厂函数暴露节点，Activate 开始工作，完成委托输出 bSuccess/StatusCode/Json。蓝图的白线决定执行顺序，Json 数据线传递正文，两者不能互换。\n\nMMOBackendServer 使用服务器身份发请求，不能把它的服务凭据移到 MMOBackendClient。复制整个模块时保留 ServerOnly 类型和 Build.cs 的依赖条件；后端账号会话、入服票据和角色租约是三种不同凭据。"
+    },
+    {
+      "id": "gameplay",
+      "title": "角色、战斗与存档代码",
+      "intro": "先写头文件声明，再写主实现与 Experience 接入。PlayerState 保有身份和 ASC，Character 提供当前身体；GameMode 在 Experience 和角色存档都完成后生成 Pawn。",
+      "lesson": "/docs/08-mmorpg/character-gas",
+      "files": [
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Public/MMOGameplay.h",
+          "target": "Source/MMORPG/Public/MMOGameplay.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOExperienceGameplay.cpp",
+          "target": "Source/MMORPG/Private/MMOExperienceGameplay.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp",
+          "target": "Source/MMORPG/Private/MMOGameplay.cpp"
+        }
+      ],
+      "reading": "### 先逐个认出对象，再追一次奥术箭\n\n- `UMMOAttributes` 声明 Health/Mana，`GetLifetimeReplicatedProps` 登记复制，OnRep 使用 GAS 通知宏；只写 ReplicatedUsing 而不登记复制是不完整的。\n- `AMMOPlayerState` 创建 ASC/Attributes，加载存档并生成快照。Inventory、XP 使用 OwnerOnly，另一个玩家能看到角色不等于能看到你的背包。\n- `AMMOCharacter` 提供当前 Pawn、目标选择和服务器 RPC；Owner/Avatar 连接由 PawnExtension 管理。\n- `AMMOGameMode` 是服务器规则。`TryStartPlayer` 同时等待存档和 Experience，之后才生成角色和设置 session ready。\n\n阅读 `UMMOAttackAbility::ActivateAbility` 时按顺序标出：有效 Pawn/State → 会话与初始化 → 活目标与距离 → 遮挡 → CommitAbility → 伤害 → 表现 → EndAbility。Spell 构造函数设置 Damage=40、Range=1200，MMOSpellCost 的 Effect 扣 20 Mana，Cooldown 持续 3 秒。GA_ArcaneBolt 继承这些规则，所以它可以没有重复的攻击 EventGraph。\n\n**第一次改造**：在练习副本仅将 Spell 的 Damage 从 40 改为 30，关闭 Editor 后构建，重新开始一轮新目标测试。预期目标 100→70，Mana 100→80，冷却仍为 3 秒。若只变 HUD 文本而目标仍扣 40，改到的不是服务器伤害规则。"
+    },
+    {
+      "id": "input-health",
+      "title": "输入、死亡与验证代码",
+      "intro": "输入等待 LocalPlayer、PawnData 和 InputComponent；死亡组件消费 GAS Health 变化，重生更换 Pawn 并重新绑定 ASC。后缀 Validation 的文件提供教程验收入口，也在头文件中有声明，复刻时不能省掉实现。",
+      "lesson": "/docs/08-mmorpg/character-gas",
+      "files": [
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Public/MMOHealthComponent.h",
+          "target": "Source/MMORPG/Public/MMOHealthComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOAbilityInputValidation.cpp",
+          "target": "Source/MMORPG/Private/MMOAbilityInputValidation.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOAnimationValidation.cpp",
+          "target": "Source/MMORPG/Private/MMOAnimationValidation.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMODeathValidation.cpp",
+          "target": "Source/MMORPG/Private/MMODeathValidation.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOHealthComponent.cpp",
+          "target": "Source/MMORPG/Private/MMOHealthComponent.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOInputGameplay.cpp",
+          "target": "Source/MMORPG/Private/MMOInputGameplay.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOLocalizationValidation.cpp",
+          "target": "Source/MMORPG/Private/MMOLocalizationValidation.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMORespawnGameplay.cpp",
+          "target": "Source/MMORPG/Private/MMORespawnGameplay.cpp"
+        }
+      ],
+      "reading": "### 输入安装和死亡清理按对称关系阅读\n\n`TryInitializeInput` 需要本地 Controller、LocalPlayer、InputComponent、PawnData 和已加载的输入资产；DataAvailable 事件让尚未满足的条件以后能再次尝试。函数中的 InputOwner 防止重复安装同一组绑定。\n\n`Attack` / `Spell` 传 InputTag 到服务器；具体能力仍由当前 ASC 的标签查找。IMC 修改物理按键，InputConfig 关联语义标签，AbilitySet 授予同标签的能力，三处必须逐层对应。\n\nHealthComponent 在 Health 归零时推进死亡流程；GameMode 等 RespawnDelay 后生成新 Pawn。旧 Pawn 的回调、输入、计时器与 ASC Avatar 关系需要解绑，PlayerState 中的身份和存档记录继续存在。\n\n验证文件包含 Smoke/Showcase、动画、输入和死亡断言的实现，MMOGameplay.h 已声明其中的方法。完整复刻时保留这些文件；删除 cpp 却保留调用会产生链接错误。"
+    },
+    {
+      "id": "ui",
+      "title": "UI 与 ViewModel 的完整父类",
+      "intro": "先写 MMOUI.h 中的类、BindWidget 成员和 FieldNotify 字段，再写 MMOUI.cpp 的回调与解绑。Designer 控件名称必须与 BindWidget 一致；视觉树留在 Widget Blueprint。",
+      "lesson": "/docs/09-mmo-ui/designer",
+      "files": [
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+          "target": "Source/MMORPG/Public/MMOUI.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+          "target": "Source/MMORPG/Private/MMOUI.cpp"
+        }
+      ],
+      "reading": "### 一张面板的三份实现怎样配合\n\n`MMOUI.h` 中 `BindWidget` 成员规定 Designer 必须有的控件名和类型；`MMOUI.cpp` 的 NativeOnInitialized 绑定按钮行为；Widget Blueprint 保存层级、布局、文字和 MVVM 绑定。只复制 C++ 不会自动出现这些控件。\n\n`UMMOPlayerViewModel::BindPlayer` 先 Unbind 旧对象，再订阅 GAS/目标/进度事件；`RefreshMana` 算出 ManaLabel 和 ManaFraction 并发 FieldNotify。Designer 将前者绑定 Text、后者绑定 Percent。这里不需要在 Tick 每帧 SetText。\n\n`AssignViewModel` 给当前 Widget 的 Manual 来源 `PlayerVM` 赋值。HUD 自身和嵌套 ManaStatus 都要拿到同一模型；仅创建同名变量不能完成 MVVM 的来源赋值。\n\n根布局注册 Game/Menu/Modal 三层；激活式页面声明输入模式。按钮请求交给服务器，UI 等复制/响应后刷新，不自行增加库存。退出/换角色时 Unbind 和移除扩展应成对发生。"
+    },
+    {
+      "id": "animation",
+      "title": "动画数据接口",
+      "intro": "MMOAnimInstance 负责准备速度、下落与状态数据；动画蓝图读取这些字段形成姿势。不要把 HTTP、数据库或场景查询塞进动画工作线程。",
+      "lesson": "/docs/08-mmorpg/animation",
+      "files": [
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Public/MMOAnimInstance.h",
+          "target": "Source/MMORPG/Public/MMOAnimInstance.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp",
+          "target": "Source/MMORPG/Private/MMOAnimInstance.cpp"
+        }
+      ],
+      "reading": "### 函数、动画图和角色默认值的连接\n\nNativeUpdateAnimation 在游戏线程读取角色速度、下落状态和 ASC；变量保存在 AnimInstance 供动画图读取。GroundSpeed 是二维速度长度，接到模板 BlendSpace 的 **Y/Speed**。bIsFalling 驱动姿势选择。\n\nNativeInitializeAnimation 重置基础值；InitializeWithAbilitySystem 只在 ASC 变化时重新绑定 GameplayTagPropertyMap；NativeUninitializeAnimation 解除旧 Avatar 的委托。重生后仍沿用旧 ASC 订阅会让新模型显示错误状态。\n\nC++ 中有变量后，仍要在 AnimBP 中设置 MMOAnimInstance 父类、实现 ALI_MMOCharacter、连接图表，并在 BP_MMOCharacter.Mesh 上选择主 AnimBP。四个连接点缺一个，完整代码也不会自动生成正确姿势。"
+    },
+    {
+      "id": "zone",
+      "title": "Game Feature 与区域内容",
+      "intro": "MMOCore 描述符负责被发现和加载，GameFeatureData 的 Add Components 动作负责安装 MMOZoneComponent，组件负责创建和清理区域。只复制 cpp 不会让组件自动出现在世界中。",
+      "lesson": "/docs/08-mmorpg/migration",
+      "files": [
+        {
+          "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h",
+          "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/MMOCore.uplugin",
+          "target": "Plugins/GameFeatures/MMOCore/MMOCore.uplugin"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs",
+          "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+          "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp"
+        }
+      ],
+      "reading": "### 组件为什么能带来整个区域\n\nMMOCore.Build.cs 依赖 MMORPG，因此区域组件能生成游戏目标。`.uplugin` 中 Registered 只登记特性；Experience 请求激活后，GameFeatureData 的 Add Components 把 MMOZoneComponent 安装到 ModularGameStateBase。\n\nBeginPlay 按组件代码创建地面、边界、遮挡物、灯光和目标；EndPlay 清理自己创建的 Actor。复制整份 MMOZoneComponent 后仍需要配置 `/MMOCore/MMOCore`，否则没有宿主实例调用这些函数。\n\n**改造练习**：先找目标的生成数组，在副本增加一个位置；保持地面仍为稳定的静态碰撞支撑，不将 Character 的站立地面改成每个客户端各自生成的可复制移动基座。验证服务器与两客户端目标数量一致，退出地图后没有残留。"
+    },
+    {
+      "id": "backend",
+      "title": "后端 Program 与数据库",
+      "intro": "Contracts 在 HTTP 组，Program、Persistence 和 ThirdParty 在本组。按 Target → Build.cs → 请求队列 → SQL 事务阅读；数据库连接和口令不进入游戏客户端。",
+      "lesson": "/docs/10-backend/program-and-workers",
+      "files": [
+        {
+          "source": "examples/MMORPG/Source/MMOPersistence/Public/MMOPersistence.h",
+          "target": "Source/MMOPersistence/Public/MMOPersistence.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOBackendService.Target.cs",
+          "target": "Source/MMOBackendService.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOBackendService/MMOBackendService.Build.cs",
+          "target": "Source/MMOBackendService/MMOBackendService.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+          "target": "Source/MMOBackendService/Private/MMOBackendService.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOPersistence/MMOPersistence.Build.cs",
+          "target": "Source/MMOPersistence/MMOPersistence.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+          "target": "Source/MMOPersistence/Private/MMOPersistence.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs",
+          "target": "Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs"
+        }
+      ],
+      "reading": "### 从进程入口追到一次数据库提交\n\nTarget 的 Program/Monolithic/LaunchModuleName 决定独立程序结构；MMOBackendService.cpp 负责 HTTP 路由、工作队列和完成队列。HTTP 回调不能直接阻塞等待数据库：请求在工作线程处理，完成结果回到负责响应的线程。\n\nMMOPersistence.cpp 中先看 Query 封装参数化 SQL，再看 FTransaction 的 BEGIN/COMMIT/ROLLBACK，最后逐条读 `/v1` 路由。保存需要租约、expectedVersion 和 requestId；成功重试返回第一次的版本，不再次增加库存或版本。\n\nMMOThirdParty.Build.cs 从环境目录找 libpq/libsodium。它们是后端本地库，客户端只通过 HTTP/RPC 使用服务。这里的代码文件可以整体复制；数据库服务、依赖头文件和 DLL 仍按后端搭建课安装，不能用省略的占位路径代替。"
+    },
+    {
+      "id": "config",
+      "title": "项目配置与界面契约",
+      "intro": "先复制完整文件，再按截图核对落盘结果。Config 中的 /Script/ 引用是原生类，/Game/ 引用是随后手工创建的资产。资产还没创建时，路径存在于文本不代表对象存在。",
+      "lesson": "/docs/08-mmorpg/configuration",
+      "files": [
+        {
+          "source": "examples/MMORPG/Config/DefaultEditor.ini",
+          "target": "Config/DefaultEditor.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultEngine.ini",
+          "target": "Config/DefaultEngine.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultGame.ini",
+          "target": "Config/DefaultGame.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultGameUserSettings.ini",
+          "target": "Config/DefaultGameUserSettings.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultGameplayTags.ini",
+          "target": "Config/DefaultGameplayTags.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultInput.ini",
+          "target": "Config/DefaultInput.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_Compile.ini",
+          "target": "Config/Localization/MMO_Compile.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_Export.ini",
+          "target": "Config/Localization/MMO_Export.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_Gather.ini",
+          "target": "Config/Localization/MMO_Gather.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_GenerateReports.ini",
+          "target": "Config/Localization/MMO_GenerateReports.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_Import.ini",
+          "target": "Config/Localization/MMO_Import.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Windows/WindowsEngine.ini",
+          "target": "Config/Windows/WindowsEngine.ini"
+        },
+        {
+          "source": "examples/MMORPG/backend/migrations/001_initial.sql",
+          "target": "backend/migrations/001_initial.sql"
+        },
+        {
+          "source": "examples/MMORPG/backend/migrations/002_state_constraints.sql",
+          "target": "backend/migrations/002_state_constraints.sql"
+        },
+        {
+          "source": "examples/MMORPG/dependencies.json",
+          "target": "dependencies.json"
+        },
+        {
+          "source": "examples/MMORPG/localization-runtime-zh-Hans.json",
+          "target": "localization-runtime-zh-Hans.json"
+        },
+        {
+          "source": "examples/MMORPG/ui-designer-contract.json",
+          "target": "ui-designer-contract.json"
+        },
+        {
+          "source": "examples/MMORPG/ui-designer-strings.json",
+          "target": "ui-designer-strings.json"
+        }
+      ],
+      "reading": "### 配置文件是实际连接，不是说明文字\n\nDefaultEngine.ini 选择 GameInstance、Viewport、LocalPlayer 和 GameMode；DefaultInput.ini 选择 Enhanced Input 的默认类；DefaultGame.ini 选择 UIPolicy、Asset Manager 扫描和 Cook 范围。写错 `/Script/模块.类` 会找不到原生类；写错 `/Game/..._C` 会找不到蓝图生成类。\n\nDefaultGameplayTags.ini 定义语义标签。`+` 追加数组，`!` 清空数组；复制整份文件时只保留一套目标规则，别把同一 Primary Asset Type 追加两份。\n\nui-designer-contract.json 描述七个 Widget 的父类、控件 Name、类型和绑定；ui-designer-strings.json 提供字符串表 Key/Source。它们是编辑器制作规范，运行中的 Widget 不会因为 JSON 改了就自动重新保存，仍需按教程重建/修改资产并编译保存。\n\nSQL 迁移属于后端 schema，不贴到 UE 的 ini。翻译配置属于 GatherText 命令，不贴进 Actor 蓝图。按文件名与执行程序区分这些文本。"
+    },
+    {
+      "id": "editor-tools",
+      "title": "资产核对与生成工具",
+      "intro": "这是与教程人工步骤配套的编辑器工具。它们创建真实资产、校验图表与控件契约，不参与玩家战斗。复刻主线先手工做资产；在参考副本运行生成器来核对结果。",
+      "lesson": "/docs/09-mmo-ui/blueprint-workflow",
+      "files": [
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin",
+          "target": "Plugins/MMODocTools/MMODocTools.uplugin"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp"
+        },
+        {
+          "source": "examples/MMORPG/prepare_content.py",
+          "target": "prepare_content.py"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h"
+        }
+      ],
+      "reading": "### 辅助工具如何保证可复刻\n\nMMODocProjectGuard 只允许原实验目录或 Advance-Lesson 登记的阶段 03 工程；每个操作还检查资产类型与路径。它防止在别的工程误写同名资产，同时允许读者选择自己的目录。\n\nMMOAnimationTools 构造真实 AnimGraph，连接模板的 Speed/Y 轴，编译并导出原生节点文本，再导入副本验证；MMODesignerWidgets 构造 Designer 层级、绑定与字符串表引用；MMODocExperienceTools 创建数据连接。\n\nprepare_content.py 按依赖顺序调用这些原生方法并保存。它是可执行的参考实现，不能用一张“脚本运行完成”截图替代读者对资产字段和节点的理解。请先读资产施工清单，再选择手工制作或在另一份登记工程生成对照资产。\n\n首次空 Content 启动时 MMOCore 的 GameFeatureData 尚不存在，自动注册可能报告 Plugin_Missing_GameFeatureData；创建并保存该数据资产后，退出并重新打开项目，再核对注册。命令行第一次生成会因此返回非零，即使生成报告显示成功，也要新进程检查，不能把退出码 1 当成功。"
+    }
+  ]
+}

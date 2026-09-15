@@ -7,7 +7,7 @@ description: 逐步迁入 Lyra 的架构能力，用可操作的网络训练区�
 
 这条路线回答一个具体问题：已经理解 Lyra，怎样在自己的项目中使用它的设计，而不是把整个射击游戏改名？最终实验包含两个客户端、一个 UE Dedicated Server、一个 UE Backend Program 和 PostgreSQL。读者可以注册、创建角色、进入同一区域、攻击目标、获得经验与药剂，再退出并恢复角色。
 
-前置条件是能创建 C++ 工程、理解 UObject 和 Actor、能够构建本机 UE 5.8.1 源码引擎。先完成角色初始化、GAS、CommonUI 三篇基础课程。分析基准为 `F:/UE/LyraStarterGame`，核对日期 **2026-09-13**；实验目标目录为 `F:/UE/LyraDocLabs/MMORPG`。
+第一次使用 UE 的读者先从 [从零复刻主线](/docs/08-mmorpg/from-zero) 开始：它给出空白工程、完整源码、蓝图搭建、配置和验收的实际顺序。遇到术语时回到 UE 零基础，再继续当前制作步骤。分析基准为 `F:/UE/LyraStarterGame`，核对日期 **2026-09-13**；实验目标目录为 `F:/UE/LyraDocLabs/MMORPG`。
 
 ## 先判断你的复用方式
 
@@ -37,11 +37,37 @@ UE Dedicated Server ──────────────────┘
 
 ## 按检查点推进
 
+**制作主线**：[从零复刻](/docs/08-mmorpg/from-zero) → [完整源码书](/docs/08-mmorpg/source) → [资产施工清单](/docs/08-mmorpg/asset-construction)。下面各篇是对应步骤的详细解释和实拍。
+
 1. [依赖与模块迁移](/docs/08-mmorpg/migration)：从四个插件开始，构建新工程，生成原始教学资产。
 2. [角色、GAS 与战斗](/docs/08-mmorpg/character-gas)：确定 ASC 的 Owner/Avatar，建立 Enhanced Input 到能力激活的链路。
 3. [网络准入与持久化](/docs/08-mmorpg/network-persistence)：仅在服务器加载存档后生成角色，使用带版本的快照保存。
 4. [运行与验收](/docs/08-mmorpg/run-lab)：运行两客户端，验证共享世界、角色隔离、存档和失败恢复。
 5. [MMORPG UI](/docs/09-mmo-ui)：把复制结果投影到 ViewModel，再显示到 CommonUI 面板。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![单区域 RPG 的四个独立程序角色](/media/guide-diagrams/08-mmorpg-index.svg)
+
+**读图**：客户端与后端通过 HTTP 登录，客户端与游戏服务器通过 UE 网络连接。图表示职责分层，不表示所有请求顺着四格逐级发送。
+
+### 先把本篇出现的陌生词分开
+
+| 词 | 本教程中的含义 | 第一次在哪里看到 |
+|---|---|---|
+| Dedicated Server | 没有本地玩家 UI 的游戏服务器 | 运行脚本与服务器日志 |
+| Program Target | 用 UE 构建工具编译的独立程序目标 | MMOBackendService.Target.cs |
+| Snapshot | 某一时刻可保存的完整角色状态 | 服务器生成的 JSON |
+| Lease / 租约 | 限定某个游戏服当前拥有角色写权限的凭据 | 准入和保存接口 |
+| ViewModel | 把角色/账号状态整理成界面可绑定字段的对象 | 后续 UI 章节 |
+
+这些能力不是把 Lyra 改个项目名就自动得到的。本篇会指出直接导入的四个 Lyra 插件、原创 MMOFramework 和各业务模块的来源。先做迁移与配置，再读角色、动画、持久化，最后照运行章节启动。
+
+**每章记录一件事**：迁移后记录依赖目录，配置后记录资产引用，角色就绪后记录 Owner/Avatar，保存后记录版本。遇到陌生代码语法，返回 [UE 基础与读代码入门](/docs/01-start/ue-basics)，再读当前函数的参数、返回值与调用者。
+
+{/* full-guide-end */}
 
 ## 预期结果与排障
 
@@ -52,4 +78,3 @@ UE Dedicated Server ──────────────────┘
 ## 验证边界
 
 可下载源码、生成脚本和实际验证结果是三种不同证据。操作步骤描述如何重现功能；只有仓库验证记录中附带日志或截图的项目才表示已经执行。本实验没有宣称支撑商业 MMORPG 的大规模在线人数；跨服、交易、公会和分片需要进一步设计。
-

@@ -20,3 +20,27 @@ description: 通过武器、交互、机器人、队伍和反馈，把 Lyra 基�
 本机源码确有部分公开接口尚未完成。例如 Inventory 已有实例的 AddEntry 重载为 unimplemented；不能因为 API 出现在编辑器或头文件就直接承诺它可用于物品转移。具体限制会在各章指出。
 
 资料基准：UE 5.8.1，2026-09-13 本机源码和资产核对。完成后，你应能写出一个最小训练场 Feature 的依赖清单，并知道哪些能力来自 Lyra 基础层、哪些来自 ShooterCore。接着学习[UI 的完整生命周期](/docs/06-ui)。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![沿一次开火认识五个系统](/media/guide-diagrams/05-gameplay-index.svg)
+
+**读图**：从上往下读数据如何转交。装备模型、伤害值、屏幕命中标记分别由不同对象处理，不要把它们都写进武器 Actor 的 Tick。
+
+### 先建立一张可查证的小表
+
+在 Rider 按两次 Shift，先搜索类名；找不到时切到项目全部文件范围。UE 里用 Content Browser 的名称搜索找资产，Details 的搜索只查已经打开的对象。两种“搜索”用途不同。
+
+| 你想知道什么 | 先打开哪里 | 本节应记录的答案 |
+|---|---|---|
+| 步枪初始弹药在哪里 | ID_Rifle → Fragments | SetStats 碎片的标签与数值 |
+| 谁创建持枪模型 | WID_Rifle → Actors To Spawn | Actor 类、挂接插槽与相对变换 |
+| 按开火时执行谁 | AbilitySet_Rifle | 能力类与 Input Tag 的配对 |
+| 同队为什么不掉血 | LyraDamageExecution → CanCauseDamage | 队伍规则参与伤害倍率的代码位置 |
+| 为什么脚步在玻璃上不同 | CFX_DefaultSkin | 同一 Effect Tag、不同 Context、不同音效 |
+
+这些答案在后续五节都有图和源码。完成本篇时，给每一行补上自己的实际引用；只写“在某个插件中”还不足以让下一位开发者复现。
+
+{/* full-guide-end */}

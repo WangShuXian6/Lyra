@@ -19,3 +19,23 @@ Lyra UI 需要同时解决四件事：把界面显示出来、让正确玩家操
 本机 Lyra 的 UI 并未全面使用 ModelViewViewModel。后续 MMORPG 的 MVVM 是教学增量：ViewModel 整理展示数据，CommonUI 继续负责输入和激活，服务器继续决定权威状态。
 
 资料基准：本机 UE 5.8.1 的 CommonGame、UIExtension、Lyra UI 与 Settings，核对于 2026-09-13。完成标准是键鼠与手柄都能进入、关闭、返回界面，并能说明重生和地图切换后哪些订阅需要重新建立。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![先有界面位置，再处理输入与数据](/media/guide-diagrams/06-ui-index.svg)
+
+**读图**：本篇先按菜单打开顺序阅读。遇到一个 Widget，先问“放在哪一层、属于哪个本地玩家、数据从哪里来”。
+
+### 新手在 Widget 编辑器中的三个位置
+
+| 位置 | 可以看到什么 | 常见误操作 |
+|---|---|---|
+| Designer → Hierarchy | 控件父子关系和每个控件的 Details | 选中子按钮后去找整个页面的默认配置 |
+| Graph → Class Defaults | Widget 类的默认属性 | 把普通设置屏误认成 LyraActivatableWidget 的子类 |
+| Graph → My Blueprint | 事件、函数、变量和绑定入口 | 只看 Designer，遗漏运行时注册与解绑 |
+
+先完成根布局与 UIExtension 的图文对照，再做设置。设计画布中的占位文字用于编辑预览，真实玩家、设置注册表和数据绑定通常要等运行时才有。
+
+{/* full-guide-end */}

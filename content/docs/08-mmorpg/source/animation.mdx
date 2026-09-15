@@ -1,0 +1,158 @@
+---
+title: 动画数据接口：完整文件
+description: 按目标路径新建或替换文件，复制完整实现，再与逐步操作课程对照。
+---
+
+MMOAnimInstance 负责准备速度、下落与状态数据；动画蓝图读取这些字段形成姿势。不要把 HTTP、数据库或场景查询塞进动画工作线程。
+
+[返回对应操作与解释](/docs/08-mmorpg/animation) · [返回制作主线](/docs/08-mmorpg/from-zero)
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+## 复制之前先确认位置
+
+下列路径均相对你的 **MMORPG 工程根目录**。在 Rider 的文件视图中右键父目录 → New → File，输入完整文件名（包括扩展名）；文件已存在时替换整个文件，不能把第二套类声明追加到末尾。页面给出的是当前教程的完整文件，代码框右上角可以复制，不含省略号占位实现。
+
+先写 `.h` 再写 `.cpp` 便于阅读；**完成当前源码阶段的全部文件后才编译**。`*.generated.h` 由 UnrealHeaderTool 生成，不手工创建。`#include`、模块导出宏和函数签名都要保留。一个文件中出现多个类时，复制整个文件一次即可。
+
+按 [四个源码阶段](/docs/08-mmorpg/from-zero) 使用这些文件。本组从 **03 阶段**开始使用。00–02 阶段保留当阶段的轻量 `.uproject` 和 Build.cs；03 阶段再切换到完整项目依赖。
+
+## 逐段理解与资产连接
+
+### 函数、动画图和角色默认值的连接
+
+NativeUpdateAnimation 在游戏线程读取角色速度、下落状态和 ASC；变量保存在 AnimInstance 供动画图读取。GroundSpeed 是二维速度长度，接到模板 BlendSpace 的 **Y/Speed**。bIsFalling 驱动姿势选择。
+
+NativeInitializeAnimation 重置基础值；InitializeWithAbilitySystem 只在 ASC 变化时重新绑定 GameplayTagPropertyMap；NativeUninitializeAnimation 解除旧 Avatar 的委托。重生后仍沿用旧 ASC 订阅会让新模型显示错误状态。
+
+C++ 中有变量后，仍要在 AnimBP 中设置 MMOAnimInstance 父类、实现 ALI_MMOCharacter、连接图表，并在 BP_MMOCharacter.Mesh 上选择主 AnimBP。四个连接点缺一个，完整代码也不会自动生成正确姿势。
+
+## 本组文件清单
+
+| 文件 | 行数 | 操作 |
+|---|---:|---|
+| `Source/MMORPG/Public/MMOAnimInstance.h` | 42 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/Private/MMOAnimInstance.cpp` | 53 | 新建；已有同名文件则整体替换 |
+
+## 文件 1：MMOAnimInstance.h
+
+目标路径：`Source/MMORPG/Public/MMOAnimInstance.h`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Public/MMOAnimInstance.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Public/MMOAnimInstance.h"
+#pragma once
+
+#include "Animation/AnimInstance.h"
+#include "GameplayEffectTypes.h"
+#include "MMOAnimInstance.generated.h"
+
+class UAbilitySystemComponent;
+
+/** Keep the property map at a stable address, as in LyraAnimInstance. */
+USTRUCT()
+struct FMMOAnimationTagPropertyMap : public FGameplayTagBlueprintPropertyMap
+{
+    GENERATED_BODY()
+    void ResetBindings() { Unregister(); }
+};
+
+/** Game-thread data snapshot; editable AnimBlueprint graphs evaluate this data on workers. */
+UCLASS(Blueprintable)
+class MMORPG_API UMMOAnimInstance : public UAnimInstance
+{
+    GENERATED_BODY()
+public:
+    UMMOAnimInstance();
+    virtual void NativeInitializeAnimation() override;
+    virtual void NativeUninitializeAnimation() override;
+    virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+
+    UFUNCTION(BlueprintCallable, Category="MMO|Animation")
+    void InitializeWithAbilitySystem(UAbilitySystemComponent* AbilitySystem);
+
+    UPROPERTY(BlueprintReadOnly, Category="MMO|Locomotion")
+    float GroundSpeed = 0.f;
+    UPROPERTY(BlueprintReadOnly, Category="MMO|Locomotion")
+    bool bIsFalling = false;
+    UPROPERTY(BlueprintReadOnly, Category="MMO|Gameplay Tags")
+    bool bSpellOnCooldown = false;
+protected:
+    UPROPERTY(EditDefaultsOnly, Category="MMO|Gameplay Tags")
+    FMMOAnimationTagPropertyMap GameplayTagPropertyMap;
+private:
+    TWeakObjectPtr<UAbilitySystemComponent> BoundASC;
+};
+```
+
+</details>
+
+## 文件 2：MMOAnimInstance.cpp
+
+目标路径：`Source/MMORPG/Private/MMOAnimInstance.cpp`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Private/MMOAnimInstance.cpp"
+#include "MMOAnimInstance.h"
+
+#include "AbilitySystemGlobals.h"
+#include "AbilitySystemComponent.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/PlayerState.h"
+
+UMMOAnimInstance::UMMOAnimInstance()
+{
+    bUseMultiThreadedAnimationUpdate = true;
+}
+
+void UMMOAnimInstance::InitializeWithAbilitySystem(UAbilitySystemComponent* AbilitySystem)
+{
+    check(IsInGameThread());
+    if (BoundASC.Get() == AbilitySystem) return;
+    GameplayTagPropertyMap.ResetBindings();
+    BoundASC = AbilitySystem;
+    bSpellOnCooldown = false;
+    if (AbilitySystem) GameplayTagPropertyMap.Initialize(this, AbilitySystem);
+}
+
+void UMMOAnimInstance::NativeInitializeAnimation()
+{
+    Super::NativeInitializeAnimation();
+    GroundSpeed = 0.f;
+    bIsFalling = false;
+}
+
+void UMMOAnimInstance::NativeUninitializeAnimation()
+{
+    // Explicitly release this avatar's delegates even when PlayerState survives a respawn.
+    GameplayTagPropertyMap.ResetBindings();
+    BoundASC.Reset();
+    Super::NativeUninitializeAnimation();
+}
+
+void UMMOAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
+{
+    Super::NativeUpdateAnimation(DeltaSeconds);
+    // NativeUpdateAnimation runs on the game thread before parallel graph evaluation.
+    // No actor, movement or ASC reads occur in worker-thread Blueprint evaluation.
+    check(IsInGameThread());
+    const ACharacter* Character = Cast<ACharacter>(TryGetPawnOwner());
+    GroundSpeed = Character ? Character->GetVelocity().Size2D() : 0.f;
+    bIsFalling = Character && Character->GetCharacterMovement()->IsFalling();
+    APlayerState* State = Character ? Character->GetPlayerState() : nullptr;
+    // Replicated PlayerState can arrive after the mesh initializes. Rebind only when identity changes.
+    UAbilitySystemComponent* ASC = State ? UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(State) : nullptr;
+    if (ASC && ASC->GetAvatarActor() != Character) ASC = nullptr;
+    InitializeWithAbilitySystem(ASC);
+}
+```
+
+</details>
+
+## 写完后怎样确认
+
+保存全部文件，回到当前阶段执行文件核对和 Editor 构建。文件核对只能发现缺文件、复制不完整和版本差异；`Result: Succeeded` 才说明编译成功。资产、UI 与联机行为继续按 [对应课程](/docs/08-mmorpg/animation) 验收。

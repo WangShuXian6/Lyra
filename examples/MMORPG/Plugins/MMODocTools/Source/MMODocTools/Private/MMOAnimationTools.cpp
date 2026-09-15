@@ -1,3 +1,4 @@
+#include "MMODocProjectGuard.h"
 #include "MMOAnimationTools.h"
 
 #include "Animation/AnimBlueprint.h"
@@ -274,9 +275,9 @@ FString UMMOAnimationTools::PrepareCharacterAnimation()
     auto Report = MakeShared<FJsonObject>();
     Report->SetBoolField(TEXT("passed"), false);
     Report->SetStringField(TEXT("checkedAt"), FDateTime::UtcNow().ToIso8601());
-    if (!FPaths::ConvertRelativePathToFull(FPaths::ProjectDir()).Replace(TEXT("\\"), TEXT("/")).Contains(TEXT("/LyraDocLabs/MMORPG/")))
+    if (!IsMMODocProject())
     {
-        Report->SetStringField(TEXT("error"), TEXT("Only the isolated LyraDocLabs/MMORPG editor may generate these assets."));
+        Report->SetStringField(TEXT("error"), TEXT("Open the original MMORPG lab or a registered stage 3 lesson project."));
         return Encode(Report);
     }
     UClass* RuntimeClass = LoadClass<UAnimInstance>(nullptr, TEXT("/Script/MMORPG.MMOAnimInstance"));
@@ -361,7 +362,7 @@ FString UMMOAnimationTools::ConfigureCharacter(UBlueprint* Blueprint)
     auto Report = MakeShared<FJsonObject>();
     Report->SetBoolField(TEXT("passed"), false);
     const FString Project = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir()).Replace(TEXT("\\"), TEXT("/"));
-    if (!Project.Contains(TEXT("/LyraDocLabs/MMORPG/")) || !Blueprint
+    if (!IsMMODocProject() || !Blueprint
         || Blueprint->GetPathName() != TEXT("/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter"))
     {
         Report->SetStringField(TEXT("error"), TEXT("Expected the original BP_MMOCharacter inside the isolated MMORPG lab."));
@@ -413,7 +414,7 @@ FString UMMOAnimationTools::ValidateCharacterAnimation()
     Report->SetBoolField(TEXT("sourceGraphsReconstructed"), false);
     Report->SetStringField(TEXT("checkedAt"), FDateTime::UtcNow().ToIso8601());
     const FString Project = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir()).Replace(TEXT("\\"), TEXT("/"));
-    if (!Project.EndsWith(TEXT("/LyraDocLabs/MMORPG/"), ESearchCase::IgnoreCase))
+    if (!IsMMODocProject())
     {
         Report->SetStringField(TEXT("error"), TEXT("Validate existing animation only inside the isolated MMORPG lab."));
         return Encode(Report);

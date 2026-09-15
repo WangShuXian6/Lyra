@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="658" viewBox="0 0 1120 658" role="img" aria-labelledby="title desc">
+<title id="title">从角色移动到最后输出姿势</title><desc id="desc">对照本章每张节点 Details 图。数据从 C++ 来，姿势由图组合；接口 ALI 只约定层名，具体实现由 ABP 提供。</desc>
+<defs><marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#7aa6b2"/></marker></defs>
+<rect width="1120" height="658" rx="18" fill="#112027"/>
+<g font-family="Noto Sans SC,Microsoft YaHei,sans-serif">
+<text x="42" y="48" fill="#f1f5f6" font-size="27" font-weight="700">从角色移动到最后输出姿势</text>
+<text x="42" y="80" fill="#9db4bd" font-size="17">关系示意图 · 按序号阅读 · 不是编辑器截图</text>
+<rect x="42" y="110" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="142" r="18" fill="#b6d588"/>
+<text x="78" y="149" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">1</text>
+<text x="112" y="148" fill="#f1f5f6" font-size="23" font-weight="700">角色移动组件</text>
+<text x="112" y="178" fill="#d3e1e6" font-size="18">提供水平速度与是否下落；角色 Mesh 已使用正确 Anim Class。</text>
+<path d="M560,211 V230" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="238" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="270" r="18" fill="#b6d588"/>
+<text x="78" y="277" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">2</text>
+<text x="112" y="276" fill="#f1f5f6" font-size="23" font-weight="700">MMOAnimInstance 数据</text>
+<text x="112" y="306" fill="#d3e1e6" font-size="18">游戏线程更新 GroundSpeed、bIsFalling 和标签驱动字段。</text>
+<path d="M560,339 V358" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="366" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="398" r="18" fill="#b6d588"/>
+<text x="78" y="405" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">3</text>
+<text x="112" y="404" fill="#f1f5f6" font-size="23" font-weight="700">ABP_MMOUnarmed 的 Locomotion</text>
+<text x="112" y="434" fill="#d3e1e6" font-size="18">速度进入 BlendSpace，空中状态选择 Fall Loop。</text>
+<path d="M560,467 V486" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="494" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="526" r="18" fill="#b6d588"/>
+<text x="78" y="533" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">4</text>
+<text x="112" y="532" fill="#f1f5f6" font-size="23" font-weight="700">ABP_MMOCharacter 主图</text>
+<text x="112" y="562" fill="#d3e1e6" font-size="18">Linked Anim Layer 调用层实现，再经过 Slot 输出到角色。</text>
+</g></svg>

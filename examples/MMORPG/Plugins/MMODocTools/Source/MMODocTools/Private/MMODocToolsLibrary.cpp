@@ -1,3 +1,4 @@
+#include "MMODocProjectGuard.h"
 #include "MMODocToolsLibrary.h"
 
 #include "AssetToolsModule.h"
@@ -121,7 +122,7 @@ FString UMMODocToolsLibrary::ConfigureBackendTutorial(UBlueprint* Blueprint)
 
     FString ProjectDir = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir());
     FPaths::NormalizeDirectoryName(ProjectDir);
-    if (!IsInGameThread() || !ProjectDir.EndsWith(TEXT("/LyraDocLabs/MMORPG"), ESearchCase::IgnoreCase)
+    if (!IsInGameThread() || !IsMMODocProject()
         || !IsValid(Blueprint) || Blueprint->HasAnyFlags(RF_ClassDefaultObject | RF_Transient)
         || Blueprint->GetOutermost()->GetName() != TEXT("/Game/Tutorial/BP_BackendHealth")
         || !Blueprint->ParentClass || !Blueprint->ParentClass->IsChildOf(AActor::StaticClass()))

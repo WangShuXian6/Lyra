@@ -61,6 +61,13 @@ const backendScripts = [
   'Test-InternationalizedData.ps1', 'Test-BackupRestore.ps1',
 ].map(name => `scripts/backend/${name}`);
 const mmoExplicit = [
+  'scripts/mmorpg/Advance-Lesson.ps1', 'scripts/mmorpg/lesson_project.py',
+  'curriculum/mmorpg/stages.json', 'curriculum/mmorpg/source-book.json',
+  ...['00', '01', '02'].map(stage => `curriculum/mmorpg/descriptors/${stage}.uproject`),
+  'curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.cpp',
+  'curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.Build.cs',
+  'curriculum/mmorpg/skeleton/Config/DefaultEngine.ini',
+  'curriculum/mmorpg/skeleton/Config/DefaultEditorPerProjectUserSettings.ini',
   'NOTICE.md', 'scripts/patches/README.md', 'scripts/patches/blueprint-screenshot-ue58.patch',
   'verification/blueprint-screenshot.json',
   'verification/mmorpg-final-editor-build.json',

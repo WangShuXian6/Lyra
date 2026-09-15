@@ -32,6 +32,29 @@ Lyra 是一个可研究的完整示例。第一次打开时，先回答“我在
 
 `Source/LyraGame/...` 相对当前 Lyra 工程，`examples/...`、`scripts/...`、`verification/...` 相对文档仓库；`/Game/...`、`/ShooterCore/...` 是 Unreal 包路径。磁盘目录可以换盘，但要一起调整命令中的完整路径。训练生成脚本还校验目标目录结尾为 **LyraDocLabs/LyraTraining**，因此不能只把示例改成任意工程名字就运行。
 
+{/* full-guide-begin */}
+
+## 第一次打开后先做什么
+
+![第一次打开 Lyra 的主窗口](/media/beginner/whole-guide/editor-overview.png)
+
+**看图操作**：先从关卡标签和右下当前面板判断上下文，再用底部内容浏览器找资产。图中介绍地图的 Experience=None，不能拿它直接验证射击玩法。
+
+### 每次练习前填写四行
+
+```text
+工程：完整 .uproject 路径
+地图：当前关卡标签
+对象：资产名 / 运行时 Actor 名
+这次只验证：一个可以观察的结果
+```
+
+例如本篇第一个结果是“能从 Rifle 文件夹打开 WID_Rifle，读出 B_Rifle”，不是“已经理解全部装备系统”。每次只换一个对象或字段，遇到问题才能知道哪次操作产生影响。
+
+**先补前置**：[UE 零基础](/docs/01-start/ue-basics)解释各面板、数组展开、Blueprint 与 Data Asset、保存与编译。随后才执行本篇的三次练习。打开 Rider 不必马上写 C++，先学会搜索类与定位实现。
+
+{/* full-guide-end */}
+
 ## 完成标准
 
 能够画出地图 → Experience → PawnData → 角色 → 输入/能力 → UI 的简图，并为其中至少一个箭头提供真实资产引用或 C++ 调用。接着进入[启动架构](/docs/02-architecture)。

@@ -3,7 +3,9 @@ title: 环境、版本与安全的第一次构建
 description: 识别 Lyra 示例、源码引擎和构建目标，建立可复现的学习环境。
 ---
 
-本教程面向已经会创建 Actor、打开蓝图和运行 PIE 的读者。你不需要先通读 GAS；先运行游戏，再沿着一个可见行为查找代码。
+本教程面向 UE 新手。Actor 是能放进关卡的对象，蓝图是 UE 的可视化类与脚本，PIE 是在编辑器内运行游戏的预览。你不需要先通读 GAS；先认识界面、运行游戏，再沿着一个可见行为查找代码。
+
+首次构建先完成[关闭 Live Coding 图解](/docs/01-start/live-coding)。不熟悉内容浏览器、类默认值或 Rider 查找时，按[步枪导航的逐步截图](/docs/01-start/project-map#操作步骤以步枪为线索)操作。
 
 ## 学习目标与前置条件
 
@@ -54,6 +56,39 @@ Live Coding 适合支持热更新的实现变化；添加模块、改变反射�
 中文显示应通过文本与翻译资源实现，不要把 `GA_Hero_Dash`、`InputTag.Jump` 或蓝图变量名字翻译成中文后重命名；这些名字可能正被引用、反射绑定或脚本使用。游戏设置里的语言切换另见[官方 Lyra 的语言设置](/docs/06-ui/settings-mvvm#官方-lyra-已有语言设置不属于新增-mvvm)。本课程网站为中文正文，MMORPG 另有中英游戏 UI；两者不表示官方 Lyra 的每个语言或打包字体都已重新验收。
 
 入口依据本机 `EditorSettingsViewerModule.cpp` 的 Internationalization 设置注册，以及 `InternationalizationSettingsModelDetails.cpp` 的 Editor Language / Preview Game Language 字段。这里只说明设置入口，未新增编辑器语言切换的运行验收。
+
+{/* full-guide-begin */}
+
+## 对照 Rider 和 Target.cs 读懂构建
+
+![Rider 中已加载 Lyra 的源文件与工程](/media/beginner/rifle/rider-definition.png)
+
+**看图操作**：左上是工程名，中央是 LyraEquipmentDefinition.h；底部/顶部构建配置取决于 Rider 布局。先确认能打开本工程源码，不要把只打开一个文件当成已经加载 .uproject。
+源码：`Source/LyraEditor.Target.cs`，本机第 12–13 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```csharp
+Type = TargetType.Editor;
+ExtraModuleNames.AddRange(new string[] { "LyraGame", "LyraEditor" });
+```
+
+这两行回答了构建命令中的目标名。`Type=Editor` 告诉 UBT 产物用于编辑器；`ExtraModuleNames` 指定该目标包含 `LyraGame` 和 `LyraEditor` 两个项目模块。构建的是目标，模块是目标中参与编译的组成部分。
+
+### 将命令逐项读成人话
+
+| 命令片段 | 作用 | 常见混淆 |
+|---|---|---|
+| `& '.../Build.bat'` | PowerShell 调用这个批处理文件 | 路径不是 UE 控制台指令 |
+| `LyraEditor` | 选择 LyraEditor.Target.cs 对应目标 | 不是输入 LyraGame 模块名 |
+| `Win64` | 目标平台 | 不是当前编辑器语言 |
+| `Development` | 构建配置 | Rider 显示 Development Editor 是配置和目标类型的组合 |
+| `-Project=...uproject` | 指定哪一份工程 | 同名训练副本尤其要检查完整路径 |
+| `-WaitMutex` | 等待构建互斥锁 | 不负责结束 Live Coding 会话 |
+
+`.uproject` 的插件 Enabled 与 `.Build.cs` 的模块依赖负责不同阶段：前者让项目选择插件，后者让当前模块可以使用其代码。游戏资产的创建和引用又是第三步。具体例子在[插件总览](/docs/02-architecture/plugin-atlas)。
+
+**检查点**：能够逐项解释自己的构建命令，找到对应 Target.cs，读到 `Result: Succeeded` 后再打开工程。编译器输出很多警告时，优先定位首条实际 Error，保留其文件和行号。
+
+{/* full-guide-end */}
 
 ## 预期结果、排障与练习
 

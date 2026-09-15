@@ -1,0 +1,4171 @@
+{
+  "project": "F:\\UE\\LyraStarterGame\\LyraStarterGame.uproject",
+  "uprojectPlugins": [
+    {
+      "Name": "ModelContextProtocol",
+      "Enabled": true,
+      "TargetAllowList": [
+        "Editor"
+      ]
+    },
+    {
+      "Name": "ActorPalette",
+      "Enabled": true
+    },
+    {
+      "Name": "AESGCMHandlerComponent",
+      "Enabled": true
+    },
+    {
+      "Name": "DTLSHandlerComponent",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayAbilities",
+      "Enabled": true
+    },
+    {
+      "Name": "Gauntlet",
+      "Enabled": true
+    },
+    {
+      "Name": "CommonLoadingScreen",
+      "Enabled": true
+    },
+    {
+      "Name": "CommonStartupLoadingScreen",
+      "Enabled": true
+    },
+    {
+      "Name": "CommonConversation",
+      "Enabled": true
+    },
+    {
+      "Name": "GameFeatures",
+      "Enabled": true
+    },
+    {
+      "Name": "ModularGameplay",
+      "Enabled": true
+    },
+    {
+      "Name": "ModularGameplayActors",
+      "Enabled": true
+    },
+    {
+      "Name": "EnhancedInput",
+      "Enabled": true
+    },
+    {
+      "Name": "WinDualShock",
+      "Enabled": true,
+      "SupportedTargetPlatforms": [
+        "Win64"
+      ]
+    },
+    {
+      "Name": "Volumetrics",
+      "Enabled": true
+    },
+    {
+      "Name": "DataRegistry",
+      "Enabled": true
+    },
+    {
+      "Name": "ReplicationGraph",
+      "Enabled": true
+    },
+    {
+      "Name": "SignificanceManager",
+      "Enabled": true
+    },
+    {
+      "Name": "Niagara",
+      "Enabled": true
+    },
+    {
+      "Name": "Water",
+      "Enabled": true
+    },
+    {
+      "Name": "CommonUI",
+      "Enabled": true
+    },
+    {
+      "Name": "ControlFlows",
+      "Enabled": true
+    },
+    {
+      "Name": "GameSettings",
+      "Enabled": true
+    },
+    {
+      "Name": "CommonUser",
+      "Enabled": true
+    },
+    {
+      "Name": "CommonGame",
+      "Enabled": true
+    },
+    {
+      "Name": "GameSubtitles",
+      "Enabled": true
+    },
+    {
+      "Name": "PocketWorlds",
+      "Enabled": true
+    },
+    {
+      "Name": "UIExtension",
+      "Enabled": true
+    },
+    {
+      "Name": "AsyncMixin",
+      "Enabled": true
+    },
+    {
+      "Name": "Metasound",
+      "Enabled": true
+    },
+    {
+      "Name": "MagicLeap",
+      "Enabled": false
+    },
+    {
+      "Name": "MagicLeapMedia",
+      "Enabled": false
+    },
+    {
+      "Name": "MagicLeapPassableWorld",
+      "Enabled": false
+    },
+    {
+      "Name": "OpenXREyeTracker",
+      "Enabled": false
+    },
+    {
+      "Name": "OpenXRHandTracking",
+      "Enabled": false
+    },
+    {
+      "Name": "OpenXRHMD",
+      "Enabled": false
+    },
+    {
+      "Name": "SteamVR",
+      "Enabled": false
+    },
+    {
+      "Name": "GearVR",
+      "Enabled": false
+    },
+    {
+      "Name": "MLSDK",
+      "Enabled": false
+    },
+    {
+      "Name": "OnlineFramework",
+      "Enabled": true
+    },
+    {
+      "Name": "PlayFabParty",
+      "Enabled": true,
+      "PlatformAllowList": [
+        "XB1",
+        "XSX",
+        "WinGDK"
+      ],
+      "SupportedTargetPlatforms": [
+        "XB1",
+        "XSX",
+        "WinGDK"
+      ]
+    },
+    {
+      "Name": "OnlineServicesNull",
+      "Enabled": true
+    },
+    {
+      "Name": "OnlineServicesOSSAdapter",
+      "Enabled": true
+    },
+    {
+      "Name": "OnlineSubsystemSteam",
+      "Enabled": true
+    },
+    {
+      "Name": "SocketSubsystemSteamIP",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayMessageRouter",
+      "Enabled": true
+    },
+    {
+      "Name": "SteamSockets",
+      "Enabled": true
+    },
+    {
+      "Name": "AssetReferenceRestrictions",
+      "Enabled": true
+    },
+    {
+      "Name": "ModelingToolsEditorMode",
+      "Enabled": true
+    },
+    {
+      "Name": "GeometryScripting",
+      "Enabled": true
+    },
+    {
+      "Name": "AnimationLocomotionLibrary",
+      "Enabled": true
+    },
+    {
+      "Name": "AudioModulation",
+      "Enabled": true
+    },
+    {
+      "Name": "AudioGameplayVolume",
+      "Enabled": true
+    },
+    {
+      "Name": "AudioGameplay",
+      "Enabled": true
+    },
+    {
+      "Name": "SoundUtilities",
+      "Enabled": true
+    },
+    {
+      "Name": "AnimationWarping",
+      "Enabled": true
+    },
+    {
+      "Name": "MovieRenderPipeline",
+      "Enabled": true,
+      "TargetAllowList": [
+        "Editor"
+      ]
+    },
+    {
+      "Name": "MoviePipelineMaskRenderPass",
+      "Enabled": true,
+      "TargetAllowList": [
+        "Editor"
+      ]
+    },
+    {
+      "Name": "AssetSearch",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayInsights",
+      "Enabled": true
+    },
+    {
+      "Name": "ResonanceAudio",
+      "Enabled": false
+    },
+    {
+      "Name": "RuntimePhysXCooking",
+      "Enabled": false
+    },
+    {
+      "Name": "Spatialization",
+      "Enabled": true
+    },
+    {
+      "Name": "ShooterCore",
+      "Enabled": true
+    },
+    {
+      "Name": "ShooterMaps",
+      "Enabled": true
+    },
+    {
+      "Name": "TopDownArena",
+      "Enabled": true
+    },
+    {
+      "Name": "FunctionalTestingEditor",
+      "Enabled": true
+    },
+    {
+      "Name": "ShooterExplorer",
+      "Enabled": true
+    },
+    {
+      "Name": "ShooterTests",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayInteractions",
+      "Enabled": true
+    },
+    {
+      "Name": "SmartObjects",
+      "Enabled": true
+    },
+    {
+      "Name": "ContextualAnimation",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayBehaviorSmartObjects",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayStateTree",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayBehaviors",
+      "Enabled": true
+    },
+    {
+      "Name": "RuntimeTests",
+      "Enabled": true
+    },
+    {
+      "Name": "AutomatedPerfTesting",
+      "Enabled": true
+    },
+    {
+      "Name": "Reflex",
+      "Enabled": true
+    },
+    {
+      "Name": "XInputDevice",
+      "Enabled": true,
+      "SupportedTargetPlatforms": [
+        "Win64",
+        "WinGDK"
+      ]
+    },
+    {
+      "Name": "GameInputWindows",
+      "Enabled": true,
+      "SupportedTargetPlatforms": [
+        "Win64",
+        "WinGDK"
+      ]
+    },
+    {
+      "Name": "AIAssistant",
+      "Enabled": true
+    },
+    {
+      "Name": "ToolsetRegistry",
+      "Enabled": true
+    },
+    {
+      "Name": "AllToolsets",
+      "Enabled": true
+    },
+    {
+      "Name": "PlayerInputDebugger",
+      "Enabled": true,
+      "TargetAllowList": [
+        "Editor"
+      ]
+    },
+    {
+      "Name": "PlatformDLC",
+      "Enabled": true
+    }
+  ],
+  "plugins": [
+    {
+      "name": "AsyncMixin",
+      "path": "F:/UE/LyraStarterGame/Plugins/AsyncMixin/AsyncMixin.uplugin",
+      "projectLocal": true,
+      "sha256": "3de1b1669c4b0aa9e97dabbd7a27c7f8f85e1ba4e62ac6b339ec9842392de297",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "AsyncMixin",
+        "Description": "C++ utility class for managing asynchronous operations like loading.",
+        "Category": "UI",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "AsyncMixin",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BlueprintScreenshotTool",
+      "path": "F:/UE/LyraStarterGame/Plugins/BlueprintScreenshotTool/BlueprintScreenshotTool.uplugin",
+      "projectLocal": true,
+      "sha256": "736f39287c8f8aa67236a497b79369647de280b760541078905229d563e3265d",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 5,
+        "VersionName": "1.1.7",
+        "FriendlyName": "Blueprint Screenshot Tool",
+        "Description": "The tool to take screenshots of graphs inside blueprint editor and Blueprint Diff window",
+        "Category": "Editor",
+        "CreatedBy": "Gradess Games",
+        "CreatedByURL": "https://stepantrofimov.com",
+        "DocsURL": "https://github.com/Gradess2019/BlueprintScreenshotTool",
+        "MarketplaceURL": "",
+        "SupportURL": "https://discord.gg/zFK38y68tK",
+        "EngineVersion": "5.8.0",
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": true,
+        "Modules": [
+          {
+            "Name": "BlueprintScreenshotTool",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit",
+            "PlatformAllowList": [
+              "Win64",
+              "Mac",
+              "Linux"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommonGame",
+      "path": "F:/UE/LyraStarterGame/Plugins/CommonGame/CommonGame.uplugin",
+      "projectLocal": true,
+      "sha256": "85ddc331cd502d3a185346ae0197579c312c06cf4d1594f327751fd6b2e96a86",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "CommonGame",
+        "Description": "Generic gameplay classes that use the other Common plugins.",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "CommonGame",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "CommonUI",
+            "Enabled": true
+          },
+          {
+            "Name": "CommonUser",
+            "Enabled": true
+          },
+          {
+            "Name": "ModularGameplayActors",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineFramework",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommonLoadingScreen",
+      "path": "F:/UE/LyraStarterGame/Plugins/CommonLoadingScreen/CommonLoadingScreen.uplugin",
+      "projectLocal": true,
+      "sha256": "01a0dd666228b589d65d450a9947e79dabe138133a21477c8952d9ced4abcdb2",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "CommonLoadingScreen",
+        "Description": "Loading screen manager handling creation and display of a project-specified loading screen widget",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "CommonLoadingScreen",
+            "Type": "RuntimeNoCommandlet",
+            "LoadingPhase": "PreEarlyLoadingScreen"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommonStartupLoadingScreen",
+      "path": "F:/UE/LyraStarterGame/Plugins/CommonStartupLoadingScreen/CommonStartupLoadingScreen.uplugin",
+      "projectLocal": true,
+      "sha256": "f02a7c9de37e71207548f572f503d6c904d96d8595228b291c9bae81ed040eec",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "CommonStartupLoadingScreen",
+        "Description": "Loading screen showing during the startup of the game",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "CommonStartupLoadingScreen",
+            "Type": "RuntimeNoCommandlet",
+            "LoadingPhase": "PreEarlyLoadingScreen"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "CommonLoadingScreen",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommonUser",
+      "path": "F:/UE/LyraStarterGame/Plugins/CommonUser/CommonUser.uplugin",
+      "projectLocal": true,
+      "sha256": "5019183bd8f5e1ffd7b0a1453c3726c3b5e4bace85813360a6b10837a3253602",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "CommonUser",
+        "Description": "Provides gameplay code and blueprint wrappers for online and platform operations.",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "CommonUser",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OnlineSubsystem",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystemUtils",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineServices",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameplayMessageRouter",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameplayMessageRouter/GameplayMessageRouter.uplugin",
+      "projectLocal": true,
+      "sha256": "315cfd48807f6864f69ae95bdf1ede8405847d5d3f3d13a1a6e557430480916b",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Gameplay Message Subsystem",
+        "Description": "A subsystem that allows registering for and sending messages between unconnected gameplay objects.",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": true,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameplayMessageRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "GameplayMessageNodes",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameplayTagsEditor",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameSettings",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameSettings/GameSettings.uplugin",
+      "projectLocal": true,
+      "sha256": "db7901525863e9ce12ba3e7929c8840dc2c802615a60b74ca733b1de2ad7e1b0",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "GameSettings",
+        "Description": "System for defining game-specific settings and exposing them to the UI.",
+        "Category": "UI",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameSettings",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "CommonUI",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameSubtitles",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameSubtitles/GameSubtitles.uplugin",
+      "projectLocal": true,
+      "sha256": "6e2c108d4eed8ea91f8955b0eba32ad4d6d08832239976583c6358f9c3f5cd73",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Game Subtitles",
+        "Description": "Game support for playing subtitles attached to media player assets.",
+        "Category": "UI",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameSubtitles",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GreenRoom",
+      "path": "F:/UE/LyraStarterGame/Plugins/GreenRoom/GreenRoom.uplugin",
+      "projectLocal": true,
+      "sha256": "8211f4410d69c01786e4b1b11a80e4e067adfccedce2e46dcb6dbe668e593435",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "GreenRoom",
+        "Description": "",
+        "Category": "Other",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "ExplicitlyLoaded": true,
+        "EnabledByDefault": false
+      }
+    },
+    {
+      "name": "LyraExampleContent",
+      "path": "F:/UE/LyraStarterGame/Plugins/LyraExampleContent/LyraExampleContent.uplugin",
+      "projectLocal": true,
+      "sha256": "3e329f7791575c9eb2411f2ae18ebf72043f5a10c239d6d4b24f2525d93c4971",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "LyraExample",
+        "Description": "Lyra Example Content",
+        "Category": "Game",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": true,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "IsExperimentalVersion": false
+      }
+    },
+    {
+      "name": "LyraExtTool",
+      "path": "F:/UE/LyraStarterGame/Plugins/LyraExtTool/LyraExtTool.uplugin",
+      "projectLocal": true,
+      "sha256": "10821a51b11f2a13e79c43112286eb993b160df1e00fdab022b64768efca66d8",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "LyraExtTool",
+        "Description": "",
+        "Category": "Other",
+        "CreatedBy": "",
+        "CreatedByURL": "",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "LyraExtTool",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ModularGameplayActors",
+      "path": "F:/UE/LyraStarterGame/Plugins/ModularGameplayActors/ModularGameplayActors.uplugin",
+      "projectLocal": true,
+      "sha256": "097e78b2c0628f360fb0a3cbd7b5a4c5b5ad8f2570495a941c063072182efad6",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Modular Gameplay Actors",
+        "Description": "Base classes designed to be used with the Modular Gameplay plugin.",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": true,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "ModularGameplayActors",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "ModularGameplay",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "PocketWorlds",
+      "path": "F:/UE/LyraStarterGame/Plugins/PocketWorlds/PocketWorlds.uplugin",
+      "projectLocal": true,
+      "sha256": "498775217ce850beb6111918b27ff4f71e1ea17bf698b4cc1fb79de893b59dd3",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Pocket Worlds",
+        "Description": "Pocket Worlds",
+        "Category": "UI",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "PocketWorlds",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RedRoom",
+      "path": "F:/UE/LyraStarterGame/Plugins/RedRoom/RedRoom.uplugin",
+      "projectLocal": true,
+      "sha256": "4b2ffab2943811800a6dafaabb9b0883bd4d264d31fd64c2a73d37a2e16442e7",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "RedRoom",
+        "Description": "",
+        "Category": "Other",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "ExplicitlyLoaded": true,
+        "EnabledByDefault": false
+      }
+    },
+    {
+      "name": "UIExtension",
+      "path": "F:/UE/LyraStarterGame/Plugins/UIExtension/UIExtension.uplugin",
+      "projectLocal": true,
+      "sha256": "a65b6a122d915c1a61f8d0a859b7967bca5d1b936391cc5390e771a1737e7246",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "UIExtension",
+        "Description": "A subsystem that allows extending UI elements in a modular way.",
+        "Category": "UI",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "http://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "UIExtension",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "CommonGame",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShooterCore",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameFeatures/ShooterCore/ShooterCore.uplugin",
+      "projectLocal": true,
+      "sha256": "5b7bbaebeeb4a93dafd0842418bcb0c99608dc88928dd53d0db7cd2fcc1881d2",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "ShooterCore",
+        "Description": "Gameplay systems for Game1 / Shooter Game",
+        "Category": "Game Features",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "ExplicitlyLoaded": true,
+        "EnabledByDefault": false,
+        "BuiltInInitialFeatureState": "Registered",
+        "Modules": [
+          {
+            "Name": "ShooterCoreRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameplayAbilities",
+            "Enabled": true
+          },
+          {
+            "Name": "ModularGameplay",
+            "Enabled": true
+          },
+          {
+            "Name": "GameplayMessageRouter",
+            "Enabled": true
+          },
+          {
+            "Name": "AsyncMixin",
+            "Enabled": true
+          },
+          {
+            "Name": "CommonUI",
+            "Enabled": true
+          },
+          {
+            "Name": "CommonGame",
+            "Enabled": true
+          },
+          {
+            "Name": "GameSubtitles",
+            "Enabled": true
+          },
+          {
+            "Name": "EnhancedInput",
+            "Enabled": true
+          },
+          {
+            "Name": "LyraExampleContent",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShooterExplorer",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameFeatures/ShooterExplorer/ShooterExplorer.uplugin",
+      "projectLocal": true,
+      "sha256": "9cce155bf04b91417286a829676a0b55e6b82c58cf6142b4b20a0c1fcc84ab52",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "ShooterExplorer",
+        "Description": "Builds onto ShooterCore, adding adventure elements.",
+        "Category": "Game Features",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "ExplicitlyLoaded": true,
+        "BuiltInInitialFeatureState": "Registered",
+        "Plugins": [
+          {
+            "Name": "ShooterCore",
+            "Enabled": true
+          },
+          {
+            "Name": "LyraExampleContent",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShooterMaps",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameFeatures/ShooterMaps/ShooterMaps.uplugin",
+      "projectLocal": true,
+      "sha256": "ca6ace241f882605746d2d1352c2791b4820549478545f99beb03a99c0b1749c",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "ShooterMaps",
+        "Description": "Maps for Game1 / Shooter Game",
+        "Category": "Game Features",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "ExplicitlyLoaded": true,
+        "BuiltInInitialFeatureState": "Registered",
+        "Plugins": [
+          {
+            "Name": "ShooterCore",
+            "Enabled": true
+          },
+          {
+            "Name": "LyraExampleContent",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShooterTests",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameFeatures/ShooterTests/ShooterTests.uplugin",
+      "projectLocal": true,
+      "sha256": "5444ebfa63284864acb873a630c4fd4476cda3c07574f4d6987e1420390aaf89",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "ShooterTests",
+        "Description": "Tests for Game1 / Shooter Game",
+        "Category": "Game Features",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "ExplicitlyLoaded": true,
+        "BuiltInInitialFeatureState": "Registered",
+        "Modules": [
+          {
+            "Name": "ShooterTestsRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "TargetConfigurationDenyList": [
+              "Shipping"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "ShooterCore",
+            "Enabled": true
+          },
+          {
+            "Name": "AsyncMessageSystem",
+            "Enabled": true
+          },
+          {
+            "Name": "AsyncMessageSystemTests",
+            "Enabled": true
+          },
+          {
+            "Name": "LyraExampleContent",
+            "Enabled": true
+          },
+          {
+            "Name": "GameplayAbilities",
+            "Enabled": true
+          },
+          {
+            "Name": "ModularGameplay",
+            "Enabled": true
+          },
+          {
+            "Name": "EnhancedInput",
+            "Enabled": true
+          },
+          {
+            "Name": "CQTest",
+            "Enabled": true
+          },
+          {
+            "Name": "CQTestEnhancedInput",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "TopDownArena",
+      "path": "F:/UE/LyraStarterGame/Plugins/GameFeatures/TopDownArena/TopDownArena.uplugin",
+      "projectLocal": true,
+      "sha256": "7eb969b4114f2da6c1d8fead61aed5c5d97c29b2175ee77dc5d3c81f707ceb08",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "TopDownArena",
+        "Description": "Gameplay Systems for Game2 / Top Down Arena",
+        "Category": "Game Features",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://www.epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "ExplicitlyLoaded": true,
+        "BuiltInInitialFeatureState": "Registered",
+        "Modules": [
+          {
+            "Name": "TopDownArenaRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameplayAbilities",
+            "Enabled": true
+          },
+          {
+            "Name": "LyraExampleContent",
+            "Enabled": true
+          },
+          {
+            "Name": "Niagara",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "RiderLink",
+      "path": "F:/UE/LyraStarterGame/Plugins/Developer/RiderLink/RiderLink.uplugin",
+      "projectLocal": true,
+      "sha256": "5a342ad81f32b1ba75d60fea315d7f8a051f06ab3bd6e04749f9122ff3f93d75",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "2026.1.2",
+        "FriendlyName": "RiderLink",
+        "Description": "Plugin for establishing IPC connection with JetBrains Rider IDE",
+        "Category": "Programming",
+        "CreatedBy": "JetBrains",
+        "CreatedByURL": "https://www.jetbrains.com/",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "RD",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "RiderLink",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "RiderLogging",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "RiderBlueprint",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "RiderGameControl",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "RiderShaderInfo",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "PostEngineInit"
+          },
+          {
+            "Name": "RiderLC",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "PostEngineInit"
+          },
+          {
+            "Name": "RiderDebuggerSupport",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "PreDefault",
+            "PlatformAllowList": [
+              "Win64"
+            ]
+          }
+        ],
+        "EnabledByDefault": true
+      }
+    },
+    {
+      "name": "SocketSubsystemSteamIP",
+      "path": "E:/UnrealEngine/Engine/Plugins/Online/SocketSubsystemSteamIP/SocketSubsystemSteamIP.uplugin",
+      "projectLocal": false,
+      "sha256": "d0759c325daa9d569550c9e8f3a03d1d42241da1be4a7374fabc0944aa0e9d65",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "Socket Subsystem Steam (IP)",
+        "Version": 1,
+        "VersionName": "1.0",
+        "Description": "Responsible for Steam net connections between users. Does NOT use NAT punchthrough, use the SteamSockets plugin for P2P support",
+        "Category": "Online Platform",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "SocketSubsystemSteamIP",
+            "Type": "RuntimeNoCommandlet",
+            "LoadingPhase": "PostConfigInit",
+            "PlatformAllowList": [
+              "Win64",
+              "Mac"
+            ],
+            "PlatformArchitectureDenyList": [
+              "Win64:arm64"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OnlineSubsystemUtils",
+            "Enabled": true
+          },
+          {
+            "Name": "SteamShared",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "OnlineSubsystemSteam",
+      "path": "E:/UnrealEngine/Engine/Plugins/Online/OnlineSubsystemSteam/OnlineSubsystemSteam.uplugin",
+      "projectLocal": false,
+      "sha256": "1f35823fef8d3d9b5ab3075dd504ea3e871ae75d2768e6d5178aa489eff7e3e7",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "Online Subsystem Steam",
+        "Version": 1.2,
+        "VersionName": "1.2",
+        "Description": "Access to Steam platform",
+        "Category": "Online Platform",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "OnlineSubsystemSteam",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Win64",
+              "Mac",
+              "Linux",
+              "Android"
+            ],
+            "PlatformArchitectureDenyList": [
+              "Win64:arm64"
+            ]
+          }
+        ],
+        "LocalizationTargets": [
+          {
+            "Name": "OnlineSubsystemSteam",
+            "LoadingPolicy": "Always"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OnlineSubsystem",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystemUtils",
+            "Enabled": true
+          },
+          {
+            "Name": "SteamShared",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "AssetReferenceRestrictions",
+      "path": "E:/UnrealEngine/Engine/Plugins/Editor/AssetReferenceRestrictions/AssetReferenceRestrictions.uplugin",
+      "projectLocal": false,
+      "sha256": "7c43ccdf616f0424cf0ae24948efcb5480081850e7e39ec0949e6a9cf6dc66f8",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1",
+        "FriendlyName": "Asset Referencing Restrictions",
+        "Description": "Apply project-specific restrictions to how content in different folders or plugins can be referenced",
+        "Category": "Editor",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AssetReferenceRestrictions",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "DataValidation",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "OnlineFramework",
+      "path": "E:/UnrealEngine/Engine/Plugins/Online/OnlineFramework/OnlineFramework.uplugin",
+      "projectLocal": false,
+      "sha256": "e195bb9c72993a16844292485bff63a8e2b8990f845ee5feaaa7ece51d553f49",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "Online Framework Plugin",
+        "Version": 2,
+        "VersionName": "1.0",
+        "Description": "Shared code for interacting with online gameplay services.",
+        "Category": "Online Platform",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "Qos",
+            "Type": "Runtime"
+          },
+          {
+            "Name": "Party",
+            "Type": "Runtime"
+          },
+          {
+            "Name": "Lobby",
+            "Type": "Runtime"
+          },
+          {
+            "Name": "PatchCheck",
+            "Type": "Runtime"
+          },
+          {
+            "Name": "Hotfix",
+            "Type": "Runtime"
+          },
+          {
+            "Name": "Rejoin",
+            "Type": "Runtime"
+          },
+          {
+            "Name": "PlayTimeLimit",
+            "Type": "Runtime"
+          },
+          {
+            "Name": "LoginFlow",
+            "Type": "ClientOnly",
+            "PlatformDenyList": [
+              "Mac"
+            ]
+          }
+        ],
+        "LocalizationTargets": [
+          {
+            "Name": "OnlineFramework",
+            "LoadingPolicy": "Always"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OnlineFrameworkCommon",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystem",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystemUtils",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineServicesOSSAdapter",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystemGDK",
+            "PlatformAllowList": [
+              "Win64"
+            ],
+            "Enabled": false,
+            "Optional": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "AssetSearch",
+      "path": "E:/UnrealEngine/Engine/Plugins/Editor/AssetSearch/AssetSearch.uplugin",
+      "projectLocal": false,
+      "sha256": "3f20e91fd124a981693ae1f7a52e6a81f9cbbc4ccc6a02b98b02421e27df20ad",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Asset Search",
+        "Description": "",
+        "Category": "Editor",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AssetSearch",
+            "Type": "EditorNoCommandlet",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "SQLiteCore",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "OnlineServicesOSSAdapter",
+      "path": "E:/UnrealEngine/Engine/Plugins/Online/OnlineServicesOSSAdapter/OnlineServicesOSSAdapter.uplugin",
+      "projectLocal": false,
+      "sha256": "af9715043d94da31ae0170d2493d8b87c8d86bb0670b8541c9c00d20d64785d9",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "Online Services OSS Adapter",
+        "Version": 1,
+        "VersionName": "1.0",
+        "Description": "Online Services adapter for Online Subsystem implementations.",
+        "Category": "Online Platform",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "OnlineServicesOSSAdapter",
+            "Type": "Runtime",
+            "LoadingPhase": "PostConfigInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OnlineServices",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystem",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "OnlineServicesNull",
+      "path": "E:/UnrealEngine/Engine/Plugins/Online/OnlineServicesNull/OnlineServicesNull.uplugin",
+      "projectLocal": false,
+      "sha256": "3e0af2e054f96b2dc30ab61335fd676cf96dbb53d1a79f1c3174b421654fa00b",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "Online Services Null",
+        "Version": 1,
+        "VersionName": "1.0",
+        "Description": "Online Services implementation without an external service.",
+        "Category": "Online Platform",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "OnlineServicesNull",
+            "Type": "Runtime",
+            "LoadingPhase": "PostConfigInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OnlineServices",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystem",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystemUtils",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ModelingToolsEditorMode",
+      "path": "E:/UnrealEngine/Engine/Plugins/Editor/ModelingToolsEditorMode/ModelingToolsEditorMode.uplugin",
+      "projectLocal": false,
+      "sha256": "290c94de544dfebcaa574010b66830d749584645a0470a35803340cdaadf7e41",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "Modeling Tools Editor Mode",
+        "Description": "Modeling Tools Mode includes a suite of interactive tools for creating and editing meshes in the Editor",
+        "Category": "Editor",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "ModelingToolsEditorMode",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "MeshModelingToolset",
+            "Enabled": true,
+            "TargetAllowList": [
+              "Editor"
+            ]
+          },
+          {
+            "Name": "MeshModelingToolsetExp",
+            "Enabled": true,
+            "TargetAllowList": [
+              "Editor"
+            ]
+          },
+          {
+            "Name": "MeshLODToolset",
+            "Enabled": true,
+            "TargetAllowList": [
+              "Editor"
+            ]
+          },
+          {
+            "Name": "ToolPresets",
+            "Enabled": true,
+            "TargetAllowList": [
+              "Editor"
+            ]
+          },
+          {
+            "Name": "StylusInput",
+            "Enabled": true,
+            "TargetAllowList": [
+              "Editor"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameInputWindows",
+      "path": "E:/UnrealEngine/Engine/Plugins/GameInputWindows/GameInputWindows.uplugin",
+      "projectLocal": false,
+      "sha256": "0990ff687b95167d1594406f36cdd332871b6caf0b6cb97ccf205d5e87b40fad",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "Game Input (Windows)",
+        "Version": 1,
+        "VersionName": "1.0",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "Description": "GameInput is a next-generation input API that exposes input devices of all kinds through a single consistent interface.",
+        "Category": "Input Devices",
+        "EnabledByDefault": false,
+        "IsBetaVersion": true,
+        "CanContainContent": false,
+        "HasExplicitPlatforms": true,
+        "bRequiresBuildPlatform": false,
+        "SupportedTargetPlatforms": [
+          "Win64"
+        ],
+        "Modules": [
+          {
+            "Name": "GameInputWindows",
+            "Type": "RuntimeNoCommandlet",
+            "HasExplicitPlatforms": true,
+            "PlatformAllowList": [
+              "Win64"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameInput",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnhancedInput",
+      "path": "E:/UnrealEngine/Engine/Plugins/EnhancedInput/EnhancedInput.uplugin",
+      "projectLocal": false,
+      "sha256": "a609e8ec521297ebeb9ecb0f9ea29224d57f7aaa3e2c378121c2019128a8ff27",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Enhanced Input",
+        "Description": "Input handling that allows for contextual and dynamic mappings.",
+        "Category": "Input",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "https://docs.unrealengine.com/en-US/enhanced-input-in-unreal-engine/",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": true,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "EnhancedInput",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "InputBlueprintNodes",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "InputEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "DataValidation",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlayFabParty",
+      "path": "E:/UnrealEngine/Engine/Plugins/Online/Microsoft/PlayFabParty/PlayFabParty.uplugin",
+      "projectLocal": false,
+      "sha256": "614a8011e19bf5e301f69c6b37e0166b521fa8ed79c11ab3cd7ee31cdc7948f9",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "PlayFab Party",
+        "Version": 1,
+        "VersionName": "1.0",
+        "Description": "PlayFab Party Socket Subsystem plugin",
+        "Category": "Online Platform",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "RequiresBuildPlatform": false,
+        "HasExplicitPlatforms": true,
+        "ExplicitlyLoaded": true,
+        "SupportedTargetPlatforms": [
+          "Win64"
+        ],
+        "Modules": [
+          {
+            "Name": "PlayFabParty",
+            "Type": "RuntimeNoCommandlet",
+            "LoadingPhase": "Default",
+            "HasExplicitPlatforms": true,
+            "PlatformAllowList": [
+              "Win64"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OnlineSubsystemUtils",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Niagara",
+      "path": "E:/UnrealEngine/Engine/Plugins/FX/Niagara/Niagara.uplugin",
+      "projectLocal": false,
+      "sha256": "2bfd6d1688a2777a0c1da8bf2e2949645fb16f8f9a490cf3adc5856a7a22a943",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 1,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Niagara",
+        "Description": "Niagara effect systems.",
+        "Category": "FX",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": true,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Plugins": [
+          {
+            "Name": "PythonScriptPlugin",
+            "Enabled": true
+          }
+        ],
+        "Modules": [
+          {
+            "Name": "NiagaraCore",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "Niagara",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "NiagaraAnimNotifies",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "NiagaraShader",
+            "Type": "Runtime",
+            "LoadingPhase": "PostConfigInit"
+          },
+          {
+            "Name": "NiagaraVertexFactories",
+            "Type": "Runtime",
+            "LoadingPhase": "PostConfigInit"
+          },
+          {
+            "Name": "NiagaraBlueprintNodes",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "NiagaraEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "NiagaraEditorWidgets",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MovieRenderPipeline",
+      "path": "E:/UnrealEngine/Engine/Plugins/MovieScene/MovieRenderPipeline/MovieRenderPipeline.uplugin",
+      "projectLocal": false,
+      "sha256": "d8facdcb4d71dcc1136634b5332b9d91a1fe4a8cace7d3c6f9b04765ea4a7a27",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.3",
+        "FriendlyName": "Movie Render Queue",
+        "Description": "Advanced movie rendering pipeline for use in creating rendered cinematics or other multi-media creation.",
+        "Category": "Rendering",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "Plugins": [
+          {
+            "Name": "ActorLayerUtilities",
+            "Enabled": true,
+            "Optional": false
+          },
+          {
+            "Name": "ConsoleVariables",
+            "Enabled": true,
+            "Optional": false
+          },
+          {
+            "Name": "EditorScriptingUtilities",
+            "Enabled": true
+          },
+          {
+            "Name": "LevelSequenceEditor",
+            "Enabled": true,
+            "Optional": true
+          },
+          {
+            "Name": "OpenColorIO",
+            "Enabled": true,
+            "Optional": false
+          },
+          {
+            "Name": "SequencerScripting",
+            "Enabled": true
+          },
+          {
+            "Name": "ChaosClothAsset",
+            "Enabled": true
+          },
+          {
+            "Name": "NamingTokens",
+            "Enabled": true,
+            "Optional": false
+          }
+        ],
+        "Modules": [
+          {
+            "Name": "MovieRenderPipelineCore",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Mac",
+              "Win64",
+              "Linux"
+            ]
+          },
+          {
+            "Name": "MovieRenderPipelineSettings",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Mac",
+              "Win64",
+              "Linux"
+            ]
+          },
+          {
+            "Name": "MovieRenderPipelineRenderPasses",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Mac",
+              "Win64",
+              "Linux"
+            ]
+          },
+          {
+            "Name": "MovieRenderPipelineEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "MovieRenderPipelineMP4Encoder",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Mac",
+              "Win64",
+              "Linux"
+            ]
+          },
+          {
+            "Name": "UEOpenExrRTTI",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Mac",
+              "Win64",
+              "Linux"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "MoviePipelineMaskRenderPass",
+      "path": "E:/UnrealEngine/Engine/Plugins/MovieScene/MoviePipelineMaskRenderPass/MoviePipelineMaskRenderPass.uplugin",
+      "projectLocal": false,
+      "sha256": "d45562f31d87a87a790c50ceac72fab35318d3ff3a78d9d43b406ac5ad9aa763",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Movie Render Queue Additional Render Passes",
+        "Description": "Additional render passes for the Movie Render Queue. This currently includes the ObjectId pass (Editor Only) which generates object mattes with some limitations (using the Cryptomatte specification), and a Panoramic pass with better Sequencer integration than the Panoramic Capture plugin.",
+        "Category": "Rendering",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": true,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "Plugins": [
+          {
+            "Name": "MovieRenderPipeline",
+            "Enabled": true
+          },
+          {
+            "Name": "ActorLayerUtilities",
+            "Enabled": true
+          }
+        ],
+        "Modules": [
+          {
+            "Name": "MoviePipelineMaskRenderPass",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Water",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/Water/Water.uplugin",
+      "projectLocal": false,
+      "sha256": "992a2cb9ae6cd5ff77a3f5ffcdffccbb8de42c64eed6ea79541f2f78a0390b30",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 1,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "Water",
+        "Description": "Full suite of water tools and rendering techniques to easily add oceans, river, lakes or custom water bodies that carve landscape and interacts with gameplay",
+        "Category": "Water",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "Water",
+            "Type": "Runtime",
+            "LoadingPhase": "PostConfigInit"
+          },
+          {
+            "Name": "WaterEditor",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "Landmass",
+            "Enabled": true
+          },
+          {
+            "Name": "Niagara",
+            "Enabled": true
+          },
+          {
+            "Name": "GeometryProcessing",
+            "Enabled": true
+          },
+          {
+            "Name": "BlueprintMaterialTextureNodes",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Volumetrics",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/Volumetrics/Volumetrics.uplugin",
+      "projectLocal": false,
+      "sha256": "02ab73b12f4e0a8ecb7c12676388c50aa11615545bad15a401a6fbac92e96d13",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Volumetrics",
+        "Description": "A library of volume creation and rendering tools using Blueprints.",
+        "Category": "Rendering",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Plugins": [
+          {
+            "Name": "BlueprintMaterialTextureNodes",
+            "Enabled": true
+          },
+          {
+            "Name": "Landmass",
+            "Enabled": true
+          },
+          {
+            "Name": "Niagara",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "AudioGameplayVolume",
+      "path": "E:/UnrealEngine/Engine/Plugins/AudioGameplayVolume/AudioGameplayVolume.uplugin",
+      "projectLocal": false,
+      "sha256": "1d4c2325aef97c1b48b12ac21dc2d58bfbca893a63d9b34efedee7761deb9007",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "AudioGameplayVolume",
+        "Description": "Audio Gameplay Volume Plugin",
+        "Category": "Audio",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AudioGameplayVolume",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "AudioGameplayVolumeEditor",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "AudioGameplay",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "AudioGameplay",
+      "path": "E:/UnrealEngine/Engine/Plugins/AudioGameplay/AudioGameplay.uplugin",
+      "projectLocal": false,
+      "sha256": "121b7bbc1f0a7a3ff0f4246c26cfb705409efbd54b419a4ecba617da9b2647dc",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "AudioGameplay",
+        "Description": "Core plugin for audio gameplay",
+        "Category": "Audio",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AudioGameplay",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "AudioGameplayTests",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RuntimeTests",
+      "path": "E:/UnrealEngine/Engine/Plugins/Tests/RuntimeTests/RuntimeTests.uplugin",
+      "projectLocal": false,
+      "sha256": "732f5436aaad6762552d2bd2b29c7b8eb7a25f383c662a69257958bfb3190bcf",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Runtime Tests",
+        "Description": "Automated tests for runtime code used in both editor and cooked builds",
+        "Category": "Testing",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "RuntimeTests",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "AsyncMessageSystem",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "FunctionalTestingEditor",
+      "path": "E:/UnrealEngine/Engine/Plugins/Tests/FunctionalTestingEditor/FunctionalTestingEditor.uplugin",
+      "projectLocal": false,
+      "sha256": "c0c1f4d04d84720d0e7aa857c3279faaa3583e29e2ab87e34808e0ad848664f0",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Functional Testing Editor",
+        "Description": "",
+        "Category": "Testing",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "FunctionalTestingEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AutomatedPerfTesting",
+      "path": "E:/UnrealEngine/Engine/Plugins/Performance/AutomatedPerfTesting/AutomatedPerfTesting.uplugin",
+      "projectLocal": false,
+      "sha256": "2067c12a1adb11f9147bf13a0cc9c05f457954046cf8719d9fa93ff11b1b6710",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "AutomatedPerfTesting",
+        "Description": "This plugin provides Gauntlet Test Controllers to facilitate automatic performance testing.",
+        "Category": "Testing",
+        "CreatedBy": "",
+        "CreatedByURL": "",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AutomatedPerfTesting",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "Gauntlet",
+            "Enabled": true
+          },
+          {
+            "Name": "ProjectLauncher",
+            "Enabled": true,
+            "SupportedTargetPlatforms": [
+              "Win64",
+              "Linux",
+              "Mac"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "XInputDevice",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/Windows/XInputDevice/XInputDevice.uplugin",
+      "projectLocal": false,
+      "sha256": "eb7452b632acb642a48b1360f9ca91d323928f6f34262357a33f45079a406944",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "XInput Device",
+        "Version": 1,
+        "VersionName": "1.0",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "Description": "XInput is a Game Controller API for Windows.",
+        "Category": "Input Devices",
+        "EnabledByDefault": true,
+        "IsBetaVersion": false,
+        "CanContainContent": false,
+        "SupportedPrograms": [
+          "LiveLinkHub"
+        ],
+        "SupportedTargetPlatforms": [
+          "Win64"
+        ],
+        "Modules": [
+          {
+            "Name": "XInputDevice",
+            "Type": "Runtime",
+            "ProgramAllowList": [
+              "LiveLinkHub"
+            ],
+            "PlatformAllowList": [
+              "Win64"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "WinDualShock",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/Windows/WinDualShock/WinDualShock.uplugin",
+      "projectLocal": false,
+      "sha256": "9bfe95e3665c6767b8d1aceb1b0c9f8ff8e5be0755261e237aeae9120acd805d",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Windows DualShock",
+        "Description": "InputDevice plugin for the PS4 DualShock controller in Windows",
+        "Category": "Input Devices",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "RequiresBuildPlatform": false,
+        "SupportedTargetPlatforms": [
+          "Win64"
+        ],
+        "Modules": [
+          {
+            "Name": "WinDualShock",
+            "Type": "RuntimeNoCommandlet",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Win64"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "DataRegistry",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/DataRegistry/DataRegistry.uplugin",
+      "projectLocal": false,
+      "sha256": "fa61a4e046a321491fff1c8b1bad7dd70fa8d63a131db489fc2fa0899799dba5",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "Data Registry",
+        "Description": "Adds Data Registry system that can be used as a generic interface for acquiring structure data from multiple sources at runtime",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "DataRegistry",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "DataRegistryEditor",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameplayTagsEditor",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllToolsets",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/Toolsets/AllToolsets/AllToolsets.uplugin",
+      "projectLocal": false,
+      "sha256": "f237177cb06326ee7d132bb0f3e74366c3fe2ea06b699eee99e965e3a42bc6bf",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "All Toolsets",
+        "Description": "Aggregator plugin that depends on all Toolsets plugins.",
+        "Category": "Other",
+        "EditorOnly": true,
+        "IsExperimentalVersion": true,
+        "NoRedist": true,
+        "EnabledByDefault": false,
+        "Plugins": [
+          {
+            "Name": "AIModuleToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "AnimationAssistantToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "AutomationTestToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "ConfigSettingsToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "ConversationToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "DataRegistryToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "DataflowAgent",
+            "Enabled": true
+          },
+          {
+            "Name": "EditorToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "GameFeaturesToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "GameplayTagsToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "GASToolsets",
+            "Enabled": true
+          },
+          {
+            "Name": "MCPClientToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "NiagaraToolsets",
+            "Enabled": true
+          },
+          {
+            "Name": "PCGToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "PhysicsToolsets",
+            "Enabled": true
+          },
+          {
+            "Name": "PluginToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "SemanticSearchToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "SlateInspectorToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "StateTreeToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "UMGToolSet",
+            "Enabled": true
+          },
+          {
+            "Name": "WorldConditionsToolset",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ToolsetRegistry",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/ToolsetRegistry/ToolsetRegistry.uplugin",
+      "projectLocal": false,
+      "sha256": "7729cc6376a1732e80eb963b8468344a3e4f1a06be23017abb26480ccbc9866e",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Toolset Registry",
+        "Description": "",
+        "Category": "Other",
+        "EditorOnly": true,
+        "CreatedBy": "",
+        "CreatedByURL": "",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": true,
+        "NoRedist": true,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "ToolsetRegistry",
+            "Type": "Editor",
+            "LoadingPhase": "Default",
+            "TargetAllowList": [
+              "Editor"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "PythonScriptPlugin",
+            "Enabled": true
+          },
+          {
+            "Name": "EditorScriptingUtilities",
+            "Enabled": true
+          },
+          {
+            "Name": "FileSandbox",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ContextualAnimation",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/Animation/ContextualAnimation/ContextualAnimation.uplugin",
+      "projectLocal": false,
+      "sha256": "bc2cd8caa45c607bc752544ea34429051a0630e2107a404e1fba9b5003100d56",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "ContextualAnimation",
+        "Description": "",
+        "Category": "Animation",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "ContextualAnimation",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "ContextualAnimationEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "MotionWarping",
+            "Enabled": true
+          },
+          {
+            "Name": "IKRig",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameplayInsights",
+      "path": "E:/UnrealEngine/Engine/Plugins/Animation/GameplayInsights/GameplayInsights.uplugin",
+      "projectLocal": false,
+      "sha256": "6a968ce04c5df8e0ef7ab865bc45bc66fc72ac187e2f189a2a725c8dc4658918",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Animation Insights",
+        "Description": "Allows debugging of animation systems via Unreal Insights",
+        "Category": "Insights",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "SupportedPrograms": [
+          "UnrealInsights"
+        ],
+        "Modules": [
+          {
+            "Name": "GameplayInsights",
+            "Type": "EditorAndProgram",
+            "LoadingPhase": "Default",
+            "ProgramAllowList": [
+              "UnrealInsights"
+            ]
+          },
+          {
+            "Name": "GameplayInsightsEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "RewindDebugger",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          },
+          {
+            "Name": "RewindDebuggerVLog",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          },
+          {
+            "Name": "RewindDebuggerRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "RewindDebuggerVLogRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommonUI",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/CommonUI/CommonUI.uplugin",
+      "projectLocal": false,
+      "sha256": "751e6866ba43ec4c9bc663d10b73d3aabd55480d353a1fa8fd3e18a96d2dc42c",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Common UI Plugin",
+        "Description": "A repository for game independent UI elements.",
+        "Category": "UI",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "CommonUI",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "CommonUIEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "CommonInput",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "EngineAssetDefinitions",
+            "Enabled": true
+          },
+          {
+            "Name": "GameplayTagsEditor",
+            "Enabled": true
+          },
+          {
+            "Name": "EnhancedInput",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "AIAssistant",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/AIAssistant/AIAssistant.uplugin",
+      "projectLocal": false,
+      "sha256": "be4a17e1787b34d4c1b02ae1e7fbc7a1fd124a5f37689a80e6752fce8323f2f2",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "AI Assistant",
+        "Description": "",
+        "Category": "Other",
+        "EditorOnly": true,
+        "CreatedBy": "",
+        "CreatedByURL": "",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": true,
+        "NoRedist": true,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "AIAssistant",
+            "Type": "Editor",
+            "LoadingPhase": "Default",
+            "TargetAllowList": [
+              "Editor"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "PythonScriptPlugin",
+            "Enabled": true
+          },
+          {
+            "Name": "EditorScriptingUtilities",
+            "Enabled": true
+          },
+          {
+            "Name": "ToolsetRegistry",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ActorPalette",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/ActorPalette/ActorPalette.uplugin",
+      "projectLocal": false,
+      "sha256": "6f2e5a9c1667872563b9d7e421c62b1e358c2fb37a1fd147e1cc05e65e89b4b4",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Actor Palette",
+        "Description": "Allows creation of Actor Palettes based on existing levels to quickly select actors and drag them into the level editor",
+        "Category": "Experimental",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "EnabledByDefault": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "ActorPalette",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AnimationWarping",
+      "path": "E:/UnrealEngine/Engine/Plugins/Animation/AnimationWarping/AnimationWarping.uplugin",
+      "projectLocal": false,
+      "sha256": "03d6cb98faba1533109891feb8d4c01285e104517716d643829bd920a598bee9",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Animation Warping",
+        "Description": "Framework for animation and pose warping. This plugin includes Stride, Orientation, and Slope Warping alongside the Root Motion Delta animation attribute.",
+        "Category": "Animation",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AnimationWarpingRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "AnimationWarpingEditor",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "AnimationModifierLibrary",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "AnimationLocomotionLibrary",
+      "path": "E:/UnrealEngine/Engine/Plugins/Animation/AnimationLocomotionLibrary/AnimationLocomotionLibrary.uplugin",
+      "projectLocal": false,
+      "sha256": "dc1b1a0aa30ab20fd860254242d45e29e671c72427a7770413f1bf2198943bfb",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 1,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Animation Locomotion Library",
+        "Description": "Collection of techniques for driving locomotion animations",
+        "Category": "Animation",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": true,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AnimationLocomotionLibraryRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "AnimationLocomotionLibraryEditor",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameplayBehaviors",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/GameplayBehaviors/GameplayBehaviors.uplugin",
+      "projectLocal": false,
+      "sha256": "9019bd91ee43dae947541f187eceb76260a5758ea84602cad43f5a699763d50a",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "AI Behaviors",
+        "Description": "Encapsulated fire-and-forget behaviors for AI agents",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameplayBehaviorsModule",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "GameplayBehaviorsModule",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "GameplayBehaviorsEditorModule",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameplayAbilities",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommonConversation",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/CommonConversation/CommonConversation.uplugin",
+      "projectLocal": false,
+      "sha256": "101b389b54b8f7cc9ab68a0dea4ca129c7bd3abf348099c562e0a8066b675a61",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "Common Conversation",
+        "Description": "An *experimental* plugin for authoring graph-based conversation trees",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "CommonConversationRuntime",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "CommonConversationGraph",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "CommonConversationEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameFeatures",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ControlFlows",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/ControlFlows/ControlFlows.uplugin",
+      "projectLocal": false,
+      "sha256": "768ab8107a4d898c67ad1af318e877c8368b92b046d17082eb9ff59d67baf4c8",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "ControlFlows",
+        "Description": "Tool to cleanly implement Asynchronous Operations",
+        "Category": "Other",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "SupportedPrograms": [
+          "LiveLinkHub"
+        ],
+        "Modules": [
+          {
+            "Name": "ControlFlows",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AudioModulation",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/AudioModulation/AudioModulation.uplugin",
+      "projectLocal": false,
+      "sha256": "26747caf9dd0524eed98e7cff9267d0966c50a6f6e04def597a61466002db36a",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "2.0",
+        "FriendlyName": "Audio Modulation",
+        "Description": "Default implementation of Audio Modulation in the Unreal Audio Engine.",
+        "Category": "Audio",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AudioModulation",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "AudioModulationEditor",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "MetaSound",
+            "Enabled": true
+          },
+          {
+            "Name": "WaveTable",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metasound",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/Metasound/Metasound.uplugin",
+      "projectLocal": false,
+      "sha256": "7c0b5feba3043b5c7f26802a1f2337427eeadc492127a519723d51d32c8e63c7",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "MetaSound",
+        "Description": "A high-performance audio system that enables sound designers to have complete control over audio DSP graph generation of sound sources, via sample-accurate control and modulation of sound using audio parameters and audio events from game data and Blueprints",
+        "Category": "Audio",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": true,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "MetasoundGraphCore",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "MetasoundGenerator",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "MetasoundFrontend",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "MetasoundStandardNodes",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "MetasoundEngine",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "MetasoundEngineTest",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "MetasoundEditor",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "AudioWidgets",
+            "Enabled": true
+          },
+          {
+            "Name": "AudioSynesthesia",
+            "Enabled": true
+          },
+          {
+            "Name": "ContentBrowserAssetDataSource",
+            "Enabled": true
+          },
+          {
+            "Name": "WaveTable",
+            "Enabled": true
+          },
+          {
+            "Name": "ModelViewViewModel",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ModelContextProtocol",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/ModelContextProtocol/ModelContextProtocol.uplugin",
+      "projectLocal": false,
+      "sha256": "39e08883186e2b6bd8e0e3f8b17ae3fcc9896bfa1759f6606be5e2b3d56e4e3a",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Unreal MCP",
+        "Description": "Anthropic MCP (Model Context Protocol) server implementation for Unreal Engine.",
+        "Category": "Other",
+        "NoRedist": true,
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "ModelContextProtocol",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "ModelContextProtocolEngine",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "ModelContextProtocolEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "ModelContextProtocolTests",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "ModelContextProtocolEngineTests",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "Default"
+          },
+          {
+            "Name": "ModelContextProtocolEditorTests",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "EngineAssetDefinitions",
+            "Enabled": true
+          },
+          {
+            "Name": "ToolsetRegistry",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Gauntlet",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/Gauntlet/Gauntlet.uplugin",
+      "projectLocal": false,
+      "sha256": "81cc9b9e27ceb63bc2ff43cb597747a78519e07ff664773aac83dd5d5fbcaf4d",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "Gauntlet",
+        "Description": "Provides a helper class for creating and managing tests in your game",
+        "Category": "Testing",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "Gauntlet",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "IsExperimentalVersion": false
+      }
+    },
+    {
+      "name": "PlayerInputDebugger",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/PlayerInputDebugger/PlayerInputDebugger.uplugin",
+      "projectLocal": false,
+      "sha256": "864ee52b223a0ad831cbc567132681c3e6a110281a16b28fe8e02c2edb7575bf",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "PlayerInputDebugger",
+        "Description": "Plugin for debugging input related things",
+        "Category": "Other",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "EnabledByDefault": false,
+        "EditorOnly": true,
+        "Modules": [
+          {
+            "Name": "PlayerInputDebugger",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "EnhancedInput",
+            "Enabled": true
+          },
+          {
+            "Name": "CommonUI",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlatformDLC",
+      "path": "E:/UnrealEngine/Engine/Plugins/Experimental/PlatformDLC/PlatformDLC.uplugin",
+      "projectLocal": false,
+      "sha256": "761c5781578f02eb3ebf6aac85632a1d93aca41298cd8ad6406db5a5b6c11e7e",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "Platform DLC",
+        "Description": "Experimental support for native platform DLC (on supported platforms)",
+        "CreatedBy": "Epic Games, Inc.",
+        "Category": "Platform",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "RequiresBuildPlatform": false,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "PlatformDLC",
+            "Type": "RuntimeNoCommandlet",
+            "LoadingPhase": "PostConfigInit"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameFeatures",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/GameFeatures/GameFeatures.uplugin",
+      "projectLocal": false,
+      "sha256": "0ed00b83d4a64038dcf9b9aa903c2ddb96732be68d74d5f044ff841f86578f24",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Game Features",
+        "Description": "Support for modular Game Feature Plugins",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameFeatures",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "GameFeaturesEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "ModularGameplay",
+            "Enabled": true
+          },
+          {
+            "Name": "DataRegistry",
+            "Enabled": true
+          },
+          {
+            "Name": "AssetReferenceRestrictions",
+            "Enabled": true
+          },
+          {
+            "Name": "PluginUtils",
+            "Enabled": true,
+            "TargetAllowList": [
+              "Editor"
+            ]
+          },
+          {
+            "Name": "DataValidation",
+            "Enabled": true,
+            "TargetAllowList": [
+              "Editor"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameplayAbilities",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/GameplayAbilities/GameplayAbilities.uplugin",
+      "projectLocal": false,
+      "sha256": "576af79361482d737813f15ce84888808b87691e29bbef6f9b5bba4fd1216bad",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Gameplay Abilities",
+        "Description": "Adds GameplayEffect and GameplayAbility classes to handle complicated gameplay interactions.",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameplayAbilities",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "GameplayAbilitiesEditor",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "EngineAssetDefinitions",
+            "Enabled": true
+          },
+          {
+            "Name": "GameplayTagsEditor",
+            "Enabled": true
+          },
+          {
+            "Name": "Niagara",
+            "Enabled": true
+          },
+          {
+            "Name": "DataRegistry",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameplayStateTree",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/GameplayStateTree/GameplayStateTree.uplugin",
+      "projectLocal": false,
+      "sha256": "61d663d6fbda48ab0d0264000b55c660c36446fa91d6deaeee5342ad9aae1d74",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "GameplayStateTree",
+        "Description": "StateTree for AI/Gameplay Behaviors",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameplayStateTreeModule",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "StateTree",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameplayInteractions",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/GameplayInteractions/GameplayInteractions.uplugin",
+      "projectLocal": false,
+      "sha256": "47b70920cc513f5621f5209963acf00b883cb84ff4617fc9dda2d79f7841ff6b",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "GameplayInteractions",
+        "Description": "Player and NPC interactions",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameplayInteractionsModule",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "StateTree",
+            "Enabled": true
+          },
+          {
+            "Name": "SmartObjects",
+            "Enabled": true
+          },
+          {
+            "Name": "ContextualAnimation",
+            "Enabled": true
+          },
+          {
+            "Name": "NavCorridor",
+            "Enabled": true
+          },
+          {
+            "Name": "GameplayStateTree",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "GeometryScripting",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/GeometryScripting/GeometryScripting.uplugin",
+      "projectLocal": false,
+      "sha256": "301f84139b848bc7551880c3681d5712f2ee8400db2424ae8150730a0e87fa61",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "Geometry Script",
+        "Description": "Geometry Script provides a library of functions for creating and editing Meshes in Blueprints and Python",
+        "Category": "Geometry",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsExperimentalVersion": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GeometryScriptingCore",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "GeometryScriptingEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GeometryProcessing",
+            "Enabled": true
+          },
+          {
+            "Name": "MeshModelingToolset",
+            "Enabled": true
+          },
+          {
+            "Name": "PlanarCut",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "ModularGameplay",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/ModularGameplay/ModularGameplay.uplugin",
+      "projectLocal": false,
+      "sha256": "d65c061b5899c10cc83b4134f749cee352d8380936d99f685bd13e77e33410bd",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Modular Gameplay",
+        "Description": "Base classes and subsystems to support modular use of the gameplay framework",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "ModularGameplay",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SteamSockets",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/Steam/SteamSockets/SteamSockets.uplugin",
+      "projectLocal": false,
+      "sha256": "ec7abe7208a1730478989021a7b5e6e3a2e03c014eec9a72cc038052a5c9e442",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1.0,
+        "VersionName": "1.0",
+        "FriendlyName": "Steam Sockets",
+        "Description": "New Steamworks Networking code that supports the SteamSockets interface. NOTE: This plugin is only compatible with the SteamSockets Netdriver. It will not work if the proper netdriver definitions have not been set.",
+        "Category": "Networking",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "SteamSockets",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Win64",
+              "Mac",
+              "Linux"
+            ],
+            "PlatformArchitectureDenyList": [
+              "Win64:arm64"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OnlineSubsystem",
+            "Enabled": true
+          },
+          {
+            "Name": "OnlineSubsystemSteam",
+            "Enabled": true
+          },
+          {
+            "Name": "SteamShared",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reflex",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/Nvidia/Reflex/Reflex.uplugin",
+      "projectLocal": false,
+      "sha256": "5f1d63e11e46664ff0bfe6cd6ce7bf80b5a57c9c1148c47c8b99ce260f39881c",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "FriendlyName": "Reflex",
+        "Version": 1,
+        "VersionName": "1.6",
+        "Description": "NVIDIA Reflex Latency Tracking and Tick Rate Handling",
+        "Category": "Performance",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "EnabledByDefault": false,
+        "Modules": [
+          {
+            "Name": "Reflex",
+            "Type": "ClientOnly",
+            "PlatformAllowList": [
+              "Win64"
+            ],
+            "PlatformArchitectureDenyList": [
+              "Win64:arm64",
+              "Win64:arm64ec"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameplayBehaviorSmartObjects",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/GameplayBehaviorSmartObjects/GameplayBehaviorSmartObjects.uplugin",
+      "projectLocal": false,
+      "sha256": "aa8ec80a24605a354311729c4945a56f4a4fd6ebd1d27e177ace7a8670e3d31c",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "GameplayBehaviorSmartObjects",
+        "Description": "Plugins for SmartObjects using GameplayBehavior as their default runtime behavior",
+        "Category": "Other",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "GameplayBehaviorSmartObjectsModule",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameplayBehaviors",
+            "Enabled": true
+          },
+          {
+            "Name": "SmartObjects",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "DTLSHandlerComponent",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/PacketHandlers/DTLSHandlerComponent/DTLSHandlerComponent.uplugin",
+      "projectLocal": false,
+      "sha256": "d8045d3002ba1d09761c38757290110bed2b52aebb02d0bcc39a2402b2ef9359",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "DTLS network packet handler",
+        "Description": "Provides a packet handler component to do DTLS encryption and decryption.",
+        "Category": "Misc",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsExperimentalVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "DTLSHandlerComponent",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OpenXRHandTracking",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/OpenXRHandTracking/OpenXRHandTracking.uplugin",
+      "projectLocal": false,
+      "sha256": "a74387a4188c49d81f3b17587f4c60e5c159fa817dc15a488c2bfd9efc4f81c8",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "OpenXRHandTracking",
+        "Description": "OpenXR Hand Tracking provides XR_EXT_hand_tracking support.",
+        "Category": "Virtual Reality",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "OpenXRHandTracking",
+            "Type": "Runtime",
+            "LoadingPhase": "PostConfigInit"
+          },
+          {
+            "Name": "OpenXRHandTrackingEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "OpenXR",
+            "Enabled": true
+          },
+          {
+            "Name": "LiveLink",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "AESGCMHandlerComponent",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/PacketHandlers/AESGCMHandlerComponent/AESGCMHandlerComponent.uplugin",
+      "projectLocal": false,
+      "sha256": "1e6741bb5b850a63398aaed98f392a4cfef966fe8edcd4d08d3f7c87962c876e",
+      "trailingCommaRemovedForParsingOnly": true,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "AES GCM network packet handler",
+        "Description": "Provides a packet handler component to do AES GCM encryption and decryption.",
+        "Category": "Misc",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "AESGCMHandlerComponent",
+            "Type": "Runtime",
+            "LoadingPhase": "Default",
+            "PlatformAllowList": [
+              "Android",
+              "IOS",
+              "Mac",
+              "Win64",
+              "Linux",
+              "LinuxArm64"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "PlatformCrypto",
+            "Enabled": true,
+            "PlatformAllowList": [
+              "Android",
+              "IOS",
+              "Mac",
+              "Win64",
+              "Linux",
+              "LinuxArm64"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "OpenXREyeTracker",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/OpenXREyeTracker/OpenXREyeTracker.uplugin",
+      "projectLocal": false,
+      "sha256": "14e1bd4081dbdb8e2d72d26b3844629a5313a29a4e82e12ff7e8454f899c9a74",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "OpenXREyeTracker",
+        "Description": "OpenXR Eye Tracker provides XR_EXT_eye_gaze_interaction support.",
+        "Category": "Virtual Reality",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "OpenXREyeTracker",
+            "Type": "Runtime",
+            "LoadingPhase": "PostConfigInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "XRBase",
+            "Enabled": true
+          },
+          {
+            "Name": "OpenXR",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "SmartObjects",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/SmartObjects/SmartObjects.uplugin",
+      "projectLocal": false,
+      "sha256": "42a6b5915915bac6aae8a804f752c28e71fbe39621bb1a640ec306c7ada36042",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "0.1",
+        "FriendlyName": "SmartObjects",
+        "Description": "Support for ambient life populating the game world",
+        "Category": "Gameplay",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "SmartObjectsModule",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "SmartObjectsTestSuite",
+            "Type": "UncookedOnly",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "SmartObjectsEditorModule",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "GameplayAbilities",
+            "Enabled": true
+          },
+          {
+            "Name": "TargetingSystem",
+            "Enabled": true
+          },
+          {
+            "Name": "WorldConditions",
+            "Enabled": true
+          },
+          {
+            "Name": "PropertyAccessEditor",
+            "Enabled": true
+          },
+          {
+            "Name": "PropertyBindingUtils",
+            "Enabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "SignificanceManager",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/SignificanceManager/SignificanceManager.uplugin",
+      "projectLocal": false,
+      "sha256": "7320b8049709e7e42961df809374a888b4f3ed72adc096198fd2d227d1532271",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Significance Manager",
+        "Description": "The significance manager plugin provides an extensible framework for allowing games to calculate the significance of an object and change behavior in response.",
+        "Category": "Performance",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "SignificanceManager",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "IsExperimentalVersion": false
+      }
+    },
+    {
+      "name": "ReplicationGraph",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/ReplicationGraph/ReplicationGraph.uplugin",
+      "projectLocal": false,
+      "sha256": "606e0aba73a4cfd17598750e500ddf9a2d601040970f3029db2dc94042155f63",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Replication Graph",
+        "Description": "The Replication Graph plugin provides a Replication Driver implementation designed for a large number of actors and connections by mainting persistent replicated actor lists in a graph structure.",
+        "Category": "Performance",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": false,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "ReplicationGraph",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          }
+        ],
+        "IsExperimentalVersion": false
+      }
+    },
+    {
+      "name": "SoundUtilities",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/SoundUtilities/SoundUtilities.uplugin",
+      "projectLocal": false,
+      "sha256": "c2e48d40e7672dd6af0a771e63304c993563a14f742798fadb4107fbf3b4de0f",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Sound Utilities",
+        "Description": "A variety of BP functions, objects, and utilities for audio.",
+        "Category": "Audio",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "EnabledByDefault": false,
+        "CanContainContent": true,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "SoundUtilities",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "SoundUtilitiesEditor",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Spatialization",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/Spatialization/Spatialization.uplugin",
+      "projectLocal": false,
+      "sha256": "1437116676984d11e1f359d2ebdbb2281cb634ae0f7c1b8c3d4b7e4cc59c14ab",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Spatialization",
+        "Description": "Plugin featuring a variety of basic audio spatialization solutions.",
+        "Category": "Audio",
+        "CreatedBy": "Epic Games, Inc.",
+        "CreatedByURL": "https://epicgames.com",
+        "DocsURL": "",
+        "MarketplaceURL": "",
+        "SupportURL": "",
+        "CanContainContent": false,
+        "IsBetaVersion": false,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "Spatialization",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault"
+          },
+          {
+            "Name": "SpatializationEditor",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ResonanceAudio",
+      "path": "E:/UnrealEngine/Engine/Plugins/Runtime/ResonanceAudio/ResonanceAudio.uplugin",
+      "projectLocal": false,
+      "sha256": "4b21ccf9194bb1abec4cb7cdeabfe0511a1377849b4c2568ad1321814c33c9d6",
+      "trailingCommaRemovedForParsingOnly": false,
+      "descriptor": {
+        "FileVersion": 3,
+        "Version": 1,
+        "VersionName": "1.0",
+        "FriendlyName": "Resonance Audio",
+        "Description": "3D audio spatialization and room acoustics simulation plugin by Google.",
+        "Category": "Audio",
+        "CreatedBy": "Google",
+        "CreatedByURL": "https://developers.google.com/resonance-audio",
+        "DocsURL": "https://developers.google.com/resonance-audio/develop/unreal/getting-started",
+        "MarketplaceURL": "",
+        "SupportURL": "https://developers.google.com/resonance-audio/community/connect",
+        "EnabledByDefault": true,
+        "CanContainContent": true,
+        "IsBetaVersion": true,
+        "Installed": false,
+        "Modules": [
+          {
+            "Name": "ResonanceAudio",
+            "Type": "Runtime",
+            "LoadingPhase": "PreDefault",
+            "PlatformAllowList": [
+              "Android",
+              "IOS",
+              "Linux",
+              "Mac",
+              "Win64"
+            ]
+          },
+          {
+            "Name": "ResonanceAudioEditor",
+            "Type": "Editor",
+            "LoadingPhase": "PostEngineInit",
+            "PlatformAllowList": [
+              "Linux",
+              "Mac",
+              "Win64"
+            ]
+          }
+        ],
+        "Plugins": [
+          {
+            "Name": "ProceduralMeshComponent",
+            "Enabled": true
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-09-15T10:33:01.6707621+08:00",
+  "passed": true,
+  "cases": [
+    {
+      "passed": true,
+      "reason": "Start with Stage 0",
+      "name": "Refuse stage skipping in a new directory"
+    },
+    {
+      "passed": true,
+      "reason": "Advance one stage",
+      "name": "Refuse skipping installed stages"
+    },
+    {
+      "passed": true,
+      "reason": "Different:",
+      "name": "Check reports learner difference"
+    },
+    {
+      "passed": true,
+      "reason": "Learner edit preserved",
+      "name": "Apply preserves learner edit before copying anything"
+    },
+    {
+      "passed": true,
+      "name": "Failed apply preserves hash and creates no phase 1 plugin"
+    },
+    {
+      "passed": true,
+      "reason": "separate lesson directory",
+      "name": "Refuse tutorial source directory"
+    },
+    {
+      "passed": true,
+      "reason": "empty destination",
+      "name": "Refuse unregistered occupied directory"
+    }
+  ],
+  "testRoot": "F:\\UE\\LyraDocLabs\\CopyCourseGuards-adfd1045ad7c4161b7f403ec21ccd819"
+}

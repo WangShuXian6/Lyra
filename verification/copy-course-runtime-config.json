@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "phaseCheckScope": "Byte-exact before launching UE; a platform plugin later appended generated settings and changed line endings.",
+  "allTutorialEngineSectionsUnchanged": true,
+  "autoAddedSections": [
+    "/Script/AndroidFileServerEditor.AndroidFileServerRuntimeSettings"
+  ],
+  "generatedValuesIncluded": false
+}

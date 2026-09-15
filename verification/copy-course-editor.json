@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "project": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG",
+  "checks": [
+    {
+      "name": "Python rejects unfinished lesson",
+      "passed": true
+    },
+    {
+      "name": "Native guard rejects unfinished lesson",
+      "passed": true,
+      "result": {
+        "passed": false,
+        "saved": false,
+        "httpExecuted": false,
+        "verifiedAt": "2026-09-15T02:37:18.623Z",
+        "asset": "/Game/Tutorial/BP_BackendHealth.BP_BackendHealth",
+        "errors": [
+          "Expected the Actor Blueprint /Game/Tutorial/BP_BackendHealth in the LyraDocLabs/MMORPG editor."
+        ]
+      }
+    },
+    {
+      "name": "Rejected operation preserves all asset bytes and exact marker",
+      "passed": true
+    },
+    {
+      "name": "Fresh process validates Cook label and existing animation graphs",
+      "passed": true
+    }
+  ]
+}

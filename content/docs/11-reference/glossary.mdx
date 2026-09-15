@@ -40,3 +40,46 @@ description: 用中文解释关键英文符号，并指向对应学习章节。
 看到“按键没反应”，先区分 InputAction、InputTag 和 AbilitySpec；看到“物品丢了”，先区分 InventoryInstance、EquipmentInstance 和后端持久记录；看到“界面消失”，先区分 UI Layer、UIExtension 和 ViewModel 生命周期。
 
 练习：用自己的话写五组容易混淆的名词，每组附一个可实际观察的例子。只背英文展开无法帮助定位运行问题，必须同时知道对象存在在哪里、谁创建它、谁清理它。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 一行 C++ 里也能看到术语之间的关系
+源码：`Source/LyraGame/Character/LyraPawnData.h`，本机第 37–41 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+TSubclassOf<APawn> PawnClass;
+
+// Ability sets to grant to this pawn's ability system.
+UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lyra|Abilities")
+TArray<TObjectPtr<ULyraAbilitySet>> AbilitySets;
+```
+
+PawnClass 保存“要生成哪种 Pawn”的类引用；AbilitySets 是数组，元素指向技能集数据资产。配置不保存每位玩家当前血量，也不代表数组里的技能已经授予。授予后才有 ASC 上的 AbilitySpec。
+![用对象生命周期记住名词](/media/guide-diagrams/11-reference-glossary.svg)
+
+**读图**：不要把“这个类型存在”和“本次对象已经创建”混为一谈。排障时类名、实例路径、句柄各记录自己的值。
+
+### 新手常见的界面和代码词
+
+| 术语 | 直白解释 | 去哪里操作/观察 |
+|---|---|---|
+| Details | 当前选中对象的属性面板 | 先选 Actor、组件、资产或控件 |
+| Class Defaults | 蓝图类默认配置 | Blueprint 工具栏“类默认值” |
+| Designer / Hierarchy | UMG 画布 / 控件父子树 | Widget Blueprint 右上角切换 |
+| Instanced | 属性保存内嵌对象实例的一类声明方式 | 物品碎片/动作数组展开子对象 |
+| Delegate | 某件事发生时调用订阅者 | Add/Remove 与保存的 Handle |
+| Soft Reference | 保存路径、按需要加载的引用 | 软对象/软类字段与加载代码 |
+| RepNotify | 复制字段更新后的回调 | OnRep_* 函数 |
+| Input Mapping Context | 一组按键到 InputAction 的映射 | IMC 资产与 LocalPlayer 子系统 |
+| Gameplay Tag | 有层级名字的语义标签 | Gameplay Tags 设置、InputTag、UI.Layer |
+| BlueprintReadOnly | 蓝图可以读此属性 | 不等于服务器权限验证或网络只读 |
+| FieldNotify | 展示字段变化时通知绑定 | ViewModel 的通知宏与 Designer 绑定 |
+| Manifest / BuildId | 模块文件与构建身份记录 | Binaries/Win64/UnrealEditor.modules |
+| Port | 一个进程监听连接的端口号 | UE 游戏服 7777 / 教学 API 8088 |
+| Idempotency | 同一次请求重复到达只应用一次结果 | requestId、相同负载与保存记录 |
+
+**练习**：从 Rider 复制一行自己看不懂的声明，圈出“类型、变量名、容器、宏”，再回到资产面板找到对应字段。完整入门见 [UE 基础与读代码](/docs/01-start/ue-basics)。
+
+{/* full-guide-end */}

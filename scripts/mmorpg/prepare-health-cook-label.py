@@ -5,9 +5,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 import unreal
 
-project = Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir()))
-if project.as_posix().rstrip('/').lower() != 'f:/ue/lyradoclabs/mmorpg':
-    raise RuntimeError('The health Cook label belongs only to the isolated MMORPG lab.')
+import runpy
+project = runpy.run_path(str(Path(__file__).with_name('lesson_project.py')))['require_lesson_project']()
 
 name = 'DA_TutorialExamples'
 folder = '/Game/MMO/Labels'

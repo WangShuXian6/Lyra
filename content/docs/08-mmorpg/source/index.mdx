@@ -1,0 +1,23 @@
+---
+title: MMORPG 完整源码书
+description: 逐文件给出完整实现、精确目标路径和所属开发步骤。
+---
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+**读图**：每一层都有独立检查点。C++ 编译通过后，仍要创建它引用的资产；界面出现后，仍要验证服务器和存档。
+
+先完成 [从零复刻 00](/docs/08-mmorpg/from-zero)，再按阶段使用下列文件。这里展示全部原创实现；四个 Epic 插件和 Manny 从自己的引擎/Lyra 获取。
+
+- [00 空白工程骨架](/docs/08-mmorpg/source/skeleton)：9 个完整文件。
+- [工程入口与构建目标](/docs/08-mmorpg/source/build)：7 个完整文件。
+- [数据定义与初始化框架](/docs/08-mmorpg/source/framework)：17 个完整文件。
+- [协议与 HTTP 模块](/docs/08-mmorpg/source/http)：11 个完整文件。
+- [角色、战斗与存档代码](/docs/08-mmorpg/source/gameplay)：3 个完整文件。
+- [输入、死亡与验证代码](/docs/08-mmorpg/source/input-health)：8 个完整文件。
+- [UI 与 ViewModel 的完整父类](/docs/08-mmorpg/source/ui)：2 个完整文件。
+- [动画数据接口](/docs/08-mmorpg/source/animation)：2 个完整文件。
+- [Game Feature 与区域内容](/docs/08-mmorpg/source/zone)：4 个完整文件。
+- [后端 Program 与数据库](/docs/08-mmorpg/source/backend)：7 个完整文件。
+- [项目配置与界面契约](/docs/08-mmorpg/source/config)：18 个完整文件。
+- [资产核对与生成工具](/docs/08-mmorpg/source/editor-tools)：14 个完整文件。

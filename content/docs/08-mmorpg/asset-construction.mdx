@@ -1,0 +1,246 @@
+---
+title: 资产施工清单：蓝图、节点、输入与 UI 逐项搭建
+description: 从没有成品资产的工程开始，按创建顺序连接原生类、数据引用、蓝图节点与 Designer 绑定。
+---
+
+![资产施工顺序与三种保存方式](/media/guide-diagrams/08-mmorpg-asset-construction.svg)
+
+**读图**：图中顺序对应下文施工清单。不要把数据资产当事件图，也不要在继承了 C++ 实现的技能中重复写一套扣蓝逻辑。
+
+本页从**已经完成 03 源码编译、尚未导入成品 Content**的工程开始。主路径是自己建立下列对象；已有作者资产只作为对照。每一组完成后 Compile/Save、关闭并重开核对，再继续下一组。
+
+## 统一创建动作
+
+- **Blueprint Class**：Content Browser 右键 → Blueprint Class → All Classes → 搜索原生父类 → 命名；双击后 Class Settings 检查 Parent Class，Class Defaults 填默认值。
+- **Data Asset**：右键 → Miscellaneous → Data Asset → 选择数据类 → 命名；双击进入 Details。这里没有 EventGraph 和 Compile，Save 即可。
+- **InputAction / IMC**：右键 → Input → Input Action 或 Input Mapping Context。先建 Action，再在 IMC 的 Mappings 数组引用它。
+- **Widget Blueprint**：右键 → User Interface → Widget Blueprint，选择对应原生父类。先搭齐必需 BindWidget 控件再编译；初建空布局时报告缺控件，需要补齐而不是换父类。
+
+`/Game` 对应工程磁盘的 Content；`/MMOCore` 对应插件 Content。不要在 Content 下另建一个名叫 Game 的文件夹。数组“索引 0”就是第一项，每项右侧的小三角要展开后才看得到内部字段。
+
+## 一、动画与角色的最小依赖链
+
+按 [动画详细图解](/docs/08-mmorpg/animation) 完成以下对象。创建 AnimBP 时同时选对 Skeleton 和 MMOAnimInstance 父类；蓝图文本不包含这些资产级设置。
+
+| 资产路径 | 类型／父类 | 必须先有 | 创建后的关键动作 |
+|---|---|---|---|
+| `/Game/Characters/MMO/ALI_MMOCharacter` | Animation Layer Interface | Manny Skeleton | 建立返回 Pose 的 Locomotion 层 |
+| `/Game/Characters/MMO/ABP_MMOUnarmed` | AnimBP / MMOAnimInstance | 接口、Manny、BlendSpace、Fall Sequence | 实现接口 Locomotion，GroundSpeed 接 Y/Speed，bIsFalling 选下落 |
+| `/Game/Characters/MMO/ABP_MMOCharacter` | AnimBP / MMOAnimInstance | 接口、无武器层 | 实现本地 Locomotion；AnimGraph 接 Linked Anim Layer → Slot → Output Pose |
+| `/Game/Tutorial/BP_MMOCharacter` | Blueprint / MMOCharacter | 主 AnimBP、Manny 网格 | Mesh=SKM_Manny_Simple、AnimClass=ABP_MMOCharacter，按图设置网格变换 |
+| `/Game/Tutorial/GA_ArcaneBolt` | Blueprint / MMOSpellAbility | 03 的能力与 Effect 类 | 继承 ServerOnly、MMOSpellCost、MMOSpellCooldown；不另接扣蓝节点 |
+| `/Game/Tutorial/BP_MMOTrainingTarget` | Blueprint / MMOTarget | 03 的目标类 | 核对复制和碰撞；当前区域默认生成原生 MMOTarget，此蓝图用于替换练习 |
+
+**动画复制顺序**：先创建接口、函数和正确父类，再下载 [Locomotion 原生节点文本](/blueprints/mmorpg/mmo-unarmed-locomotion.txt)，放入指定的 Locomotion 图；主图使用 [AnimGraph 原生文本](/blueprints/mmorpg/mmo-character-animgraph.txt)。粘贴前删除模板的重复输出节点，粘贴后按动画篇截图检查节点数量与连线，Compile 后核对默认 Slot 名称。不要把 Locomotion 文本粘进普通 Actor 的 EventGraph。
+![复制后检查 BlendSpace 的 Speed 轴和真实资源](/media/configuration/mmorpg/animation-unarmed-blendspace-details.png)
+
+**看图操作**：选中 BlendSpace Player 看资源字段；GroundSpeed 对应 Y/Speed，X/Direction 与输入 IMC 的向量轴不是同一含义。节点编译成功也不能证明轴接对。
+
+## 二、先建七个输入 Action，再填 17 条物理映射
+
+在 `/Game/MMO/Input` 创建下列资产，每次选择 Value Type 后 Save。表中键名来自原生 ConfigureInputs，不是按名称推测。
+
+| Action | Value Type | 键鼠映射 | 手柄映射 | 对应语义标签 |
+|---|---|---|---|---|
+| IA_Move | Axis2D | D、A、W、S，各一行 | Gamepad Left 2D | InputTag.MMO.Move |
+| IA_Look | Axis2D | Mouse XY 2D-Axis | Gamepad Right 2D | InputTag.MMO.Look |
+| IA_Target | Boolean | Tab | Face Button Top | InputTag.MMO.Target |
+| IA_Attack | Boolean | 1 | Face Button Bottom | InputTag.MMO.Attack |
+| IA_Spell | Boolean | 2 | Face Button Left | InputTag.MMO.Spell |
+| IA_Inventory | Boolean | I | Special Left | InputTag.MMO.Inventory |
+| IA_Settings | Boolean | P | Special Right | InputTag.MMO.Settings |
+
+创建 `IMC_MMOPlayer`，在 Mappings 添加这些 17 行（Move 5 行、Look 2 行，其余各 2 行）。D 无修改器；A 加 Negate；W 加 Swizzle Input Axis Values，Order=YXZ；S **先 Negate、再 Swizzle YXZ**。其他行保持这里的默认条件，不添加教程未使用的触发器。
+![IMC_MMOPlayer 的 17 条物理映射](/media/configuration/mmorpg/input-mapping-all-17.png)
+
+**看图操作**：逐行对照 Action 与 Key，再展开 A/W/S 的 Modifiers。先只改一个按键试验，不同时改标签与 AbilitySet。
+
+创建 `DA_MMOInputConfig`，类型 MMOInputConfig，在 Native Input Actions 里添加 7 项。每项按上表的 Action 与 Tag 成对填写；不要因为 Attack 是技能就移到一个不存在的 AbilityInputActions 属性中。该教程通过原生回调转交技能标签，结构与 LyraInputConfig 的两数组设计有区别。
+
+完整 [输入图解](/docs/08-mmorpg/character-gas#输入与目标选择) 展示每个 Action、修改器和 InputConfig 的展开值。
+
+## 三、把定义串成一次可以启动的 Experience
+
+依次创建以下数据资产。类选择窗口省略 Unreal C++ 的 U 前缀，字段名仍以 Details 实际展示为准。
+
+| 创建对象 | 类型 | 要填写的连接 |
+|---|---|---|
+| `/Game/MMO/Abilities/DA_MMOAbilities` | MMOAbilitySet | 2 项 Granted Abilities；Attack=MMOAttackAbility，Spell=GA_ArcaneBolt；Level=1，Input ID=-1；Tag 分别 InputTag.MMO.Attack/Spell |
+| `/Game/MMO/Pawns/DA_MMOPlayer` | MMOPawnData | Pawn Class=BP_MMOCharacter；Ability Sets 加上述资产；Input Config=DA_MMOInputConfig；Input Mapping Context=IMC_MMOPlayer；Anim Instance Class=ABP_MMOCharacter |
+| `/Game/MMO/Experiences/DA_MMOExperience` | MMOExperienceDefinition | Default Pawn Data=DA_MMOPlayer；Game Features To Enable 添加字符串 MMOCore |
+| `/Game/MMO/BP_MMOGameMode` | Blueprint / MMOGameMode | Class Defaults.Default Experience=`MMOExperience:DA_MMOExperience` |
+| `/MMOCore/MMOCore` | GameFeatureData | Add Components → ModularGameStateBase → MMOZoneComponent；Client 和 Server 均勾选 |
+
+AbilitySet 的 Granted Effects 和 Granted Attributes 保持教程默认空数组；属性已由 PlayerState 构造，重复添加另一套 Attributes 会造成读写对象不一致。`Input ID=-1` 表示不采用旧编号驱动；真正输入匹配由 InputTag 完成。
+![AbilitySet 中两项技能的真实授予字段](/media/configuration/mmorpg/ability-set-grants.png)
+
+**看图操作**：重点核对 Input Tag 和 Input ID；类是技能实现，标签是输入语义。修改技能类后还要检查父类默认消耗和冷却。
+![PawnData 连接角色、输入和动画层](/media/configuration/mmorpg/pawn-data-class-input-animation.png)
+
+**看图操作**：在每条引用右侧使用放大镜定位。它们都必须是本工程已创建的资产；手打同名字符串不能替代资产引用。
+
+## UI 逐项创建与绑定
+
+严格按 [Designer 全步骤](/docs/09-mmo-ui/designer) 操作。本表来自当前 `ui-designer-contract.json`，用于手工施工时逐项打勾；完整 JSON 在 [配置源码](/docs/08-mmorpg/source/config)。控件的 Name 与显示的 Text 是两种字段，下面给的是 Name。
+
+先创建 `/Game/Localization/ST_MMO`，Namespace=`MMOUI`，按 `ui-designer-strings.json` 的 Key/Source 建行，再为 TextBlock 选择对应 StringTable 引用。固定英文文案作为源文本，中文翻译按本地化篇编译，不直接把 Source 改成中文。
+
+### WBP_MMOLayout
+
+创建路径：`/Game/UI/WBP_MMOLayout`。父类：`/Script/MMORPG.MMORootLayout`。
+
+| 控件 Name | 控件类型 | 操作 |
+|---|---|---|
+| `GameLayer` | `CommonActivatableWidgetStack` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `MenuLayer` | `CommonActivatableWidgetStack` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `ModalLayer` | `CommonActivatableWidgetStack` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+
+完成布局后 Compile → 确认没有 BindWidget 缺失错误 → Save → 重开核对。
+
+### WBP_Login
+
+创建路径：`/Game/UI/WBP_Login`。父类：`/Script/MMORPG.MMOLoginPanel`。
+
+| 控件 Name | 控件类型 | 操作 |
+|---|---|---|
+| `Form` | `VerticalBox` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `Username` | `EditableTextBox` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `Password` | `EditableTextBox` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `CharacterName` | `EditableTextBox` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `CharacterList` | `ComboBoxString` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `Message` | `TextBlock` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `LoginButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `RegisterButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `RefreshButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `CreateButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `JoinButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+
+完成布局后 Compile → 确认没有 BindWidget 缺失错误 → Save → 重开核对。
+
+### WBP_ManaStatus
+
+创建路径：`/Game/UI/WBP_ManaStatus`。父类：`/Script/UMG.UserWidget`。
+
+| 控件 Name | 控件类型 | 操作 |
+|---|---|---|
+| `ManaText` | `TextBlock` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `ManaBar` | `ProgressBar` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+
+添加 ViewModel：类 `MMOPlayerViewModel`，名 `PlayerVM`，Creation Type=`Manual`；下面所有绑定使用 `One Way To Destination`、`Immediate`。
+
+| 来源字段 | 目标属性 |
+|---|---|
+| `PlayerVM.ManaLabel` | `ManaText.Text` |
+| `PlayerVM.ManaFraction` | `ManaBar.Percent` |
+
+完成布局后 Compile → 确认没有 BindWidget 缺失错误 → Save → 重开核对。
+
+### WBP_PlayerHUD
+
+创建路径：`/Game/UI/WBP_PlayerHUD`。父类：`/Script/MMORPG.MMOHUDPanel`。
+
+| 控件 Name | 控件类型 | 操作 |
+|---|---|---|
+| `Values` | `TextBlock` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `ManaStatus` | `WBP_ManaStatus` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `TargetText` | `TextBlock` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `TargetHealthBar` | `ProgressBar` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `CooldownText` | `TextBlock` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `InputHintText` | `TextBlock` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `TargetButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `AttackButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `SpellButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `InventoryButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `SettingsButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+
+添加 ViewModel：类 `MMOPlayerViewModel`，名 `PlayerVM`，Creation Type=`Manual`；下面所有绑定使用 `One Way To Destination`、`Immediate`。
+
+| 来源字段 | 目标属性 |
+|---|---|
+| `PlayerVM.StatusText` | `Values.Text` |
+| `PlayerVM.TargetLabel` | `TargetText.Text` |
+| `PlayerVM.TargetFraction` | `TargetHealthBar.Percent` |
+| `PlayerVM.CooldownLabel` | `CooldownText.Text` |
+| `PlayerVM.InputHint` | `InputHintText.Text` |
+
+完成布局后 Compile → 确认没有 BindWidget 缺失错误 → Save → 重开核对。
+
+### WBP_Inventory
+
+创建路径：`/Game/UI/WBP_Inventory`。父类：`/Script/MMORPG.MMOInventoryPanel`。
+
+| 控件 Name | 控件类型 | 操作 |
+|---|---|---|
+| `Message` | `TextBlock` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `PotionButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `CloseButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+
+添加 ViewModel：类 `MMOPlayerViewModel`，名 `PlayerVM`，Creation Type=`Manual`；下面所有绑定使用 `One Way To Destination`、`Immediate`。
+
+| 来源字段 | 目标属性 |
+|---|---|
+| `PlayerVM.InventoryLabel` | `Message.Text` |
+
+完成布局后 Compile → 确认没有 BindWidget 缺失错误 → Save → 重开核对。
+
+### WBP_Settings
+
+创建路径：`/Game/UI/WBP_Settings`。父类：`/Script/MMORPG.MMOSettingsPanel`。
+
+| 控件 Name | 控件类型 | 操作 |
+|---|---|---|
+| `LowQualityButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `MediumQualityButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `HighQualityButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `LogoutButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `CloseButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `ChineseButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `EnglishButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+
+完成布局后 Compile → 确认没有 BindWidget 缺失错误 → Save → 重开核对。
+
+### WBP_Confirm
+
+创建路径：`/Game/UI/WBP_Confirm`。父类：`/Script/MMORPG.MMOConfirmPanel`。
+
+| 控件 Name | 控件类型 | 操作 |
+|---|---|---|
+| `ConfirmButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+| `CancelButton` | `Button` | 在 Hierarchy 创建、按名称重命名、勾 Is Variable |
+
+完成布局后 Compile → 确认没有 BindWidget 缺失错误 → Save → 重开核对。
+![ManaStatus 的两条真实 MVVM 绑定](/media/configuration/mmorpg/mvvm-mana-bindings.png)
+
+**看图操作**：比较 PlayerVM.ManaLabel → ManaText.Text、ManaFraction → ManaBar.Percent。绑定方向是模型到控件；勾选 Manual 后，原生代码会将同一个模型实例送给 HUD 和嵌套 ManaStatus。
+
+接着创建 `/Game/UI/BP_MMOUIPolicy`（父类 MMOUIPolicy），Layout Class=`WBP_MMOLayout`；在 WBP_MMOLayout 的 Class Defaults 填 Login/HUD/Inventory/Settings/Confirm 五个 Screen 类。最后 Config 的 DefaultUIPolicyClass 指向这个 Policy。
+
+## 健康检查图：复制后的逐线验收
+
+创建 `/Game/Tutorial/BP_BackendHealth`，父类 Actor。打开 EventGraph，删除模板已有的空 BeginPlay，下载 [原生四节点文本](/blueprints/mmorpg/backend-health.txt)，全选文本复制，在图表空白处 Ctrl+V。
+
+| 从哪里拉线／填写 | 接到哪里／填什么 | 为什么 |
+|---|---|---|
+| Event BeginPlay 的白色执行输出 | Request MMO 执行输入 | Actor 开始运行后才请求 |
+| Request MMO.Verb | GET | 查询服务健康 |
+| Request MMO.Route | /health | 相对于 Backend Base URL 的路径 |
+| Request MMO.JsonBody | `{}` | GET 实现忽略请求体，不向线上发送 payload |
+| Self 输出 | 请求节点与 Print String 的 World Context Object | 提供当前 Actor 所在世界 |
+| Request MMO.Completed 白色执行输出 | Print String 执行输入 | 等异步请求完成再显示 |
+| Completed.Json 数据输出 | Print String.In String | 打印实际响应正文 |
+
+Completed 是完成事件，不保证成功。自己的业务蓝图必须根据 bSuccess/StatusCode 分支；健康检查示例打印正文，便于看到错误。不要把返回的异步代理对象接到白色执行引脚。
+
+<BlueprintGraph src="/media/mmorpg/backend-health-graph.png" alt="BP_BackendHealth 的真实四节点图与数据线" caption="原生 UE 5.8.1 图表；节点文本与图像来自已验证的教程资产。先建正确父类和图，再粘贴节点。" download="/blueprints/mmorpg/backend-health.txt" />
+
+随后创建 `/Game/MMO/Labels/DA_TutorialExamples`，显式引用这个 Blueprint，按 [Cook Label 图解](/docs/09-mmo-ui/blueprint-workflow#为健康检查蓝图声明-cook-依赖) 填规则。测试副本不加入。
+
+## 生成器作为逐步复刻的对照
+
+`prepare_content.py` 对应本页的原生创建动作，可在登记的 03 阶段练习工程执行。先确认工程名、目录和当前资产，保存个人修改；它会配置同名教学资产。要比较自己的手工作品，请另建一份 00–03 的参考练习目录，生成参考资产后逐项对照。
+
+运行脚本是另一种建立相同参考结果的方法；本页的每个资产类型、引用、节点和控件仍需要读者按表检查。健康检查 Cook Label 需要按上节单独创建，语言还需要 Gather/Import/Compile，不能把生成主脚本完成当作所有步骤已完成。
+
+## 完成检查
+
+打开每条引用能够定位正确对象；Blueprint 编译成功、Data Asset 重开保留值、Class Defaults 与截图一致。启动后的行为继续按主线 08–10 验收。每次只更改一个参数并记录预期与结果，才能分清“复制错了”和“修改改变了规则”。

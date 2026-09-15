@@ -68,6 +68,45 @@ RETURNING version;
 
 后端重启后，会话、票据、租约和快照仍在 PostgreSQL。游戏服务器是否还能继续写入取决于租约是否过期。游戏服务器自身崩溃后，恢复到最后成功提交的快照；未提交的变化需要更高频保存或额外事件日志才能缩小损失窗口。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 先把事务想成一个有明确提交点的作用域
+源码：`examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp`，本机第 34–40 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+struct FTransaction
+{
+    PGconn* DB; bool Active;
+    explicit FTransaction(PGconn* In):DB(In),Active(Query(DB,"BEGIN").Good()) {}
+    ~FTransaction() { if (Active) Query(DB,"ROLLBACK"); }
+    bool Commit() { if (!Active) return false; const bool Ok=Query(DB,"COMMIT").Good(); Active=false; return Ok; }
+};
+```
+
+构造时 BEGIN，Commit 成功路径显式结束事务；如果函数在中途 return、对象销毁时事务仍 Active，析构函数执行 ROLLBACK。这个“离开作用域自动清理”的 C++ 习惯叫 RAII。它让错误分支不必每处手写同样的回滚代码。
+
+角色更新与 save_requests 插入在同一事务中；否则可能出现角色已变但查不到幂等记录，重试就无法返回第一次结果。Commit 的结果仍需检查；发出了 COMMIT 语句不等于调用方一定拿到了成功响应。
+![一次保存的三道判断](/media/guide-diagrams/10-backend-persistence.svg)
+
+**读图**：先识别重试，再对新的保存做版本更新。同一成功请求重试不应把版本再次加一。
+
+### 用四行算清楚版本变化
+
+| 请求示例 | 版本 | 结果 |
+|---|---|---|
+| 新 requestId=A，expectedVersion=0 | 0 | 写入成功，返回 1 |
+| 原 A、原快照、原 expectedVersion=0 | 1 | 返回 A 的原结果 1 |
+| A 但改了 XP | 1 | idempotency_conflict |
+| 新 requestId=B，仍 expectedVersion=0 | 1 | version_conflict |
+
+A/B 是示意 ID；实际协议要求 UUID。409 不一定都是同一种冲突，要读 error.code。发生版本冲突后应重新确认角色会话/已提交状态，不能简单把 expectedVersion 加一来覆盖未知的新数据。
+
+**完成检查**：读测试中的“失败写入后重新加载”断言。它同时确认经验和背包仍为上一次已提交值，比只检查 HTTP 409 更能说明写入边界。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 测试脚本会保存经验 42、药水 3 个，再重复同一次请求，确认版本保持 1。它会改变负载复用同一 ID、用新 ID 提交旧版本、保存负数库存，然后重新加载，确认已提交快照没有变化。

@@ -1,0 +1,98 @@
+---
+title: 加载画面、用户初始化与在线会话
+description: 从 CommonLoadingScreen 配置与前端流程源码，理解 CommonUser、ControlFlows 和会话完成通知。
+---
+
+启动时的加载画面、本地用户初始化、在线会话、主菜单是不同系统。先用一次“启动到主菜单”的流程理解 Common 系列插件，再进入战斗；本章读取基准 Lyra，不把 MMORPG 自定义账号服务混入官方流程。
+
+## 一次启动会经过哪些系统
+![从启动画面到可以选择玩法](/media/guide-diagrams/02-architecture-loading-online.svg)
+
+**读图**：这是职责图，不是断言每个平台都会弹出同样数量的窗口。平台登录、受邀加入和本地游戏分支会改变实际路径。
+
+## 按图打开加载画面的配置
+
+1. 主编辑器 **编辑 → 项目设置**，左侧滚动到 **游戏 → Common Loading Screen**。
+2. 清空顶部搜索，切到“所有”显示过滤；图中标题应为 `游戏 - Common Loading Screen`。
+3. 从上往下记录 Widget、ZOrder、保持时间、心跳日志间隔和调试开关。第一次不改数值。
+![Common Loading Screen 项目设置：画面类、层级、保持时间与调试开关](/media/beginner/whole-guide/loading-screen-settings.png)
+
+**看图操作**：本机实际显示 W_LoadingScreen_Host、ZOrder=10000、额外保持 2 秒、心跳日志间隔 5 秒。图中 Force Loading Screen Visible 没有勾；它是调试强制显示开关，不是正常加载成功条件。
+
+| 字段 | 作用 | 新手容易误解的地方 |
+|---|---|---|
+| Loading Screen Widget | 要创建的加载画面类 | 换图片/Widget 不会修好卡住的资源加载 |
+| Loading Screen ZOrder | 视口显示层级 | 数字大表示显示顺序，不是加载优先级 |
+| Hold Loading Screen Additional Secs | 其他条件结束后可额外保持一段时间 | 不应当拿固定秒数代替 Experience 完成事件 |
+| Log Loading Screen Heartbeat Interval | 周期性输出未完成原因的间隔 | 日志频率不等于资源加载速度 |
+| Force Loading Screen Visible | 调试时强制显示 | 忘记关闭会把正常流程看成一直卡住 |
+
+画面顶部说明这些设置保存到 `DefaultGame.ini`。此截图的编辑器相关复选框以图中实际值为准；C++ 构造默认值还可能被项目 Config 覆盖。
+
+## 从“还在加载”追到原因
+源码：`Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp`，本机第 447–459 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+bool ULyraExperienceManagerComponent::ShouldShowLoadingScreen(FString& OutReason) const
+{
+	if (LoadState != ELyraExperienceLoadState::Loaded)
+	{
+		OutReason = TEXT("Experience still loading");
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+```
+
+这里的 `OutReason` 是输出参数，调用者拿它说明为什么还不能结束加载。状态不是 `Loaded` 就返回 true，并写入 `Experience still loading`。这段代码没有按两秒倒计时，也没有判断玩家是否看见一个角色模型。
+
+`ULoadingScreenManager` 聚合加载条件，`GetDebugReasonForShowingOrHidingLoadingScreen()` 暴露当前原因。若卡住，先看原因，再检查 Experience 资源、Feature 激活和玩家就绪；不要直接调用 HideLoadingScreen 掩盖状态。
+
+## CommonUser 的 true 只是“请求已开始”
+源码：`Plugins/CommonUser/Source/CommonUser/Public/CommonUserSubsystem.h`，本机第 279–290 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+/**
+ * Tries to start the process of creating or updating a local player, including logging in and creating a player controller.
+ * When the process has succeeded or failed, it will broadcast the OnUserInitializeComplete delegate.
+ *
+ * @param LocalPlayerIndex	Desired index of LocalPlayer in Game Instance, 0 will be primary player and 1+ for local multiplayer
+ * @param PrimaryInputDevice The physical controller that should be mapped to this user, will use the default device if invalid
+ * @param bCanUseGuestLogin	If true, this player can be a guest without a real Unique Net Id
+ *
+ * @returns true if the process was started, false if it failed before properly starting
+ */
+UFUNCTION(BlueprintCallable, Category = CommonUser)
+COMMONUSER_API virtual bool TryToInitializeForLocalPlay(int32 LocalPlayerIndex, FInputDeviceId PrimaryInputDevice, bool bCanUseGuestLogin);
+```
+
+函数参数分别指定本地玩家索引、输入设备、是否允许访客。注释明确区分两种结果：返回 true 表示流程启动；最终成功或失败由 `OnUserInitializeComplete` 通知。因此不要在调用后一行就无条件跳到“已登录”界面。
+
+这里的本地用户和平台身份不是后端账号数据库中的用户行。教程后半部分 MMORPG 的登录凭据、入服票据和角色租约有独立实现，见[后端认证](/docs/10-backend/authentication)。
+
+## ControlFlows 把异步步骤连起来
+源码：`Source/LyraGame/UI/Frontend/LyraFrontendStateComponent.cpp`，本机第 69–73 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+FControlFlow& Flow = FControlFlowStatics::Create(this, TEXT("FrontendFlow"))
+	.QueueStep(TEXT("Wait For User Initialization"), this, &ThisClass::FlowStep_WaitForUserInitialization)
+	.QueueStep(TEXT("Try Show Press Start Screen"), this, &ThisClass::FlowStep_TryShowPressStartScreen)
+	.QueueStep(TEXT("Try Join Requested Session"), this, &ThisClass::FlowStep_TryJoinRequestedSession)
+	.QueueStep(TEXT("Try Show Main Screen"), this, &ThisClass::FlowStep_TryShowMainScreen);
+```
+
+四行 QueueStep 声明了前端流程的阶段顺序。`this` 指当前组件，`&ThisClass::...` 指向该组件要执行的成员函数。每个步骤可能等待用户操作或异步结果；只有步骤完成并继续流程，才轮到后面一步。
+
+如果停在开始界面，先查负责该步骤的回调是否完成；如果会话加入失败，查 CommonSessionSubsystem 的 JoinSession 完成通知。直接删除“等待用户”的阶段会破坏前提条件。
+
+## 会话接口读法与第一次练习
+
+`UCommonSessionSubsystem` 提供 `CreateOnlineHostSessionRequest`、`HostSession`、`FindSessions`、`JoinSession`、`CleanUpSessions`。请求对象装的是一次操作参数；完成事件给出操作结果。平台会话查找成功不等于你的 MMORPG 角色已经取得有效租约，也不等于游戏世界已加载好。
+
+**只读练习**：在 Rider 按本章三个文件名打开实现，记录当前前端流程、加载原因和用户完成回调的关系。接着启动教学副本，保存实际日志；平台相关功能没有配置时，只记录该分支失败原因，不将 Null 本地会话当成外部平台登录成功。
+
+**完成标准**：能分清启动画面、玩法加载、用户初始化、会话连接四个阶段，并用一条具体日志/回调解释当前卡在哪一阶段。

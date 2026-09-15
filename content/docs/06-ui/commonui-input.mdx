@@ -11,7 +11,7 @@ UMG 提供 Widget 和布局；CommonUI 增加激活式界面、动作路由及�
 
 ## 操作步骤
 
-1. 打开 `/Game/UI/Settings/W_LyraSettingScreen`，查看父类链。找到 `ULyraActivatableWidget` 的 InputConfig 属性和所期望的初始焦点。
+1. 打开 `/ShooterCore/UserInterface/W_ShooterHUDLayout`，在 Graph → Class Defaults 查看 InputConfig，并沿父类链找到 `ULyraHUDLayout → ULyraActivatableWidget`。设置屏 `W_LyraSettingScreen` 的父类是 `ULyraSettingScreen → UGameSettingScreen`，不能在它上面寻找同一属性。
 2. Rider 打开 `Source/LyraGame/UI/LyraActivatableWidget.cpp`，阅读 `GetDesiredInputConfig`。
 3. 在 PIE 打开菜单，先用鼠标选择，再切换手柄或键盘导航，最后执行返回。观察焦点高亮与鼠标捕获变化。
 4. 打开 `Config/DefaultInput.ini`，查看 `UI.Action.Escape` 的实际键映射与 `UIActionProcessingPriority`。
@@ -35,6 +35,51 @@ case ELyraWidgetInputMode::Menu:
 进入页面时需要合法、可见、可聚焦的目标；切换弹窗时保存返回位置；关闭弹窗后恢复父页面；返回游戏后恢复捕获。`ULyraActivatableWidget::ValidateCompiledWidgetTree` 会检查 `BP_GetDesiredFocusTarget`，未实现时给出手柄使用相关警告或说明。
 
 只用鼠标测试常掩盖焦点缺失。列表为空、按钮被禁用和异步内容尚未加载时，也要有可聚焦的退路。焦点属于具体本地玩家，分屏时不能始终硬编码玩家 0。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 焦点、鼠标捕获、激活分别是什么
+
+**焦点** 表示键盘/手柄当前操作哪个控件；**鼠标捕获** 决定鼠标移动是否用于控制游戏视角；**激活** 表示这个 CommonUI 页面进入它的工作状态。一个按钮画在屏幕上，不保证它已取得焦点。
+![根布局中独立的游戏、菜单与弹窗容器](/media/configuration/training/root-layout-designer.png)
+
+**看图操作**：打开 W_OverallUILayout → Designer。左侧 Hierarchy 是容器列表；先选 GameLayer_Stack，再比较 Menu_Stack 和 Modal_Stack。它们承载不同页面，页面自己的输入声明由 CommonUI 路由处理。
+源码：`Source/LyraGame/UI/LyraActivatableWidget.cpp`，本机第 16–30 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+TOptional<FUIInputConfig> ULyraActivatableWidget::GetDesiredInputConfig() const
+{
+	switch (InputConfig)
+	{
+	case ELyraWidgetInputMode::GameAndMenu:
+		return FUIInputConfig(ECommonInputMode::All, GameMouseCaptureMode);
+	case ELyraWidgetInputMode::Game:
+		return FUIInputConfig(ECommonInputMode::Game, GameMouseCaptureMode);
+	case ELyraWidgetInputMode::Menu:
+		return FUIInputConfig(ECommonInputMode::Menu, EMouseCaptureMode::NoCapture);
+	case ELyraWidgetInputMode::Default:
+	default:
+		return TOptional<FUIInputConfig>();
+	}
+}
+```
+
+`TOptional` 表示“可能不提供值”。GameAndMenu、Game、Menu 返回具体配置；Default 返回空，交给更上层规则决定。Menu 分支明确使用 NoCapture，所以鼠标可以操作界面；这和把游戏暂停不是同一个操作。
+
+**不要在 W_LyraSettingScreen 中反复找 InputConfig。** 本机它继承 `UGameSettingScreen`，返回、应用、取消分别通过 `BackInputActionData / ApplyInputActionData / CancelChangesInputActionData` 注册。ULyraActivatableWidget 这段规则用于它自己的子类，例如 Shooter HUD。识别父类后再查属性，是排除“教程字段找不到”的第一步。
+
+### 一次能重复的输入检查
+
+1. 用正常射击 Experience 进入 PIE，按 Escape 打开菜单；先记下光标是否出现。
+2. 用方向键或手柄移动高亮，进入设置，再打开子页面。鼠标能点不代表这一步通过。
+3. 返回子页面时检查原按钮是否重新高亮；返回游戏后检查视角与移动恢复。
+4. 若卡住，在 Rider 对 `ULyraHUDLayout::HandleEscapeAction` 断点，查看 OwningLocalPlayer、EscapeMenuClass 和目标层。无本地玩家的服务器不应创建玩家菜单。
+
+检查期间区分“返回菜单”和“取消修改”：本机设置屏的 HandleBackAction 在退出时会调用 ApplyChanges；要撤销修改，应使用该屏的 Cancel Changes 动作，不能假定所有 Back 都是 Cancel。
+
+{/* full-guide-end */}
 
 ## 预期结果、排障与练习
 

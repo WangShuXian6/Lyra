@@ -215,3 +215,37 @@ HTTP 测试验证后端接口；游戏端的入服、GAS 技能、复制和 UI �
 | 保存 409 | 记录版本、未完成请求 ID 和串行保存状态 |
 
 练习：在 Rider 附加到后端进程，在 `Query` 下断点，再从 PowerShell 发起一次保存。观察游戏服务器 HTTP 请求和后端数据库工作线程属于不同进程与线程。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 读懂测试代码中的一次保存与一次重试
+源码：`scripts/backend/Test-Backend.ps1`，本机第 50–53 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```powershell
+$saved=Call-MMO '/v1/server/save' $save $serverToken
+Assert-MMO ($saved.Status -eq 200 -and $saved.Json.version -eq 1) 'transactionally save inventory and progression'
+$retry=Call-MMO '/v1/server/save' $save $serverToken
+Assert-MMO ($retry.Status -eq 200 -and $retry.Json.version -eq 1) 'identical save retry does not increment version'
+```
+
+`$save` 是已经构造好的同一请求对象；第二次调用没有生成新 requestId，也没有修改 state。断言同时看 Status=200 和 version=1，证明重复请求返回原结果。只判断“接口返回 200”会遗漏版本被错误重复增加的问题。
+
+`-eq` 是 PowerShell 的相等比较，`-and` 要求两个条件都真，`@{...}` 是键值表，`@(...)` 是数组。尖括号占位符不能直接作为真实 UUID/令牌执行；运行测试由脚本生成本次测试数据。
+![后端验收从便宜检查到真实联调](/media/guide-diagrams/10-backend-run-and-test.svg)
+
+**读图**：测试脚本会建立隔离的测试账号并修改其数据；应在本教程的本地测试服务运行。单独健康检查无法证明账号与保存流程。
+
+### 四种常见输出怎样处理
+
+| 输出 | 说明 | 下一步 |
+|---|---|---|
+| Test-Path=False | 当前变量指向不存在的文件 | 检查目录与工程名，不继续调用构建 |
+| DLL load failed | 运行依赖未找到或架构不匹配 | 检查构建目标旁的 DLL 与依赖准备报告 |
+| HTTP 503 database_unavailable | 服务接受请求但数据库路径失败 | 查后端数据库连接/迁移日志 |
+| 断言失败 | 某个具体合约未满足 | 阅读该条请求与状态，保留报告，不改测试期望掩盖问题 |
+
+**运行记录**：写明测试脚本、开始时间、服务端版本、通过/失败数和报告路径。文档中的历史结果只属于其对应版本，本轮图文扩写没有重新执行会改动测试数据库的整套后端回归。
+
+{/* full-guide-end */}

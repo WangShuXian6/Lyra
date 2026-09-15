@@ -37,6 +37,86 @@ NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
 
 宝箱领取物品还需要服务器检查是否已被领取，后端持久化时要有幂等键或对应事务。交互接口降低对象耦合，不负责数据库一致性。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 先找到扫描配置，再读按键触发
+
+1. 在 Content Browser 的 Settings 中开启 Show Plugin Content，在 Sources 选 **ShooterExplorer Content → Input → Abilities**。
+2. 双击 `GA_Interact`，点工具栏 **Class Defaults / 类默认值**。在 **Details** 搜索 `Interaction`，不是在 My Blueprint 搜索。
+3. 图右侧显示扫描间隔、范围和默认提示 Widget。它来自父类 `LyraGameplayAbility_Interact`，父类名称显示在窗口右上角。
+![GA_Interact 的 Interaction 默认值：0.1 秒、500 范围与提示类](/media/beginner/whole-guide/interaction-defaults.png)
+
+**看图操作**：看右侧 Details：Interaction Scan Rate=0.1，Range=500，Default Interaction Widget Class 引用 W_InteractionPrompt。该图用于定位配置，中央图表并未完整显示，不能照此截断视图复制全部节点。
+
+UE 常用距离单位为厘米，500 对应约 5 米；这里的 Rate 在定时扫描中作为秒间隔使用，0.1 表示约每秒十次检查。它是附近能力扫描的配置，不表示视线检测任务必定直接引用同一数值；蓝图任务节点上的输入还要单独核对。
+
+靠近石头后，“发现可交互目标”“显示提示”“按键执行采集”是三个阶段。打开 `B_InteractableRock`，在 Class Settings 查看实现的接口，再搜索图中的交互选项构造逻辑；交互选项告诉系统执行哪个能力，并不直接把物品塞进背包。
+源码：`Source/LyraGame/Interaction/Abilities/LyraGameplayAbility_Interact.cpp`，本机第 78–122 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void ULyraGameplayAbility_Interact::TriggerInteraction()
+{
+	if (CurrentOptions.Num() == 0)
+	{
+		return;
+	}
+
+	UAbilitySystemComponent* AbilitySystem = GetAbilitySystemComponentFromActorInfo();
+	if (AbilitySystem)
+	{
+		const FInteractionOption& InteractionOption = CurrentOptions[0];
+
+		AActor* Instigator = GetAvatarActorFromActorInfo();
+		AActor* InteractableTargetActor = UInteractionStatics::GetActorFromInteractableTarget(InteractionOption.InteractableTarget);
+
+		// Allow the target to customize the event data we're about to pass in, in case the ability needs custom data
+		// that only the actor knows.
+		FGameplayEventData Payload;
+		Payload.EventTag = TAG_Ability_Interaction_Activate;
+		Payload.Instigator = Instigator;
+		Payload.Target = InteractableTargetActor;
+
+		// If needed we allow the interactable target to manipulate the event data so that for example, a button on the wall
+		// may want to specify a door actor to execute the ability on, so it might choose to override Target to be the
+		// door actor.
+		InteractionOption.InteractableTarget->CustomizeInteractionEventData(TAG_Ability_Interaction_Activate, Payload);
+
+		// Grab the target actor off the payload we're going to use it as the 'avatar' for the interaction, and the
+		// source InteractableTarget actor as the owner actor.
+		AActor* TargetActor = const_cast<AActor*>(ToRawPtr(Payload.Target));
+
+		// The actor info needed for the interaction.
+		FGameplayAbilityActorInfo ActorInfo;
+		ActorInfo.InitFromActor(InteractableTargetActor, TargetActor, InteractionOption.TargetAbilitySystem);
+
+		// Trigger the ability using event tag.
+		const bool bSuccess = InteractionOption.TargetAbilitySystem->TriggerAbilityFromGameplayEvent(
+			InteractionOption.TargetInteractionAbilityHandle,
+			&ActorInfo,
+			TAG_Ability_Interaction_Activate,
+			&Payload,
+			*InteractionOption.TargetAbilitySystem
+		);
+	}
+}
+```
+
+`Num()==0` 时直接返回；有选项时取 `[0]`，即第一项。`Instigator` 是发起者，`Target` 是交互对象，`EventTag` 表明这是一条交互激活事件。随后目标可在 `CustomizeInteractionEventData` 中改写载荷，例如墙上按钮把目标改成门；最终根据选项中的 TargetAbilitySystem 和 Handle 触发能力。
+
+`Payload` 只是本次调用传递的事件数据，不是存档，也不是提示 UI。先把“谁发起、对谁做什么”写清楚，再考虑动画、计时进度条与背包奖励。
+
+| 现象 | 按这个顺序检查 |
+|---|---|
+| 靠近也没有提示 | ShooterExplorer 是否激活 → 交互扫描能力是否授予 → 目标接口/碰撞 → 提示类和 IndicatorManager |
+| 有提示但按键无效 | IA_Interact 的映射 → 按键扫描事件 → CurrentOptions → 目标能力 Handle 与可激活条件 |
+| 能执行却没有物品 | 实际触发的是 Sit 还是 Collect → 采集能力的服务器逻辑 → 背包实例创建结果 |
+
+**练习**：对石头和椅子分别写一行“目标 → 选项 → 能力 → 结果”，证明同一发现/提示框架能触发不同玩法。先使用 `L_InteractionTestMap`，不要把 ShooterExplorer 的资产路径直接放进一个未启用它的模式。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 视线或距离变化时提示更新，按键触发正确目标能力；离开范围后旧提示和临时状态被清理。提示不显示时查 IndicatorManager 是否存在；能显示不能执行时查 TargetAbilitySystem 和能力句柄。

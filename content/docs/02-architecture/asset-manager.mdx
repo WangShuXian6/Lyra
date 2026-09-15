@@ -66,8 +66,55 @@ Asset Bundle 能让服务器只加载需要的数据，客户端加载展示所�
 
 本机注册了 `Lyra.DumpLoadedAssets` 控制台命令，用于打印经该管理器保留的已加载资产池；它不是世界里所有 UObject 的完整列表。启动参数 `-LogAssetLoads` 可帮助观察管理器同步加载耗时。结合日志中的具体包路径看问题，比笼统地“清理缓存”更有效。
 
+{/* full-guide-begin */}
+
+## 把扫描、加载与打包分别理解
+
+![一个资产从文件到可运行内容](/media/guide-diagrams/02-architecture-asset-manager.svg)
+
+**读图**：四个阶段可分别失败。打包缺资源时，先定位缺在哪一阶段，再修改对应规则。
+源码：`Source/LyraGame/System/LyraAssetManager.cpp`，本机第 40–53 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+ULyraAssetManager& ULyraAssetManager::Get()
+{
+	check(GEngine);
+
+	if (ULyraAssetManager* Singleton = Cast<ULyraAssetManager>(GEngine->AssetManager))
+	{
+		return *Singleton;
+	}
+
+	UE_LOG(LogLyra, Fatal, TEXT("Invalid AssetManagerClassName in DefaultEngine.ini.  It must be set to LyraAssetManager!"));
+
+	// Fatal error above prevents this from being called.
+	return *NewObject<ULyraAssetManager>();
+}
+```
+
+### 将 Get() 里的判断逐段读清楚
+
+1. `check(GEngine)` 要求引擎对象已经存在。
+2. `Cast<ULyraAssetManager>(GEngine->AssetManager)` 检查当前引擎所用的管理器确实是 Lyra 的类。
+3. 成功时 `return *Singleton` 返回那个已有对象的引用，并不是每次重新创建一个管理器。
+4. 失败分支写 Fatal 日志，明确要求检查 `DefaultEngine.ini` 的 AssetManagerClassName。最后一行不是让错误配置继续正常运行的备用方案。
+
+**界面字段与代码对应**：Project Settings 的类选择最终决定 `GEngine->AssetManager` 的具体类型；扫描数组决定管理器登记哪些 Primary Asset；某个软引用的加载请求再从这里取得资源。类选错、目录填错、请求还没完成是三个不同错误。
+
+### 不改代码的小实验
+
+在教学副本新资产上做实验时，先只记下其包路径与 Primary Asset Type，确认所在插件的 GameFeatureData 扫描目录覆盖它，再到引用方选中它。对比编辑器加载与 Cook 日志。不要把“在资源管理器里有文件”当成已登记，或把 `Always Cook` 当成加载完成通知。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 你应能回答某个新 Experience 是否已登记、是否加载成功、是否被 Cook。打包后只缺插件 UI 时，检查插件启用、GameFeatureData 扫描、软类引用和 Client Bundle，而不是把全部 Content 强制打包作为长期方案。
 
 练习：画一张只有五个节点的引用图：地图、Experience、ActionSet、HUD 类、纹理。标注其中哪条为软引用，并写出负责让纹理进入构建产物的引用链。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+做完任一副本实验后，把新引用纳入实际地图的依赖链，再按训练场打包课从 Cook 后目录验证。编辑器找到资产不等于分发包包含它。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

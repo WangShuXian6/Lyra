@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-15T08:35:05.733980+08:00",
+  "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+  "engine": "E:/UnrealEngine",
+  "trigger": "The following modules are missing or built with a different engine version. Would you like to proceed anyway?",
+  "dialogResponse": "No; editor exited before full target build",
+  "command": "E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat LyraEditor Win64 Development -Project=F:/UE/LyraStarterGame/LyraStarterGame.uproject -WaitMutex -NoHotReloadFromIDE -NoUBA -MaxParallelActions=4",
+  "result": "Succeeded",
+  "durationSeconds": 18.1,
+  "completedActions": [
+    "WriteMetadata LyraEditor.target"
+  ],
+  "uhtGeneratedFilesWritten": 0,
+  "log": "verification/lyra-beginner-editor-build.log",
+  "logSHA256": "aa665e120e7c61437a74ab6364906c1f906c616d7e6a5a2988a83101aa11a1ce",
+  "postBuildVerification": {
+    "editorPid": 12344,
+    "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+    "openedAssets": [
+      "/ShooterCore/Weapons/Rifle/ID_Rifle",
+      "/ShooterCore/Weapons/Rifle/WID_Rifle",
+      "/ShooterCore/Weapons/Rifle/AbilitySet_ShooterRifle",
+      "/ShooterCore/Weapons/Rifle/B_Rifle"
+    ],
+    "liveCodingEnabled": false
+  },
+  "scope": "Full LyraEditor target invocation succeeded and the baseline editor opened. This is not a full clean rebuild or a build of the other teaching projects."
+}

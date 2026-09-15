@@ -5,9 +5,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 import unreal
 
-project = Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir()))
-if project.as_posix().rstrip('/').lower() != 'f:/ue/lyradoclabs/mmorpg':
-    raise RuntimeError('Validate the health Cook label only in the isolated MMORPG lab.')
+import runpy
+project = runpy.run_path(str(Path(__file__).with_name('lesson_project.py')))['require_lesson_project']()
 report = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'passed': False,
           'assetsModified': False, 'cookExecuted': False, 'scan': []}
 try:

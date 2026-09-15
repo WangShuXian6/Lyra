@@ -8,6 +8,51 @@
   "policy": "Explicit original-source roots and script/config/asset paths; separately attributed official Blueprint node text; no official Lyra binary assets, third-party binaries, build output or populated credentials.",
   "files": [
     {
+      "path": "curriculum/mmorpg/descriptors/00.uproject",
+      "bytes": 305,
+      "sha256": "78feef84e947c1fcdfe36a44e7830dd8be98853cf8a6061ed19c7a40a8fc8bff"
+    },
+    {
+      "path": "curriculum/mmorpg/descriptors/01.uproject",
+      "bytes": 662,
+      "sha256": "6a304f8a20d6e7e1f7a2782c7321819a9bf76e9c579c266ace21fb0a87b5c35b"
+    },
+    {
+      "path": "curriculum/mmorpg/descriptors/02.uproject",
+      "bytes": 733,
+      "sha256": "08604d7e7b2ff81a7eb79ff18a923a0791a82a288ce64c40b29f54d4237f4d05"
+    },
+    {
+      "path": "curriculum/mmorpg/skeleton/Config/DefaultEditorPerProjectUserSettings.ini",
+      "bytes": 112,
+      "sha256": "8678bad35b05fe59c984c133d3a73987edf7fe9f08d56c75576dba6ede912965"
+    },
+    {
+      "path": "curriculum/mmorpg/skeleton/Config/DefaultEngine.ini",
+      "bytes": 152,
+      "sha256": "229945ddac2dcba2afdbb233570f68b1bfb4926857aee83ad4a739abb0cdd101"
+    },
+    {
+      "path": "curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.Build.cs",
+      "bytes": 302,
+      "sha256": "d0d7ed1874acb5fb79d74c6b27f635b8a81c9a59d6218e9e097f8164d49e689d"
+    },
+    {
+      "path": "curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.cpp",
+      "bytes": 110,
+      "sha256": "29c9b97fd1980f305ec7999aec5f60894b2848225f7c4a35c8b4622820ced8e0"
+    },
+    {
+      "path": "curriculum/mmorpg/source-book.json",
+      "bytes": 34230,
+      "sha256": "62a2ba29dc9575295f2a1549ea9c0902168e358b230877d428cb98db7f666061"
+    },
+    {
+      "path": "curriculum/mmorpg/stages.json",
+      "bytes": 19331,
+      "sha256": "c77d7a31f50a69a27a50fb0d68f144b56451c9edd9ff481d3b109f445135b340"
+    },
+    {
       "path": "examples/MMORPG/.gitignore",
       "bytes": 19,
       "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793"
@@ -384,8 +429,8 @@
     },
     {
       "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
-      "bytes": 25230,
-      "sha256": "f19d675dbd7bafaa5bc5565396d3c02321fe0cf378c5c9dc36c0bbe1d680f6c0"
+      "bytes": 25069,
+      "sha256": "2f7d93eefcc7ddd2006eb1fcb1bbc1bf1b7c00da5f9673206428e402defbf846"
     },
     {
       "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
@@ -394,18 +439,23 @@
     },
     {
       "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
-      "bytes": 12515,
-      "sha256": "7181808cc424cbf8279776fb77585a9d48e6cf97f1e1a483e847020205edbe4e"
+      "bytes": 12489,
+      "sha256": "dff83657bf1f7578be69bbdc25639aa3f5227b90531e4424b760dd55316d49e5"
+    },
+    {
+      "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h",
+      "bytes": 1373,
+      "sha256": "d0bb3e3e31cbe1214d8b1c3e1ce349c545392e0104c6bf14118bd12574bc1bcb"
     },
     {
       "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp",
-      "bytes": 6887,
-      "sha256": "801203ee392914d5e46960304b268ca499ec99c7607312b08cf6883ea8dd5062"
+      "bytes": 6847,
+      "sha256": "e239fe985e572d454b1a919ed61a716c8fa2b065e44607d0c318e6911447d586"
     },
     {
       "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp",
-      "bytes": 11649,
-      "sha256": "a7177ee94f6af2da4974ecee8692049ea8ba3a93c0ae742da04a3f591ee79c3b"
+      "bytes": 11625,
+      "sha256": "81d7cef8ef32858b07ed7df2575be839c7332ff515eaa5534e8f444cde54e2ab"
     },
     {
       "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp",
@@ -414,8 +464,8 @@
     },
     {
       "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
-      "bytes": 6329,
-      "sha256": "fff2096fb8d3f8ca78dacb545b6e744b8b4cc01db24fa9116e11d727511b5ce1"
+      "bytes": 6332,
+      "sha256": "95f79798397c8fcf81c0595eacc22dd939b215af2f237fd30397531503af4c30"
     },
     {
       "path": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h",
@@ -818,6 +868,11 @@
       "sha256": "6022e6dbf5680a32fbb7d95c1aff977bdc8e7989728c97785cfccf8a0753f6ac"
     },
     {
+      "path": "scripts/mmorpg/Advance-Lesson.ps1",
+      "bytes": 5074,
+      "sha256": "e2da7ea1607264f03a64abe706c13b2c3b64f12316da7e3fad785a89b4641f9e"
+    },
+    {
       "path": "scripts/mmorpg/Build-Localization.ps1",
       "bytes": 6308,
       "sha256": "3a40b0baf5ab1247cd25f8afaf345821a455965b81bc48c58fab496fab3b84a6"
@@ -844,8 +899,13 @@
     },
     {
       "path": "scripts/mmorpg/Invoke-Smoke.ps1",
-      "bytes": 13942,
-      "sha256": "7db27cb810572e2673bfff55744d022bf8ff4bcafb0bcc926cf85e4db1ce3adf"
+      "bytes": 14129,
+      "sha256": "54ca56f1d71cd69054317be5ee1fdbc1cfda80e98e078ade80a729c445bc2971"
+    },
+    {
+      "path": "scripts/mmorpg/lesson_project.py",
+      "bytes": 1107,
+      "sha256": "68277a2eb8dbbada1ca62f652d72f6dbef9c68ed656dc8686bb70cb595f9a40c"
     },
     {
       "path": "scripts/mmorpg/Package-Lab.ps1",
@@ -854,8 +914,8 @@
     },
     {
       "path": "scripts/mmorpg/prepare-health-cook-label.py",
-      "bytes": 6296,
-      "sha256": "faeb92c5b4dc2ee7cff494983768fdd8faea0b5e762364444053f19febdf54bc"
+      "bytes": 6165,
+      "sha256": "1e1ad0c4cfef18d4db65b517a74a3bca5b613ee0253eee0a7f99f314c4254c9c"
     },
     {
       "path": "scripts/mmorpg/prepare-tagged-ability-inputs.py",
@@ -919,18 +979,18 @@
     },
     {
       "path": "scripts/mmorpg/validate-animation.py",
-      "bytes": 960,
-      "sha256": "7de4d004682b4de96971bdbb3fb214c5519e2bb18c185a2a41da08cb335a9166"
+      "bytes": 834,
+      "sha256": "65e32b09d0f0aa407a2332484ca4ada5db7ae6aca839fe5a253c6befbcc19559"
     },
     {
       "path": "scripts/mmorpg/validate-existing-content.py",
-      "bytes": 2932,
-      "sha256": "d3886b1cc2b061032e05ed0ec37636f8ea35c287317fcefb3788b5c4d61f8edc"
+      "bytes": 2803,
+      "sha256": "996434155f5eb2ecc560fa028641d1e38ae1ad9809d9e56b8ec9d66ffb0137f1"
     },
     {
       "path": "scripts/mmorpg/validate-health-cook-label.py",
-      "bytes": 3648,
-      "sha256": "29d368b8b56f671be4964434fa3969448000f1203c82f8ab099d785104921faf"
+      "bytes": 3516,
+      "sha256": "82f28b832e8d20976692e825a68bbd556a611b84d3f418bcec19ec21f3781dd3"
     },
     {
       "path": "scripts/patches/blueprint-screenshot-ue58.patch",

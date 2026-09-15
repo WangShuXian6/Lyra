@@ -89,8 +89,54 @@ Layout->AddToPlayerScreen(1000);
 
 本机 RegisterLayer 将过渡时长设为 0，并在注释中说明与手柄焦点转换有关。迁移时不要为了视觉动画随意改容器过渡而不验证焦点。若新增动效，可以先在页面内部实现，并单独验证返回和快速切换。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 读懂四个 Register Layer 节点背后的 C++
+源码：`Plugins/CommonGame/Source/Private/PrimaryGameLayout.cpp`，本机第 89–101 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void UPrimaryGameLayout::RegisterLayer(FGameplayTag LayerTag, UCommonActivatableWidgetContainerBase* LayerWidget)
+{
+	if (!IsDesignTime())
+	{
+		LayerWidget->OnTransitioningChanged.AddUObject(this, &UPrimaryGameLayout::OnWidgetStackTransitioning);
+		// TODO: Consider allowing a transition duration, we currently set it to 0, because if it's not 0, the
+		//       transition effect will cause focus to not transition properly to the new widgets when using
+		//       gamepad always.
+		LayerWidget->SetTransitionDuration(0.0);
+
+		Layers.Add(LayerTag, LayerWidget);
+	}
+}
+```
+
+`IsDesignTime()` 表示当前是否处于 Designer 预览。运行时才把标签与容器写入 `Layers` 映射；因此 Designer 里存在一个叫 Menu_Stack 的控件，还不足以让 `UI.Layer.Menu` 找到它。
+
+`OnTransitioningChanged.AddUObject` 订阅栈的转场状态。转场期间暂停输入、结束后恢复，避免新旧页面都处理同一输入。本机把转场时长设成 0，旁边源码注明与手柄焦点问题有关；如果新增动画，要重新测试焦点，不能只确认动画好看。
+
+把截图中的注册图逐行抄成下面的阅读表：
+
+| 蓝图输入 | C++ 参数 | 它的含义 |
+|---|---|---|
+| Target = self | 当前 UPrimaryGameLayout | 这位本地玩家的根布局对象 |
+| Layer Tag | LayerTag | 用来查找容器的 GameplayTag 键 |
+| Layer Widget | LayerWidget | Designer 中已经存在的栈控件引用 |
+| 白色执行引脚 | 函数调用顺序 | OnInitialized 时逐个完成注册 |
+
+**排障练习**：若 UI.Layer.Menu 查不到容器，先在 RegisterLayer 观察标签，再看 GetLayerWidget 的结果。不要靠把标签改成“看起来像”的字符串来试；映射键必须对应实际注册，且必须属于当前 LocalPlayer 的 RootLayout。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 你应能从配置追踪到真实根布局，从 LayerTag 找到容器。页面重复出现时先检查是否既被手动 AddToViewport 又被 Feature 动作推入。切换角色后根 UI 不应因旧 Pawn 销毁而失去整个管理入口。
 
 练习：为 MMORPG 登录、角色选择、游戏 HUD、背包和确认对话框分配界面层及激活关系。说明哪些页面替换同层内容，哪些作为更高层弹出，以及每种关闭方式的焦点恢复目标。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验六保留 PrimaryGameLayout 层结构，只给训练布局新增静态标题，随后验证菜单返回和重生。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

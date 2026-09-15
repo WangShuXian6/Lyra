@@ -33,6 +33,50 @@ description: 分开客户端帧时间、服务器 Tick、网络复制和 UI 更�
 
 MMORPG 大范围对象复制需要围绕可见范围、更新频率和数据量设计。切到 ReplicationGraph 或 Iris 不会自动解决数据库访问阻塞、每帧全量遍历和无界 RPC。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### FPS 与毫秒先算清楚
+
+一帧 16.67 ms 大约是 60 FPS，一帧 33.33 ms 大约是 30 FPS，这是 `1000 / 每帧毫秒` 的换算示例，不是本机测试结果。帧时间越长，等待下一帧越久；平均 FPS 可能掩盖偶发很慢的帧。
+源码：`Source/LyraGame/Performance/LyraPerformanceStatSubsystem.cpp`，本机第 30–44 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+// Record stats about the frame data
+{
+	RecordStat(
+		ELyraDisplayablePerformanceStat::ClientFPS,
+		(FrameData.TrueDeltaSeconds != 0.0) ?
+		1.0 / FrameData.TrueDeltaSeconds :
+		0.0);
+
+	RecordStat(ELyraDisplayablePerformanceStat::IdleTime, FrameData.IdleSeconds);
+	RecordStat(ELyraDisplayablePerformanceStat::FrameTime, FrameData.TrueDeltaSeconds);
+	RecordStat(ELyraDisplayablePerformanceStat::FrameTime_GameThread, FrameData.GameThreadTimeSeconds);
+	RecordStat(ELyraDisplayablePerformanceStat::FrameTime_RenderThread, FrameData.RenderThreadTimeSeconds);
+	RecordStat(ELyraDisplayablePerformanceStat::FrameTime_RHIThread, FrameData.RHIThreadTimeSeconds);
+	RecordStat(ELyraDisplayablePerformanceStat::FrameTime_GPU, FrameData.GPUTimeSeconds);	
+}
+```
+
+ClientFPS 使用 TrueDeltaSeconds 的倒数，并处理零值；FrameTime/GameThread/RenderThread/RHI/GPU 分别记录各部分时间，源码单位为秒。展示或制表时先换算成 ms，不要把 0.016 当作 0.016 毫秒。
+
+Game、Draw/Render、GPU 可能并行工作，不能简单把各自时间相加当作真实整帧时间。先定位最限制帧输出的阶段，再用 Insights 时间线追具体任务。
+![一次有依据的性能定位](/media/guide-diagrams/11-reference-performance.svg)
+
+**读图**：这是测量流程，不是性能结果图。文档没有把示意数字写成已测 FPS，也没有用 Bot 数量推断 MMO 容量。
+
+### 新手的第一轮记录
+
+在开发构建的游戏控制台输入 `stat unit` 查看帧时间，结束后再次输入关闭。控制台打不开时，用编辑器底部 Output Log 的 Cmd 输入；确认命令作用于预期世界。要分析细节，在 Unreal Insights 中打开本次采集，选中慢帧时间范围，再检查 Game Thread 与相关任务。
+
+表格至少包含场景、构建、玩家数、Frame/Game/Draw/GPU 毫秒、是否首次加载、trace 文件位置。截图应保留时间范围与线程名称；一张没有坐标/时间单位的曲线无法让下一位读者判断。
+
+**练习**：先比较 HUD 显示/隐藏，其他条件保持一致。若差异小于运行波动，记录“尚未观察到稳定差异”，不要为了给优化结论而挑一帧数字。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 交付一次优化时应能给出相同条件下的前后帧时间、最慢调用链与行为验证。若数据波动大，先延长稳定采样或排除后台编译，而不是继续加更多优化。

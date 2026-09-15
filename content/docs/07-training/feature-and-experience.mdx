@@ -181,6 +181,46 @@ GameMode Override 当前是 None，表示继承项目默认 GameMode；Default G
 
 报告默认写入文档仓库 `verification/training-blueprint-roundtrip.json`，包含工程与引擎身份、输入文本 SHA-256、三个实际原生报告、错误和保存结果。脚本路径变化时，可在 `-script` 的同一个参数值中追加 `--docs-root F:/UE/LyraDoc --report F:/UE/LyraDoc/verification/training-blueprint-roundtrip.json`。失败时 commandlet 返回非零；不要通过手工改报告把失败标成成功。这项检查证明完整依赖条件下的导入和编译，游戏行为仍需要后续 PIE 与联机验收。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 把前面配置图逐项对应到生成代码
+源码：`examples/LyraTraining/prepare_training.py`，本机第 46–54 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```python
+pawn_sets = list(pawn.get_editor_property('ability_sets'))
+pawn.set_editor_property('ability_sets', [abilities if x.get_name() == 'AbilitySet_ShooterHero' else x for x in pawn_sets])
+experience_cdo = unreal.get_default_object(lib.load_blueprint_class(root + '/Experiences/B_TrainingRange'))
+experience_cdo.set_editor_property('default_pawn_data', pawn)
+features = list(experience_cdo.get_editor_property('game_features_to_enable'))
+if 'TrainingRange' not in features:
+    features.append('TrainingRange')
+experience_cdo.set_editor_property('game_features_to_enable', features)
+unreal.BlueprintEditorLibrary.compile_blueprint(experience)
+```
+
+这里的 Python 运行在 Unreal 编辑器内，`unreal` 模块不是普通系统 Python 自带库。`get_editor_property`/`set_editor_property` 对应 Details 中的反射属性：
+
+| 代码中的对象/属性 | 你手动点的地方 | 为什么这样写 |
+|---|---|---|
+| pawn / ability_sets | HeroData_Training → Ability Sets | 只把原 ShooterHero 项替换成训练技能集，其余项保持 |
+| experience_cdo | B_TrainingRange → Class Defaults | Experience 是蓝图类，修改其类默认对象 |
+| default_pawn_data | Default Pawn Data | 让本模式选择训练角色数据 |
+| game_features_to_enable | Game Features To Enable | 添加一次 TrainingRange 名称，再请求玩法激活 |
+
+列表推导式的 `if ... else ...` 表示逐项选择新值；不是把整份技能集删掉重建。`if 'TrainingRange' not in features` 避免重复追加名称。
+
+### 读扫描截图时先回答两个问题
+
+前面的 Experience 扫描图勾选 Has Blueprint Classes，因为 B_TrainingRange 是蓝图类；Map 扫描图不勾，因为地图是 World 资产。Directories 用 UE 的挂载路径 `/TrainingRange/...`，不是 Windows 的 `F:/...`。
+
+**导航图怎么用**：打开保存后的训练地图，按 P 显示导航可视化，观察地面可走区域，再按本章步骤构建导航并保存。绿色覆盖表示可导航区域；它不能单独证明 Bot 已收到目标。构建完成后以实际走动和 Bot 行为核对，最后再 Cook。
+
+**完成检查**：不用脚本输出提示，直接重开四份资产，沿截图中的字段找到 GA_TrainingDash；再重开地图确认 Default Gameplay Experience。能复现这一条引用链，才说明理解了自动脚本做的配置。
+
+{/* full-guide-end */}
+
 ## 预期结果与排障
 
 打开地图后，World Settings 指向训练 Experience；PIE 的角色仍能移动、开火和冲刺。Rider 在 `ULyraExperienceManagerComponent::OnExperienceLoadComplete` 处断点，确认实际加载的是训练 Experience。只看地图名称不能证明装配数据已替换。

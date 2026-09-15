@@ -24,7 +24,7 @@ description: 将加载、输入、技能、UI 与打包问题映射到可验证�
 | 复制地图后 AI 或路径拾取不动 | NavMeshBoundsVolume 覆盖、原生导航投影、Build Paths 后保存 | FEditorBuildUtils::EditorBuild / BuildAIPaths |
 | 设置截图 ZoomAmount=1 仍导出缩小图 | 实际 Graph 焦点、Ctrl+A 后选择描边、原始 PNG 的比例 | BlueprintScreenshotToolHandler::CaptureGraphEditor |
 | PIE 正常，打包缺资产 | 扫描类型、插件挂载、Cook 与软引用 | AssetManager 与 GameFeatureData |
-| 构建被 Live Coding 阻止 | 所有同引擎编辑器的会话 | 正常保存关闭后完整构建 |
+| 构建被 Live Coding 阻止 | 所有同引擎编辑器的会话 | [按图关闭并验证](/docs/01-start/live-coding)，正常保存退出后完整构建 |
 | 刚编译成功，工具插件却提示模块不兼容 | Engine、项目和插件的实际 `.modules` BuildId，以及 UBT 是否启用了该插件 | 完整 Editor 目标的插件选择与 WriteMetadata |
 
 ## 引擎更新后工具插件的 BuildId 不匹配
@@ -73,3 +73,37 @@ ExperienceManager 注册 `lyra.chaos.ExperienceDelayLoad.MinSecs` 与 `lyra.chao
 Inventory 的已有实例 AddEntry 重载为 `unimplemented()`；Hero 的 RemoveAdditionalInputConfig 未完整实现；Experience 结束时对某些异步停用还有未完全支持的日志。这些都应纳入扩展设计，不因类公开存在就承诺运行能力。
 
 练习：挑一个“输入没反应”问题，写出从 IMC 到 ASC 的每个证据点。最终报告应是“某个具体条件不满足”，而不是“Lyra 太复杂”。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 模块缺失弹窗怎样处理
+
+看到 “The following modules are missing or built with a different engine version” 时，先取消继续打开。LyraGame、LyraEditor 和多个插件一起报错，通常需要从引擎路径、完整构建目标与 manifest 查起，不能当成普通内容资源丢失。
+
+1. 核对实际工程为 Lyra 基准、Training 或 MMORPG；两份 Lyra 的 `.uproject` 文件名相同，路径不同。
+2. 对照下图关闭 Live Coding，保存工作并正常退出同引擎相关编辑器。
+3. 基准/训练构建 `LyraEditor Win64 Development`，MMORPG 构建 `MMORPGEditor Win64 Development`。成功后再重新打开该工程。
+4. 仍失败就读 UBT 第一条错误与编辑器加载日志。完整构建应处理模块元数据，不手写 BuildId 来跳过检查。
+![关闭 Live Coding 的原生编辑器偏好设置](/media/beginner/live-coding/disabled-settings.png)
+
+**看图操作**：在 Edit → Editor Preferences 搜索 Live Coding/实时代码编写。启用开关取消，启动方式 Manual，自动编译新 C++ 类关闭。完整入口和三工程范围见关闭 Live Coding 专章。
+
+### 用可控慢加载验证初始化，而不是猜加载时间
+源码：`Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp`，本机第 44–47 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+float GetExperienceLoadDelayDuration()
+{
+	return FMath::Max(0.0f, ExperienceLoadRandomDelayMin + FMath::FRand() * ExperienceLoadRandomDelayRange);
+}
+```
+
+返回值是 `Max(0, 最小延迟 + 0到1的随机值 × 随机范围)`。例如 MinSecs=2、RandomSecs=0，人为增加固定两秒；不是“每两秒检查一次”。默认两项都是 0。
+
+在实验 PIE 中使用本章列出的 CVar 前先记录原值，验证角色/HUD是否等待 Experience Ready，做完恢复原值。不要拿这个故障注入开关缩短真实加载，也不要把截图中空白的一帧直接判定成永久失败。
+
+**定位示例**：模型出现但按键无效，先看 PawnExtension 的状态，再看 LocalPlayer/InputComponent，再看 Mapping Context 和 Input Tag。模型是可见资产，输入就绪是另一条初始化条件。
+
+{/* full-guide-end */}

@@ -1,1 +1,11 @@
-{"title":"01 · 从第一次运行开始","pages":["index","environment","first-session","project-map"]}
+{
+  "title": "01 · 从第一次运行开始",
+  "pages": [
+    "index",
+    "ue-basics",
+    "environment",
+    "live-coding",
+    "first-session",
+    "project-map"
+  ]
+}

@@ -1,0 +1,1155 @@
+{
+  "checkedAt": "2026-09-15T11:22:38.109982+08:00",
+  "passed": true,
+  "scope": "Exact new source excerpts, all chapter revision coverage and actual local plugin entry paths. Read-only source verification; does not rerun gameplay/backend tests.",
+  "excerpts": [
+    {
+      "chapter": "01-start/ue-basics",
+      "file": "Source/LyraGame/Character/LyraPawnData.h",
+      "startLine": 35,
+      "endLine": 41,
+      "sourceSHA256": "a56a5b0504247cbf041e24de1ff9828ec6e0deffb1a1c60ff8c9a451ba47f76c",
+      "excerptSHA256": "122e8d987acc39c45b31773acf6d73c3521a67493b1ed061616bb57801b64da2"
+    },
+    {
+      "chapter": "01-start/environment",
+      "file": "Source/LyraEditor.Target.cs",
+      "startLine": 12,
+      "endLine": 13,
+      "sourceSHA256": "64163dd928b59c67daabbb8c40d2ff19e608cc5a4f454dc0636e85e6e4fd0e7e",
+      "excerptSHA256": "9f387ae022bedf549a63d8465d0ba3fc7073b9676f8d5a569b4eb355a3288562"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "file": "Plugins/GameFeatures/ShooterCore/ShooterCore.uplugin",
+      "startLine": 13,
+      "endLine": 19,
+      "sourceSHA256": "5b7bbaebeeb4a93dafd0842418bcb0c99608dc88928dd53d0db7cd2fcc1881d2",
+      "excerptSHA256": "6e4af36615001cc69ae1bb1e2200df0491f0cb001e000828b6fd8a426a6f736c"
+    },
+    {
+      "chapter": "02-architecture/asset-manager",
+      "file": "Source/LyraGame/System/LyraAssetManager.cpp",
+      "startLine": 40,
+      "endLine": 53,
+      "sourceSHA256": "2ce174daa4e909f25e30f13bb049cf99825358c11fc44c32825269e39b31fb4a",
+      "excerptSHA256": "3d94a35b0b40d3fa518a4bc7b41021bce45285ebe0868a232568056c7dd4e19a"
+    },
+    {
+      "chapter": "02-architecture/experience",
+      "file": "Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp",
+      "startLine": 336,
+      "endLine": 348,
+      "sourceSHA256": "87695e320d66175e03bc47315e6272ecdc5826fc2e7095c1290cac44061ea6c4",
+      "excerptSHA256": "2097a27fbe5527c3c5e67fc6da00e10f5e9c80cf114ec39d680c8eaa7aa526b9"
+    },
+    {
+      "chapter": "02-architecture/game-features",
+      "file": "Source/LyraGame/GameModes/LyraExperienceActionSet.h",
+      "startLine": 34,
+      "endLine": 40,
+      "sourceSHA256": "d48195b30636e3e98bdc142251e620caea88df867ad5eff9e8b3518d1e539a11",
+      "excerptSHA256": "067080ccf90c603f93f9e6368714ddcd1f9b5c65e73a686a660219865ed4e231"
+    },
+    {
+      "chapter": "02-architecture/initialization",
+      "file": "Source/LyraGame/Character/LyraHeroComponent.cpp",
+      "startLine": 113,
+      "endLine": 127,
+      "sourceSHA256": "d036b6bbbf0fc8170cb31d0f3271d887d44f1b683db564f0e036f74b0e68d3e7",
+      "excerptSHA256": "c4be4a8c45bdf78daf3c0679212130a34dcaad6770587fe98341c617745b8d6e"
+    },
+    {
+      "chapter": "02-architecture/loading-online",
+      "file": "Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp",
+      "startLine": 447,
+      "endLine": 459,
+      "sourceSHA256": "87695e320d66175e03bc47315e6272ecdc5826fc2e7095c1290cac44061ea6c4",
+      "excerptSHA256": "6941dabb17daabd68a80fd1430e0e6a4fc4faf671c8c87aef83394999219a75f"
+    },
+    {
+      "chapter": "02-architecture/loading-online",
+      "file": "Plugins/CommonUser/Source/CommonUser/Public/CommonUserSubsystem.h",
+      "startLine": 279,
+      "endLine": 290,
+      "sourceSHA256": "e2be6bcc29681d2e4542b3896e71a453ea5d7732013bbaf69dbfe53e8fa33ae5",
+      "excerptSHA256": "cc54486295fddabbe0edbfae3d88313591b11c8e0c48899ad41261a8963152c8"
+    },
+    {
+      "chapter": "02-architecture/loading-online",
+      "file": "Source/LyraGame/UI/Frontend/LyraFrontendStateComponent.cpp",
+      "startLine": 69,
+      "endLine": 73,
+      "sourceSHA256": "6d9e372e61c9cd0bef5223ace41021a7c88bb12c29b85524b20ea6cbb794cf46",
+      "excerptSHA256": "e73403f6cdf0648a8a0a8cc5f685a5c1e9baa565a6e72efbad81d1778286388e"
+    },
+    {
+      "chapter": "03-character/player-pawn",
+      "file": "Source/LyraGame/Character/LyraPawnExtensionComponent.cpp",
+      "startLine": 141,
+      "endLine": 149,
+      "sourceSHA256": "f479c9bc242e93fdf82f3e94b6876a36ddc382448fead40781698fafc4522854",
+      "excerptSHA256": "73a6bd0191c9a0d266e989b959d1817173d27e2dab5be07eb892c4d450569688"
+    },
+    {
+      "chapter": "03-character/enhanced-input",
+      "file": "Source/LyraGame/Input/LyraInputComponent.h",
+      "startLine": 52,
+      "endLine": 72,
+      "sourceSHA256": "24fca3cb31e5f510bae3133fed22d90e5958dd7bb8ef6273ca0c20640e65fcbb",
+      "excerptSHA256": "74e6a007d686bd05242bce8542499784cc07283e7ea24d47d764bc8ff3e1d5e7"
+    },
+    {
+      "chapter": "03-character/jump-blueprint",
+      "file": "Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility_Jump.cpp",
+      "startLine": 49,
+      "endLine": 59,
+      "sourceSHA256": "ae85050e8de0c0bc0bd00782c1141ad76e96e138db8e71b3eb942a35b0e41c51",
+      "excerptSHA256": "65dce0f1f64da3a43d52edf070b219aefd5beb84f1ceca85bd37fbac0257461e"
+    },
+    {
+      "chapter": "03-character/camera-animation",
+      "file": "Source/LyraGame/Character/LyraHeroComponent.cpp",
+      "startLine": 471,
+      "endLine": 493,
+      "sourceSHA256": "d036b6bbbf0fc8170cb31d0f3271d887d44f1b683db564f0e036f74b0e68d3e7",
+      "excerptSHA256": "b9fab2fe1258bb8f77d0bd7b00fa184ef14587e7e3c3d99c57e5b6cdd4709dfe"
+    },
+    {
+      "chapter": "03-character/camera-animation",
+      "file": "Source/LyraGame/Cosmetics/LyraCosmeticAnimationTypes.cpp",
+      "startLine": 10,
+      "endLine": 21,
+      "sourceSHA256": "9b8829203278577cc5ecc3db6dd38f012f99e5947bc99e3b6843cd02f827cff0",
+      "excerptSHA256": "c92dffb3f7603d2a3ddc9cc7ca0c854e139ff722df1d92bde77e345afc1c1cfb"
+    },
+    {
+      "chapter": "04-gas/ability-sets",
+      "file": "Source/LyraGame/AbilitySystem/LyraAbilitySet.cpp",
+      "startLine": 114,
+      "endLine": 120,
+      "sourceSHA256": "5cc3801ede19551a9cde1534e75c41b2781ad5e06245ffa343d745aa303d76e8",
+      "excerptSHA256": "4d118d3fe1d6cadc906a20458728ae047a266f663493aeac113a8acc88ea487f"
+    },
+    {
+      "chapter": "04-gas/ability-sets",
+      "file": "Source/LyraGame/AbilitySystem/LyraAbilitySystemComponent.cpp",
+      "startLine": 186,
+      "endLine": 200,
+      "sourceSHA256": "f9019ab6219dd508dcfc37c81b2303a437034684f35d07d2231492fb5fce703f",
+      "excerptSHA256": "735816c55c9e1cbc6b250d1932b8751e7000533bdbf807817e09b858a2273406"
+    },
+    {
+      "chapter": "04-gas/effects-health",
+      "file": "Source/LyraGame/AbilitySystem/Executions/LyraDamageExecution.cpp",
+      "startLine": 131,
+      "endLine": 137,
+      "sourceSHA256": "89c451359967677632362e8bdcafef7127dcbc76a430a6bdbe311299ca542c0e",
+      "excerptSHA256": "d271350063db57275dbb6e65f08c3c7dc0dc157f2255ef412a1e1528b5038805"
+    },
+    {
+      "chapter": "04-gas/prediction",
+      "file": "Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility_Jump.cpp",
+      "startLine": 16,
+      "endLine": 17,
+      "sourceSHA256": "ae85050e8de0c0bc0bd00782c1141ad76e96e138db8e71b3eb942a35b0e41c51",
+      "excerptSHA256": "a9bb1c3eeb7191622ddf3934dd0888f38448830d7b5a906f38fbb67fc0d22a6e"
+    },
+    {
+      "chapter": "05-gameplay/inventory-equipment",
+      "file": "Source/LyraGame/Inventory/LyraInventoryManagerComponent.cpp",
+      "startLine": 80,
+      "endLine": 114,
+      "sourceSHA256": "e34238fd2261db1311e31c59fb58c1a5ab414e496eeb578bcc6f5bd42dd3ac81",
+      "excerptSHA256": "55f5fe4cea63d84b478e468fdc890b9e550f1a64e0426c20f7859f3cbd8cbeb0"
+    },
+    {
+      "chapter": "05-gameplay/weapons",
+      "file": "Source/LyraGame/Weapons/LyraGameplayAbility_RangedWeapon.cpp",
+      "startLine": 530,
+      "endLine": 546,
+      "sourceSHA256": "4bf81f22d1e3c0c31412b078f6a97fcfc20be347263b4b314b81d3084a8d48db",
+      "excerptSHA256": "7df69ab3215bfa0c18ceb15c12b708dd1d7ee86cbc21fcbef90ea09973156780"
+    },
+    {
+      "chapter": "05-gameplay/interaction",
+      "file": "Source/LyraGame/Interaction/Abilities/LyraGameplayAbility_Interact.cpp",
+      "startLine": 78,
+      "endLine": 122,
+      "sourceSHA256": "e76f50302e918522684d09b0090bc8ec7c15ccab20d9fff1748ed7efc74237d8",
+      "excerptSHA256": "e11250999d73b961899e99c5ec529074f566be51b1a5e54d3e19a3f0a2298a64"
+    },
+    {
+      "chapter": "05-gameplay/teams-bots",
+      "file": "Source/LyraGame/GameModes/LyraBotCreationComponent.cpp",
+      "startLine": 53,
+      "endLine": 78,
+      "sourceSHA256": "aa25e329147d17914f44da98cee800e2a9f5bd26be2d2dedf6feb57d2b60caf1",
+      "excerptSHA256": "55728b6002232f87966d9a6ae1f17a1fe62e0f1643aebba1b997f83ec7aeb4b1"
+    },
+    {
+      "chapter": "05-gameplay/messages-audio",
+      "file": "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsLibrary.cpp",
+      "startLine": 11,
+      "endLine": 31,
+      "sourceSHA256": "8817a68c029da50e59ab919411ac919093bf9213acbe2b7c542b7aa981e64513",
+      "excerptSHA256": "4e32f771f6979ab4986bcc4da8ca33c3a0b9c0edfb0db42caf05f5deaa5aa1b2"
+    },
+    {
+      "chapter": "06-ui/commonui-input",
+      "file": "Source/LyraGame/UI/LyraActivatableWidget.cpp",
+      "startLine": 16,
+      "endLine": 30,
+      "sourceSHA256": "35e875c49246dae32a4be15e018a46b852e861d910f94982f7522ca4f6dec3de",
+      "excerptSHA256": "587d74283df7abf5e72ba7d8e905604a5e65d89a2a84d3249590fadfddc64ebf"
+    },
+    {
+      "chapter": "06-ui/common-game",
+      "file": "Plugins/CommonGame/Source/Private/PrimaryGameLayout.cpp",
+      "startLine": 89,
+      "endLine": 101,
+      "sourceSHA256": "e2648c6dfdae8f3b0216190ca21ddff68749b7f0c270c2adf03597ba6ce28ca3",
+      "excerptSHA256": "cd10125a0b12aaba55cf3d564399f6470073411fd14e1ba6c0fe300d7a99bf73"
+    },
+    {
+      "chapter": "06-ui/extensions",
+      "file": "Plugins/UIExtension/Source/Private/Widgets/UIExtensionPointWidget.cpp",
+      "startLine": 82,
+      "endLine": 100,
+      "sourceSHA256": "cd6b9b03d7e669870d7c50995d7a8c339b487691378212750d047cba35102930",
+      "excerptSHA256": "b9ae674db0b7dd04e19e8198d3686a3ce6835fb72786f44ac9f899136ae2ba14"
+    },
+    {
+      "chapter": "06-ui/settings-mvvm",
+      "file": "Source/LyraGame/Settings/LyraGameSettingRegistry_Audio.cpp",
+      "startLine": 41,
+      "endLine": 52,
+      "sourceSHA256": "875cc5a73778a5044c098ba5f9122d383468767e08fb42599b1ded0fb4429a26",
+      "excerptSHA256": "1377b50f443493ff7c3844e17bef70b7595a2661f9e7c3a58258ee022e550931"
+    },
+    {
+      "chapter": "06-ui/settings-mvvm",
+      "file": "Source/LyraGame/UI/LyraSettingScreen.cpp",
+      "startLine": 34,
+      "endLine": 44,
+      "sourceSHA256": "1d4ce08f6372a4523075cd118f2184dd97606c2b55f88aa80e7ceb6a6cbf3421",
+      "excerptSHA256": "5b6e8578a1039d0a37d4fa4b6c328e1faa9d813b4fe2a59f41ba1d5261527f45"
+    },
+    {
+      "chapter": "07-training/feature-and-experience",
+      "file": "examples/LyraTraining/prepare_training.py",
+      "startLine": 46,
+      "endLine": 54,
+      "sourceSHA256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823",
+      "excerptSHA256": "95782f832b53ffce956fbb6f2ed82d8ca2314d1683fd7b9a4f9879d5ac9bba9b"
+    },
+    {
+      "chapter": "07-training/dash-and-blueprints",
+      "file": "examples/LyraTraining/prepare_training.py",
+      "startLine": 39,
+      "endLine": 45,
+      "sourceSHA256": "a428fb98eb046ab6096034cfa7a687bde31aa36c991f66f7e08b9e2bc09c0823",
+      "excerptSHA256": "37378ea3391e3ff855fdc43979e1744217f6b3cc8f219c0b10bb48e4abf53049"
+    },
+    {
+      "chapter": "07-training/weapons-hud-bots",
+      "file": "Source/LyraGame/Equipment/LyraQuickBarComponent.cpp",
+      "startLine": 86,
+      "endLine": 109,
+      "sourceSHA256": "3fd7904e3f174b1436423aa2ba7da5518c9d88cc9493bfa2d01e27b5396fe8b1",
+      "excerptSHA256": "cd3ebdd87146243d8cd76f1e608906f7b0eab8894b8502b7b806ec07791fdc9d"
+    },
+    {
+      "chapter": "08-mmorpg/migration",
+      "file": "examples/MMORPG/Source/MMORPGEditor.Target.cs",
+      "startLine": 2,
+      "endLine": 11,
+      "sourceSHA256": "11cb062e048f092b9c15838bd7ff0e631b8d331fbc8f00193b4d7c5171b3e6bc",
+      "excerptSHA256": "c745c51a2cd5615473766658e53c77b0f2875885f373f60c98fcc2a746dccc1e"
+    },
+    {
+      "chapter": "08-mmorpg/configuration",
+      "file": "examples/MMORPG/Config/DefaultInput.ini",
+      "startLine": 1,
+      "endLine": 3,
+      "sourceSHA256": "a1e822a22fba08a06c2308d23dcc64804cc64fb568bb70cadb35d27b3ab686c0",
+      "excerptSHA256": "b34555edb758f6f60dfb25f36acd8a45774007a58fba8ea36fe9443bd3580ec6"
+    },
+    {
+      "chapter": "08-mmorpg/character-gas",
+      "file": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp",
+      "startLine": 20,
+      "endLine": 34,
+      "sourceSHA256": "54c263096a0f5d219184b96a37f1e395fba56397e0ee5bd19bdfbb357ab2e7a1",
+      "excerptSHA256": "833b4de823c354b699b83c944c93f5037328b881b48dc3d9c0247b0573177760"
+    },
+    {
+      "chapter": "08-mmorpg/animation",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp",
+      "startLine": 39,
+      "endLine": 53,
+      "sourceSHA256": "95c090adf38bddb85d6bf77fbc2bd9ce4d917a7c8c9d9738e023930bebfee793",
+      "excerptSHA256": "5d26a9fa02f93ae9daea33c928050b33ea0624940c1562b6f2319807642da30f"
+    },
+    {
+      "chapter": "08-mmorpg/network-persistence",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp",
+      "startLine": 684,
+      "endLine": 697,
+      "sourceSHA256": "5deb3fc0c3c192877dc84fde7bbb5c3fedbd607abfc27a904fafeda038c92450",
+      "excerptSHA256": "e54507dfb412244ff121835ee1c36fe3e2f4c316157c447b1d43f015e2ef9f53"
+    },
+    {
+      "chapter": "08-mmorpg/run-lab",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOExperienceGameplay.cpp",
+      "startLine": 63,
+      "endLine": 79,
+      "sourceSHA256": "4a7a439feb65acadd7bad4f279aae819e34e50ac19ccf44720dd057001a352d0",
+      "excerptSHA256": "84386d0b74dda683b566038280eb259d497bc17d823951702d53488d3e83c9e4"
+    },
+    {
+      "chapter": "09-mmo-ui/layers-input",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 170,
+      "endLine": 179,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "e71f6bc5a82f44a32131d9e0bf01e0675abb22fb829ea2969c0dd1b06ba3fd23"
+    },
+    {
+      "chapter": "09-mmo-ui/designer",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 51,
+      "endLine": 55,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "647a260a168aaa1051deac9df8c257fbd10a7c06ec4d331d76aa07e75615e020"
+    },
+    {
+      "chapter": "09-mmo-ui/viewmodels",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 117,
+      "endLine": 123,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "cfa7ed8f6445ffea3c3c7067206114623682f4688c5864f0088ae0f9a4cf4fab"
+    },
+    {
+      "chapter": "09-mmo-ui/blueprint-workflow",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 365,
+      "endLine": 365,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "84a58820577c36359481e5f1bbf2f862ba578ec1e1cdf7d9b98191116e97b4c3"
+    },
+    {
+      "chapter": "09-mmo-ui/localization",
+      "file": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "startLine": 440,
+      "endLine": 445,
+      "sourceSHA256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "excerptSHA256": "61bcb2177d323df8f5fe7aa54b2d9ac669af78c1374e0d81d56e649e6baecfdd"
+    },
+    {
+      "chapter": "10-backend/program-and-workers",
+      "file": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+      "startLine": 82,
+      "endLine": 92,
+      "sourceSHA256": "0582ae1f5eb3e91f0b589606148ed2b29c68bdfcbd98ff9260285dc54f2afe41",
+      "excerptSHA256": "8e0652957c4fd1680a1affc2f85c73ddeb6387584364a75c8ae4e42c0dda8216"
+    },
+    {
+      "chapter": "10-backend/database",
+      "file": "examples/MMORPG/backend/migrations/001_initial.sql",
+      "startLine": 10,
+      "endLine": 15,
+      "sourceSHA256": "9818de7efd8b1aa06994b19937b1dc958aa80efe9f72684b5eac6fa69df716c7",
+      "excerptSHA256": "7e0a9beeec5cadfc5071aec58f6330ed4652cc5cb5d068497bba8cac953c4466"
+    },
+    {
+      "chapter": "10-backend/database",
+      "file": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "startLine": 23,
+      "endLine": 33,
+      "sourceSHA256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443",
+      "excerptSHA256": "700f8dedbb51372b983a5a66ec9281e23e145e73f8824b9c2355c9a83b3a65a8"
+    },
+    {
+      "chapter": "10-backend/authentication",
+      "file": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "startLine": 47,
+      "endLine": 51,
+      "sourceSHA256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443",
+      "excerptSHA256": "4734245acff66113eaf8a773a2a38bbab111d996ce2da55c4feb464b185d3717"
+    },
+    {
+      "chapter": "10-backend/persistence",
+      "file": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "startLine": 34,
+      "endLine": 40,
+      "sourceSHA256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443",
+      "excerptSHA256": "986c5ba34c3c84d1d43d446c3aad0cf9427a6acf3ec9f90260ef2da612cbb456"
+    },
+    {
+      "chapter": "10-backend/run-and-test",
+      "file": "scripts/backend/Test-Backend.ps1",
+      "startLine": 50,
+      "endLine": 53,
+      "sourceSHA256": "62b68cf77a0f99572f0de4ab58426f946589ff9fcab5cc4ef228478efe3f643f",
+      "excerptSHA256": "7eceaaa9bbb7a56ee3a75f6db52e76a335d51daf5a72a1285d90ab0ff061c8f4"
+    },
+    {
+      "chapter": "10-backend/deployment",
+      "file": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+      "startLine": 160,
+      "endLine": 167,
+      "sourceSHA256": "0582ae1f5eb3e91f0b589606148ed2b29c68bdfcbd98ff9260285dc54f2afe41",
+      "excerptSHA256": "6db73d34682dc60fc13631aa83ad7fc04c9a3eb0c6b53571b00b97e641789942"
+    },
+    {
+      "chapter": "11-reference/troubleshooting",
+      "file": "Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp",
+      "startLine": 44,
+      "endLine": 47,
+      "sourceSHA256": "87695e320d66175e03bc47315e6272ecdc5826fc2e7095c1290cac44061ea6c4",
+      "excerptSHA256": "51cf0a14a7b5d00477526428cb5256e6687c18bbec72fe8223842f533bada38a"
+    },
+    {
+      "chapter": "11-reference/blueprint-screenshots",
+      "file": "Plugins/BlueprintScreenshotTool/Source/BlueprintScreenshotTool/Private/BlueprintScreenshotToolHandler.cpp",
+      "startLine": 128,
+      "endLine": 151,
+      "sourceSHA256": "735209ceed7cbb71211919a8ee2bde1ab4f4e7c49e7c984a77fe1bb8ff03f343",
+      "excerptSHA256": "f0b3ca90d8a47e1efbdbc9df5d566c04d3eccee18496009cb421e988ce4b46cc"
+    },
+    {
+      "chapter": "11-reference/performance",
+      "file": "Source/LyraGame/Performance/LyraPerformanceStatSubsystem.cpp",
+      "startLine": 30,
+      "endLine": 44,
+      "sourceSHA256": "f0624db16fce70e6508e31c333ba04907de7a73938742b0abc66938f8b0aa292",
+      "excerptSHA256": "48b36d19eac4359648e0941fe04437e50394dfdbf0f753dd4b32c12d597b0dbe"
+    },
+    {
+      "chapter": "11-reference/publishing",
+      "file": ".github/workflows/pages.yml",
+      "startLine": 15,
+      "endLine": 20,
+      "sourceSHA256": "f2bb8aebfd6c073e09db796c69af084af4eeff0ba41e00ed04e20e804f1b5f2f",
+      "excerptSHA256": "a456b2ac45849fabefd56134fd1e19b0ff8c4a395e79d753dc95fc753e06f0cb"
+    },
+    {
+      "chapter": "11-reference/glossary",
+      "file": "Source/LyraGame/Character/LyraPawnData.h",
+      "startLine": 37,
+      "endLine": 41,
+      "sourceSHA256": "a56a5b0504247cbf041e24de1ff9828ec6e0deffb1a1c60ff8c9a451ba47f76c",
+      "excerptSHA256": "f4e57e6db46c7f937fb03d0db1b130de4029c6c00a631bd6b1f5f6c32cfd0ab2"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "file": "Plugins/PocketWorlds/Source/Private/PocketLevelSystem.cpp",
+      "startLine": 10,
+      "endLine": 36,
+      "sourceSHA256": "9ebbc8664afa76cd0355b631206e5a273451bd91fff83fc6d0ef36ba7911258c",
+      "excerptSHA256": "6a42ef63b2ecf9d3706ad842e64bb0efaf68fd5cf8012603310245ee17c76068"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "file": "Plugins/GameSubtitles/Source/Private/SubtitleDisplaySubsystem.cpp",
+      "startLine": 36,
+      "endLine": 40,
+      "sourceSHA256": "c8db5e9289e0413aed9ca534056f765d6d6d2b6dbdbae5084fd06a41686a4467",
+      "excerptSHA256": "4d16e7fb63a602406c82aacab79283e3c865a1134eb801867e9b411ee60c8c17"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "file": "Plugins/CommonStartupLoadingScreen/Source/CommonStartupLoadingScreen/Private/CommonStartupLoadingScreen.cpp",
+      "startLine": 34,
+      "endLine": 49,
+      "sourceSHA256": "629e5bc2847b7c0d6b6b08493a8fddfa2ebe6b53567999944de5a08cfa7cef21",
+      "excerptSHA256": "d095aed66093e8dbe75aa78b8923e7f743b6c8120663869b3bf9dc7c9ccd4b21"
+    },
+    {
+      "chapter": "02-architecture/plugin-atlas",
+      "file": "Plugins/GameFeatures/TopDownArena/Source/TopDownArenaRuntime/Private/LyraCameraMode_TopDownArenaCamera.cpp",
+      "startLine": 14,
+      "endLine": 30,
+      "sourceSHA256": "da6a884993408abd3c27b50d92467e1b6a5fbf7b7e5ed7e19f371c4f427d9cee",
+      "excerptSHA256": "345650335702a2a63918324f15fbb4a886f12c5f6c5a4406f6f83cfe5757d67f"
+    }
+  ],
+  "chapters": [
+    {
+      "path": "content/docs/01-start/environment.mdx",
+      "sha256": "612ce85aeb1a0e28a86305266bf2991fcb97a0d9dc2d1c22708f1fe38eda14bb",
+      "characters": 4249,
+      "illustrations": 1,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/01-start/first-session.mdx",
+      "sha256": "a03d076af22f4fee54d088a8ce0827658ace4192bddefbca0828aa1c545750cd",
+      "characters": 4683,
+      "illustrations": 4,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/01-start/index.mdx",
+      "sha256": "85d43c150d519b6f01b8924fb4e0bb1290add6cad0411009f3d27068f26d6c4e",
+      "characters": 2262,
+      "illustrations": 1,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/01-start/live-coding.mdx",
+      "sha256": "e60fd48aae62102e341ad87ec799a8666d2f08def084ece9c2f390f252fbca3a",
+      "characters": 5480,
+      "illustrations": 3,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/01-start/project-map.mdx",
+      "sha256": "e26059d066ded2d4fabd6f42cdbf1111eac8e92ec9a2552fb6add31049aec48d",
+      "characters": 13341,
+      "illustrations": 15,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/02-architecture/asset-manager.mdx",
+      "sha256": "c61053122b395cd47a755c570961fe6a76b553f4317f741a8f0b9d84e9a8528c",
+      "characters": 4972,
+      "illustrations": 3,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/02-architecture/experience.mdx",
+      "sha256": "9cef39fed9753a83b0ce16173d68e169c21cf979a66c97f74b91b1859cd8110f",
+      "characters": 5730,
+      "illustrations": 3,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/02-architecture/game-features.mdx",
+      "sha256": "2d22a7c309d0b05b0cb3f84d1131d2172fe6e9959f8a034fbef4f84d37792259",
+      "characters": 4426,
+      "illustrations": 2,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/02-architecture/index.mdx",
+      "sha256": "e8e66a92dd187eeb23f08f58b460d334398f3b67c0cc9b63c9ef18ce33d63b18",
+      "characters": 1732,
+      "illustrations": 1,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/02-architecture/initialization.mdx",
+      "sha256": "2daec89e7a84a8a19d3142ca4b24bffc30e699dd82d399b33e40a257cb1650c6",
+      "characters": 3838,
+      "illustrations": 2,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/03-character/camera-animation.mdx",
+      "sha256": "606e4e2d6af2cec18ac888c33b00b083ea9f456e1ca0ea67de5ffc21ff351ec0",
+      "characters": 6328,
+      "illustrations": 3,
+      "codeBlocks": 4,
+      "newSourceExcerpts": 2
+    },
+    {
+      "path": "content/docs/03-character/enhanced-input.mdx",
+      "sha256": "97a1e6721d41a8c09e06f49c03a2d72111a9e853a83abadd4cbc81722ac576f2",
+      "characters": 6941,
+      "illustrations": 4,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/03-character/index.mdx",
+      "sha256": "f63162cb437ea9d18103fc966aea1dc0b5d2cf0a90342626aae1b6cfd0ef9e3b",
+      "characters": 1335,
+      "illustrations": 1,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/03-character/jump-blueprint.mdx",
+      "sha256": "e9a31f1ba775410b00cf4098547333bf566bb7801c196231b732c7fb909a5260",
+      "characters": 4024,
+      "illustrations": 2,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/03-character/player-pawn.mdx",
+      "sha256": "5a05fe56e006beb011123f993676ce10960e93aad8e92513c99737b42aa70ceb",
+      "characters": 4267,
+      "illustrations": 2,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/04-gas/ability-sets.mdx",
+      "sha256": "87760df68860364cf9b3faa51c488783589f7b25f2db1c73b02c550140c76a6f",
+      "characters": 6428,
+      "illustrations": 4,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 2
+    },
+    {
+      "path": "content/docs/04-gas/dash-blueprint.mdx",
+      "sha256": "a51632cd9a124153d312ff52f2750a29dfc3fc7e60c68047f2efd77bee7fcaaf",
+      "characters": 3793,
+      "illustrations": 3,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/04-gas/effects-health.mdx",
+      "sha256": "e6c55caf3cfef59ca2afc1d2854370b76d80a303baf83072cc7a62ddd232808f",
+      "characters": 3466,
+      "illustrations": 2,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/04-gas/index.mdx",
+      "sha256": "4fe426cad779fb20e42b19993a1a232afa617166a0df6d8277ae4befe6b3898c",
+      "characters": 1418,
+      "illustrations": 2,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/04-gas/prediction.mdx",
+      "sha256": "84d2f3c941273cb17bdbf9df2b4c03cf4d9a68181453898a70ed456115840966",
+      "characters": 2739,
+      "illustrations": 2,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/05-gameplay/index.mdx",
+      "sha256": "4449ff042e5a095db46b95ccfa96ea35f2a8ad684dcf58105a65f9c7b545d61b",
+      "characters": 1620,
+      "illustrations": 1,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/05-gameplay/interaction.mdx",
+      "sha256": "7fd242c37639e46c06884af8e3527ee311fb75e67cc56345700468c9a4eb3de5",
+      "characters": 5446,
+      "illustrations": 1,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/05-gameplay/inventory-equipment.mdx",
+      "sha256": "22cdb5c0c477ba15347a7be576228fa25a0439a5072a8d86838bea4853ebea6f",
+      "characters": 6075,
+      "illustrations": 4,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/05-gameplay/messages-audio.mdx",
+      "sha256": "a20862024daa8532f510bc4353b869ee8b42f6d8556f1066dcaf76b75bc5a04f",
+      "characters": 7175,
+      "illustrations": 2,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/05-gameplay/teams-bots.mdx",
+      "sha256": "76053cf7d765b5d7cee52d8354034f60f8db3cf1a1e70c807b246768b7e0fbee",
+      "characters": 4498,
+      "illustrations": 1,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/05-gameplay/weapons.mdx",
+      "sha256": "d3a8eef439aace8430c77cbfa0cf49104a287a54b7c5b934474e4b56047c44ba",
+      "characters": 3957,
+      "illustrations": 2,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/06-ui/common-game.mdx",
+      "sha256": "10c5f4f7ec3848e225211cb0da94fe6be4c2765f49d96839ddd65d10835a43b5",
+      "characters": 7227,
+      "illustrations": 4,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/06-ui/commonui-input.mdx",
+      "sha256": "ba41262bee93d454ed59830818098090ce855f824a8fb70d41fb44a6b3711cf8",
+      "characters": 3674,
+      "illustrations": 1,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/06-ui/extensions.mdx",
+      "sha256": "0d033425e3d86e4bca20e4718877480a0b512b677dacb9869dabd6c1485bdd0c",
+      "characters": 6015,
+      "illustrations": 2,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/06-ui/index.mdx",
+      "sha256": "f138b45064959a29934e8463da30c562ebeca9b48c8d42dcb83cd1a7a497c354",
+      "characters": 1425,
+      "illustrations": 1,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/06-ui/settings-mvvm.mdx",
+      "sha256": "cdb9d37cbf638a5894b02daf0ffbcceedc53a8c8a885ed40f01cbf71ce427aa9",
+      "characters": 5551,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 2
+    },
+    {
+      "path": "content/docs/07-training/dash-and-blueprints.mdx",
+      "sha256": "4eac00fa80ef952614e015925952acbb1b7443cc269939ef1b51c895ace22674",
+      "characters": 4331,
+      "illustrations": 3,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/07-training/feature-and-experience.mdx",
+      "sha256": "7a17e571ebf2afe73b5b6860529ca43c5b8681afba93708298b5c68101a0ad0c",
+      "characters": 15040,
+      "illustrations": 6,
+      "codeBlocks": 5,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/07-training/index.mdx",
+      "sha256": "0b5fbbba1b2f9f874e0b030fdfcc1ff0b4474baf5c9e0c866c7f93a1de7fccc3",
+      "characters": 2999,
+      "illustrations": 2,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/07-training/multiplayer-and-package.mdx",
+      "sha256": "e355ba476454b5d73d0de1b414df8a3b313fe04de2407a1fc50e584d62f41922",
+      "characters": 17585,
+      "illustrations": 5,
+      "codeBlocks": 6,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/07-training/weapons-hud-bots.mdx",
+      "sha256": "2703450e045d9d9010116e5c8277b37857b725149a7e9a3d7ccdb57134eeebd7",
+      "characters": 6760,
+      "illustrations": 1,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/08-mmorpg/animation.mdx",
+      "sha256": "53dfebb97670a018d90d7fe828913b265e5e984835b7fa4efddd8ac24c5fa752",
+      "characters": 14888,
+      "illustrations": 12,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/08-mmorpg/character-gas.mdx",
+      "sha256": "81b1cef17fadf085eab1b10853556d6f17a86c9e040aaab47a021aadddf3e2bc",
+      "characters": 20105,
+      "illustrations": 17,
+      "codeBlocks": 5,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/08-mmorpg/configuration.mdx",
+      "sha256": "e70c122d49877161e4d89c53175c404c156c5a1390edaca5f29aab6384511792",
+      "characters": 25965,
+      "illustrations": 33,
+      "codeBlocks": 6,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/08-mmorpg/index.mdx",
+      "sha256": "0af848b2176153cfe2529ffbfe2efa0b578c675a58522a99da3465616ea4c775",
+      "characters": 3351,
+      "illustrations": 1,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/migration.mdx",
+      "sha256": "7152e512d04ace11a3f66b29cfef796097c3252fc2069feeec38687c8ff33bef",
+      "characters": 12182,
+      "illustrations": 1,
+      "codeBlocks": 4,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/08-mmorpg/network-persistence.mdx",
+      "sha256": "7e5bd814aec6cb9572aa6290e8bfd924735c138f8e43053d017d25ee417ab667",
+      "characters": 4765,
+      "illustrations": 1,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/08-mmorpg/run-lab.mdx",
+      "sha256": "95d45eb3b8c804638e2b3c2c27f8c9759565f042ce3c76c3701dad47d871a5a3",
+      "characters": 14279,
+      "illustrations": 4,
+      "codeBlocks": 7,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/09-mmo-ui/blueprint-workflow.mdx",
+      "sha256": "44cd74166bb07bd2faae7edae9b130eed73d6c5a18e922a3223de985adc28836",
+      "characters": 13913,
+      "illustrations": 3,
+      "codeBlocks": 5,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/09-mmo-ui/designer.mdx",
+      "sha256": "e80573d67666984098d04392071fe1f8283db9d5d07c5502ca2e266146b1b3d0",
+      "characters": 19753,
+      "illustrations": 24,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/09-mmo-ui/index.mdx",
+      "sha256": "781b5e1c43d46d89e95cd61d00ab414b51fe42426002c8fd906d494491f14d83",
+      "characters": 3130,
+      "illustrations": 2,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/09-mmo-ui/layers-input.mdx",
+      "sha256": "3b3826702ff366303191b387bcf9d94c447b1badb64c03f376a04b7a4c8f3cda",
+      "characters": 8167,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/09-mmo-ui/localization.mdx",
+      "sha256": "71f23831b895d8f46aebe33cac9956672621f69aab324c0ed8efdf561404c58e",
+      "characters": 15267,
+      "illustrations": 9,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/09-mmo-ui/viewmodels.mdx",
+      "sha256": "d973495b7afef43cdc5a1fa79cb37ab471614e7729e716ccc1e8a58a707be1fe",
+      "characters": 6000,
+      "illustrations": 2,
+      "codeBlocks": 4,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/10-backend/authentication.mdx",
+      "sha256": "45b2ec30aa7ed8f367a066d16cf835873aef6e66be4ee2e0df7ef8e4e8355f9f",
+      "characters": 4583,
+      "illustrations": 2,
+      "codeBlocks": 6,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/10-backend/database.mdx",
+      "sha256": "daf853f0429c5d9672f30011201ff002310c166bfe6d040132e55ea83f5546fa",
+      "characters": 6391,
+      "illustrations": 1,
+      "codeBlocks": 6,
+      "newSourceExcerpts": 2
+    },
+    {
+      "path": "content/docs/10-backend/deployment.mdx",
+      "sha256": "9b271dfe4fc377025571fdc5d00a06c0dc2d6975d069725046aed4556e451481",
+      "characters": 7361,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/10-backend/index.mdx",
+      "sha256": "94bd133802334adb7eb41e2f047b23509d2f6bb16bc0df48c68916bc99271153",
+      "characters": 2949,
+      "illustrations": 1,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/10-backend/persistence.mdx",
+      "sha256": "0f4f0895f2080048631d3d9f676c2d88bf54d9c3f0349f5cab475b8a609ee9cd",
+      "characters": 3533,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/10-backend/program-and-workers.mdx",
+      "sha256": "bd091d10651b17971ca382e1ba9d89ef9266055f7694506a0dbaddefcff40f83",
+      "characters": 7692,
+      "illustrations": 1,
+      "codeBlocks": 5,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/10-backend/run-and-test.mdx",
+      "sha256": "8dff05511da361d480f24b99c38e05d6d192d92d6343284fa7c8b7b2e3668105",
+      "characters": 12491,
+      "illustrations": 1,
+      "codeBlocks": 14,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/11-reference/blueprint-screenshots.mdx",
+      "sha256": "b979471b29918b665733bdd219d1cea5d2af3b6a8f4543706fc62bce1c0d2ec6",
+      "characters": 7188,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/11-reference/glossary.mdx",
+      "sha256": "7b39bd3059d9ed44d8ba1935803f708f6cb9308b835ad784ab7003e32c75e046",
+      "characters": 4276,
+      "illustrations": 1,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/11-reference/index.mdx",
+      "sha256": "afae9ea1b81ab26d07eaf6b0d99161851ed370a93d7aef5b119fea4748796da0",
+      "characters": 1438,
+      "illustrations": 1,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/11-reference/performance.mdx",
+      "sha256": "be89c08ea69cf4c070113d976f7c65d3b373b869140e7c13a5bad05c88b76e7c",
+      "characters": 4328,
+      "illustrations": 1,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/11-reference/publishing.mdx",
+      "sha256": "ede072732f59f2e30845abeacbecba814081b4436aa3cecc13b443bf4c20bd88",
+      "characters": 5511,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/11-reference/troubleshooting.mdx",
+      "sha256": "7c237e0e5f464f0e6234e2d189c435ad7b2dcede790b7efefbbe605b6431f0f1",
+      "characters": 5454,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/11-reference/upgrades.mdx",
+      "sha256": "e576eabed041dbb7537c2ec883ace134457a6cb7d28a47ca04eeff2eb76be489",
+      "characters": 2879,
+      "illustrations": 1,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/downloads.mdx",
+      "sha256": "e97ec03f89658120affef0a5abf8a6e684979698bb3a3814e14d443da32a41d5",
+      "characters": 4070,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/index.mdx",
+      "sha256": "eaba2fe383e6a55bacef8595b91853d6ff3ec6dc9e2beabd7c9ca2b929b8cb10",
+      "characters": 2130,
+      "illustrations": 1,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/01-start/ue-basics.mdx",
+      "sha256": "d65422c1dc18f78c17bc194d5dd5b0b17d291247b742c07c400578fe535361e2",
+      "characters": 5511,
+      "illustrations": 4,
+      "codeBlocks": 1,
+      "newSourceExcerpts": 1
+    },
+    {
+      "path": "content/docs/02-architecture/plugin-atlas.mdx",
+      "sha256": "a9717abfd74a6c17ad4ffbef2eaa226c25a443d8d664c413f09ac9539a23a3fc",
+      "characters": 17211,
+      "illustrations": 3,
+      "codeBlocks": 5,
+      "newSourceExcerpts": 5
+    },
+    {
+      "path": "content/docs/02-architecture/loading-online.mdx",
+      "sha256": "9f44d02e98bd6e1c092f26d415b75c51e8437d6795d4871a44e86999850a44a0",
+      "characters": 4518,
+      "illustrations": 2,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 3
+    },
+    {
+      "path": "content/docs/08-mmorpg/from-zero.mdx",
+      "sha256": "44a5686593a76a1e1daef45cba0a8e8686c0a64529b703ea576b3331b4ebf813",
+      "characters": 10885,
+      "illustrations": 1,
+      "codeBlocks": 9,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/index.mdx",
+      "sha256": "d504274bec48f130eb928e28620c17871f2ab17039f0c9f57770af5dd21a5a27",
+      "characters": 1013,
+      "illustrations": 1,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/asset-construction.mdx",
+      "sha256": "08b034a266bdca6ccb6badd14f67d8c0d643217bd612eb71ec6c5b287c4004a4",
+      "characters": 12471,
+      "illustrations": 7,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/02-architecture/modification-workshop.mdx",
+      "sha256": "a63919cbfa81dc05294757b0a0f26004c98cb508b5c6d4db08d6f699e2fb1f64",
+      "characters": 9399,
+      "illustrations": 8,
+      "codeBlocks": 0,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/animation.mdx",
+      "sha256": "502aa9f4346bf573e7f301e1313c95a30bf9b585b7282142fe239e8ebf3c0fec",
+      "characters": 5479,
+      "illustrations": 1,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/backend.mdx",
+      "sha256": "85194d02516802f6c6308c755252ee23734998ce8763b6ce334fe928921c2d4e",
+      "characters": 33628,
+      "illustrations": 1,
+      "codeBlocks": 7,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/build.mdx",
+      "sha256": "dad4df702257a761caebf475c6ad72c32356c2b406e8d79bdc078ec8187758c4",
+      "characters": 6544,
+      "illustrations": 1,
+      "codeBlocks": 7,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/config.mdx",
+      "sha256": "ef724843da5805dcd0ad273177109f34b03f952774bf59fecacbad71c8869683",
+      "characters": 35154,
+      "illustrations": 1,
+      "codeBlocks": 18,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/editor-tools.mdx",
+      "sha256": "ba9ac157a5ea6875968136a6256d89e222374015f95c8efaaca0975caa3554b6",
+      "characters": 109124,
+      "illustrations": 1,
+      "codeBlocks": 14,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/framework.mdx",
+      "sha256": "e9a9d4e93405c354415efa857cb2b376be5b7f972d13df26e014bd22b8ca66bd",
+      "characters": 50368,
+      "illustrations": 1,
+      "codeBlocks": 17,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/gameplay.mdx",
+      "sha256": "30db7a5123831a38d78ec068bc896e1285f66233895028b8f7d7969dccf92b98",
+      "characters": 67352,
+      "illustrations": 1,
+      "codeBlocks": 3,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/http.mdx",
+      "sha256": "b0af2c7c45ac36bf99374cc4d1c7ad76edc6048abb4e964c1fc1255aa908a1fa",
+      "characters": 20564,
+      "illustrations": 1,
+      "codeBlocks": 11,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/input-health.mdx",
+      "sha256": "d1f62d81569f866a9293c14089085b0df0a47443d117ed1b6f0f77488ba70557",
+      "characters": 29514,
+      "illustrations": 1,
+      "codeBlocks": 8,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/skeleton.mdx",
+      "sha256": "d9f9dff6a90141084454060931488da7953ddfe24338777298f2539564bf94d2",
+      "characters": 6059,
+      "illustrations": 1,
+      "codeBlocks": 9,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/ui.mdx",
+      "sha256": "91d81c0bd02cd47bac21725249931e1e34d930f99c368b43306a7f8cf9259050",
+      "characters": 43786,
+      "illustrations": 1,
+      "codeBlocks": 2,
+      "newSourceExcerpts": 0
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/zone.mdx",
+      "sha256": "ea7e72a6f5dc9161b8d765c9e018e65238a34f4531bec6c183c7a3ac8e5434ab",
+      "characters": 9279,
+      "illustrations": 1,
+      "codeBlocks": 4,
+      "newSourceExcerpts": 0
+    }
+  ],
+  "pluginSourceEntries": 22,
+  "errors": []
+}

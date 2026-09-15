@@ -1,0 +1,131 @@
+---
+title: 理解之后动手改：六个 Lyra 改造实验
+description: 从相机、输入、弹药、伤害、Bot 到 HUD，每次明确改哪个对象、谁读取它、怎样验证与恢复。
+---
+
+本章把前面的模块课接成可操作的实验。先按 [训练场工程](/docs/07-training/feature-and-experience) 建好 **LyraTraining 副本**，确认进入的是 `/TrainingRange/Maps/L_TrainingRange`，实际 Experience 为 `B_TrainingRange`。截图保留采集时的原值；下面的“修改后”数值是你要实施的实验，并非截图已经显示的结果。
+
+![改造一个功能时需要接通的五个位置](/media/guide-diagrams/02-architecture-modification-workshop.svg)
+
+每次只实施一个实验，记录旧值、保存、重新运行，再恢复旧值。改资产的课不需要编译 C++；读到 C++ 是为了查清谁消费配置。若更改头文件、构造函数或模块依赖，按 [完整构建](/docs/01-start/live-coding) 保存并关闭编辑器后编译。
+
+## 先完成一张模块责任表
+
+遇到任意模块，都先回答：**对象由谁创建？保存什么？从哪里读配置？谁调用它？在哪一端运行？退出时谁清理？** 在 Rider 双 Shift 搜索下列符号，先看 `.h` 的字段，再看 `.cpp` 的调用者。不要仅靠目录名称猜职责。
+
+| 想改的功能 | 先打开的配置 | C++ 中追的入口 | 验证位置 |
+|---|---|---|---|
+| 整局装配 | Experience、ActionSets、PawnData | LyraExperienceManagerComponent / LyraGameMode | 世界加载日志、实际 PawnData |
+| 插件功能与组件 | GameFeatureData、Add Components | GameFeatureAction_WorldActionBase / 各 Action | 当前 World 的目标 Actor、停用清理 |
+| 资源加载与打包 | Asset Manager 扫描、Primary Asset Rules | LyraAssetManager / LyraAssetManagerStartupJob | 新进程与 Cook 产物 |
+| 角色初始化与重生 | PawnClass、AbilitySets | LyraPawnExtensionComponent / LyraHeroComponent | Init State、ASC Owner/Avatar |
+| 按键与技能 | IMC、InputConfig、AbilitySet | Input_AbilityInputTagPressed / ProcessAbilityInput | 按下、松开、Spec 的动态标签 |
+| 相机与外观 | DefaultCameraMode、装备动画层 | DetermineCameraMode / PickBestAnimLayer | 本地视图、正确 Mesh 的动画实例 |
+| 装备与弹药 | ID、WID、装备技能集 | EquipItemInSlot / EquipItem / OnInstanceCreated | 新生成的物品和装备实例 |
+| 命中与伤害 | Fire Ability、GameplayEffect | LyraDamageExecution / LyraHealthSet | 服务器伤害、目标 Health |
+| 队伍、AI 与阶段 | BotSpawner、TeamSetup、Phase | LyraBotCreationComponent / LyraGamePhaseSubsystem | 服务器 Controller、队伍、行为树 |
+| HUD 与焦点 | UI Policy、Layout、UIExtension 标签 | PrimaryGameLayout / GameFeatureAction_AddWidget | 本地玩家层、返回键、重生后唯一性 |
+| 设置与消息 | Setting Registry、消息频道 | LyraGameSettingRegistry / GameplayMessageSubsystem | 应用/取消、监听注册与注销 |
+| 加载、用户与会话 | Loading Screen、CommonUser 配置 | LoadingScreenManager / CommonUserSubsystem | 就绪条件、异步结果与失败返回 |
+
+本地 **22 个插件**的目录、源码入口和所在课程见 [插件图谱](/docs/02-architecture/plugin-atlas)。普通插件的 `.uplugin` 控制模块依赖；Game Feature 还需要注册、激活与按 World 安装功能。把目录复制到 Plugins 并不等于运行时完成安装。
+
+## 实验一：把默认视野从 80 度改成 65 度
+
+![原始相机类默认值：Field Of View 为 80](/media/beginner/whole-guide/camera-view.png)
+
+1. Content Drawer → 齿轮 → 勾选插件内容。在 `/Game/Characters/Cameras` 找到 `CM_ThirdPerson`，右键 **Duplicate**。将副本移动到 `/TrainingRange/Camera`，命名 `CM_TrainingView`。移动时使用内容浏览器的 Move Here，不能在资源管理器搬 `.uasset`。
+2. 打开副本 → **Class Defaults** → 搜索 `View`。将 **Field Of View** 从 `80` 改为 `65`，保留俯仰限制、Offset Curve 和碰撞参数。Compile → Save。
+3. 打开 `/TrainingRange/Game/HeroData_Training`，在 **Default Camera Mode** 的类选择器中选择 `CM_TrainingView`，Save。
+4. 打开 `/TrainingRange/Experiences/B_TrainingRange`，确认 **Default Pawn Data** 指向 `HeroData_Training`。退出旧 PIE，重新 Play。
+5. 不按瞄准键，在同一站位看场景边缘。视野应变窄。需要精确核对时，在 Rider 的 `ULyraHeroComponent::DetermineCameraMode` 设断点：没有技能覆盖时，返回类应是 `CM_TrainingView_C`。
+
+![训练 PawnData 的相机、输入和技能集引用位置](/media/configuration/training/training-pawn.png)
+
+**代码解释**：`DetermineCameraMode` 先检查 AbilityCameraMode，再取 PawnExtension 中 PawnData 的 DefaultCameraMode。瞄准技能可能覆盖默认模式，所以“瞄准中没变”不能证明副本无效。完整函数与曲线面板见 [相机课](/docs/03-character/camera-animation)。
+
+**恢复**：将 HeroData_Training.DefaultCameraMode 改回 `CM_ThirdPerson`，重新 PIE。副本可保留供下次实验。
+
+## 实验二：改冲刺方向判定，确认执行的是副本
+
+<BlueprintGraph src="/media/lyra/dash-direction.png" alt="冲刺方向函数：45 度和 135 度阈值及四份 Montage" caption="实际原生蓝图导出。先点击实际大小，再沿角度比较节点阅读。" download="/blueprints/lyra/dash-direction.txt" />
+
+1. 打开 `/TrainingRange/Game/GA_TrainingDash`，在 **My Blueprint → Functions** 双击 `SelectDirectionalMontage`。
+2. 沿 Rotation Delta → 角度绝对值找到与常量 `45` 比较的节点。将这个常量改为 `30`；保留 `135` 的另一条边界、Montage 引用与返回引脚。Compile → Save。
+3. 打开 `/TrainingRange/Game/AbilitySet_TrainingHero` → **Granted Gameplay Abilities → [2]**，核对 Ability=`GA_TrainingDash`、Input Tag=`InputTag.Ability.Dash`。再确认 HeroData_Training 使用这份技能集。
+4. Play 后在蓝图 Debug 对象下拉选择实际能力实例。分别朝前、后、左、右和斜向移动时冲刺，观察比较结果和返回 Montage；边界从 45 变为 30，主要影响两者之间的角度区间。
+5. 在 Rider 检查实际 `FGameplayAbilitySpec` 的类和 `GetDynamicSpecSourceTags()`。按键映射到标签，标签匹配已授予 Spec，最后激活能力；把蓝图保存到新位置不会自动替换旧 Spec。
+
+要从节点文本练习复制，按 [完整函数导入课](/docs/07-training/dash-and-blueprints) 在测试副本清空旧图再导入，保留父类、成员和函数签名。下载文件仅包含方向函数；整个冲刺 EventGraph 的大图在该课单独展示。
+
+**恢复**：将 `30` 改回 `45`，编译保存。本实验需要自己逐方向记录结果；已有导入编译报告只证明原图可以往返导入，没有替你测试新阈值。
+
+## 实验三：把新步枪弹匣从 30 发改成 45 发
+
+![ID_Rifle 碎片数组：初始弹药在 SetStats 碎片中](/media/beginner/rifle/id-rifle-fragments.png)
+
+1. 确认编辑器属于 **LyraTraining**。本实验修改这个工程中的 ShooterCore 副本，记录原值 `30 / 30 / 60`；基准 LyraStarterGame 仍用于对照。
+2. 打开 `/ShooterCore/Weapons/Rifle/ID_Rifle` → Class Defaults → Fragments → **[2] InventoryFragment_SetStats** → Initial Item Stats。展开三行，通过标签名区分弹匣容量、当前弹匣弹药、备用弹药，不能仅按行序修改。
+3. 将容量和当前弹匣弹药改为 `45`，备用弹药保留 `60`；不要给 Map 添加重复标签键。Compile → Save。
+4. 结束 PIE 并重新开始，让发放/拾取流程创建新的步枪物品。装备后查看弹药 UI，开枪一次应从 `45` 变为 `44`。需要确认实例值时，在 `UInventoryFragment_SetStats::OnInstanceCreated` 设断点。
+5. 再换弹并检查备用弹药扣减。已经存在的物品实例不会因为类默认值被修改而重新初始化；仅切换快捷栏通常仍是同一个物品。
+
+**代码解释**：`InitialItemStats` 保存标签到整数的 Map。`OnInstanceCreated` 遍历它并调用 `Instance->AddStatTagStack`，因此修改发生在“创建物品”时。WID 的 Actors To Spawn 管可见枪，不能用来改变弹药。完整调用链见 [物品与装备](/docs/05-gameplay/inventory-equipment)。
+
+**恢复**：恢复三项 `30 / 30 / 60`，保存后重新创建物品。完成后再练习独立武器：复制 ID → WID → AbilitySet/Instance 中需要改变的对象，并将实际发放/拾取配置改为新 ID；用 Reference Viewer 逐段检查，不凭资产新名字判断已接通。
+
+## 实验四：把步枪基础伤害从 12 改成 8
+
+![步枪效果：Instant、LyraDamageExecution 和 BaseDamage=12](/media/beginner/whole-guide/rifle-damage-effect.png)
+
+1. 在 LyraTraining 打开 `/ShooterCore/Weapons/Rifle/GE_Damage_RifleAuto` → Class Defaults。
+2. 展开 **Executions → [0] → Calculation Modifiers**，找到 **BaseDamage** 对应的 Scalable Float 常量 `12`，改为 `8`。保留 Execution 的 Calculation Class、捕获属性和运算方式。外层 Modifiers 为零不代表此效果没有伤害。
+3. Compile → Save，重新 PIE。选定同一敌方目标、同一距离和命中部位，以单次命中比较服务器中 `ULyraDamageExecution::Execute_Implementation` 的 BaseDamage 与最终 DamageDone。
+4. 基础伤害应为 `8`；最终值还乘距离、物理材质和队伍允许伤害的系数。不要把“所有目标每发必掉 8 点血”作为验收标准。
+5. 沿 `ULyraHealthSet` 的 Damage 元属性处理确认目标 Health 变化。命中特效、准星反馈、服务器伤害和血量显示是不同环节；本机 Cue 出现不是服务器已接受命中的证明。
+
+**恢复**：常量改回 `12` 并保存。[武器课](/docs/05-gameplay/weapons) 给出了计算节选和目标数据流程；修改正式武器时，应复制火力技能及其引用的效果，沿 WID → AbilitySet → Fire Ability → GE 接通副本。本次实验只在隔离训练工程更改原引用，便于先验证一项变量。
+
+## 实验五：把资产默认 Bot 数量从 3 改成 1
+
+![BotSpawner 的数量、控制器类和随机名字](/media/beginner/whole-guide/bot-spawner.png)
+
+1. 按 [队伍与 Bot](/docs/05-gameplay/teams-bots) 从训练 Experience 的 ActionSets 找到使用 `B_BotSpawner` 的 Add Components 条目，点组件类引用旁的放大镜，再双击该蓝图。
+2. Class Defaults → 搜索 `Num Bots To Create`，记录本机原值 `3`，改为 `1`，Compile → Save。保留 Bot Controller Class。
+3. 在 Editor Preferences 搜索 Lyra 的 Bot Count 覆盖选项，取消 **Override Bot Count**；同时检查本次启动 URL 没有 `?NumBots=...`。有覆盖值时，资产默认值不是最终数量。
+4. 重新进入训练地图，在 **服务器 World** 的 Outliner 中统计 AIController，并打开 Behavior Tree 的 Debug 下拉确认它对应的 Pawn。单人测试时预期创建 1 个 Bot。
+5. 如果模型不移动，按控制器 → Pawn → Experience/队伍 → 行为树 → 导航检查。数量已正确而不移动时，不要继续反复改数量。
+
+**代码解释**：`ServerCreateBots_Implementation` 按资产值 → 编辑器覆盖 → URL 覆盖的顺序计算 EffectiveBotCount。`OnExperienceLoaded` 仅在 Authority 端调用它，因此客户端上不能靠再执行一次 Spawn 来修复同步。
+
+**恢复**：恢复 `3`；将之前记录的编辑器覆盖设置也恢复。网络测试同时检查重生和离开后清理，不能只数一次角色模型。
+
+## 实验六：只给训练场增加 HUD 标题
+
+![StandardHUD：层布局与扩展注册是两组配置](/media/configuration/training/hud-actionset.png)
+
+1. 复制 `/ShooterCore/UserInterface/W_ShooterHUDLayout` 到 `/TrainingRange/UI/W_TrainingHUDLayout`。打开 **Designer**，保留原父类和现有 Hierarchy、扩展点。
+2. 在 Hierarchy 选择根容器，将原根内容 **Wrap With → Overlay**；若原根本身就是 Overlay，直接在该 Overlay 增加子项。确保原内容作为一个子项完整保留。
+3. 从 Palette 拖入 **Text** 成为 Overlay 的另一个子项，命名 `TrainingTitle`；Text 填 `训练 HUD`，Slot 中 Horizontal Alignment=Center、Vertical Alignment=Top，顶部 Padding=24。静态标题不被 C++ 查找，无需勾 Is Variable。Compile → Save。
+4. 复制 `/ShooterCore/Experiences/LAS_ShooterGame_StandardHUD` 到 `/TrainingRange/Experiences/LAS_TrainingHUD`。打开副本，在 Add Widgets 的 Layout 条目只将 Layout Class 替换为 `W_TrainingHUDLayout`；保留 `UI.Layer.Game` 和原 Widgets 扩展项。
+5. 打开 B_TrainingRange 的 Class Defaults，在 Action Sets 数组中将原 StandardHUD 那一项替换为 `LAS_TrainingHUD`，不要同时保留两份 HUD ActionSet。保存，结束并重新 PIE。
+6. 应看到一个标题，原准星、快捷栏仍在。打开/关闭菜单，再重生一次，检查标题仍只有一个且游戏输入恢复。
+
+**代码解释**：CommonGame 的 PrimaryGameLayout 管层，AddWidget Action 把 Layout 推入指定层并向 UIExtension 注册内容，HUD 内的扩展点负责接收匹配标签的 Widget。只在 Content 中新建 Widget 不会触发任何一环；直接再 Add To Viewport 会绕开这套生命周期。
+
+**恢复**：将 Experience 的对应 ActionSet 改回 StandardHUD。保留新资产，供以后增加得分显示；动态得分再按 [消息](/docs/05-gameplay/messages-audio) 与 [UI 扩展](/docs/06-ui/extensions) 接入数据，监听必须对应注销。
+
+## 把六次实验的方法带到其他模块
+
+| 下一项改造 | 按顺序做什么 | 除了“看起来对”还要验收什么 |
+|---|---|---|
+| 修改已有键位 | [输入课](/docs/03-character/enhanced-input) 找实际 IMC → 保留 Action/Tag → 改一项 Key → 重进 | 玩家自定义设置是否覆盖；松开是否正确结束 |
+| 新增技能 | [技能集](/docs/04-gas/ability-sets) 建能力类 → AbilitySet 授予 → InputConfig 标签 → IMC | 权威端授予、成本/冷却、取消、死亡后重新绑定 |
+| 换武器姿势 | [动画层](/docs/03-character/camera-animation) 复制兼容层 → Instance 的规则 → WID.InstanceType | Skeleton、接口、外观标签、卸装恢复 |
+| 增加音效响应 | [消息与音频](/docs/05-gameplay/messages-audio) 查频道/负载 → 本地监听 → 明确触发与注销 | 双端是否重复、距离/Context 匹配、重新进入 |
+| 调整设置项 | [设置课](/docs/06-ui/settings-mvvm) 找 Registry 值与 EditCondition → 修改显示/默认值 | 应用、取消、存盘和重新启动后的值 |
+| 更换加载界面 | [加载与用户](/docs/02-architecture/loading-online) 复制配置引用的 Widget → 改类引用 → 重启 | Experience/Pawn 未就绪时保持、失败时能退出 |
+| 增加交互对象 | [交互课](/docs/05-gameplay/interaction) 实现选项 → 提供可用性 → 授予/触发交互能力 | 距离、目标失效、服务器校验、结束清理 |
+| 新玩法地图 | [训练场完整主线](/docs/07-training) Feature → Experience → PawnData/Actions → 地图 World Settings | 独立服务器、两客户端、导航、Cook 后启动 |
+
+每次实验留下四项记录：**实际修改对象、消费者函数、修改前后结果、恢复步骤**。这些记录与 22 个插件的源码入口组合起来，才有办法在新需求出现时找到该改哪一层。蓝图编译、单机 PIE、联机、Cook 分别验证不同阶段，不能互相代替。

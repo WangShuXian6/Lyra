@@ -68,8 +68,69 @@ const FGameplayAbilitySpecHandle AbilitySpecHandle =
 
 独占组与标签条件是两套协作规则。`ULyraAbilityTagRelationshipMapping` 能由能力标签扩展要阻止/取消的标签，以及激活需要/禁止的标签。冷却或费用失败不应误判为独占组问题。
 
+{/* full-guide-begin */}
+
+## 把授予代码和输入匹配代码放在一起读
+
+源码：`Source/LyraGame/AbilitySystem/LyraAbilitySet.cpp`，本机第 114–120 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+ULyraGameplayAbility* AbilityCDO = AbilityToGrant.Ability->GetDefaultObject<ULyraGameplayAbility>();
+
+FGameplayAbilitySpec AbilitySpec(AbilityCDO, AbilityToGrant.AbilityLevel);
+AbilitySpec.SourceObject = SourceObject;
+AbilitySpec.GetDynamicSpecSourceTags().AddTag(AbilityToGrant.InputTag);
+
+const FGameplayAbilitySpecHandle AbilitySpecHandle = LyraASC->GiveAbility(AbilitySpec);
+```
+
+### 一项配置怎样变成 AbilitySpec
+
+1. 从 `AbilityToGrant.Ability` 指定的类读取默认对象。
+2. `FGameplayAbilitySpec` 记录这个技能及授予等级；它不是一次已经完成的技能攻击。
+3. `SourceObject` 保存来源，例如装备授予时可关联装备实例。
+4. 将配置中的 InputTag 放进 Spec 的动态来源标签集合。
+5. `GiveAbility` 交给 ASC 管理，返回句柄；外层保存句柄以后才能回收。
+
+`GiveToAbilitySystem` 开头还检查 ASC Owner 的权威性，非权威端会返回。读取这一段不能跳过外层条件，照抄其中一行到客户端按键函数并不能得到正确授予流程。
+源码：`Source/LyraGame/AbilitySystem/LyraAbilitySystemComponent.cpp`，本机第 186–200 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void ULyraAbilitySystemComponent::AbilityInputTagPressed(const FGameplayTag& InputTag)
+{
+	if (InputTag.IsValid())
+	{
+		for (const FGameplayAbilitySpec& AbilitySpec : ActivatableAbilities.Items)
+		{
+			if (AbilitySpec.Ability && (AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag)))
+			{
+				InputPressedSpecHandles.AddUnique(AbilitySpec.Handle);
+				InputHeldSpecHandles.AddUnique(AbilitySpec.Handle);
+			}
+		}
+	}
+}
+
+```
+
+### 为什么输入标签拼错会“按了没反应”
+
+循环读的是 ASC **已经授予**的能力；`HasTagExact` 用当前输入标签匹配 Spec 标签。匹配后只把句柄记到本帧按下/持续按住列表，真正尝试激活在 `ProcessAbilityInput`。所以这两个代码块刚好对应“授予时写标签”和“输入时按标签找能力”。
+
+对照本章 AbilitySet 截图，定位 Dash 项，读 Ability、Ability Level、Input Tag；再用输入章节的 InputConfig 对齐。Activation Policy 决定按下/持续/生成等触发策略，Activation Group 控制并发关系，Net Execution Policy 决定网络执行方式，它们不是同一个下拉框的不同名字。
+
+**检查点**：能从一项 AbilitySet 写出完整链：字段 → Spec 标签 → 输入匹配 → 尝试激活。想停用整组技能时保存和回收授予句柄，不要只把数组从资产里删掉后假定当前 ASC 已同步移除。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 技能可在 ASC 调试信息中找到，输入标签与动态来源标签完全一致。失败时检查本机定义的 `Ability.ActivateFail.Cost`、`Cooldown`、`TagsBlocked`、`TagsMissing`、`ActivationGroup` 等原因，再进入对应函数断点。
 
 练习：设计一个引导读条技能，使移动或另一个独占技能能打断它。写清激活组、标签与 EndAbility 清理，而不通过每帧扫描“其他技能是否在运行”来实现。更多官方概念见 [Abilities in Lyra](https://dev.epicgames.com/documentation/unreal-engine/abilities-in-lyra-in-unreal-engine)。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验二要求在训练 AbilitySet 中核对唯一的 GA_TrainingDash 和 InputTag.Ability.Dash，然后在运行 Spec 中确认类与标签一致。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

@@ -67,6 +67,56 @@ ActorData.ExtensionHandles.Add(
 
 这是读者的扩展练习。当前配套训练场继续使用 `LAS_ShooterGame_StandardHUD`，已有运行记录验证其初始化与重生后单实例，不包含新计分 Widget 的制作、绑定或退出清理验收。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 从图中 0 个 Data Classes 读懂默认允许类型
+源码：`Plugins/UIExtension/Source/Private/Widgets/UIExtensionPointWidget.cpp`，本机第 82–100 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void UUIExtensionPointWidget::RegisterExtensionPoint()
+{
+	if (UUIExtensionSubsystem* ExtensionSubsystem = GetWorld()->GetSubsystem<UUIExtensionSubsystem>())
+	{
+		TArray<UClass*> AllowedDataClasses;
+		AllowedDataClasses.Add(UUserWidget::StaticClass());
+		AllowedDataClasses.Append(DataClasses);
+
+		ExtensionPointHandles.Add(ExtensionSubsystem->RegisterExtensionPoint(
+			ExtensionPointTag, ExtensionPointTagMatch, AllowedDataClasses,
+			FExtendExtensionPointDelegate::CreateUObject(this, &ThisClass::OnAddOrRemoveExtension)
+		));
+
+		ExtensionPointHandles.Add(ExtensionSubsystem->RegisterExtensionPointForContext(
+			ExtensionPointTag, GetOwningLocalPlayer(), ExtensionPointTagMatch, AllowedDataClasses,
+			FExtendExtensionPointDelegate::CreateUObject(this, &ThisClass::OnAddOrRemoveExtension)
+		));
+	}
+}
+```
+
+先创建 `AllowedDataClasses`，加入 `UUserWidget`，然后才追加 Details 中的 DataClasses。因此前面截图的空数组表示“没有额外类型”，不意味着拒收所有 Widget。
+
+两次注册并非误复制：第一条没有特定上下文，第二条使用 OwningLocalPlayer。PlayerState 就绪后还有独立函数为它注册。`CreateUObject` 把添加/移除事件交给当前控件的 OnAddOrRemoveExtension；返回的句柄放进数组，重建或清理时逐个 Unregister。
+
+### 用 W_QuickBar 做一次配对检查
+
+1. 在 HUD ActionSet 的 Widgets 数组找到 W_QuickBar，记下 `HUD.Slot.Equipment`。
+2. 在 W_ShooterHUDLayout 的 Designer 选 ExtensionPoint_Equipment，确认 ExactMatch 与同一个标签；上方两张实拍正是这对配置。
+3. 在 Rider 对 RegisterExtensionAsWidgetForContext 的调用处断点，比较实际 LocalPlayer 对象；两个对象显示相似名称也不能当成同一个指针。
+4. 退出再进入玩法，检查返回句柄的注销路径。若每次进入多一个快捷栏，先查重复注册与旧句柄，而不是在 UI 上临时隐藏多余控件。
+
+**完成检查**：能分别指出“接收槽”的资产、“提供内容”的资产、“保存句柄”的代码。三个角色都找齐才算理解 UIExtension。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 进入玩法出现一次计分组件，离开后注销，再进入仍只有一个实例。内容没有出现时按标签、上下文、类型、布局激活和资源加载顺序检查。练习：设计一个装备附带的弹药 HUD，让它随装备授予与卸装回收；分别说明装备、技能和 UI 谁拥有哪个句柄。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验六替换 Layout Class，保留 UI.Layer.Game 和原扩展标签；一并保留两份 HUD ActionSet 会造成重复装配。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

@@ -25,7 +25,7 @@ description: 获取原生蓝图节点文本、教学增量源码，以及本地�
 {/* package-table:start */}
 | 下载包 | 包含内容 | 文件数 | 文件清单 |
 | --- | --- | --- | --- |
-| [MMORPG 原创教学工程与 UE 后端（tar.gz）](/downloads/lyra-mmorpg-examples.tar.gz) | C++、Config、31 个原创教学资产、Designer/MVVM、动画与输入增量、MMOFramework/MMODocTools 插件、后端 Program、SQL 迁移和验证脚本 | 265 | [逐文件 SHA-256 清单](/downloads/lyra-mmorpg-examples.manifest.json) |
+| [MMORPG 原创教学工程与 UE 后端（tar.gz）](/downloads/lyra-mmorpg-examples.tar.gz) | C++、Config、31 个原创教学资产、Designer/MVVM、动画与输入增量、MMOFramework/MMODocTools 插件、后端 Program、SQL 迁移和验证脚本 | 277 | [逐文件 SHA-256 清单](/downloads/lyra-mmorpg-examples.manifest.json) |
 | [Lyra 射击训练场原创教学增量（tar.gz）](/downloads/lyra-training-examples.tar.gz) | TrainingRange 及 Development 打包运行验收模块、LyraDocTools Editor 插件、原生资产准备、蓝图导入/玩法/联机验证与记录；另附注明 Epic 来源的三份原生节点文本 | 58 | [逐文件 SHA-256 清单](/downloads/lyra-training-examples.manifest.json) |
 {/* package-table:end */}
 
@@ -64,3 +64,31 @@ pnpm serve
 ```
 
 GitHub Pages 使用 `/Lyra` 子路径，发布构建会设置 `NEXT_PUBLIC_BASE_PATH=/Lyra`。开发环境默认使用根路径。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![下载后先判断拿到的是哪一种材料](/media/guide-diagrams/downloads.svg)
+
+**读图**：下载包不是包含全部引擎与官方美术的成品安装器。先读包内 README，再按训练场或 MMORPG 路线准备。
+
+### 没用过命令行时按这个顺序
+
+1. 把压缩包与 SHA256SUMS 放进自己选定的文件夹，在该目录打开 PowerShell。
+2. Get-FileHash 的 SHA256 输出与清单同名文件逐字对照；它检查下载内容是否相同。
+3. `tar -xzf` 解压 gzip 压缩的 tar 归档；解压后进入包含 examples 和 scripts 的包根目录。
+4. prepare-labs 的 LyraRoot 指向本机官方基准，LabsRoot 指向实验父目录，Lab 选择 Training 或 MMORPG；三者不要都填成文档仓库。
+5. 按对应课程构建 Editor，再打开实验 `.uproject`。下载和解压成功不代表 C++ 模块已与引擎匹配。
+
+| 文件类型 | 用什么打开 | 不应当做什么 |
+|---|---|---|
+| .cpp / .h / .cs | Rider | 把片段随便贴到任意函数外 |
+| .ini | 文本编辑器或相应 UE 配置面板 | 把用户名/口令写进公开 Config |
+| .uasset / .umap | 对应版本 Unreal Editor | 作为文本改二进制内容 |
+| 蓝图 .txt | 文本编辑器复制，再在 UE 图表粘贴 | 当成完整插件或用 OCR 重新拼节点 |
+| 原始 PNG / SVG | 网页点击放大 | 把示意图误当实际编辑器截图 |
+
+**完成检查**：先打开一份源码、一份配置、一张原图，再进入课程规定的实验工程。需要全部插件的用途说明时，从 [Lyra 插件地图](/docs/02-architecture/plugin-atlas) 查对应来源与依赖。
+
+{/* full-guide-end */}

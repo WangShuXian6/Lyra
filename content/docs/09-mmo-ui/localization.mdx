@@ -204,6 +204,35 @@ Designer 默认字体使用 UE 复合字体。本机 `LegacySlateFontInfoCache.c
 
 本轮通过程序调用现有语言按钮业务，`physicalInputTested=false`。真实 Pak/IoStore 清单已验证 `MMO.locmeta`、en/zh-Hans 的 locres、Roboto 与 DroidSansFallback，见 `verification/mmorpg-staged-presentation.json`；八张中英文代表图另经目视核对字形、按钮和换行，见 `mmorpg-packaged-visual-review.json`。这次已验证打包 Client，但不代表实体键鼠/手柄兼容性或中文输入法候选框已经验收。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 先追踪一条固定文字，再追踪动态法力文字
+
+固定文字从 `ST_MMO → Action.SignIn` 找到源文，再在 WBP_Login 中选择 LoginButtonLabel，展开 Text 的字符串表引用，对照本章实拍中的表、namespace 和 key。不要直接在 Text 中覆盖为中文，这会改变这份表引用的使用方式。
+
+动态法力文字来自 ViewModel 的 LOCTEXT 格式化，数值通过占位符插入。账号和角色名属于用户数据，在本实验中按原文显示，不进入“登录”“取消”这类固定翻译词条。
+![翻译资源到实际画面的路径](/media/guide-diagrams/09-mmo-ui-localization.svg)
+
+**读图**：译文存在、编译成功、资源入包和运行切换分别验证。本章图中的编辑器中文菜单与游戏文化不是同一项设置。
+源码：`examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp`，本机第 440–445 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void UMMOSettingsPanel::ChangeCulture(const FString& Culture)
+{
+    if (UKismetInternationalizationLibrary::SetCurrentCulture(Culture, true))
+        if (auto* Root = Cast<UMMORootLayout>(UPrimaryGameLayout::GetPrimaryGameLayout(GetOwningPlayer())))
+            if (Root->ViewModel) Root->ViewModel->Refresh();
+}
+```
+
+`SetCurrentCulture(Culture, true)` 的第二个参数要求保存选择；成功后找到当前玩家根布局并刷新已有 ViewModel。只改文化而不重算已经格式化好的动态 FText，可能让部分状态文字停留在旧语言。
+
+**小白自检顺序**：切中文 → 看固定按钮 → 看动态法力/冷却 → 打开模态框 → 退出并新开客户端 → 确认语言恢复。每步对照对应运行图，最后检查长中文按钮和数字是否溢出。只看到一个按钮变中文，不能推断所有 locres 已进入包。
+
+{/* full-guide-end */}
+
 ## 排障与练习
 
 角色名是玩家输入的数据，不加入翻译表，也不随界面语言替换。显示时使用 `FText::AsCultureInvariant` 保留原名；HTTP JSON 使用 UTF-8，数据库列为 text。账号标识仍采用项目规定的 ASCII 字母、数字与下划线，与角色显示名是两项不同的输入规则。

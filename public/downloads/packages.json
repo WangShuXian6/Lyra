@@ -5,9 +5,9 @@
       "id": "lyra-mmorpg-examples",
       "title": "MMORPG 原创教学工程与 UE 后端",
       "filename": "lyra-mmorpg-examples.tar.gz",
-      "bytes": 481882,
-      "sha256": "b91918af0eeeff252d0d8b5c4706ecf6aa1562961392bf6266fc9ab5a9782223",
-      "fileCount": 265,
+      "bytes": 495763,
+      "sha256": "31538672fc7fbc85326faf6293097ba232595dcb6781f0d651777ec5fe0cab10",
+      "fileCount": 277,
       "originalAssetCount": 31,
       "manifest": "lyra-mmorpg-examples.manifest.json"
     },

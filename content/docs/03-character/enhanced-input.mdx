@@ -73,6 +73,55 @@ LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Move,
 
 本机 AbilitySet 写入标签使用 `AbilitySpec.GetDynamicSpecSourceTags().AddTag(...)`。旧教程出现的 `DynamicAbilityTags` 在本版本应根据实际 API 调整。ASC 的输入匹配使用 `HasTagExact`；父标签并不自动匹配某个子标签输入。
 
+{/* full-guide-begin */}
+
+## 将按键、标签和回调逐层对齐
+
+![按下空格后经过的三次匹配](/media/guide-diagrams/03-character-enhanced-input.svg)
+
+**读图**：输入的每一层都有自己的名字。改物理按键只动 IMC；改语义标签必须检查 InputConfig 和授予时的标签。
+源码：`Source/LyraGame/Input/LyraInputComponent.h`，本机第 52–72 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+template<class UserClass, typename PressedFuncType, typename ReleasedFuncType>
+void ULyraInputComponent::BindAbilityActions(const ULyraInputConfig* InputConfig, UserClass* Object, PressedFuncType PressedFunc, ReleasedFuncType ReleasedFunc, TArray<uint32>& BindHandles)
+{
+	check(InputConfig);
+
+	for (const FLyraInputAction& Action : InputConfig->AbilityInputActions)
+	{
+		if (Action.InputAction && Action.InputTag.IsValid())
+		{
+			if (PressedFunc)
+			{
+				BindHandles.Add(BindAction(Action.InputAction, ETriggerEvent::Triggered, Object, PressedFunc, Action.InputTag).GetHandle());
+			}
+
+			if (ReleasedFunc)
+			{
+				BindHandles.Add(BindAction(Action.InputAction, ETriggerEvent::Completed, Object, ReleasedFunc, Action.InputTag).GetHandle());
+			}
+		}
+	}
+}
+```
+
+### 将模板代码对应到面板
+
+`template` 让同一套绑定逻辑适用于不同接收对象和回调类型；这里的 UserClass、PressedFuncType、ReleasedFuncType 是类型参数。`for` 遍历 InputConfig 的 **Ability Input Actions**，每项同时需要有效 InputAction 和 InputTag。`BindAction` 建立动作到回调的连接，Triggered 交给按下处理，Completed 交给释放处理；`GetHandle()` 返回解绑时可使用的标识。
+
+这里绑定的是 InputAction，不是硬编码键盘空格。键盘、手柄都可以通过 IMC 触发同一个动作，所以不要在能力类里再写一套设备按键判断。
+
+**按图复核**：上方 IMC 按钮截图核对 SpaceBar→IA_Jump；InputConfig 截图核对 IA_Jump→InputTag.Jump；再到 AbilitySet 的对应技能项读 Input Tag。三处名字要逐层对应，不能只确认存在一个名叫 Jump 的蓝图。
+
+### 用一个错误预测练习建立理解
+
+只在副本把 Jump 从空格换到另一键，InputConfig 和 AbilitySet 不变，预期仍能跳跃；如果改的是 InputTag 却未改授予标签，按键可能进入动作回调但找不到匹配技能。两次实验分开做，恢复第一次后再做第二次。
+
+找不到反馈时依次查：游戏是否有焦点 → Mapping Context 是否添加到当前 LocalPlayer → Action 是否触发 → InputTag 是否匹配 → 技能是否已授予 → 是否被激活条件拒绝。不要直接重建所有输入资产。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 预期断点链完整命中，技能失败可继续进入 GAS 条件检查。若菜单打开后仍触发开火，先检查 CommonUI 的输入模式和激活层，而不是在每个技能里读取菜单布尔值。
@@ -80,3 +129,9 @@ LyraIC->BindNativeAction(InputConfig, LyraGameplayTags::InputTag_Move,
 本机 `RemoveAdditionalInputConfig` 仍有 TODO，新增系统不能假设所有动态绑定都已实现完整移除。自行扩展时保存绑定句柄，并验证 Feature 停用、重生和再次进入不会重复回调。
 
 练习：把一个实验技能映射到不同按键，只改 IMC；再改 InputTag，观察为什么还要同步 InputConfig 和 AbilitySet。每次只改一层，保留日志证明因果。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验二保留 InputTag.Ability.Dash，只替换技能类和一个方向阈值，检查输入标签如何找到实际授予的 Spec。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

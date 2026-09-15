@@ -77,6 +77,36 @@ if (UMVVMView* View = UMVVMSubsystem::GetViewFromUserWidget(Widget);
 
 弱对象引用解决“回调持有已销毁对象”的一部分问题，不会自动替你删除所有业务订阅。Pawn 被替换时，旧对象可能仍存在；如果没有主动解绑，HUD 会同时接收新旧角色消息。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 一次 RefreshMana 做了三件不同的事
+源码：`examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp`，本机第 117–123 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void UMMOPlayerViewModel::RefreshMana()
+{
+    auto* State = Player.Get();
+    UE_MVVM_SET_PROPERTY_VALUE(Mana, State ? State->Attributes->GetMana() : 0.f);
+    UE_MVVM_SET_PROPERTY_VALUE(ManaFraction, FMath::Clamp(Mana / 100.f, 0.f, 1.f));
+    UE_MVVM_SET_PROPERTY_VALUE(ManaLabel, FText::Format(LOCTEXT("ManaValue", "Mana {0} / 100"), FText::AsNumber(FMath::RoundToInt(Mana))));
+}
+```
+
+第一行取弱引用，失效时后续数值归零。Mana 保留数值，ManaFraction 把 0–100 转成 0–1 并 Clamp，ManaLabel 生成可本地化文本。三个字段分别服务不同控件，不能因为都叫“法力”就随意互换。
+
+`UE_MVVM_SET_PROPERTY_VALUE` 在值变化时通知订阅者。普通 `Mana = ...` 即使让调试器中的数值正确，也没有建立相同的通知行为。FText::AsNumber 与 LOCTEXT 让数字与句式按当前文化格式化。
+![换角色时的订阅顺序](/media/guide-diagrams/09-mmo-ui-viewmodels.svg)
+
+**读图**：以 BindPlayer/Unbind 的实际逻辑阅读。弱引用失效检查不能替代主动解绑仍然存活的旧 Pawn。
+
+**断点观察法**：施放奥术箭时断在 RefreshMana；只剩冷却倒数时断在 RefreshCooldown；使用药剂时观察 RefreshInventory 与 RefreshMana。不要给每个函数同时打断点，否则暂停会干扰你对计时的理解。
+
+**完成检查**：把前面背包实拍里的数量追到 InventoryText，再追到 PlayerState.OnProgressChanged；说清楚哪一层负责格式化、哪一层只负责绑定，最后退出重进检查旧订阅已清理。
+
+{/* full-guide-end */}
+
 ## 操作与预期结果
 
 1. 给 `UMMOPlayerViewModel::RefreshMana`、`RefreshCooldown` 和 `UMMOAttributes::OnRep_Mana` 下断点，施放奥术箭，观察通知顺序；冷却计时不应进入 RefreshInventory。
@@ -90,4 +120,3 @@ if (UMVVMView* View = UMVVMSubsystem::GetViewFromUserWidget(Widget);
 练习：拆出 `UMMOTargetViewModel`，增加目标名称、生命比例和“无目标”状态。让 HUD 的主 ViewModel 不再负责目标格式化，并验证销毁目标时状态被清空。
 
 官方概念参考：[Epic UMG Viewmodel](https://dev.epicgames.com/documentation/en-us/unreal-engine/umg-viewmodel-for-unreal-engine)。具体 C++ API 以本机 5.8.1 头文件为准。
-

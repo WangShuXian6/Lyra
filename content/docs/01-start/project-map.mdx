@@ -1,11 +1,13 @@
 ---
 title: 工程地图：源码、资产、插件如何对应
-description: 学会从屏幕现象找到 C++ 符号、蓝图资产及其依赖，而不是按文件夹背目录。
+description: 用 14 张 UE 与 Rider 实拍图，逐步找到步枪物品、装备定义、运行时实例、装备调用链和资产引用。
 ---
 
 ## 学习目标与前置条件
 
-完成一次 PIE 观察后，本章建立最常用的导航方法。资料来自本机 `Source`、`Plugins` 和 `Config`，核对于 2026-09-13，适用 UE 5.8.1。
+完成一次 PIE 观察后，本章建立最常用的导航方法。目录与源码来自本机 `Source`、`Plugins` 和 `Config`；步枪资产及本页全部截图重新核对于 **2026-09-15，UE 5.8.1，Rider 2026.1.2**。本章只需要查看，不需要修改或编译蓝图。
+
+先确认打开的是 `F:/UE/LyraStarterGame/LyraStarterGame.uproject`。启动遇到模块提示或准备编译 C++ 时，先看[Live Coding 与第一次构建图解](/docs/01-start/live-coding)。以下截图保留本机中文 UI 和资产原名；**单击截图可放大查看字段**。
 
 | 位置 | 保存什么 | 先看什么 |
 |---|---|---|
@@ -20,11 +22,228 @@ description: 学会从屏幕现象找到 C++ 符号、蓝图资产及其依赖�
 
 ## 操作步骤：以步枪为线索
 
-1. 搜索 `/ShooterCore/Weapons/Rifle/ID_Rifle`。打开 Class Defaults，找到碎片列表；再打开装备碎片引用的装备定义。
-2. 打开 `/ShooterCore/Weapons/Rifle/WID_Rifle`，查看 `Instance Type`、`Ability Sets To Grant` 和 `Actors To Spawn`。记录实际引用。
-3. 在 Rider 搜索 `ULyraEquipmentDefinition`。确认它是存储定义的 UObject 类，和运行中的 `ULyraEquipmentInstance` 是不同对象。
-4. 查 `ULyraQuickBarComponent::EquipItemInSlot`，看背包物品如何转成装备；查 `ULyraEquipmentManagerComponent::EquipItem`，看组件如何应用装备。
-5. 在资产右键菜单打开 Reference Viewer，观察谁引用步枪、步枪又依赖哪些技能与美术。先学会读一个小子图，再看整个插件。
+这五步分别回答：**背包里是什么 → 装上后用什么 → C++ 如何描述它 → 谁真正执行装备 → 还引用了哪些资源**。
+
+| 步骤 | 操作位置 | 要带走的结果 |
+|---|---|---|
+| [1. 找到物品](/docs/01-start/project-map#第-1-步找到-id_rifle-并读懂碎片) | UE 内容浏览器、类默认值 | `ID_Rifle` 的装备碎片引用 `WID_Rifle` |
+| [2. 阅读装备定义](/docs/01-start/project-map#第-2-步打开-wid_rifle记录三个实际引用) | UE 类默认值 | 实例类、技能集、可见武器 Actor |
+| [3. 对照 C++ 类](/docs/01-start/project-map#第-3-步在-rider-区分定义与实例) | Rider 搜索、头文件 | Definition 与 Instance 是不同的类与对象 |
+| [4. 追踪执行代码](/docs/01-start/project-map#第-4-步沿着装备调用链阅读代码) | Rider 的 `.cpp` 文件 | 物品 → 装备定义 → 新实例 → 授予技能与生成 Actor |
+| [5. 阅读依赖](/docs/01-start/project-map#第-5-步用引用查看器读一个小子图) | UE 引用查看器、资产编辑器 | 引用方向、具体技能和美术配置 |
+
+### 第 1 步：找到 ID_Rifle 并读懂碎片
+
+#### 1A. 让插件资产显示出来
+
+1. 在主编辑器底部单击 **内容侧滑菜单（Content Drawer）**，或按 `Ctrl+Space`。已经有“内容浏览器”面板时可以直接使用它。
+2. 找到内容浏览器右上角的**齿轮**，打开显示选项；确认 **插件内容（Show Plugin Content）** 前有勾。
+3. 左侧文件夹树里找到 `ShooterCore`。它是玩法插件的内容，不在普通项目 `Content` 文件夹下面。
+
+![图 1：内容浏览器齿轮菜单；插件内容前已打勾，搜索资产路径也已启用](/media/beginner/rifle/plugin-content-menu.png)
+
+**看图定位**：在“引擎目录”下面找到“插件内容”。无需为了找到 ShooterCore 再打开全部引擎内容。齿轮菜单名称在其他 UE 版本中可能显示为 Settings / View Options。
+
+#### 1B. 进入 Rifle 文件夹
+
+1. 依次展开 `ShooterCore → Weapons → Rifle`。注意这里是复数 **Weapons**；旁边还有名字相似的 `Weapon` 文件夹。
+2. 也可以在可搜索插件内容的范围输入 `ID_Rifle`。搜索框会受当前文件夹和过滤器限制；找不到时，先清空类型过滤器，再从上面的文件夹路径进入。
+3. 检查面包屑路径为 `Plugins → ShooterCore → Weapons → Rifle`，双击 **ID_Rifle** 缩略图。
+
+![图 2：Rifle 文件夹；面包屑和左侧树显示路径，ID_Rifle 蓝色选中，WID_Rifle 位于下一行](/media/beginner/rifle/rifle-folder.png)
+
+**看图定位**：上方是路径，左栏是文件夹树，中间是资产。`ID_Rifle` 与 `WID_Rifle` 图标相似，要读名称。图中内容浏览器被拖成了独立窗口以便看清；停靠在主窗口也能完成相同步骤。
+
+`/ShooterCore/Weapons/Rifle/ID_Rifle` 是 **UE 虚拟资产路径**，不是 Windows 磁盘路径。其本机文件位于 `Plugins/GameFeatures/ShooterCore/Content/Weapons/Rifle/ID_Rifle.uasset`。不要把虚拟路径粘到资源管理器地址栏。
+
+#### 1C. 打开类默认值，展开 Fragments
+
+1. 打开后确认标签名为 `ID_Rifle`，右上角父类为 **Lyra Inventory Item Definition**。
+2. 单击工具栏 **类默认值（Class Defaults）**。如果已经看到“这是一个纯数据蓝图”的提示和属性列表，说明当前就在正确视图；不必寻找 EventGraph。
+3. 清空面板顶部“搜索”，展开 **Fragments** 左侧小三角，再展开 **索引 [0]** 和里面的 **Lyra** 分组。
+4. 找到类型 **Inventory Fragment Equippable Item**，读取 **Equipment Definition = WID_Rifle**。
+5. 可用字段右侧的“文件夹＋放大镜”按钮在内容浏览器定位该引用，再双击打开。也可以回到刚才的 Rifle 文件夹，双击 `WID_Rifle`。不要点清空引用的 `×` 或选择器来替换资产。
+
+![图 3：ID_Rifle 类默认值；5 个碎片及索引 0 的 Equipment Definition=WID_Rifle，另展开了弹药与准星配置](/media/beginner/rifle/id-rifle-fragments.png)
+
+**看图定位**：最上方蓝色按钮是“类默认值”；`Fragments` 右侧写着“5 数组 个元素”。索引从 **0** 开始，因此最后一项是 **[4]**。展开小三角是在查看内容；旁边的 `+` 和垃圾桶会增删元素，本章不用它们。
+
+**碎片（Fragment）**：可以把它理解为物品定义上按用途拆开的配置块。同一把枪既要知道装备定义，也要知道背包图标、初始弹药和准星，因此组合多个碎片。
+
+| 本机索引 | 碎片类型 | 初次阅读看什么 |
+|---|---|---|
+| 0 | `InventoryFragment_EquippableItem` | 装备定义是 `WID_Rifle` |
+| 1 | `InventoryFragment_QuickBarIcon` | 快捷栏图标配置；图中折叠 |
+| 2 | `InventoryFragment_SetStats` | 初始弹匣容量 30、弹匣弹药 30、备用弹药 60 |
+| 3 | `InventoryFragment_PickupIcon` | 拾取显示配置；图中折叠 |
+| 4 | `InventoryFragment_ReticleConfig` | `W_Reticle_Rifle` 与 `W_AmmoCounter_Rifle` |
+
+图中的弹药值是**初始配置**，不表示运行中弹药永远不变。你这一步只需记录：`ID_Rifle → 装备碎片 → WID_Rifle`。如果父类不对、看不到 Fragments，先核对资产名和“类默认值”按钮。
+
+### 第 2 步：打开 WID_Rifle，记录三个实际引用
+
+1. 双击 `/ShooterCore/Weapons/Rifle/WID_Rifle`，确认标签是 `WID_Rifle`，父类是 **Lyra Equipment Definition**。
+2. 进入 **类默认值**，展开 **Equipment**。
+3. 展开 **Ability Sets to Grant → 索引 [0]**。
+4. 展开 **Actors to Spawn → 索引 [0] → Attach Transform**。看到“1 数组 个元素”还不够，要展开才能读到引用。
+
+![图 4：WID_Rifle 完整装备配置；实例类型、技能集、Actor、挂接插槽与相对变换均已展开](/media/beginner/rifle/wid-rifle-defaults.png)
+
+**看图定位**：从上到下读 `Instance Type`、`Ability Sets to Grant`、`Actors to Spawn`。右侧的值才是配置结果，不能只记左侧字段名。
+
+| 字段 | 本机实际值 | 新手理解 |
+|---|---|---|
+| Instance Type | `B_WeaponInstance_Rifle` | 装备时创建哪一种运行时装备对象 |
+| Ability Sets to Grant [0] | `AbilitySet_ShooterRifle` | 装备时交给能力系统的一组技能配置 |
+| Actors to Spawn [0] / Actor to Spawn | `B_Rifle` | 装备时生成的可见武器 Actor 类 |
+| Attach Socket | `weapon_r` | 武器挂到角色网格上的命名插槽 |
+| Attach Transform | 位置 `(0,0,0)`，旋转约 `(0,0,-90°)`，缩放 `(1,1,1)` | 相对插槽的摆放方式；图中 Z 旋转实际显示 `-89.999988°` |
+
+前三个资产都位于 `/ShooterCore/Weapons/Rifle/`。`B_WeaponInstance_Rifle` 管理装备对象的行为和状态；`B_Rifle` 提供世界中的可见物体，两者不能互换。这里填的是**要用哪个类/资产的定义**，尚未生成角色手里的枪。
+
+**预期结果**：能从 `WID_Rifle` 写出上述三个名字。数组为空时，检查是否打开了自己的新资产或错误副本；不要照着截图直接修改基准资产。
+
+### 第 3 步：在 Rider 区分定义与实例
+
+#### 3A. 搜索类名，进入头文件
+
+1. 用 Rider 打开本章基准 `.uproject`，等待工程模型与索引建立。
+2. 连按两次 **Shift** 打开“随处搜索（Search Everywhere）”，粘贴 `ULyraEquipmentDefinition`。
+3. 选中名称完全匹配、右侧文件是 **LyraEquipmentDefinition.h** 的类结果，再按 Enter。不要误选构造函数或某处前置声明。
+4. 如果尚未索引出符号，可切换“文件”页签搜索 `LyraEquipmentDefinition.h`，或从解决方案树的 `Source/LyraGame/Equipment` 打开。
+
+![图 5：Rider 随处搜索；选中类符号 ULyraEquipmentDefinition，下方预览 class 声明](/media/beginner/rifle/rider-search-definition.png)
+
+**看图定位**：输入框下面首行是类结果，右侧显示 `.h` 文件；底部显示完整相对路径。截图使用 Visual Studio 2022 键位方案，其他键位方案可能不同，双 Shift 搜索也能查找操作名称。
+
+#### 3B. 把面板字段和 C++ 声明对起来
+
+文件：`Source/LyraGame/Equipment/LyraEquipmentDefinition.h`。本机类声明在第 **38** 行附近，三个字段在第 **47、51、55** 行。行号会随版本变化，优先按符号和文件名查找。
+
+![图 6：LyraEquipmentDefinition.h；UObject 继承关系和三个 EditDefaultsOnly 字段](/media/beginner/rifle/rider-definition.png)
+
+**按这三个点读图**：
+
+- `class ULyraEquipmentDefinition : public UObject`：它是 UE 对象类；这段声明没有说它本身是一把已生成的可见枪。
+- `InstanceType`、`AbilitySetsToGrant`、`ActorsToSpawn`：对应刚才蓝图默认值面板的三个字段，编辑器会把单词自动分开显示。
+- `EditDefaultsOnly`：这些属性在类默认值中配置。`TSubclassOf` 表示保存一个类引用，`TArray` 表示数组。
+
+再用双 Shift 搜索 `ULyraEquipmentInstance`，打开同目录的 `LyraEquipmentInstance.h`。
+
+![图 7：LyraEquipmentInstance.h；另一个 UObject 类，包含网络支持、Instigator 与 Pawn 接口](/media/beginner/rifle/rider-instance.png)
+
+| 对象 | 用一句话区分 | 本章线索 |
+|---|---|---|
+| `ULyraEquipmentDefinition` 的类默认对象（CDO） | 一份可供读取的装备配置 | `WID_Rifle` 的三个字段 |
+| `ULyraEquipmentInstance` 及其子类实例 | 某个 Pawn 当前装备时创建的对象 | `B_WeaponInstance_Rifle`；关联物品、管理生成的 Actor |
+| `B_Rifle` Actor 实例 | 世界中生成并挂接的武器物体 | 角色手里看得到的网格 |
+
+CDO 是 **Class Default Object（类默认对象）** 的缩写。可以先把装备定义想成“配方”，把运行时实例想成“按配方做出的某一件装备”。两位玩家使用同一种步枪定义时，装备实例仍各自创建。
+
+**预期结果**：能说清“定义和实例都继承 UObject，但不是同一个类，也不是同一个对象”。下一步会直接看到读取配方和创建实例的两行代码。
+
+### 第 4 步：沿着装备调用链阅读代码
+
+本步先读代码，不要求设置断点或运行游戏。`.h` 通常放类和函数声明，`.cpp` 放函数实现。只找到一个以分号结尾的声明时，还要进入函数体。
+
+#### 4A. 快捷栏从物品取出装备定义
+
+1. 双 Shift 搜索 `EquipItemInSlot`，选择 **ULyraQuickBarComponent** 中的实现。
+2. 文件是 `Source/LyraGame/Equipment/LyraQuickBarComponent.cpp`，本机从第 **86** 行开始。
+3. 找不到符号时先打开该文件，按 `Ctrl+F` 搜索 `EquipItemInSlot`。本机还可用 `Ctrl+G` 跳到行号。
+
+![图 8：EquipItemInSlot 从 Slots 取出 SlotItem，读取装备碎片，将 EquipDef 传入 EquipItem，最后设置 Instigator](/media/beginner/rifle/rider-quickbar.png)
+
+从上到下跟踪变量，不必一次理解所有模板语法：
+
+1. `Slots[ActiveSlotIndex]` 取出当前槽位的 **SlotItem**，它是背包物品实例。
+2. `FindFragmentByClass<UInventoryFragment_EquippableItem>()` 读取第 1 步看到的装备碎片。
+3. `EquipInfo->EquipmentDefinition` 得到 **EquipDef**，对步枪来说对应 `WID_Rifle`。
+4. `EquipmentManager->EquipItem(EquipDef)` 请求装备管理组件创建/应用装备。
+5. `EquippedItem->SetInstigator(SlotItem)` 将创建的装备实例与原背包物品关联起来。
+
+这里是**读取物品配置后创建另一个装备对象**，不是把原背包对象强制转换成装备。下面的 `FindEquipmentManager()` 实现会从快捷栏所属 Controller 找到它控制的 Pawn，再查找 Pawn 上的装备管理组件。
+
+#### 4B. 管理组件接收请求
+
+搜索 `ULyraEquipmentManagerComponent::EquipItem`，打开 `Source/LyraGame/Equipment/LyraEquipmentManagerComponent.cpp`，本机第 **148** 行。
+
+![图 9：EquipItem 调用 EquipmentList.AddEntry，再调用 OnEquipped 并处理复制子对象登记](/media/beginner/rifle/rider-equip-item.png)
+
+**看图定位**：先盯住 `EquipmentList.AddEntry(EquipmentClass)` 和 `Result->OnEquipped()`。这层接收装备类，取得新实例后触发装备回调。实例怎样创建，还在 `AddEntry` 里面。
+
+#### 4C. 进入 AddEntry，把三个字段变成运行时行为
+
+继续搜索同文件中的 **FLyraEquipmentList::AddEntry**，本机第 **68** 行。也可以在 `AddEntry` 调用处右键选择“转到声明或用法”；若停在头文件声明，再搜索同名 `.cpp` 实现。
+
+![图 10：AddEntry 读取 EquipmentCDO，按 InstanceType 创建实例，授予技能并生成装备 Actor](/media/beginner/rifle/rider-add-entry.png)
+
+| 本机行号 | 代码关键词 | 与资产截图的对应关系 |
+|---|---|---|
+| 74 | `HasAuthority()` | 检查所有者具有权威；不能把这段装备创建当成任意客户端本地操作 |
+| 76 | `GetDefault<ULyraEquipmentDefinition>` | 读取装备类的 CDO，也就是配置 |
+| 78、86 | `InstanceType`、`NewObject<ULyraEquipmentInstance>` | 使用 `B_WeaponInstance_Rifle` 这个类创建新实例 |
+| 91–93 | `AbilitySetsToGrant`、`GiveToAbilitySystem` | 将 `AbilitySet_ShooterRifle` 授予能力系统；不是立即执行所有技能 |
+| 101 | `SpawnEquipmentActors` | 根据 `ActorsToSpawn` 创建/挂接 `B_Rifle` |
+
+ASC 是 **Ability System Component（能力系统组件）**。这一步先把它理解成“接收并管理角色技能的组件”；具体技能何时激活，后续 GAS 章节再展开。
+
+**预期结果**：能够口述 `EquipItemInSlot → EquipItem → AddEntry`，并指出 Definition 用 `GetDefault` 读取、Instance 用 `NewObject` 创建。仅仅打开 `WID_Rifle` 的配置面板不会执行这条调用链。
+
+### 第 5 步：用引用查看器读一个小子图
+
+#### 5A. 从资产右键菜单进入
+
+1. 回到内容浏览器的 Rifle 文件夹，单击选中 **WID_Rifle**。
+2. 在这个**资产缩略图**上右键，找到“引用”分组，选择 **引用查看器……（Reference Viewer）**。不要在空白文件夹区域或蓝图画布上右键。
+3. 本机菜单也显示快捷键 `Alt+Shift+R`，使用前要先让内容浏览器中的资产获得焦点。
+
+![图 11：WID_Rifle 资产右键菜单；引用分组下的引用查看器入口](/media/beginner/rifle/reference-menu.png)
+
+#### 5B. 先把深度限制为 1
+
+1. 检查顶部地址是 `/ShooterCore/Weapons/Rifle/WID_Rifle`。
+2. 左上角把 **搜索引用者深度** 和 **搜索依赖性深度** 都设为 **1**，**搜索宽度限制** 为 **20**；清空不需要的搜索和过滤器。
+3. 用鼠标滚轮调整缩放，确保能同时读到左、中、右三组节点。图中是“缩放 -2”，不是缺少内容；它只是当前显示比例。
+
+![图 12：以 WID_Rifle 为中心的一层引用图；左侧 ID_Rifle，右侧技能集、武器 Actor 与装备实例类](/media/beginner/rifle/reference-viewer.png)
+
+**按方向读这张图**：
+
+- **中间 WID_Rifle**：本次查看的根资产。
+- **左边 ID_Rifle → 中间**：谁引用了它。与第 1 步的装备碎片一致。
+- **中间 → 右边三项**：它依赖谁。与第 2 步的三个字段一致。
+- **深度 1**：只展开一层关系；没有显示出来，不等于整个工程中不存在更多间接依赖。
+
+这里的线表示**资产引用关系**，不表示函数执行次序。箭头颜色还会受显示选项和引用类型影响；初次阅读先核对名称和方向，不要把它当成蓝图执行线。
+
+#### 5C. 再打开技能集，确认具体技能
+
+回到 Rifle 文件夹双击 **AbilitySet_ShooterRifle**（也可在 WID 的引用字段旁使用浏览按钮定位）。它是数据资产，打开后看 **细节（Details）**；没有 Class Defaults 按钮是正常的。
+
+展开 **Granted Gameplay Abilities** 以及 **[0]、[1]、[2]**，同时读 **Ability / Ability Level / Input Tag** 三行。可以右键数组字段名选择“全部展开”，避免漏掉内层结构。
+
+![图 13：步枪技能集的三个元素全部展开；每个技能的等级与输入标签均可读](/media/beginner/rifle/ability-set.png)
+
+| 索引 | Ability | Ability Level | Input Tag |
+|---|---|---|---|
+| 0 | `GA_Weapon_Fire_Rifle_Auto` | 1 | `InputTag.Weapon.FireAuto` |
+| 1 | `GA_Weapon_Reload_Rifle` | 1 | `InputTag.Weapon.Reload` |
+| 2 | `GA_Weapon_AutoReload` | 1 | `None` |
+
+前两个技能在 `/ShooterCore/Weapons/Rifle/`，第三个在 `/Game/Weapons/`。`Input Tag=None` 不表示技能失效，只表示这里未为它指定输入标签；这张配置图本身不能证明自动换弹的完整触发逻辑。
+
+#### 5D. 找到真正显示枪械的网格
+
+1. 在 Rifle 文件夹打开 **B_Rifle**。如果只看到纯数据蓝图，单击顶部蓝色链接 **打开完整蓝图编辑器**。
+2. 在左侧 **组件（Components）** 中选中 **SkeletalMesh**，再单击中间的 **视口（Viewport）** 标签。
+3. 在右侧 **细节** 找到“网格体”分组，读取 **骨骼网格体资产（Skeletal Mesh Asset）**；继续看下面的“材质”。
+
+![图 14：B_Rifle 选中 SkeletalMesh 组件；右侧网格为 SK_Rifle，材质为 MI_Weapon_Rifle，动画类为 ABP_Weap_Rifle_C](/media/beginner/rifle/b-rifle-mesh.png)
+
+**看图定位**：左上蓝色选中的是组件；右侧 `SK_Rifle` 才是实际网格资源，`MI_Weapon_Rifle` 是材质实例，上方动画类是 `ABP_Weap_Rifle_C`。视口中枪的显示大小只反映编辑器预览相机距离，不能据此修改角色的装备缩放。
+
+**预期结果**：能从 `WID_Rifle` 走到具体技能集，再走到 `B_Rifle` 的可见网格。不再把“步枪”当成只有一个 `.uasset` 的单独文件。
 
 ## C++、蓝图与数据资产的分工
 
@@ -46,8 +265,33 @@ TArray<TObjectPtr<const ULyraAbilitySet>> AbilitySetsToGrant;
 
 搜索 C++ 使用符号名；搜索内容使用包名；搜索跨插件依赖用 Reference Viewer 和 `.uplugin`。不把 `.uasset` 当文本替换，也不从二进制中的字符串猜图节点连接。
 
+{/* full-guide-begin */}
+
+## 把这次导航方法用于整套课程
+
+![用步枪建立后续课程共同的检查顺序](/media/guide-diagrams/01-start-project-map.svg)
+
+**读图**：后续每个系统都沿“入口、配置、代码、运行对象、可见结果”来读。插件名只是定位线索，不能替代一次完整调用链。
+
+**读代码卡住时**：先回[第一段 C++ 的逐符号解释](/docs/01-start/ue-basics#第一次阅读-c先看字段再看执行)。`TSubclassOf` 保存类，`TArray` 保存数组，`GetDefault` 读类默认值，`NewObject` 创建实例。这四个概念直接解释本章为什么不能把 Definition、Instance 和 Actor 混称为“枪”。
+
+**读插件卡住时**：进入[插件总览](/docs/02-architecture/plugin-atlas)，先找到 ShooterCore、GameplayAbilities、ModularGameplayActors 和 UIExtension 在这条链中的位置，再进入对应章节。不要要求一次打开整个 Reference Viewer 就理解所有插件。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 你应能为一个行为写出“资产配置、原生父类、运行时实例、拥有它的组件”四项。看到蓝图图表为空时先检查父类、Class Defaults 和组件，空图不代表没有行为。
+
+| 卡住的地方 | 先这样检查 |
+|---|---|
+| 搜不到 ID_Rifle | 打开插件内容，清空过滤器，进入 `ShooterCore/Weapons/Rifle` 再搜 |
+| 打开后没有事件图 | ID/WID 是纯数据蓝图，看“类默认值”；没有事件图不代表资产坏了 |
+| 只看到数组数量 | 展开字段及索引的小三角；不要按 `+` 增加元素 |
+| Rider 找到的只有一句声明 | 打开表中对应 `.cpp`，搜索函数名；等待索引完成 |
+| 引用图过大或看不到节点 | 从 WID_Rifle 开始，深度设为 1，清空过滤器并调整滚轮缩放 |
+| 在 B_Rifle 看不到 SK_Rifle | 打开完整蓝图编辑器，选 SkeletalMesh 组件；类默认值不等于组件细节 |
+
+本页截图均为本机真实界面，未重绘字段或节点。来源与图像 SHA-256 记录在 `source-evidence/beginner-walkthrough-media.json`；装备字段的原生读取记录在 `source-evidence/rifle-equipment-properties.json`。它们证明这里展示的静态配置与源码内容，不代替运行时开火或联机验收。
 
 练习：用相同办法找到一次换弹。分别记录输入资产、输入标签、技能、弹药存储位置。答案会在[背包与装备](/docs/05-gameplay/inventory-equipment)和[开火链](/docs/05-gameplay/weapons)中串起来。

@@ -1,0 +1,135 @@
+---
+title: 关闭 Live Coding：按图设置与验证
+description: 从中文编辑器菜单找到 Live Coding，区分开关、控制台和构建会话，并为三个教学工程保存设置。
+---
+
+Live Coding（本机中文界面叫**实时代码编写**）允许把部分 C++ 改动编译后加载到正在运行的编辑器中。初学本教程时，先使用“保存工作 → 关闭编辑器 → 在 Rider 完整构建 → 重新打开”的流程，更容易确认当前运行的是哪一版代码。
+
+本页截图采自 **UE 5.8.1、Lyra 基准工程，2026-09-15**。不用安装截图工具或 MCP 才能完成这些设置。
+
+## 先确认要修改哪个工程
+
+Live Coding 是**每个项目、每个用户**的编辑器偏好设置。关闭 Lyra 不会自动关闭训练副本和 MMORPG。两个 Lyra 工程的窗口标题可能相同，请核对完整 `.uproject` 路径。
+
+| 本次范围 | 工程路径 | 已保存的配置 |
+|---|---|---|
+| Lyra 基准工程 | `F:/UE/LyraStarterGame/LyraStarterGame.uproject` | 关闭；启动方式 Manual |
+| LyraTraining 教学副本 | `F:/UE/LyraDocLabs/LyraTraining/LyraStarterGame.uproject` | 关闭；启动方式 Manual |
+| MMORPG 教学工程 | `F:/UE/LyraDocLabs/MMORPG/MMORPG.uproject` | 关闭；启动方式 Manual |
+
+核查开始时没有运行中的 UE 编辑器或 Live Coding 进程。三项均已写入项目默认配置和本机用户配置；Lyra 又重新启动，并从运行中的设置对象读回了关闭状态。训练副本与 MMORPG 本次核对到文件配置层，没有另行启动它们。Clawtopia 不在本教程的工程范围内。
+
+## 第 1 步：进入编辑器偏好设置
+
+1. 在 UE 主窗口左上角单击 **编辑（Edit）**。
+2. 在菜单底部“配置”分组中单击 **编辑器偏好设置……（Editor Preferences）**。本机也可以按 `Ctrl+Alt+E`。
+3. 不要误点下面的“项目设置”；Live Coding 位于编辑器偏好设置。
+
+![图 1：编辑菜单底部的编辑器偏好设置入口；其下方是另一个入口项目设置](/media/beginner/live-coding/edit-menu.png)
+
+**看图定位**：找到“配置”标题，进入它下面的第一项“编辑器偏好设置……”。新窗口标题应当是“编辑器偏好设置”。
+
+## 第 2 步：找到开关并关闭
+
+1. 在偏好设置左栏展开 **通用（General）**，选择 **实时代码编写（Live Coding）**。
+2. 如果之前输入过搜索词，先清空顶部搜索框。本机中文界面直接搜索英文 `Live Coding` 曾过滤掉全部结果；按左栏类别进入即可。
+3. 取消勾选右侧第一行 **启用实时代码编写（Enable Live Coding）**。如果已经是空框，就保持为空。
+4. 下面的启动方式、模块预加载等选项变灰，是主开关关闭后的正常结果。
+
+![图 2：通用—实时代码编写；第一行启用开关为空，启动为 Manual，自动编译新添 C++ 类为空](/media/beginner/live-coding/disabled-settings.png)
+
+**看图定位**：左栏蓝色选中“实时代码编写”；右侧“常规”第一行的复选框没有勾。截图保留了下面的选项，以便辨认灰色禁用状态。
+
+| 界面字段 | 是什么意思 | 本教程的设置 |
+|---|---|---|
+| Enable Live Coding / 启用实时代码编写 | Live Coding 的主开关 | **取消勾选，这是关闭的关键** |
+| Startup / 启动 | 开启 Live Coding 时，何时启动它 | `Manual`；主开关关闭时无法操作这一行 |
+| Automatically Compile Newly Added C++ Classes / 自动编译新添 C++ 类 | 新增 C++ 类时自动触发 Live Coding 编译 | 取消勾选 |
+| Enable Reinstancing / 启用重实例化 | Live Coding 更新后重建相关对象的选项 | 本次保留原值；主开关关闭后此项不工作 |
+| Preload… / 预加载… | 为 Live Coding 预加载哪些模块 | 本次保留原值；不需要逐个取消来关闭主功能 |
+
+**只想关闭时，到第 3 项取消主开关即可。** 本次还在编辑器关闭期间保存了 `Startup=Manual` 和自动编译关闭的配置，所以图中是这个组合。不要为了操作已经变灰的 Startup，再临时把 Live Coding 打开。
+
+### “隐藏控制台”不等于关闭
+
+Startup 的 `AutomaticButHidden` 表示自动启动、隐藏控制台；`Manual` 表示手动启动。它们都不是主开关。关掉 Live Coding 控制台窗口、没有看见控制台、只把 Startup 改为 Manual，都不能单独证明当前会话已结束。
+
+## 第 3 步：保存、退出，再验证
+
+1. 修改偏好后关闭设置窗口。编辑器会保存用户偏好；重新打开这个面板检查主开关仍为空。
+2. 对准备做完整构建的项目，先停止 PIE（编辑器内游戏预览），保存自己编辑的关卡、蓝图和源码，再通过编辑器右上角关闭按钮正常退出。
+3. 如果同一套引擎下还有其他**相关**工程的编辑器，逐个检查和正常关闭。不要在任务管理器中批量强杀所有 UE 进程，也不要随手结束别人的项目。
+4. 完整构建成功后重开本工程，再检查主开关。下面的命令只读取进程信息，不会结束进程。
+
+```powershell
+Get-CimInstance Win32_Process |
+  Where-Object { $_.Name -match 'UnrealEditor|LiveCoding' } |
+  Select-Object ProcessId, Name, ExecutablePath, CommandLine |
+  Format-List
+```
+
+`ProcessId` 是进程编号；`ExecutablePath` 帮你确认用了哪套引擎；`CommandLine` 通常包含工程的完整路径。**没有 LiveCoding 进程只是一个检查点**：还要结合编辑器设置和构建结果判断。对完整 UBT 构建，本教程统一在相关编辑器退出后执行。
+
+## 配置文件如何保存这个选择
+
+本次三个工程均保存了下面这一节。手动编辑 INI 时，先正常关闭目标编辑器，备份原文件；同名节已经存在时修改该节，不要追加重复节或覆盖整个文件。
+
+```ini
+[/Script/LiveCoding.LiveCodingSettings]
+bEnabled=False
+Startup=Manual
+bAutomaticallyCompileNewClasses=False
+```
+
+| 相对工程根目录的文件 | 作用 |
+|---|---|
+| `Config/DefaultEditorPerProjectUserSettings.ini` | 项目提供的默认偏好，可以随项目管理 |
+| `Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini` | 本机当前用户在这个工程上的设置，通常不提交版本控制 |
+
+已有用户配置可能覆盖项目默认值，因此**只改 Config 中的默认文件，不保证当前用户的开关立即改变**。本次同步设置了两层；重新启动 Lyra 时未使用 `-LiveCoding=false` 来掩盖配置结果。运行中的设置对象返回 `bEnabled=false`、`Startup=Manual`、`bAutomaticallyCompileNewClasses=false`。
+
+**用户 INI 中的省略项**：本机 Lyra 重开后，`Saved` 文件保留 `bEnabled=False`，省略了与项目默认值一致的 `Startup` 和自动编译项；它们仍在 `Config` 默认文件中，运行中的设置对象也确认了上述三个值。不要仅凭用户文件是否逐行重复默认配置判断成功，应该结合默认文件和重开的设置面板核对。
+
+不同电脑的工程目录不同，把表中路径替换为自己的实际位置。不要为了统一几个教学工程而修改整套引擎的 `BaseEditorPerProjectUserSettings.ini`。
+
+## 遇到“模块缺失或引擎版本不同”怎么做
+
+如果打开工程时看到 **The following modules are missing or built with a different engine version**，随后询问 **Would you like to proceed anyway?**，先选 **No**。退出后为正确的项目执行完整 Editor 目标构建。
+
+```powershell
+& 'E:/UnrealEngine/Engine/Build/BatchFiles/Build.bat' `
+  LyraEditor Win64 Development `
+  '-Project=F:/UE/LyraStarterGame/LyraStarterGame.uproject' `
+  -WaitMutex -NoHotReloadFromIDE
+```
+
+在 Rider 中对应 **Development Editor / Win64 / LyraEditor**。成功标志是构建输出中的 **Result: Succeeded**，之后再打开 `.uproject`。若失败，先读第一条编译错误；不要选 Yes 绕过缺失模块，也不要手工替换 `.modules` 中的 BuildId。
+
+**本次实际结果**：Lyra 启动时出现了该提示；正常退出后运行完整 `LyraEditor Win64 Development` 构建，UBT 完成 `WriteMetadata LyraEditor.target` 并返回 `Result: Succeeded`，随后成功打开步枪资产。该次构建仅需更新元数据就恢复了启动；关闭 Live Coding 不会自动修复所有模块错误。
+
+本机源码依据：`LiveCodingSettings.h` 的配置类与 Startup 枚举、`LiveCodingModule.cpp` 的启动和启停逻辑。检查记录位于仓库 `verification/live-coding-disabled.json` 与 `verification/lyra-beginner-editor-build.json`。更多模块排障见[构建标识不匹配](/docs/11-reference/troubleshooting#引擎更新后工具插件的-buildid-不匹配)。
+
+{/* full-guide-begin */}
+
+## 把开关、会话和构建连起来
+
+![关闭开关与完成一次正常构建](/media/guide-diagrams/01-start-live-coding.svg)
+
+**读图**：主开关、进程生命周期、构建产物是三个不同检查点。照着顺序完成一次，再开始 C++ 课程。
+
+### 两个 False 的职责
+
+`bEnabled=False` 是 Live Coding 总开关；`bAutomaticallyCompileNewClasses=False` 控制新建 C++ 类时是否自动触发此编译流程。它们不是普通 UBT 构建的禁用开关，所以关闭后仍可以在 Rider 完整构建。`Startup=Manual` 只是 Live Coding 启动方式，不等于禁止完整构建。
+
+如果还不熟悉 C++ 与资产编译的区别，先读[零基础中的保存与编译表](/docs/01-start/ue-basics#运行停止保存分别做什么)。Blueprint 的 Compile 按钮不会替你编译新 C++ 模块，Rider 构建成功也不会自动补全一个错误的资产引用。
+
+{/* full-guide-end */}
+
+## 完成检查
+
+- 能从“编辑 → 编辑器偏好设置 → 通用 → 实时代码编写”进入正确面板。
+- 能指出截图中的主开关，并解释为什么下面的选项变灰。
+- 能区分项目默认配置与本机用户配置。
+- 完整构建前会保存并正常退出相关编辑器，构建后能重新打开工程。
+
+下一步按[步枪导航图解](/docs/01-start/project-map#操作步骤以步枪为线索)，把资产配置与 C++ 行为对应起来。

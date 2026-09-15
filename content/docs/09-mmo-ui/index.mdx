@@ -43,6 +43,24 @@ description: 用 CommonUI 管理交互生命周期，用 FieldNotify ViewModel �
 4. [C++ 与蓝图协作](/docs/09-mmo-ui/blueprint-workflow)：嵌套 ManaStatus、传递已有 ViewModel，并使用真实异步蓝图节点。
 5. [国际化](/docs/09-mmo-ui/localization)：用字符串表与 FText 完成英文、简体中文和资源编译。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![一次奥术箭怎样更新法力条](/media/guide-diagrams/09-mmo-ui-index.svg)
+
+**读图**：从数字到进度条之间没有第二套权威 Mana。界面展示服务器状态，技能是否可用仍由 GAS 决定。
+
+### 先辨认七个 Widget 的工作
+
+登录、HUD、法力条、背包、设置、确认框都由根布局使用；其中法力条嵌在 HUD 内，登录/背包/设置进入 Menu，确认框进入 Modal。先看本页登录运行图，再去 Designer 找同名控件，最后读它的 C++ 父类。
+
+第一次只完成一条绑定：ManaFraction → ManaBar.Percent。等法力变化时它能更新，再做文字、背包与多语言。遇到空白先查 Manual ViewModel 是否赋源；遇到数值不更新再查 FieldNotify；遇到不能点击则查 CommonUI 输入层。
+
+**完成本篇时的解释题**：为什么 HUD 和背包可以共用一个 PlayerVM，而登录面板不必为了使用 CommonUI 强行创建一个战斗 ViewModel？答案应指出它们展示的数据来源与生命周期。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 读完后应能沿“服务器属性 → ASC 委托 → ViewModel 字段 → Widget 文本”的路径找到每个连接点。如果 HUD 只显示初始数值，先检查通知路径，而不是给所有控件加 Tick。若鼠标点击菜单时角色仍执行技能，检查最高激活层的输入配置。
@@ -50,4 +68,3 @@ description: 用 CommonUI 管理交互生命周期，用 FieldNotify ViewModel �
 本机已完成 17 项原生 Slate 输入验证，覆盖菜单导航、模态返回、药剂属性更新，以及退出重登和角色切换后的新 ViewModel；原始操作与观察汇总于 `verification/mmorpg-native-ui-input.json`。手柄部分使用引擎原生按键事件注入，物理设备兼容性仍应在目标硬件上检查。具体入口与焦点观察方法见[层栈与输入](/docs/09-mmo-ui/layers-input)。
 
 练习：设计一个目标状态卡，列出它需要的字段、来源、解绑时机，以及没有目标、目标死亡和目标被销毁时的显示规则。
-

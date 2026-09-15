@@ -21,3 +21,20 @@ GAS 不只是技能按钮系统。它把“角色拥有什么能力”“当前�
 基础证据来自本机 AbilitySystem、PlayerState、Hero 与 RangedWeapon 源码，版本 UE 5.8.1，核对于 2026-09-13。特定本机射击回调把 TargetData 有效性变量直接设为 true，因此预测教学不会把它描述成完整命中校验或反作弊实现。
 
 完成标准：能为一次技能写出授予者、输入 Tag、激活条件、提交时机、结束清理和服务器最终状态。下一篇将这些机制接入[背包、装备和游戏规则](/docs/05-gameplay)。
+
+{/* full-guide-begin */}
+
+## 先用一把步枪认识 GAS 的五个对象
+
+![一次技能不是一个按钮直接改数值](/media/guide-diagrams/04-gas-index.svg)
+
+**读图**：以步枪为例，装备授予开火技能，按键尝试开火，伤害 Effect 参与计算，HealthSet 更新生命，UI 再显示。
+![步枪技能集中的三个技能和输入标签](/media/beginner/rifle/ability-set.png)
+
+**看图操作**：这是一份“拥有哪些技能”的配置。FireAuto、Reload、AutoReload 三项都在列表里，不表示装备时马上连续开火、换弹和自动换弹。每项都还要符合自己的激活路径。
+
+本篇先记五个名词：**ASC** 管理能力；**Ability** 实现一次动作；**AttributeSet** 定义数值；**GameplayEffect** 描述效果规则；**GameplayTag** 命名状态或语义。EffectSpec 则是某次应用所携带的等级、上下文和参数。
+
+按“技能已授予吗 → 请求到达吗 → 条件允许吗 → 提交成功吗 → 最终状态怎样变化”顺序排障。配置截图回答“选了什么”，源码回答“何时用”，运行记录回答“这次是否真的发生”。
+
+{/* full-guide-end */}

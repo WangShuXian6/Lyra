@@ -179,4 +179,47 @@ pwsh -File F:/UE/LyraDoc/scripts/mmorpg/Invoke-RenderedShowcase.ps1 `
 
 练习：让两位读者各操作一个客户端，按验收表互相观察，并把发现的差异记录为带复现步骤的缺陷。以新角色重跑整个流程，防止旧数据掩盖初始化错误。
 
+{/* full-guide-begin */}
 
+## 从图中配置走到代码行为
+
+### 为什么已登录还可能没有角色
+源码：`examples/MMORPG/Source/MMORPG/Private/MMOExperienceGameplay.cpp`，本机第 63–79 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void AMMOGameMode::TryStartPlayer(APlayerController* Controller)
+{
+    auto* PS = Controller ? Controller->GetPlayerState<AMMOPlayerState>() : nullptr;
+    auto* Experience = UMMOExperienceManagerComponent::FindExperienceManager(GetWorld());
+    if (GetNetMode() != NM_DedicatedServer || !PS || !PS->bCharacterLoaded || Controller->GetPawn()
+        || !Experience || !Experience->IsExperienceReady()) return;
+    if (!PS->SetPawnData(Experience->GetPawnData()))
+    { CastChecked<AMMOPlayerController>(Controller)->ClientBackendError(TEXT("pawn_data_invalid")); Controller->Destroy(); return; }
+    RestartPlayerAtTransform(Controller, FTransform(FRotator::ZeroRotator, PS->SavedPosition));
+    if (auto* Pawn = Cast<AMMOCharacter>(Controller->GetPawn()); Pawn && Pawn->PawnExtension->IsPawnReady())
+    {
+        PS->bSessionReady = true; PS->OnRep_Progress(); PS->ForceNetUpdate();
+        UE_LOG(LogTemp, Display, TEXT("MMO GameplayReady character %s: Experience + persistence + Pawn InitState"), *PS->CharacterID);
+    }
+    else
+    { CastChecked<AMMOPlayerController>(Controller)->ClientBackendError(TEXT("pawn_initialization_failed")); Controller->Destroy(); }
+}
+```
+
+入口同时检查 Dedicated Server、PlayerState、角色存档已加载、尚未拥有 Pawn、Experience Ready。缺一项就先返回。准备完成后 SetPawnData 授予技能集，再从 SavedPosition 生成角色；PawnExtension 也就绪才设置 bSessionReady。
+
+所以“HTTP 登录成功”“获得入服票据”“服务器兑换票据成功”“角色 GameplayReady”是四个不同检查点。日志停在哪一步，就读哪一步的数据，不要反复点击登录生成更多并行请求。
+
+| 你看见的现象 | 首个检查位置 | 对应章节 |
+|---|---|---|
+| 注册/登录界面显示连接错误 | Backend Program 是否监听；客户端 Base URL | 后端运行与测试 |
+| 票据成功但连接不上世界 | UE Server 地址/端口、监听日志 | 本章启动顺序 |
+| 连接进入却一直无 Pawn | TryStartPlayer 的双就绪条件 | Experience 与角色数据 |
+| Pawn 出现但输入无效 | PawnExtension、IMC、InputConfig、UI 当前层 | 角色 GAS / UI 输入 |
+| 退出后状态回退 | final save 与保存版本 | 网络与持久化 |
+
+**截图阅读顺序**：客户端 A 图看 XP=25 和消耗后的 Mana；客户端 B 图看自己的 XP/Mana 保持独立；再看两个画面能观察到对方 Pawn。数值隔离、可见角色和后台保存需要各自证据，不能由一张 HUD 图全部推出。
+
+本章命令需要多个独立终端/进程。先确认后端健康，再启动游戏服务器，再开客户端；退出时先让玩家离服并确认最终保存。保留自己的运行日志，历史 2026-09-13 报告不代表今天新修改的资产已经重新打包测试。
+
+{/* full-guide-end */}

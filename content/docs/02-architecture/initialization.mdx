@@ -41,8 +41,52 @@ ASC 对应的 Owner 是 PlayerState，Avatar 是当前 Pawn。Pawn 死亡或重�
 
 不要通过增加 Delay 来解决复制顺序。网络上的 PlayerState、Controller、PawnData 不保证在同一个帧到达；状态条件和 OnRep 的再次检查正是用来处理这种情况。
 
+{/* full-guide-begin */}
+
+## 把初始化条件对应到一张 PawnData 和一个 if
+
+![HeroData_ShooterGame：角色类、技能集、输入与默认相机](/media/configuration/training/pawn-data.png)
+
+**看图操作**：进入 ShooterCore → Game，打开 HeroData_ShooterGame。展开 Abilities、Input、Camera，记录 B_Hero_ShooterMannequin、AbilitySet_ShooterHero、InputData_Hero 与 CM_ThirdPerson。它们是后续初始化要读取的配置，不是玩家当前血量。
+![角色不能操作时，先找缺少哪份数据](/media/guide-diagrams/02-architecture-initialization.svg)
+
+**读图**：模拟代理不要求本地输入。检查必须注明当前是服务器、自己的客户端还是别人角色的代理。
+源码：`Source/LyraGame/Character/LyraHeroComponent.cpp`，本机第 113–127 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+const bool bIsLocallyControlled = Pawn->IsLocallyControlled();
+const bool bIsBot = Pawn->IsBotControlled();
+
+if (bIsLocallyControlled && !bIsBot)
+{
+	ALyraPlayerController* LyraPC = GetController<ALyraPlayerController>();
+
+	// The input component and local player is required when locally controlled.
+	if (!Pawn->InputComponent || !LyraPC || !LyraPC->GetLocalPlayer())
+	{
+		return false;
+	}
+}
+
+return true;
+```
+
+逐段看：先判断是不是本地控制、是不是机器人；只有本地真人玩家才进入输入检查。`!Pawn->InputComponent`、`!LyraPC`、`!LyraPC->GetLocalPlayer()` 任意一项为真就 `return false`，表示暂时不能进入下一状态。
+
+这解释了为什么“复制一个不能操作的客户端问题到服务器观察”常看不到同样条件：服务器与模拟代理的职责不同。`return false` 是等待，不一定是程序崩溃；下一次有关数据到达、扩展事件或 OnRep 引发检查时可能继续推进。
+
+**断点记录表**：在 `CanChangeInitState` 停住后，逐项记 `CurrentState`、`DesiredState`、`LocalRole`、`PlayerState`、`Controller`、`InputComponent` 和 `LocalPlayer`。空的是哪项，就沿负责创建/复制那项的代码查；不要给整个函数加 Delay。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 你应能指出当前卡在哪一个状态、哪一个条件返回 false。若输入组件不是 `ULyraInputComponent` 或其子类，Hero 中的检查会提示能力输入无法绑定。若 PlayerState 已有 PawnData，重复设置会被本机实现拒绝；切职业不能直接当成重复调用 SetPawnData。
 
 练习：写出角色重生时需要重新绑定的三类对象：HealthComponent、相机/输入、UI 数据观察。哪些应随 Pawn 销毁，哪些应随 LocalPlayer 或 PlayerState 保留？继续阅读[玩家与角色](/docs/03-character/player-pawn)。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+在实验三修改初始弹药后重新创建物品；再对角色重生检查新的 Avatar，比较“数据默认值改变”和“旧对象重新初始化”的区别。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

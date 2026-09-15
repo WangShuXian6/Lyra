@@ -3,9 +3,8 @@ import json
 from pathlib import Path
 import unreal
 
-project = Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir()))
-if project.as_posix().rstrip('/').lower() != 'f:/ue/lyradoclabs/mmorpg':
-    raise RuntimeError('Animation validation must run in the isolated MMORPG lab.')
+import runpy
+project = runpy.run_path(str(Path(__file__).with_name('lesson_project.py')))['require_lesson_project']()
 result = json.loads(unreal.MMOAnimationTools.validate_character_animation())
 evidence = project / 'Saved/Evidence/mmorpg-animation-assets.json'
 evidence.parent.mkdir(parents=True, exist_ok=True)

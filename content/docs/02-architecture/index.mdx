@@ -25,3 +25,23 @@ Lyra 把玩法配置、资源加载、组件注入和角色初始化分为不同
 本篇实际源码位置集中在 `Source/LyraGame/GameModes`、`Character`、`GameFeatures`、`System`，配置在 DefaultEngine / DefaultGame。核对基准为 2026-09-13 的 UE 5.8.1。
 
 完成后应能不借助固定 Delay，找到一个系统正确的初始化或加载回调。若仍无法解释“模型有了却不能移动”，先完成状态链断点练习，再进入[角色篇](/docs/03-character)。
+
+{/* full-guide-begin */}
+
+## 先建立一条可以逐站检查的启动链
+
+![把启动拆成可检查的交接点](/media/guide-diagrams/02-architecture-index.svg)
+
+**读图**：出现“有地图没有角色”先查上半段；“有角色不能操作”继续查下半段。状态名用于定位具体条件，不是给所有步骤加一个延迟。
+
+先看[插件总览](/docs/02-architecture/plugin-atlas)，再按 Asset Manager → Experience → Game Features → 初始化阅读。Asset Manager 负责找到资源，Experience 决定本局选择，Game Feature 动作负责装配，Pawn 初始化负责让具体角色可用。
+
+**阅读练习**：为每一步写“输入、负责人、完成信号”。例如 Experience 的输入是选中的 PrimaryAssetId，负责人是 ExperienceManager，完成信号是 Loaded 回调。一个信号尚未出现时，先解释它等待什么，不要直接跳到下游角色代码。
+
+{/* full-guide-end */}
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+先用相机和 HUD 两个实验理解同一条原则：创建副本后，还要在当前 Experience 的引用链中选中它。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

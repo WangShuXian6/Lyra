@@ -1,0 +1,1088 @@
+---
+title: 数据定义与初始化框架：完整文件
+description: 按目标路径新建或替换文件，复制完整实现，再与逐步操作课程对照。
+---
+
+先定义 AbilitySet、InputConfig、PawnData、Experience 的字段，再写加载和授予函数，最后写 PawnExtension 的就绪条件。各类都是同一 MMOFramework 模块的组成部分，复制完整一组再编译。
+
+[返回对应操作与解释](/docs/08-mmorpg/character-gas) · [返回制作主线](/docs/08-mmorpg/from-zero)
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+## 复制之前先确认位置
+
+下列路径均相对你的 **MMORPG 工程根目录**。在 Rider 的文件视图中右键父目录 → New → File，输入完整文件名（包括扩展名）；文件已存在时替换整个文件，不能把第二套类声明追加到末尾。页面给出的是当前教程的完整文件，代码框右上角可以复制，不含省略号占位实现。
+
+先写 `.h` 再写 `.cpp` 便于阅读；**完成当前源码阶段的全部文件后才编译**。`*.generated.h` 由 UnrealHeaderTool 生成，不手工创建。`#include`、模块导出宏和函数签名都要保留。一个文件中出现多个类时，复制整个文件一次即可。
+
+按 [四个源码阶段](/docs/08-mmorpg/from-zero) 使用这些文件。本组从 **01 阶段**开始使用。00–02 阶段保留当阶段的轻量 `.uproject` 和 Build.cs；03 阶段再切换到完整项目依赖。
+
+## 逐段理解与资产连接
+
+### 从一个字段追到实际行为
+
+1. `MMOExperienceDefinition` 的 DefaultPawnData 指向 `MMOPawnData`；PawnData 再指向角色类、AbilitySets、输入和动画类。这些软引用是路径，必须被加载后才能取到对象。
+2. `CollectAssetPaths` 把 AbilitySet 中的技能、Effect、属性类加入待加载清单。ExperienceManager 负责等待依赖闭包加载和 GameFeature 激活；不能只加载最外层 Experience。
+3. `GrantToAbilitySystem` 先检查服务器权限和全组类是否已经可用，再添加 AttributeSet、授予能力、应用 Effect，并记录句柄。失败不应留下半套技能。
+4. `TakeFromAbilitySystem` 使用原先句柄清理。一个 `GiveAbility` 对应何时撤销，是改造技能组时必须回答的问题。
+5. PawnExtension 在 `CanChangeInitState` 检查 PawnData、Controller、PlayerState、ASC、输入是否满足当前机器的条件。复制到达顺序不同，所以需要事件重试。
+
+**对照蓝图配置**：在 DA_MMOAbilities 改技能类，在 DA_MMOPlayer 选择这份 AbilitySet，在 DA_MMOExperience 选择 PawnData。代码定义字段和规则，三个资产决定本局实际使用的数据。
+
+## 本组文件清单
+
+| 文件 | 行数 | 操作 |
+|---|---:|---|
+| `MMORPG.uproject` | 35 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h` | 55 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h` | 25 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h` | 33 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h` | 57 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h` | 22 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h` | 42 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h` | 23 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h` | 50 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/MMOFramework.uplugin` | 17 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs` | 13 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp` | 50 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp` | 34 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp` | 220 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp` | 21 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp` | 20 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp` | 111 | 新建；已有同名文件则整体替换 |
+
+## 文件 1：MMORPG.uproject
+
+目标路径：`MMORPG.uproject`。原文件位于包内 `curriculum/mmorpg/descriptors/01.uproject`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="MMORPG.uproject"
+{
+  "FileVersion": 3,
+  "EngineAssociation": "",
+  "Category": "Education",
+  "Description": "Lyra patterns rebuilt as a small authenticated multiplayer RPG.",
+  "Modules": [
+    {
+      "Name": "MMORPG",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "GameplayAbilities",
+      "Enabled": true
+    },
+    {
+      "Name": "EnhancedInput",
+      "Enabled": true
+    },
+    {
+      "Name": "ModularGameplay",
+      "Enabled": true
+    },
+    {
+      "Name": "GameFeatures",
+      "Enabled": true
+    },
+    {
+      "Name": "MMOFramework",
+      "Enabled": true
+    }
+  ]
+}
+```
+
+</details>
+
+## 文件 2：MMOAbilitySet.h
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Engine/DataAsset.h"
+#include "GameplayAbilitySpec.h"
+#include "GameplayEffectTypes.h"
+#include "GameplayTagContainer.h"
+#include "MMOAbilitySet.generated.h"
+
+class UAbilitySystemComponent;
+class UAttributeSet;
+class UGameplayEffect;
+
+USTRUCT(BlueprintType)
+struct MMOFRAMEWORK_API FMMOAbilityGrant
+{
+    GENERATED_BODY()
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) TSoftClassPtr<UGameplayAbility> Ability;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(ClampMin="1")) int32 Level = 1;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) int32 InputID = INDEX_NONE;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(Categories="InputTag")) FGameplayTag InputTag;
+};
+
+USTRUCT(BlueprintType)
+struct MMOFRAMEWORK_API FMMOEffectGrant
+{
+    GENERATED_BODY()
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly) TSoftClassPtr<UGameplayEffect> Effect;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta=(ClampMin="0")) float Level = 1.f;
+};
+
+/** Store on PlayerState/Equipment owner. One handle set represents one grant operation. */
+USTRUCT()
+struct MMOFRAMEWORK_API FMMOGrantedAbilityHandles
+{
+    GENERATED_BODY()
+    UPROPERTY() TArray<FGameplayAbilitySpecHandle> Abilities;
+    UPROPERTY() TArray<FActiveGameplayEffectHandle> Effects;
+    UPROPERTY() TArray<TObjectPtr<UAttributeSet>> AttributeSets;
+    UPROPERTY() TWeakObjectPtr<UAbilitySystemComponent> GrantedASC;
+    bool IsGranted() const { return GrantedASC.IsValid(); }
+    void TakeFromAbilitySystem(UAbilitySystemComponent* ASC);
+};
+
+UCLASS(BlueprintType, Const)
+class MMOFRAMEWORK_API UMMOAbilitySet : public UPrimaryDataAsset
+{
+    GENERATED_BODY()
+public:
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Abilities", meta=(AssetBundles="Client,Server")) TArray<FMMOAbilityGrant> GrantedAbilities;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Abilities", meta=(AssetBundles="Client,Server")) TArray<FMMOEffectGrant> GrantedEffects;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Abilities", meta=(AssetBundles="Client,Server")) TArray<TSoftClassPtr<UAttributeSet>> GrantedAttributes;
+    bool GrantToAbilitySystem(UAbilitySystemComponent* ASC, UObject* SourceObject, FMMOGrantedAbilityHandles& OutHandles) const;
+    void CollectAssetPaths(TArray<FSoftObjectPath>& OutPaths) const;
+    virtual FPrimaryAssetId GetPrimaryAssetId() const override { return FPrimaryAssetId(TEXT("MMOAbilitySet"), GetFName()); }
+};
+```
+
+</details>
+
+## 文件 3：MMOAbilitySystemComponent.h
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h"
+#pragma once
+
+#include "AbilitySystemComponent.h"
+#include "MMOAbilitySystemComponent.generated.h"
+
+/** Value snapshot: callers never retain a pointer into the mutable ability spec array. */
+struct MMOFRAMEWORK_API FMMOGrantedAbilityInput
+{
+    FGameplayAbilitySpecHandle Handle;
+    int32 InputID = INDEX_NONE;
+    FString AbilityClassPath;
+};
+
+/** Tag-based grant lookup shared by the MMO's server-authoritative, instant abilities. */
+UCLASS()
+class MMOFRAMEWORK_API UMMOAbilitySystemComponent : public UAbilitySystemComponent
+{
+    GENERATED_BODY()
+public:
+    /** Copies all matching grants while the ability list is locked. Does not load or grant abilities. */
+    TArray<FMMOGrantedAbilityInput> GetGrantedAbilitiesForInputTag(const FGameplayTag& InputTag);
+
+    /** Collects handles first, then activates outside the list traversal. Same-tag multiple grants are supported. */
+    bool TryActivateAbilitiesByInputTag(const FGameplayTag& InputTag);
+};
+```
+
+</details>
+
+## 文件 4：MMOExperienceDefinition.h
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Engine/DataAsset.h"
+#include "GameFeatureAction.h"
+#include "MMOExperienceDefinition.generated.h"
+
+class UMMOPawnData;
+
+/** Reusable world-scoped component/UI actions; configure on a Data Asset, not the level blueprint. */
+UCLASS(BlueprintType, Const)
+class MMOFRAMEWORK_API UMMOExperienceActionSet : public UPrimaryDataAsset
+{
+    GENERATED_BODY()
+public:
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Experience") TArray<FString> GameFeaturesToEnable;
+    UPROPERTY(EditDefaultsOnly, Instanced, Category="Experience") TArray<TObjectPtr<UGameFeatureAction>> Actions;
+    virtual FPrimaryAssetId GetPrimaryAssetId() const override { return FPrimaryAssetId(TEXT("MMOActionSet"), GetFName()); }
+};
+
+/** A selected composition. Backend identity and character snapshots stay outside this asset. */
+UCLASS(BlueprintType, Const)
+class MMOFRAMEWORK_API UMMOExperienceDefinition : public UPrimaryDataAsset
+{
+    GENERATED_BODY()
+public:
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Experience", meta=(AssetBundles="Client,Server"))
+    TSoftObjectPtr<UMMOPawnData> DefaultPawnData;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Experience") TArray<FString> GameFeaturesToEnable;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Experience", meta=(AssetBundles="Client,Server"))
+    TArray<TSoftObjectPtr<UMMOExperienceActionSet>> ActionSets;
+    UPROPERTY(EditDefaultsOnly, Instanced, Category="Experience") TArray<TObjectPtr<UGameFeatureAction>> Actions;
+    virtual FPrimaryAssetId GetPrimaryAssetId() const override { return FPrimaryAssetId(TEXT("MMOExperience"), GetFName()); }
+};
+```
+
+</details>
+
+## 文件 5：MMOExperienceManagerComponent.h
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Components/GameStateComponent.h"
+#include "Engine/AssetManagerTypes.h"
+#include "MMOExperienceManagerComponent.generated.h"
+
+class UMMOExperienceDefinition;
+class UMMOPawnData;
+class UGameFeatureAction;
+struct FStreamableHandle;
+
+UENUM(BlueprintType)
+enum class EMMOExperienceLoadState : uint8 { Unloaded, LoadingAssets, LoadingGameFeatures, ExecutingActions, Ready, Failed, Deactivating };
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnMMOExperienceReady, const UMMOExperienceDefinition*);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMMOExperienceReadyEvent, const UMMOExperienceDefinition*, Experience);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMMOExperienceFailureEvent, const FString&, Reason);
+
+/** Server selects an ID; each world loads its dependencies and activates features before broadcasting Ready. */
+UCLASS(ClassGroup=(MMO), meta=(BlueprintSpawnableComponent))
+class MMOFRAMEWORK_API UMMOExperienceManagerComponent : public UGameStateComponent
+{
+    GENERATED_BODY()
+public:
+    UMMOExperienceManagerComponent(const FObjectInitializer& Initializer);
+    static UMMOExperienceManagerComponent* FindExperienceManager(const UWorld* World);
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category="MMO|Experience") bool SetCurrentExperience(FPrimaryAssetId ExperienceId);
+    UFUNCTION(BlueprintPure, Category="MMO|Experience") bool IsExperienceReady() const { return LoadState == EMMOExperienceLoadState::Ready; }
+    UFUNCTION(BlueprintPure, Category="MMO|Experience") UMMOExperienceDefinition* GetCurrentExperience() const { return Experience; }
+    UFUNCTION(BlueprintPure, Category="MMO|Experience") UMMOPawnData* GetPawnData() const;
+    UFUNCTION(BlueprintPure, Category="MMO|Experience") FPrimaryAssetId GetSelectedExperienceId() const { return SelectedExperienceId; }
+    void CallOrRegister_OnReady(FOnMMOExperienceReady::FDelegate Delegate);
+    UPROPERTY(BlueprintReadOnly, Category="MMO|Experience") EMMOExperienceLoadState LoadState = EMMOExperienceLoadState::Unloaded;
+    UPROPERTY(BlueprintReadOnly, Category="MMO|Experience") FString FailureReason;
+    UPROPERTY(BlueprintAssignable, Category="MMO|Experience") FMMOExperienceReadyEvent OnExperienceReady;
+    UPROPERTY(BlueprintAssignable, Category="MMO|Experience") FMMOExperienceFailureEvent OnExperienceFailed;
+protected:
+    virtual void BeginPlay() override;
+    virtual void EndPlay(EEndPlayReason::Type Reason) override;
+private:
+    UFUNCTION() void OnRep_SelectedExperienceId();
+    void StartExperienceLoad();
+    void LoadDependencyClosure();
+    void ActivateFeatures();
+    void FinishActivation();
+    void Fail(const FString& Reason);
+    void ReleaseExperience();
+    UPROPERTY(ReplicatedUsing=OnRep_SelectedExperienceId) FPrimaryAssetId SelectedExperienceId;
+    UPROPERTY(Transient) TObjectPtr<UMMOExperienceDefinition> Experience;
+    UPROPERTY(Transient) TArray<TObjectPtr<UGameFeatureAction>> ActivatedActions;
+    TArray<TSharedPtr<FStreamableHandle>> LoadHandles;
+    TSet<FSoftObjectPath> RequestedPaths;
+    TArray<FString> AcquiredPluginURLs;
+    FOnMMOExperienceReady ReadyCallbacks;
+    FTimerHandle LoadTimeout;
+    int32 PendingPlugins = 0;
+};
+```
+
+</details>
+
+## 文件 6：MMOFrameworkSubsystem.h
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Subsystems/GameInstanceSubsystem.h"
+#include "NativeGameplayTags.h"
+#include "MMOFrameworkSubsystem.generated.h"
+
+namespace MMOInitTags
+{
+    MMOFRAMEWORK_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Spawned);
+    MMOFRAMEWORK_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(DataAvailable);
+    MMOFRAMEWORK_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(DataInitialized);
+    MMOFRAMEWORK_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(GameplayReady);
+}
+
+/** Registers the ordered states once per GameInstance, including each separate PIE world context. */
+UCLASS()
+class MMOFRAMEWORK_API UMMOFrameworkSubsystem : public UGameInstanceSubsystem
+{
+    GENERATED_BODY()
+public:
+    virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+};
+```
+
+</details>
+
+## 文件 7：MMOInputConfig.h
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h"
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Engine/DataAsset.h"
+#include "GameplayTagContainer.h"
+#include "MMOInputConfig.generated.h"
+
+class UInputAction;
+
+USTRUCT(BlueprintType)
+struct MMOFRAMEWORK_API FMMOTaggedInputAction
+{
+    GENERATED_BODY()
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input", meta=(AssetBundles="Client"))
+    TSoftObjectPtr<UInputAction> InputAction;
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input", meta=(Categories="InputTag"))
+    FGameplayTag InputTag;
+};
+
+/** Maps semantic input tags to assets. Physical keys remain in the Mapping Context. */
+UCLASS(BlueprintType, Const)
+class MMOFRAMEWORK_API UMMOInputConfig : public UPrimaryDataAsset
+{
+    GENERATED_BODY()
+
+public:
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input", meta=(TitleProperty="InputTag", AssetBundles="Client"))
+    TArray<FMMOTaggedInputAction> NativeInputActions;
+
+    /** Experience loads these assets before Ready. Missing/unloaded entries return nullptr. */
+    UFUNCTION(BlueprintPure, Category="MMO|Input")
+    UInputAction* FindInputActionForTag(FGameplayTag InputTag) const;
+
+    void CollectAssetPaths(TArray<FSoftObjectPath>& OutPaths) const;
+
+    virtual FPrimaryAssetId GetPrimaryAssetId() const override
+    {
+        return FPrimaryAssetId(TEXT("MMOInputConfig"), GetFName());
+    }
+};
+```
+
+</details>
+
+## 文件 8：MMOPawnData.h
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Engine/DataAsset.h"
+#include "MMOPawnData.generated.h"
+
+class APawn;
+class UMMOAbilitySet;
+class UMMOInputConfig;
+class UInputMappingContext;
+class UAnimInstance;
+
+UCLASS(BlueprintType, Const)
+class MMOFRAMEWORK_API UMMOPawnData : public UPrimaryDataAsset
+{
+    GENERATED_BODY()
+public:
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Pawn", meta=(AssetBundles="Client,Server")) TSoftClassPtr<APawn> PawnClass;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Abilities", meta=(AssetBundles="Client,Server")) TArray<TSoftObjectPtr<UMMOAbilitySet>> AbilitySets;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input", meta=(AssetBundles="Client")) TSoftObjectPtr<UInputMappingContext> InputMappingContext;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Input", meta=(AssetBundles="Client")) TSoftObjectPtr<UMMOInputConfig> InputConfig;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Animation", meta=(AssetBundles="Client")) TSoftClassPtr<UAnimInstance> AnimInstanceClass;
+    virtual FPrimaryAssetId GetPrimaryAssetId() const override { return FPrimaryAssetId(TEXT("MMOPawnData"), GetFName()); }
+};
+```
+
+</details>
+
+## 文件 9：MMOPawnExtensionComponent.h
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Components/PawnComponent.h"
+#include "Components/GameFrameworkInitStateInterface.h"
+#include "MMOPawnExtensionComponent.generated.h"
+
+class UAbilitySystemComponent;
+class UMMOPawnData;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMMOPawnLifecycleEvent);
+
+/** Coordinates replicated data, controller, input and ASC readiness; does not grant duplicate player abilities. */
+UCLASS(ClassGroup=(MMO), meta=(BlueprintSpawnableComponent))
+class MMOFRAMEWORK_API UMMOPawnExtensionComponent : public UPawnComponent, public IGameFrameworkInitStateInterface
+{
+    GENERATED_BODY()
+public:
+    UMMOPawnExtensionComponent(const FObjectInitializer& Initializer);
+    static const FName FeatureName;
+    virtual FName GetFeatureName() const override { return FeatureName; }
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    virtual bool CanChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag Current, FGameplayTag Desired) const override;
+    virtual void HandleChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag Current, FGameplayTag Desired) override;
+    virtual void OnActorInitStateChanged(const FActorInitStateChangedParams& Params) override;
+    virtual void CheckDefaultInitialization() override;
+    UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category="MMO|Pawn") bool SetPawnData(UMMOPawnData* InData);
+    UFUNCTION(BlueprintPure, Category="MMO|Pawn") UMMOPawnData* GetPawnData() const { return PawnData; }
+    UFUNCTION(BlueprintPure, Category="MMO|Pawn") UAbilitySystemComponent* GetAbilitySystemComponent() const { return AbilitySystem; }
+    UFUNCTION(BlueprintPure, Category="MMO|Pawn") bool IsPawnReady() const;
+    UFUNCTION(BlueprintCallable, Category="MMO|Pawn") bool InitializeAbilitySystem(UAbilitySystemComponent* InASC, AActor* OwnerActor);
+    UFUNCTION(BlueprintCallable, Category="MMO|Pawn") void UninitializeAbilitySystem();
+    void HandleControllerChanged();
+    void HandlePlayerStateReplicated();
+    void SetupPlayerInputComponent();
+    UPROPERTY(BlueprintAssignable, Category="MMO|Pawn") FMMOPawnLifecycleEvent OnDataAvailable;
+    UPROPERTY(BlueprintAssignable, Category="MMO|Pawn") FMMOPawnLifecycleEvent OnAbilitySystemInitialized;
+    UPROPERTY(BlueprintAssignable, Category="MMO|Pawn") FMMOPawnLifecycleEvent OnAbilitySystemUninitialized;
+    UPROPERTY(BlueprintAssignable, Category="MMO|Pawn") FMMOPawnLifecycleEvent OnGameplayReady;
+protected:
+    virtual void OnRegister() override;
+    virtual void BeginPlay() override;
+    virtual void EndPlay(EEndPlayReason::Type Reason) override;
+private:
+    UFUNCTION() void OnRep_PawnData();
+    UPROPERTY(ReplicatedUsing=OnRep_PawnData) TObjectPtr<UMMOPawnData> PawnData;
+    UPROPERTY(Transient) TObjectPtr<UAbilitySystemComponent> AbilitySystem;
+    bool bInputReady = false;
+    bool bReadyAnnounced = false;
+    bool bCheckingInitialization = false;
+};
+```
+
+</details>
+
+## 文件 10：MMOFramework.uplugin
+
+目标路径：`Plugins/MMOFramework/MMOFramework.uplugin`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/MMOFramework.uplugin`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="Plugins/MMOFramework/MMOFramework.uplugin"
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "MMO Tutorial Framework",
+  "Description": "Original data-driven experience and pawn initialization framework inspired by Lyra.",
+  "Category": "Gameplay",
+  "CanContainContent": true,
+  "EnabledByDefault": true,
+  "Modules": [{ "Name": "MMOFramework", "Type": "Runtime", "LoadingPhase": "Default" }],
+  "Plugins": [
+    { "Name": "GameplayAbilities", "Enabled": true },
+    { "Name": "GameFeatures", "Enabled": true },
+    { "Name": "ModularGameplay", "Enabled": true },
+    { "Name": "EnhancedInput", "Enabled": true }
+  ]
+}
+```
+
+</details>
+
+## 文件 11：MMOFramework.Build.cs
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs"
+using UnrealBuildTool;
+
+public class MMOFramework : ModuleRules
+{
+    public MMOFramework(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PublicDependencyModuleNames.AddRange(new[] {
+            "Core", "CoreUObject", "Engine", "GameplayAbilities", "GameplayTags",
+            "GameplayTasks", "GameFeatures", "ModularGameplay", "EnhancedInput"
+        });
+    }
+}
+```
+
+</details>
+
+## 文件 12：MMOAbilitySet.cpp
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp"
+#include "MMOAbilitySet.h"
+#include "AbilitySystemComponent.h"
+#include "Abilities/GameplayAbility.h"
+#include "AttributeSet.h"
+#include "GameplayEffect.h"
+
+void FMMOGrantedAbilityHandles::TakeFromAbilitySystem(UAbilitySystemComponent* ASC)
+{
+    if (!ASC || !ASC->IsOwnerActorAuthoritative() || GrantedASC.Get() != ASC) return;
+    for (const auto& Handle : Abilities) { ASC->CancelAbilityHandle(Handle); ASC->ClearAbility(Handle); }
+    for (const auto& Handle : Effects) ASC->RemoveActiveGameplayEffect(Handle);
+    for (UAttributeSet* Set : AttributeSets) if (Set) ASC->RemoveSpawnedAttribute(Set);
+    Abilities.Reset(); Effects.Reset(); AttributeSets.Reset(); GrantedASC.Reset();
+}
+
+void UMMOAbilitySet::CollectAssetPaths(TArray<FSoftObjectPath>& OutPaths) const
+{
+    for (const auto& Item : GrantedAbilities) if (!Item.Ability.IsNull()) OutPaths.AddUnique(Item.Ability.ToSoftObjectPath());
+    for (const auto& Item : GrantedEffects) if (!Item.Effect.IsNull()) OutPaths.AddUnique(Item.Effect.ToSoftObjectPath());
+    for (const auto& Item : GrantedAttributes) if (!Item.IsNull()) OutPaths.AddUnique(Item.ToSoftObjectPath());
+}
+
+bool UMMOAbilitySet::GrantToAbilitySystem(UAbilitySystemComponent* ASC, UObject* SourceObject, FMMOGrantedAbilityHandles& OutHandles) const
+{
+    if (!ASC || !ASC->IsOwnerActorAuthoritative() || OutHandles.IsGranted()) return false;
+    // Preflight the entire set. Grant never synchronously loads on the game thread or partially accepts missing classes.
+    for (const auto& Item : GrantedAbilities) if (!Item.Ability.Get() || Item.Level < 1) return false;
+    for (const auto& Item : GrantedEffects) if (!Item.Effect.Get() || Item.Level < 0) return false;
+    for (const auto& Item : GrantedAttributes) if (!Item.Get()) return false;
+    OutHandles.GrantedASC = ASC;
+    for (const auto& Item : GrantedAttributes)
+    {
+        UAttributeSet* Set = NewObject<UAttributeSet>(ASC->GetOwnerActor(), Item.Get());
+        ASC->AddAttributeSetSubobject(Set); OutHandles.AttributeSets.Add(Set);
+    }
+    for (const auto& Item : GrantedAbilities)
+    {
+        FGameplayAbilitySpec Spec(Item.Ability.Get(), Item.Level, Item.InputID);
+        Spec.SourceObject = SourceObject;
+        if (Item.InputTag.IsValid()) Spec.GetDynamicSpecSourceTags().AddTag(Item.InputTag);
+        OutHandles.Abilities.Add(ASC->GiveAbility(Spec));
+    }
+    for (const auto& Item : GrantedEffects)
+    {
+        FGameplayEffectContextHandle Context = ASC->MakeEffectContext(); Context.AddSourceObject(SourceObject);
+        const auto Handle = ASC->ApplyGameplayEffectToSelf(Item.Effect.Get()->GetDefaultObject<UGameplayEffect>(), Item.Level, Context);
+        if (Handle.IsValid()) OutHandles.Effects.Add(Handle);
+    }
+    return true;
+}
+```
+
+</details>
+
+## 文件 13：MMOAbilitySystemComponent.cpp
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp"
+#include "MMOAbilitySystemComponent.h"
+#include "Abilities/GameplayAbility.h"
+
+TArray<FMMOGrantedAbilityInput> UMMOAbilitySystemComponent::GetGrantedAbilitiesForInputTag(const FGameplayTag& InputTag)
+{
+    TArray<FMMOGrantedAbilityInput> Matches;
+    if (!InputTag.IsValid()) return Matches;
+    ABILITYLIST_SCOPE_LOCK();
+    for (const FGameplayAbilitySpec& Spec : GetActivatableAbilities())
+    {
+        if (!Spec.Ability || !Spec.GetDynamicSpecSourceTags().HasTagExact(InputTag)) continue;
+        auto& Match = Matches.AddDefaulted_GetRef();
+        Match.Handle = Spec.Handle;
+        Match.InputID = Spec.InputID;
+        Match.AbilityClassPath = Spec.Ability->GetClass()->GetPathName();
+    }
+    return Matches;
+}
+
+bool UMMOAbilitySystemComponent::TryActivateAbilitiesByInputTag(const FGameplayTag& InputTag)
+{
+    if (!IsOwnerActorAuthoritative() || !InputTag.IsValid()) return false;
+    TArray<FGameplayAbilitySpecHandle> Handles;
+    {
+        ABILITYLIST_SCOPE_LOCK();
+        for (const FGameplayAbilitySpec& Spec : GetActivatableAbilities())
+            if (Spec.Ability && Spec.GetDynamicSpecSourceTags().HasTagExact(InputTag)) Handles.Add(Spec.Handle);
+    }
+    // Activation may invoke callbacks that add or remove specs. The list lock and traversal have ended.
+    bool bAnyActivated = false;
+    for (const FGameplayAbilitySpecHandle Handle : Handles)
+        if (TryActivateAbility(Handle)) bAnyActivated = true;
+    return bAnyActivated;
+}
+```
+
+</details>
+
+## 文件 14：MMOExperienceManagerComponent.cpp
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp"
+#include "MMOExperienceManagerComponent.h"
+#include "MMOExperienceDefinition.h"
+#include "MMOPawnData.h"
+#include "MMOAbilitySet.h"
+#include "MMOInputConfig.h"
+#include "MMOPawnExtensionComponent.h"
+#include "Engine/AssetManager.h"
+#include "Engine/AssetManagerTypes.h"
+#include "Engine/StreamableManager.h"
+#include "Engine/Engine.h"
+#include "EngineUtils.h"
+#include "GameFramework/Pawn.h"
+#include "GameFeaturesSubsystem.h"
+#include "Net/UnrealNetwork.h"
+#include "TimerManager.h"
+#include "UObject/StrongObjectPtr.h"
+
+DEFINE_LOG_CATEGORY_STATIC(LogMMOExperience, Log, All);
+
+namespace
+{
+    // GameFeatures is process-scoped; one PIE client must not deactivate another world's feature.
+    TMap<FString, int32> PluginUsers;
+    void ReleasePlugin(const FString& URL)
+    {
+        check(IsInGameThread());
+        int32* Count = PluginUsers.Find(URL);
+        if (Count && --*Count == 0) { PluginUsers.Remove(URL); UGameFeaturesSubsystem::Get().DeactivateGameFeaturePlugin(URL); }
+    }
+    struct FActionTeardown
+    {
+        TArray<TStrongObjectPtr<UGameFeatureAction>> Actions;
+        TArray<TSharedPtr<FStreamableHandle>> Handles;
+        TArray<FString> URLs;
+        int32 Expected = INDEX_NONE;
+        int32 Completed = 0;
+        bool bFinished = false;
+        void TryFinish()
+        {
+            if (bFinished || Expected == INDEX_NONE || Completed != Expected) return;
+            bFinished = true;
+            for (const auto& Action : Actions) Action->OnGameFeatureUnregistering();
+            for (const FString& URL : URLs) ReleasePlugin(URL);
+            Actions.Reset(); Handles.Reset(); URLs.Reset();
+        }
+    };
+}
+
+UMMOExperienceManagerComponent::UMMOExperienceManagerComponent(const FObjectInitializer& Initializer) : Super(Initializer)
+{ SetIsReplicatedByDefault(true); PrimaryComponentTick.bCanEverTick = false; }
+UMMOExperienceManagerComponent* UMMOExperienceManagerComponent::FindExperienceManager(const UWorld* World)
+{ return World && World->GetGameState() ? World->GetGameState()->FindComponentByClass<UMMOExperienceManagerComponent>() : nullptr; }
+void UMMOExperienceManagerComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{ Super::GetLifetimeReplicatedProps(OutLifetimeProps); DOREPLIFETIME(UMMOExperienceManagerComponent, SelectedExperienceId); }
+void UMMOExperienceManagerComponent::BeginPlay()
+{ Super::BeginPlay(); if (SelectedExperienceId.IsValid() && LoadState == EMMOExperienceLoadState::Unloaded) StartExperienceLoad(); }
+void UMMOExperienceManagerComponent::EndPlay(EEndPlayReason::Type Reason)
+{ ReleaseExperience(); ReadyCallbacks.Clear(); Super::EndPlay(Reason); }
+bool UMMOExperienceManagerComponent::SetCurrentExperience(FPrimaryAssetId ExperienceId)
+{
+    if (!GetOwner()->HasAuthority() || !ExperienceId.IsValid() || ExperienceId.PrimaryAssetType != FPrimaryAssetType(TEXT("MMOExperience"))) return false;
+    if (SelectedExperienceId.IsValid()) return SelectedExperienceId == ExperienceId;
+    SelectedExperienceId = ExperienceId; GetOwner()->ForceNetUpdate();
+    if (HasBegunPlay()) StartExperienceLoad();
+    return true;
+}
+void UMMOExperienceManagerComponent::OnRep_SelectedExperienceId()
+{ if (HasBegunPlay() && LoadState == EMMOExperienceLoadState::Unloaded) StartExperienceLoad(); }
+UMMOPawnData* UMMOExperienceManagerComponent::GetPawnData() const
+{ return IsExperienceReady() && Experience ? Experience->DefaultPawnData.Get() : nullptr; }
+void UMMOExperienceManagerComponent::CallOrRegister_OnReady(FOnMMOExperienceReady::FDelegate Delegate)
+{ if (IsExperienceReady()) Delegate.ExecuteIfBound(Experience); else ReadyCallbacks.Add(Delegate); }
+void UMMOExperienceManagerComponent::StartExperienceLoad()
+{
+    if (LoadState != EMMOExperienceLoadState::Unloaded || !SelectedExperienceId.IsValid()) return;
+    LoadState = EMMOExperienceLoadState::LoadingAssets;
+    GetWorld()->GetTimerManager().SetTimer(LoadTimeout, FTimerDelegate::CreateWeakLambda(this, [this]() { Fail(TEXT("Experience load exceeded 60 seconds")); }), 60.f, false);
+    const FSoftObjectPath Path = UAssetManager::Get().GetPrimaryAssetPath(SelectedExperienceId);
+    if (!Path.IsValid()) { Fail(TEXT("Asset Manager has no entry for ") + SelectedExperienceId.ToString()); return; }
+    auto Handle = UAssetManager::GetStreamableManager().RequestAsyncLoad(Path, FStreamableDelegate::CreateWeakLambda(this, [this, Path]()
+    {
+        if (LoadState != EMMOExperienceLoadState::LoadingAssets) return;
+        Experience = Cast<UMMOExperienceDefinition>(Path.ResolveObject());
+        if (!Experience) { Fail(TEXT("Experience is not an MMOExperienceDefinition data asset: ") + Path.ToString()); return; }
+        LoadDependencyClosure();
+    }));
+    if (Handle) LoadHandles.Add(Handle); else Fail(TEXT("Could not request Experience asset"));
+}
+void UMMOExperienceManagerComponent::LoadDependencyClosure()
+{
+    if (LoadState != EMMOExperienceLoadState::LoadingAssets || !Experience) return;
+    TArray<FSoftObjectPath> Paths;
+    if (Experience->DefaultPawnData.IsNull()) { Fail(TEXT("Experience.DefaultPawnData is required")); return; }
+    Paths.Add(Experience->DefaultPawnData.ToSoftObjectPath());
+    TArray<UPrimaryDataAsset*> DataAssets { Experience };
+    for (const auto& Set : Experience->ActionSets)
+    {
+        if (Set.IsNull()) { Fail(TEXT("Experience contains an empty ActionSet")); return; }
+        Paths.AddUnique(Set.ToSoftObjectPath()); if (Set.Get()) DataAssets.Add(Set.Get());
+    }
+    if (UMMOPawnData* Data = Experience->DefaultPawnData.Get())
+    {
+        DataAssets.Add(Data);
+        if (Data->PawnClass.IsNull()) { Fail(TEXT("PawnData.PawnClass is required")); return; }
+        Paths.AddUnique(Data->PawnClass.ToSoftObjectPath());
+        for (const auto& Set : Data->AbilitySets)
+        {
+            if (Set.IsNull()) { Fail(TEXT("PawnData contains an empty AbilitySet")); return; }
+            Paths.AddUnique(Set.ToSoftObjectPath());
+            if (Set.Get()) { DataAssets.Add(Set.Get()); Set->CollectAssetPaths(Paths); }
+        }
+        if (GetNetMode() != NM_DedicatedServer)
+        {
+            if (!Data->InputMappingContext.IsNull()) Paths.AddUnique(Data->InputMappingContext.ToSoftObjectPath());
+            if (!Data->InputConfig.IsNull())
+            {
+                Paths.AddUnique(Data->InputConfig.ToSoftObjectPath());
+                if (UMMOInputConfig* InputConfig = Data->InputConfig.Get())
+                {
+                    DataAssets.Add(InputConfig);
+                    InputConfig->CollectAssetPaths(Paths);
+                }
+            }
+            if (!Data->AnimInstanceClass.IsNull()) Paths.AddUnique(Data->AnimInstanceClass.ToSoftObjectPath());
+        }
+    }
+    // Include metadata-derived soft component/widget references used by the world's Actions.
+    for (UPrimaryDataAsset* Data : DataAssets)
+    {
+        TArray<FAssetBundleEntry> Bundles;
+        UAssetManager::Get().GetAssetBundleEntries(Data->GetPrimaryAssetId(), Bundles);
+        for (const auto& Bundle : Bundles)
+        {
+            if ((Bundle.BundleName == TEXT("Client") && GetNetMode() == NM_DedicatedServer) ||
+                (Bundle.BundleName == TEXT("Server") && GetNetMode() == NM_Client)) continue;
+            for (const auto& Path : Bundle.AssetPaths) Paths.AddUnique(FSoftObjectPath(Path));
+        }
+    }
+    TArray<FSoftObjectPath> Missing;
+    for (const FSoftObjectPath& Path : Paths)
+    {
+        if (Path.ResolveObject()) continue;
+        if (RequestedPaths.Contains(Path)) { Fail(TEXT("Dependency failed to load: ") + Path.ToString()); return; }
+        Missing.AddUnique(Path);
+    }
+    if (Missing.IsEmpty()) { ActivateFeatures(); return; }
+    for (const auto& Path : Missing) RequestedPaths.Add(Path);
+    auto Handle = UAssetManager::GetStreamableManager().RequestAsyncLoad(Missing, FStreamableDelegate::CreateUObject(this, &ThisClass::LoadDependencyClosure));
+    if (Handle) LoadHandles.Add(Handle); else Fail(TEXT("Could not request Experience dependencies"));
+}
+void UMMOExperienceManagerComponent::ActivateFeatures()
+{
+    LoadState = EMMOExperienceLoadState::LoadingGameFeatures;
+    TArray<FString> Names = Experience->GameFeaturesToEnable;
+    for (const auto& Set : Experience->ActionSets) for (const FString& Name : Set->GameFeaturesToEnable) Names.AddUnique(Name);
+    TArray<FString> ResolvedURLs;
+    for (const FString& Name : Names)
+    {
+        FString URL;
+        if (Name.IsEmpty() || !UGameFeaturesSubsystem::Get().GetPluginURLByName(Name, URL)) { Fail(TEXT("Unknown Game Feature: ") + Name); return; }
+        ResolvedURLs.AddUnique(URL);
+    }
+    AcquiredPluginURLs = MoveTemp(ResolvedURLs);
+    for (const FString& URL : AcquiredPluginURLs) ++PluginUsers.FindOrAdd(URL);
+    PendingPlugins = AcquiredPluginURLs.Num();
+    if (!PendingPlugins) { FinishActivation(); return; }
+    for (const FString& URL : AcquiredPluginURLs)
+    {
+        UGameFeaturesSubsystem::Get().LoadAndActivateGameFeaturePlugin(URL, FGameFeaturePluginLoadComplete::CreateWeakLambda(this, [this, URL](const UE::GameFeatures::FResult& Result)
+        {
+            if (LoadState != EMMOExperienceLoadState::LoadingGameFeatures) return;
+            if (Result.HasError()) { Fail(TEXT("Game Feature failed: ") + URL + TEXT(" / ") + Result.GetError()); return; }
+            if (--PendingPlugins == 0) FinishActivation();
+        }));
+        if (LoadState != EMMOExperienceLoadState::LoadingGameFeatures) break;
+    }
+}
+void UMMOExperienceManagerComponent::FinishActivation()
+{
+    LoadState = EMMOExperienceLoadState::ExecutingActions;
+    FGameFeatureActivatingContext Context;
+    if (const FWorldContext* WorldContext = GEngine->GetWorldContextFromWorld(GetWorld())) Context.SetRequiredWorldContextHandle(WorldContext->ContextHandle);
+    auto Activate = [this, &Context](const TArray<TObjectPtr<UGameFeatureAction>>& Actions)
+    {
+        for (UGameFeatureAction* Action : Actions) if (Action)
+        {
+            // Duplicate instanced actions per manager so different worlds never share mutable action state.
+            UGameFeatureAction* Instance = DuplicateObject<UGameFeatureAction>(Action, this);
+            ActivatedActions.Add(Instance);
+            Instance->OnGameFeatureRegistering(); Instance->OnGameFeatureLoading(); Instance->OnGameFeatureActivating(Context);
+        }
+    };
+    Activate(Experience->Actions);
+    for (const auto& Set : Experience->ActionSets) Activate(Set->Actions);
+    GetWorld()->GetTimerManager().ClearTimer(LoadTimeout);
+    LoadState = EMMOExperienceLoadState::Ready;
+    UE_LOG(LogMMOExperience, Display, TEXT("Experience Ready: %s (%s)"), *SelectedExperienceId.ToString(), *GetWorld()->GetName());
+    ReadyCallbacks.Broadcast(Experience); ReadyCallbacks.Clear(); OnExperienceReady.Broadcast(Experience);
+    // Resolve the replicated-GameState/Pawn arrival-order case without polling.
+    for (TActorIterator<APawn> It(GetWorld()); It; ++It) if (auto* Extension = It->FindComponentByClass<UMMOPawnExtensionComponent>()) Extension->CheckDefaultInitialization();
+}
+void UMMOExperienceManagerComponent::Fail(const FString& Reason)
+{
+    if (LoadState == EMMOExperienceLoadState::Failed || LoadState == EMMOExperienceLoadState::Deactivating) return;
+    FailureReason = Reason; ReleaseExperience(); LoadState = EMMOExperienceLoadState::Failed;
+    ReadyCallbacks.Clear(); UE_LOG(LogMMOExperience, Error, TEXT("%s"), *Reason); OnExperienceFailed.Broadcast(Reason);
+}
+void UMMOExperienceManagerComponent::ReleaseExperience()
+{
+    LoadState = EMMOExperienceLoadState::Deactivating;
+    if (GetWorld()) GetWorld()->GetTimerManager().ClearTimer(LoadTimeout);
+    for (const auto& Handle : LoadHandles) if (Handle && !Handle->HasLoadCompleted()) Handle->CancelHandle();
+    auto Teardown = MakeShared<FActionTeardown>();
+    Teardown->Handles = MoveTemp(LoadHandles); Teardown->URLs = MoveTemp(AcquiredPluginURLs);
+    for (UGameFeatureAction* Action : ActivatedActions) Teardown->Actions.Emplace(Action);
+    FGameFeatureDeactivatingContext Context(TEXT("MMOExperienceEnd"), [Teardown](FStringView) { ++Teardown->Completed; Teardown->TryFinish(); });
+    if (GEngine && GetWorld()) if (const FWorldContext* WorldContext = GEngine->GetWorldContextFromWorld(GetWorld())) Context.SetRequiredWorldContextHandle(WorldContext->ContextHandle);
+    for (int32 Index = ActivatedActions.Num() - 1; Index >= 0; --Index) ActivatedActions[Index]->OnGameFeatureDeactivating(Context);
+    ActivatedActions.Reset(); Teardown->Expected = Context.GetNumPausers(); Teardown->TryFinish();
+}
+```
+
+</details>
+
+## 文件 15：MMOFrameworkSubsystem.cpp
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp"
+#include "MMOFrameworkSubsystem.h"
+#include "Components/GameFrameworkComponentManager.h"
+#include "Modules/ModuleManager.h"
+
+IMPLEMENT_MODULE(FDefaultModuleImpl, MMOFramework)
+namespace MMOInitTags
+{
+    UE_DEFINE_GAMEPLAY_TAG(Spawned, "InitState.Spawned");
+    UE_DEFINE_GAMEPLAY_TAG(DataAvailable, "InitState.DataAvailable");
+    UE_DEFINE_GAMEPLAY_TAG(DataInitialized, "InitState.DataInitialized");
+    UE_DEFINE_GAMEPLAY_TAG(GameplayReady, "InitState.GameplayReady");
+}
+void UMMOFrameworkSubsystem::Initialize(FSubsystemCollectionBase& Collection)
+{
+    Super::Initialize(Collection);
+    UGameFrameworkComponentManager* Manager = Collection.InitializeDependency<UGameFrameworkComponentManager>();
+    Manager->RegisterInitState(MMOInitTags::Spawned, false, FGameplayTag());
+    Manager->RegisterInitState(MMOInitTags::DataAvailable, false, MMOInitTags::Spawned);
+    Manager->RegisterInitState(MMOInitTags::DataInitialized, false, MMOInitTags::DataAvailable);
+    Manager->RegisterInitState(MMOInitTags::GameplayReady, false, MMOInitTags::DataInitialized);
+}
+```
+
+</details>
+
+## 文件 16：MMOInputConfig.cpp
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp"
+#include "MMOInputConfig.h"
+#include "InputAction.h"
+
+UInputAction* UMMOInputConfig::FindInputActionForTag(FGameplayTag InputTag) const
+{
+    if (!InputTag.IsValid()) return nullptr;
+    for (const FMMOTaggedInputAction& Entry : NativeInputActions)
+    {
+        if (Entry.InputTag == InputTag && !Entry.InputAction.IsNull()) return Entry.InputAction.Get();
+    }
+    return nullptr;
+}
+
+void UMMOInputConfig::CollectAssetPaths(TArray<FSoftObjectPath>& OutPaths) const
+{
+    for (const FMMOTaggedInputAction& Entry : NativeInputActions)
+    {
+        if (!Entry.InputAction.IsNull()) OutPaths.AddUnique(Entry.InputAction.ToSoftObjectPath());
+    }
+}
+```
+
+</details>
+
+## 文件 17：MMOPawnExtensionComponent.cpp
+
+目标路径：`Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp"
+#include "MMOPawnExtensionComponent.h"
+#include "MMOPawnData.h"
+#include "MMOFrameworkSubsystem.h"
+#include "MMOExperienceManagerComponent.h"
+#include "AbilitySystemComponent.h"
+#include "Components/GameFrameworkComponentManager.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
+#include "GameFramework/PlayerState.h"
+#include "Net/UnrealNetwork.h"
+#include "Templates/UnrealTemplate.h"
+
+const FName UMMOPawnExtensionComponent::FeatureName(TEXT("MMOPawnExtension"));
+UMMOPawnExtensionComponent::UMMOPawnExtensionComponent(const FObjectInitializer& Initializer) : Super(Initializer)
+{ SetIsReplicatedByDefault(true); PrimaryComponentTick.bCanEverTick = false; }
+void UMMOPawnExtensionComponent::OnRegister()
+{
+    Super::OnRegister();
+    if (!ensure(GetPawn<APawn>())) return;
+    RegisterInitStateFeature();
+}
+void UMMOPawnExtensionComponent::BeginPlay()
+{
+    Super::BeginPlay();
+    BindOnActorInitStateChanged(NAME_None, FGameplayTag(), false);
+    TryToChangeInitState(MMOInitTags::Spawned);
+    CheckDefaultInitialization();
+}
+void UMMOPawnExtensionComponent::EndPlay(EEndPlayReason::Type Reason)
+{ UninitializeAbilitySystem(); UnregisterInitStateFeature(); Super::EndPlay(Reason); }
+void UMMOPawnExtensionComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{ Super::GetLifetimeReplicatedProps(OutLifetimeProps); DOREPLIFETIME(UMMOPawnExtensionComponent, PawnData); }
+bool UMMOPawnExtensionComponent::SetPawnData(UMMOPawnData* InData)
+{
+    if (!GetOwner()->HasAuthority() || !InData || (PawnData && PawnData != InData)) return false;
+    PawnData = InData; GetOwner()->ForceNetUpdate(); CheckDefaultInitialization(); return true;
+}
+void UMMOPawnExtensionComponent::OnRep_PawnData() { CheckDefaultInitialization(); }
+bool UMMOPawnExtensionComponent::IsPawnReady() const
+{ return AbilitySystem && AbilitySystem->GetAvatarActor() == GetOwner() && HasReachedInitState(MMOInitTags::GameplayReady); }
+bool UMMOPawnExtensionComponent::InitializeAbilitySystem(UAbilitySystemComponent* InASC, AActor* OwnerActor)
+{
+    if (!InASC || !OwnerActor || !GetPawn<APawn>()) return false;
+    if (AbilitySystem == InASC && InASC->GetAvatarActor() == GetOwner()) { CheckDefaultInitialization(); return true; }
+    UninitializeAbilitySystem();
+    if (AActor* PreviousAvatar = InASC->GetAvatarActor(); PreviousAvatar && PreviousAvatar != GetOwner())
+    {
+        if (auto* PreviousExtension = PreviousAvatar->FindComponentByClass<UMMOPawnExtensionComponent>()) PreviousExtension->UninitializeAbilitySystem();
+    }
+    AbilitySystem = InASC;
+    InASC->InitAbilityActorInfo(OwnerActor, GetOwner());
+    OnAbilitySystemInitialized.Broadcast();
+    CheckDefaultInitialization();
+    return true;
+}
+void UMMOPawnExtensionComponent::UninitializeAbilitySystem()
+{
+    if (!AbilitySystem) return;
+    // An old pawn must never clear the new pawn's avatar during overlapping replication/destruction.
+    if (AbilitySystem->GetAvatarActor() == GetOwner())
+    {
+        AbilitySystem->CancelAllAbilities();
+        FScopedAbilityListLock AbilityLock(*AbilitySystem);
+        for (FGameplayAbilitySpec& Spec : AbilitySystem->GetActivatableAbilities()) Spec.InputPressed = false;
+        AbilitySystem->RemoveAllGameplayCues();
+        AbilitySystem->SetAvatarActor(nullptr);
+    }
+    AbilitySystem = nullptr;
+    bReadyAnnounced = false;
+    OnAbilitySystemUninitialized.Broadcast();
+}
+void UMMOPawnExtensionComponent::HandleControllerChanged()
+{ if (AbilitySystem && AbilitySystem->GetAvatarActor() == GetOwner()) AbilitySystem->RefreshAbilityActorInfo(); CheckDefaultInitialization(); }
+void UMMOPawnExtensionComponent::HandlePlayerStateReplicated() { CheckDefaultInitialization(); }
+void UMMOPawnExtensionComponent::SetupPlayerInputComponent() { bInputReady = true; CheckDefaultInitialization(); }
+bool UMMOPawnExtensionComponent::CanChangeInitState(UGameFrameworkComponentManager* Manager, FGameplayTag Current, FGameplayTag Desired) const
+{
+    APawn* Pawn = GetPawn<APawn>();
+    if (!Current.IsValid()) return Desired == MMOInitTags::Spawned && Pawn;
+    if (!Pawn) return false;
+    if (Current == MMOInitTags::Spawned && Desired == MMOInitTags::DataAvailable)
+    {
+        const auto* Experience = UMMOExperienceManagerComponent::FindExperienceManager(GetWorld());
+        if (!PawnData || !Experience || !Experience->IsExperienceReady()) return false;
+        if ((Pawn->HasAuthority() || Pawn->IsLocallyControlled()) && !Pawn->GetController()) return false;
+        return true;
+    }
+    if (Current == MMOInitTags::DataAvailable && Desired == MMOInitTags::DataInitialized)
+    {
+        if (!AbilitySystem || AbilitySystem->GetAvatarActor() != Pawn) return false;
+        if (const APlayerController* PC = Cast<APlayerController>(Pawn->GetController()); PC && PC->IsLocalController() && !bInputReady) return false;
+        return Manager->HaveAllFeaturesReachedInitState(Pawn, MMOInitTags::DataAvailable);
+    }
+    return Current == MMOInitTags::DataInitialized && Desired == MMOInitTags::GameplayReady;
+}
+void UMMOPawnExtensionComponent::HandleChangeInitState(UGameFrameworkComponentManager*, FGameplayTag, FGameplayTag Desired)
+{
+    // Consumers subscribe before Super::BeginPlay, then bind once both data and InputComponent exist.
+    // SetupPlayerInputComponent may set bInputReady here; the outer state chain advances afterward.
+    if (Desired == MMOInitTags::DataAvailable) OnDataAvailable.Broadcast();
+}
+void UMMOPawnExtensionComponent::OnActorInitStateChanged(const FActorInitStateChangedParams& Params)
+{ if (Params.FeatureName != FeatureName && Params.FeatureState == MMOInitTags::DataAvailable) CheckDefaultInitialization(); }
+void UMMOPawnExtensionComponent::CheckDefaultInitialization()
+{
+    if (!HasBegunPlay() || bCheckingInitialization) return;
+    TGuardValue<bool> Guard(bCheckingInitialization, true);
+    CheckDefaultInitializationForImplementers();
+    ContinueInitStateChain({MMOInitTags::Spawned, MMOInitTags::DataAvailable, MMOInitTags::DataInitialized, MMOInitTags::GameplayReady});
+    if (IsPawnReady() && !bReadyAnnounced) { bReadyAnnounced = true; OnGameplayReady.Broadcast(); }
+}
+```
+
+</details>
+
+## 写完后怎样确认
+
+保存全部文件，回到当前阶段执行文件核对和 Editor 构建。文件核对只能发现缺文件、复制不完整和版本差异；`Result: Succeeded` 才说明编译成功。资产、UI 与联机行为继续按 [对应课程](/docs/08-mmorpg/character-gas) 验收。

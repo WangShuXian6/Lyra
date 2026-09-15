@@ -66,6 +66,49 @@ description: 从一次性票据到角色生成，正确处理异步保存、重�
 
 进程关停有额外边界：在 `EndPlay` 发出异步 HTTP，不等于进程退出前一定完成。开发验证应先让客户端正常退出、确认 final save 日志，再关闭游戏服务器和后端。生产服务需要显式的停止准入、排空玩家、等待保存完成与超时退出流程。直接强杀进程可能损失最近一次成功保存之后的修改。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![保存响应丢失时为什么保留原请求](/media/guide-diagrams/08-mmorpg-network-persistence.svg)
+
+**读图**：R 和版本数是教学例子，不是实际账号数据。重试时不能只保留 requestId，却偷偷改变请求体。
+以下节选 `AMMOGameMode::Save` 中创建或复用保存请求的部分；发送请求与处理响应在函数后半部。
+
+源码：`examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp`，本机第 684–697 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+auto* Backend = GetGameInstance()->GetSubsystem<UMMOBackendServer>(); if (!Backend) return;
+Record->bFinal |= bFinal;
+if (auto* PS = Record->Player.Get()) Record->LastSnapshot = PS->MakeSnapshot();
+if (Record->bInFlight || !Record->LastSnapshot) return;
+Record->bInFlight = true;
+if (!Record->PendingBody)
+{
+    Record->PendingBody = MakeShared<FJsonObject>(); Record->PendingBody->SetStringField(TEXT("characterId"), Record->CharacterID);
+    Record->PendingBody->SetStringField(TEXT("leaseToken"), Record->Lease); Record->PendingBody->SetNumberField(TEXT("expectedVersion"), Record->Version);
+    Record->PendingBody->SetStringField(TEXT("requestId"), FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower)); Record->PendingBody->SetObjectField(TEXT("state"), Record->LastSnapshot);
+    Record->bPendingFinal = Record->bFinal;
+}
+// A lost response must retry exactly the same idempotency key, version and snapshot.
+const auto Body = Record->PendingBody;
+```
+
+`LastSnapshot` 保存最近捕获的数据，`PendingBody` 保存正在提交的不可替换请求。`bInFlight` 阻止同一记录并发提交；只有 PendingBody 为空才生成新 requestId。这解释了为什么“角色又移动了一步”不会改写已经在重试的请求。
+
+`bFinal` 表示玩家正在离开，希望完成最终保存。它与“这一个在途请求是否已经包含最终快照”不同，所以还有 bPendingFinal。函数后半部分根据成功/失败更新版本、重试或释放租约；阅读时继续沿回调走完，不能看到 Request 调用就判定保存成功。
+
+### 用日志验证而不是用退出画面猜
+
+1. 入服记录角色 ID 与版本；不要把票据/租约原文放进截图或提交到仓库。
+2. 获得经验或药剂，等服务器输出保存完成，再退出角色。
+3. 确认 final save 后重新进入，比较 XP、Mana、Inventory 与位置。
+4. 响应丢失属于故障注入用例，在隔离测试服务执行本教程故障测试；普通成功截图无法覆盖它。
+
+**完成检查**：能指出数据库事务、HTTP 请求状态、UE 在线角色状态各属于哪个进程。若 UI 显示了新经验但尚未成功保存，进程退出后仍可能恢复到上一份快照。
+
+{/* full-guide-end */}
+
 ## 操作、结果与排障
 
 1. 记录入服日志中的角色 ID 与 version，击败目标后等待一次自动保存。
@@ -77,4 +120,3 @@ description: 从一次性票据到角色生成，正确处理异步保存、重�
 保存 400 通常意味着快照不符合协议，例如药剂数量为零仍被提交。409 要先区分角色已在使用、版本冲突和幂等冲突，不能统一无限重试。连接失败应显示可行动的错误，不记录账号密码或服务器 secret。
 
 练习：画出“自动保存进行中 → 玩家退出 → 第一次响应丢失 → 重试成功 → 最终保存 → 释放租约”的时序图，并标出每一次 requestId 和 expectedVersion。
-

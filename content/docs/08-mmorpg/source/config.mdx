@@ -1,0 +1,885 @@
+---
+title: 项目配置与界面契约：完整文件
+description: 按目标路径新建或替换文件，复制完整实现，再与逐步操作课程对照。
+---
+
+先复制完整文件，再按截图核对落盘结果。Config 中的 /Script/ 引用是原生类，/Game/ 引用是随后手工创建的资产。资产还没创建时，路径存在于文本不代表对象存在。
+
+[返回对应操作与解释](/docs/08-mmorpg/configuration) · [返回制作主线](/docs/08-mmorpg/from-zero)
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+## 复制之前先确认位置
+
+下列路径均相对你的 **MMORPG 工程根目录**。在 Rider 的文件视图中右键父目录 → New → File，输入完整文件名（包括扩展名）；文件已存在时替换整个文件，不能把第二套类声明追加到末尾。页面给出的是当前教程的完整文件，代码框右上角可以复制，不含省略号占位实现。
+
+先写 `.h` 再写 `.cpp` 便于阅读；**完成当前源码阶段的全部文件后才编译**。`*.generated.h` 由 UnrealHeaderTool 生成，不手工创建。`#include`、模块导出宏和函数签名都要保留。一个文件中出现多个类时，复制整个文件一次即可。
+
+按 [四个源码阶段](/docs/08-mmorpg/from-zero) 使用这些文件。本组从 **03 阶段**开始使用。00–02 阶段保留当阶段的轻量 `.uproject` 和 Build.cs；03 阶段再切换到完整项目依赖。
+
+## 逐段理解与资产连接
+
+### 配置文件是实际连接，不是说明文字
+
+DefaultEngine.ini 选择 GameInstance、Viewport、LocalPlayer 和 GameMode；DefaultInput.ini 选择 Enhanced Input 的默认类；DefaultGame.ini 选择 UIPolicy、Asset Manager 扫描和 Cook 范围。写错 `/Script/模块.类` 会找不到原生类；写错 `/Game/..._C` 会找不到蓝图生成类。
+
+DefaultGameplayTags.ini 定义语义标签。`+` 追加数组，`!` 清空数组；复制整份文件时只保留一套目标规则，别把同一 Primary Asset Type 追加两份。
+
+ui-designer-contract.json 描述七个 Widget 的父类、控件 Name、类型和绑定；ui-designer-strings.json 提供字符串表 Key/Source。它们是编辑器制作规范，运行中的 Widget 不会因为 JSON 改了就自动重新保存，仍需按教程重建/修改资产并编译保存。
+
+SQL 迁移属于后端 schema，不贴到 UE 的 ini。翻译配置属于 GatherText 命令，不贴进 Actor 蓝图。按文件名与执行程序区分这些文本。
+
+## 本组文件清单
+
+| 文件 | 行数 | 操作 |
+|---|---:|---|
+| `Config/DefaultEditor.ini` | 2 | 新建；已有同名文件则整体替换 |
+| `Config/DefaultEngine.ini` | 18 | 新建；已有同名文件则整体替换 |
+| `Config/DefaultGame.ini` | 35 | 新建；已有同名文件则整体替换 |
+| `Config/DefaultGameUserSettings.ini` | 24 | 新建；已有同名文件则整体替换 |
+| `Config/DefaultGameplayTags.ini` | 13 | 新建；已有同名文件则整体替换 |
+| `Config/DefaultInput.ini` | 3 | 新建；已有同名文件则整体替换 |
+| `Config/Localization/MMO_Compile.ini` | 15 | 新建；已有同名文件则整体替换 |
+| `Config/Localization/MMO_Export.ini` | 17 | 新建；已有同名文件则整体替换 |
+| `Config/Localization/MMO_Gather.ini` | 35 | 新建；已有同名文件则整体替换 |
+| `Config/Localization/MMO_GenerateReports.ini` | 13 | 新建；已有同名文件则整体替换 |
+| `Config/Localization/MMO_Import.ini` | 15 | 新建；已有同名文件则整体替换 |
+| `Config/Windows/WindowsEngine.ini` | 9 | 新建；已有同名文件则整体替换 |
+| `backend/migrations/001_initial.sql` | 28 | 新建；已有同名文件则整体替换 |
+| `backend/migrations/002_state_constraints.sql` | 8 | 新建；已有同名文件则整体替换 |
+| `dependencies.json` | 17 | 新建；已有同名文件则整体替换 |
+| `localization-runtime-zh-Hans.json` | 162 | 新建；已有同名文件则整体替换 |
+| `ui-designer-contract.json` | 145 | 新建；已有同名文件则整体替换 |
+| `ui-designer-strings.json` | 53 | 新建；已有同名文件则整体替换 |
+
+## 文件 1：DefaultEditor.ini
+
+目标路径：`Config/DefaultEditor.ini`。原文件位于包内 `examples/MMORPG/Config/DefaultEditor.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/DefaultEditor.ini"
+[/Script/Localization.LocalizationSettings]
++GameTargetsSettings=(Name="MMO",Guid=374F335B42074AF99406DBD356F89531,TargetDependencies=,AdditionalManifestDependencies=,RequiredModuleNames=,GatherFromTextFiles=(IsEnabled=True,SearchDirectories=((Path="Source/MMORPG"),(Path="Plugins/MMOFramework/Source")),ExcludePathWildcards=,FileExtensions=((Pattern="h"),(Pattern="cpp")),ShouldGatherFromEditorOnlyData=False),GatherFromPackages=(IsEnabled=True,IncludePathWildcards=((Pattern="Content/UI/*"),(Pattern="Content/Localization/ST_MMO.uasset")),ExcludePathWildcards=,FileExtensions=((Pattern="uasset")),Collections=,ExcludeClasses=,ShouldExcludeDerivedClasses=False,ShouldGatherFromEditorOnlyData=False,SkipGatherCache=False),GatherFromMetaData=(IsEnabled=False,IncludePathWildcards=,ExcludePathWildcards=,KeySpecifications=,ShouldGatherFromEditorOnlyData=False),ExportSettings=(CollapseMode=IdenticalTextIdAndSource,POFormat=Unreal,ShouldPersistCommentsOnExport=True,ShouldAddSourceLocationsAsComments=True),CompileSettings=(SkipSourceCheck=False,ValidateFormatPatterns=True,ValidateSafeWhitespace=True),NativeCultureIndex=0,SupportedCulturesStatistics=((CultureName="en"),(CultureName="zh-Hans")))
+```
+
+</details>
+
+## 文件 2：DefaultEngine.ini
+
+目标路径：`Config/DefaultEngine.ini`。原文件位于包内 `examples/MMORPG/Config/DefaultEngine.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/DefaultEngine.ini"
+[/Script/EngineSettings.GameMapsSettings]
+EditorStartupMap=/Engine/Maps/Entry
+GameDefaultMap=/Engine/Maps/Entry
+ServerDefaultMap=/Engine/Maps/Entry
+GlobalDefaultGameMode=/Game/MMO/BP_MMOGameMode.BP_MMOGameMode_C
+GameInstanceClass=/Script/MMORPG.MMOGameInstance
+
+[/Script/Engine.Engine]
+LocalPlayerClassName=/Script/CommonGame.CommonLocalPlayer
+GameViewportClientClassName=/Script/CommonUI.CommonGameViewportClient
+
+
+[/Script/Engine.RendererSettings]
+r.DefaultFeature.AutoExposure=False
+
+
+[HTTP]
+HttpTimeout=15
+```
+
+</details>
+
+## 文件 3：DefaultGame.ini
+
+目标路径：`Config/DefaultGame.ini`。原文件位于包内 `examples/MMORPG/Config/DefaultGame.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/DefaultGame.ini"
+[/Script/EngineSettings.GeneralProjectSettings]
+ProjectName=Lyra Pattern Lab - MMORPG
+ProjectID=7E70BB0E4B75D2F15D9C5384686F19AA
+
+[Internationalization]
++LocalizationPaths=%GAMEDIR%Content/Localization/MMO
+
+[/Script/MMORPG.MMOUIManager]
+DefaultUIPolicyClass=/Game/UI/BP_MMOUIPolicy.BP_MMOUIPolicy_C
+
+[/Script/UnrealEd.ProjectPackagingSettings]
+bCookAll=False
+InternationalizationPreset=EFIGSCJK
+!CulturesToStage=ClearArray
++CulturesToStage=en
++CulturesToStage=zh-Hans
++MapsToCook=(FilePath="/Engine/Maps/Entry")
++DirectoriesToAlwaysCook=(Path="/MMOCore")
++DirectoriesToAlwaysCook=(Path="/Game/UI")
++DirectoriesToAlwaysCook=(Path="/Game/Localization")
++DirectoriesToAlwaysCook=(Path="/Game/MMO")
+
+[/Script/CommonInput.CommonInputSettings]
+bEnableEnhancedInputSupport=True
+InputData=/Script/MMORPG.MMOInputData
+
+
+[/Script/Engine.AssetManagerSettings]
+; Override the engine's editor-only label type so this explicit label can pull its teaching Blueprint into Cook.
++PrimaryAssetTypesToScan=(PrimaryAssetType="PrimaryAssetLabel",AssetBaseClass="/Script/Engine.PrimaryAssetLabel",bHasBlueprintClasses=False,bIsEditorOnly=False,Directories=((Path="/Game/MMO/Labels")),Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=AlwaysCook))
++PrimaryAssetTypesToScan=(PrimaryAssetType="MMOInputConfig",AssetBaseClass="/Script/MMOFramework.MMOInputConfig",bHasBlueprintClasses=False,bIsEditorOnly=False,Directories=((Path="/Game/MMO/Input")),Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=AlwaysCook))
++PrimaryAssetTypesToScan=(PrimaryAssetType="MMOExperience",AssetBaseClass="/Script/MMOFramework.MMOExperienceDefinition",bHasBlueprintClasses=False,bIsEditorOnly=False,Directories=((Path="/Game/MMO/Experiences")),Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=AlwaysCook))
++PrimaryAssetTypesToScan=(PrimaryAssetType="MMOPawnData",AssetBaseClass="/Script/MMOFramework.MMOPawnData",bHasBlueprintClasses=False,bIsEditorOnly=False,Directories=((Path="/Game/MMO/Pawns")),Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=AlwaysCook))
++PrimaryAssetTypesToScan=(PrimaryAssetType="MMOAbilitySet",AssetBaseClass="/Script/MMOFramework.MMOAbilitySet",bHasBlueprintClasses=False,bIsEditorOnly=False,Directories=((Path="/Game/MMO/Abilities")),Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=AlwaysCook))
++PrimaryAssetTypesToScan=(PrimaryAssetType="GameFeatureData",AssetBaseClass="/Script/GameFeatures.GameFeatureData",bHasBlueprintClasses=False,bIsEditorOnly=False,Directories=((Path="/MMOCore")),Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=AlwaysCook))
+```
+
+</details>
+
+## 文件 4：DefaultGameUserSettings.ini
+
+目标路径：`Config/DefaultGameUserSettings.ini`。原文件位于包内 `examples/MMORPG/Config/DefaultGameUserSettings.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/DefaultGameUserSettings.ini"
+[ScalabilityGroups]
+sg.ResolutionQuality=100
+sg.ViewDistanceQuality=1
+sg.AntiAliasingQuality=1
+sg.ShadowQuality=1
+sg.GlobalIlluminationQuality=1
+sg.ReflectionQuality=1
+sg.PostProcessQuality=1
+sg.TextureQuality=1
+sg.EffectsQuality=1
+sg.FoliageQuality=1
+sg.ShadingQuality=1
+sg.LandscapeQuality=1
+
+[/Script/Engine.GameUserSettings]
+Version=5
+bUseVSync=False
+ResolutionSizeX=1920
+ResolutionSizeY=1080
+LastUserConfirmedResolutionSizeX=1920
+LastUserConfirmedResolutionSizeY=1080
+FullscreenMode=2
+LastConfirmedFullscreenMode=2
+FrameRateLimit=60.000000
+```
+
+</details>
+
+## 文件 5：DefaultGameplayTags.ini
+
+目标路径：`Config/DefaultGameplayTags.ini`。原文件位于包内 `examples/MMORPG/Config/DefaultGameplayTags.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/DefaultGameplayTags.ini"
+[/Script/GameplayTags.GameplayTagsSettings]
+ImportTagsFromConfig=True
++GameplayTagList=(Tag="InputTag.MMO.Move",DevComment="Move action")
++GameplayTagList=(Tag="InputTag.MMO.Look",DevComment="Camera action")
++GameplayTagList=(Tag="InputTag.MMO.Target",DevComment="Select target")
++GameplayTagList=(Tag="InputTag.MMO.Attack",DevComment="Basic attack")
++GameplayTagList=(Tag="InputTag.MMO.Spell",DevComment="Arcane bolt")
++GameplayTagList=(Tag="InputTag.MMO.Inventory",DevComment="Open inventory")
++GameplayTagList=(Tag="InputTag.MMO.Settings",DevComment="Open settings")
++GameplayTagList=(Tag="UI.Layer.Game",DevComment="Gameplay HUD")
++GameplayTagList=(Tag="UI.Layer.Menu",DevComment="Login and panels")
++GameplayTagList=(Tag="UI.Layer.Modal",DevComment="Confirmation dialog")
++GameplayTagList=(Tag="UI.Slot.Status",DevComment="Player-scoped extension")
+```
+
+</details>
+
+## 文件 6：DefaultInput.ini
+
+目标路径：`Config/DefaultInput.ini`。原文件位于包内 `examples/MMORPG/Config/DefaultInput.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/DefaultInput.ini"
+[/Script/Engine.InputSettings]
+DefaultPlayerInputClass=/Script/EnhancedInput.EnhancedPlayerInput
+DefaultInputComponentClass=/Script/EnhancedInput.EnhancedInputComponent
+```
+
+</details>
+
+## 文件 7：MMO_Compile.ini
+
+目标路径：`Config/Localization/MMO_Compile.ini`。原文件位于包内 `examples/MMORPG/Config/Localization/MMO_Compile.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/Localization/MMO_Compile.ini"
+[CommonSettings]
+SourcePath=Content/Localization/MMO
+DestinationPath=Content/Localization/MMO
+ManifestName=MMO.manifest
+ArchiveName=MMO.archive
+NativeCulture=en
+CulturesToGenerate=en
+CulturesToGenerate=zh-Hans
+ResourceName=MMO.locres
+bSkipSourceCheck=false
+bValidateFormatPatterns=true
+bValidateSafeWhitespace=true
+
+[GatherTextStep0]
+CommandletClass=GenerateTextLocalizationResource
+```
+
+</details>
+
+## 文件 8：MMO_Export.ini
+
+目标路径：`Config/Localization/MMO_Export.ini`。原文件位于包内 `examples/MMORPG/Config/Localization/MMO_Export.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/Localization/MMO_Export.ini"
+[CommonSettings]
+SourcePath=Content/Localization/MMO
+DestinationPath=Content/Localization/MMO
+ManifestName=MMO.manifest
+ArchiveName=MMO.archive
+NativeCulture=en
+CulturesToGenerate=en
+CulturesToGenerate=zh-Hans
+PortableObjectName=MMO.po
+
+[GatherTextStep0]
+CommandletClass=InternationalizationExport
+bExportLoc=true
+LocalizedTextCollapseMode=ELocalizedTextCollapseMode::IdenticalTextIdAndSource
+POFormat=EPortableObjectFormat::Unreal
+ShouldPersistCommentsOnExport=true
+ShouldAddSourceLocationsAsComments=true
+```
+
+</details>
+
+## 文件 9：MMO_Gather.ini
+
+目标路径：`Config/Localization/MMO_Gather.ini`。原文件位于包内 `examples/MMORPG/Config/Localization/MMO_Gather.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/Localization/MMO_Gather.ini"
+[CommonSettings]
+SourcePath=Content/Localization/MMO
+DestinationPath=Content/Localization/MMO
+ManifestName=MMO.manifest
+ArchiveName=MMO.archive
+NativeCulture=en
+CulturesToGenerate=en
+CulturesToGenerate=zh-Hans
+
+[GatherTextStep0]
+CommandletClass=GatherTextFromSource
+SearchDirectoryPaths=Source/MMORPG
+SearchDirectoryPaths=Plugins/MMOFramework/Source
+FileNameFilters=*.h
+FileNameFilters=*.cpp
+ShouldGatherFromEditorOnlyData=false
+
+[GatherTextStep1]
+CommandletClass=GatherTextFromAssets
+IncludePathFilters=Content/UI/*
+IncludePathFilters=Content/Localization/ST_MMO.uasset
+PackageFileNameFilters=*.uasset
+ShouldGatherFromEditorOnlyData=false
+
+[GatherTextStep2]
+CommandletClass=GenerateGatherManifest
+
+[GatherTextStep3]
+CommandletClass=GenerateGatherArchive
+
+; This report must share the actual Source/Assets gathering context above.
+[GatherTextStep4]
+CommandletClass=GenerateTextLocalizationReport
+bConflictReport=true
+ConflictReportName=MMO_Conflicts.txt
+```
+
+</details>
+
+## 文件 10：MMO_GenerateReports.ini
+
+目标路径：`Config/Localization/MMO_GenerateReports.ini`。原文件位于包内 `examples/MMORPG/Config/Localization/MMO_GenerateReports.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/Localization/MMO_GenerateReports.ini"
+[CommonSettings]
+SourcePath=Content/Localization/MMO
+DestinationPath=Content/Localization/MMO
+ManifestName=MMO.manifest
+ArchiveName=MMO.archive
+CulturesToGenerate=en
+CulturesToGenerate=zh-Hans
+
+; Reads the final manifest/archives without gathering or changing translations.
+[GatherTextStep0]
+CommandletClass=GenerateTextLocalizationReport
+bWordCountReport=true
+WordCountReportName=MMO.csv
+```
+
+</details>
+
+## 文件 11：MMO_Import.ini
+
+目标路径：`Config/Localization/MMO_Import.ini`。原文件位于包内 `examples/MMORPG/Config/Localization/MMO_Import.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/Localization/MMO_Import.ini"
+[CommonSettings]
+SourcePath=Content/Localization/MMO
+DestinationPath=Content/Localization/MMO
+ManifestName=MMO.manifest
+ArchiveName=MMO.archive
+NativeCulture=en
+CulturesToGenerate=en
+CulturesToGenerate=zh-Hans
+PortableObjectName=MMO.po
+
+[GatherTextStep0]
+CommandletClass=InternationalizationExport
+bImportLoc=true
+LocalizedTextCollapseMode=ELocalizedTextCollapseMode::IdenticalTextIdAndSource
+POFormat=EPortableObjectFormat::Unreal
+```
+
+</details>
+
+## 文件 12：WindowsEngine.ini
+
+目标路径：`Config/Windows/WindowsEngine.ini`。原文件位于包内 `examples/MMORPG/Config/Windows/WindowsEngine.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/Windows/WindowsEngine.ini"
+; The tutorial's Windows client targets D3D12 / Shader Model 6.
+; Scalability stays independent and defaults to Medium in DefaultGameUserSettings.ini.
+[/Script/WindowsTargetPlatform.WindowsTargetSettings]
+DefaultGraphicsRHI=DefaultGraphicsRHI_DX12
+!TargetedRHIs=ClearArray
+!D3D11TargetedShaderFormats=ClearArray
+!D3D12TargetedShaderFormats=ClearArray
++D3D12TargetedShaderFormats=PCD3D_SM6
+!VulkanTargetedShaderFormats=ClearArray
+```
+
+</details>
+
+## 文件 13：001_initial.sql
+
+目标路径：`backend/migrations/001_initial.sql`。原文件位于包内 `examples/MMORPG/backend/migrations/001_initial.sql`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```sql title="backend/migrations/001_initial.sql"
+BEGIN;
+CREATE TABLE IF NOT EXISTS schema_migrations(version integer PRIMARY KEY, applied_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE accounts(
+ id uuid PRIMARY KEY DEFAULT gen_random_uuid(), username text NOT NULL UNIQUE CHECK(username ~ '^[a-z0-9_]{3,32}$'),
+ password_hash text NOT NULL, created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE TABLE sessions(token_hash text PRIMARY KEY, account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+ expires_at timestamptz NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX sessions_account_idx ON sessions(account_id);
+CREATE TABLE characters(
+ id uuid PRIMARY KEY DEFAULT gen_random_uuid(), account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+ name text NOT NULL CHECK(length(name) BETWEEN 2 AND 24), version bigint NOT NULL DEFAULT 0 CHECK(version>=0),
+ state jsonb NOT NULL DEFAULT '{"level":1,"xp":0,"health":100,"mana":100,"inventory":[],"position":{"x":0,"y":0,"z":150}}',
+ updated_at timestamptz NOT NULL DEFAULT now(), UNIQUE(account_id,name)
+);
+CREATE INDEX characters_account_idx ON characters(account_id);
+CREATE TABLE join_tickets(token_hash text PRIMARY KEY, account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+ character_id uuid NOT NULL REFERENCES characters(id) ON DELETE CASCADE, server_id text NOT NULL,
+ expires_at timestamptz NOT NULL, consumed_at timestamptz);
+CREATE INDEX join_tickets_expiry_idx ON join_tickets(expires_at);
+CREATE TABLE game_leases(character_id uuid PRIMARY KEY REFERENCES characters(id) ON DELETE CASCADE,
+ account_id uuid NOT NULL UNIQUE REFERENCES accounts(id) ON DELETE CASCADE, token_hash text NOT NULL,
+ server_id text NOT NULL, expires_at timestamptz NOT NULL);
+CREATE TABLE save_requests(character_id uuid NOT NULL REFERENCES characters(id) ON DELETE CASCADE,
+ request_id uuid NOT NULL, lease_hash text NOT NULL, payload_hash text NOT NULL, result_version bigint NOT NULL,
+ created_at timestamptz NOT NULL DEFAULT now(), PRIMARY KEY(character_id, request_id));
+INSERT INTO schema_migrations(version) VALUES (1);
+COMMIT;
+```
+
+</details>
+
+## 文件 14：002_state_constraints.sql
+
+目标路径：`backend/migrations/002_state_constraints.sql`。原文件位于包内 `examples/MMORPG/backend/migrations/002_state_constraints.sql`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```sql title="backend/migrations/002_state_constraints.sql"
+BEGIN;
+ALTER TABLE characters ADD CONSTRAINT state_shape CHECK (
+ jsonb_typeof(state) = 'object' AND state ?& ARRAY['level','xp','health','mana','inventory','position']
+ AND jsonb_typeof(state->'inventory') = 'array' AND jsonb_typeof(state->'position') = 'object');
+CREATE INDEX save_requests_created_idx ON save_requests(created_at);
+CREATE INDEX sessions_expiry_idx ON sessions(expires_at);
+INSERT INTO schema_migrations(version) VALUES (2);
+COMMIT;
+```
+
+</details>
+
+## 文件 15：dependencies.json
+
+目标路径：`dependencies.json`。原文件位于包内 `examples/MMORPG/dependencies.json`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="dependencies.json"
+{
+  "engine": "UE source build 5.8.1",
+  "sourceProject": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+  "importDirectories": [
+    {"from":"Plugins/CommonGame", "to":"Plugins/CommonGame", "reason":"LocalPlayer, PlayerController, UIManager, UIPolicy and root layout"},
+    {"from":"Plugins/CommonUser", "to":"Plugins/CommonUser", "reason":"CommonGame transitive platform-user dependency"},
+    {"from":"Plugins/ModularGameplayActors", "to":"Plugins/ModularGameplayActors", "reason":"Component receiver lifecycle for Game Feature actions"},
+    {"from":"Plugins/UIExtension", "to":"Plugins/UIExtension", "reason":"Player-scoped HUD extension points"}
+  ],
+  "importEngineDirectories": [
+    {"from":"Templates/TemplateResources/High/Characters/Content/Mannequins", "to":"Content/Characters/Mannequins", "reason":"UE 5.8 supplied Manny/Quinn skeletal meshes, skeleton, materials and unarmed locomotion animations; preserve the template's /Game/Characters/Mannequins mount paths"}
+  ],
+  "excluded": ["ShooterCore", "ShooterMaps", "LyraGame", "LyraEditor"],
+  "excludedFromDistribution": ["official Epic code copied locally", "official mannequin assets copied locally"],
+  "originalAssets": "Run prepare_content.py inside MMORPG editor after compiling; generated assets are original tutorial content.",
+  "notice": "Imported Epic code retains original notices and license. Obtain Lyra from Epic; the documentation repository distributes tutorial additions and the copy manifest."
+}
+```
+
+</details>
+
+## 文件 16：localization-runtime-zh-Hans.json
+
+目标路径：`localization-runtime-zh-Hans.json`。原文件位于包内 `examples/MMORPG/localization-runtime-zh-Hans.json`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="localization-runtime-zh-Hans.json"
+{
+  "namespace": "MMOUI",
+  "translations": {
+    "Session.ConnectionFailed": {
+      "source": "Connection failed. Please try joining again.",
+      "zh-Hans": "连接失败，请重新尝试入服。"
+    },
+    "Session.ExperienceUnavailable": {
+      "source": "The game world is unavailable. Please try again later.",
+      "zh-Hans": "游戏世界暂时不可用，请稍后重试。"
+    },
+    "Session.CharacterInitializationFailed": {
+      "source": "Your character could not be initialized. Please try joining again.",
+      "zh-Hans": "角色初始化失败，请重新尝试入服。"
+    },
+    "Session.ServerUnavailable": {
+      "source": "The game server is unavailable. Please try again later.",
+      "zh-Hans": "游戏服务器暂时不可用，请稍后重试。"
+    },
+    "Session.TicketRejected": {
+      "source": "Your entry ticket was rejected or expired. Select your character and join again.",
+      "zh-Hans": "入服票据被拒绝或已过期，请重新选择角色并入服。"
+    },
+    "Session.PersistenceLost": {
+      "source": "Your character session has ended. Join again to reload your saved progress.",
+      "zh-Hans": "角色会话已结束，请重新入服以加载已保存的进度。"
+    },
+    "GamepadInputHint": {
+      "source": "Left stick: move · Right stick: look\nY: target · A: attack · X: arcane bolt\nView: inventory · Menu: settings",
+      "zh-Hans": "左摇杆：移动 · 右摇杆：视角\nY：选择目标 · A：普通攻击 · X：奥术箭\nView：背包 · Menu：设置"
+    },
+    "KeyboardInputHint": {
+      "source": "WASD: move · Hold right mouse: look\nTab: target · 1: attack · 2: arcane bolt\nI: inventory · P: settings",
+      "zh-Hans": "WASD：移动 · 按住鼠标右键：视角\nTab：选择目标 · 1：普通攻击 · 2：奥术箭\nI：背包 · P：设置"
+    },
+    "UsernameTaken": {
+      "source": "That account name is already registered.",
+      "zh-Hans": "该账号名称已被注册。"
+    },
+    "CharacterNameTaken": {
+      "source": "That character name is already in use.",
+      "zh-Hans": "该角色名称已被使用。"
+    },
+    "AlreadyOnline": {
+      "source": "This account already has an active character. Exit that session first.",
+      "zh-Hans": "该账号已有在线角色，请先退出当前会话。"
+    },
+    "CharacterLimit": {
+      "source": "This account has reached the character limit.",
+      "zh-Hans": "该账号的角色数量已达上限。"
+    },
+    "InvalidTicket": {
+      "source": "The join ticket expired or was already used. Request a new ticket.",
+      "zh-Hans": "入服票据已过期或已使用，请重新申请。"
+    },
+    "InvalidInput": {
+      "source": "Check the account name, password (12 or more characters), and character name.",
+      "zh-Hans": "请检查账号名称、密码（至少 12 个字符）和角色名称。"
+    },
+    "Unauthorized": {
+      "source": "The account or password is incorrect, or your session expired. Sign in again.",
+      "zh-Hans": "账号或密码不正确，或登录已过期，请重新登录。"
+    },
+    "Forbidden": {
+      "source": "You do not have permission to perform this operation.",
+      "zh-Hans": "你没有执行此操作的权限。"
+    },
+    "CharacterUnavailable": {
+      "source": "This character or service resource is unavailable.",
+      "zh-Hans": "该角色或服务资源不可用。"
+    },
+    "BackendUnavailable": {
+      "source": "The backend is unavailable. Check that the service and database are running.",
+      "zh-Hans": "后端服务不可用，请检查服务与数据库是否正在运行。"
+    },
+    "BackendRequestFailed": {
+      "source": "Request failed (HTTP {0}). Please try again.",
+      "zh-Hans": "请求失败（HTTP {0}），请重试。"
+    },
+    "ManaValue": {
+      "source": "Mana {0} / 100",
+      "zh-Hans": "法力 {0} / 100"
+    },
+    "TargetHealthValue": {
+      "source": "Training target · Health {0} / 100",
+      "zh-Hans": "训练目标 · 生命 {0} / 100"
+    },
+    "NoTarget": {
+      "source": "No target selected",
+      "zh-Hans": "尚未选择目标"
+    },
+    "SpellCooldownValue": {
+      "source": "Arcane bolt: {0}s cooldown · costs 20 mana",
+      "zh-Hans": "奥术箭：冷却 {0} 秒 · 消耗 20 法力"
+    },
+    "InventoryItemQuantity": {
+      "source": "{0} × {1}",
+      "zh-Hans": "{0} × {1}"
+    },
+    "ManaPotion": {
+      "source": "Mana potion",
+      "zh-Hans": "法力药剂"
+    },
+    "InventoryEmpty": {
+      "source": "Your inventory is empty. Defeat a training target to earn a potion.",
+      "zh-Hans": "背包为空。击败训练目标可获得药剂。"
+    },
+    "PlayerStatusValue": {
+      "source": "{0} · Level {1} · XP {2}\nHealth {3} / 100",
+      "zh-Hans": "{0} · 等级 {1} · 经验 {2}\n生命 {3} / 100"
+    },
+    "WaitingForCharacter": {
+      "source": "Waiting for the server to load your character…",
+      "zh-Hans": "正在等待服务器加载角色…"
+    },
+    "Registering": {
+      "source": "Creating account…",
+      "zh-Hans": "正在创建账号…"
+    },
+    "SigningIn": {
+      "source": "Signing in…",
+      "zh-Hans": "正在登录…"
+    },
+    "AccountCreated": {
+      "source": "Account created. Please sign in.",
+      "zh-Hans": "账号已创建，请登录。"
+    },
+    "SignedIn": {
+      "source": "Signed in.",
+      "zh-Hans": "登录成功。"
+    },
+    "LoadingCharacters": {
+      "source": "Loading characters…",
+      "zh-Hans": "正在加载角色…"
+    },
+    "ChooseCharacter": {
+      "source": "Choose a character to enter the zone.",
+      "zh-Hans": "请选择角色进入区域。"
+    },
+    "CreatingCharacter": {
+      "source": "Creating character…",
+      "zh-Hans": "正在创建角色…"
+    },
+    "CharacterCreated": {
+      "source": "Character created.",
+      "zh-Hans": "角色已创建。"
+    },
+    "RequestingTicket": {
+      "source": "Requesting a one-time join ticket…",
+      "zh-Hans": "正在申请一次性入服票据…"
+    },
+    "ConnectingServer": {
+      "source": "Connecting to the game server…",
+      "zh-Hans": "正在连接游戏服务器…"
+    },
+    "PlayerDead": {
+      "source": "You died. Respawning at the checkpoint…",
+      "zh-Hans": "你已死亡，正在检查点重生…"
+    }
+  },
+  "reviewPolicy": "English source is frozen with its reviewed Chinese translation. C++ and gathered PO source must both match; review and update both fields when changing the source."
+}
+```
+
+</details>
+
+## 文件 17：ui-designer-contract.json
+
+目标路径：`ui-designer-contract.json`。原文件位于包内 `examples/MMORPG/ui-designer-contract.json`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="ui-designer-contract.json"
+{
+  "version": 1,
+  "runtimeRule": "C++ contains BindWidget references, business callbacks, MVVM lifetime and CommonUI routing. Every visual tree is authored in these real WidgetBlueprint Designer assets. No runtime ConstructWidget layout.",
+  "viewModel": {
+    "class": "/Script/MMORPG.MMOPlayerViewModel",
+    "name": "PlayerVM",
+    "creationType": "Manual",
+    "direction": "OneWayToDestination",
+    "execution": "Immediate"
+  },
+  "assets": [
+    {
+      "name": "WBP_MMOLayout",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMORootLayout",
+      "widgets": {
+        "GameLayer": "CommonActivatableWidgetStack",
+        "MenuLayer": "CommonActivatableWidgetStack",
+        "ModalLayer": "CommonActivatableWidgetStack"
+      },
+      "layout": "Overlay root with Game/Menu/Modal stacks added in that order, all Fill horizontal/vertical"
+    },
+    {
+      "name": "WBP_Login",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOLoginPanel",
+      "widgets": {
+        "Form": "VerticalBox",
+        "Username": "EditableTextBox",
+        "Password": "EditableTextBox",
+        "CharacterName": "EditableTextBox",
+        "CharacterList": "ComboBoxString",
+        "Message": "TextBlock",
+        "LoginButton": "Button",
+        "RegisterButton": "Button",
+        "RefreshButton": "Button",
+        "CreateButton": "Button",
+        "JoinButton": "Button"
+      },
+      "layout": "Centered opaque navy panel; persistent account/password/name labels; two visibly separated sections Account and Character selection; password masked, min12 label, controls readable dark text/light inputs"
+    },
+    {
+      "name": "WBP_ManaStatus",
+      "path": "/Game/UI",
+      "parent": "/Script/UMG.UserWidget",
+      "widgets": {
+        "ManaText": "TextBlock",
+        "ManaBar": "ProgressBar"
+      },
+      "bindings": {
+        "ManaText.Text": "ManaLabel",
+        "ManaBar.Percent": "ManaFraction"
+      },
+      "layout": "VerticalBox, label18pt then progress bar height14"
+    },
+    {
+      "name": "WBP_PlayerHUD",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOHUDPanel",
+      "widgets": {
+        "Values": "TextBlock",
+        "ManaStatus": "WBP_ManaStatus",
+        "TargetText": "TextBlock",
+        "TargetHealthBar": "ProgressBar",
+        "CooldownText": "TextBlock",
+        "InputHintText": "TextBlock",
+        "TargetButton": "Button",
+        "AttackButton": "Button",
+        "SpellButton": "Button",
+        "InventoryButton": "Button",
+        "SettingsButton": "Button"
+      },
+      "bindings": {
+        "Values.Text": "StatusText",
+        "TargetText.Text": "TargetLabel",
+        "TargetHealthBar.Percent": "TargetFraction",
+        "CooldownText.Text": "CooldownLabel",
+        "InputHintText.Text": "InputHint"
+      },
+      "layout": "Top-left opaque navy player panel, nested actual WBP_ManaStatus; target block; action/menu controls; FieldNotify InputHintText changes with keyboard/gamepad input type. A 1920x1080 viewport is the baseline.",
+      "focusPolicy": "All five HUD Buttons have IsFocusable=false. Native HUD selects Game input with no desired focus target and no automatic focus restoration, while retaining activation support for the input router. I/View opens inventory; P/Menu opens settings; Escape/B returns from menus. Login and menu Buttons remain focusable."
+    },
+    {
+      "name": "WBP_Inventory",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOInventoryPanel",
+      "widgets": {
+        "Message": "TextBlock",
+        "PotionButton": "Button",
+        "CloseButton": "Button"
+      },
+      "bindings": {
+        "Message.Text": "InventoryLabel"
+      },
+      "layout": "Centered opaque panel with title, inventory list text, use potion and return"
+    },
+    {
+      "name": "WBP_Settings",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOSettingsPanel",
+      "widgets": {
+        "LowQualityButton": "Button",
+        "MediumQualityButton": "Button",
+        "HighQualityButton": "Button",
+        "LogoutButton": "Button",
+        "CloseButton": "Button",
+        "ChineseButton": "Button",
+        "EnglishButton": "Button"
+      },
+      "layout": "Centered opaque panel with title, explanation; Low/Medium/High, logout and return; Medium is default"
+    },
+    {
+      "name": "WBP_Confirm",
+      "path": "/Game/UI",
+      "parent": "/Script/MMORPG.MMOConfirmPanel",
+      "widgets": {
+        "ConfirmButton": "Button",
+        "CancelButton": "Button"
+      },
+      "layout": "Centered opaque modal panel, heading and save-on-disconnect explanation, confirm logout and continue buttons"
+    }
+  ],
+  "policy": {
+    "asset": "/Game/UI/BP_MMOUIPolicy",
+    "LayoutClass": "/Game/UI/WBP_MMOLayout.WBP_MMOLayout_C"
+  },
+  "nativeRouting": "MMORootLayout owns configurable EditDefaultsOnly TSoftClassPtr fields LoginClass/HUDClass/InventoryClass/SettingsClass/ConfirmClass, default paths to listed assets. ShowInventory/ShowSettings/ShowConfirm resolve and push those classes.",
+  "notes": [
+    "All named widgets must have IsVariable=true and exact case for BindWidget.",
+    "Do not set Button OnClicked graph callbacks; native parent binds business callbacks in NativeConstruct and removes in NativeDestruct.",
+    "Parent MMO Panel optional Message supports runtime backend feedback. Static titles/captions/style live only in Designer.",
+    "Builder must create ManaStatus before HUD so nested Widget class is available; build root and all panels before setting Policy LayoutClass.",
+    "MVVM bindings are actual UMVVMBlueprintView configuration compiled with the WBP, not event-graph text."
+  ],
+  "localization": {
+    "namespace": "MMOUI",
+    "sourceCulture": "en",
+    "supportedCultures": [
+      "en",
+      "zh-Hans"
+    ],
+    "staticText": "FText referencing the original /Game/Localization/ST_MMO StringTable and stable MMOUI namespace/key",
+    "dynamicText": "FText::Format; character/account names remain culture invariant"
+  }
+}
+```
+
+</details>
+
+## 文件 18：ui-designer-strings.json
+
+目标路径：`ui-designer-strings.json`。原文件位于包内 `examples/MMORPG/ui-designer-strings.json`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="ui-designer-strings.json"
+{
+  "namespace": "MMOUI",
+  "nativeCulture": "en",
+  "cultures": ["en", "zh-Hans"],
+  "storage": "Original /Game/Localization/ST_MMO string-table asset with stable MMOUI namespace/key. WidgetBlueprint text references table/key via FText::FromStringTable; gather the saved StringTable. Runtime business messages are owned by MMOUI.cpp.",
+  "entries": [
+    {"key":"Login.Title","source":"Begin your journey","zh-Hans":"开启旅程"},
+    {"key":"Account.Title","source":"Account","zh-Hans":"账号"},
+    {"key":"Account.Username","source":"Username","zh-Hans":"账号名称"},
+    {"key":"Account.UsernameHint","source":"3-32 letters, numbers or _","zh-Hans":"3-32 位字母、数字或下划线"},
+    {"key":"Account.Password","source":"Password","zh-Hans":"密码"},
+    {"key":"Account.PasswordHint","source":"12-128 characters","zh-Hans":"12-128 个字符"},
+    {"key":"Action.SignIn","source":"Sign in","zh-Hans":"登录"},
+    {"key":"Action.Register","source":"Create account","zh-Hans":"注册账号"},
+    {"key":"Character.Title","source":"Your characters","zh-Hans":"你的角色"},
+    {"key":"Character.Name","source":"Character name","zh-Hans":"角色名称"},
+    {"key":"Character.NameHint","source":"2-24 characters","zh-Hans":"2-24 个字符"},
+    {"key":"Action.CreateCharacter","source":"Create character","zh-Hans":"创建角色"},
+    {"key":"Character.Select","source":"Choose a character","zh-Hans":"选择角色"},
+    {"key":"Action.Refresh","source":"Refresh","zh-Hans":"刷新角色"},
+    {"key":"Action.Enter","source":"Enter world","zh-Hans":"进入世界"},
+    {"key":"Login.Status","source":"Sign in to choose your character.","zh-Hans":"登录后选择你的角色。"},
+    {"key":"HUD.Title","source":"Traveler","zh-Hans":"旅者"},
+    {"key":"HUD.StatusPreview","source":"Level 1 | XP 0","zh-Hans":"等级 1 | 经验 0"},
+    {"key":"Mana.Preview","source":"Mana 100 / 100","zh-Hans":"法力 100 / 100"},
+    {"key":"Target.Title","source":"Target","zh-Hans":"目标"},
+    {"key":"Target.Preview","source":"No target selected","zh-Hans":"尚未选择目标"},
+    {"key":"Cooldown.Preview","source":"Arcane Bolt ready","zh-Hans":"奥术箭已就绪"},
+    {"key":"Action.Target","source":"Target","zh-Hans":"选择目标"},
+    {"key":"Action.Attack","source":"Attack","zh-Hans":"普通攻击"},
+    {"key":"Action.Spell","source":"Arcane Bolt","zh-Hans":"奥术箭"},
+    {"key":"Action.Inventory","source":"Inventory","zh-Hans":"背包"},
+    {"key":"Action.Settings","source":"Settings","zh-Hans":"设置"},
+    {"key":"HUD.Controls","source":"WASD Move | Right mouse Look","zh-Hans":"WASD 移动 | 鼠标右键转动视角"},
+    {"key":"Inventory.Title","source":"Inventory","zh-Hans":"背包"},
+    {"key":"Inventory.Empty","source":"No items.","zh-Hans":"背包为空。"},
+    {"key":"Action.Potion","source":"Use mana potion","zh-Hans":"使用法力药剂"},
+    {"key":"Action.Back","source":"Back","zh-Hans":"返回"},
+    {"key":"Settings.Title","source":"Settings","zh-Hans":"设置"},
+    {"key":"Settings.Quality","source":"Graphics quality","zh-Hans":"画质"},
+    {"key":"Quality.Low","source":"Low","zh-Hans":"低"},
+    {"key":"Quality.Medium","source":"Medium","zh-Hans":"中"},
+    {"key":"Quality.High","source":"High","zh-Hans":"高"},
+    {"key":"Settings.Language","source":"Language","zh-Hans":"语言"},
+    {"key":"Language.Chinese","source":"Simplified Chinese","zh-Hans":"简体中文"},
+    {"key":"Language.English","source":"English","zh-Hans":"English"},
+    {"key":"Action.Logout","source":"Sign out","zh-Hans":"退出登录"},
+    {"key":"Confirm.Title","source":"Leave this world?","zh-Hans":"离开当前世界？"},
+    {"key":"Confirm.Explanation","source":"Your character is saved before you return to sign in.","zh-Hans":"返回登录界面前将保存你的角色。"},
+    {"key":"Confirm.Accept","source":"Save and sign out","zh-Hans":"保存并退出"},
+    {"key":"Confirm.Cancel","source":"Continue playing","zh-Hans":"继续游戏"}
+  ]
+}
+```
+
+</details>
+
+## 写完后怎样确认
+
+保存全部文件，回到当前阶段执行文件核对和 Editor 构建。文件核对只能发现缺文件、复制不完整和版本差异；`Result: Succeeded` 才说明编译成功。资产、UI 与联机行为继续按 [对应课程](/docs/08-mmorpg/configuration) 验收。

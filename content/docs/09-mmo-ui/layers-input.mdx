@@ -91,6 +91,43 @@ HUD 使用 Game/NoCapture，并保留 Activation Focus 支持，让 CommonUI 能
 
 这个示例证明 UIExtension 不仅能“添加某个 Widget 类”，也能在明确的数据契约下连接系统。退出界面时，扩展句柄和扩展点句柄都必须 Unregister，避免世界切换后持有旧对象。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 把 Designer 的三个控件接到原生注册代码
+源码：`examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp`，本机第 170–179 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void UMMORootLayout::NativeOnInitialized()
+{
+    Super::NativeOnInitialized();
+    if (ensure(GameLayer && MenuLayer && ModalLayer))
+    {
+        RegisterLayer(Layer(TEXT("UI.Layer.Game")), GameLayer);
+        RegisterLayer(Layer(TEXT("UI.Layer.Menu")), MenuLayer);
+        RegisterLayer(Layer(TEXT("UI.Layer.Modal")), ModalLayer);
+    }
+}
+```
+
+`GameLayer/MenuLayer/ModalLayer` 是 Designer 中三个已存在的容器，由 BindWidget 关联。`ensure` 检查引用是否都取得；`RegisterLayer` 才让标签能查找到相应栈。这与 Lyra 根布局蓝图里的四次 Register Layer 是同一种接口，只是本实验在原生父类完成三层注册。
+
+本章模态运行图要从下到上看：Game 的 HUD 仍显示，Menu 的设置保留，最上方 Modal 接收确认/取消。可见并不代表三个页面都应该处理游戏输入。
+
+| 动作 | 应观察的最高激活层 | 应回到哪里 |
+|---|---|---|
+| 正常游戏 | Game | 持续操作角色 |
+| 按 I 打开背包 | Menu | 关闭后返回 Game |
+| 设置中选择退出 | Modal | 取消返回原设置页 |
+| 确认离服 | 按离服流程重建前端状态 | 登录/角色选择流程 |
+
+本实验 HUD 的输入模式是 Game + NoCapture，按住鼠标右键控制视角；不要套用射击游戏总是捕获鼠标的假设。键盘与手柄返回映射由根布局添加的 UIInputContext 提供，优先级为 100。
+
+**实操**：先用鼠标打开确认框，再用 Escape/手柄返回，观察焦点是否回到设置中的可操作按钮。只凭遮罩出现无法验收焦点；检查导航时先把密码等输入框清空，截图仅保留布局与高亮。
+
+{/* full-guide-end */}
+
 ## 操作、结果与排障
 
 先打开背包，再返回；打开设置和退出确认，取消；用键盘 Tab 与手柄重复同样步骤。预期 Menu/Modal 按顺序覆盖输入，返回后焦点可见且可继续操作。
@@ -113,4 +150,3 @@ HUD 使用 Game/NoCapture，并保留 Activation Focus 支持，让 CommonUI 能
 本次输入记录先于按钮槽与画质修复；最后一项曾受旧画质按钮影响，视口为 1914×1042。该项只验收输入和生命周期。1920×1080、中等画质、中英文排版，以及修复后的游戏画面由独立的双客户端截图验证记录负责。
 
 练习：新增一个任务面板，把它推入 Menu 层；从任务面板打开一个确认框，取消后恢复到触发按钮。记录键鼠和手柄各自的实际结果。
-

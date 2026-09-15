@@ -1,0 +1,822 @@
+{
+  "schemaVersion": 1,
+  "scope": "Complete original tutorial files rendered without omitted implementation; external Epic plugins and template assets are obtained locally.",
+  "files": [
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "curriculum/mmorpg/skeleton/Config/DefaultEditorPerProjectUserSettings.ini",
+      "target": "Config/DefaultEditorPerProjectUserSettings.ini",
+      "sha256": "8678bad35b05fe59c984c133d3a73987edf7fe9f08d56c75576dba6ede912965",
+      "lines": 4,
+      "renderedSHA256": "ca7d46c9b6182707e9506915d4eb7338f7368315aae5bc791efb02bb2396f810"
+    },
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "curriculum/mmorpg/skeleton/Config/DefaultEngine.ini",
+      "target": "Config/DefaultEngine.ini",
+      "sha256": "229945ddac2dcba2afdbb233570f68b1bfb4926857aee83ad4a739abb0cdd101",
+      "lines": 4,
+      "renderedSHA256": "d677f8592c2db1926b34c6d3321e6fd72a053f21f8269d10ccf04fd73e89623b"
+    },
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.Build.cs",
+      "target": "Source/MMORPG/MMORPG.Build.cs",
+      "sha256": "d0d7ed1874acb5fb79d74c6b27f635b8a81c9a59d6218e9e097f8164d49e689d",
+      "lines": 9,
+      "renderedSHA256": "6fa307f9f4a5eacdd4f44c582df8ed1d3bdcf19e60383054c9cd2afb360d0339"
+    },
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.cpp",
+      "target": "Source/MMORPG/MMORPG.cpp",
+      "sha256": "29c9b97fd1980f305ec7999aec5f60894b2848225f7c4a35c8b4622820ced8e0",
+      "lines": 2,
+      "renderedSHA256": "060466c2d762a696ff2adc12748c06292e7837e0941b05a42e58793a3714bd8f"
+    },
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "examples/MMORPG/Source/MMORPG.Target.cs",
+      "target": "Source/MMORPG.Target.cs",
+      "sha256": "0c04b420eddd080729631b99981a417bff2a542a8e61794b3b22317ab98e7402",
+      "lines": 11,
+      "renderedSHA256": "ede0487f67b9233d31e50e969ebca9361bb48ee22b623208ee0c4db70245026d"
+    },
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "examples/MMORPG/Source/MMORPGEditor.Target.cs",
+      "target": "Source/MMORPGEditor.Target.cs",
+      "sha256": "11cb062e048f092b9c15838bd7ff0e631b8d331fbc8f00193b4d7c5171b3e6bc",
+      "lines": 11,
+      "renderedSHA256": "37157a83c1285aa454ec459c74cffc1747b95fe2532a1563f711cfcce0ab4af8"
+    },
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "examples/MMORPG/Source/MMORPGClient.Target.cs",
+      "target": "Source/MMORPGClient.Target.cs",
+      "sha256": "67799013d576d6afc24f9fef84621e27549e293df4203bb0181aba3aa269eca1",
+      "lines": 11,
+      "renderedSHA256": "79fb77987ac57ad865d518f795b3aa1347dbdf82266929c2e18f3c83f8312996"
+    },
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "examples/MMORPG/Source/MMORPGServer.Target.cs",
+      "target": "Source/MMORPGServer.Target.cs",
+      "sha256": "ed848e33582e41550a56c09ed63a3f0d2e47c14738dc306fe8be65a6ce8b5fa4",
+      "lines": 11,
+      "renderedSHA256": "f5578be5871265544124ffe42fbceeb08ce57c83523eb19c9d40dd8f6717c570"
+    },
+    {
+      "chapter": "08-mmorpg/source/skeleton",
+      "source": "curriculum/mmorpg/descriptors/00.uproject",
+      "target": "MMORPG.uproject",
+      "sha256": "78feef84e947c1fcdfe36a44e7830dd8be98853cf8a6061ed19c7a40a8fc8bff",
+      "lines": 14,
+      "renderedSHA256": "d65382590faa84dd113c6caf3b9110cb2a6678b01e93b84108718de8b0313236"
+    },
+    {
+      "chapter": "08-mmorpg/source/build",
+      "source": "examples/MMORPG/MMORPG.uproject",
+      "target": "MMORPG.uproject",
+      "sha256": "d3c9cad1724437b03f9b97f3e40cae092d2d19ced48b199a3d9f3aeb82556f57",
+      "lines": 25,
+      "renderedSHA256": "ffccbb8495abd60d8067a84734b063429969ecb11fc5e99ee95d0d924a4bd611"
+    },
+    {
+      "chapter": "08-mmorpg/source/build",
+      "source": "examples/MMORPG/Source/MMORPG.Target.cs",
+      "target": "Source/MMORPG.Target.cs",
+      "sha256": "0c04b420eddd080729631b99981a417bff2a542a8e61794b3b22317ab98e7402",
+      "lines": 11,
+      "renderedSHA256": "ede0487f67b9233d31e50e969ebca9361bb48ee22b623208ee0c4db70245026d"
+    },
+    {
+      "chapter": "08-mmorpg/source/build",
+      "source": "examples/MMORPG/Source/MMORPG/MMORPG.Build.cs",
+      "target": "Source/MMORPG/MMORPG.Build.cs",
+      "sha256": "c48bb1f00be0635d0006a042247d31bd51bee6837836c5a90de96352b2098afb",
+      "lines": 12,
+      "renderedSHA256": "561a66f40e2d36e41a9ef2735a0254e955a8018e3d7702afe52249847b4e9c35"
+    },
+    {
+      "chapter": "08-mmorpg/source/build",
+      "source": "examples/MMORPG/Source/MMORPG/MMORPG.cpp",
+      "target": "Source/MMORPG/MMORPG.cpp",
+      "sha256": "094cb85f5653d6e42e3c79f7f90d6375151632072bf888e2190cd263b405ef2d",
+      "lines": 2,
+      "renderedSHA256": "060466c2d762a696ff2adc12748c06292e7837e0941b05a42e58793a3714bd8f"
+    },
+    {
+      "chapter": "08-mmorpg/source/build",
+      "source": "examples/MMORPG/Source/MMORPGClient.Target.cs",
+      "target": "Source/MMORPGClient.Target.cs",
+      "sha256": "67799013d576d6afc24f9fef84621e27549e293df4203bb0181aba3aa269eca1",
+      "lines": 11,
+      "renderedSHA256": "79fb77987ac57ad865d518f795b3aa1347dbdf82266929c2e18f3c83f8312996"
+    },
+    {
+      "chapter": "08-mmorpg/source/build",
+      "source": "examples/MMORPG/Source/MMORPGEditor.Target.cs",
+      "target": "Source/MMORPGEditor.Target.cs",
+      "sha256": "11cb062e048f092b9c15838bd7ff0e631b8d331fbc8f00193b4d7c5171b3e6bc",
+      "lines": 11,
+      "renderedSHA256": "37157a83c1285aa454ec459c74cffc1747b95fe2532a1563f711cfcce0ab4af8"
+    },
+    {
+      "chapter": "08-mmorpg/source/build",
+      "source": "examples/MMORPG/Source/MMORPGServer.Target.cs",
+      "target": "Source/MMORPGServer.Target.cs",
+      "sha256": "ed848e33582e41550a56c09ed63a3f0d2e47c14738dc306fe8be65a6ce8b5fa4",
+      "lines": 11,
+      "renderedSHA256": "f5578be5871265544124ffe42fbceeb08ce57c83523eb19c9d40dd8f6717c570"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "curriculum/mmorpg/descriptors/01.uproject",
+      "target": "MMORPG.uproject",
+      "sha256": "6a304f8a20d6e7e1f7a2782c7321819a9bf76e9c579c266ace21fb0a87b5c35b",
+      "lines": 35,
+      "renderedSHA256": "33d157384398fec6dd7d01eb1c94cf1c0a1b189dcca58576df47dfcdca61bd03"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+      "sha256": "c1626ad34db0166bee05d52a1672816af74e311d4ea989e85c65540d0f8f56c9",
+      "lines": 55,
+      "renderedSHA256": "c1470228e4d4aa43302075f38d998de9a4100a26d0c21d6ca835fca859f45161"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h",
+      "sha256": "687a4fc81eebea503be604d4485e21953ed37213607f220bb97c29196268c021",
+      "lines": 25,
+      "renderedSHA256": "389b75515bece9b96dd6a9d45f770b00ec4a5bb5ee913a375e18858e0c763ab2"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h",
+      "sha256": "389e23f345316642295d29bcf0762f5a43593c463c42a677e9428242cafdbcd8",
+      "lines": 33,
+      "renderedSHA256": "babc1b6c399e97334a8335e5e34db40130b6c8b836c7a0ea75367e95ba57c8d9"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h",
+      "sha256": "4e832c535db10a8d2a63f3798c959786c516996159860926aacee637a635811c",
+      "lines": 57,
+      "renderedSHA256": "2706c8b5cb18726ca0a91d76cff2e6ba6fe55a222980de8d7c2ff6137f9531ed"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h",
+      "sha256": "a11c7eb03dc92c47311587740ac7240e38d8bc521c5c89dfa3307fa08955ed73",
+      "lines": 22,
+      "renderedSHA256": "6a94ae9a745c252618796f3bf9b09fedb7a1556179441fe4d222fefde3b14804"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h",
+      "sha256": "ffdbb326b26bb9b5751b278e07ce71c647cec249330d4319c2fa8ff351ab83c6",
+      "lines": 42,
+      "renderedSHA256": "0f1d6e094f3581e2cc8ff9fe13345515da1ef6399b0790b9ff05195ab18ba82f"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h",
+      "sha256": "aecbe35a36c2a741f6ed6a4ab16374abc37fd82327fb9dcea1e288a95fc33c84",
+      "lines": 23,
+      "renderedSHA256": "a3a69ab4ce010bd957f97e3a0ea257385d391eae60754c3c91c2b20f075182fe"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h",
+      "sha256": "2693b6bb4d5991bb96fecb4739cce18a5927f5737c3f72990b9f09d735f3e8a7",
+      "lines": 50,
+      "renderedSHA256": "4cf2193ff682d4594a6a7581027666db50fe9735ee50d03e5b1aea076b6e7764"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/MMOFramework.uplugin",
+      "target": "Plugins/MMOFramework/MMOFramework.uplugin",
+      "sha256": "3724b3bc7c28591e2c7952edaf4454081de63d7dbf989c0d394829fbf8f3aa5a",
+      "lines": 17,
+      "renderedSHA256": "5cb9b33e30ed34ce8e020ade8d99b1c92817f054d53f0ff42ed88988356bad75"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs",
+      "sha256": "7a73a22ae37991b8bc140ac25a054d9a7937973df5fecbe2ec9766c4ca6b7ec3",
+      "lines": 13,
+      "renderedSHA256": "48c7cb2730abaac0ab7ebc1fdc0b931ee363b54890fbf0c8b28ae6a98234f56e"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp",
+      "sha256": "11c19b4b83b58e0ed40a60224d4257c566c8ae5d270a4e1de8a24742639206cf",
+      "lines": 50,
+      "renderedSHA256": "dcfb13bdf070c6071efbf6313983863a14ec88a3e4354bdf43b5552abf4a7a38"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp",
+      "sha256": "54c263096a0f5d219184b96a37f1e395fba56397e0ee5bd19bdfbb357ab2e7a1",
+      "lines": 34,
+      "renderedSHA256": "6c488bceb6a9ed17dc49991ac2ab0f731fd9df039f1f9f66b41d505860a30406"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp",
+      "sha256": "acd5b47909ce2180353a7f4396dd00d10af9e13aa4540071d55182226b4663f1",
+      "lines": 220,
+      "renderedSHA256": "e944e8e7c4be76fd902be92efe4808a40e38b8009228ef516e336bcd401178e8"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp",
+      "sha256": "94971a9db02ba3e70dd00cb208788d2a84f9daeaa18630c5131d4586c24e2ff0",
+      "lines": 21,
+      "renderedSHA256": "68f211636ea07ec7970f0608ef3c2c37161e39db3e38195b444a56b86ec80d24"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp",
+      "sha256": "5d5ac362450b8eb6bf2bea54d66782fcff181f08fa19c51b76244350a4fce8b8",
+      "lines": 20,
+      "renderedSHA256": "3951859bceb1a3c5856603f74791bf2016090cfc1c54fd750e56a863ad2d23d3"
+    },
+    {
+      "chapter": "08-mmorpg/source/framework",
+      "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp",
+      "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp",
+      "sha256": "83a8827e7eacfdaeceb278457a7b8c69c1c7946a16d6e4403ffd0176c5e63c5b",
+      "lines": 111,
+      "renderedSHA256": "f0a6c093fbcae6c9b0a5671633891ff9068a6b52d3a99196b070f7a2fb3e42e2"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "curriculum/mmorpg/descriptors/02.uproject",
+      "target": "MMORPG.uproject",
+      "sha256": "08604d7e7b2ff81a7eb79ff18a923a0791a82a288ce64c40b29f54d4237f4d05",
+      "lines": 39,
+      "renderedSHA256": "28e6d35ca889e5aa935c178e1209030b8383a94bf3b4819106fe9300a62697d2"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h",
+      "target": "Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h",
+      "sha256": "ac13bf9eff08419d055d0afa44485dcad1427304fed287a61b4158e7ed048360",
+      "lines": 43,
+      "renderedSHA256": "01daf375b9413c7d5952b8f13b7b4b2990df0da228058005899d7cb8204b1823"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h",
+      "target": "Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h",
+      "sha256": "fe6e976042daa0b6d9cf83f75c265a95b5cbf036f7ee7a4e88dee75777454411",
+      "lines": 21,
+      "renderedSHA256": "a1ecdfcbd4b3906491988951b6643f482206cc109ef14b7e437e6536c7d15b78"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Source/MMOContracts/Public/MMOContracts.h",
+      "target": "Source/MMOContracts/Public/MMOContracts.h",
+      "sha256": "bee7b4452baa4a37ea4571261a777b6e4ceb85bfbfc6fad5789d1e2fd1c67a92",
+      "lines": 39,
+      "renderedSHA256": "8265e938d25c7fb8858fb06b6234afcc2c536300099f132bdba18d89ab2b8be9"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Plugins/MMOIntegration/MMOIntegration.uplugin",
+      "target": "Plugins/MMOIntegration/MMOIntegration.uplugin",
+      "sha256": "d3c9dc74e9521fc850cf2a4eb5da2559fbf46a2ab86a627e7daa36b57883e867",
+      "lines": 7,
+      "renderedSHA256": "5bb39bf22b5a1f8c2715d57b8040f7d820afccd358e47cf058d73d9a47f119ad"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs",
+      "target": "Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs",
+      "sha256": "2e29cca3c2d9940d11542dcded3b487dc92fb6cd9cfd8086ff1dcc053f42adc1",
+      "lines": 9,
+      "renderedSHA256": "9f580174edeea10fd5fefabf002f425556a8940d63e1ed73f0457d4be650f4ca"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp",
+      "target": "Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp",
+      "sha256": "604c95ed1a115cf9bc9be00ccdc2966b168159ae2b0a549cc65328d230ce4de0",
+      "lines": 60,
+      "renderedSHA256": "9585c3781b865ab6bc3240285fcf4308347b8a07c633d747aa01b87a8855fad4"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs",
+      "target": "Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs",
+      "sha256": "0dfeb3b81a85cdc3be20a078e298ebdafd0d7924f4a304bf7c7c10ddb14381b5",
+      "lines": 9,
+      "renderedSHA256": "1aa0177ef76d8f80bfa1788f7b013434d3e5a0350a34906e9f3a937f141f65b1"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp",
+      "target": "Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp",
+      "sha256": "bbc153042f98a4e42057baa3619dee5cb383c453b6453f6729014acd1e7892c0",
+      "lines": 38,
+      "renderedSHA256": "f245779340dc2a364433ed615af44c98acfafec2a05984ee2228c4e90d10c60e"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Source/MMOContracts/MMOContracts.Build.cs",
+      "target": "Source/MMOContracts/MMOContracts.Build.cs",
+      "sha256": "9339f7539b315e4cb9314e96423647c41e2e30609077b21afffe83d29d5360dd",
+      "lines": 8,
+      "renderedSHA256": "e345ff0fddbdb602fd9ede714b8deca311e3c6124b47f42cb2dab61c36ab51d6"
+    },
+    {
+      "chapter": "08-mmorpg/source/http",
+      "source": "examples/MMORPG/Source/MMOContracts/Private/MMOContracts.cpp",
+      "target": "Source/MMOContracts/Private/MMOContracts.cpp",
+      "sha256": "d0b917dc481c6cc0ba017d90b8a7ae9c3d25a832da7f5bee818eaba5d57bf434",
+      "lines": 56,
+      "renderedSHA256": "19ae4c1fb042fc2a099d34af7650110a31c13ec869e71288173ffbd50b675fb6"
+    },
+    {
+      "chapter": "08-mmorpg/source/gameplay",
+      "source": "examples/MMORPG/Source/MMORPG/Public/MMOGameplay.h",
+      "target": "Source/MMORPG/Public/MMOGameplay.h",
+      "sha256": "6c461c19eb8381a23b5b907d68c57b29d5e9fd53193ea68f7d80b697a68ebf63",
+      "lines": 255,
+      "renderedSHA256": "4fc4279a67ea5db19e5a8af3af8c13a3cb5310b20a430503fef91b7897fbc957"
+    },
+    {
+      "chapter": "08-mmorpg/source/gameplay",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOExperienceGameplay.cpp",
+      "target": "Source/MMORPG/Private/MMOExperienceGameplay.cpp",
+      "sha256": "4a7a439feb65acadd7bad4f279aae819e34e50ac19ccf44720dd057001a352d0",
+      "lines": 96,
+      "renderedSHA256": "0272c85d6d3bb0656505c0f4e9d160f235b5a32cce3e54e4e2b064bacdaf9b19"
+    },
+    {
+      "chapter": "08-mmorpg/source/gameplay",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp",
+      "target": "Source/MMORPG/Private/MMOGameplay.cpp",
+      "sha256": "5deb3fc0c3c192877dc84fde7bbb5c3fedbd607abfc27a904fafeda038c92450",
+      "lines": 751,
+      "renderedSHA256": "e89182499701521d1d8c663c76451087f0f1880ac8e1dae2e3590d88a128353f"
+    },
+    {
+      "chapter": "08-mmorpg/source/input-health",
+      "source": "examples/MMORPG/Source/MMORPG/Public/MMOHealthComponent.h",
+      "target": "Source/MMORPG/Public/MMOHealthComponent.h",
+      "sha256": "0e17db149b32c7d2fb075be8baca4971ceae6af5bf782c1ba629a31450076500",
+      "lines": 40,
+      "renderedSHA256": "fe6ad99ef5d0c30a4b7e78eb2b3410b7771443d58a1b1dc6da789b8d1e6cffea"
+    },
+    {
+      "chapter": "08-mmorpg/source/input-health",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOAbilityInputValidation.cpp",
+      "target": "Source/MMORPG/Private/MMOAbilityInputValidation.cpp",
+      "sha256": "0633c1826ff740445af3e369bf77be03bb30a3da9e596c813be144022b296225",
+      "lines": 55,
+      "renderedSHA256": "8d5fe039df8f1cc48c7d5eb3fb3a2935da8236be5bb0f8061c50a825b90961ae"
+    },
+    {
+      "chapter": "08-mmorpg/source/input-health",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOAnimationValidation.cpp",
+      "target": "Source/MMORPG/Private/MMOAnimationValidation.cpp",
+      "sha256": "bf8610103261de9e951d8d9899690b75de242a9af8066d3cb836999836b98d04",
+      "lines": 75,
+      "renderedSHA256": "d6f43904f16eb6d6b17f19c5e659112bd51b7ed72f899b20f2e87a41dd32e4b8"
+    },
+    {
+      "chapter": "08-mmorpg/source/input-health",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMODeathValidation.cpp",
+      "target": "Source/MMORPG/Private/MMODeathValidation.cpp",
+      "sha256": "e8e2a08db27bc46dd9b3868ea08e293662aea00f9b0ded09e85feaf7a89edcca",
+      "lines": 69,
+      "renderedSHA256": "9fbb705da827f062125c66f493526f174c04181708f56bb28723cb98493351ca"
+    },
+    {
+      "chapter": "08-mmorpg/source/input-health",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOHealthComponent.cpp",
+      "target": "Source/MMORPG/Private/MMOHealthComponent.cpp",
+      "sha256": "9ce7cd9193ab660eb3fb2aa7bbdbf0fdf32489beae6ef4d55e6d68326b4f0b2e",
+      "lines": 82,
+      "renderedSHA256": "dec8693f7569bcb61966bbeb2cc09f3677b0e31284725b65b248d93bb80add27"
+    },
+    {
+      "chapter": "08-mmorpg/source/input-health",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOInputGameplay.cpp",
+      "target": "Source/MMORPG/Private/MMOInputGameplay.cpp",
+      "sha256": "16360d6546ddeb3c20574cf7dd4583d58465acc2f9dbef6df69586981c980491",
+      "lines": 48,
+      "renderedSHA256": "ecd6e3e6fbf8bfb628d742eb7d31b28edcc64286586001f582604ba804c657e6"
+    },
+    {
+      "chapter": "08-mmorpg/source/input-health",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOLocalizationValidation.cpp",
+      "target": "Source/MMORPG/Private/MMOLocalizationValidation.cpp",
+      "sha256": "b52d75180d83bfaabf2227795a77c3ee743a5e22029caee95226bea6163a8867",
+      "lines": 43,
+      "renderedSHA256": "432f27e87f32ffc1cfaec8c7830b8615bf7072cbebc1643550cc21f1d286ac41"
+    },
+    {
+      "chapter": "08-mmorpg/source/input-health",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMORespawnGameplay.cpp",
+      "target": "Source/MMORPG/Private/MMORespawnGameplay.cpp",
+      "sha256": "65d1cbad6e3f55b1ac605b9d007f00c55a470046213067a6240ee3e5477fdcc0",
+      "lines": 32,
+      "renderedSHA256": "431196548ff4f86635a81952c95f7778137f5b072c3c8e52c4bddb61271931be"
+    },
+    {
+      "chapter": "08-mmorpg/source/ui",
+      "source": "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+      "target": "Source/MMORPG/Public/MMOUI.h",
+      "sha256": "5e61e24ed46045ad2bc260c07dbc1480d7e9cd1ce3dc500ed4df36c610d0f228",
+      "lines": 248,
+      "renderedSHA256": "404eb0a61323b5f5861d3ca588d5bdc5c81fffbe94370a0d7fcc1741b526c4c8"
+    },
+    {
+      "chapter": "08-mmorpg/source/ui",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+      "target": "Source/MMORPG/Private/MMOUI.cpp",
+      "sha256": "6fbb892d99d31144bb2d76b7cef12344ebb457b567523da6c2d792fdf13c4808",
+      "lines": 470,
+      "renderedSHA256": "8144ad52e1f866136c36df742c3334cd06f18b1f8f2aabb2e05d99ffe56821af"
+    },
+    {
+      "chapter": "08-mmorpg/source/animation",
+      "source": "examples/MMORPG/Source/MMORPG/Public/MMOAnimInstance.h",
+      "target": "Source/MMORPG/Public/MMOAnimInstance.h",
+      "sha256": "4fe7ecb6676eb3eed8c9ab439f38cd786783e4d945cd26f31ceeb513944f1463",
+      "lines": 42,
+      "renderedSHA256": "bea1da63b48a0dcc7b7a8f2f324a1c2606d865bd81a77a30fe2f6fdfdfe8c980"
+    },
+    {
+      "chapter": "08-mmorpg/source/animation",
+      "source": "examples/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp",
+      "target": "Source/MMORPG/Private/MMOAnimInstance.cpp",
+      "sha256": "95c090adf38bddb85d6bf77fbc2bd9ce4d917a7c8c9d9738e023930bebfee793",
+      "lines": 53,
+      "renderedSHA256": "bba674a17bd7c1789b5b9fe14795b27214159eed518e1c8809fcaf040690c9ad"
+    },
+    {
+      "chapter": "08-mmorpg/source/zone",
+      "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h",
+      "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h",
+      "sha256": "66490dd605e3b803c52ef9f88d0c75786692b1a88ef65130396bd9242f0636d1",
+      "lines": 30,
+      "renderedSHA256": "5b29306622c62d4fca200580cfc54ff6a03cc39620509d9557fa13490c941c2c"
+    },
+    {
+      "chapter": "08-mmorpg/source/zone",
+      "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/MMOCore.uplugin",
+      "target": "Plugins/GameFeatures/MMOCore/MMOCore.uplugin",
+      "sha256": "a74a2750db17b63b9657d7ea310f920077790a998322cfa3872a3d19fd21d58b",
+      "lines": 7,
+      "renderedSHA256": "4f9929a9fe17877bddc627bfa4aa78c8195a9d0d21c5a49249d430eac1468d0e"
+    },
+    {
+      "chapter": "08-mmorpg/source/zone",
+      "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs",
+      "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs",
+      "sha256": "e4111bc2801d731670f3915c0e2f9a620f57d8112a6509a54e87ca689d34d086",
+      "lines": 9,
+      "renderedSHA256": "a5d799d64dc414910d9be79a85e4311ac8df149688e799899f5898c68118536e"
+    },
+    {
+      "chapter": "08-mmorpg/source/zone",
+      "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+      "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+      "sha256": "219795347b82ce98b8c2cd3a66616cb08096c9b6de8c5a491958677bf110475a",
+      "lines": 73,
+      "renderedSHA256": "eb3af3333e4b494a2891e2e0ed573933759f726a5b9f6727ba4a10534e84b702"
+    },
+    {
+      "chapter": "08-mmorpg/source/backend",
+      "source": "examples/MMORPG/Source/MMOPersistence/Public/MMOPersistence.h",
+      "target": "Source/MMOPersistence/Public/MMOPersistence.h",
+      "sha256": "ab462f39a9061d159a96731a5852c839ebc7fe2e44b0c4a8a8f1e63a53476c4d",
+      "lines": 17,
+      "renderedSHA256": "9119e8e3068721a24d40ca0ce9881122613ff79240eca816430e475a547df24f"
+    },
+    {
+      "chapter": "08-mmorpg/source/backend",
+      "source": "examples/MMORPG/Source/MMOBackendService.Target.cs",
+      "target": "Source/MMOBackendService.Target.cs",
+      "sha256": "2d455ccc04d501a5e789ddcc113b357cc15f86b74841bb28751c80d3eaca9b8d",
+      "lines": 25,
+      "renderedSHA256": "776324b3c988ba53e830b7984a7d77e960e20d19401beb6324b49e232ad540b2"
+    },
+    {
+      "chapter": "08-mmorpg/source/backend",
+      "source": "examples/MMORPG/Source/MMOBackendService/MMOBackendService.Build.cs",
+      "target": "Source/MMOBackendService/MMOBackendService.Build.cs",
+      "sha256": "52fd1419f5ae3e004d2661266e38a62dd94370d15aa6193602f2ee7391d69d0d",
+      "lines": 9,
+      "renderedSHA256": "51a2d4dae0e1d920ae383f25b54882ee1a9f58fe0bfd79a0090d614cd7201e94"
+    },
+    {
+      "chapter": "08-mmorpg/source/backend",
+      "source": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+      "target": "Source/MMOBackendService/Private/MMOBackendService.cpp",
+      "sha256": "0582ae1f5eb3e91f0b589606148ed2b29c68bdfcbd98ff9260285dc54f2afe41",
+      "lines": 171,
+      "renderedSHA256": "71ce24ae36d20d69aa4fe86086bb95f88da34ce293035374d01134c0908917d2"
+    },
+    {
+      "chapter": "08-mmorpg/source/backend",
+      "source": "examples/MMORPG/Source/MMOPersistence/MMOPersistence.Build.cs",
+      "target": "Source/MMOPersistence/MMOPersistence.Build.cs",
+      "sha256": "97d1d29b1038f8b3df5d55a4f4c9ecebbf214cd040304b886c9b0d8afda2af8c",
+      "lines": 9,
+      "renderedSHA256": "51b22ae26a27f8dbae534d6b8a078224a8090df943ef4002f81dc1068983a9cc"
+    },
+    {
+      "chapter": "08-mmorpg/source/backend",
+      "source": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "target": "Source/MMOPersistence/Private/MMOPersistence.cpp",
+      "sha256": "1a842f47b3f31a1a2bf34b35a7da1df0e8c4bc54a7b1fadbc1bae86a847c4443",
+      "lines": 219,
+      "renderedSHA256": "655e360af82abbaabdcfc4b9a1e376d2e38cbc1b4fbfba8e931456296746e0d0"
+    },
+    {
+      "chapter": "08-mmorpg/source/backend",
+      "source": "examples/MMORPG/Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs",
+      "target": "Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs",
+      "sha256": "f75980962bec3bf05656759a73d8392dcab1147a9bd2621d35ba0ae12997fe65",
+      "lines": 21,
+      "renderedSHA256": "da4369dd801730b45c8a46f5bf46557faefecc2abb39db0b243e40b2a76a04d2"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/DefaultEditor.ini",
+      "target": "Config/DefaultEditor.ini",
+      "sha256": "44b9fdc952263ed58f84e497855ca7b2f7bfc7544fe6889fb4e5b228b8e053b4",
+      "lines": 2,
+      "renderedSHA256": "0de69e132027532a9a7604338913d12dc1442bb38185c5f37ed48a7f0f22286f"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/DefaultEngine.ini",
+      "target": "Config/DefaultEngine.ini",
+      "sha256": "f3b9c22cb8eae29bf52b47370a7bd1064bceeb4e7dbe95663b255fb4bf605d5d",
+      "lines": 18,
+      "renderedSHA256": "99ab56c0c4e0ee7f27297ad1c316da45ff8bddfbae54753078d75fa9a962a47e"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/DefaultGame.ini",
+      "target": "Config/DefaultGame.ini",
+      "sha256": "64e2f33a72d3124f9cba03ba10f6e80de795f4782f12d9b758da088290508941",
+      "lines": 35,
+      "renderedSHA256": "1196313d0a9014145beb831c54b862aaebcc7cdc94958da5e4b83c9ffac03824"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/DefaultGameUserSettings.ini",
+      "target": "Config/DefaultGameUserSettings.ini",
+      "sha256": "2ba9037a874450b0675a6da9a43cbfe7dd9228a8f1b62e933f1e30ed8583ae60",
+      "lines": 24,
+      "renderedSHA256": "1ed0cf91fb740573105a5de945c394112d54e341fd92170cd483beacfc59f6d0"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/DefaultGameplayTags.ini",
+      "target": "Config/DefaultGameplayTags.ini",
+      "sha256": "218487f11c1083e88db9e6a54d18a8e89cbe54dc71f92b5a09610fb346ce7113",
+      "lines": 13,
+      "renderedSHA256": "02b2060a6f45f2c2c8838d2163276d31669273e0c489315cf090c26898b2e119"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/DefaultInput.ini",
+      "target": "Config/DefaultInput.ini",
+      "sha256": "a1e822a22fba08a06c2308d23dcc64804cc64fb568bb70cadb35d27b3ab686c0",
+      "lines": 3,
+      "renderedSHA256": "b34555edb758f6f60dfb25f36acd8a45774007a58fba8ea36fe9443bd3580ec6"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/Localization/MMO_Compile.ini",
+      "target": "Config/Localization/MMO_Compile.ini",
+      "sha256": "c802c432b86c9093ba2f11514da7fad0a753f36025ef86f8766fe9aff4a8a59e",
+      "lines": 15,
+      "renderedSHA256": "28846509c1ecb9a2dbe2e14b55617a1e046e94c0e9080f2fea88a845b0b25d84"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/Localization/MMO_Export.ini",
+      "target": "Config/Localization/MMO_Export.ini",
+      "sha256": "571b4da469aeb674333fcb6cd104c57c854dd2608f72078cfcd4d14cab7148b5",
+      "lines": 17,
+      "renderedSHA256": "60655c3b5ac2da6c0493936bebc72d56fec420a81d28e53868f91618ddd7539e"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/Localization/MMO_Gather.ini",
+      "target": "Config/Localization/MMO_Gather.ini",
+      "sha256": "145160234d0f0232be73a06f7a94c70297d9f7c1d04177e65a3920dbc288b356",
+      "lines": 35,
+      "renderedSHA256": "e8fd18d0f6f436b6a2bbafe29d7b54163a22346a0e3d49dc5a40963500f6f116"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/Localization/MMO_GenerateReports.ini",
+      "target": "Config/Localization/MMO_GenerateReports.ini",
+      "sha256": "561f6329757465066a5e1f6f3b8ef338165ff84e9e7122904abcfc4ac160604f",
+      "lines": 13,
+      "renderedSHA256": "fbd277409210cf4fdd5ed16abf2c58e01f569776cac4ed7dce35c180d8069675"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/Localization/MMO_Import.ini",
+      "target": "Config/Localization/MMO_Import.ini",
+      "sha256": "ad8e5ab131dcacbd2ce3d47fbe6905fc3f02d3d6b1f7caa5c9dab8640807b65a",
+      "lines": 15,
+      "renderedSHA256": "03b18db3927cd17f9c9c31127d2ac1bb5a2d05873b3bcf81b0b9416d5d56d8ba"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/Config/Windows/WindowsEngine.ini",
+      "target": "Config/Windows/WindowsEngine.ini",
+      "sha256": "0a3722ba67385c8b5ffc297e3f56398fa9c8698ea826676090561a43dd7dd652",
+      "lines": 9,
+      "renderedSHA256": "43d0105400679290d81198fa182280d0d42a4f39f11a2741d90d7da5210258eb"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/backend/migrations/001_initial.sql",
+      "target": "backend/migrations/001_initial.sql",
+      "sha256": "9818de7efd8b1aa06994b19937b1dc958aa80efe9f72684b5eac6fa69df716c7",
+      "lines": 28,
+      "renderedSHA256": "7aa4dcd44658ef14ab1b90de898062217266874d3f2e1fd45a7ba285263a129c"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/backend/migrations/002_state_constraints.sql",
+      "target": "backend/migrations/002_state_constraints.sql",
+      "sha256": "9e9415bf9d4e00d2c4235b9b55357640c390bf8e6967058469d70d3529d09166",
+      "lines": 8,
+      "renderedSHA256": "a455fb3e58d4a12ff2ddcaa547c0d1152f336e9da08f4d00beb181d7fad1dde5"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/dependencies.json",
+      "target": "dependencies.json",
+      "sha256": "c69e7e1f43e72455c4f2c3bcbea48a0394e547badfbacb521137b252e29cdd12",
+      "lines": 17,
+      "renderedSHA256": "edea003b846dbf5804e7d6764eb8dbdb8d2946e1270273c199a306b581cd9eec"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/localization-runtime-zh-Hans.json",
+      "target": "localization-runtime-zh-Hans.json",
+      "sha256": "4240a936ca703cab503cb75ca88d9733d0cff23cf20f612d0e3f6a3c64153188",
+      "lines": 162,
+      "renderedSHA256": "3b9379141a2824a62075bf53ccb311ba536165862cd31d65a0caefdf7de193fc"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/ui-designer-contract.json",
+      "target": "ui-designer-contract.json",
+      "sha256": "0a273b7185a31fbf754c51ab5ed524507ef3cf2aed61544aa5e1752166a6ff07",
+      "lines": 145,
+      "renderedSHA256": "acc33cccc8e223f74cc4c8b388bd063aecc95f0de7a432af934b6bcc6f830e20"
+    },
+    {
+      "chapter": "08-mmorpg/source/config",
+      "source": "examples/MMORPG/ui-designer-strings.json",
+      "target": "ui-designer-strings.json",
+      "sha256": "b5fe340009b6fa462d4f224d6c8d80783cbb14ad0bc48f99434b61efacb94468",
+      "lines": 53,
+      "renderedSHA256": "cb1f1afc9cb79b7e472d4d58a80174977ef0ab003fdeafcf5029ea812718d117"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h",
+      "sha256": "e6626d17f9413e8009c5c1a3167ae2e6801023cda592be04ba057c94fa14b03b",
+      "lines": 21,
+      "renderedSHA256": "824fc3205de6b43692f6c8d5f9481de387bfb793717bd42379f022ef3fdf17ff"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h",
+      "sha256": "eb0c832deb70a3ef8457a6b8bd97cc5a34f138bc3860aff66cb1dc093ac86d09",
+      "lines": 17,
+      "renderedSHA256": "5ac845cc5af8d6d5164d41aad9d827bd4b5fd4e33ddb9e793c75d8448ac45e00"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h",
+      "sha256": "4f08ad2eeac2720db576a32709596532653deaeda1ab41a30fefcd1fc41eb3ca",
+      "lines": 27,
+      "renderedSHA256": "737be570977009ced21166a9bba4dde8c840c5caef4373fb604dba8883371713"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin",
+      "target": "Plugins/MMODocTools/MMODocTools.uplugin",
+      "sha256": "5d9f6fbb0156eea93ae51690f07dc3f22e227ef4759a1c2adda4991702c4e6d9",
+      "lines": 19,
+      "renderedSHA256": "e1416366d752a34fdc2767629af271a609feb33bc313bf057dff8dc4540be306"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs",
+      "sha256": "081dc5a6b2ffc92dd581185508d0fa467b56640e79398ef8fc31ddf84db57fdb",
+      "lines": 15,
+      "renderedSHA256": "853d41a62a2e05c0b4e0c61bf0b77e1a822af701d7fc441f57126fffaa7da7e2"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+      "sha256": "2f7d93eefcc7ddd2006eb1fcb1bbc1bf1b7c00da5f9673206428e402defbf846",
+      "lines": 494,
+      "renderedSHA256": "32ddd7f03dfbff917f992e72ddc9ef240ac38e2a3b4c8a8fb20237452f4cb34d"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+      "sha256": "17f3aaeafb7dae8d37db857b1f65b7f9a84a99eb14b2c84b46dc4afbfc2d459a",
+      "lines": 344,
+      "renderedSHA256": "bcd47131736c952c91a944f414c525850bf984f846d50de242fc1b8979008159"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+      "sha256": "dff83657bf1f7578be69bbdc25639aa3f5227b90531e4424b760dd55316d49e5",
+      "lines": 165,
+      "renderedSHA256": "ada982e2f1812cd34c381a3fb89eb925e0bdceaeeb0f1a83890f802ed7c1bcd0"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp",
+      "sha256": "e239fe985e572d454b1a919ed61a716c8fa2b065e44607d0c318e6911447d586",
+      "lines": 128,
+      "renderedSHA256": "40149db32c04f7f86c3ba12a0fe4001fdce9d40525d846c7e516fafee6431fb6"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp",
+      "sha256": "81d7cef8ef32858b07ed7df2575be839c7332ff515eaa5534e8f444cde54e2ab",
+      "lines": 230,
+      "renderedSHA256": "82265d2f926d89128aaf26546077d2ce296b0f7a12b6f67a8f7cb4617302d68b"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp",
+      "sha256": "ca6b9ec7bc20c65e5d69a5a8fdef0492ff32f3c313acaee1569e26fd92a3fde1",
+      "lines": 3,
+      "renderedSHA256": "b0b100d8854a4c50467fa690c21cf7b4e926d7f1576b0fe7aa59d3066cd6f303"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+      "sha256": "95f79798397c8fcf81c0595eacc22dd939b215af2f237fd30397531503af4c30",
+      "lines": 92,
+      "renderedSHA256": "b61538ced74783b436cf0c811090031ae1661573002ee1b5a631aca83269bed3"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/prepare_content.py",
+      "target": "prepare_content.py",
+      "sha256": "75445e9d04fc442b2c132e35bf0791ced549223896b9679299e6534aef3759b6",
+      "lines": 176,
+      "renderedSHA256": "c82a8afd3d16fb9678f0eeb96e9872b212c0d296478fb0a1742a3e1a61fbdffc"
+    },
+    {
+      "chapter": "08-mmorpg/source/editor-tools",
+      "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h",
+      "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h",
+      "sha256": "d0bb3e3e31cbe1214d8b1c3e1ce349c545392e0104c6bf14118bd12574bc1bcb",
+      "lines": 25,
+      "renderedSHA256": "614b4867c4729ea49100d1f85d3af3f7abfb9d1eeb053a4e0758c4f948e44471"
+    }
+  ]
+}

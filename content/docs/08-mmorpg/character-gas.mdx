@@ -267,6 +267,48 @@ PlayerState 和 ASC 始终保留，AbilitySet 由 PlayerState 授予一次。旧
 
 源码定位：`MMOHealthComponent.h/.cpp`（生命观察与死亡复制）、`MMORespawnGameplay.cpp`（权威重生）、`MMOGameplay.cpp` 的 `LoadSnapshot`（死亡存档恢复）、`MMOUI.cpp` 的 `RefreshStatus`（本地化状态）。脚本的 `death-respawn` 轮会检查实际死亡观察、Pawn 替换、同一个 ASC、两项能力以及重生后的 Designer 绑定；最新实测结果以验证记录为准。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 先从图中的一条技能记录读到服务器
+
+前面的 DA_MMOAbilities 图里，普通攻击与奥术箭都使用 InputID=-1；它们靠 InputTag.MMO.Attack / Spell 匹配，不靠数字编号 1、2。数字键是 IMC 的物理按键，Input Tag 是玩法语义，AbilitySpec 是已经授予的能力记录。
+
+沿“按 2 → IA_Spell → DA_MMOInputConfig → InputTag.MMO.Spell → 服务器分发 → ASC 匹配 Spec”逐个核对。本机两个技能为 ServerOnly，先由服务器决定是否执行。
+源码：`examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp`，本机第 20–34 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+bool UMMOAbilitySystemComponent::TryActivateAbilitiesByInputTag(const FGameplayTag& InputTag)
+{
+    if (!IsOwnerActorAuthoritative() || !InputTag.IsValid()) return false;
+    TArray<FGameplayAbilitySpecHandle> Handles;
+    {
+        ABILITYLIST_SCOPE_LOCK();
+        for (const FGameplayAbilitySpec& Spec : GetActivatableAbilities())
+            if (Spec.Ability && Spec.GetDynamicSpecSourceTags().HasTagExact(InputTag)) Handles.Add(Spec.Handle);
+    }
+    // Activation may invoke callbacks that add or remove specs. The list lock and traversal have ended.
+    bool bAnyActivated = false;
+    for (const FGameplayAbilitySpecHandle Handle : Handles)
+        if (TryActivateAbility(Handle)) bAnyActivated = true;
+    return bAnyActivated;
+}
+```
+
+逐段解释：
+
+1. `IsOwnerActorAuthoritative()` 要求权威端执行，标签无效也直接返回 false。
+2. `ABILITYLIST_SCOPE_LOCK` 保护遍历；先把所有匹配标签的 Spec Handle 收集出来。
+3. 退出小括号块，遍历已结束，再调用 TryActivateAbility。技能激活可能触发回调增删 Spec，因此不直接在遍历原数组时激活。
+4. 返回 true 表示至少一次激活成功；当前两项配置各匹配一项，但通用函数并没有硬编码“一个标签只许一项”。
+
+**怎么读数值图**：本章奥术箭截图的法力 80 表示从满值 100 消耗 20；目标生命 60 表示一次 40 伤害；玩家生命 75 来自目标反击 25。三项分别属于施法者 Mana、目标 Health 和施法者 Health，不是同一属性变化三次。
+
+**完成检查**：在两客户端中分别观察自己的 Spec 和 Mana，确认按键来自 A 时没有直接修改 B 的角色状态。再做死亡重生，比较 Pawn 变更和 ASC 保持；重复 GiveAbility 会让配置正确的技能也出现重复实例。
+
+{/* full-guide-end */}
+
 ## 操作与预期结果
 
 1. 完成注册、建角和入服，走到目标附近，按 Tab。
@@ -277,4 +319,3 @@ PlayerState 和 ASC 始终保留，AbilitySet 由 PlayerState 授予一次。旧
 若只有服务器数值变化，检查属性复制、RepNotify 和 ASC Owner；若连续攻击未受冷却限制，检查能力的 CooldownGameplayEffectClass 和效果授予的标签；若背包 UI 不更新，检查 `OnRep_Progress` 是否到达 ViewModel。
 
 练习：新增一项恢复技能，通过 GameplayEffect 恢复生命并加上独立冷却。明确它是在目标验证之前还是之后提交消耗，再用失败场景验证没有无效扣费。
-

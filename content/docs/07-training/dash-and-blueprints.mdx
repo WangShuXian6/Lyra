@@ -43,6 +43,40 @@ Rider 中依次检查 `ULyraHeroComponent::Input_AbilityInputTagPressed`、`ULyr
 
 观察 `FGameplayAbilitySpec` 的能力类是否已经变成 `GA_TrainingDash_C`，以及它的动态来源标签是否与 InputConfig 一致。UE 5.8.1 的读取接口为 `GetDynamicSpecSourceTags()`。若 AbilitySet 中仍引用官方类，修改训练蓝图不会改变运行结果。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 为什么复制了图，还要修改 AbilitySet
+源码：`examples/LyraTraining/prepare_training.py`，本机第 39–45 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```python
+dash = clone('/ShooterCore/Game/Dash/GA_Hero_Dash', root + '/Game/GA_TrainingDash')
+unreal.BlueprintEditorLibrary.compile_blueprint(dash)
+dash_class = lib.load_blueprint_class(root + '/Game/GA_TrainingDash')
+bridge = unreal.LyraDocToolsLibrary
+replaced = bridge.replace_ability_in_set(abilities, lib.load_blueprint_class('/ShooterCore/Game/Dash/GA_Hero_Dash'), dash_class)
+if replaced != 1:
+    raise RuntimeError('Expected exactly one official Dash grant, found ' + str(replaced))
+```
+
+第一行创建独立的蓝图资产，第二行编译生成类，第三行取得该类；随后把 AbilitySet 中原 Dash 类换成新类。`replaced != 1` 会停止脚本，因为找到 0 项说明没接上，找到多项说明可能重复授予。只复制图而不改 AbilitySet，运行时仍会执行原 GA_Hero_Dash。
+
+### 分三次读完整蓝图，不从左到右背所有节点
+
+1. **第一次只读白线**：从 ActivateAbility 找执行出口，标出启动 Root Motion、等待、结束和取消。白线没有经过的节点，可能只是提供数据。
+2. **第二次读方向数据**：在 SelectDirectionalMontage 图中，从 Facing Direction 与 Movement Direction 找到角度差，再追到返回的 Montage。蓝色对象引用引脚与向量/布尔引脚不能任意互接。
+3. **第三次读副作用**：找到 Cue、冷却消息和清理。每个启动节点都追它的结束/中断出口，解释死亡时谁结束位移任务。
+
+本页的 9392 像素宽原图需要点 **实际大小** 后横向移动查看；缩略图只用于总览。函数原图旁的下载文本用于 UE 原生粘贴，不是放进 `.cpp` 的 C++。
+![复制冲刺蓝图后的三层验证](/media/guide-diagrams/07-training-dash-and-blueprints.svg)
+
+**读图**：粘贴成功只是第一层中的一个动作。新手常见错误是把“节点看起来一样”当成整条功能已经连接。
+
+**练习记录**：前、后、左、右分别输入一次，在 Debug 对象中选择当前角色的实际能力实例，观察分支高亮和返回 Montage。方向阈值边界和零输入需要单独列为测试，不从已有单方向记录推断通过。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 前后左右移动时冲刺动画和位移方向匹配；取消或死亡后不会永久卡住其他能力。若出现红色未知节点，优先检查复制文本中的类路径与父类依赖。若编译通过但从未触发，检查实际 Experience、PawnData 和授予的 AbilitySpec。

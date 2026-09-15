@@ -1,0 +1,1977 @@
+---
+title: 资产核对与生成工具：完整文件
+description: 按目标路径新建或替换文件，复制完整实现，再与逐步操作课程对照。
+---
+
+这是与教程人工步骤配套的编辑器工具。它们创建真实资产、校验图表与控件契约，不参与玩家战斗。复刻主线先手工做资产；在参考副本运行生成器来核对结果。
+
+[返回对应操作与解释](/docs/09-mmo-ui/blueprint-workflow) · [返回制作主线](/docs/08-mmorpg/from-zero)
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+## 复制之前先确认位置
+
+下列路径均相对你的 **MMORPG 工程根目录**。在 Rider 的文件视图中右键父目录 → New → File，输入完整文件名（包括扩展名）；文件已存在时替换整个文件，不能把第二套类声明追加到末尾。页面给出的是当前教程的完整文件，代码框右上角可以复制，不含省略号占位实现。
+
+先写 `.h` 再写 `.cpp` 便于阅读；**完成当前源码阶段的全部文件后才编译**。`*.generated.h` 由 UnrealHeaderTool 生成，不手工创建。`#include`、模块导出宏和函数签名都要保留。一个文件中出现多个类时，复制整个文件一次即可。
+
+按 [四个源码阶段](/docs/08-mmorpg/from-zero) 使用这些文件。本组从 **03 阶段**开始使用。00–02 阶段保留当阶段的轻量 `.uproject` 和 Build.cs；03 阶段再切换到完整项目依赖。
+
+## 逐段理解与资产连接
+
+### 辅助工具如何保证可复刻
+
+MMODocProjectGuard 只允许原实验目录或 Advance-Lesson 登记的阶段 03 工程；每个操作还检查资产类型与路径。它防止在别的工程误写同名资产，同时允许读者选择自己的目录。
+
+MMOAnimationTools 构造真实 AnimGraph，连接模板的 Speed/Y 轴，编译并导出原生节点文本，再导入副本验证；MMODesignerWidgets 构造 Designer 层级、绑定与字符串表引用；MMODocExperienceTools 创建数据连接。
+
+prepare_content.py 按依赖顺序调用这些原生方法并保存。它是可执行的参考实现，不能用一张“脚本运行完成”截图替代读者对资产字段和节点的理解。请先读资产施工清单，再选择手工制作或在另一份登记工程生成对照资产。
+
+首次空 Content 启动时 MMOCore 的 GameFeatureData 尚不存在，自动注册可能报告 Plugin_Missing_GameFeatureData；创建并保存该数据资产后，退出并重新打开项目，再核对注册。命令行第一次生成会因此返回非零，即使生成报告显示成功，也要新进程检查，不能把退出码 1 当成功。
+
+## 本组文件清单
+
+| 文件 | 行数 | 操作 |
+|---|---:|---|
+| `Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h` | 21 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h` | 17 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h` | 27 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/MMODocTools.uplugin` | 19 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs` | 15 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp` | 494 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp` | 344 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp` | 165 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp` | 128 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp` | 230 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp` | 3 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp` | 92 | 新建；已有同名文件则整体替换 |
+| `prepare_content.py` | 176 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h` | 25 | 新建；已有同名文件则整体替换 |
+
+## 文件 1：MMOAnimationTools.h
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h"
+#pragma once
+
+#include "Kismet/BlueprintFunctionLibrary.h"
+#include "MMOAnimationTools.generated.h"
+
+class UBlueprint;
+
+/** Editor-only reproducible graph construction. The resulting assets remain editable in Persona. */
+UCLASS()
+class MMODOCTOOLS_API UMMOAnimationTools : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+    UFUNCTION(BlueprintCallable, Category="MMO Documentation|Editor")
+    static FString PrepareCharacterAnimation();
+    /** Compile and round-trip existing graphs without reconstructing their source nodes. */
+    UFUNCTION(BlueprintCallable, Category="MMO Documentation|Editor")
+    static FString ValidateCharacterAnimation();
+    UFUNCTION(BlueprintCallable, Category="MMO Documentation|Editor")
+    static FString ConfigureCharacter(UBlueprint* Blueprint);
+};
+```
+
+</details>
+
+## 文件 2：MMODocExperienceTools.h
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h"
+#pragma once
+#include "Kismet/BlueprintFunctionLibrary.h"
+#include "MMODocExperienceTools.generated.h"
+class UDataAsset;
+UCLASS()
+class MMODOCTOOLS_API UMMODocExperienceTools : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+    UFUNCTION(BlueprintCallable, Category="MMO Documentation|Editor")
+    static FString ConfigureExperienceAssets(UDataAsset* Experience, UDataAsset* PawnData, UDataAsset* AbilitySet);
+    /** Precisely edits only InputTag/InputID of the existing two tutorial ability grants; never saves. */
+    UFUNCTION(BlueprintCallable, Category="MMO Documentation|Editor")
+    static FString ConfigureTaggedAbilityInputs(UObject* AbilityAsset);
+    UFUNCTION(BlueprintCallable, Category="MMO Documentation|Editor")
+    static FString RecompileGameplayBlueprints();
+};
+```
+
+</details>
+
+## 文件 3：MMODocToolsLibrary.h
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h"
+#pragma once
+
+#include "Kismet/BlueprintFunctionLibrary.h"
+#include "MMODocToolsLibrary.generated.h"
+
+class UBlueprint;
+class UWidgetBlueprint;
+class UStringTable;
+
+UCLASS()
+class MMODOCTOOLS_API UMMODocToolsLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+    /** Constructs the health tutorial, compiles it, exports native text, imports a fresh duplicate, and returns JSON evidence. Does not save assets or execute HTTP. */
+    UFUNCTION(BlueprintCallable, Category = "MMO Documentation|Editor")
+    static FString ConfigureBackendTutorial(UBlueprint* Blueprint);
+    /** Builds a real UMG Designer tree and two manual-source MVVM editor bindings, then compiles. */
+    UFUNCTION(BlueprintCallable, Category = "MMO Documentation|Editor")
+    static FString ConfigureManaStatus(UWidgetBlueprint* Blueprint);
+    /** Editor-only: writes a real Designer tree, localized text and MVVM bindings; compiles but does not save or run gameplay. */
+    UFUNCTION(BlueprintCallable, Category = "MMO Documentation|Editor")
+    static FString ConfigureDesignerWidget(UWidgetBlueprint* Blueprint);
+    /** Populates the original ST_MMO asset from the stable English/source translation manifest. */
+    UFUNCTION(BlueprintCallable, Category = "MMO Documentation|Editor")
+    static FString ConfigureDesignerStrings(UStringTable* StringTable);
+};
+```
+
+</details>
+
+## 文件 4：MMODocTools.uplugin
+
+目标路径：`Plugins/MMODocTools/MMODocTools.uplugin`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="Plugins/MMODocTools/MMODocTools.uplugin"
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0.0",
+  "FriendlyName": "MMO Blueprint Documentation Tools",
+  "Description": "Editor-only construction and native clipboard verification of the backend health tutorial Blueprint.",
+  "Category": "Editor",
+  "CanContainContent": false,
+  "EnabledByDefault": true,
+  "Modules": [{ "Name": "MMODocTools", "Type": "Editor", "LoadingPhase": "Default" }],
+  "Plugins": [
+    { "Name": "MMOIntegration", "Enabled": true },
+    { "Name": "MMOFramework", "Enabled": true },
+    { "Name": "EnhancedInput", "Enabled": true },
+    { "Name": "CommonUI", "Enabled": true },
+    { "Name": "ModelViewViewModel", "Enabled": true },
+    { "Name": "PythonScriptPlugin", "Enabled": true, "TargetAllowList": ["Editor"] }
+  ]
+}
+```
+
+</details>
+
+## 文件 5：MMODocTools.Build.cs
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs"
+using UnrealBuildTool;
+
+public class MMODocTools : ModuleRules
+{
+    public MMODocTools(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PublicDependencyModuleNames.AddRange(new[] { "Core", "CoreUObject", "Engine" });
+        PrivateDependencyModuleNames.AddRange(new[] {
+            "MMOBackendClient", "MMOFramework", "UnrealEd", "BlueprintGraph", "Kismet", "KismetCompiler", "AssetTools", "Json",
+            "UMG", "UMGEditor", "SlateCore", "CommonUI", "ModelViewViewModel", "ModelViewViewModelBlueprint", "ModelViewViewModelEditor",
+            "AnimGraph", "AnimGraphRuntime", "GameplayTags", "EnhancedInput", "InputCore"
+        });
+    }
+}
+```
+
+</details>
+
+## 文件 6：MMOAnimationTools.cpp
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+#include "MMODocProjectGuard.h"
+#include "MMOAnimationTools.h"
+
+#include "Animation/AnimBlueprint.h"
+#include "Animation/AnimBlueprintGeneratedClass.h"
+#include "Animation/AnimInstance.h"
+#include "Animation/AnimSequence.h"
+#include "Animation/BlendSpace.h"
+#include "Animation/Skeleton.h"
+#include "AnimationGraph.h"
+#include "AnimationGraphSchema.h"
+#include "AnimGraphNode_BlendListByBool.h"
+#include "AnimGraphNode_BlendSpacePlayer.h"
+#include "AnimGraphNode_LinkedAnimLayer.h"
+#include "AnimGraphNode_LocalRefPose.h"
+#include "AnimGraphNode_Root.h"
+#include "AnimGraphNode_SequencePlayer.h"
+#include "AnimGraphNode_Slot.h"
+#include "AssetToolsModule.h"
+#include "Dom/JsonObject.h"
+#include "EdGraph/EdGraph.h"
+#include "EdGraph/EdGraphNode.h"
+#include "EdGraph/EdGraphPin.h"
+#include "EdGraphUtilities.h"
+#include "Engine/SkeletalMesh.h"
+#include "Engine/MemberReference.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/Character.h"
+#include "Factories/AnimBlueprintFactory.h"
+#include "IAssetTools.h"
+#include "HAL/FileManager.h"
+#include "K2Node_VariableGet.h"
+#include "Kismet2/BlueprintEditorUtils.h"
+#include "Kismet2/CompilerResultsLog.h"
+#include "Kismet2/KismetEditorUtilities.h"
+#include "Logging/TokenizedMessage.h"
+#include "Misc/DateTime.h"
+#include "Misc/FileHelper.h"
+#include "Misc/PackageName.h"
+#include "Misc/Paths.h"
+#include "Modules/ModuleManager.h"
+#include "ScopedTransaction.h"
+#include "Serialization/JsonSerializer.h"
+#include "Serialization/JsonWriter.h"
+#include "UObject/SavePackage.h"
+#include "UObject/UnrealType.h"
+
+namespace MMOAnimationBuilder
+{
+FString Encode(const TSharedRef<FJsonObject>& Report)
+{
+    FString Output;
+    FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Output));
+    return Output;
+}
+
+UEdGraph* FindGraph(UAnimBlueprint* Blueprint, FName Name)
+{
+    TArray<UEdGraph*> Graphs;
+    Blueprint->GetAllGraphs(Graphs);
+    for (UEdGraph* Graph : Graphs) if (Graph && Graph->GetFName() == Name) return Graph;
+    return nullptr;
+}
+
+UAnimGraphNode_Root* ClearGraph(UEdGraph* Graph)
+{
+    if (!Graph) return nullptr;
+    Graph->Modify();
+    UAnimGraphNode_Root* Root = nullptr;
+    const auto Nodes = Graph->Nodes;
+    for (UEdGraphNode* Node : Nodes)
+    {
+        Node->Modify();
+        if (auto* Candidate = Cast<UAnimGraphNode_Root>(Node))
+        {
+            Root = Candidate;
+            for (UEdGraphPin* Pin : Root->Pins) Pin->BreakAllPinLinks();
+            Root->NodePosX = 650;
+            Root->NodePosY = 50;
+        }
+        else
+        {
+            Graph->RemoveNode(Node);
+            Node->Rename(nullptr, GetTransientPackage(), REN_DontCreateRedirectors | REN_DoNotDirty);
+        }
+    }
+    return Root;
+}
+
+bool Connect(UEdGraphNode* Source, FName Output, UEdGraphNode* Target, FName Input)
+{
+    UEdGraphPin* A = Source ? Source->FindPin(Output, EGPD_Output) : nullptr;
+    UEdGraphPin* B = Target ? Target->FindPin(Input, EGPD_Input) : nullptr;
+    return A && B && Source->GetGraph()->GetSchema()->TryCreateConnection(A, B);
+}
+
+template <typename NodeType>
+NodeType* AddNode(UEdGraph* Graph, int32 X, int32 Y)
+{
+    FGraphNodeCreator<NodeType> Creator(*Graph);
+    NodeType* Node = Creator.CreateNode();
+    Node->NodePosX = X;
+    Node->NodePosY = Y;
+    Creator.Finalize();
+    return Node;
+}
+
+UK2Node_VariableGet* AddVariable(UEdGraph* Graph, UClass* /*Parent*/, FName Name, int32 X, int32 Y)
+{
+    FGraphNodeCreator<UK2Node_VariableGet> Creator(*Graph);
+    auto* Node = Creator.CreateNode();
+    // The animation instance itself inherits these native properties. An external
+    // member reference would require an explicit object target and disable the self fast path.
+    Node->VariableReference.SetSelfMember(Name);
+    Node->NodePosX = X; Node->NodePosY = Y;
+    Creator.Finalize();
+    return Node;
+}
+
+bool ReferencePose(UEdGraph* Graph)
+{
+    auto* Root = ClearGraph(Graph);
+    return Root && Connect(AddNode<UAnimGraphNode_LocalRefPose>(Graph, 300, 50), TEXT("Pose"), Root, TEXT("Result"));
+}
+
+TSharedRef<FJsonObject> Compile(UAnimBlueprint* Blueprint)
+{
+    FCompilerResultsLog Log;
+    FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(Blueprint);
+    FKismetEditorUtilities::CompileBlueprint(Blueprint, EBlueprintCompileOptions::None, &Log);
+    auto Result = MakeShared<FJsonObject>();
+    Result->SetStringField(TEXT("asset"), Blueprint->GetPathName());
+    Result->SetNumberField(TEXT("errors"), Log.NumErrors);
+    Result->SetNumberField(TEXT("warnings"), Log.NumWarnings);
+    TArray<TSharedPtr<FJsonValue>> Messages;
+    for (const auto& Message : Log.Messages) Messages.Add(MakeShared<FJsonValueString>(Message->ToText().ToString()));
+    Result->SetArrayField(TEXT("messages"), Messages);
+    Result->SetBoolField(TEXT("passed"), Log.NumErrors == 0 && Blueprint->Status == BS_UpToDate);
+    return Result;
+}
+
+bool Save(UObject* Asset)
+{
+    UPackage* Package = Asset->GetOutermost();
+    Package->MarkPackageDirty();
+    FSavePackageArgs Args;
+    Args.TopLevelFlags = RF_Public | RF_Standalone;
+    Args.SaveFlags = SAVE_NoError;
+    const FString Filename = FPackageName::LongPackageNameToFilename(Package->GetName(), FPackageName::GetAssetPackageExtension());
+    IFileManager::Get().MakeDirectory(*FPaths::GetPath(Filename), true);
+    return UPackage::SavePackage(Package, Asset, *Filename, Args);
+}
+
+UAnimBlueprint* GetOrCreate(const TCHAR* Name, UClass* Parent, USkeleton* Skeleton, USkeletalMesh* Mesh, bool bInterface)
+{
+    const FString Directory(TEXT("/Game/Characters/MMO"));
+    const FString ObjectPath = Directory / Name + FString(TEXT(".")) + Name;
+    if (auto* Existing = LoadObject<UAnimBlueprint>(nullptr, *ObjectPath)) return Existing;
+    UAnimBlueprintFactory* Factory = bInterface ? NewObject<UAnimLayerInterfaceFactory>() : NewObject<UAnimBlueprintFactory>();
+    if (!bInterface)
+    {
+        Factory->ParentClass = Parent;
+        Factory->TargetSkeleton = Skeleton;
+        Factory->PreviewSkeletalMesh = Mesh;
+    }
+    return Cast<UAnimBlueprint>(FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get().CreateAsset(
+        Name, Directory, UAnimBlueprint::StaticClass(), Factory));
+}
+
+bool Implement(UAnimBlueprint* Blueprint, UAnimBlueprint* Interface)
+{
+    for (const auto& Existing : Blueprint->ImplementedInterfaces)
+        if (Existing.Interface == Interface->GeneratedClass) return true;
+    return FBlueprintEditorUtils::ImplementNewInterface(Blueprint, FTopLevelAssetPath(Interface->GeneratedClass));
+}
+
+bool BuildLocomotion(UEdGraph* Graph, UClass* Parent, UBlendSpace* BlendSpace, UAnimSequence* Fall)
+{
+    auto* Root = ClearGraph(Graph);
+    if (!Root) return false;
+    FGraphNodeCreator<UAnimGraphNode_BlendSpacePlayer> WalkCreator(*Graph);
+    auto* Walk = WalkCreator.CreateNode();
+    Walk->Node.SetBlendSpace(BlendSpace);
+    Walk->NodePosX = -280; Walk->NodePosY = 200;
+    WalkCreator.Finalize();
+    FGraphNodeCreator<UAnimGraphNode_SequencePlayer> FallCreator(*Graph);
+    auto* Falling = FallCreator.CreateNode();
+    Falling->Node.SetSequence(Fall);
+    Falling->Node.SetLoopAnimation(true);
+    Falling->NodePosX = -280; Falling->NodePosY = -100;
+    FallCreator.Finalize();
+    auto* Blend = AddNode<UAnimGraphNode_BlendListByBool>(Graph, 170, 50);
+    auto* Speed = AddVariable(Graph, Parent, TEXT("GroundSpeed"), -600, 250);
+    auto* IsFalling = AddVariable(Graph, Parent, TEXT("bIsFalling"), -100, -270);
+    // Bool pose index 0 is True; index 1 is False (see the native node's CustomizePinData).
+    // UE mannequin's 2D blend space uses X=Direction and Y=Speed.
+    return Connect(Speed, TEXT("GroundSpeed"), Walk, TEXT("Y"))
+        && Connect(Falling, TEXT("Pose"), Blend, TEXT("BlendPose_0"))
+        && Connect(Walk, TEXT("Pose"), Blend, TEXT("BlendPose_1"))
+        && Connect(IsFalling, TEXT("bIsFalling"), Blend, TEXT("bActiveValue"))
+        && Connect(Blend, TEXT("Pose"), Root, TEXT("Result"));
+}
+
+TSharedRef<FJsonObject> RoundTrip(UAnimBlueprint* Blueprint, FName GraphName, const TCHAR* OutputName)
+{
+    auto Result = MakeShared<FJsonObject>();
+    UEdGraph* OriginalGraph = FindGraph(Blueprint, GraphName);
+    if (!OriginalGraph) { Result->SetBoolField(TEXT("passed"), false); return Result; }
+    TSet<UObject*> Selection;
+    FGuid OutputNodeGuid;
+    FName OutputPinName;
+    for (UEdGraphNode* Node : OriginalGraph->Nodes)
+    {
+        if (Node->CanDuplicateNode()) Selection.Add(Node);
+        if (auto* Root = Cast<UAnimGraphNode_Root>(Node))
+        {
+            if (UEdGraphPin* ResultPin = Root->FindPin(TEXT("Result")); ResultPin && ResultPin->LinkedTo.Num() == 1)
+            {
+                OutputNodeGuid = ResultPin->LinkedTo[0]->GetOwningNode()->NodeGuid;
+                OutputPinName = ResultPin->LinkedTo[0]->PinName;
+            }
+        }
+    }
+    FString Text;
+    FEdGraphUtilities::ExportNodesToText(Selection, Text);
+    const FString Filename = FPaths::ProjectSavedDir() / TEXT("TutorialBlueprints") / OutputName;
+    IFileManager::Get().MakeDirectory(*FPaths::GetPath(Filename), true);
+    if (!FFileHelper::SaveStringToFile(Text, *Filename, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM))
+    {
+        Result->SetBoolField(TEXT("passed"), false);
+        Result->SetStringField(TEXT("error"), TEXT("Could not save the newly exported native animation node text."));
+        return Result;
+    }
+    auto& Assets = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
+    const FString CopyName = FString(TEXT("RoundTrip_")) + Blueprint->GetName() + TEXT("_") + FGuid::NewGuid().ToString(EGuidFormats::Digits);
+    auto* Copy = Cast<UAnimBlueprint>(Assets.DuplicateAsset(CopyName, TEXT("/Game/Tutorial/Tests"), Blueprint));
+    UEdGraph* CopyGraph = Copy ? FindGraph(Copy, GraphName) : nullptr;
+    if (!CopyGraph) { Result->SetBoolField(TEXT("passed"), false); return Result; }
+    // Output Pose is a schema-owned, non-copyable node. Preserve it exactly as the
+    // editor does when a learner pastes nodes, then reconnect the pasted pose output.
+    UAnimGraphNode_Root* CopyRoot = ClearGraph(CopyGraph);
+    if (!CopyRoot || !OutputNodeGuid.IsValid()) { Result->SetBoolField(TEXT("passed"), false); return Result; }
+    TSet<UEdGraphNode*> Imported;
+    FEdGraphUtilities::ImportNodesFromText(CopyGraph, Text, Imported);
+    bool Reconnected = false;
+    for (UEdGraphNode* Node : Imported)
+        if (Node->NodeGuid == OutputNodeGuid) Reconnected = Connect(Node, OutputPinName, CopyRoot, TEXT("Result"));
+    if (!Reconnected)
+    {
+        Result->SetBoolField(TEXT("passed"), false);
+        Result->SetStringField(TEXT("error"), TEXT("Could not reconnect the pasted output to the existing Output Pose."));
+        return Result;
+    }
+    const auto CompileResult = Compile(Copy);
+    Result->SetStringField(TEXT("source"), Blueprint->GetPathName());
+    Result->SetStringField(TEXT("graph"), GraphName.ToString());
+    Result->SetStringField(TEXT("nativeText"), Filename);
+    Result->SetNumberField(TEXT("totalGraphNodes"), OriginalGraph->Nodes.Num());
+    Result->SetNumberField(TEXT("sourceNodes"), Selection.Num());
+    Result->SetNumberField(TEXT("importedNodes"), Imported.Num());
+    Result->SetBoolField(TEXT("preservedOutputPoseNode"), true);
+    Result->SetBoolField(TEXT("reconnectedOutputPose"), Reconnected);
+    Result->SetObjectField(TEXT("compile"), CompileResult);
+    Result->SetBoolField(TEXT("passed"), CompileResult->GetBoolField(TEXT("passed")) && Imported.Num() == Selection.Num());
+    // This validation duplicate is intentionally not saved or shipped.
+    Copy->GetOutermost()->SetDirtyFlag(false);
+    return Result;
+}
+}
+
+FString UMMOAnimationTools::PrepareCharacterAnimation()
+{
+    using namespace MMOAnimationBuilder;
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetBoolField(TEXT("passed"), false);
+    Report->SetStringField(TEXT("checkedAt"), FDateTime::UtcNow().ToIso8601());
+    if (!IsMMODocProject())
+    {
+        Report->SetStringField(TEXT("error"), TEXT("Open the original MMORPG lab or a registered stage 3 lesson project."));
+        return Encode(Report);
+    }
+    UClass* RuntimeClass = LoadClass<UAnimInstance>(nullptr, TEXT("/Script/MMORPG.MMOAnimInstance"));
+    auto* Mesh = LoadObject<USkeletalMesh>(nullptr, TEXT("/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple.SKM_Manny_Simple"));
+    auto* BlendSpace = LoadObject<UBlendSpace>(nullptr, TEXT("/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run"));
+    auto* Fall = LoadObject<UAnimSequence>(nullptr, TEXT("/Game/Characters/Mannequins/Anims/Unarmed/Jump/MM_Fall_Loop.MM_Fall_Loop"));
+    if (!RuntimeClass || !Mesh || !BlendSpace || !Fall)
+    {
+        Report->SetStringField(TEXT("error"), TEXT("Build MMOAnimInstance and copy the UE template character resources before generation."));
+        return Encode(Report);
+    }
+    FScopedTransaction Transaction(NSLOCTEXT("MMODocTools", "PrepareAnimation", "Prepare MMO animation layers"));
+    auto* Interface = GetOrCreate(TEXT("ALI_MMOCharacter"), RuntimeClass, Mesh->GetSkeleton(), Mesh, true);
+    if (!Interface) return Encode(Report);
+    if (!FindGraph(Interface, TEXT("Locomotion")))
+    {
+        auto* Graph = FBlueprintEditorUtils::CreateNewGraph(Interface, TEXT("Locomotion"), UAnimationGraph::StaticClass(), UAnimationGraphSchema::StaticClass());
+        FBlueprintEditorUtils::AddDomainSpecificGraph(Interface, Graph);
+    }
+    TArray<TSharedPtr<FJsonValue>> Compiles;
+    auto InterfaceCompile = Compile(Interface);
+    Compiles.Add(MakeShared<FJsonValueObject>(InterfaceCompile));
+    Report->SetArrayField(TEXT("compiles"), Compiles);
+    if (!InterfaceCompile->GetBoolField(TEXT("passed")) || !Save(Interface)) return Encode(Report);
+    auto* Unarmed = GetOrCreate(TEXT("ABP_MMOUnarmed"), RuntimeClass, Mesh->GetSkeleton(), Mesh, false);
+    auto* Main = GetOrCreate(TEXT("ABP_MMOCharacter"), RuntimeClass, Mesh->GetSkeleton(), Mesh, false);
+    if (!Unarmed || !Main || !Implement(Unarmed, Interface) || !Implement(Main, Interface)) return Encode(Report);
+    if (!BuildLocomotion(FindGraph(Unarmed, TEXT("Locomotion")), RuntimeClass, BlendSpace, Fall)
+        || !ReferencePose(FindGraph(Unarmed, TEXT("AnimGraph")))
+        || !BuildLocomotion(FindGraph(Main, TEXT("Locomotion")), RuntimeClass, BlendSpace, Fall))
+    {
+        Report->SetStringField(TEXT("error"), TEXT("Animation graph pin connection failed; inspect native node pins."));
+        return Encode(Report);
+    }
+    auto UnarmedCompile = Compile(Unarmed);
+    Compiles.Add(MakeShared<FJsonValueObject>(UnarmedCompile));
+    Report->SetArrayField(TEXT("compiles"), Compiles);
+    if (!UnarmedCompile->GetBoolField(TEXT("passed")) || !Save(Unarmed)) return Encode(Report);
+    auto* MainGraph = FindGraph(Main, TEXT("AnimGraph"));
+    auto* Root = ClearGraph(MainGraph);
+    if (!Root) return Encode(Report);
+    FGraphNodeCreator<UAnimGraphNode_LinkedAnimLayer> LayerCreator(*MainGraph);
+    auto* Layer = LayerCreator.CreateNode();
+    Layer->Node.Interface = Interface->GeneratedClass;
+    Layer->Node.InstanceClass = Unarmed->GeneratedClass;
+    Layer->Node.Layer = TEXT("Locomotion");
+    // SetLayerName is public but not DLL-exported by this 5.8 MinimalAPI class.
+    // Apply the same reflected member-reference update without patching the engine.
+    auto* ReferenceProperty = FindFProperty<FStructProperty>(Layer->GetClass(), TEXT("FunctionReference"));
+    if (!ReferenceProperty || ReferenceProperty->Struct != FMemberReference::StaticStruct())
+    {
+        Report->SetStringField(TEXT("error"), TEXT("Linked layer FunctionReference schema is unavailable."));
+        return Encode(Report);
+    }
+    FGuid FunctionGuid;
+    FBlueprintEditorUtils::GetFunctionGuidFromClassByFieldName(Interface->GeneratedClass, TEXT("Locomotion"), FunctionGuid);
+    ReferenceProperty->ContainerPtrToValuePtr<FMemberReference>(Layer)->SetExternalMember(TEXT("Locomotion"), Interface->GeneratedClass, FunctionGuid);
+    Layer->InterfaceGuid = FBlueprintEditorUtils::FindInterfaceGraphGuid(TEXT("Locomotion"), Interface->GeneratedClass);
+    Layer->NodePosX = -300; Layer->NodePosY = 50;
+    LayerCreator.Finalize();
+    auto* Slot = AddNode<UAnimGraphNode_Slot>(MainGraph, 170, 50);
+    Slot->Node.SlotName = TEXT("DefaultSlot");
+    if (!Connect(Layer, TEXT("Pose"), Slot, TEXT("Source")) || !Connect(Slot, TEXT("Pose"), Root, TEXT("Result")))
+    {
+        Report->SetStringField(TEXT("error"), TEXT("Main animation graph pin connection failed."));
+        return Encode(Report);
+    }
+    auto MainCompile = Compile(Main);
+    Compiles.Add(MakeShared<FJsonValueObject>(MainCompile));
+    Report->SetArrayField(TEXT("compiles"), Compiles);
+    if (!MainCompile->GetBoolField(TEXT("passed")) || !Save(Main)) return Encode(Report);
+    const auto MainRoundTrip = RoundTrip(Main, TEXT("AnimGraph"), TEXT("mmo-character-animgraph.txt"));
+    const auto LayerRoundTrip = RoundTrip(Unarmed, TEXT("Locomotion"), TEXT("mmo-unarmed-locomotion.txt"));
+    Report->SetArrayField(TEXT("roundTrips"), {MakeShared<FJsonValueObject>(MainRoundTrip), MakeShared<FJsonValueObject>(LayerRoundTrip)});
+    Report->SetBoolField(TEXT("passed"), MainRoundTrip->GetBoolField(TEXT("passed")) && LayerRoundTrip->GetBoolField(TEXT("passed")));
+    return Encode(Report);
+}
+
+FString UMMOAnimationTools::ConfigureCharacter(UBlueprint* Blueprint)
+{
+    using namespace MMOAnimationBuilder;
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetBoolField(TEXT("passed"), false);
+    const FString Project = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir()).Replace(TEXT("\\"), TEXT("/"));
+    if (!IsMMODocProject() || !Blueprint
+        || Blueprint->GetPathName() != TEXT("/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter"))
+    {
+        Report->SetStringField(TEXT("error"), TEXT("Expected the original BP_MMOCharacter inside the isolated MMORPG lab."));
+        return Encode(Report);
+    }
+    auto* MeshAsset = LoadObject<USkeletalMesh>(nullptr, TEXT("/Game/Characters/Mannequins/Meshes/SKM_Manny_Simple.SKM_Manny_Simple"));
+    auto* AnimClass = LoadClass<UAnimInstance>(nullptr, TEXT("/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter_C"));
+    if (!MeshAsset || !AnimClass || !Blueprint->GeneratedClass) return Encode(Report);
+    auto* Defaults = Cast<ACharacter>(Blueprint->GeneratedClass->GetDefaultObject());
+    if (!Defaults || !Defaults->GetMesh()) return Encode(Report);
+    FScopedTransaction Transaction(NSLOCTEXT("MMODocTools", "ConfigureManny", "Configure MMO Manny character defaults"));
+    Blueprint->Modify(); Defaults->Modify();
+    USkeletalMeshComponent* MeshComponent = Defaults->GetMesh();
+    MeshComponent->Modify();
+    MeshComponent->SetSkeletalMesh(MeshAsset);
+    MeshComponent->SetAnimationMode(EAnimationMode::AnimationBlueprint);
+    MeshComponent->SetAnimInstanceClass(AnimClass);
+    MeshComponent->SetRelativeLocation(FVector(0, 0, -Defaults->GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight()));
+    MeshComponent->SetRelativeRotation(FRotator(0, -90, 0));
+    MeshComponent->SetCollisionProfileName(TEXT("CharacterMesh"));
+    FBlueprintEditorUtils::MarkBlueprintAsModified(Blueprint);
+    FCompilerResultsLog Log;
+    FKismetEditorUtilities::CompileBlueprint(Blueprint, EBlueprintCompileOptions::None, &Log);
+    Defaults = Cast<ACharacter>(Blueprint->GeneratedClass->GetDefaultObject());
+    MeshComponent = Defaults ? Defaults->GetMesh() : nullptr;
+    const bool Retained = MeshComponent && MeshComponent->GetSkeletalMeshAsset() == MeshAsset && MeshComponent->GetAnimClass() == AnimClass
+        && MeshComponent->GetAnimationMode() == EAnimationMode::AnimationBlueprint;
+    Report->SetNumberField(TEXT("errors"), Log.NumErrors);
+    Report->SetNumberField(TEXT("warnings"), Log.NumWarnings);
+    Report->SetBoolField(TEXT("defaultsRetainedAfterCompile"), Retained);
+    Report->SetStringField(TEXT("asset"), Blueprint->GetPathName());
+    Report->SetStringField(TEXT("mesh"), MeshAsset->GetPathName());
+    Report->SetStringField(TEXT("animClass"), AnimClass->GetPathName());
+    if (MeshComponent)
+    {
+        Report->SetStringField(TEXT("relativeLocation"), MeshComponent->GetRelativeLocation().ToString());
+        Report->SetStringField(TEXT("relativeRotation"), MeshComponent->GetRelativeRotation().ToString());
+    }
+    Report->SetBoolField(TEXT("passed"), Log.NumErrors == 0 && Retained && Save(Blueprint));
+    return Encode(Report);
+}
+
+FString UMMOAnimationTools::ValidateCharacterAnimation()
+{
+    using namespace MMOAnimationBuilder;
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetBoolField(TEXT("passed"), false);
+    Report->SetBoolField(TEXT("saved"), false);
+    Report->SetBoolField(TEXT("sourceGraphsReconstructed"), false);
+    Report->SetStringField(TEXT("checkedAt"), FDateTime::UtcNow().ToIso8601());
+    const FString Project = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir()).Replace(TEXT("\\"), TEXT("/"));
+    if (!IsMMODocProject())
+    {
+        Report->SetStringField(TEXT("error"), TEXT("Validate existing animation only inside the isolated MMORPG lab."));
+        return Encode(Report);
+    }
+    auto* Interface = LoadObject<UAnimBlueprint>(nullptr, TEXT("/Game/Characters/MMO/ALI_MMOCharacter.ALI_MMOCharacter"));
+    auto* Main = LoadObject<UAnimBlueprint>(nullptr, TEXT("/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter"));
+    auto* Unarmed = LoadObject<UAnimBlueprint>(nullptr, TEXT("/Game/Characters/MMO/ABP_MMOUnarmed.ABP_MMOUnarmed"));
+    if (!Interface || !Main || !Unarmed)
+    {
+        Report->SetStringField(TEXT("error"), TEXT("The three existing animation assets are required; validation never creates source assets."));
+        return Encode(Report);
+    }
+    const TArray<UAnimBlueprint*> Sources { Interface, Unarmed, Main };
+    auto CollectGuids = [&Sources]()
+    {
+        TArray<FString> Guids;
+        for (UAnimBlueprint* Source : Sources)
+        {
+            TArray<UEdGraph*> Graphs;
+            Source->GetAllGraphs(Graphs);
+            for (UEdGraph* Graph : Graphs)
+            {
+                const FString Prefix = Source->GetPathName() + TEXT(":") + Graph->GetName();
+                Guids.Add(Prefix + TEXT(":graph:") + Graph->GraphGuid.ToString());
+                for (UEdGraphNode* Node : Graph->Nodes) if (Node) Guids.Add(Prefix + TEXT(":node:") + Node->NodeGuid.ToString());
+            }
+        }
+        Guids.Sort();
+        return Guids;
+    };
+    const TArray<FString> BeforeGuids = CollectGuids();
+    TArray<TSharedPtr<FJsonValue>> Compiles;
+    for (UAnimBlueprint* Source : Sources)
+    {
+        const auto Result = Compile(Source);
+        Compiles.Add(MakeShared<FJsonValueObject>(Result));
+        Report->SetArrayField(TEXT("compiles"), Compiles);
+        if (!Result->GetBoolField(TEXT("passed")) || Result->GetIntegerField(TEXT("warnings")) != 0)
+            return Encode(Report);
+    }
+    int32 CorrectSpeedBindings = 0;
+    for (UAnimBlueprint* Source : { Main, Unarmed })
+    {
+        UEdGraph* Graph = FindGraph(Source, TEXT("Locomotion"));
+        if (!Graph) continue;
+        for (UEdGraphNode* Node : Graph->Nodes)
+        {
+            auto* Player = Cast<UAnimGraphNode_BlendSpacePlayer>(Node);
+            UEdGraphPin* SpeedPin = Player ? Player->FindPin(TEXT("Y"), EGPD_Input) : nullptr;
+            if (!SpeedPin || SpeedPin->LinkedTo.Num() != 1) continue;
+            auto* Variable = Cast<UK2Node_VariableGet>(SpeedPin->LinkedTo[0]->GetOwningNode());
+            if (Variable && Variable->VariableReference.GetMemberName() == TEXT("GroundSpeed")) ++CorrectSpeedBindings;
+        }
+    }
+    Report->SetStringField(TEXT("speedAxis"), TEXT("Y"));
+    Report->SetNumberField(TEXT("groundSpeedBindings"), CorrectSpeedBindings);
+    if (CorrectSpeedBindings != 2)
+    {
+        Report->SetStringField(TEXT("error"), TEXT("Both existing Locomotion graphs must connect GroundSpeed to the template BlendSpace Y/Speed input."));
+        return Encode(Report);
+    }
+    const auto MainRoundTrip = RoundTrip(Main, TEXT("AnimGraph"), TEXT("mmo-character-animgraph.txt"));
+    const auto LayerRoundTrip = RoundTrip(Unarmed, TEXT("Locomotion"), TEXT("mmo-unarmed-locomotion.txt"));
+    Report->SetArrayField(TEXT("roundTrips"), {MakeShared<FJsonValueObject>(MainRoundTrip), MakeShared<FJsonValueObject>(LayerRoundTrip)});
+    const bool bGuidsPreserved = BeforeGuids == CollectGuids();
+    Report->SetBoolField(TEXT("originalNodeGuidsPreserved"), bGuidsPreserved);
+    for (const auto& Result : { MainRoundTrip, LayerRoundTrip })
+    {
+        if (!Result->GetBoolField(TEXT("passed")) || Result->GetObjectField(TEXT("compile"))->GetIntegerField(TEXT("warnings")) != 0)
+            return Encode(Report);
+    }
+    if (!bGuidsPreserved) return Encode(Report);
+    const bool bSaved = Save(Interface) && Save(Unarmed) && Save(Main);
+    Report->SetBoolField(TEXT("saved"), bSaved);
+    Report->SetBoolField(TEXT("passed"), bSaved);
+    return Encode(Report);
+}
+```
+
+</details>
+
+## 文件 7：MMODesignerWidgets.cpp
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp"
+#include "MMODocToolsLibrary.h"
+#include "Blueprint/WidgetTree.h"
+#include "Blueprint/UserWidget.h"
+#include "Components/Border.h"
+#include "Components/Button.h"
+#include "Components/ButtonSlot.h"
+#include "Components/ComboBoxString.h"
+#include "Components/EditableTextBox.h"
+#include "Components/HorizontalBox.h"
+#include "Components/HorizontalBoxSlot.h"
+#include "Components/Overlay.h"
+#include "Components/OverlaySlot.h"
+#include "Components/ProgressBar.h"
+#include "Components/SizeBox.h"
+#include "Components/TextBlock.h"
+#include "Components/VerticalBox.h"
+#include "Components/VerticalBoxSlot.h"
+#include "Widgets/CommonActivatableWidgetContainer.h"
+#include "Brushes/SlateRoundedBoxBrush.h"
+#include "WidgetBlueprint.h"
+#include "Editor.h"
+#include "MVVMEditorSubsystem.h"
+#include "MVVMBlueprintView.h"
+#include "MVVMBlueprintViewBinding.h"
+#include "MVVMBlueprintViewModelContext.h"
+#include "Kismet2/BlueprintEditorUtils.h"
+#include "Kismet2/KismetEditorUtilities.h"
+#include "Kismet2/CompilerResultsLog.h"
+#include "Dom/JsonObject.h"
+#include "Serialization/JsonSerializer.h"
+#include "Misc/Paths.h"
+#include "Misc/DateTime.h"
+#include "Misc/FileHelper.h"
+#include "HAL/FileManager.h"
+#include "Internationalization/StringTable.h"
+#include "Internationalization/StringTableCore.h"
+#include "UObject/UnrealType.h"
+
+namespace
+{
+const FLinearColor Ink(.035f, .052f, .09f, 1.f);
+const FLinearColor Paper(.90f, .94f, 1.f, 1.f);
+const FLinearColor Muted(.62f, .73f, .87f, 1.f);
+const FLinearColor Accent(.08f, .36f, .65f, 1.f);
+bool ReadDesignerStrings(TMap<FString,FString>& Strings,FString& Error)
+{
+    FString Text; TSharedPtr<FJsonObject> Document;
+    if (!FFileHelper::LoadFileToString(Text, *(FPaths::ProjectDir()/TEXT("ui-designer-strings.json")))
+        || !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text),Document))
+    { Error=TEXT("Missing project ui-designer-strings.json; sync the original teaching manifest first."); return false; }
+    const TArray<TSharedPtr<FJsonValue>>* Entries;
+    if (!Document->TryGetArrayField(TEXT("entries"),Entries)) { Error=TEXT("String manifest entries missing"); return false; }
+    for (const auto& Entry:*Entries)
+    {
+        const auto Object=Entry->AsObject();
+        Strings.Add(Object->GetStringField(TEXT("key")),Object->GetStringField(TEXT("source")));
+    }
+    return true;
+}
+
+// This is an asset authoring utility in an Editor-only module. The packaged game
+// instantiates these saved WidgetBlueprints; it never executes this tree builder.
+struct FDesigner
+{
+    UWidgetBlueprint* Blueprint;
+    UWidgetTree* Tree;
+    TMap<FString, FString> Strings;
+    FString Error;
+    explicit FDesigner(UWidgetBlueprint* In) : Blueprint(In), Tree(In->WidgetTree) {}
+
+    bool ReadStrings()
+    {
+        if (!ReadDesignerStrings(Strings,Error)) return false;
+        if (!LoadObject<UStringTable>(nullptr,TEXT("/Game/Localization/ST_MMO.ST_MMO")))
+        { Error=TEXT("Create, populate and save /Game/Localization/ST_MMO before the WidgetBlueprints."); return false; }
+        return true;
+    }
+    FText Text(const TCHAR* Key)
+    {
+        const FString* Source = Strings.Find(Key);
+        if (!Source) { Error = FString::Printf(TEXT("Missing localization key: %s"), Key); return FText::GetEmpty(); }
+        return FText::FromStringTable(TEXT("/Game/Localization/ST_MMO.ST_MMO"),Key);
+    }
+    template<typename T> T* Widget(const TCHAR* Name)
+    {
+        auto* Result = Tree->ConstructWidget<T>(T::StaticClass(), FName(Name));
+        Result->bIsVariable = true;
+        return Result;
+    }
+    UTextBlock* Label(const TCHAR* Name, const TCHAR* Key, int32 FontSize = 18, bool bMuted = false)
+    {
+        auto* Result = Widget<UTextBlock>(Name);
+        Result->SetText(Text(Key));
+        auto Font = Result->GetFont(); Font.Size = FontSize; Result->SetFont(Font);
+        Result->SetColorAndOpacity(FSlateColor(bMuted ? Muted : Paper));
+        Result->SetAutoWrapText(true);
+        return Result;
+    }
+    void Add(UVerticalBox* Box, UWidget* Child, float Bottom = 12.f)
+    {
+        auto* Slot = Box->AddChildToVerticalBox(Child);
+        Slot->SetPadding(FMargin(0, 0, 0, Bottom)); Slot->SetHorizontalAlignment(HAlign_Fill);
+    }
+    USizeBox* Height(UWidget* Child, const TCHAR* Name, float Minimum)
+    {
+        auto* Size = Widget<USizeBox>(Name); Size->SetMinDesiredHeight(Minimum); Size->SetContent(Child); return Size;
+    }
+    UHorizontalBox* Row(UVerticalBox* Box, const TCHAR* Name)
+    {
+        auto* Result = Widget<UHorizontalBox>(Name); Add(Box, Result); return Result;
+    }
+    void Across(UHorizontalBox* Box, UWidget* Child, bool bLast = false)
+    {
+        auto* Slot = Box->AddChildToHorizontalBox(Child);
+        Slot->SetSize(FSlateChildSize(ESlateSizeRule::Fill));
+        Slot->SetPadding(FMargin(0, 0, bLast ? 0 : 10, 0));
+        Slot->SetVerticalAlignment(VAlign_Fill);
+    }
+    UWidget* Button(const TCHAR* Name, const TCHAR* Key, bool bPrimary = false)
+    {
+        auto* Result = Widget<UButton>(Name);
+        if (Blueprint->GetName() == TEXT("WBP_PlayerHUD"))
+        {
+            // Author the editable Designer setting before any Slate instance is
+            // built. HUD clicks remain available, while A/Tab belong to gameplay.
+            if (auto* Focusable = FindFProperty<FBoolProperty>(UButton::StaticClass(), TEXT("IsFocusable")))
+                Focusable->SetPropertyValue_InContainer(Result, false);
+            else Error = TEXT("UE Button.IsFocusable reflection property is unavailable");
+        }
+        auto Style = Result->GetStyle();
+        Style.SetNormal(FSlateRoundedBoxBrush(bPrimary ? Accent : FLinearColor(.12f,.19f,.29f,1), 5.f));
+        Style.SetHovered(FSlateRoundedBoxBrush(FLinearColor(.18f,.42f,.66f,1), 5.f));
+        Style.SetPressed(FSlateRoundedBoxBrush(FLinearColor(.05f,.25f,.48f,1), 5.f));
+        Style.NormalPadding = FMargin(14, 8); Style.PressedPadding = FMargin(14, 9, 14, 7);
+        Result->SetStyle(Style);
+        const FString LabelName = FString(Name) + TEXT("Label");
+        auto* TextBlock = Label(*LabelName, Key); TextBlock->SetJustification(ETextJustify::Center); Result->SetContent(TextBlock);
+        // Give auto-wrapped labels the available button width when culture changes.
+        // Text justification remains centered; narrow HUD buttons can still wrap.
+        if (auto* ContentSlot = Cast<UButtonSlot>(TextBlock->Slot)) ContentSlot->SetHorizontalAlignment(HAlign_Fill);
+        const FString SizeName = FString(Name) + TEXT("Size");
+        return Height(Result, *SizeName, 46.f);
+    }
+    void Input(UVerticalBox* Box, const TCHAR* Name, const TCHAR* LabelKey, const TCHAR* HintKey, bool bPassword = false)
+    {
+        const FString LabelName = FString(Name) + TEXT("Label"); Add(Box, Label(*LabelName, LabelKey), 5);
+        auto* Input = Widget<UEditableTextBox>(Name); Input->SetHintText(Text(HintKey)); Input->SetIsPassword(bPassword);
+        auto Style = Input->GetWidgetStyle(); Style.TextStyle.Font.Size = 18;
+        Style.ForegroundColor = FSlateColor(Ink); Style.FocusedForegroundColor = FSlateColor(Ink);
+        Style.BackgroundImageNormal = FSlateRoundedBoxBrush(Paper, 4.f);
+        Style.BackgroundImageHovered = FSlateRoundedBoxBrush(FLinearColor::White, 4.f);
+        Style.BackgroundImageFocused = FSlateRoundedBoxBrush(FLinearColor::White, 4.f);
+        Style.BackgroundImageReadOnly = FSlateRoundedBoxBrush(FLinearColor(.68f,.72f,.79f,1), 4.f);
+        Style.Padding = FMargin(12, 8); Input->SetWidgetStyle(Style); Input->SetForegroundColor(Ink);
+        const FString SizeName = FString(Name) + TEXT("Size"); Add(Box, Height(Input, *SizeName, 44));
+    }
+    UVerticalBox* Frame(float Width, const TCHAR* BodyName, bool bCentered = true, bool bModal = false)
+    {
+        auto* Root = Widget<UOverlay>(TEXT("ScreenLayout")); Root->SetVisibility(ESlateVisibility::SelfHitTestInvisible); Tree->RootWidget = Root;
+        if (bModal)
+        {
+            auto* Scrim = Widget<UBorder>(TEXT("ModalScrim")); Scrim->SetBrushColor(FLinearColor(0, 0, 0, .62f));
+            Scrim->SetVisibility(ESlateVisibility::HitTestInvisible);
+            auto* Slot = Root->AddChildToOverlay(Scrim); Slot->SetHorizontalAlignment(HAlign_Fill); Slot->SetVerticalAlignment(VAlign_Fill);
+        }
+        auto* Size = Widget<USizeBox>(TEXT("PanelWidth")); Size->SetWidthOverride(Width);
+        auto* Slot = Root->AddChildToOverlay(Size); Slot->SetPadding(FMargin(24));
+        Slot->SetHorizontalAlignment(bCentered ? HAlign_Center : HAlign_Left); Slot->SetVerticalAlignment(bCentered ? VAlign_Center : VAlign_Top);
+        auto* Panel = Widget<UBorder>(TEXT("PanelBackground")); Panel->SetBrushColor(Ink); Panel->SetPadding(FMargin(24)); Size->SetContent(Panel);
+        auto* Body = Widget<UVerticalBox>(BodyName); Panel->SetContent(Body); return Body;
+    }
+    void Bar(UVerticalBox* Box, const TCHAR* Name, const FLinearColor& Color)
+    {
+        auto* Value = Widget<UProgressBar>(Name); Value->SetPercent(1.f); Value->SetFillColorAndOpacity(Color);
+        const FString SizeName = FString(Name) + TEXT("Size"); Add(Box, Height(Value, *SizeName, 14));
+    }
+};
+
+bool BindViewModels(UWidgetBlueprint* Blueprint, const TArray<TPair<FString,FString>>& Bindings, FString& Error)
+{
+    if (!GEditor) { Error = TEXT("Editor subsystem unavailable"); return false; }
+    auto* Editor = GEditor->GetEditorSubsystem<UMVVMEditorSubsystem>();
+    auto* View = Editor->RequestView(Blueprint); View->Modify();
+    while (View->GetNumBindings()) View->RemoveBindingAt(0);
+    TArray<FGuid> Old; for (const auto& Context : View->GetViewModels()) Old.Add(Context.GetViewModelId()); View->RemoveViewModels(Old);
+    if (Bindings.IsEmpty()) return true;
+    UClass* Model = LoadClass<UObject>(nullptr, TEXT("/Script/MMORPG.MMOPlayerViewModel"));
+    if (!Model) { Error = TEXT("Build MMOPlayerViewModel first"); return false; }
+    FMVVMBlueprintViewModelContext Context(Model, TEXT("PlayerVM"));
+    Context.CreationType = EMVVMBlueprintViewModelContextCreationType::Manual;
+    Context.bOptional = true; Context.bCreateSetterFunction = true; View->AddViewModel(Context);
+    for (const auto& Pair : Bindings)
+    {
+        FString WidgetName, PropertyName; Pair.Key.Split(TEXT("."), &WidgetName, &PropertyName);
+        UWidget* Widget = Blueprint->WidgetTree->FindWidget(FName(WidgetName));
+        FProperty* Source = FindFProperty<FProperty>(Model, FName(Pair.Value));
+        FProperty* Destination = Widget ? FindFProperty<FProperty>(Widget->GetClass(), FName(PropertyName)) : nullptr;
+        if (!Source || !Destination) { Error = TEXT("Missing MVVM property: ") + Pair.Key + TEXT(" <- ") + Pair.Value; return false; }
+        auto& Binding = View->AddDefaultBinding();
+        Binding.SourcePath.SetViewModelId(Context.GetViewModelId());
+        Binding.SourcePath.SetPropertyPath(Blueprint, UE::MVVM::FMVVMConstFieldVariant(Source));
+        Binding.DestinationPath.SetWidgetName(Widget->GetFName());
+        Binding.DestinationPath.SetPropertyPath(Blueprint, UE::MVVM::FMVVMConstFieldVariant(Destination));
+        Binding.BindingType = EMVVMBindingMode::OneWayToDestination;
+        Binding.bOverrideExecutionMode = true; Binding.OverrideExecutionMode = EMVVMExecutionMode::Immediate;
+    }
+    return true;
+}
+}
+
+FString UMMODocToolsLibrary::ConfigureDesignerStrings(UStringTable* StringTable)
+{
+    auto Report=MakeShared<FJsonObject>(); Report->SetBoolField(TEXT("passed"),false); Report->SetBoolField(TEXT("saved"),false);
+    auto Encode=[&]() { FString Text; FJsonSerializer::Serialize(Report,TJsonWriterFactory<>::Create(&Text)); return Text; };
+    TMap<FString,FString> Strings; FString Error;
+    if (FPaths::GetCleanFilename(FPaths::GetProjectFilePath())!=TEXT("MMORPG.uproject") || !StringTable
+        || StringTable->GetPathName()!=TEXT("/Game/Localization/ST_MMO.ST_MMO") || !ReadDesignerStrings(Strings,Error))
+    { Report->SetStringField(TEXT("error"),Error.IsEmpty()?TEXT("Expected the original MMORPG ST_MMO asset"):Error); return Encode(); }
+    StringTable->Modify(); auto Table=StringTable->GetMutableStringTable(); Table->SetNamespace(TEXT("MMOUI"));
+    for (const auto& Entry:Strings) Table->SetSourceString(Entry.Key,Entry.Value,TEXT("MMORPG Designer fixed UI text; edit the matching reviewed manifest entry."));
+    StringTable->MarkPackageDirty(); Report->SetBoolField(TEXT("passed"),true);
+    Report->SetStringField(TEXT("asset"),StringTable->GetPathName()); Report->SetStringField(TEXT("namespace"),TEXT("MMOUI"));
+    Report->SetStringField(TEXT("nativeCulture"),TEXT("en")); Report->SetNumberField(TEXT("entries"),Strings.Num());
+    return Encode();
+}
+
+FString UMMODocToolsLibrary::ConfigureDesignerWidget(UWidgetBlueprint* Blueprint)
+{
+    auto Report = MakeShared<FJsonObject>(); Report->SetStringField(TEXT("date"), FDateTime::UtcNow().ToIso8601());
+    Report->SetBoolField(TEXT("passed"), false); Report->SetBoolField(TEXT("saved"), false); Report->SetBoolField(TEXT("gameplayExecuted"), false);
+    auto Encode = [&]() { FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text)); return Text; };
+    const TMap<FString,FString> Parents = {
+        {TEXT("WBP_MMOLayout"), TEXT("/Script/MMORPG.MMORootLayout")}, {TEXT("WBP_Login"), TEXT("/Script/MMORPG.MMOLoginPanel")},
+        {TEXT("WBP_ManaStatus"), TEXT("/Script/UMG.UserWidget")}, {TEXT("WBP_PlayerHUD"), TEXT("/Script/MMORPG.MMOHUDPanel")},
+        {TEXT("WBP_Inventory"), TEXT("/Script/MMORPG.MMOInventoryPanel")}, {TEXT("WBP_Settings"), TEXT("/Script/MMORPG.MMOSettingsPanel")},
+        {TEXT("WBP_Confirm"), TEXT("/Script/MMORPG.MMOConfirmPanel")}
+    };
+    const FString Name = Blueprint ? Blueprint->GetName() : FString(); const FString* Parent = Parents.Find(Name);
+    if (FPaths::GetCleanFilename(FPaths::GetProjectFilePath()) != TEXT("MMORPG.uproject") || !Parent || !Blueprint->ParentClass
+        || Blueprint->ParentClass->GetPathName() != *Parent || Blueprint->GetPathName() != FString::Printf(TEXT("/Game/UI/%s.%s"), *Name, *Name))
+    { Report->SetStringField(TEXT("error"), TEXT("Only the agreed MMORPG /Game/UI WidgetBlueprint and native parent may be authored")); return Encode(); }
+    FDesigner D(Blueprint); if (!D.ReadStrings()) { Report->SetStringField(TEXT("error"), D.Error); return Encode(); }
+    Blueprint->Modify();
+    if (Blueprint->WidgetTree) Blueprint->WidgetTree->Rename(nullptr, GetTransientPackage(), REN_DontCreateRedirectors);
+    Blueprint->WidgetTree = NewObject<UWidgetTree>(Blueprint, TEXT("WidgetTree"), RF_Transactional); D.Tree = Blueprint->WidgetTree;
+    TArray<TPair<FString,FString>> Bindings;
+    if (Name == TEXT("WBP_MMOLayout"))
+    {
+        auto* Root = D.Widget<UOverlay>(TEXT("LayerLayout")); D.Tree->RootWidget = Root;
+        Root->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
+        for (const TCHAR* Layer : {TEXT("GameLayer"),TEXT("MenuLayer"),TEXT("ModalLayer")})
+        {
+            auto* Stack = D.Widget<UCommonActivatableWidgetStack>(Layer); Stack->SetTransitionDuration(.16f);
+            auto* Slot = Root->AddChildToOverlay(Stack); Slot->SetHorizontalAlignment(HAlign_Fill); Slot->SetVerticalAlignment(VAlign_Fill);
+        }
+    }
+    else if (Name == TEXT("WBP_Login"))
+    {
+        auto* Form = D.Frame(680, TEXT("Form")); D.Add(Form,D.Label(TEXT("Title"),TEXT("Login.Title"),30),18);
+        D.Add(Form,D.Label(TEXT("AccountTitle"),TEXT("Account.Title"),22),12);
+        D.Input(Form,TEXT("Username"),TEXT("Account.Username"),TEXT("Account.UsernameHint"));
+        D.Input(Form,TEXT("Password"),TEXT("Account.Password"),TEXT("Account.PasswordHint"),true);
+        auto* Account = D.Row(Form,TEXT("AccountActions")); D.Across(Account,D.Button(TEXT("LoginButton"),TEXT("Action.SignIn"),true)); D.Across(Account,D.Button(TEXT("RegisterButton"),TEXT("Action.Register")),true);
+        D.Add(Form,D.Label(TEXT("CharacterTitle"),TEXT("Character.Title"),22),12);
+        D.Input(Form,TEXT("CharacterName"),TEXT("Character.Name"),TEXT("Character.NameHint"));
+        D.Add(Form,D.Button(TEXT("CreateButton"),TEXT("Action.CreateCharacter")));
+        D.Add(Form,D.Label(TEXT("CharacterListLabel"),TEXT("Character.Select")),5);
+        auto* List = D.Widget<UComboBoxString>(TEXT("CharacterList")); List->SetMaxListHeight(240); D.Add(Form,D.Height(List,TEXT("CharacterListSize"),44));
+        auto* Actions = D.Row(Form,TEXT("CharacterActions")); D.Across(Actions,D.Button(TEXT("RefreshButton"),TEXT("Action.Refresh"))); D.Across(Actions,D.Button(TEXT("JoinButton"),TEXT("Action.Enter"),true),true);
+        D.Add(Form,D.Label(TEXT("Message"),TEXT("Login.Status"),17,true),0);
+    }
+    else if (Name == TEXT("WBP_ManaStatus"))
+    {
+        auto* Box = D.Widget<UVerticalBox>(TEXT("ManaLayout")); D.Tree->RootWidget = Box;
+        D.Add(Box,D.Label(TEXT("ManaText"),TEXT("Mana.Preview")),6); D.Bar(Box,TEXT("ManaBar"),FLinearColor(.08f,.5f,1.f));
+        Bindings={{TEXT("ManaText.Text"),TEXT("ManaLabel")},{TEXT("ManaBar.Percent"),TEXT("ManaFraction")}};
+    }
+    else if (Name == TEXT("WBP_PlayerHUD"))
+    {
+        auto* Box = D.Frame(540,TEXT("HUDLayout"),false); D.Add(Box,D.Label(TEXT("Title"),TEXT("HUD.Title"),26));
+        D.Add(Box,D.Label(TEXT("Values"),TEXT("HUD.StatusPreview")));
+        UClass* ManaClass = LoadClass<UUserWidget>(nullptr,TEXT("/Game/UI/WBP_ManaStatus.WBP_ManaStatus_C"));
+        if (!ManaClass) D.Error=TEXT("Create and compile WBP_ManaStatus before WBP_PlayerHUD");
+        else { auto* Mana = D.Tree->ConstructWidget<UUserWidget>(ManaClass,TEXT("ManaStatus")); Mana->bIsVariable=true; D.Add(Box,Mana); }
+        D.Add(Box,D.Label(TEXT("TargetHeading"),TEXT("Target.Title"),22)); D.Add(Box,D.Label(TEXT("TargetText"),TEXT("Target.Preview")));
+        D.Bar(Box,TEXT("TargetHealthBar"),FLinearColor(.9f,.25f,.2f)); D.Add(Box,D.Label(TEXT("CooldownText"),TEXT("Cooldown.Preview"),17,true));
+        auto* Abilities = D.Row(Box,TEXT("AbilityActions")); D.Across(Abilities,D.Button(TEXT("TargetButton"),TEXT("Action.Target"))); D.Across(Abilities,D.Button(TEXT("AttackButton"),TEXT("Action.Attack"))); D.Across(Abilities,D.Button(TEXT("SpellButton"),TEXT("Action.Spell"),true),true);
+        auto* Menus = D.Row(Box,TEXT("MenuActions")); D.Across(Menus,D.Button(TEXT("InventoryButton"),TEXT("Action.Inventory"))); D.Across(Menus,D.Button(TEXT("SettingsButton"),TEXT("Action.Settings")),true);
+        D.Add(Box,D.Label(TEXT("InputHintText"),TEXT("HUD.Controls"),15,true),0);
+        Bindings={{TEXT("Values.Text"),TEXT("StatusText")},{TEXT("TargetText.Text"),TEXT("TargetLabel")},{TEXT("TargetHealthBar.Percent"),TEXT("TargetFraction")},{TEXT("CooldownText.Text"),TEXT("CooldownLabel")},{TEXT("InputHintText.Text"),TEXT("InputHint")}};
+    }
+    else if (Name == TEXT("WBP_Inventory"))
+    {
+        auto* Box = D.Frame(600,TEXT("InventoryLayout")); D.Add(Box,D.Label(TEXT("Title"),TEXT("Inventory.Title"),28),20);
+        D.Add(Box,D.Label(TEXT("Message"),TEXT("Inventory.Empty")),24);
+        D.Add(Box,D.Button(TEXT("PotionButton"),TEXT("Action.Potion"),true)); D.Add(Box,D.Button(TEXT("CloseButton"),TEXT("Action.Back")),0);
+        Bindings={{TEXT("Message.Text"),TEXT("InventoryLabel")}};
+    }
+    else if (Name == TEXT("WBP_Settings"))
+    {
+        auto* Box = D.Frame(600,TEXT("SettingsLayout")); D.Add(Box,D.Label(TEXT("Title"),TEXT("Settings.Title"),28),20);
+        D.Add(Box,D.Label(TEXT("QualityHeading"),TEXT("Settings.Quality"),22)); auto* Quality=D.Row(Box,TEXT("QualityActions"));
+        D.Across(Quality,D.Button(TEXT("LowQualityButton"),TEXT("Quality.Low"))); D.Across(Quality,D.Button(TEXT("MediumQualityButton"),TEXT("Quality.Medium"),true)); D.Across(Quality,D.Button(TEXT("HighQualityButton"),TEXT("Quality.High")),true);
+        D.Add(Box,D.Label(TEXT("LanguageHeading"),TEXT("Settings.Language"),22)); auto* Languages=D.Row(Box,TEXT("LanguageActions"));
+        D.Across(Languages,D.Button(TEXT("ChineseButton"),TEXT("Language.Chinese"))); D.Across(Languages,D.Button(TEXT("EnglishButton"),TEXT("Language.English")),true);
+        D.Add(Box,D.Button(TEXT("LogoutButton"),TEXT("Action.Logout"))); D.Add(Box,D.Button(TEXT("CloseButton"),TEXT("Action.Back")),0);
+    }
+    else if (Name == TEXT("WBP_Confirm"))
+    {
+        auto* Box=D.Frame(600,TEXT("ConfirmLayout"),true,true); D.Add(Box,D.Label(TEXT("Title"),TEXT("Confirm.Title"),28),20);
+        D.Add(Box,D.Label(TEXT("Explanation"),TEXT("Confirm.Explanation"),18,true),24);
+        D.Add(Box,D.Button(TEXT("ConfirmButton"),TEXT("Confirm.Accept"))); D.Add(Box,D.Button(TEXT("CancelButton"),TEXT("Confirm.Cancel"),true),0);
+    }
+    if (!D.Error.IsEmpty() || !BindViewModels(Blueprint,Bindings,D.Error)) { Report->SetStringField(TEXT("error"),D.Error); return Encode(); }
+    FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(Blueprint);
+    FCompilerResultsLog Results; FKismetEditorUtilities::CompileBlueprint(Blueprint,EBlueprintCompileOptions::SkipSave,&Results);
+    TArray<UWidget*> Widgets; Blueprint->WidgetTree->GetAllWidgets(Widgets);
+    TArray<TSharedPtr<FJsonValue>> WidgetRows,BindingRows;
+    int32 CanvasCount=0;
+    for (UWidget* Widget:Widgets)
+    {
+        auto Row=MakeShared<FJsonObject>(); Row->SetStringField(TEXT("name"),Widget->GetName()); Row->SetStringField(TEXT("class"),Widget->GetClass()->GetPathName()); Row->SetBoolField(TEXT("isVariable"),Widget->bIsVariable);
+        if (const auto* Button=Cast<UButton>(Widget)) Row->SetBoolField(TEXT("isFocusable"),Button->GetIsFocusable());
+        WidgetRows.Add(MakeShared<FJsonValueObject>(Row)); if (Widget->GetClass()->GetName()==TEXT("CanvasPanel")) ++CanvasCount;
+    }
+    for (const auto& Pair:Bindings) BindingRows.Add(MakeShared<FJsonValueString>(TEXT("PlayerVM.")+Pair.Value+TEXT(" -> ")+Pair.Key));
+    Report->SetStringField(TEXT("asset"),Blueprint->GetPathName()); Report->SetStringField(TEXT("parent"),*Parent);
+    Report->SetStringField(TEXT("layoutOrigin"),TEXT("Saved WidgetBlueprint Designer tree; Editor-only authoring utility"));
+    Report->SetStringField(TEXT("localizationNamespace"),TEXT("MMOUI")); Report->SetStringField(TEXT("nativeCulture"),TEXT("en"));
+    Report->SetStringField(TEXT("stringTable"),TEXT("/Game/Localization/ST_MMO.ST_MMO"));
+    Report->SetArrayField(TEXT("widgets"),WidgetRows); Report->SetArrayField(TEXT("bindings"),BindingRows);
+    Report->SetNumberField(TEXT("widgetCount"),Widgets.Num()); Report->SetNumberField(TEXT("canvasCount"),CanvasCount); Report->SetNumberField(TEXT("bindingCount"),Bindings.Num());
+    Report->SetStringField(TEXT("bindingMode"),TEXT("Manual PlayerVM / OneWayToDestination / Immediate"));
+    if (!Bindings.IsEmpty())
+    {
+        Report->SetStringField(TEXT("viewModelClass"),TEXT("/Script/MMORPG.MMOPlayerViewModel"));
+        Report->SetStringField(TEXT("viewModelName"),TEXT("PlayerVM")); Report->SetStringField(TEXT("creationType"),TEXT("Manual"));
+    }
+    Report->SetNumberField(TEXT("compilerErrors"),Results.NumErrors); Report->SetNumberField(TEXT("compilerWarnings"),Results.NumWarnings);
+    Report->SetBoolField(TEXT("passed"),Results.NumErrors==0&&Blueprint->Status==BS_UpToDate&&CanvasCount==0);
+    const FString ReportPath=FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir()/TEXT("Evidence")/(Name+TEXT("-designer.json")));
+    Report->SetStringField(TEXT("reportPath"),ReportPath); IFileManager::Get().MakeDirectory(*FPaths::GetPath(ReportPath),true); FFileHelper::SaveStringToFile(Encode(),*ReportPath);
+    return Encode();
+}
+```
+
+</details>
+
+## 文件 8：MMODocExperienceTools.cpp
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+#include "MMODocProjectGuard.h"
+#include "MMODocExperienceTools.h"
+#include "MMOExperienceDefinition.h"
+#include "MMOPawnData.h"
+#include "MMOAbilitySet.h"
+#include "MMOInputConfig.h"
+#include "InputAction.h"
+#include "InputMappingContext.h"
+#include "InputModifiers.h"
+#include "AssetToolsModule.h"
+#include "IAssetTools.h"
+#include "Factories/DataAssetFactory.h"
+#include "Misc/PackageName.h"
+#include "UObject/Package.h"
+#include "UObject/SavePackage.h"
+#include "Dom/JsonObject.h"
+#include "Serialization/JsonSerializer.h"
+#include "Misc/Paths.h"
+#include "Misc/DateTime.h"
+#include "Misc/FileHelper.h"
+#include "HAL/FileManager.h"
+#include "Engine/Blueprint.h"
+#include "Kismet2/KismetEditorUtilities.h"
+#include "Kismet2/BlueprintEditorUtils.h"
+#include "KismetCompiler.h"
+#include "UObject/UnrealType.h"
+#include "GameplayTagContainer.h"
+
+namespace
+{
+template<typename T> T* InputAsset(const TCHAR* Name)
+{
+    const FString Package = FString(TEXT("/Game/MMO/Input/")) + Name;
+    const FString Object = Package + TEXT(".") + Name;
+    if (FPackageName::DoesPackageExist(Package)) return LoadObject<T>(nullptr, *Object);
+    auto* Factory = NewObject<UDataAssetFactory>(); Factory->DataAssetClass = T::StaticClass();
+    return Cast<T>(FModuleManager::LoadModuleChecked<FAssetToolsModule>(TEXT("AssetTools")).Get().CreateAsset(Name, TEXT("/Game/MMO/Input"), T::StaticClass(), Factory));
+}
+
+bool SaveInput(UObject* Asset)
+{
+    Asset->MarkPackageDirty();
+    const FString Filename = FPackageName::LongPackageNameToFilename(Asset->GetOutermost()->GetName(), FPackageName::GetAssetPackageExtension());
+    IFileManager::Get().MakeDirectory(*FPaths::GetPath(Filename), true);
+    FSavePackageArgs Args; Args.TopLevelFlags = RF_Public | RF_Standalone; Args.SaveFlags = SAVE_NoError;
+    return UPackage::SavePackage(Asset->GetOutermost(), Asset, *Filename, Args);
+}
+bool ConfigureInputs(UMMOPawnData* Pawn, const TSharedRef<FJsonObject>& Report)
+{
+    UInputAction* Move = InputAsset<UInputAction>(TEXT("IA_Move")); UInputAction* Look = InputAsset<UInputAction>(TEXT("IA_Look"));
+    UInputAction* Target = InputAsset<UInputAction>(TEXT("IA_Target")); UInputAction* Attack = InputAsset<UInputAction>(TEXT("IA_Attack"));
+    UInputAction* Spell = InputAsset<UInputAction>(TEXT("IA_Spell"));
+    UInputAction* Inventory = InputAsset<UInputAction>(TEXT("IA_Inventory")); UInputAction* Settings = InputAsset<UInputAction>(TEXT("IA_Settings"));
+    auto* Mapping = InputAsset<UInputMappingContext>(TEXT("IMC_MMOPlayer")); auto* Input = InputAsset<UMMOInputConfig>(TEXT("DA_MMOInputConfig"));
+    if (!Move || !Look || !Target || !Attack || !Spell || !Inventory || !Settings || !Mapping || !Input) return false;
+    Move->Modify(); Look->Modify(); Target->Modify(); Attack->Modify(); Spell->Modify(); Mapping->Modify(); Input->Modify();
+    Move->ValueType = EInputActionValueType::Axis2D; Look->ValueType = EInputActionValueType::Axis2D;
+    Target->ValueType = EInputActionValueType::Boolean; Attack->ValueType = EInputActionValueType::Boolean; Spell->ValueType = EInputActionValueType::Boolean;
+    Inventory->Modify(); Settings->Modify(); Inventory->ValueType = EInputActionValueType::Boolean; Settings->ValueType = EInputActionValueType::Boolean;
+    Mapping->UnmapAll();
+    Mapping->MapKey(Move, EKeys::D);
+    Mapping->MapKey(Move, EKeys::A).Modifiers.Add(NewObject<UInputModifierNegate>(Mapping));
+    Mapping->MapKey(Move, EKeys::W).Modifiers.Add(NewObject<UInputModifierSwizzleAxis>(Mapping));
+    auto& Back = Mapping->MapKey(Move, EKeys::S); Back.Modifiers.Add(NewObject<UInputModifierNegate>(Mapping)); Back.Modifiers.Add(NewObject<UInputModifierSwizzleAxis>(Mapping));
+    Mapping->MapKey(Move, EKeys::Gamepad_Left2D); Mapping->MapKey(Look, EKeys::Mouse2D); Mapping->MapKey(Look, EKeys::Gamepad_Right2D);
+    Mapping->MapKey(Target, EKeys::Tab); Mapping->MapKey(Target, EKeys::Gamepad_FaceButton_Top);
+    Mapping->MapKey(Attack, EKeys::One); Mapping->MapKey(Attack, EKeys::Gamepad_FaceButton_Bottom);
+    Mapping->MapKey(Spell, EKeys::Two); Mapping->MapKey(Spell, EKeys::Gamepad_FaceButton_Left);
+    Mapping->MapKey(Inventory, EKeys::I); Mapping->MapKey(Inventory, EKeys::Gamepad_Special_Left);
+    Mapping->MapKey(Settings, EKeys::P); Mapping->MapKey(Settings, EKeys::Gamepad_Special_Right);
+    Input->NativeInputActions.Reset();
+    TArray<UInputAction*> Actions {Move, Look, Target, Attack, Spell, Inventory, Settings};
+    const TCHAR* Tags[] {TEXT("InputTag.MMO.Move"), TEXT("InputTag.MMO.Look"), TEXT("InputTag.MMO.Target"), TEXT("InputTag.MMO.Attack"), TEXT("InputTag.MMO.Spell"), TEXT("InputTag.MMO.Inventory"), TEXT("InputTag.MMO.Settings")};
+    for (int32 Index = 0; Index < Actions.Num(); ++Index)
+    {
+        auto& Entry = Input->NativeInputActions.AddDefaulted_GetRef(); Entry.InputAction = Actions[Index]; Entry.InputTag = FGameplayTag::RequestGameplayTag(FName(Tags[Index]));
+        if (!SaveInput(Actions[Index])) return false;
+    }
+    Pawn->InputConfig = Input; Pawn->InputMappingContext = Mapping;
+    Report->SetStringField(TEXT("inputConfig"), Input->GetPathName()); Report->SetStringField(TEXT("mappingContext"), Mapping->GetPathName());
+    Report->SetNumberField(TEXT("inputActionCount"), Actions.Num()); Report->SetNumberField(TEXT("physicalMappingCount"), Mapping->GetMappings().Num());
+    return SaveInput(Input) && SaveInput(Mapping);
+}
+}
+
+FString UMMODocExperienceTools::ConfigureExperienceAssets(UDataAsset* ExperienceAsset, UDataAsset* PawnAsset, UDataAsset* AbilityAsset)
+{
+    auto Report = MakeShared<FJsonObject>(); Report->SetBoolField(TEXT("passed"), false);
+    auto Encode = [&]() { FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text)); return Text; };
+    FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath()); FPaths::NormalizeFilename(Project);
+    auto* Experience = Cast<UMMOExperienceDefinition>(ExperienceAsset); auto* Pawn = Cast<UMMOPawnData>(PawnAsset); auto* Abilities = Cast<UMMOAbilitySet>(AbilityAsset);
+    if (!IsMMODocProject() || !Experience || !Pawn || !Abilities
+        || Experience->GetPathName() != TEXT("/Game/MMO/Experiences/DA_MMOExperience.DA_MMOExperience")
+        || Pawn->GetPathName() != TEXT("/Game/MMO/Pawns/DA_MMOPlayer.DA_MMOPlayer")
+        || Abilities->GetPathName() != TEXT("/Game/MMO/Abilities/DA_MMOAbilities.DA_MMOAbilities"))
+    { Report->SetStringField(TEXT("error"), TEXT("Unexpected project or tutorial asset paths")); return Encode(); }
+    Experience->Modify(); Pawn->Modify(); Abilities->Modify();
+    Abilities->GrantedAbilities.Reset(); Abilities->GrantedEffects.Reset(); Abilities->GrantedAttributes.Reset();
+    auto& Attack = Abilities->GrantedAbilities.AddDefaulted_GetRef();
+    Attack.Ability = FSoftObjectPath(TEXT("/Script/MMORPG.MMOAttackAbility")); Attack.Level = 1; Attack.InputID = INDEX_NONE; Attack.InputTag = FGameplayTag::RequestGameplayTag(FName(TEXT("InputTag.MMO.Attack")));
+    auto& Spell = Abilities->GrantedAbilities.AddDefaulted_GetRef();
+    Spell.Ability = FSoftObjectPath(TEXT("/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C")); Spell.Level = 1; Spell.InputID = INDEX_NONE; Spell.InputTag = FGameplayTag::RequestGameplayTag(FName(TEXT("InputTag.MMO.Spell")));
+    Pawn->PawnClass = FSoftObjectPath(TEXT("/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter_C"));
+    Pawn->AnimInstanceClass = FSoftObjectPath(TEXT("/Game/Characters/MMO/ABP_MMOCharacter.ABP_MMOCharacter_C"));
+    Pawn->AbilitySets = {TSoftObjectPtr<UMMOAbilitySet>(Abilities)};
+    Experience->DefaultPawnData = Pawn; Experience->GameFeaturesToEnable = {TEXT("MMOCore")}; Experience->ActionSets.Reset();
+    if (!ConfigureInputs(Pawn, Report)) { Report->SetStringField(TEXT("error"), TEXT("Input assets failed creation or save")); return Encode(); }
+    Experience->MarkPackageDirty(); Pawn->MarkPackageDirty(); Abilities->MarkPackageDirty();
+    Report->SetStringField(TEXT("date"), FDateTime::UtcNow().ToIso8601());
+    Report->SetStringField(TEXT("experience"), Experience->GetPathName());
+    Report->SetStringField(TEXT("primaryAssetId"), Experience->GetPrimaryAssetId().ToString());
+    Report->SetStringField(TEXT("pawnData"), Pawn->GetPathName()); Report->SetStringField(TEXT("pawnClass"), Pawn->PawnClass.ToString());
+    Report->SetStringField(TEXT("abilitySet"), Abilities->GetPathName()); Report->SetStringField(TEXT("animationClass"), Pawn->AnimInstanceClass.ToString());
+    Report->SetNumberField(TEXT("grantedAbilityCount"), Abilities->GrantedAbilities.Num());
+    Report->SetBoolField(TEXT("passed"), Experience->GetPrimaryAssetId() == FPrimaryAssetId(TEXT("MMOExperience"), TEXT("DA_MMOExperience")));
+    Report->SetBoolField(TEXT("saved"), false); Report->SetBoolField(TEXT("gameplayExecuted"), false);
+    const FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() / TEXT("Evidence/mmorpg-experience-assets.json"));
+    Report->SetStringField(TEXT("reportPath"), Path); IFileManager::Get().MakeDirectory(*FPaths::GetPath(Path), true);
+    FFileHelper::SaveStringToFile(Encode(), *Path); return Encode();
+}
+
+FString UMMODocExperienceTools::RecompileGameplayBlueprints()
+{
+    auto Report = MakeShared<FJsonObject>(); Report->SetBoolField(TEXT("passed"), false);
+    auto Encode = [&]() { FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text)); return Text; };
+    FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath()); FPaths::NormalizeFilename(Project);
+    if (!IsMMODocProject()) return Encode();
+    TArray<TSharedPtr<FJsonValue>> Assets;
+    for (const TCHAR* Path : {TEXT("/Game/Tutorial/BP_MMOCharacter.BP_MMOCharacter"), TEXT("/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt"), TEXT("/Game/MMO/BP_MMOGameMode.BP_MMOGameMode")})
+    {
+        auto* Blueprint = LoadObject<UBlueprint>(nullptr, Path);
+        if (!Blueprint) return Encode();
+        FCompilerResultsLog Log; FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(Blueprint);
+        FKismetEditorUtilities::CompileBlueprint(Blueprint, EBlueprintCompileOptions::None, &Log);
+        auto Row = MakeShared<FJsonObject>(); Row->SetStringField(TEXT("asset"), Path);
+        Row->SetNumberField(TEXT("errors"), Log.NumErrors); Row->SetNumberField(TEXT("warnings"), Log.NumWarnings);
+        Assets.Add(MakeShared<FJsonValueObject>(Row)); Report->SetArrayField(TEXT("assets"), Assets);
+        if (Log.NumErrors || Log.NumWarnings || Blueprint->Status != BS_UpToDate || !Blueprint->GeneratedClass) return Encode();
+        UObject* Defaults = Blueprint->GeneratedClass->GetDefaultObject();
+        if (Blueprint->GetName() == TEXT("BP_MMOCharacter"))
+        {
+            const auto* Property = FindFProperty<FObjectProperty>(Defaults->GetClass(), TEXT("HealthComponent"));
+            UObject* Component = Property ? Property->GetObjectPropertyValue_InContainer(Defaults) : nullptr;
+            const bool bHealth = Component && Component->GetClass()->GetPathName() == TEXT("/Script/MMORPG.MMOHealthComponent");
+            Row->SetBoolField(TEXT("inheritedHealthComponent"), bHealth); if (!bHealth) return Encode();
+        }
+        if (Blueprint->GetName() == TEXT("GA_ArcaneBolt"))
+        {
+            const auto* Property = FindFProperty<FStructProperty>(Defaults->GetClass(), TEXT("ActivationBlockedTags"));
+            const auto* Blocked = Property ? Property->ContainerPtrToValuePtr<FGameplayTagContainer>(Defaults) : nullptr;
+            const bool bBlocked = Blocked && Blocked->HasTagExact(FGameplayTag::RequestGameplayTag(TEXT("Status.MMO.Dead")));
+            Row->SetBoolField(TEXT("blockedWhileDead"), bBlocked); if (!bBlocked) return Encode();
+        }
+        if (Blueprint->GetName() == TEXT("BP_MMOGameMode"))
+        {
+            const auto* Property = FindFProperty<FFloatProperty>(Defaults->GetClass(), TEXT("RespawnDelay"));
+            const float Delay = Property ? Property->GetPropertyValue_InContainer(Defaults) : 0.f;
+            Row->SetNumberField(TEXT("respawnDelay"), Delay); if (!FMath::IsNearlyEqual(Delay, 3.f)) return Encode();
+        }
+        const bool bSaved = SaveInput(Blueprint); Row->SetBoolField(TEXT("saved"), bSaved); if (!bSaved) return Encode();
+    }
+    Report->SetArrayField(TEXT("assets"), Assets); Report->SetBoolField(TEXT("graphsReconstructed"), false);
+    Report->SetBoolField(TEXT("passed"), true); Report->SetStringField(TEXT("date"), FDateTime::UtcNow().ToIso8601());
+    return Encode();
+}
+```
+
+</details>
+
+## 文件 9：MMODocTaggedAbilityInputs.cpp
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp"
+#include "MMODocProjectGuard.h"
+#include "MMODocExperienceTools.h"
+#include "MMOAbilitySet.h"
+#include "Dom/JsonObject.h"
+#include "Misc/DateTime.h"
+#include "Misc/Paths.h"
+#include "Serialization/JsonSerializer.h"
+#include "UObject/Package.h"
+
+namespace
+{
+TSharedRef<FJsonObject> TaggedInputSnapshot(const UMMOAbilitySet* Abilities)
+{
+    auto Snapshot = MakeShared<FJsonObject>();
+    TArray<TSharedPtr<FJsonValue>> Grants, Effects, Attributes;
+    for (const FMMOAbilityGrant& Grant : Abilities->GrantedAbilities)
+    {
+        auto Row = MakeShared<FJsonObject>();
+        Row->SetStringField(TEXT("ability"), Grant.Ability.ToSoftObjectPath().ToString());
+        Row->SetNumberField(TEXT("level"), Grant.Level);
+        Row->SetNumberField(TEXT("inputID"), Grant.InputID);
+        Row->SetStringField(TEXT("inputTag"), Grant.InputTag.ToString());
+        Grants.Add(MakeShared<FJsonValueObject>(Row));
+    }
+    for (const FMMOEffectGrant& Grant : Abilities->GrantedEffects)
+    {
+        auto Row = MakeShared<FJsonObject>();
+        Row->SetStringField(TEXT("effect"), Grant.Effect.ToSoftObjectPath().ToString());
+        Row->SetNumberField(TEXT("level"), Grant.Level);
+        Effects.Add(MakeShared<FJsonValueObject>(Row));
+    }
+    for (const auto& Attribute : Abilities->GrantedAttributes)
+        Attributes.Add(MakeShared<FJsonValueString>(Attribute.ToSoftObjectPath().ToString()));
+    Snapshot->SetArrayField(TEXT("grantedAbilities"), Grants);
+    Snapshot->SetArrayField(TEXT("grantedEffects"), Effects);
+    Snapshot->SetArrayField(TEXT("grantedAttributes"), Attributes);
+    return Snapshot;
+}
+}
+
+FString UMMODocExperienceTools::ConfigureTaggedAbilityInputs(UObject* AbilityAsset)
+{
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetBoolField(TEXT("passed"), false);
+    Report->SetBoolField(TEXT("saved"), false);
+    Report->SetBoolField(TEXT("assetsModified"), false);
+    Report->SetBoolField(TEXT("graphsReconstructed"), false);
+    Report->SetBoolField(TEXT("gameplayExecuted"), false);
+    Report->SetStringField(TEXT("date"), FDateTime::UtcNow().ToIso8601());
+    auto Encode = [&]() { FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text)); return Text; };
+    auto Fail = [&](const TCHAR* Message) { Report->SetStringField(TEXT("error"), Message); return Encode(); };
+
+    FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath());
+    FPaths::NormalizeFilename(Project);
+    Report->SetStringField(TEXT("project"), Project);
+    if (!IsInGameThread() || !IsMMODocProject())
+        return Fail(TEXT("Requires the game thread of the exact isolated MMORPG lab project."));
+    auto* Abilities = Cast<UMMOAbilitySet>(AbilityAsset);
+    if (!IsValid(Abilities) || Abilities->HasAnyFlags(RF_ClassDefaultObject | RF_Transient)
+        || Abilities->GetPathName() != TEXT("/Game/MMO/Abilities/DA_MMOAbilities.DA_MMOAbilities"))
+        return Fail(TEXT("Requires the existing DA_MMOAbilities asset at its exact tutorial path."));
+    Report->SetStringField(TEXT("asset"), Abilities->GetPathName());
+    Report->SetObjectField(TEXT("before"), TaggedInputSnapshot(Abilities));
+    if (Abilities->GrantedAbilities.Num() != 2)
+        return Fail(TEXT("Expected exactly two existing grants; no array will be recreated."));
+
+    const TCHAR* ExpectedAbilities[] = {
+        TEXT("/Script/MMORPG.MMOAttackAbility"),
+        TEXT("/Game/Tutorial/GA_ArcaneBolt.GA_ArcaneBolt_C")
+    };
+    const FGameplayTag ExpectedTags[] = {
+        FGameplayTag::RequestGameplayTag(FName(TEXT("InputTag.MMO.Attack")), false),
+        FGameplayTag::RequestGameplayTag(FName(TEXT("InputTag.MMO.Spell")), false)
+    };
+    for (int32 Index = 0; Index < 2; ++Index)
+    {
+        if (Abilities->GrantedAbilities[Index].Ability.ToSoftObjectPath().ToString() != ExpectedAbilities[Index])
+            return Fail(TEXT("Unexpected existing grant class/order; inspect the asset instead of replacing it."));
+        if (!ExpectedTags[Index].IsValid())
+            return Fail(TEXT("Register InputTag.MMO.Attack and InputTag.MMO.Spell before changing the asset."));
+    }
+    if (ExpectedTags[0] == ExpectedTags[1]) return Fail(TEXT("Attack and spell require distinct input tags."));
+
+    // Keep the original arrays and all class/level/effect/attribute fields intact.
+    const TArray<FMMOAbilityGrant> BeforeGrants = Abilities->GrantedAbilities;
+    const TArray<FMMOEffectGrant> BeforeEffects = Abilities->GrantedEffects;
+    const auto BeforeAttributes = Abilities->GrantedAttributes;
+    bool bChanged = false;
+    for (int32 Index = 0; Index < 2; ++Index)
+        bChanged |= BeforeGrants[Index].InputTag != ExpectedTags[Index] || BeforeGrants[Index].InputID != INDEX_NONE;
+    if (bChanged)
+    {
+        Abilities->Modify();
+        for (int32 Index = 0; Index < 2; ++Index)
+        {
+            Abilities->GrantedAbilities[Index].InputTag = ExpectedTags[Index];
+            Abilities->GrantedAbilities[Index].InputID = INDEX_NONE;
+        }
+        Abilities->MarkPackageDirty();
+    }
+
+    bool bPreserved = Abilities->GrantedAbilities.Num() == BeforeGrants.Num()
+        && Abilities->GrantedEffects.Num() == BeforeEffects.Num()
+        && Abilities->GrantedAttributes == BeforeAttributes;
+    bool bExpectedInputs = Abilities->GrantedAbilities.Num() == 2;
+    TSet<FGameplayTag> UniqueTags;
+    for (int32 Index = 0; Index < Abilities->GrantedAbilities.Num(); ++Index)
+    {
+        const FMMOAbilityGrant& Grant = Abilities->GrantedAbilities[Index];
+        bPreserved &= BeforeGrants.IsValidIndex(Index)
+            && Grant.Ability == BeforeGrants[Index].Ability && Grant.Level == BeforeGrants[Index].Level;
+        bExpectedInputs &= Index < 2 && Grant.InputTag == ExpectedTags[Index] && Grant.InputID == INDEX_NONE;
+        UniqueTags.Add(Grant.InputTag);
+    }
+    for (int32 Index = 0; Index < Abilities->GrantedEffects.Num(); ++Index)
+        bPreserved &= BeforeEffects.IsValidIndex(Index)
+            && Abilities->GrantedEffects[Index].Effect == BeforeEffects[Index].Effect
+            && Abilities->GrantedEffects[Index].Level == BeforeEffects[Index].Level;
+    Report->SetObjectField(TEXT("after"), TaggedInputSnapshot(Abilities));
+    Report->SetBoolField(TEXT("assetsModified"), bChanged);
+    Report->SetBoolField(TEXT("onlyInputFieldsChanged"), bPreserved);
+    Report->SetBoolField(TEXT("uniqueInputTags"), UniqueTags.Num() == 2);
+    Report->SetBoolField(TEXT("inputIDsAreNone"), bExpectedInputs);
+    Report->SetNumberField(TEXT("modifiedAssetCount"), bChanged ? 1 : 0);
+    Report->SetBoolField(TEXT("passed"), bPreserved && bExpectedInputs && UniqueTags.Num() == 2);
+    if (!Report->GetBoolField(TEXT("passed"))) Report->SetStringField(TEXT("error"), TEXT("Post-change preservation or input-tag validation failed; do not save."));
+    return Encode();
+}
+```
+
+</details>
+
+## 文件 10：MMODocToolsLibrary.cpp
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp"
+#include "MMODocProjectGuard.h"
+#include "MMODocToolsLibrary.h"
+
+#include "AssetToolsModule.h"
+#include "Dom/JsonObject.h"
+#include "EdGraph/EdGraph.h"
+#include "EdGraph/EdGraphNode.h"
+#include "EdGraph/EdGraphPin.h"
+#include "EdGraphSchema_K2.h"
+#include "EdGraphUtilities.h"
+#include "Engine/Blueprint.h"
+#include "GameFramework/Actor.h"
+#include "HAL/FileManager.h"
+#include "IAssetTools.h"
+#include "K2Node_AsyncAction.h"
+#include "K2Node_CallFunction.h"
+#include "K2Node_Event.h"
+#include "K2Node_Self.h"
+#include "Kismet/KismetSystemLibrary.h"
+#include "Kismet2/BlueprintEditorUtils.h"
+#include "Kismet2/CompilerResultsLog.h"
+#include "Kismet2/KismetEditorUtilities.h"
+#include "Logging/TokenizedMessage.h"
+#include "MMOBackendClient.h"
+#include "Misc/DateTime.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Guid.h"
+#include "Misc/Paths.h"
+#include "Modules/ModuleManager.h"
+#include "ScopedTransaction.h"
+#include "Serialization/JsonSerializer.h"
+#include "Serialization/JsonWriter.h"
+#include "UObject/Package.h"
+
+namespace
+{
+FString Json(const TSharedRef<FJsonObject>& Report)
+{
+    FString Text;
+    FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text));
+    return Text;
+}
+
+FString Failure(const TSharedRef<FJsonObject>& Report, const FString& Message)
+{
+    Report->SetBoolField(TEXT("passed"), false);
+    Report->SetArrayField(TEXT("errors"), {MakeShared<FJsonValueString>(Message)});
+    return Json(Report);
+}
+
+UEdGraph* EventGraph(UBlueprint* Blueprint)
+{
+    for (UEdGraph* Graph : Blueprint->UbergraphPages)
+        if (Graph && Graph->GetFName() == TEXT("EventGraph")) return Graph;
+    return nullptr;
+}
+
+void EmptyGraph(UEdGraph* Graph)
+{
+    Graph->Modify();
+    const TArray<TObjectPtr<UEdGraphNode>> Nodes = Graph->Nodes;
+    for (UEdGraphNode* Node : Nodes)
+    {
+        if (!Node) continue;
+        Node->Modify();
+        Graph->RemoveNode(Node);
+        Node->Rename(nullptr, GetTransientPackage(), REN_DontCreateRedirectors | REN_DoNotDirty);
+    }
+}
+
+bool Connect(const UEdGraphSchema_K2* Schema, UEdGraphNode* From, FName Output, UEdGraphNode* To, FName Input)
+{
+    UEdGraphPin* A = From->FindPin(Output, EGPD_Output);
+    UEdGraphPin* B = To->FindPin(Input, EGPD_Input);
+    return A && B && Schema->TryCreateConnection(A, B);
+}
+
+bool SetDefault(const UEdGraphSchema_K2* Schema, UEdGraphNode* Node, FName Name, const TCHAR* Value)
+{
+    UEdGraphPin* Pin = Node->FindPin(Name, EGPD_Input);
+    if (!Pin) return false;
+    Schema->TrySetDefaultValue(*Pin, Value);
+    return Pin->DefaultValue == Value;
+}
+
+TSharedRef<FJsonObject> Compile(UBlueprint* Blueprint)
+{
+    FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(Blueprint);
+    FCompilerResultsLog Results;
+    FKismetEditorUtilities::CompileBlueprint(Blueprint, EBlueprintCompileOptions::SkipSave, &Results);
+    auto Report = MakeShared<FJsonObject>();
+    TArray<TSharedPtr<FJsonValue>> Errors, Warnings;
+    for (const auto& Message : Results.Messages)
+    {
+        if (Message->GetSeverity() == EMessageSeverity::Error)
+            Errors.Add(MakeShared<FJsonValueString>(Message->ToText().ToString()));
+        else if (Message->GetSeverity() == EMessageSeverity::Warning)
+            Warnings.Add(MakeShared<FJsonValueString>(Message->ToText().ToString()));
+    }
+    const bool bUpToDate = Blueprint->Status == BS_UpToDate || Blueprint->Status == BS_UpToDateWithWarnings;
+    Report->SetBoolField(TEXT("passed"), Results.NumErrors == 0 && bUpToDate);
+    Report->SetStringField(TEXT("asset"), Blueprint->GetPathName());
+    Report->SetStringField(TEXT("compileStatus"), StaticEnum<EBlueprintStatus>()->GetNameStringByValue(Blueprint->Status.GetValue()));
+    Report->SetNumberField(TEXT("errorCount"), Results.NumErrors);
+    Report->SetNumberField(TEXT("warningCount"), Results.NumWarnings);
+    Report->SetArrayField(TEXT("errors"), Errors);
+    Report->SetArrayField(TEXT("warnings"), Warnings);
+    Report->SetBoolField(TEXT("compiledThisCall"), true);
+    return Report;
+}
+}
+
+FString UMMODocToolsLibrary::ConfigureBackendTutorial(UBlueprint* Blueprint)
+{
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetBoolField(TEXT("passed"), false);
+    Report->SetBoolField(TEXT("saved"), false);
+    Report->SetBoolField(TEXT("httpExecuted"), false);
+    Report->SetStringField(TEXT("verifiedAt"), FDateTime::UtcNow().ToIso8601());
+    Report->SetStringField(TEXT("asset"), GetPathNameSafe(Blueprint));
+    Report->SetArrayField(TEXT("errors"), {});
+
+    FString ProjectDir = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir());
+    FPaths::NormalizeDirectoryName(ProjectDir);
+    if (!IsInGameThread() || !IsMMODocProject()
+        || !IsValid(Blueprint) || Blueprint->HasAnyFlags(RF_ClassDefaultObject | RF_Transient)
+        || Blueprint->GetOutermost()->GetName() != TEXT("/Game/Tutorial/BP_BackendHealth")
+        || !Blueprint->ParentClass || !Blueprint->ParentClass->IsChildOf(AActor::StaticClass()))
+        return Failure(Report, TEXT("Expected the Actor Blueprint /Game/Tutorial/BP_BackendHealth in the LyraDocLabs/MMORPG editor."));
+
+    UFunction* Factory = UMMORequestAction::StaticClass()->FindFunctionByName(GET_FUNCTION_NAME_CHECKED(UMMORequestAction, RequestMMO));
+    UFunction* PrintFunction = UKismetSystemLibrary::StaticClass()->FindFunctionByName(GET_FUNCTION_NAME_CHECKED(UKismetSystemLibrary, PrintString));
+    if (!Factory || !PrintFunction) return Failure(Report, TEXT("Required reflected backend factory or PrintString function is missing."));
+
+    const FScopedTransaction Transaction(NSLOCTEXT("MMODocTools", "BuildHealth", "Build backend health tutorial graph"));
+    Blueprint->Modify();
+    UEdGraph* Graph = EventGraph(Blueprint);
+    if (!Graph)
+    {
+        Graph = FBlueprintEditorUtils::CreateNewGraph(Blueprint, TEXT("EventGraph"), UEdGraph::StaticClass(), UEdGraphSchema_K2::StaticClass());
+        FBlueprintEditorUtils::AddUbergraphPage(Blueprint, Graph);
+    }
+    const auto* Schema = Cast<UEdGraphSchema_K2>(Graph->GetSchema());
+    if (!Schema) return Failure(Report, TEXT("The tutorial graph must use the K2 schema."));
+    EmptyGraph(Graph);
+
+    FGraphNodeCreator<UK2Node_Event> EventCreator(*Graph);
+    UK2Node_Event* BeginPlay = EventCreator.CreateNode();
+    BeginPlay->EventReference.SetExternalMember(TEXT("ReceiveBeginPlay"), AActor::StaticClass());
+    BeginPlay->bOverrideFunction = true;
+    BeginPlay->NodePosX = 0; BeginPlay->NodePosY = 0;
+    EventCreator.Finalize();
+
+    FGraphNodeCreator<UK2Node_AsyncAction> RequestCreator(*Graph);
+    UK2Node_AsyncAction* Request = RequestCreator.CreateNode();
+    Request->InitializeProxyFromFunction(Factory);
+    Request->NodePosX = 320; Request->NodePosY = 0;
+    RequestCreator.Finalize();
+
+    FGraphNodeCreator<UK2Node_CallFunction> PrintCreator(*Graph);
+    UK2Node_CallFunction* Print = PrintCreator.CreateNode();
+    Print->SetFromFunction(PrintFunction);
+    Print->NodePosX = 800; Print->NodePosY = 120;
+    PrintCreator.Finalize();
+
+    FGraphNodeCreator<UK2Node_Self> SelfCreator(*Graph);
+    UK2Node_Self* Self = SelfCreator.CreateNode();
+    Self->NodePosX = 0; Self->NodePosY = 270;
+    SelfCreator.Finalize();
+
+    const bool bDefaults = SetDefault(Schema, Request, TEXT("Verb"), TEXT("GET"))
+        && SetDefault(Schema, Request, TEXT("Route"), TEXT("/health"))
+        && SetDefault(Schema, Request, TEXT("JsonBody"), TEXT("{}"));
+    const bool bConnections = Connect(Schema, BeginPlay, UEdGraphSchema_K2::PN_Then, Request, UEdGraphSchema_K2::PN_Execute)
+        && Connect(Schema, Request, TEXT("Completed"), Print, UEdGraphSchema_K2::PN_Execute)
+        && Connect(Schema, Request, TEXT("Json"), Print, TEXT("InString"))
+        && Connect(Schema, Self, UEdGraphSchema_K2::PN_Self, Request, TEXT("WorldContextObject"))
+        && Connect(Schema, Self, UEdGraphSchema_K2::PN_Self, Print, TEXT("WorldContextObject"));
+    if (!bDefaults || !bConnections) return Failure(Report, TEXT("A requested pin/default is absent or the native K2 schema rejected a connection."));
+
+    auto SourceCompilation = Compile(Blueprint);
+    Report->SetObjectField(TEXT("sourceCompilation"), SourceCompilation);
+    Report->SetNumberField(TEXT("nodeCount"), Graph->Nodes.Num());
+    if (!SourceCompilation->GetBoolField(TEXT("passed"))) return Failure(Report, TEXT("The constructed source graph failed native compilation."));
+
+    TSet<UObject*> Nodes;
+    for (UEdGraphNode* Node : Graph->Nodes) if (Node) Nodes.Add(Node);
+    FString Text;
+    FEdGraphUtilities::ExportNodesToText(Nodes, Text);
+    const FString EvidenceDir = FPaths::ConvertRelativePathToFull(FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("Evidence")));
+    const FString TextPath = FPaths::Combine(EvidenceDir, TEXT("backend-health.txt"));
+    IFileManager::Get().MakeDirectory(*EvidenceDir, true);
+    if (Text.IsEmpty() || !FFileHelper::SaveStringToFile(Text, *TextPath, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM))
+        return Failure(Report, TEXT("Unable to export the actual node text to Saved/Evidence/backend-health.txt."));
+    Report->SetStringField(TEXT("exportPath"), TextPath);
+
+    const FString TestName = TEXT("BP_BackendHealth_RoundTrip_") + FGuid::NewGuid().ToString(EGuidFormats::Digits);
+    FAssetToolsModule& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>(TEXT("AssetTools"));
+    UBlueprint* TestCopy = Cast<UBlueprint>(AssetTools.Get().DuplicateAsset(TestName, TEXT("/Game/Tutorial/Tests"), Blueprint));
+    if (!TestCopy) return Failure(Report, TEXT("Unable to create a complete round-trip test Blueprint duplicate."));
+    Report->SetStringField(TEXT("testAsset"), TestCopy->GetPathName());
+    UEdGraph* TestGraph = EventGraph(TestCopy);
+    // Read the file back, so validation exercises the exported artifact rather than only an in-memory string.
+    FString ExportedText;
+    if (!TestGraph || !FFileHelper::LoadFileToString(ExportedText, *TextPath)
+        || !FEdGraphUtilities::CanImportNodesFromText(TestGraph, ExportedText))
+        return Failure(Report, TEXT("The saved node text cannot be imported into the complete test Blueprint."));
+    TestCopy->Modify();
+    EmptyGraph(TestGraph);
+    TSet<UEdGraphNode*> Imported;
+    FEdGraphUtilities::ImportNodesFromText(TestGraph, ExportedText, Imported);
+    for (UEdGraphNode* Node : Imported) Node->CreateNewGuid();
+    auto TestCompilation = Compile(TestCopy);
+    TestCompilation->SetNumberField(TEXT("importedNodeCount"), Imported.Num());
+    TestCompilation->SetNumberField(TEXT("nodeCount"), TestGraph->Nodes.Num());
+    const bool bSameCount = Imported.Num() == Nodes.Num() && TestGraph->Nodes.Num() == Graph->Nodes.Num();
+    Report->SetObjectField(TEXT("roundTripCompilation"), TestCompilation);
+    Report->SetBoolField(TEXT("nodeCountPreserved"), bSameCount);
+    Report->SetBoolField(TEXT("passed"), bSameCount && TestCompilation->GetBoolField(TEXT("passed")));
+    if (!Report->GetBoolField(TEXT("passed")))
+        Report->SetArrayField(TEXT("errors"), {MakeShared<FJsonValueString>(TEXT("Imported graph node count or native compilation did not pass."))});
+    Graph->NotifyGraphChanged();
+    TestGraph->NotifyGraphChanged();
+    const FString ReportPath = FPaths::Combine(EvidenceDir, TEXT("backend-health-roundtrip.json"));
+    Report->SetStringField(TEXT("reportPath"), ReportPath);
+    const FString ReportText = Json(Report);
+    if (!FFileHelper::SaveStringToFile(ReportText, *ReportPath, FFileHelper::EEncodingOptions::ForceUTF8WithoutBOM))
+        return Failure(Report, TEXT("Compilation finished, but the evidence JSON file could not be written."));
+    return ReportText;
+}
+```
+
+</details>
+
+## 文件 11：MMODocToolsModule.cpp
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp"
+#include "Modules/ModuleManager.h"
+
+IMPLEMENT_MODULE(FDefaultModuleImpl, MMODocTools)
+```
+
+</details>
+
+## 文件 12：MMOManaStatus.cpp
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp"
+#include "MMODocProjectGuard.h"
+#include "MMODocToolsLibrary.h"
+#include "Blueprint/WidgetTree.h"
+#include "Components/VerticalBox.h"
+#include "Components/VerticalBoxSlot.h"
+#include "Components/SizeBox.h"
+#include "Components/TextBlock.h"
+#include "Components/ProgressBar.h"
+#include "WidgetBlueprint.h"
+#include "Editor.h"
+#include "MVVMEditorSubsystem.h"
+#include "MVVMBlueprintView.h"
+#include "MVVMBlueprintViewBinding.h"
+#include "MVVMBlueprintViewModelContext.h"
+#include "Kismet2/BlueprintEditorUtils.h"
+#include "Kismet2/KismetEditorUtilities.h"
+#include "Kismet2/CompilerResultsLog.h"
+#include "Dom/JsonObject.h"
+#include "Serialization/JsonSerializer.h"
+#include "Misc/Paths.h"
+#include "Misc/DateTime.h"
+#include "Misc/FileHelper.h"
+#include "HAL/FileManager.h"
+
+FString UMMODocToolsLibrary::ConfigureManaStatus(UWidgetBlueprint* Blueprint)
+{
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetStringField(TEXT("date"), FDateTime::UtcNow().ToIso8601());
+    Report->SetBoolField(TEXT("passed"), false);
+    Report->SetBoolField(TEXT("saved"), false);
+    Report->SetBoolField(TEXT("gameplayExecuted"), false);
+    auto Encode = [&]() { FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text)); return Text; };
+    FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath()); FPaths::NormalizeFilename(Project);
+    if (!IsMMODocProject() || !Blueprint || Blueprint->GetPathName() != TEXT("/Game/UI/WBP_ManaStatus.WBP_ManaStatus"))
+    { Report->SetStringField(TEXT("error"), TEXT("Only the isolated lab WBP_ManaStatus may be configured")); return Encode(); }
+    UClass* ModelClass = LoadClass<UObject>(nullptr, TEXT("/Script/MMORPG.MMOPlayerViewModel"));
+    FProperty* ManaLabel = ModelClass ? FindFProperty<FProperty>(ModelClass, TEXT("ManaLabel")) : nullptr;
+    FProperty* ManaFraction = ModelClass ? FindFProperty<FProperty>(ModelClass, TEXT("ManaFraction")) : nullptr;
+    if (!ManaLabel || !ManaFraction || !GEditor)
+    { Report->SetStringField(TEXT("error"), TEXT("Build the MMORPGEditor ViewModel fields first")); return Encode(); }
+    Blueprint->Modify();
+    if (Blueprint->WidgetTree) Blueprint->WidgetTree->Rename(nullptr, GetTransientPackage(), REN_DontCreateRedirectors);
+    Blueprint->WidgetTree = NewObject<UWidgetTree>(Blueprint, TEXT("WidgetTree"), RF_Transactional);
+    auto* Box = Blueprint->WidgetTree->ConstructWidget<UVerticalBox>(UVerticalBox::StaticClass(), TEXT("ManaLayout"));
+    Blueprint->WidgetTree->RootWidget = Box;
+    auto* Text = Blueprint->WidgetTree->ConstructWidget<UTextBlock>(UTextBlock::StaticClass(), TEXT("ManaText"));
+    Text->bIsVariable = true;
+    Text->SetText(FText::FromStringTable(TEXT("/Game/Localization/ST_MMO.ST_MMO"), TEXT("Mana.Preview")));
+    Text->SetColorAndOpacity(FSlateColor(FLinearColor(.65f, .88f, 1.f)));
+    auto Font = Text->GetFont(); Font.Size = 18; Text->SetFont(Font);
+    Box->AddChildToVerticalBox(Text)->SetPadding(FMargin(0, 0, 0, 6));
+    auto* Size = Blueprint->WidgetTree->ConstructWidget<USizeBox>(USizeBox::StaticClass(), TEXT("ManaBarSize"));
+    Size->SetHeightOverride(14.f); Box->AddChildToVerticalBox(Size);
+    auto* Bar = Blueprint->WidgetTree->ConstructWidget<UProgressBar>(UProgressBar::StaticClass(), TEXT("ManaBar"));
+    Bar->bIsVariable = true; Bar->SetPercent(1.f); Bar->SetFillColorAndOpacity(FLinearColor(.08f, .5f, 1.f)); Size->SetContent(Bar);
+
+    auto* Editor = GEditor->GetEditorSubsystem<UMVVMEditorSubsystem>();
+    auto* View = Editor->RequestView(Blueprint); View->Modify();
+    while (View->GetNumBindings()) View->RemoveBindingAt(0);
+    TArray<FGuid> OldModels; for (const auto& Context : View->GetViewModels()) OldModels.Add(Context.GetViewModelId());
+    View->RemoveViewModels(OldModels);
+    FMVVMBlueprintViewModelContext Context(ModelClass, TEXT("PlayerVM"));
+    Context.CreationType = EMVVMBlueprintViewModelContextCreationType::Manual;
+    Context.bOptional = true; Context.bCreateSetterFunction = true;
+    View->AddViewModel(Context);
+    auto Add = [&](FProperty* SourceProperty, UWidget* Widget, const TCHAR* DestinationName)
+    {
+        auto& Binding = View->AddDefaultBinding();
+        Binding.SourcePath.SetViewModelId(Context.GetViewModelId());
+        Binding.SourcePath.SetPropertyPath(Blueprint, UE::MVVM::FMVVMConstFieldVariant(SourceProperty));
+        Binding.DestinationPath.SetWidgetName(Widget->GetFName());
+        Binding.DestinationPath.SetPropertyPath(Blueprint, UE::MVVM::FMVVMConstFieldVariant(FindFProperty<FProperty>(Widget->GetClass(), DestinationName)));
+        Binding.BindingType = EMVVMBindingMode::OneWayToDestination;
+        Binding.bOverrideExecutionMode = true; Binding.OverrideExecutionMode = EMVVMExecutionMode::Immediate;
+    };
+    Add(ManaLabel, Text, TEXT("Text")); Add(ManaFraction, Bar, TEXT("Percent"));
+    FBlueprintEditorUtils::MarkBlueprintAsStructurallyModified(Blueprint);
+    FCompilerResultsLog Results; FKismetEditorUtilities::CompileBlueprint(Blueprint, EBlueprintCompileOptions::SkipSave, &Results);
+    Report->SetStringField(TEXT("asset"), Blueprint->GetPathName());
+    Report->SetStringField(TEXT("viewModelClass"), ModelClass->GetPathName());
+    Report->SetStringField(TEXT("viewModelName"), TEXT("PlayerVM"));
+    Report->SetStringField(TEXT("creationType"), TEXT("Manual"));
+    Report->SetStringField(TEXT("bindingMode"), TEXT("OneWayToDestination / Immediate"));
+    Report->SetNumberField(TEXT("bindingCount"), View->GetNumBindings());
+    Report->SetArrayField(TEXT("bindings"), {MakeShared<FJsonValueString>(TEXT("PlayerVM.ManaLabel -> ManaText.Text")), MakeShared<FJsonValueString>(TEXT("PlayerVM.ManaFraction -> ManaBar.Percent"))});
+    Report->SetNumberField(TEXT("compilerErrors"), Results.NumErrors); Report->SetNumberField(TEXT("compilerWarnings"), Results.NumWarnings);
+    Report->SetBoolField(TEXT("passed"), Results.NumErrors == 0 && Blueprint->Status == BS_UpToDate && View->GetNumBindings() == 2);
+    const FString ReportPath = FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() / TEXT("Evidence/mana-status-bindings.json"));
+    Report->SetStringField(TEXT("reportPath"), ReportPath);
+    IFileManager::Get().MakeDirectory(*FPaths::GetPath(ReportPath), true); FFileHelper::SaveStringToFile(Encode(), *ReportPath);
+    return Encode();
+}
+```
+
+</details>
+
+## 文件 13：prepare_content.py
+
+目标路径：`prepare_content.py`。原文件位于包内 `examples/MMORPG/prepare_content.py`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```python title="prepare_content.py"
+"""Run inside the MMORPG editor after C++ compilation. Creates original tutorial assets.
+
+UnrealEditor-Cmd.exe MMORPG.uproject -run=pythonscript -script=.../prepare_content.py
+Never run this script in the original Lyra editor: the project check is intentional.
+"""
+import json
+import os
+import unreal
+
+if unreal.Paths.get_project_file_path().replace("\\", "/").split("/")[-1] != "MMORPG.uproject":
+    raise RuntimeError("Open MMORPG.uproject before generating tutorial assets")
+
+unreal.load_module("MMOCore")
+tools = unreal.AssetToolsHelpers.get_asset_tools()
+library = unreal.EditorAssetLibrary
+
+
+def blueprint(name, folder, parent):
+    path = folder + "/" + name
+    if library.does_asset_exist(path):
+        return library.load_asset(path)
+    factory = unreal.BlueprintFactory()
+    factory.set_editor_property("parent_class", unreal.load_class(None, parent))
+    asset = tools.create_asset(name, folder, unreal.Blueprint, factory)
+    if not asset:
+        raise RuntimeError("Blueprint creation failed: " + path)
+    unreal.BlueprintEditorLibrary.compile_blueprint(asset)
+    return asset
+
+
+# Native animation generation uses real editor graph APIs and compiles both
+# source graphs and clipboard round-trip copies before character configuration.
+unreal.load_module("MMODocTools")
+evidence_dir = os.path.join(unreal.Paths.project_saved_dir(), "Evidence")
+os.makedirs(evidence_dir, exist_ok=True)
+animation_report = json.loads(unreal.MMOAnimationTools.prepare_character_animation())
+with open(os.path.join(evidence_dir, "mmorpg-animation-assets.json"), "w", encoding="utf-8") as output:
+    json.dump(animation_report, output, ensure_ascii=False, indent=2)
+if not animation_report.get("passed"):
+    raise RuntimeError("Character animation generation failed: " + json.dumps(animation_report))
+
+for name, parent in (
+    ("BP_MMOCharacter", "/Script/MMORPG.MMOCharacter"),
+    ("GA_ArcaneBolt", "/Script/MMORPG.MMOSpellAbility"),
+    ("BP_MMOTrainingTarget", "/Script/MMORPG.MMOTarget"),
+):
+    library.save_loaded_asset(blueprint(name, "/Game/Tutorial", parent))
+
+character_report = json.loads(unreal.MMOAnimationTools.configure_character(library.load_asset("/Game/Tutorial/BP_MMOCharacter")))
+with open(os.path.join(evidence_dir, "mmorpg-character-defaults.json"), "w", encoding="utf-8") as output:
+    json.dump(character_report, output, ensure_ascii=False, indent=2)
+if not character_report.get("passed") or not character_report.get("defaultsRetainedAfterCompile"):
+    raise RuntimeError("Character Mesh/AnimClass defaults failed native validation: " + json.dumps(character_report))
+
+
+def data_asset(name, folder, class_name):
+    path = folder + "/" + name
+    if library.does_asset_exist(path):
+        return library.load_asset(path)
+    asset_class = unreal.load_class(None, class_name)
+    if not asset_class:
+        raise RuntimeError("Build and enable the asset class before generation: " + class_name)
+    factory = unreal.DataAssetFactory()
+    factory.set_editor_property("data_asset_class", asset_class)
+    asset = tools.create_asset(name, folder, asset_class, factory)
+    if not asset:
+        raise RuntimeError("Data Asset creation failed: " + path)
+    return asset
+
+
+experience = data_asset("DA_MMOExperience", "/Game/MMO/Experiences", "/Script/MMOFramework.MMOExperienceDefinition")
+pawn_data = data_asset("DA_MMOPlayer", "/Game/MMO/Pawns", "/Script/MMOFramework.MMOPawnData")
+ability_set = data_asset("DA_MMOAbilities", "/Game/MMO/Abilities", "/Script/MMOFramework.MMOAbilitySet")
+experience_report = json.loads(unreal.MMODocExperienceTools.configure_experience_assets(experience, pawn_data, ability_set))
+if not experience_report.get("passed"):
+    raise RuntimeError("Experience asset configuration failed: " + json.dumps(experience_report))
+for asset in (experience, pawn_data, ability_set):
+    if not library.save_loaded_asset(asset):
+        raise RuntimeError("Could not save Experience dependency: " + asset.get_path_name())
+experience_report["saved"] = True
+with open(experience_report["reportPath"], "w", encoding="utf-8") as output:
+    json.dump(experience_report, output, ensure_ascii=False, indent=2)
+
+game_mode = blueprint("BP_MMOGameMode", "/Game/MMO", "/Script/MMORPG.MMOGameMode")
+unreal.BlueprintEditorLibrary.compile_blueprint(game_mode)
+game_mode_class = library.load_blueprint_class("/Game/MMO/BP_MMOGameMode")
+selected_experience = unreal.get_default_object(game_mode_class).get_editor_property("default_experience")
+experience_id = unreal.SystemLibrary.conv_primary_asset_id_to_string(selected_experience)
+if experience_id != "MMOExperience:DA_MMOExperience":
+    raise RuntimeError("BP_MMOGameMode Default Experience is unexpected: " + experience_id)
+if not library.save_loaded_asset(game_mode):
+    raise RuntimeError("Could not save BP_MMOGameMode")
+with open(os.path.join(evidence_dir, "mmorpg-game-mode.json"), "w", encoding="utf-8") as output:
+    json.dump({"passed": True, "saved": True, "gameplayExecuted": False,
+               "asset": "/Game/MMO/BP_MMOGameMode", "parent": "/Script/MMORPG.MMOGameMode",
+               "defaultExperience": experience_id}, output, ensure_ascii=False, indent=2)
+
+# Real Designer assets own every visual tree. C++ native parents only own
+# business callbacks, CommonUI routing and the Manual PlayerVM lifecycle.
+table_path = "/Game/Localization/ST_MMO"
+if library.does_asset_exist(table_path):
+    string_table = library.load_asset(table_path)
+else:
+    string_table = tools.create_asset("ST_MMO", "/Game/Localization", unreal.StringTable, unreal.StringTableFactory())
+strings_report = json.loads(unreal.MMODocToolsLibrary.configure_designer_strings(string_table))
+if not strings_report.get("passed") or not library.save_loaded_asset(string_table):
+    raise RuntimeError("Designer StringTable failed: " + json.dumps(strings_report))
+strings_report["saved"] = True
+
+with open(os.path.join(unreal.Paths.project_dir(), "ui-designer-contract.json"), encoding="utf-8") as source:
+    designer_contract = json.load(source)
+designer_reports = []
+for entry in designer_contract["assets"]:
+    name, folder, parent = entry["name"], entry["path"], entry["parent"]
+    path = folder + "/" + name
+    if library.does_asset_exist(path):
+        widget = library.load_asset(path)
+    else:
+        factory = unreal.WidgetBlueprintFactory()
+        factory.set_editor_property("parent_class", unreal.load_class(None, parent))
+        widget = tools.create_asset(name, folder, unreal.WidgetBlueprint, factory)
+    # Required BindWidget children must exist before the explicit compile.
+    report = json.loads(unreal.MMODocToolsLibrary.configure_designer_widget(widget))
+    if not report.get("passed"):
+        raise RuntimeError("Designer widget failed compilation: " + json.dumps(report))
+    found = {row["name"]: row for row in report["widgets"]}
+    for required_name in entry["widgets"]:
+        if required_name not in found or not found[required_name]["isVariable"]:
+            raise RuntimeError("Missing variable widget: " + name + "." + required_name)
+    if report["bindingCount"] != len(entry.get("bindings", {})):
+        raise RuntimeError("MVVM binding count mismatch: " + name)
+    if not library.save_loaded_asset(widget):
+        raise RuntimeError("Could not save Designer asset: " + path)
+    report["saved"] = True
+    with open(report["reportPath"], "w", encoding="utf-8") as output:
+        json.dump(report, output, ensure_ascii=False, indent=2)
+    designer_reports.append(report)
+    if name == "WBP_ManaStatus":
+        with open(os.path.join(unreal.Paths.project_saved_dir(), "Evidence/mana-status-bindings.json"), "w", encoding="utf-8") as output:
+            json.dump(report, output, ensure_ascii=False, indent=2)
+
+policy = blueprint("BP_MMOUIPolicy", "/Game/UI", "/Script/MMORPG.MMOUIPolicy")
+policy_class = library.load_blueprint_class("/Game/UI/BP_MMOUIPolicy")
+layout_class = library.load_blueprint_class("/Game/UI/WBP_MMOLayout")
+unreal.get_default_object(policy_class).set_editor_property("layout_class", layout_class)
+unreal.BlueprintEditorLibrary.compile_blueprint(policy)
+if not library.save_loaded_asset(policy):
+    raise RuntimeError("Could not save Designer UI Policy")
+with open(os.path.join(unreal.Paths.project_saved_dir(), "Evidence/ui-designer-assets.json"), "w", encoding="utf-8") as output:
+    json.dump({"passed": True, "saved": True, "gameplayExecuted": False,
+               "stringTable": strings_report, "widgets": designer_reports,
+               "policy": {"asset": "/Game/UI/BP_MMOUIPolicy", "layoutClass": layout_class.get_path_name()}},
+              output, ensure_ascii=False, indent=2)
+
+path = "/MMOCore/MMOCore"
+if library.does_asset_exist(path):
+    data = library.load_asset(path)
+else:
+    factory = unreal.DataAssetFactory()
+    factory.set_editor_property("data_asset_class", unreal.GameFeatureData)
+    data = tools.create_asset("MMOCore", "/MMOCore", unreal.GameFeatureData, factory)
+unreal.MMOContentLibrary.configure_feature_data(data)
+library.save_loaded_asset(data)
+
+# This editor-only bridge builds native K2 nodes, exports their actual clipboard
+# text, then imports that file into a separate Actor Blueprint and compiles it.
+health = blueprint("BP_BackendHealth", "/Game/Tutorial", "/Script/Engine.Actor")
+report = json.loads(unreal.MMODocToolsLibrary.configure_backend_tutorial(health))
+if not report.get("passed"):
+    raise RuntimeError("Backend health graph failed native validation: " + json.dumps(report))
+library.save_loaded_asset(health)
+library.save_asset(report["testAsset"])
+report["saved"] = True
+with open(report["reportPath"], "w", encoding="utf-8") as output:
+    json.dump(report, output, ensure_ascii=False, indent=2)
+unreal.log("MMORPG original tutorial assets created and Blueprint compilation requested")
+```
+
+</details>
+
+## 文件 14：MMODocProjectGuard.h
+
+目标路径：`Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h`。原文件位于包内 `examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Dom/JsonObject.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
+#include "Serialization/JsonSerializer.h"
+
+// Accept the original lab or a new project explicitly enrolled by Advance-Lesson.ps1.
+// Asset-specific type/path checks remain at every operation's call site.
+inline bool IsMMODocProject()
+{
+    if (!FPaths::GetCleanFilename(FPaths::GetProjectFilePath()).Equals(TEXT("MMORPG.uproject"), ESearchCase::IgnoreCase)) return false;
+    FString ProjectDir = FPaths::ConvertRelativePathToFull(FPaths::ProjectDir());
+    FPaths::NormalizeDirectoryName(ProjectDir);
+    if (ProjectDir.Equals(TEXT("F:/UE/LyraDocLabs/MMORPG"), ESearchCase::IgnoreCase)) return true;
+    FString Json;
+    if (!FFileHelper::LoadFileToString(Json, *FPaths::Combine(ProjectDir, TEXT(".lesson-state.json")))) return false;
+    TSharedPtr<FJsonObject> State;
+    if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Json), State) || !State) return false;
+    FString Destination; double Stage = -1;
+    if (!State->TryGetStringField(TEXT("destination"), Destination) || !State->TryGetNumberField(TEXT("stage"), Stage) || Stage < 3) return false;
+    Destination = FPaths::ConvertRelativePathToFull(Destination);
+    FPaths::NormalizeDirectoryName(Destination);
+    return Destination.Equals(ProjectDir, ESearchCase::IgnoreCase);
+}
+```
+
+</details>
+
+## 写完后怎样确认
+
+保存全部文件，回到当前阶段执行文件核对和 Editor 构建。文件核对只能发现缺文件、复制不完整和版本差异；`Result: Succeeded` 才说明编译成功。资产、UI 与联机行为继续按 [对应课程](/docs/09-mmo-ui/blueprint-workflow) 验收。

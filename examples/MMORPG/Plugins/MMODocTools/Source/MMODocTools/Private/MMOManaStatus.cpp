@@ -1,3 +1,4 @@
+#include "MMODocProjectGuard.h"
 #include "MMODocToolsLibrary.h"
 #include "Blueprint/WidgetTree.h"
 #include "Components/VerticalBox.h"
@@ -30,7 +31,7 @@ FString UMMODocToolsLibrary::ConfigureManaStatus(UWidgetBlueprint* Blueprint)
     Report->SetBoolField(TEXT("gameplayExecuted"), false);
     auto Encode = [&]() { FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Text)); return Text; };
     FString Project = FPaths::ConvertRelativePathToFull(FPaths::GetProjectFilePath()); FPaths::NormalizeFilename(Project);
-    if (!Project.Contains(TEXT("/LyraDocLabs/MMORPG/")) || !Blueprint || Blueprint->GetPathName() != TEXT("/Game/UI/WBP_ManaStatus.WBP_ManaStatus"))
+    if (!IsMMODocProject() || !Blueprint || Blueprint->GetPathName() != TEXT("/Game/UI/WBP_ManaStatus.WBP_ManaStatus"))
     { Report->SetStringField(TEXT("error"), TEXT("Only the isolated lab WBP_ManaStatus may be configured")); return Encode(); }
     UClass* ModelClass = LoadClass<UObject>(nullptr, TEXT("/Script/MMORPG.MMOPlayerViewModel"));
     FProperty* ManaLabel = ModelClass ? FindFProperty<FProperty>(ModelClass, TEXT("ManaLabel")) : nullptr;

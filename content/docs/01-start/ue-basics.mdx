@@ -1,0 +1,120 @@
+---
+title: UE 零基础：认界面、读配置与第一段代码
+description: 从三个程序、主编辑器面板、资产与实例、数组与引用，学到 C++ 声明和执行的区别。
+---
+
+你不需要先认识 Actor、GAS 或 CDO。本章先教你辨认窗口和对象，再读十几行真实代码。第一次只完成“找到、打开、读值、关闭”四个动作，后面才在教学副本中修改。
+
+## 先分清你面前的三个程序
+
+| 程序 | 你在里面做什么 | 输入什么 |
+|---|---|---|
+| Unreal Editor（UE 编辑器） | 打开地图、查看资产、编辑蓝图、运行预览 | 资产名、字段值、蓝图节点 |
+| Rider | 阅读/修改 C++，构建 Editor 目标，调试进程 | 类名、函数名、源文件 |
+| PowerShell | 调用构建脚本、启动程序、检查文件与进程 | 本教程标为 `powershell` 的命令 |
+
+**UE 底部的 Cmd 不是 PowerShell**。`stat unit` 属于 UE 控制台命令；`Get-Process` 属于 PowerShell；`ULyraPawnData` 是代码符号。先找对窗口，再输入。
+
+## 对照主窗口认位置
+![UE 主编辑器：顶部工具栏、中央视口、右上大纲、右下世界场景设置、底部内容和日志入口](/media/beginner/whole-guide/editor-overview.png)
+
+**看图操作**：先读左上关卡标签 L_DefaultEditorOverview。中央是地图视口；右上“大纲”列的是这张地图里的 Actor；右下当前标签是“世界场景设置”，因此这里显示地图配置。底部左边的“内容侧滑菜单”打开资产，旁边“输出日志”显示运行消息。
+按图完成下面五件小事：
+
+1. 先不按绿色三角。读出当前关卡名。图中是编辑器介绍地图，**Default Gameplay Experience=None** 是本张图的实际状态，不是射击关卡的推荐配置。
+2. 在右上“大纲”单击 `Cube`，再切右下的“细节（Details）”。这时你读的是选中 Actor 的属性；切回“世界场景设置（World Settings）”才是地图属性。
+3. 按 `Ctrl+Space` 打开内容侧滑菜单。它列磁盘资产，不是本关卡的 Actor 清单；在这里找到一个蓝图，不表示它已经生成在场景里。
+4. 关闭侧滑菜单；从主菜单 **窗口（Window）** 找回意外关闭的面板。以后文档说“看 Details”，要同时确认选中了什么对象。
+5. 打开“输出日志”，记住搜索框与命令输入框的位置。搜索 `Error` 是过滤已发生的消息；在 Cmd 输入指令是在请求编辑器执行操作，两者不同。
+
+## 一张配置、一种类和一个实例
+![从磁盘资产到本次游戏中的对象](/media/guide-diagrams/01-start-ue-basics.svg)
+
+**读图**：先区分“存在哪里”和“何时存在”。UObject 不必在世界中可见，Actor 也不必拥有可见网格；是否显示取决于它的组件和配置。
+| 看到的名字 | 先这样理解 | 去哪里观察 |
+|---|---|---|
+| `UObject` | UE 管理的一类对象的共同基础 | C++ 继承声明；不必在 Outliner 中出现 |
+| `Actor` / `AActor` | 属于世界、可生成和销毁的对象 | 关卡 Outliner；例如武器 Actor |
+| `Component` / 组件 | 放在 Actor 上的一项能力或表现 | 蓝图 Components 或运行时 Actor 细节 |
+| `Pawn` | 可被 Controller 控制的 Actor | PlayerController 当前控制的角色 |
+| `Character` | 带角色移动等基础能力的一类 Pawn | 本教程的玩家角色 |
+| `Blueprint` / 蓝图 | 可用编辑器配置/编程的类资源 | 类默认值、组件、事件图 |
+| `Data Asset` / 数据资产 | 存放配置的数据对象 | 打开后通常直接显示 Details |
+| CDO / 类默认对象 | 每个类供读取默认值的对象 | Class Defaults 对应的默认配置 |
+| `World` / 世界 | 一次游戏场景及其中对象的上下文 | PIE 多人时可能同时有多个 World |
+
+Actor 实例可以覆盖类默认值。例如同一类的两盏灯，场景里可以有不同亮度。Lyra 的装备定义则让多个角色读取同一类的装备配置，再各自创建运行对象；别把改默认值当成直接改了某个玩家的状态。
+
+## 从内容浏览器打开正确视图
+![内容浏览器中的插件路径与资产缩略图](/media/beginner/rifle/rifle-folder.png)
+
+**看图操作**：上方路径说明当前文件夹，左侧是文件夹树，中央每个缩略图是一份资产。先点击齿轮启用“插件内容”，再进入 ShooterCore → Weapons → Rifle。详细菜单图见步枪章节的第 1 步。
+1. 双击 `ID_Rifle`。看到纯数据蓝图提示时，读**类默认值（Class Defaults）**；没有 EventGraph 不代表打开失败。
+2. 双击 `AbilitySet_ShooterRifle`。它是数据资产，直接在 Details 读配置，不用找 Class Defaults。
+3. 双击 `B_Rifle`。要看骨骼网格，打开完整蓝图编辑器并选中 Components 里的 `SkeletalMesh`；选 Class Defaults 与选组件会显示不同属性。
+4. 遇到 `1 数组 个元素`，依次展开字段和 `[0]` 左边的小三角。**三角是展开，`+` 是新增**。数组从 0 开始计数，三项数组的最后一项是 `[2]`。
+5. 资产引用旁的文件夹/放大镜用于定位引用；下拉框用于改引用。第一次只定位和打开，不替换原始资产。
+
+## 第一次阅读 C++：先看字段，再看执行
+源码：`Source/LyraGame/Character/LyraPawnData.h`，本机第 35–41 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+// Class to instantiate for this pawn (should usually derive from ALyraPawn or ALyraCharacter).
+UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lyra|Pawn")
+TSubclassOf<APawn> PawnClass;
+
+// Ability sets to grant to this pawn's ability system.
+UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Lyra|Abilities")
+TArray<TObjectPtr<ULyraAbilitySet>> AbilitySets;
+```
+这几行声明了两个字段，没有生成角色，也没有授予技能。逐个符号读：
+
+| 写法 | 在这里的含义 | 对应编辑器 |
+|---|---|---|
+| `// ...` | 给人看的注释，不参与执行 | 不产生配置控件 |
+| `UPROPERTY(...)` | 把属性登记到 UE 的反射系统 | UE 才能按这些标记暴露字段 |
+| `EditDefaultsOnly` | 在默认配置上编辑 | 类默认值/资产配置，不是随便改所有运行对象 |
+| `BlueprintReadOnly` | 蓝图可读这个属性，不能直接用普通 Set 节点写它 | 不等于 C++ 永远不能赋值 |
+| `Category="Lyra\|Pawn"` | 分类显示元数据 | Details 中的分组 |
+| `TSubclassOf<APawn>` | 保存“用哪一种 Pawn 类”的引用 | Pawn Class 类选择器 |
+| `TArray<...>` | 可有多项的数组 | 可展开 `[0]`、`[1]` 的列表 |
+| `TObjectPtr<ULyraAbilitySet>` | 指向 UE 管理的技能集对象 | 技能集资产引用 |
+| `;` | 结束这条声明 | 这行本身不执行游戏行为 |
+
+再认识几个后续反复出现的写法：`->` 访问指针指向对象的成员，`.` 访问对象/结构成员，`::` 指定类或命名空间，`if` 判断是否继续，`return` 结束当前函数，`for` 遍历集合。`nullptr` 表示没有对象，`const` 限制相应接口下的修改。`Cast<T>(Object)` 尝试取得某类型对象；失败时可以是空指针，所以后面的空值判断有实际意义。
+
+`UCLASS`、`UFUNCTION`、`UPROPERTY` 属于 UE 的类型/函数/属性声明标记；`GENERATED_BODY()` 接入生成代码。不要把它们当成每帧运行的函数。真正改变游戏状态的是函数体里的调用，例如 `NewObject`、`SpawnActor`、`GiveAbility`。
+
+### 在 Rider 中找到代码的五个动作
+![Rider 双 Shift 搜索类符号，结果显示源文件与代码预览](/media/beginner/rifle/rider-search-definition.png)
+
+**看图操作**：用 Rider 打开正确 .uproject，等待索引。双击 Shift，粘贴 ULyraEquipmentDefinition，选名称匹配且文件为 LyraEquipmentDefinition.h 的结果。找不到符号时切“文件”搜索页或从 Source 文件夹打开。
+1. `.h` 先看“有哪些字段和函数”；`.cpp` 再看“具体做了什么”。只有函数声明时不要停住。
+2. 在函数体找输入参数、最前面的提前返回条件、创建或查找对象的语句、最后发出的调用/事件。
+3. 记录一个变量怎样传下去。例如 `EquipDef` 作为参数进入 `EquipItem`，比一次读懂整个文件更容易。
+4. 将光标放在函数调用上，用右键菜单“转到声明或用法”；落在声明后再进入实现。键位方案不同，用菜单或双 Shift 查操作名。
+5. 代码块是阅读节选时，不要当成完整文件粘贴编译。要做修改，先确认文件、类、模块依赖、插入位置和验证方式。
+
+## 运行、停止、保存分别做什么
+
+**PIE（Play In Editor）** 是编辑器里的游戏预览。工具栏绿色三角开始预览，停止按钮结束预览；游戏捕获鼠标后，`Shift+F1` 可以把鼠标交回编辑器。预览里出现的临时 Pawn、武器和血量会随本次运行结束，不能把它们当成已经保存的资产修改。
+
+| 修改了什么 | 完成操作 | 如何确认 |
+|---|---|---|
+| Blueprint 默认值/图/组件 | Compile，检查错误，再 Save | 关闭资产重开，字段仍在 |
+| Data Asset | Save | 重开核对数组和引用 |
+| 地图中 Actor、World Settings | 保存地图 | 重开同一地图核对 |
+| Project Settings | 检查保存的 Config 差异 | 重开设置核对字段 |
+| C++ | 保存源码，完整 Editor 构建，重开项目 | 构建成功且运行行为符合预期 |
+
+第一次 C++ 构建先按[Live Coding 图解](/docs/01-start/live-coding)关闭该功能并保存、退出相关编辑器。本章不要求复制类、启用新插件或改原资产。
+
+## 十分钟自查
+
+- 能指出当前打开的是哪个工程、哪个地图、哪个资产。
+- 能说明 Outliner 的 Actor 与内容浏览器的资产有什么区别。
+- 能从 `WID_Rifle` 读出一个展开的引用，进入对应资产，再返回。
+- 能从 Rider 搜索进入头文件，并找到一处对应 `.cpp` 的函数体。
+- 能说明当前改动应该保存到资产、地图、Config 还是源码。
+
+做完再进入[环境与第一次构建](/docs/01-start/environment)。遇到插件名先查[插件总览](/docs/02-architecture/plugin-atlas)，遇到运行顺序再看 [Experience](/docs/02-architecture/experience)。

@@ -162,6 +162,38 @@ py "F:/UE/LyraDoc/scripts/mmorpg/validate-health-cook-label.py"
 
 截图、节点文本和当前资产应来自同一个版本。缩到全图可见的截图可以帮助定位，但不能代替节点文字可读的原图。不要用人工绘制的“像蓝图”的图片冒充编辑器截图。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 先读四节点健康检查，再看复杂业务
+
+本章原生图的 BeginPlay 是入口，Self 提供 WorldContext，Request MMO 发出异步请求，Completed 才收到结果并进入 Print String。白线到达异步节点时，请求还不一定完成；不要在发出请求后的普通执行线上立即读取“结果变量”。
+
+| 图上的数据 | 含义 | 新手检查方式 |
+|---|---|---|
+| WorldContext | 让节点找到对应 GameInstance/Subsystem | 使用当前 Actor 的 Self，避免跨 PIE 世界 |
+| Route / Method | 请求的路径与 GET/POST | `/health` 使用健康接口，不填写角色保存地址 |
+| Completed | 异步结束后的事件出口 | 分别检查成功状态、HTTP 状态码与响应 JSON |
+| Print String | 开发观察输出 | 不能用一条打印代替登录/保存业务完成 |
+
+运行时 HTTP 使用的是客户端集成模块，健康检查不需要玩家口令。真实账号业务则由登录面板处理输入与错误状态，服务器保存接口由服务端模块调用。
+
+### ManaStatus 的 C++ 与蓝图各做哪一半
+源码：`examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp`，本机第 365–365 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+VM = Model; AssignViewModel(this, VM); AssignViewModel(ManaStatus, VM);
+```
+
+这行来自 HUD 的 SetViewModel 函数体：HUD 保存实例，再将同一个实例赋给自身和 Designer 内的 ManaStatus。Designer 的两条绑定负责显示，原生父类负责传递来源。若另建一个 ViewModel 却没有 BindPlayer，它的数值会一直停在默认值。
+
+前面的 PlayerVM、ManaText、ManaBar 名称都属于合同的一部分。复制完整 Widget Blueprint 能保留控件树与 MVVM 编译数据；把 EventGraph 的几个节点粘到空 Actor Blueprint 中不会创建这些 UMG 结构。
+
+**完成检查**：健康蓝图导入编译通过后实际执行一次请求；ManaStatus 编译通过后实际施放一次技能。两类资产各有自己的运行验证，不能合并成“所有蓝图已经可运行”。
+
+{/* full-guide-end */}
+
 ## 预期结果与排障
 
 原生节点可以出现在搜索菜单并正常完成异步请求，Widget Blueprint 可以读取相同 ViewModel 字段。若找不到节点，先检查模块是否加载、C++ 是否重新构建以及 Context Sensitive 的上下文限制；若粘贴后缺失函数，核对原始文本所依赖的类和插件。
@@ -169,4 +201,3 @@ py "F:/UE/LyraDoc/scripts/mmorpg/validate-health-cook-label.py"
 制作新的 WBP 后，在 WBP_MMOLayout 的对应可配置 Class 字段选择它；修改根布局时同时核对 BP_MMOUIPolicy 的 Layout Class。运行后用 Widget Reflector 核对实际类名与层级，再确认新外观和返回焦点。
 
 练习：在 ManaStatus 中增加生命进度条，用新增 HealthFraction FieldNotify 绑定，验证重生后切换到新 Pawn 的数据。保留 Designer、绑定配置与游戏前后结果；如果新增 EventGraph 逻辑，再附原生节点文本和 1:1 图截图。
-

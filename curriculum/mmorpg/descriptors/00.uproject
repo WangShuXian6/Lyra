@@ -1,0 +1,14 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "",
+  "Category": "Education",
+  "Description": "Lyra patterns rebuilt as a small authenticated multiplayer RPG.",
+  "Modules": [
+    {
+      "Name": "MMORPG",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": []
+}

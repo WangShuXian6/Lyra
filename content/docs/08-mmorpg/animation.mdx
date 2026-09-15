@@ -177,6 +177,50 @@ bool bIsFalling = false;
 
 **下载文件保留目标图已有的 Output Pose。** 导出器按原生 `CanDuplicateNode()` 筛选节点，主图导出 Linked Layer 和 Slot 两个节点；层图导出速度、空中状态、BlendSpace、Fall Loop 与布尔混合五个节点。在目标 AnimGraph 或 Locomotion 层中保留现有 Output Pose，粘贴后将末端 Pose 重新接入它的 Result 输入，再编译保存。不要把编辑器全选后剪贴板中的对象总数直接当成可导入节点数；本机 Ctrl+A/Ctrl+C 还会序列化 Output Pose。截图展示包含 Output Pose 的完整图，验证报告分别记录完整图和实际导入的节点数。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 读懂速度数值怎样变成动画姿势
+源码：`examples/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp`，本机第 39–53 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void UMMOAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
+{
+    Super::NativeUpdateAnimation(DeltaSeconds);
+    // NativeUpdateAnimation runs on the game thread before parallel graph evaluation.
+    // No actor, movement or ASC reads occur in worker-thread Blueprint evaluation.
+    check(IsInGameThread());
+    const ACharacter* Character = Cast<ACharacter>(TryGetPawnOwner());
+    GroundSpeed = Character ? Character->GetVelocity().Size2D() : 0.f;
+    bIsFalling = Character && Character->GetCharacterMovement()->IsFalling();
+    APlayerState* State = Character ? Character->GetPlayerState() : nullptr;
+    // Replicated PlayerState can arrive after the mesh initializes. Rebind only when identity changes.
+    UAbilitySystemComponent* ASC = State ? UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(State) : nullptr;
+    if (ASC && ASC->GetAvatarActor() != Character) ASC = nullptr;
+    InitializeWithAbilitySystem(ASC);
+}
+```
+
+`TryGetPawnOwner` 找到当前 Mesh 的角色；`GetVelocity().Size2D()` 取水平速度长度，不含竖直速度；`IsFalling()` 单独描述空中状态。这样跳跃时不会因为竖直速度很大而错误选择高速奔跑动画。
+
+代码在游戏线程读取角色、移动组件和 ASC，再让动画图读取已经整理的字段。`bUseMultiThreadedAnimationUpdate=true` 不意味着可以在工作线程动画节点里随意访问 Actor。角色/PlayerState 尚未就绪时使用安全默认值，并在对象身份改变后重新绑定。
+![从角色移动到最后输出姿势](/media/guide-diagrams/08-mmorpg-animation.svg)
+
+**读图**：对照本章每张节点 Details 图。数据从 C++ 来，姿势由图组合；接口 ALI 只约定层名，具体实现由 ABP 提供。
+
+### 三个最常见的看图误区
+
+| 看见的内容 | 正确解释 | 下一步查哪里 |
+|---|---|---|
+| BlendSpace 的 Direction=0 | 本教程把方向轴固定，速度轴由 GroundSpeed 驱动 | 对照所选模板 BlendSpace 的轴定义 |
+| Linked Anim Layer=Locomotion | 调用接口约定的动画层 | Instance Class 是否为 ABP_MMOUnarmed |
+| Mesh 有 Manny 但不播放动画 | 网格加载与动画类连接是两件事 | Use Animation Blueprint 与 Anim Class |
+
+**练习**：静止、走动、跳起分别暂停动画调试，记录 GroundSpeed 和 bIsFalling，再指出图中应选哪一条姿势。编辑器预览中的手动速度值不能代替运行角色输入数据的检查。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 以 1920×1080、中等画质启动客户端。站立时播放 Idle，移动时速度驱动 Blend Space，离地时切空中姿态；第二个客户端应看到同一角色的复制移动与本地动画。重生和切换角色后，检查 Pawn、AnimInstance 与 ASC Avatar 指向新对象。

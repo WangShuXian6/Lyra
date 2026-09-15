@@ -30,13 +30,13 @@ Experience 是 `ULyraExperienceDefinition` 的配置类，包含启用哪些 Gam
 
 ![组件 ActionSet 的客户端与服务器条件，真实原生配置面板](/media/configuration/training/components-actionset.png)
 
-图源：`/ShooterCore/Experiences/LAS_ShooterGame_StandardComponents`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。Add Components 的**索引 1（第 2 个元素）**将 B_QuickBarComponent 添加到 Controller，客户端与服务器两个开关均勾选。
+图源：`/ShooterCore/Experiences/LAS_ShooterGame_StandardComponents`，UE 5.8.1，2026-09-13，原生 Slate 截图（1494 × 912，未裁剪或重采样）。Add Components 的 **索引 1（第 2 个元素）** 将 B_QuickBarComponent 添加到 Controller，客户端与服务器两个开关均勾选。
 
 截图展开索引 1：Actor Class 为 Controller、Component Class 为 B_QuickBarComponent，Client Component 与 Server Component 都勾选。数组中共有 4 项，但未展开项的内部值不能从这张图推断。
 
 ## 选择顺序
 
-本机实现按以下顺序选择第一个**格式有效的 Primary Asset ID**：URL 中 `?Experience=` → PIE 的开发者设置覆盖 → 命令行 `-Experience=` → World Settings。选完才通过 Asset Manager 检查该资产是否存在；这里不是逐项尝试加载，失败就继续尝试下一项。
+本机实现按以下顺序选择第一个 **格式有效的 Primary Asset ID**：URL 中 `?Experience=` → PIE 的开发者设置覆盖 → 命令行 `-Experience=` → World Settings。选完才通过 Asset Manager 检查该资产是否存在；这里不是逐项尝试加载，失败就继续尝试下一项。
 
 例如 URL 写了一个不存在但名字非空的 `?Experience=MissingExperience`，后面的 World Settings 会先被跳过；最终资产检查失败时清空 ID，直接进入最终回退，不会返回去使用地图的 B_TrainingRange。没有可用 ID 时，独立服务器可能走其登录/托管分支，否则使用 `B_LyraDefaultExperience`。这一点可在 `HandleMatchAssignmentIfNotExpectingOne` 的 `IsValid()` 条件和最后的 `GetPrimaryAssetData` 检查顺序中核对。
 
@@ -70,8 +70,52 @@ OnExperienceLoaded_LowPriority.Clear();
 
 ExperienceManager 位于 GameState 一侧，`CurrentExperience` 参与复制，客户端的 `OnRep_CurrentExperience` 启动本地资源加载。因此服务器选定玩法，不意味着客户端美术和 UI 已经同步加载完。
 
+{/* full-guide-begin */}
+
+## 用源码解释四个配置数组怎样被使用
+
+![Experience：从选择配方到允许玩家进入](/media/guide-diagrams/02-architecture-experience.svg)
+
+**读图**：地图已显示不等于这些步骤全部结束。先确认实际选中了哪个配置，再观察 Loaded。
+源码：`Source/LyraGame/GameModes/LyraExperienceManagerComponent.cpp`，本机第 336–348 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+ActivateListOfActions(CurrentExperience->Actions);
+for (const TObjectPtr<ULyraExperienceActionSet>& ActionSet : CurrentExperience->ActionSets)
+{
+	if (ActionSet != nullptr)
+	{
+		ActivateListOfActions(ActionSet->Actions);
+	}
+}
+
+LoadState = ELyraExperienceLoadState::Loaded;
+
+OnExperienceLoaded_HighPriority.Broadcast(CurrentExperience);
+OnExperienceLoaded_HighPriority.Clear();
+```
+
+### 对照每一段的对象
+
+- `CurrentExperience->Actions` 是本配方直接持有的动作数组。
+- `CurrentExperience->ActionSets` 是共享动作集的引用数组；循环取出每个有效 ActionSet，再把其 Actions 交给同一个执行函数。
+- `ActionSet != nullptr` 是对空引用的保护，不表示空 ActionSet 会自动补出默认内容。
+- `LoadState=Loaded` 在动作遍历之后；`Broadcast` 通知已注册的订阅者，`Clear` 清除这一批待通知回调。
+
+查看上方 Experience 截图时，四个 ActionSet 名字就是这段 `for` 的输入。查看 Components ActionSet 图时，`B_QuickBarComponent` 是其中某个动作稍后要创建的组件。数组本身是配置，循环和动作实现才是执行。
+
+**检查点**：不运行也可以先口述“谁调用谁”；运行实验副本时，再在这一段设断点，检查 `CurrentExperience` 的真实类名、ActionSets 数量和当前 World。仅在某个机器上看见 HUD，不能推断另一个客户端也已加载完成。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 应能命中上述断点并解释加载顺序。错误 Experience 常来自 PIE 开发者设置覆盖；插件没激活时检查名字、描述符和日志；加载画面持续存在时检查 `ShouldShowLoadingScreen` 的原因，而不是手动隐藏 Loading Screen。
 
 练习：在实验副本中将 HUD ActionSet 暂时从复制出来的 Experience 移除，预测哪些系统应继续工作。记录结果后恢复。不要在基准资产上做此实验。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+完成实验一和六，分别只换 PawnData 的相机类与 Experience 的 HUD ActionSet，并核对运行中的实际副本。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

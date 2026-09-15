@@ -24,6 +24,8 @@ description: 从插件清单开始，在新工程中恢复 Lyra 的模块接收�
 
 ## 从空白工程到第一次编译
 
+第一次手写项目请用 [四阶段复刻主线](/docs/08-mmorpg/from-zero)：从最小模块开始，逐组复制完整代码并构建。下列步骤用于准备整份参考工程，不再作为唯一制作路线。
+
 已有本教程实验目录时不要重复覆盖正在编辑的资产。下面按全新目录说明每一个连接点；自动复制入口 `scripts/Prepare-Labs.ps1 -Lab MMORPG` 完成的是第 2–4 步的文件准备，不会替你构建或验证运行。
 
 1. 启动本机源码引擎的项目浏览器，选 **Games → Blank → C++**，关闭 Starter Content，项目名填 `MMORPG`，位置填 `F:/UE/LyraDocLabs`，创建后保存并关闭编辑器。这个向导只建立 UE 模块骨架；也可直接使用教程已包含的空白工程骨架，二者最终目录相同。
@@ -134,6 +136,41 @@ RestartPlayerAtTransform(Controller,
 
 Maps & Modes 的默认模式为 `/Game/MMO/BP_MMOGameMode`，其 Class Defaults 的 Default Experience 是 `MMOExperience:DA_MMOExperience`。替换角色时修改该 Experience 所引用 PawnData 的 Pawn Class；替换技能则修改 AbilitySet。不要另在 GameMode 的 Default Pawn Class 填一套冲突来源，实际生成会按 Experience 选择。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 先读一份最短的构建代码
+源码：`examples/MMORPG/Source/MMORPGEditor.Target.cs`，本机第 2–11 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```csharp
+public class MMORPGEditorTarget : TargetRules
+{
+    public MMORPGEditorTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Editor;
+        DefaultBuildSettings = BuildSettingsVersion.V7;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
+        ExtraModuleNames.Add("MMORPG");
+    }
+}
+```
+
+这是 **C# 构建规则**，不是游戏运行时 C++。`Type=Editor` 决定构建编辑器目标；`ExtraModuleNames` 指定项目主模块；BuildSettingsVersion 和 IncludeOrderVersion 选择本机引擎支持的规则。Rider 的 Development Editor/Win64 选择与它对应。
+
+`.uproject` 声明项目与插件，`.uplugin` 声明插件和模块，`.Build.cs` 声明模块编译依赖，`.Target.cs` 声明最终目标。导入失败时按这四层定位：缺插件目录、模块未编译、头文件依赖缺失和目标选错是不同问题。
+![MMORPG 中四个原创插件的真实启用列表](/media/configuration/mmorpg/project-plugins-mmo.png)
+
+**看图操作**：进入 Edit → Plugins，先选 Project 再搜索 MMO。核对 Framework、Integration、Core 和编辑器文档工具；友好名称可以与磁盘文件夹名不同。启用勾选后还要完成模块构建和按提示重启。
+
+### 文件复制与 UE 资产迁移的区别
+
+前面的四个官方插件复制包含 Source/Config/Content 与版权说明；不能只复制 `.uplugin`。Manny 资源则来自引擎模板目录，必须保持原来的相对结构，避免材质/骨骼引用断开。原创教学资产可以从下载增量准备，官方美术需从自己本机合法安装取得。
+
+**完成检查**：在 Rider 展开 MMORPG 主模块与四个导入插件；在 UE Content Browser 展开 MMOCore Content 与 `/Game/MMO`。能解释“磁盘 Plugins/GameFeatures/MMOCore/Content”为什么显示成“/MMOCore”，才继续配置扫描规则。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 运行后应能看到训练区域，并在日志中找到 `MMOCore: zone added`。看不到区域时，按“插件发现 → 数据资产存在 → Feature 激活 → GameState 接收者 → 组件 BeginPlay”的顺序检查。找到模块 DLL 不代表 Game Feature 的资产动作已经执行。
@@ -141,4 +178,3 @@ Maps & Modes 的默认模式为 `/Game/MMO/BP_MMOGameMode`，其 Class Defaults 
 练习：在 MMOCore 中新增一面遮挡墙，验证普通攻击和奥术箭都无法穿墙命中目标。随后停用特性，确认其创建的内容被清理；不要删除引擎基础资产。
 
 源码定位：Lyra 的 `Plugins/CommonGame`、`Plugins/ModularGameplayActors`；引擎 `GameFeatureAction_AddComponents.h`；教学 `MMOZoneComponent.cpp` 与 `prepare_content.py`。版本差异以本机源码和生成日志为准。
-

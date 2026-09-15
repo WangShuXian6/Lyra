@@ -1,0 +1,509 @@
+---
+title: 协议与 HTTP 模块：完整文件
+description: 按目标路径新建或替换文件，复制完整实现，再与逐步操作课程对照。
+---
+
+MMOContracts 定义与校验传输数据；Client 负责玩家请求，Server 负责游戏服凭据。ServerOnly 模块只参与允许服务器代码的目标。三者一起完成 02 阶段。
+
+[返回对应操作与解释](/docs/10-backend/authentication) · [返回制作主线](/docs/08-mmorpg/from-zero)
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+## 复制之前先确认位置
+
+下列路径均相对你的 **MMORPG 工程根目录**。在 Rider 的文件视图中右键父目录 → New → File，输入完整文件名（包括扩展名）；文件已存在时替换整个文件，不能把第二套类声明追加到末尾。页面给出的是当前教程的完整文件，代码框右上角可以复制，不含省略号占位实现。
+
+先写 `.h` 再写 `.cpp` 便于阅读；**完成当前源码阶段的全部文件后才编译**。`*.generated.h` 由 UnrealHeaderTool 生成，不手工创建。`#include`、模块导出宏和函数签名都要保留。一个文件中出现多个类时，复制整个文件一次即可。
+
+按 [四个源码阶段](/docs/08-mmorpg/from-zero) 使用这些文件。本组从 **02 阶段**开始使用。00–02 阶段保留当阶段的轻量 `.uproject` 和 Build.cs；03 阶段再切换到完整项目依赖。
+
+## 逐段理解与资产连接
+
+### 怎样读一次异步请求
+
+先在 MMOContracts 找请求/响应与校验函数，再在 MMOBackendClient 看 `Request`。调用返回时 HTTP 可能还没完成；结果在完成回调中处理，Pending 集合负责保证只完成一次。请求失败时也要结束 UI 的等待状态。
+
+`UMMORequestAction` 把原生 HTTP 包成 Blueprint Async Action：工厂函数暴露节点，Activate 开始工作，完成委托输出 bSuccess/StatusCode/Json。蓝图的白线决定执行顺序，Json 数据线传递正文，两者不能互换。
+
+MMOBackendServer 使用服务器身份发请求，不能把它的服务凭据移到 MMOBackendClient。复制整个模块时保留 ServerOnly 类型和 Build.cs 的依赖条件；后端账号会话、入服票据和角色租约是三种不同凭据。
+
+## 本组文件清单
+
+| 文件 | 行数 | 操作 |
+|---|---:|---|
+| `MMORPG.uproject` | 39 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h` | 43 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h` | 21 | 新建；已有同名文件则整体替换 |
+| `Source/MMOContracts/Public/MMOContracts.h` | 39 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOIntegration/MMOIntegration.uplugin` | 7 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs` | 9 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp` | 60 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs` | 9 | 新建；已有同名文件则整体替换 |
+| `Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp` | 38 | 新建；已有同名文件则整体替换 |
+| `Source/MMOContracts/MMOContracts.Build.cs` | 8 | 新建；已有同名文件则整体替换 |
+| `Source/MMOContracts/Private/MMOContracts.cpp` | 56 | 新建；已有同名文件则整体替换 |
+
+## 文件 1：MMORPG.uproject
+
+目标路径：`MMORPG.uproject`。原文件位于包内 `curriculum/mmorpg/descriptors/02.uproject`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="MMORPG.uproject"
+{
+  "FileVersion": 3,
+  "EngineAssociation": "",
+  "Category": "Education",
+  "Description": "Lyra patterns rebuilt as a small authenticated multiplayer RPG.",
+  "Modules": [
+    {
+      "Name": "MMORPG",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "GameplayAbilities",
+      "Enabled": true
+    },
+    {
+      "Name": "EnhancedInput",
+      "Enabled": true
+    },
+    {
+      "Name": "ModularGameplay",
+      "Enabled": true
+    },
+    {
+      "Name": "GameFeatures",
+      "Enabled": true
+    },
+    {
+      "Name": "MMOIntegration",
+      "Enabled": true
+    },
+    {
+      "Name": "MMOFramework",
+      "Enabled": true
+    }
+  ]
+}
+```
+
+</details>
+
+## 文件 2：MMOBackendClient.h
+
+目标路径：`Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Subsystems/GameInstanceSubsystem.h"
+#include "Kismet/BlueprintAsyncActionBase.h"
+#include "Dom/JsonObject.h"
+#include "Interfaces/IHttpRequest.h"
+#include "MMOBackendClient.generated.h"
+
+using FMMOResponse = TFunction<void(bool, int32, TSharedPtr<FJsonObject>)>;
+
+/** HTTP credentials live in the game instance, never in replicated PlayerState. */
+UCLASS()
+class MMOBACKENDCLIENT_API UMMOBackendClient : public UGameInstanceSubsystem
+{
+    GENERATED_BODY()
+public:
+    virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+    virtual void Deinitialize() override;
+    void Request(const FString& Verb, const FString& Route, TSharedPtr<FJsonObject> Body, FMMOResponse Callback);
+    UFUNCTION(BlueprintCallable, Category="MMO|Backend") void SetSessionToken(const FString& Token) { SessionToken = Token; }
+    UFUNCTION(BlueprintPure, Category="MMO|Backend") bool IsLoggedIn() const { return !SessionToken.IsEmpty(); }
+    FString BaseURL = TEXT("http://127.0.0.1:8088");
+private:
+    FString SessionToken;
+    TArray<TSharedPtr<IHttpRequest, ESPMode::ThreadSafe>> Pending;
+};
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FMMOJsonReply, bool, bSuccess, int32, StatusCode, FString, Json);
+
+/** Native Blueprint node: JSON is intentionally visible for HTTP protocol lessons. */
+UCLASS()
+class MMOBACKENDCLIENT_API UMMORequestAction : public UBlueprintAsyncActionBase
+{
+    GENERATED_BODY()
+public:
+    UPROPERTY(BlueprintAssignable) FMMOJsonReply Completed;
+    UFUNCTION(BlueprintCallable, meta=(BlueprintInternalUseOnly="true",WorldContext="WorldContextObject"), Category="MMO|Backend")
+    static UMMORequestAction* RequestMMO(UObject* WorldContextObject, FString Verb, FString Route, FString JsonBody);
+    virtual void Activate() override;
+private:
+    UPROPERTY() TObjectPtr<UObject> Context;
+    FString Method, Path, BodyText;
+};
+```
+
+</details>
+
+## 文件 3：MMOBackendServer.h
+
+目标路径：`Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h`。原文件位于包内 `examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Subsystems/GameInstanceSubsystem.h"
+#include "Dom/JsonObject.h"
+#include "MMOBackendServer.generated.h"
+using FMMOServerReply = TFunction<void(bool, int32, TSharedPtr<FJsonObject>)>;
+
+UCLASS()
+class MMOBACKENDSERVER_API UMMOBackendServer : public UGameInstanceSubsystem
+{
+    GENERATED_BODY()
+public:
+    virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
+    virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+    void Request(const FString& Route, TSharedPtr<FJsonObject> Body, FMMOServerReply Callback);
+    FString ServerID = TEXT("local-1");
+    bool IsConfigured() const { return !Secret.IsEmpty(); }
+private:
+    FString BaseURL = TEXT("http://127.0.0.1:8088");
+    FString Secret;
+};
+```
+
+</details>
+
+## 文件 4：MMOContracts.h
+
+目标路径：`Source/MMOContracts/Public/MMOContracts.h`。原文件位于包内 `examples/MMORPG/Source/MMOContracts/Public/MMOContracts.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMOContracts/Public/MMOContracts.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Dom/JsonObject.h"
+
+namespace MMO
+{
+    inline constexpr int32 SessionSeconds = 86400;
+    inline constexpr int32 TicketSeconds = 60;
+    inline constexpr int32 LeaseSeconds = 120;
+    inline constexpr int32 MaxBodyBytes = 65536;
+    inline constexpr const TCHAR* Register = TEXT("/v1/auth/register");
+    inline constexpr const TCHAR* Login = TEXT("/v1/auth/login");
+    inline constexpr const TCHAR* Logout = TEXT("/v1/auth/logout");
+    inline constexpr const TCHAR* Characters = TEXT("/v1/characters");
+    inline constexpr const TCHAR* JoinTicket = TEXT("/v1/join-ticket");
+    inline constexpr const TCHAR* ConsumeTicket = TEXT("/v1/server/consume-ticket");
+    inline constexpr const TCHAR* Load = TEXT("/v1/server/load");
+    inline constexpr const TCHAR* Save = TEXT("/v1/server/save");
+    inline constexpr const TCHAR* Heartbeat = TEXT("/v1/server/heartbeat");
+    inline constexpr const TCHAR* Release = TEXT("/v1/server/release");
+
+    struct MMOCONTRACTS_API FReply
+    {
+        int32 Status = 200;
+        TSharedPtr<FJsonObject> Body = MakeShared<FJsonObject>();
+        static FReply Error(int32 Status, const FString& Code, const FString& Message);
+    };
+    struct MMOCONTRACTS_API FRequest
+    {
+        FString Route;
+        FString Method;
+        FString Bearer;
+        TSharedPtr<FJsonObject> Body = MakeShared<FJsonObject>();
+    };
+    MMOCONTRACTS_API FString ToJson(const TSharedPtr<FJsonObject>& Object);
+    MMOCONTRACTS_API TSharedPtr<FJsonObject> ParseJson(const FString& Text);
+    MMOCONTRACTS_API TSharedPtr<FJsonObject> InitialState();
+    MMOCONTRACTS_API bool ValidateState(const TSharedPtr<FJsonObject>& State);
+}
+```
+
+</details>
+
+## 文件 5：MMOIntegration.uplugin
+
+目标路径：`Plugins/MMOIntegration/MMOIntegration.uplugin`。原文件位于包内 `examples/MMORPG/Plugins/MMOIntegration/MMOIntegration.uplugin`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="Plugins/MMOIntegration/MMOIntegration.uplugin"
+{
+  "FileVersion":3,"Version":1,"VersionName":"1.0","FriendlyName":"MMO Integration","CanContainContent":false,
+  "Modules":[
+    {"Name":"MMOBackendClient","Type":"Runtime","LoadingPhase":"Default"},
+    {"Name":"MMOBackendServer","Type":"ServerOnly","LoadingPhase":"Default"}
+  ]
+}
+```
+
+</details>
+
+## 文件 6：MMOBackendClient.Build.cs
+
+目标路径：`Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs`。原文件位于包内 `examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs"
+using UnrealBuildTool;
+public class MMOBackendClient : ModuleRules
+{
+    public MMOBackendClient(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PublicDependencyModuleNames.AddRange(new[] { "Core", "CoreUObject", "Engine", "HTTP", "Json", "MMOContracts" });
+    }
+}
+```
+
+</details>
+
+## 文件 7：MMOBackendClient.cpp
+
+目标路径：`Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp"
+#include "MMOBackendClient.h"
+#include "MMOContracts.h"
+#include "HttpModule.h"
+#include "Interfaces/IHttpResponse.h"
+#include "Kismet/GameplayStatics.h"
+#include "Serialization/JsonSerializer.h"
+#include "Modules/ModuleManager.h"
+#include "Misc/CommandLine.h"
+#include "Misc/Parse.h"
+IMPLEMENT_MODULE(FDefaultModuleImpl, MMOBackendClient)
+
+void UMMOBackendClient::Initialize(FSubsystemCollectionBase& Collection)
+{
+    Super::Initialize(Collection);
+    FParse::Value(FCommandLine::Get(), TEXT("MMOBackend="), BaseURL);
+    BaseURL.RemoveFromEnd(TEXT("/"));
+}
+void UMMOBackendClient::Deinitialize()
+{
+    for (auto& Request : Pending) { Request->OnProcessRequestComplete().Unbind(); Request->CancelRequest(); }
+    Pending.Empty(); SessionToken.Empty(); Super::Deinitialize();
+}
+void UMMOBackendClient::Request(const FString& Verb, const FString& Route, TSharedPtr<FJsonObject> Body, FMMOResponse Callback)
+{
+    auto Request = FHttpModule::Get().CreateRequest();
+    Request->SetURL(BaseURL + Route); Request->SetVerb(Verb);
+    Request->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
+    if (!SessionToken.IsEmpty()) Request->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + SessionToken);
+    if (Body && !Verb.Equals(TEXT("GET"), ESearchCase::IgnoreCase) && !Verb.Equals(TEXT("HEAD"), ESearchCase::IgnoreCase)) Request->SetContentAsString(MMO::ToJson(Body));
+    Request->OnProcessRequestComplete().BindWeakLambda(this, [this, Callback = MoveTemp(Callback)](FHttpRequestPtr Req, FHttpResponsePtr Response, bool bTransport)
+    {
+        // Some platform implementations dispatch failure synchronously from ProcessRequest.
+        // The explicit fallback below and the platform callback must complete only once.
+        if (Pending.Remove(Req) == 0) return;
+        TSharedPtr<FJsonObject> Json = MakeShared<FJsonObject>();
+        const int32 Code = Response ? Response->GetResponseCode() : 0;
+        const bool bJson = Response && FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Response->GetContentAsString()), Json);
+        if (!bJson) { Json = MakeShared<FJsonObject>(); Json->SetStringField(TEXT("message"), TEXT("Backend unavailable or invalid JSON response")); }
+        Callback(bTransport && bJson && Code >= 200 && Code < 300, Code, Json);
+    });
+    Pending.Add(Request);
+    if (!Request->ProcessRequest()) Request->OnProcessRequestComplete().ExecuteIfBound(Request, nullptr, false);
+}
+UMMORequestAction* UMMORequestAction::RequestMMO(UObject* WorldContextObject, FString Verb, FString Route, FString JsonBody)
+{
+    auto* Action = NewObject<UMMORequestAction>(); Action->Context = WorldContextObject;
+    Action->Method = MoveTemp(Verb); Action->Path = MoveTemp(Route); Action->BodyText = MoveTemp(JsonBody);
+    Action->RegisterWithGameInstance(WorldContextObject); return Action;
+}
+void UMMORequestAction::Activate()
+{
+    auto* GI = UGameplayStatics::GetGameInstance(Context);
+    TSharedPtr<FJsonObject> Body = MakeShared<FJsonObject>();
+    if (!GI || (!BodyText.IsEmpty() && !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(BodyText), Body)))
+    { Completed.Broadcast(false, 0, TEXT("{\"error\":\"invalid_context_or_json\"}")); SetReadyToDestroy(); return; }
+    GI->GetSubsystem<UMMOBackendClient>()->Request(Method, Path, Body, [WeakThis = TWeakObjectPtr<UMMORequestAction>(this)](bool bOK, int32 Code, TSharedPtr<FJsonObject> Json)
+    {
+        if (auto* Self = WeakThis.Get()) { FString Text; FJsonSerializer::Serialize(Json.ToSharedRef(), TJsonWriterFactory<>::Create(&Text)); Self->Completed.Broadcast(bOK, Code, Text); Self->SetReadyToDestroy(); }
+    });
+}
+```
+
+</details>
+
+## 文件 8：MMOBackendServer.Build.cs
+
+目标路径：`Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs`。原文件位于包内 `examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs"
+using UnrealBuildTool;
+public class MMOBackendServer : ModuleRules
+{
+    public MMOBackendServer(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PublicDependencyModuleNames.AddRange(new[] { "Core", "CoreUObject", "Engine", "HTTP", "Json", "MMOContracts" });
+    }
+}
+```
+
+</details>
+
+## 文件 9：MMOBackendServer.cpp
+
+目标路径：`Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp`。原文件位于包内 `examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp"
+#include "MMOBackendServer.h"
+#include "MMOContracts.h"
+#include "Engine/GameInstance.h"
+#include "HttpModule.h"
+#include "Interfaces/IHttpRequest.h"
+#include "Interfaces/IHttpResponse.h"
+#include "Serialization/JsonSerializer.h"
+#include "Misc/CommandLine.h"
+#include "Misc/Parse.h"
+#include "Modules/ModuleManager.h"
+IMPLEMENT_MODULE(FDefaultModuleImpl, MMOBackendServer)
+bool UMMOBackendServer::ShouldCreateSubsystem(UObject* Outer) const
+{
+    return Super::ShouldCreateSubsystem(Outer) && CastChecked<UGameInstance>(Outer)->IsDedicatedServerInstance();
+}
+void UMMOBackendServer::Initialize(FSubsystemCollectionBase& Collection)
+{
+    Super::Initialize(Collection);
+    Secret = FPlatformMisc::GetEnvironmentVariable(TEXT("MMO_SERVER_SECRET"));
+    FParse::Value(FCommandLine::Get(), TEXT("MMOBackend="), BaseURL);
+    FParse::Value(FCommandLine::Get(), TEXT("MMOServerID="), ServerID);
+    BaseURL.RemoveFromEnd(TEXT("/"));
+}
+void UMMOBackendServer::Request(const FString& Route, TSharedPtr<FJsonObject> Body, FMMOServerReply Callback)
+{
+    if (!IsConfigured()) { Callback(false, 0, MakeShared<FJsonObject>()); return; }
+    Body->SetStringField(TEXT("serverId"), ServerID);
+    auto Request = FHttpModule::Get().CreateRequest(); Request->SetURL(BaseURL + Route); Request->SetVerb(TEXT("POST"));
+    Request->SetHeader(TEXT("Authorization"), TEXT("Bearer ") + Secret); Request->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
+    Request->SetContentAsString(MMO::ToJson(Body));
+    Request->OnProcessRequestComplete().BindLambda([Callback = MoveTemp(Callback)](FHttpRequestPtr, FHttpResponsePtr Response, bool bTransport)
+    {
+        TSharedPtr<FJsonObject> Json = MakeShared<FJsonObject>(); int32 Code = Response ? Response->GetResponseCode() : 0;
+        const bool bJson = Response && FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Response->GetContentAsString()), Json);
+        Callback(bTransport && bJson && Code >= 200 && Code < 300, Code, Json ? Json : MakeShared<FJsonObject>());
+    });
+    if (!Request->ProcessRequest()) Request->OnProcessRequestComplete().ExecuteIfBound(Request, nullptr, false);
+}
+```
+
+</details>
+
+## 文件 10：MMOContracts.Build.cs
+
+目标路径：`Source/MMOContracts/MMOContracts.Build.cs`。原文件位于包内 `examples/MMORPG/Source/MMOContracts/MMOContracts.Build.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Source/MMOContracts/MMOContracts.Build.cs"
+using UnrealBuildTool;
+public class MMOContracts : ModuleRules
+{
+    public MMOContracts(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PublicDependencyModuleNames.AddRange(new[] { "Core", "Json" });
+    }
+}
+```
+
+</details>
+
+## 文件 11：MMOContracts.cpp
+
+目标路径：`Source/MMOContracts/Private/MMOContracts.cpp`。原文件位于包内 `examples/MMORPG/Source/MMOContracts/Private/MMOContracts.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMOContracts/Private/MMOContracts.cpp"
+#include "MMOContracts.h"
+#include "Modules/ModuleManager.h"
+#include "Serialization/JsonReader.h"
+#include "Serialization/JsonSerializer.h"
+IMPLEMENT_MODULE(FDefaultModuleImpl, MMOContracts)
+
+namespace MMO
+{
+FReply FReply::Error(int32 InStatus, const FString& Code, const FString& Message)
+{
+    FReply R; R.Status = InStatus;
+    auto Error = MakeShared<FJsonObject>();
+    Error->SetStringField(TEXT("code"), Code); Error->SetStringField(TEXT("message"), Message);
+    R.Body->SetObjectField(TEXT("error"), Error); return R;
+}
+FString ToJson(const TSharedPtr<FJsonObject>& Object)
+{
+    FString Text; auto Writer = TJsonWriterFactory<>::Create(&Text);
+    FJsonSerializer::Serialize(Object.ToSharedRef(), Writer); return Text;
+}
+TSharedPtr<FJsonObject> ParseJson(const FString& Text)
+{
+    TSharedPtr<FJsonObject> Object;
+    FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Object); return Object;
+}
+TSharedPtr<FJsonObject> InitialState()
+{
+    return ParseJson(TEXT(R"({"level":1,"xp":0,"health":100,"mana":100,"inventory":[],"position":{"x":0,"y":0,"z":150}})"));
+}
+bool ValidateState(const TSharedPtr<FJsonObject>& State)
+{
+    if (!State.IsValid()) return false;
+    double Level, XP, Health, Mana;
+    if (!State->TryGetNumberField(TEXT("level"),Level) || Level < 1 || Level > 1000 || Level != FMath::FloorToDouble(Level)) return false;
+    if (!State->TryGetNumberField(TEXT("xp"),XP) || XP < 0 || XP > 1e12 || XP != FMath::FloorToDouble(XP)) return false;
+    if (!State->TryGetNumberField(TEXT("health"),Health) || Health < 0 || Health > 1e6) return false;
+    if (!State->TryGetNumberField(TEXT("mana"),Mana) || Mana < 0 || Mana > 1e6) return false;
+    const TArray<TSharedPtr<FJsonValue>>* Items;
+    if (!State->TryGetArrayField(TEXT("inventory"),Items) || Items->Num() > 128) return false;
+    TSet<FString> Seen;
+    for (const auto& Item : *Items)
+    {
+        const TSharedPtr<FJsonObject>* Row; FString ID; double Qty;
+        if (!Item->TryGetObject(Row) || !(*Row)->TryGetStringField(TEXT("itemId"),ID) || ID.IsEmpty() || ID.Len()>64 || Seen.Contains(ID)) return false;
+        if (!(*Row)->TryGetNumberField(TEXT("quantity"),Qty) || Qty < 1 || Qty > 1000000 || Qty != FMath::FloorToDouble(Qty)) return false;
+        Seen.Add(ID);
+    }
+    const TSharedPtr<FJsonObject>* Position;
+    if (!State->TryGetObjectField(TEXT("position"), Position)) return false;
+    for (const TCHAR* Axis : {TEXT("x"),TEXT("y"),TEXT("z")})
+    {
+        double Value; if (!(*Position)->TryGetNumberField(Axis,Value) || !FMath::IsFinite(Value) || FMath::Abs(Value) > 1e8) return false;
+    }
+    return FMath::IsFinite(Health) && FMath::IsFinite(Mana);
+}
+}
+```
+
+</details>
+
+## 写完后怎样确认
+
+保存全部文件，回到当前阶段执行文件核对和 Editor 构建。文件核对只能发现缺文件、复制不完整和版本差异；`Result: Succeeded` 才说明编译成功。资产、UI 与联机行为继续按 [对应课程](/docs/10-backend/authentication) 验收。

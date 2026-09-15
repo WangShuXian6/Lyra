@@ -1,0 +1,227 @@
+---
+title: 00 空白工程骨架：完整文件
+description: 按目标路径新建或替换文件，复制完整实现，再与逐步操作课程对照。
+---
+
+这是第一次构建所需的全部骨架文件。按路径复制，保持项目名 MMORPG，再运行 Editor 构建。
+
+[返回对应操作与解释](/docs/08-mmorpg/from-zero) · [返回制作主线](/docs/08-mmorpg/from-zero)
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+## 复制之前先确认位置
+
+下列路径均相对你的 **MMORPG 工程根目录**。在 Rider 的文件视图中右键父目录 → New → File，输入完整文件名（包括扩展名）；文件已存在时替换整个文件，不能把第二套类声明追加到末尾。页面给出的是当前教程的完整文件，代码框右上角可以复制，不含省略号占位实现。
+
+先写 `.h` 再写 `.cpp` 便于阅读；**完成当前源码阶段的全部文件后才编译**。`*.generated.h` 由 UnrealHeaderTool 生成，不手工创建。`#include`、模块导出宏和函数签名都要保留。一个文件中出现多个类时，复制整个文件一次即可。
+
+按 [四个源码阶段](/docs/08-mmorpg/from-zero) 使用这些文件。本组从 **00 阶段**开始使用。00–02 阶段保留当阶段的轻量 `.uproject` 和 Build.cs；03 阶段再切换到完整项目依赖。
+
+## 逐段理解与资产连接
+
+### 为什么这个阶段可以单独编译
+
+MMORPG.cpp 只有模块入口，没有尚未实现的游戏类；Build.cs 只声明引擎基础模块。Target 选择产物，DefaultEngine.ini 选择引擎已有的 Entry。阶段 01/02 只扩展插件描述符，阶段 03 才用完整游戏 Build.cs 和 Config 替换骨架。
+
+## 本组文件清单
+
+| 文件 | 行数 | 操作 |
+|---|---:|---|
+| `Config/DefaultEditorPerProjectUserSettings.ini` | 4 | 新建；已有同名文件则整体替换 |
+| `Config/DefaultEngine.ini` | 4 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/MMORPG.Build.cs` | 9 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/MMORPG.cpp` | 2 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG.Target.cs` | 11 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPGEditor.Target.cs` | 11 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPGClient.Target.cs` | 11 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPGServer.Target.cs` | 11 | 新建；已有同名文件则整体替换 |
+| `MMORPG.uproject` | 14 | 新建；已有同名文件则整体替换 |
+
+## 文件 1：DefaultEditorPerProjectUserSettings.ini
+
+目标路径：`Config/DefaultEditorPerProjectUserSettings.ini`。原文件位于包内 `curriculum/mmorpg/skeleton/Config/DefaultEditorPerProjectUserSettings.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/DefaultEditorPerProjectUserSettings.ini"
+[/Script/LiveCoding.LiveCodingSettings]
+bEnabled=False
+Startup=Manual
+bAutomaticallyCompileNewClasses=False
+```
+
+</details>
+
+## 文件 2：DefaultEngine.ini
+
+目标路径：`Config/DefaultEngine.ini`。原文件位于包内 `curriculum/mmorpg/skeleton/Config/DefaultEngine.ini`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```ini title="Config/DefaultEngine.ini"
+[/Script/EngineSettings.GameMapsSettings]
+EditorStartupMap=/Engine/Maps/Entry
+GameDefaultMap=/Engine/Maps/Entry
+ServerDefaultMap=/Engine/Maps/Entry
+```
+
+</details>
+
+## 文件 3：MMORPG.Build.cs
+
+目标路径：`Source/MMORPG/MMORPG.Build.cs`。原文件位于包内 `curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.Build.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Source/MMORPG/MMORPG.Build.cs"
+using UnrealBuildTool;
+public class MMORPG : ModuleRules
+{
+    public MMORPG(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PublicDependencyModuleNames.AddRange(new[] { "Core", "CoreUObject", "Engine", "InputCore" });
+    }
+}
+```
+
+</details>
+
+## 文件 4：MMORPG.cpp
+
+目标路径：`Source/MMORPG/MMORPG.cpp`。原文件位于包内 `curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/MMORPG.cpp"
+#include "Modules/ModuleManager.h"
+IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, MMORPG, "MMORPG");
+```
+
+</details>
+
+## 文件 5：MMORPG.Target.cs
+
+目标路径：`Source/MMORPG.Target.cs`。原文件位于包内 `examples/MMORPG/Source/MMORPG.Target.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Source/MMORPG.Target.cs"
+using UnrealBuildTool;
+public class MMORPGTarget : TargetRules
+{
+    public MMORPGTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Game;
+        DefaultBuildSettings = BuildSettingsVersion.V7;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
+        ExtraModuleNames.Add("MMORPG");
+    }
+}
+```
+
+</details>
+
+## 文件 6：MMORPGEditor.Target.cs
+
+目标路径：`Source/MMORPGEditor.Target.cs`。原文件位于包内 `examples/MMORPG/Source/MMORPGEditor.Target.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Source/MMORPGEditor.Target.cs"
+using UnrealBuildTool;
+public class MMORPGEditorTarget : TargetRules
+{
+    public MMORPGEditorTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Editor;
+        DefaultBuildSettings = BuildSettingsVersion.V7;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
+        ExtraModuleNames.Add("MMORPG");
+    }
+}
+```
+
+</details>
+
+## 文件 7：MMORPGClient.Target.cs
+
+目标路径：`Source/MMORPGClient.Target.cs`。原文件位于包内 `examples/MMORPG/Source/MMORPGClient.Target.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Source/MMORPGClient.Target.cs"
+using UnrealBuildTool;
+public class MMORPGClientTarget : TargetRules
+{
+    public MMORPGClientTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Client;
+        DefaultBuildSettings = BuildSettingsVersion.V7;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
+        ExtraModuleNames.Add("MMORPG");
+    }
+}
+```
+
+</details>
+
+## 文件 8：MMORPGServer.Target.cs
+
+目标路径：`Source/MMORPGServer.Target.cs`。原文件位于包内 `examples/MMORPG/Source/MMORPGServer.Target.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Source/MMORPGServer.Target.cs"
+using UnrealBuildTool;
+public class MMORPGServerTarget : TargetRules
+{
+    public MMORPGServerTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Server;
+        DefaultBuildSettings = BuildSettingsVersion.V7;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
+        ExtraModuleNames.Add("MMORPG");
+    }
+}
+```
+
+</details>
+
+## 文件 9：MMORPG.uproject
+
+目标路径：`MMORPG.uproject`。原文件位于包内 `curriculum/mmorpg/descriptors/00.uproject`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="MMORPG.uproject"
+{
+  "FileVersion": 3,
+  "EngineAssociation": "",
+  "Category": "Education",
+  "Description": "Lyra patterns rebuilt as a small authenticated multiplayer RPG.",
+  "Modules": [
+    {
+      "Name": "MMORPG",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": []
+}
+```
+
+</details>
+
+## 写完后怎样确认
+
+保存全部文件，回到当前阶段执行文件核对和 Editor 构建。文件核对只能发现缺文件、复制不完整和版本差异；`Result: Succeeded` 才说明编译成功。资产、UI 与联机行为继续按 [对应课程](/docs/08-mmorpg/from-zero) 验收。

@@ -1,0 +1,587 @@
+---
+title: 输入、死亡与验证代码：完整文件
+description: 按目标路径新建或替换文件，复制完整实现，再与逐步操作课程对照。
+---
+
+输入等待 LocalPlayer、PawnData 和 InputComponent；死亡组件消费 GAS Health 变化，重生更换 Pawn 并重新绑定 ASC。后缀 Validation 的文件提供教程验收入口，也在头文件中有声明，复刻时不能省掉实现。
+
+[返回对应操作与解释](/docs/08-mmorpg/character-gas) · [返回制作主线](/docs/08-mmorpg/from-zero)
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+## 复制之前先确认位置
+
+下列路径均相对你的 **MMORPG 工程根目录**。在 Rider 的文件视图中右键父目录 → New → File，输入完整文件名（包括扩展名）；文件已存在时替换整个文件，不能把第二套类声明追加到末尾。页面给出的是当前教程的完整文件，代码框右上角可以复制，不含省略号占位实现。
+
+先写 `.h` 再写 `.cpp` 便于阅读；**完成当前源码阶段的全部文件后才编译**。`*.generated.h` 由 UnrealHeaderTool 生成，不手工创建。`#include`、模块导出宏和函数签名都要保留。一个文件中出现多个类时，复制整个文件一次即可。
+
+按 [四个源码阶段](/docs/08-mmorpg/from-zero) 使用这些文件。本组从 **03 阶段**开始使用。00–02 阶段保留当阶段的轻量 `.uproject` 和 Build.cs；03 阶段再切换到完整项目依赖。
+
+## 逐段理解与资产连接
+
+### 输入安装和死亡清理按对称关系阅读
+
+`TryInitializeInput` 需要本地 Controller、LocalPlayer、InputComponent、PawnData 和已加载的输入资产；DataAvailable 事件让尚未满足的条件以后能再次尝试。函数中的 InputOwner 防止重复安装同一组绑定。
+
+`Attack` / `Spell` 传 InputTag 到服务器；具体能力仍由当前 ASC 的标签查找。IMC 修改物理按键，InputConfig 关联语义标签，AbilitySet 授予同标签的能力，三处必须逐层对应。
+
+HealthComponent 在 Health 归零时推进死亡流程；GameMode 等 RespawnDelay 后生成新 Pawn。旧 Pawn 的回调、输入、计时器与 ASC Avatar 关系需要解绑，PlayerState 中的身份和存档记录继续存在。
+
+验证文件包含 Smoke/Showcase、动画、输入和死亡断言的实现，MMOGameplay.h 已声明其中的方法。完整复刻时保留这些文件；删除 cpp 却保留调用会产生链接错误。
+
+## 本组文件清单
+
+| 文件 | 行数 | 操作 |
+|---|---:|---|
+| `Source/MMORPG/Public/MMOHealthComponent.h` | 40 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/Private/MMOAbilityInputValidation.cpp` | 55 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/Private/MMOAnimationValidation.cpp` | 75 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/Private/MMODeathValidation.cpp` | 69 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/Private/MMOHealthComponent.cpp` | 82 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/Private/MMOInputGameplay.cpp` | 48 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/Private/MMOLocalizationValidation.cpp` | 43 | 新建；已有同名文件则整体替换 |
+| `Source/MMORPG/Private/MMORespawnGameplay.cpp` | 32 | 新建；已有同名文件则整体替换 |
+
+## 文件 1：MMOHealthComponent.h
+
+目标路径：`Source/MMORPG/Public/MMOHealthComponent.h`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Public/MMOHealthComponent.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Public/MMOHealthComponent.h"
+#pragma once
+
+#include "Components/ActorComponent.h"
+#include "GameplayEffect.h"
+#include "MMOHealthComponent.generated.h"
+
+class UAbilitySystemComponent;
+class UMMOPawnExtensionComponent;
+struct FOnAttributeChangeData;
+
+/** Pawn-scoped observer of the PlayerState's GAS health; identity and grants remain on PlayerState. */
+UCLASS(BlueprintType, meta=(BlueprintSpawnableComponent))
+class MMORPG_API UMMOHealthComponent : public UActorComponent
+{
+    GENERATED_BODY()
+public:
+    UMMOHealthComponent();
+    virtual void BeginPlay() override;
+    virtual void EndPlay(EEndPlayReason::Type Reason) override;
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+    UFUNCTION(BlueprintPure, Category="MMO|Health") bool IsDead() const { return bIsDead; }
+private:
+    UFUNCTION() void BindAbilitySystem();
+    UFUNCTION() void UnbindAbilitySystem();
+    UFUNCTION() void OnRep_IsDead();
+    void HealthChanged(const FOnAttributeChangeData& Change);
+    UPROPERTY(ReplicatedUsing=OnRep_IsDead) bool bIsDead = false;
+    UPROPERTY() TObjectPtr<UMMOPawnExtensionComponent> PawnExtension;
+    TWeakObjectPtr<UAbilitySystemComponent> BoundASC;
+    FDelegateHandle HealthHandle;
+};
+
+/** A surviving training target retaliates with a genuine instant GAS health modifier. */
+UCLASS()
+class MMORPG_API UMMOTargetRetaliation : public UGameplayEffect
+{
+    GENERATED_BODY()
+public:
+    UMMOTargetRetaliation();
+};
+```
+
+</details>
+
+## 文件 2：MMOAbilityInputValidation.cpp
+
+目标路径：`Source/MMORPG/Private/MMOAbilityInputValidation.cpp`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Private/MMOAbilityInputValidation.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Private/MMOAbilityInputValidation.cpp"
+#include "MMOGameplay.h"
+
+#if !UE_BUILD_SHIPPING
+#include "MMOAbilitySystemComponent.h"
+#include "Serialization/JsonSerializer.h"
+#endif
+
+bool AMMOPlayerController::RecordAbilityInputState(const FString& Stage)
+{
+#if !UE_BUILD_SHIPPING
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetStringField(TEXT("stage"), Stage);
+    auto* State = GetPlayerState<AMMOPlayerState>();
+    auto* TaggedASC = State ? Cast<UMMOAbilitySystemComponent>(State->ASC.Get()) : nullptr;
+    Report->SetStringField(TEXT("ascClass"), TaggedASC ? TaggedASC->GetClass()->GetPathName() : TEXT(""));
+    Report->SetBoolField(TEXT("authoritative"), TaggedASC && TaggedASC->IsOwnerActorAuthoritative());
+    Report->SetNumberField(TEXT("abilityCount"), TaggedASC ? TaggedASC->GetActivatableAbilities().Num() : 0);
+    const bool bOwnerAndAvatar = TaggedASC && TaggedASC->GetOwnerActor() == State && GetPawn()
+        && TaggedASC->GetAvatarActor() == GetPawn();
+    Report->SetBoolField(TEXT("ownerAndAvatarMatch"), bOwnerAndAvatar);
+    bool bPassed = bOwnerAndAvatar && TaggedASC->GetClass() == UMMOAbilitySystemComponent::StaticClass()
+        && TaggedASC->GetActivatableAbilities().Num() == 2;
+    TArray<TSharedPtr<FJsonValue>> Bindings;
+    for (const TCHAR* TagName : {TEXT("InputTag.MMO.Attack"), TEXT("InputTag.MMO.Spell")})
+    {
+        auto Binding = MakeShared<FJsonObject>();
+        Binding->SetStringField(TEXT("tag"), TagName);
+        const auto Matches = TaggedASC ? TaggedASC->GetGrantedAbilitiesForInputTag(FGameplayTag::RequestGameplayTag(FName(TagName)))
+            : TArray<FMMOGrantedAbilityInput>();
+        Binding->SetNumberField(TEXT("matchingSpecCount"), Matches.Num());
+        TArray<TSharedPtr<FJsonValue>> Specs;
+        for (const auto& Match : Matches)
+        {
+            auto Spec = MakeShared<FJsonObject>();
+            Spec->SetStringField(TEXT("abilityClass"), Match.AbilityClassPath);
+            Spec->SetNumberField(TEXT("inputID"), Match.InputID);
+            Spec->SetBoolField(TEXT("handleValid"), Match.Handle.IsValid());
+            Specs.Add(MakeShared<FJsonValueObject>(Spec));
+        }
+        Binding->SetArrayField(TEXT("specs"), Specs);
+        const bool bExpectedGrant = Matches.Num() == 1 && Matches[0].Handle.IsValid() && Matches[0].InputID == INDEX_NONE;
+        Binding->SetBoolField(TEXT("passed"), bExpectedGrant);
+        bPassed = bPassed && bExpectedGrant;
+        Bindings.Add(MakeShared<FJsonValueObject>(Binding));
+    }
+    Report->SetArrayField(TEXT("bindings"), Bindings);
+    Report->SetBoolField(TEXT("passed"), bPassed);
+    FString Text;
+    FJsonSerializer::Serialize(Report, TJsonWriterFactory<TCHAR, TCondensedJsonPrintPolicy<TCHAR>>::Create(&Text));
+    UE_LOG(LogTemp, Display, TEXT("MMO_INPUT_GRANTS_RESULT %s"), *Text);
+    return bPassed;
+#else
+    return true;
+#endif
+}
+```
+
+</details>
+
+## 文件 3：MMOAnimationValidation.cpp
+
+目标路径：`Source/MMORPG/Private/MMOAnimationValidation.cpp`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Private/MMOAnimationValidation.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Private/MMOAnimationValidation.cpp"
+#include "MMOGameplay.h"
+
+#if !UE_BUILD_SHIPPING
+#include "Animation/AnimInstance.h"
+#include "Animation/BlendSpace.h"
+#include "AnimNodes/AnimNode_BlendSpacePlayer.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Engine/World.h"
+#include "Serialization/JsonSerializer.h"
+#include "TimerManager.h"
+#include "UObject/UnrealType.h"
+#endif
+
+void AMMOPlayerController::ShowcaseMoveTick()
+{
+#if !UE_BUILD_SHIPPING
+    if (GetWorld()->GetTimeSeconds() - SmokeStart >= 26) return;
+    if (auto* TestCharacter = Cast<AMMOCharacter>(GetPawn()))
+        TestCharacter->AddMovementInput(FVector::ForwardVector, .25f);
+    // Movement input is consumed each frame; a 10 Hz showcase timer would create isolated impulses.
+    GetWorldTimerManager().SetTimerForNextTick(FTimerDelegate::CreateWeakLambda(this, [this] { ShowcaseMoveTick(); }));
+#endif
+}
+
+void AMMOPlayerController::RecordLocomotionState(const FString& Stage)
+{
+#if !UE_BUILD_SHIPPING
+    auto Report = MakeShared<FJsonObject>();
+    Report->SetStringField(TEXT("stage"), Stage);
+    Report->SetBoolField(TEXT("passed"), false);
+    Report->SetStringField(TEXT("method"), TEXT("Read the evaluated Linked Anim Layer BlendSpace player after joining its parallel evaluation task."));
+    auto* TestCharacter = Cast<AMMOCharacter>(GetPawn());
+    auto* Mesh = TestCharacter ? TestCharacter->GetMesh() : nullptr;
+    if (Mesh)
+    {
+        // Development evidence only, twice per showcase. Normal animation keeps its parallel path.
+        Mesh->HandleExistingParallelEvaluationTask(true, true);
+        Report->SetNumberField(TEXT("pawnSpeed"), TestCharacter->GetVelocity().Size2D());
+        bool bFound = false;
+        const USkeletalMeshComponent* ReadOnlyMesh = Mesh;
+        for (UAnimInstance* LayerInstance : ReadOnlyMesh->GetLinkedAnimInstances())
+        {
+            if (!LayerInstance) continue;
+            for (TFieldIterator<FStructProperty> It(LayerInstance->GetClass()); It; ++It)
+            {
+                if (!It->Struct->IsChildOf(FAnimNode_BlendSpacePlayer::StaticStruct())) continue;
+                const auto* Node = It->ContainerPtrToValuePtr<FAnimNode_BlendSpacePlayer>(LayerInstance);
+                UBlendSpace* BlendSpace = Node->GetBlendSpace();
+                if (!BlendSpace || BlendSpace->GetName() != TEXT("BS_Idle_Walk_Run")) continue;
+                const FVector Position = Node->GetPosition();
+                const FVector Filtered = Node->GetFilteredPosition();
+                Report->SetStringField(TEXT("layerClass"), LayerInstance->GetClass()->GetPathName());
+                Report->SetStringField(TEXT("nodeProperty"), It->GetName());
+                Report->SetStringField(TEXT("blendSpace"), BlendSpace->GetPathName());
+                Report->SetStringField(TEXT("axisX"), BlendSpace->GetBlendParameter(0).DisplayName);
+                Report->SetStringField(TEXT("axisY"), BlendSpace->GetBlendParameter(1).DisplayName);
+                Report->SetNumberField(TEXT("inputX"), Position.X);
+                Report->SetNumberField(TEXT("inputY"), Position.Y);
+                Report->SetNumberField(TEXT("filteredY"), Filtered.Y);
+                Report->SetNumberField(TEXT("blendWeight"), Node->GetCachedBlendWeight());
+                Report->SetNumberField(TEXT("assetTime"), Node->GetCurrentAssetTime());
+                Report->SetNumberField(TEXT("assetLength"), Node->GetCurrentAssetLength());
+                Report->SetBoolField(TEXT("passed"), Position.Y > 1.f && Filtered.Y > 1.f && Node->GetCachedBlendWeight() > .1f
+                    && BlendSpace->GetBlendParameter(1).DisplayName.Equals(TEXT("Speed"), ESearchCase::IgnoreCase));
+                bFound = true;
+                break;
+            }
+            if (bFound) break;
+        }
+    }
+    FString Text;
+    FJsonSerializer::Serialize(Report, TJsonWriterFactory<TCHAR, TCondensedJsonPrintPolicy<TCHAR>>::Create(&Text));
+    UE_LOG(LogTemp, Display, TEXT("MMO_LOCOMOTION_RESULT %s"), *Text);
+#endif
+}
+```
+
+</details>
+
+## 文件 4：MMODeathValidation.cpp
+
+目标路径：`Source/MMORPG/Private/MMODeathValidation.cpp`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Private/MMODeathValidation.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Private/MMODeathValidation.cpp"
+#include "MMOGameplay.h"
+#include "MMOHealthComponent.h"
+#include "MMOPawnExtensionComponent.h"
+#include "MMOUI.h"
+#include "Misc/CommandLine.h"
+#include "Misc/Parse.h"
+#include "TimerManager.h"
+#include "Serialization/JsonSerializer.h"
+
+void AMMOPlayerController::DeathSmokeTick(AMMOPlayerState* State, AMMOCharacter* TestCharacter, double Elapsed)
+{
+#if !UE_BUILD_SHIPPING
+    if (SmokeOriginalPawn.IsEmpty()) { SmokeOriginalPawn = TestCharacter->GetName(); SmokeOriginalASC = State->ASC; }
+    if (State->Attributes->GetHealth() <= 0 && TestCharacter->HealthComponent->IsDead()) bSmokeSawPlayerDeath = true;
+    if (bSmokeSawPlayerDeath && FParse::Param(FCommandLine::Get(), TEXT("MMOSmokeDeadLogout")))
+    {
+        auto* Root = Cast<UMMORootLayout>(UPrimaryGameLayout::GetPrimaryGameLayout(this));
+        auto* Settings = Root ? Root->ShowSettings() : nullptr;
+        if (!Settings) return;
+        FString Snapshot; FJsonSerializer::Serialize(State->MakeSnapshot().ToSharedRef(), TJsonWriterFactory<TCHAR, TCondensedJsonPrintPolicy<TCHAR>>::Create(&Snapshot));
+        UE_LOG(LogTemp, Display, TEXT("MMO_DEAD_LOGOUT_SNAPSHOT %s"), *Snapshot);
+        Settings->ProcessEvent(Settings->FindFunctionChecked(TEXT("LogoutClicked")), nullptr);
+        auto* Modal = Root->GetLayerWidget(FGameplayTag::RequestGameplayTag(TEXT("UI.Layer.Modal")));
+        if (auto* Confirm = Modal ? Cast<UMMOConfirmPanel>(Modal->GetActiveWidget()) : nullptr)
+        {
+            GetGameInstance<UMMOGameInstance>()->bSmokeInputTagsVerifiedBeforeReturn = RecordAbilityInputState(TEXT("before-death-logout"));
+            GetGameInstance<UMMOGameInstance>()->bSmokeReturnExpected = true;
+            GetWorldTimerManager().ClearTimer(SmokeTimer);
+            Confirm->ProcessEvent(Confirm->FindFunctionChecked(TEXT("ConfirmClicked")), nullptr);
+        }
+        return;
+    }
+    if (!bSmokeSawPlayerDeath)
+    {
+        TestCharacter->SelectTarget();
+        if (auto* Target = TestCharacter->SelectedTarget.Get())
+        {
+            const FVector Direction = Target->GetActorLocation() - TestCharacter->GetActorLocation();
+            if (Direction.Size2D() > 380) TestCharacter->AddMovementInput(Direction.GetSafeNormal2D(), 1.f);
+            if (Direction.Size2D() <= 470 && Elapsed - SmokeLastAttack >= 1)
+            { SmokeLastAttack = Elapsed; TestCharacter->Attack(); }
+        }
+    }
+    const bool bNewPawn = TestCharacter->GetName() != SmokeOriginalPawn;
+    if ((bSmokeSawPlayerDeath && bNewPawn && Elapsed >= 13) || Elapsed > 30)
+    {
+        auto* Root = Cast<UMMORootLayout>(UPrimaryGameLayout::GetPrimaryGameLayout(this));
+        auto* GameLayer = Root ? Root->GetLayerWidget(FGameplayTag::RequestGameplayTag(TEXT("UI.Layer.Game"))) : nullptr;
+        auto* HUD = GameLayer ? Cast<UMMOHUDPanel>(GameLayer->GetActiveWidget()) : nullptr;
+        const bool bBinding = HUD && HUD->ValidateManaBinding();
+        const bool bSameASC = SmokeOriginalASC.Get() == State->ASC && State->ASC->GetAvatarActor() == TestCharacter;
+        const int32 AbilityCount = State->ASC->GetActivatableAbilities().Num();
+        const bool bPassed = bSmokeSawPlayerDeath && bNewPawn && bSameASC && AbilityCount == 2 && bBinding
+            && TestCharacter->PawnExtension->IsPawnReady() && !TestCharacter->HealthComponent->IsDead() && FMath::IsNearlyEqual(State->Attributes->GetHealth(), 100.f);
+        FString TestRole; FParse::Value(FCommandLine::Get(), TEXT("MMOSmokeRole="), TestRole);
+        auto Result = MakeShared<FJsonObject>(); Result->SetStringField(TEXT("role"), TestRole); Result->SetBoolField(TEXT("deathRespawn"), true);
+        Result->SetBoolField(TEXT("passed"), bPassed); Result->SetBoolField(TEXT("deathObserved"), bSmokeSawPlayerDeath);
+        Result->SetBoolField(TEXT("pawnReplaced"), bNewPawn); Result->SetBoolField(TEXT("sameASC"), bSameASC);
+        Result->SetNumberField(TEXT("abilityCount"), AbilityCount); Result->SetNumberField(TEXT("health"), State->Attributes->GetHealth());
+        Result->SetNumberField(TEXT("mana"), State->Attributes->GetMana()); Result->SetBoolField(TEXT("umgMVVMBinding"), bBinding);
+        const bool bTaggedInput = RecordAbilityInputState(TEXT("death-respawn"));
+        Result->SetBoolField(TEXT("tagDrivenInput"), bTaggedInput);
+        Result->SetBoolField(TEXT("passed"), bPassed && bTaggedInput);
+        FString Text; FJsonSerializer::Serialize(Result, TJsonWriterFactory<TCHAR, TCondensedJsonPrintPolicy<TCHAR>>::Create(&Text));
+        UE_LOG(LogTemp, Display, TEXT("MMO_SMOKE_RESULT %s"), *Text);
+        GetWorldTimerManager().ClearTimer(SmokeTimer); ConsoleCommand(TEXT("quit"));
+    }
+#endif
+}
+```
+
+</details>
+
+## 文件 5：MMOHealthComponent.cpp
+
+目标路径：`Source/MMORPG/Private/MMOHealthComponent.cpp`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Private/MMOHealthComponent.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Private/MMOHealthComponent.cpp"
+#include "MMOHealthComponent.h"
+#include "MMOGameplay.h"
+#include "MMOPawnExtensionComponent.h"
+#include "AbilitySystemComponent.h"
+#include "Engine/World.h"
+#include "Components/CapsuleComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "NativeGameplayTags.h"
+#include "Net/UnrealNetwork.h"
+
+UE_DEFINE_GAMEPLAY_TAG_STATIC(TAG_MMODead, "Status.MMO.Dead");
+
+UMMOHealthComponent::UMMOHealthComponent()
+{ SetIsReplicatedByDefault(true); PrimaryComponentTick.bCanEverTick = false; }
+void UMMOHealthComponent::BeginPlay()
+{
+    Super::BeginPlay();
+    PawnExtension = GetOwner()->FindComponentByClass<UMMOPawnExtensionComponent>();
+    if (ensure(PawnExtension))
+    {
+        PawnExtension->OnAbilitySystemInitialized.AddDynamic(this, &ThisClass::BindAbilitySystem);
+        PawnExtension->OnAbilitySystemUninitialized.AddDynamic(this, &ThisClass::UnbindAbilitySystem);
+        BindAbilitySystem();
+    }
+}
+void UMMOHealthComponent::EndPlay(EEndPlayReason::Type Reason)
+{
+    UnbindAbilitySystem();
+    if (PawnExtension)
+    {
+        PawnExtension->OnAbilitySystemInitialized.RemoveDynamic(this, &ThisClass::BindAbilitySystem);
+        PawnExtension->OnAbilitySystemUninitialized.RemoveDynamic(this, &ThisClass::UnbindAbilitySystem);
+    }
+    Super::EndPlay(Reason);
+}
+void UMMOHealthComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{ Super::GetLifetimeReplicatedProps(OutLifetimeProps); DOREPLIFETIME(UMMOHealthComponent, bIsDead); }
+void UMMOHealthComponent::BindAbilitySystem()
+{
+    UnbindAbilitySystem();
+    BoundASC = PawnExtension ? PawnExtension->GetAbilitySystemComponent() : nullptr;
+    if (BoundASC.IsValid())
+        HealthHandle = BoundASC->GetGameplayAttributeValueChangeDelegate(UMMOAttributes::GetHealthAttribute()).AddUObject(this, &ThisClass::HealthChanged);
+}
+void UMMOHealthComponent::UnbindAbilitySystem()
+{
+    if (BoundASC.IsValid()) BoundASC->GetGameplayAttributeValueChangeDelegate(UMMOAttributes::GetHealthAttribute()).Remove(HealthHandle);
+    BoundASC.Reset(); HealthHandle.Reset();
+}
+void UMMOHealthComponent::HealthChanged(const FOnAttributeChangeData& Change)
+{
+    auto* Character = Cast<AMMOCharacter>(GetOwner());
+    if (!Character || !Character->HasAuthority() || bIsDead || Change.NewValue > 0 || !BoundASC.IsValid()
+        || BoundASC->GetAvatarActor() != Character) return;
+    bIsDead = true;
+    BoundASC->AddLooseGameplayTag(TAG_MMODead);
+    BoundASC->CancelAllAbilities();
+    OnRep_IsDead(); Character->ForceNetUpdate();
+    UE_LOG(LogTemp, Display, TEXT("MMO_PLAYER_DIED pawn=%s health=%.1f"), *Character->GetName(), Change.NewValue);
+    if (auto* GameMode = GetWorld()->GetAuthGameMode<AMMOGameMode>()) GameMode->HandlePlayerDeath(Character);
+}
+void UMMOHealthComponent::OnRep_IsDead()
+{
+    auto* Character = Cast<AMMOCharacter>(GetOwner());
+    if (!bIsDead || !Character) return;
+    Character->GetCharacterMovement()->StopMovementImmediately();
+    Character->GetCharacterMovement()->DisableMovement();
+    Character->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    if (Character->GetNetMode() != NM_DedicatedServer && Character->GetMesh()->GetPhysicsAsset())
+    {
+        Character->GetMesh()->SetCollisionProfileName(TEXT("Ragdoll"));
+        Character->GetMesh()->SetSimulatePhysics(true);
+    }
+}
+UMMOTargetRetaliation::UMMOTargetRetaliation()
+{
+    DurationPolicy = EGameplayEffectDurationType::Instant;
+    FGameplayModifierInfo Modifier; Modifier.Attribute = UMMOAttributes::GetHealthAttribute();
+    Modifier.ModifierOp = EGameplayModOp::Additive; Modifier.ModifierMagnitude = FScalableFloat(-25.f);
+    Modifiers.Add(Modifier);
+}
+```
+
+</details>
+
+## 文件 6：MMOInputGameplay.cpp
+
+目标路径：`Source/MMORPG/Private/MMOInputGameplay.cpp`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Private/MMOInputGameplay.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Private/MMOInputGameplay.cpp"
+#include "MMOGameplay.h"
+#include "MMOPawnExtensionComponent.h"
+#include "MMOPawnData.h"
+#include "MMOInputConfig.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+#include "InputMappingContext.h"
+#include "InputAction.h"
+
+void AMMOCharacter::BeginPlay()
+{
+    // Subscribe before component BeginPlay can advance DataAvailable.
+    PawnExtension->OnDataAvailable.AddDynamic(this, &ThisClass::TryInitializeInput);
+    Super::BeginPlay(); TryInitializeInput();
+}
+void AMMOCharacter::SetupPlayerInputComponent(UInputComponent* Component)
+{
+    Super::SetupPlayerInputComponent(Component); TryInitializeInput();
+}
+void AMMOCharacter::TryInitializeInput()
+{
+    auto* PC = Cast<APlayerController>(Controller);
+    if (!PC || !PC->IsLocalController() || !PC->GetLocalPlayer() || !InputComponent || InputOwner.IsValid()) return;
+    const auto* Data = PawnExtension->GetPawnData();
+    const auto* Config = Data ? Data->InputConfig.Get() : nullptr;
+    UInputMappingContext* Mapping = Data ? Data->InputMappingContext.Get() : nullptr;
+    auto* Input = Cast<UEnhancedInputComponent>(InputComponent);
+    if (!Config || !Mapping || !Input) return; // The DataAvailable event retries when the Experience closure is loaded.
+    Actions.Reset();
+    const TCHAR* InputTags[] {TEXT("InputTag.MMO.Move"), TEXT("InputTag.MMO.Look"), TEXT("InputTag.MMO.Target"), TEXT("InputTag.MMO.Attack"), TEXT("InputTag.MMO.Spell"), TEXT("InputTag.MMO.Inventory"), TEXT("InputTag.MMO.Settings")};
+    for (const TCHAR* Tag : InputTags)
+    {
+        UInputAction* Action = Config->FindInputActionForTag(FGameplayTag::RequestGameplayTag(FName(Tag)));
+        if (!ensureMsgf(Action, TEXT("Missing or unloaded input action for %s"), Tag)) return;
+        Actions.Add(Action);
+    }
+    Input->BindAction(Actions[0], ETriggerEvent::Triggered, this, &ThisClass::Move);
+    Input->BindAction(Actions[1], ETriggerEvent::Triggered, this, &ThisClass::Look);
+    Input->BindAction(Actions[2], ETriggerEvent::Started, this, &ThisClass::SelectTarget);
+    Input->BindAction(Actions[3], ETriggerEvent::Started, this, &ThisClass::Attack);
+    Input->BindAction(Actions[4], ETriggerEvent::Started, this, &ThisClass::Spell);
+    Input->BindAction(Actions[5], ETriggerEvent::Started, this, &ThisClass::OpenInventory);
+    Input->BindAction(Actions[6], ETriggerEvent::Started, this, &ThisClass::OpenSettings);
+    InputContext = Mapping; InputOwner = PC->GetLocalPlayer();
+    InputOwner->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>()->AddMappingContext(InputContext, 0);
+    PawnExtension->SetupPlayerInputComponent();
+    UE_LOG(LogTemp, Display, TEXT("MMO input ready: %s + %s"), *Config->GetPathName(), *Mapping->GetPathName());
+}
+```
+
+</details>
+
+## 文件 7：MMOLocalizationValidation.cpp
+
+目标路径：`Source/MMORPG/Private/MMOLocalizationValidation.cpp`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Private/MMOLocalizationValidation.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Private/MMOLocalizationValidation.cpp"
+#include "MMOGameplay.h"
+#include "MMOUI.h"
+#include "Components/TextBlock.h"
+#include "Kismet/KismetInternationalizationLibrary.h"
+#include "Misc/ConfigCacheIni.h"
+#include "Misc/CommandLine.h"
+#include "Misc/Parse.h"
+#include "Serialization/JsonSerializer.h"
+#include "Scalability.h"
+
+void AMMOPlayerController::RecordCultureState(const FString& Stage)
+{
+#if !UE_BUILD_SHIPPING
+    FString SavedCulture; GConfig->GetString(TEXT("Internationalization"), TEXT("Culture"), SavedCulture, GGameUserSettingsIni);
+    const FString Culture = UKismetInternationalizationLibrary::GetCurrentCulture();
+    FString ExpectedCulture; FParse::Value(FCommandLine::Get(), TEXT("MMOExpectedCulture="), ExpectedCulture);
+    auto* Root = Cast<UMMORootLayout>(UPrimaryGameLayout::GetPrimaryGameLayout(this));
+    auto ActiveWidget = [Root](const TCHAR* Tag) -> UCommonActivatableWidget*
+    { auto* Stack = Root ? Root->GetLayerWidget(FGameplayTag::RequestGameplayTag(FName(Tag))) : nullptr; return Stack ? Stack->GetActiveWidget() : nullptr; };
+    auto ReadText = [](UUserWidget* Widget, const TCHAR* Name) -> FString
+    { auto* Text = Widget ? Cast<UTextBlock>(Widget->GetWidgetFromName(FName(Name))) : nullptr; return Text ? Text->GetText().ToString() : FString(); };
+    auto* HUD = Cast<UMMOHUDPanel>(ActiveWidget(TEXT("UI.Layer.Game")));
+    auto* Menu = ActiveWidget(TEXT("UI.Layer.Menu"));
+    const bool bBinding = HUD && HUD->ValidateManaBinding();
+    auto Report = MakeShared<FJsonObject>(); Report->SetStringField(TEXT("stage"), Stage);
+    Report->SetStringField(TEXT("culture"), Culture); Report->SetStringField(TEXT("savedCulture"), SavedCulture);
+    Report->SetStringField(TEXT("settingsIni"), GGameUserSettingsIni); Report->SetBoolField(TEXT("isEditor"), GIsEditor);
+    Report->SetBoolField(TEXT("hasHUD"), HUD != nullptr); Report->SetBoolField(TEXT("umgMVVMBinding"), bBinding);
+    Report->SetStringField(TEXT("menuTitle"), ReadText(Menu, TEXT("Title"))); Report->SetStringField(TEXT("statusText"), ReadText(HUD, TEXT("Values")));
+    Report->SetStringField(TEXT("targetText"), ReadText(HUD, TEXT("TargetText"))); Report->SetStringField(TEXT("inputHint"), ReadText(HUD, TEXT("InputHintText")));
+    Report->SetBoolField(TEXT("persisted"), !GIsEditor && Culture == SavedCulture);
+    const auto Quality = Scalability::GetQualityLevels(); auto Groups = MakeShared<FJsonObject>();
+    Groups->SetNumberField(TEXT("ViewDistance"), Quality.ViewDistanceQuality); Groups->SetNumberField(TEXT("AntiAliasing"), Quality.AntiAliasingQuality);
+    Groups->SetNumberField(TEXT("Shadow"), Quality.ShadowQuality); Groups->SetNumberField(TEXT("GlobalIllumination"), Quality.GlobalIlluminationQuality);
+    Groups->SetNumberField(TEXT("Reflection"), Quality.ReflectionQuality); Groups->SetNumberField(TEXT("PostProcess"), Quality.PostProcessQuality);
+    Groups->SetNumberField(TEXT("Texture"), Quality.TextureQuality); Groups->SetNumberField(TEXT("Effects"), Quality.EffectsQuality);
+    Groups->SetNumberField(TEXT("Foliage"), Quality.FoliageQuality); Groups->SetNumberField(TEXT("Shading"), Quality.ShadingQuality);
+    Report->SetObjectField(TEXT("qualityGroups"), Groups);
+    if (!ExpectedCulture.IsEmpty()) Report->SetBoolField(TEXT("matchesExpectedCulture"), Culture == ExpectedCulture);
+    FString Text; FJsonSerializer::Serialize(Report, TJsonWriterFactory<TCHAR, TCondensedJsonPrintPolicy<TCHAR>>::Create(&Text));
+    UE_LOG(LogTemp, Display, TEXT("MMO_CULTURE_RESULT %s"), *Text);
+#endif
+}
+```
+
+</details>
+
+## 文件 8：MMORespawnGameplay.cpp
+
+目标路径：`Source/MMORPG/Private/MMORespawnGameplay.cpp`。原文件位于包内 `examples/MMORPG/Source/MMORPG/Private/MMORespawnGameplay.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Source/MMORPG/Private/MMORespawnGameplay.cpp"
+#include "MMOGameplay.h"
+#include "MMOHealthComponent.h"
+#include "MMOPawnExtensionComponent.h"
+#include "AbilitySystemComponent.h"
+#include "TimerManager.h"
+
+void AMMOGameMode::HandlePlayerDeath(AMMOCharacter* Character)
+{
+    auto* PC = Character ? Cast<APlayerController>(Character->GetController()) : nullptr;
+    auto* State = PC ? PC->GetPlayerState<AMMOPlayerState>() : nullptr;
+    if (!HasAuthority() || !PC || !State || !State->bSessionReady || !Character->HealthComponent->IsDead() || RespawnTimers.Contains(PC)) return;
+    FTimerHandle& Timer = RespawnTimers.Add(PC);
+    GetWorldTimerManager().SetTimer(Timer, FTimerDelegate::CreateWeakLambda(this,
+        [this, WeakPC = TWeakObjectPtr<APlayerController>(PC), WeakPawn = TWeakObjectPtr<AMMOCharacter>(Character)]
+    {
+        RespawnTimers.Remove(WeakPC);
+        auto* Controller = WeakPC.Get(); auto* OldPawn = WeakPawn.Get();
+        auto* Player = Controller ? Controller->GetPlayerState<AMMOPlayerState>() : nullptr;
+        if (!Controller || !OldPawn || !Player || !Player->bSessionReady || Controller->GetPawn() != OldPawn || !OldPawn->HealthComponent->IsDead()) return;
+        const int32 Before = Player->ASC->GetActivatableAbilities().Num();
+        Controller->UnPossess(); // Old PawnExtension clears only its own avatar and observers.
+        OldPawn->Destroy();
+        Player->ASC->RemoveLooseGameplayTag(FGameplayTag::RequestGameplayTag(TEXT("Status.MMO.Dead")));
+        Player->ASC->SetNumericAttributeBase(UMMOAttributes::GetHealthAttribute(), 100.f);
+        Player->SavedPosition = FVector(0, 0, 150); // Safe zone checkpoint; mana, inventory and progress persist.
+        TryStartPlayer(Controller); // Same Experience, PawnData and PlayerState-owned grants.
+        auto* NewPawn = Cast<AMMOCharacter>(Controller->GetPawn());
+        UE_LOG(LogTemp, Display, TEXT("MMO_PLAYER_RESPAWNED old=%s new=%s ready=%d abilitiesBefore=%d abilitiesAfter=%d health=%.1f"),
+            *GetNameSafe(OldPawn), *GetNameSafe(NewPawn), NewPawn && NewPawn->PawnExtension->IsPawnReady(), Before,
+            Player->ASC->GetActivatableAbilities().Num(), Player->Attributes->GetHealth());
+    }), RespawnDelay, false);
+}
+```
+
+</details>
+
+## 写完后怎样确认
+
+保存全部文件，回到当前阶段执行文件核对和 Editor 构建。文件核对只能发现缺文件、复制不完整和版本差异；`Result: Succeeded` 才说明编译成功。资产、UI 与联机行为继续按 [对应课程](/docs/08-mmorpg/character-gas) 验收。

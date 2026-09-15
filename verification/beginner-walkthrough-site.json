@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-15T08:41:32.999477+08:00",
+  "passed": true,
+  "scope": "Local production static export under the GitHub Pages /Lyra base path; no deployment performed.",
+  "commands": [
+    {
+      "command": "pnpm check",
+      "exitCode": 0
+    },
+    {
+      "command": "NEXT_PUBLIC_BASE_PATH=/Lyra pnpm build",
+      "exitCode": 0,
+      "logSHA256": "44fbe358f803ee598e15f2018be1999ae28e80db9c40de1acc42601d98c4cfb0"
+    },
+    {
+      "command": "NEXT_PUBLIC_BASE_PATH=/Lyra node scripts/check-content.mjs --export",
+      "exitCode": 0,
+      "output": "Checked 69 exported HTML pages, local targets, anchors and search index (/Lyra).\nContent checks passed: 65 MDX documents, native Blueprint downloads, and 179 public files with SHA-256/native dimensions."
+    }
+  ],
+  "browserScript": "output/playwright/beginner-walkthrough-check.js",
+  "browserScriptSHA256": "47903822f395ef3f28d794f6354219862f6794dc47ad207123b5bc34404db5b0",
+  "browser": {
+    "checkedAt": "2026-09-15T00:40:47.911Z",
+    "basePath": "/Lyra",
+    "checks": [
+      {
+        "name": "Rifle emphasis renders without literal Markdown markers",
+        "passed": true
+      },
+      {
+        "name": "Article image count 14",
+        "passed": true
+      },
+      {
+        "name": "Images decode under Pages base path",
+        "passed": true,
+        "evidence": [
+          {
+            "alt": "图 1：内容浏览器齿轮菜单；插件内容前已打勾，搜索资产路径也已启用",
+            "src": "/Lyra/_next/static/media/plugin-content-menu.41_weeizryjud.png",
+            "native": [
+              172,
+              744
+            ],
+            "displayed": [
+              172,
+              744
+            ]
+          },
+          {
+            "alt": "图 2：Rifle 文件夹；面包屑和左侧树显示路径，ID_Rifle 蓝色选中，WID_Rifle 位于下一行",
+            "src": "/Lyra/_next/static/media/rifle-folder.2yua7qvaj2eub.png",
+            "native": [
+              1450,
+              850
+            ],
+            "displayed": [
+              825,
+              483.609375
+            ]
+          },
+          {
+            "alt": "图 3：ID_Rifle 类默认值；5 个碎片及索引 0 的 Equipment Definition=WID_Rifle，另展开了弹药与准星配置",
+            "src": "/Lyra/_next/static/media/id-rifle-fragments.3x_x54y76q7a3.png",
+            "native": [
+              1550,
+              1050
+            ],
+            "displayed": [
+              825,
+              558.859375
+            ]
+          },
+          {
+            "alt": "图 4：WID_Rifle 完整装备配置；实例类型、技能集、Actor、挂接插槽与相对变换均已展开",
+            "src": "/Lyra/_next/static/media/wid-rifle-defaults.1gen0lalnr0f3.png",
+            "native": [
+              1550,
+              1050
+            ],
+            "displayed": [
+              825,
+              558.859375
+            ]
+          },
+          {
+            "alt": "图 5：Rider 随处搜索；选中类符号 ULyraEquipmentDefinition，下方预览 class 声明",
+            "src": "/Lyra/_next/static/media/rider-search-definition.2ocnseur23dh9.png",
+            "native": [
+              1450,
+              1050
+            ],
+            "displayed": [
+              825,
+              597.40625
+            ]
+          },
+          {
+            "alt": "图 6：LyraEquipmentDefinition.h；UObject 继承关系和三个 EditDefaultsOnly 字段",
+            "src": "/Lyra/_next/static/media/rider-definition.3yjnu0xslcnlv.png",
+            "native": [
+              1450,
+              950
+            ],
+            "displayed": [
+              825,
+              540.515625
+            ]
+          },
+          {
+            "alt": "图 7：LyraEquipmentInstance.h；另一个 UObject 类，包含网络支持、Instigator 与 Pawn 接口",
+            "src": "/Lyra/_next/static/media/rider-instance.1-_4in1qln6bu.png",
+            "native": [
+              1450,
+              950
+            ],
+            "displayed": [
+              825,
+              540.515625
+            ]
+          },
+          {
+            "alt": "图 8：EquipItemInSlot 从 Slots 取出 SlotItem，读取装备碎片，将 EquipDef 传入 EquipItem，最后设置 Instigator",
+            "src": "/Lyra/_next/static/media/rider-quickbar.3lgbd2l4gv32n.png",
+            "native": [
+              1450,
+              950
+            ],
+            "displayed": [
+              825,
+              540.515625
+            ]
+          },
+          {
+            "alt": "图 9：EquipItem 调用 EquipmentList.AddEntry，再调用 OnEquipped 并处理复制子对象登记",
+            "src": "/Lyra/_next/static/media/rider-equip-item.2mssjijuzx467.png",
+            "native": [
+              1450,
+              950
+            ],
+            "displayed": [
+              825,
+              540.515625
+            ]
+          },
+          {
+            "alt": "图 10：AddEntry 读取 EquipmentCDO，按 InstanceType 创建实例，授予技能并生成装备 Actor",
+            "src": "/Lyra/_next/static/media/rider-add-entry.23imnsn1xei86.png",
+            "native": [
+              1450,
+              1050
+            ],
+            "displayed": [
+              825,
+              597.40625
+            ]
+          },
+          {
+            "alt": "图 11：WID_Rifle 资产右键菜单；引用分组下的引用查看器入口",
+            "src": "/Lyra/_next/static/media/reference-menu.1wnae-d3y63ph.png",
+            "native": [
+              272,
+              685
+            ],
+            "displayed": [
+              272,
+              685
+            ]
+          },
+          {
+            "alt": "图 12：以 WID_Rifle 为中心的一层引用图；左侧 ID_Rifle，右侧技能集、武器 Actor 与装备实例类",
+            "src": "/Lyra/_next/static/media/reference-viewer.0xniqwvjfanac.png",
+            "native": [
+              1550,
+              950
+            ],
+            "displayed": [
+              825,
+              505.640625
+            ]
+          },
+          {
+            "alt": "图 13：步枪技能集的三个元素全部展开；每个技能的等级与输入标签均可读",
+            "src": "/Lyra/_next/static/media/ability-set.0rcpxlg068fji.png",
+            "native": [
+              1550,
+              1050
+            ],
+            "displayed": [
+              825,
+              558.859375
+            ]
+          },
+          {
+            "alt": "图 14：B_Rifle 选中 SkeletalMesh 组件；右侧网格为 SK_Rifle，材质为 MI_Weapon_Rifle，动画类为 ABP_Weap_Rifle_C",
+            "src": "/Lyra/_next/static/media/b-rifle-mesh.39jqhledhrsej.png",
+            "native": [
+              1550,
+              1050
+            ],
+            "displayed": [
+              825,
+              558.859375
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Native image proportions are preserved",
+        "passed": true
+      },
+      {
+        "name": "Narrow menu screenshots are not stretched across the article",
+        "passed": true
+      },
+      {
+        "name": "Five step links resolve to real headings",
+        "passed": true,
+        "evidence": [
+          {
+            "text": "1. 找到物品",
+            "id": "第-1-步找到-id_rifle-并读懂碎片",
+            "exists": true
+          },
+          {
+            "text": "2. 阅读装备定义",
+            "id": "第-2-步打开-wid_rifle记录三个实际引用",
+            "exists": true
+          },
+          {
+            "text": "3. 对照 C++ 类",
+            "id": "第-3-步在-rider-区分定义与实例",
+            "exists": true
+          },
+          {
+            "text": "4. 追踪执行代码",
+            "id": "第-4-步沿着装备调用链阅读代码",
+            "exists": true
+          },
+          {
+            "text": "5. 阅读依赖",
+            "id": "第-5-步用引用查看器读一个小子图",
+            "exists": true
+          }
+        ]
+      },
+      {
+        "name": "Rifle configuration image opens and closes its zoom dialog",
+        "passed": true
+      },
+      {
+        "name": "Original shared rifle anchor still exists",
+        "passed": true
+      },
+      {
+        "name": "New chapter is reachable from the sidebar",
+        "passed": true
+      },
+      {
+        "name": "Live Coding emphasis renders without literal Markdown markers",
+        "passed": true
+      },
+      {
+        "name": "Article image count 2",
+        "passed": true
+      },
+      {
+        "name": "Images decode under Pages base path",
+        "passed": true,
+        "evidence": [
+          {
+            "alt": "图 1：编辑菜单底部的编辑器偏好设置入口；其下方是另一个入口项目设置",
+            "src": "/Lyra/_next/static/media/edit-menu.0_grrayt3foo0.png",
+            "native": [
+              640,
+              362
+            ],
+            "displayed": [
+              640,
+              362
+            ]
+          },
+          {
+            "alt": "图 2：通用—实时代码编写；第一行启用开关为空，启动为 Manual，自动编译新添 C++ 类为空",
+            "src": "/Lyra/_next/static/media/disabled-settings.2sa0rwkkktexp.png",
+            "native": [
+              1550,
+              900
+            ],
+            "displayed": [
+              825,
+              479.03125
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Native image proportions are preserved",
+        "passed": true
+      },
+      {
+        "name": "Live Coding settings image zoom works",
+        "passed": true
+      },
+      {
+        "name": "Static search index includes the new chapter",
+        "passed": true
+      },
+      {
+        "name": "project-map has no horizontal page overflow on mobile",
+        "passed": true,
+        "evidence": {
+          "viewport": 390,
+          "content": 375
+        }
+      },
+      {
+        "name": "live-coding has no horizontal page overflow on mobile",
+        "passed": true,
+        "evidence": {
+          "viewport": 390,
+          "content": 375
+        }
+      },
+      {
+        "name": "No page errors or failed HTTP responses",
+        "passed": true,
+        "evidence": []
+      }
+    ],
+    "screenshots": [
+      "output/playwright/beginner-rifle-desktop.png",
+      "output/playwright/beginner-rifle-zoom.png",
+      "output/playwright/beginner-live-coding-desktop.png",
+      "output/playwright/beginner-project-map-mobile.png",
+      "output/playwright/beginner-live-coding-mobile.png"
+    ],
+    "runtimeErrors": [],
+    "passed": true
+  },
+  "visualReview": "Reviewed desktop article, fully expanded image zoom, and mobile screenshot; fixed literal Markdown emphasis markers and reran the final production build and 18 browser checks.",
+  "inputs": [
+    {
+      "path": "content/docs/01-start/live-coding.mdx",
+      "sha256": "6887ffafb615bdfa787983ba5916cef33e52f6f7eae0807860dc15789e654b13"
+    },
+    {
+      "path": "content/docs/01-start/project-map.mdx",
+      "sha256": "333725f9cfdc8585c28c14322ef4a49ddd337bb4fe93ba542f9b771c622c96be"
+    },
+    {
+      "path": "source-evidence/beginner-walkthrough-media.json",
+      "sha256": "d09939aad9ae3cf21484afd92453614815d50e4d4445be05f9b03171fe485a0d"
+    },
+    {
+      "path": "out/docs/01-start/project-map/index.html",
+      "sha256": "0068ed3c14b182ec5bd3fbe76cadce6777f2ca54467188d2dd942aa56a79f86e"
+    },
+    {
+      "path": "out/docs/01-start/live-coding/index.html",
+      "sha256": "609ec3cd144d8b9a42aeb4d2bd3017fd752ba5c87dff849e077fd00b640bab35"
+    }
+  ],
+  "preview": "http://127.0.0.1:3015/Lyra/docs/01-start/project-map/"
+}

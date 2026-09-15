@@ -1,0 +1,961 @@
+{
+  "checkedAt": "2026-09-15T01:46:30.164Z",
+  "basePath": "",
+  "pages": [
+    {
+      "route": "/docs/01-start/ue-basics/",
+      "viewport": 1440,
+      "title": "UE 零基础：认界面、读配置与第一段代码 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/editor-overview.26uxjh-dbl3pz.png",
+          "alt": "UE 主编辑器：顶部工具栏、中央视口、右上大纲、右下世界场景设置、底部内容和日志入口",
+          "native": [
+            1716,
+            1315
+          ],
+          "displayed": [
+            825,
+            632.203125
+          ]
+        },
+        {
+          "src": "/_next/static/media/01-start-ue-basics.1a53moip9_fz2.svg",
+          "alt": "从磁盘资产到本次游戏中的对象",
+          "native": [
+            1120,
+            658
+          ],
+          "displayed": [
+            825,
+            484.6875
+          ]
+        },
+        {
+          "src": "/_next/static/media/rifle-folder.2yua7qvaj2eub.png",
+          "alt": "内容浏览器中的插件路径与资产缩略图",
+          "native": [
+            1450,
+            850
+          ],
+          "displayed": [
+            825,
+            483.609375
+          ]
+        },
+        {
+          "src": "/_next/static/media/rider-search-definition.2ocnseur23dh9.png",
+          "alt": "Rider 双 Shift 搜索类符号，结果显示源文件与代码预览",
+          "native": [
+            1450,
+            1050
+          ],
+          "displayed": [
+            825,
+            597.40625
+          ]
+        }
+      ],
+      "content": 1425,
+      "literalMarkdown": false,
+      "headings": 9,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/02-architecture/plugin-atlas/",
+      "viewport": 1440,
+      "title": "Lyra 插件总览：每个插件做什么、怎样接到游戏 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/plugins-commonui.22m3d3377_zi8.png",
+          "alt": "插件浏览器搜索 Common：Common UI Plugin、CommonGame、CommonLoadingScreen、CommonStartupLoadingScreen 与 CommonUser",
+          "native": [
+            1550,
+            900
+          ],
+          "displayed": [
+            793,
+            460.4375
+          ]
+        },
+        {
+          "src": "/_next/static/media/02-architecture-plugin-atlas.299blv--z9xsd.svg",
+          "alt": "同一个功能需要经过四种连接",
+          "native": [
+            1120,
+            658
+          ],
+          "displayed": [
+            825,
+            484.6875
+          ]
+        },
+        {
+          "src": "/_next/static/media/topdown-camera.20k1wac8aswug.png",
+          "alt": "TopDownArena 相机实拍：Arena Width/Height=1600，Y 旋转=-66，FOV=80",
+          "native": [
+            1550,
+            1050
+          ],
+          "displayed": [
+            825,
+            558.859375
+          ]
+        }
+      ],
+      "content": 1425,
+      "literalMarkdown": false,
+      "headings": 15,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/04-gas/effects-health/",
+      "viewport": 1440,
+      "title": "属性、费用、冷却、伤害与死亡 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/rifle-damage-effect.07qf5r_hgmbpe.png",
+          "alt": "步枪伤害效果：执行类 LyraDamageExecution 与 BaseDamage 的 12.0 配置",
+          "native": [
+            1550,
+            1050
+          ],
+          "displayed": [
+            825,
+            558.859375
+          ]
+        },
+        {
+          "src": "/_next/static/media/04-gas-effects-health.32s8gu1snlwjp.svg",
+          "alt": "从伤害配置到生命变化和死亡通知",
+          "native": [
+            1120,
+            658
+          ],
+          "displayed": [
+            825,
+            484.6875
+          ]
+        }
+      ],
+      "content": 1425,
+      "literalMarkdown": false,
+      "headings": 8,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/09-mmo-ui/designer/",
+      "viewport": 1440,
+      "title": "在 UMG Designer 中制作全部游戏界面 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/string-table-source-data.1wg265fl_l522.png",
+          "alt": "ST_MMO 原生编辑器：MMOUI namespace 与英文 Key/Source 行",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-text-string-table-reference.2ralsafl1bty2.png",
+          "alt": "LoginButtonLabel.Text 的 String Table 引用弹窗：ST_MMO、MMOUI、Action.SignIn",
+          "native": [
+            340,
+            247
+          ],
+          "displayed": [
+            340,
+            247
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-root-stacks-fill.1b871ujtlfn3a.png",
+          "alt": "WBP_MMOLayout：三个真实 CommonUI Stack 的 Overlay Slot 水平垂直 Fill",
+          "native": [
+            2100,
+            1000
+          ],
+          "displayed": [
+            825,
+            392.84375
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-root-stacks-transition.3qbxcrbeh_832.png",
+          "alt": "根布局 Stack 在 Designer 中保存 Fade Only 和 0.16 Transition Duration",
+          "native": [
+            2100,
+            1000
+          ],
+          "displayed": [
+            825,
+            392.84375
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-button-label-slot.1bgcnpp--6rxp.png",
+          "alt": "登录按钮的子 TextBlock：Button Slot 水平 Fill、垂直 Center",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mmo-A-login.1ri4dhov77xso.png",
+          "alt": "实际 WBP_Login 在独立游戏客户端显示账号表单与角色选择，默认输入框为空",
+          "native": [
+            1920,
+            1080
+          ],
+          "displayed": [
+            825,
+            464.0625
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-login-account.1_-m1fl1sxw99.png",
+          "alt": "WBP_Login Designer 账号区：Password 控件和 Is Password 属性",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-login-character.2-afmihn9ddq2.png",
+          "alt": "WBP_Login Designer 角色区：CharacterList、创建、刷新和进入按钮",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-mana-layout.27l6v33kx6e3z.png",
+          "alt": "WBP_ManaStatus 的完整 Designer 层级：ManaLayout、ManaText、ManaBarSize、ManaBar",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-mana-source.399a4m74gmrkz.png",
+          "alt": "ManaStatus 的 PlayerVM 来源：MMOPlayerViewModel，Creation Type Manual",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-mana-bindings.3s-18g6ddxtle.png",
+          "alt": "ManaStatus 的两条真实 View Bindings，ManaLabel 到 Text、ManaFraction 到 Percent",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mmo-A-language-final-hud.038jh7m7qpzt1.png",
+          "alt": "实际 WBP_PlayerHUD 使用中文状态文字和嵌套法力控件，Manny 出现在游戏场景中",
+          "native": [
+            1920,
+            1080
+          ],
+          "displayed": [
+            825,
+            464.0625
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-hud-layout.1rlve070d4oob.png",
+          "alt": "HUD Designer 层级与实际嵌套 WBP_ManaStatus 控件",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-hud-focus.1_ut8ft_nzm17.png",
+          "alt": "多选 HUD 的五个 Button 后，Is Focusable 未勾选",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-hud-source.44dm6fp38bhf4.png",
+          "alt": "HUD 的 PlayerVM 为 Manual，类是 MMOPlayerViewModel",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-hud-bindings.2y0yx094p9dvh.png",
+          "alt": "HUD 的五条真实 MVVM 绑定完整列表",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-inventory-layout.0l430-7n3t7cb.png",
+          "alt": "WBP_Inventory Designer：背包说明、药剂与返回按钮的真实层级",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-inventory-source.0pzgf67vf775d.png",
+          "alt": "背包的 Manual PlayerVM 来源",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-inventory-binding.1gbt55btkx_nd.png",
+          "alt": "背包唯一 View Binding：InventoryLabel 到 Message.Text",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-settings-layout.2qjrwcn62gr58.png",
+          "alt": "WBP_Settings Designer：画质、语言、退出和返回分组",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-confirm-layout.12dudipn72l3q.png",
+          "alt": "WBP_Confirm Designer：ModalScrim、确认和取消控件",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/mmo-A-modal.1bvz1g2z18g9i.png",
+          "alt": "实际 WBP_Confirm 显示退出确认和遮罩，设置面板与 HUD 保留在下层",
+          "native": [
+            1920,
+            1080
+          ],
+          "displayed": [
+            825,
+            464.0625
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-root-screen-classes.0x_yimyur62di.png",
+          "alt": "WBP_MMOLayout Class Defaults 的五个 Screen 软类引用",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        },
+        {
+          "src": "/_next/static/media/ui-policy-final-layout.2wrhry78chgcy.png",
+          "alt": "BP_MMOUIPolicy 的 Layout Class 指向 WBP_MMOLayout",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            825,
+            383.71875
+          ]
+        }
+      ],
+      "content": 1425,
+      "literalMarkdown": false,
+      "headings": 16,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/10-backend/persistence/",
+      "viewport": 1440,
+      "title": "角色快照、事务与幂等保存 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/10-backend-persistence.0vyepxvdvb2o7.svg",
+          "alt": "一次保存的三道判断",
+          "native": [
+            1120,
+            658
+          ],
+          "displayed": [
+            825,
+            484.6875
+          ]
+        }
+      ],
+      "content": 1425,
+      "literalMarkdown": false,
+      "headings": 11,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/01-start/ue-basics/",
+      "viewport": 390,
+      "title": "UE 零基础：认界面、读配置与第一段代码 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/editor-overview.26uxjh-dbl3pz.png",
+          "alt": "UE 主编辑器：顶部工具栏、中央视口、右上大纲、右下世界场景设置、底部内容和日志入口",
+          "native": [
+            1716,
+            1315
+          ],
+          "displayed": [
+            343,
+            262.84375
+          ]
+        },
+        {
+          "src": "/_next/static/media/01-start-ue-basics.1a53moip9_fz2.svg",
+          "alt": "从磁盘资产到本次游戏中的对象",
+          "native": [
+            1120,
+            658
+          ],
+          "displayed": [
+            343,
+            201.5
+          ]
+        },
+        {
+          "src": "/_next/static/media/rifle-folder.2yua7qvaj2eub.png",
+          "alt": "内容浏览器中的插件路径与资产缩略图",
+          "native": [
+            1450,
+            850
+          ],
+          "displayed": [
+            343,
+            201.0625
+          ]
+        },
+        {
+          "src": "/_next/static/media/rider-search-definition.2ocnseur23dh9.png",
+          "alt": "Rider 双 Shift 搜索类符号，结果显示源文件与代码预览",
+          "native": [
+            1450,
+            1050
+          ],
+          "displayed": [
+            343,
+            248.375
+          ]
+        }
+      ],
+      "content": 375,
+      "literalMarkdown": false,
+      "headings": 9,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/02-architecture/plugin-atlas/",
+      "viewport": 390,
+      "title": "Lyra 插件总览：每个插件做什么、怎样接到游戏 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/plugins-commonui.22m3d3377_zi8.png",
+          "alt": "插件浏览器搜索 Common：Common UI Plugin、CommonGame、CommonLoadingScreen、CommonStartupLoadingScreen 与 CommonUser",
+          "native": [
+            1550,
+            900
+          ],
+          "displayed": [
+            311,
+            180.578125
+          ]
+        },
+        {
+          "src": "/_next/static/media/02-architecture-plugin-atlas.299blv--z9xsd.svg",
+          "alt": "同一个功能需要经过四种连接",
+          "native": [
+            1120,
+            658
+          ],
+          "displayed": [
+            343,
+            201.5
+          ]
+        },
+        {
+          "src": "/_next/static/media/topdown-camera.20k1wac8aswug.png",
+          "alt": "TopDownArena 相机实拍：Arena Width/Height=1600，Y 旋转=-66，FOV=80",
+          "native": [
+            1550,
+            1050
+          ],
+          "displayed": [
+            343,
+            232.34375
+          ]
+        }
+      ],
+      "content": 375,
+      "literalMarkdown": false,
+      "headings": 15,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/04-gas/effects-health/",
+      "viewport": 390,
+      "title": "属性、费用、冷却、伤害与死亡 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/rifle-damage-effect.07qf5r_hgmbpe.png",
+          "alt": "步枪伤害效果：执行类 LyraDamageExecution 与 BaseDamage 的 12.0 配置",
+          "native": [
+            1550,
+            1050
+          ],
+          "displayed": [
+            343,
+            232.34375
+          ]
+        },
+        {
+          "src": "/_next/static/media/04-gas-effects-health.32s8gu1snlwjp.svg",
+          "alt": "从伤害配置到生命变化和死亡通知",
+          "native": [
+            1120,
+            658
+          ],
+          "displayed": [
+            343,
+            201.5
+          ]
+        }
+      ],
+      "content": 375,
+      "literalMarkdown": false,
+      "headings": 8,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/09-mmo-ui/designer/",
+      "viewport": 390,
+      "title": "在 UMG Designer 中制作全部游戏界面 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/string-table-source-data.1wg265fl_l522.png",
+          "alt": "ST_MMO 原生编辑器：MMOUI namespace 与英文 Key/Source 行",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-text-string-table-reference.2ralsafl1bty2.png",
+          "alt": "LoginButtonLabel.Text 的 String Table 引用弹窗：ST_MMO、MMOUI、Action.SignIn",
+          "native": [
+            340,
+            247
+          ],
+          "displayed": [
+            340,
+            247
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-root-stacks-fill.1b871ujtlfn3a.png",
+          "alt": "WBP_MMOLayout：三个真实 CommonUI Stack 的 Overlay Slot 水平垂直 Fill",
+          "native": [
+            2100,
+            1000
+          ],
+          "displayed": [
+            343,
+            163.328125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-root-stacks-transition.3qbxcrbeh_832.png",
+          "alt": "根布局 Stack 在 Designer 中保存 Fade Only 和 0.16 Transition Duration",
+          "native": [
+            2100,
+            1000
+          ],
+          "displayed": [
+            343,
+            163.328125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-button-label-slot.1bgcnpp--6rxp.png",
+          "alt": "登录按钮的子 TextBlock：Button Slot 水平 Fill、垂直 Center",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mmo-A-login.1ri4dhov77xso.png",
+          "alt": "实际 WBP_Login 在独立游戏客户端显示账号表单与角色选择，默认输入框为空",
+          "native": [
+            1920,
+            1080
+          ],
+          "displayed": [
+            343,
+            192.9375
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-login-account.1_-m1fl1sxw99.png",
+          "alt": "WBP_Login Designer 账号区：Password 控件和 Is Password 属性",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-login-character.2-afmihn9ddq2.png",
+          "alt": "WBP_Login Designer 角色区：CharacterList、创建、刷新和进入按钮",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-mana-layout.27l6v33kx6e3z.png",
+          "alt": "WBP_ManaStatus 的完整 Designer 层级：ManaLayout、ManaText、ManaBarSize、ManaBar",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-mana-source.399a4m74gmrkz.png",
+          "alt": "ManaStatus 的 PlayerVM 来源：MMOPlayerViewModel，Creation Type Manual",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-mana-bindings.3s-18g6ddxtle.png",
+          "alt": "ManaStatus 的两条真实 View Bindings，ManaLabel 到 Text、ManaFraction 到 Percent",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mmo-A-language-final-hud.038jh7m7qpzt1.png",
+          "alt": "实际 WBP_PlayerHUD 使用中文状态文字和嵌套法力控件，Manny 出现在游戏场景中",
+          "native": [
+            1920,
+            1080
+          ],
+          "displayed": [
+            343,
+            192.9375
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-hud-layout.1rlve070d4oob.png",
+          "alt": "HUD Designer 层级与实际嵌套 WBP_ManaStatus 控件",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-hud-focus.1_ut8ft_nzm17.png",
+          "alt": "多选 HUD 的五个 Button 后，Is Focusable 未勾选",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-hud-source.44dm6fp38bhf4.png",
+          "alt": "HUD 的 PlayerVM 为 Manual，类是 MMOPlayerViewModel",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-hud-bindings.2y0yx094p9dvh.png",
+          "alt": "HUD 的五条真实 MVVM 绑定完整列表",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-inventory-layout.0l430-7n3t7cb.png",
+          "alt": "WBP_Inventory Designer：背包说明、药剂与返回按钮的真实层级",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-inventory-source.0pzgf67vf775d.png",
+          "alt": "背包的 Manual PlayerVM 来源",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mvvm-inventory-binding.1gbt55btkx_nd.png",
+          "alt": "背包唯一 View Binding：InventoryLabel 到 Message.Text",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-settings-layout.2qjrwcn62gr58.png",
+          "alt": "WBP_Settings Designer：画质、语言、退出和返回分组",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-confirm-layout.12dudipn72l3q.png",
+          "alt": "WBP_Confirm Designer：ModalScrim、确认和取消控件",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/mmo-A-modal.1bvz1g2z18g9i.png",
+          "alt": "实际 WBP_Confirm 显示退出确认和遮罩，设置面板与 HUD 保留在下层",
+          "native": [
+            1920,
+            1080
+          ],
+          "displayed": [
+            343,
+            192.9375
+          ]
+        },
+        {
+          "src": "/_next/static/media/designer-root-screen-classes.0x_yimyur62di.png",
+          "alt": "WBP_MMOLayout Class Defaults 的五个 Screen 软类引用",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        },
+        {
+          "src": "/_next/static/media/ui-policy-final-layout.2wrhry78chgcy.png",
+          "alt": "BP_MMOUIPolicy 的 Layout Class 指向 WBP_MMOLayout",
+          "native": [
+            2580,
+            1200
+          ],
+          "displayed": [
+            343,
+            159.53125
+          ]
+        }
+      ],
+      "content": 375,
+      "literalMarkdown": false,
+      "headings": 16,
+      "issues": [],
+      "passed": true
+    },
+    {
+      "route": "/docs/10-backend/persistence/",
+      "viewport": 390,
+      "title": "角色快照、事务与幂等保存 · Lyra 学习手册",
+      "images": [
+        {
+          "src": "/_next/static/media/10-backend-persistence.0vyepxvdvb2o7.svg",
+          "alt": "一次保存的三道判断",
+          "native": [
+            1120,
+            658
+          ],
+          "displayed": [
+            343,
+            201.5
+          ]
+        }
+      ],
+      "content": 375,
+      "literalMarkdown": false,
+      "headings": 11,
+      "issues": [],
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "output/playwright/full-guide-root-ue-basics-desktop.png",
+    "output/playwright/full-guide-root-plugin-camera-desktop.png",
+    "output/playwright/full-guide-root-damage-desktop.png",
+    "output/playwright/full-guide-root-persistence-mobile.png",
+    "output/playwright/full-guide-root-designer-mobile.png"
+  ],
+  "interactions": [
+    {
+      "name": "static search contains new primer, plugin and Live Coding entries",
+      "passed": true
+    },
+    {
+      "name": "original shared rifle anchor retained",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

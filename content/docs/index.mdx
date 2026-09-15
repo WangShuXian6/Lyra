@@ -3,7 +3,7 @@ title: 学习路线
 description: 从第一次运行官方示例，到构建自己的射击训练场与 MMORPG。先选择路线，再跟着实际工程验证。
 ---
 
-这份手册面向会使用 UE 编辑器、尚未系统学习 Lyra 的开发者。代码与资产以 **UE 5.8.1 的本机 Lyra 项目**为依据，教程会补充读懂相关代码所需的 C++、蓝图、GAS 与网络概念。
+这份手册面向第一次系统接触 UE 与 Lyra 的开发者；不预设你已经会用编辑器、读蓝图或理解 GAS。代码与资产以 **UE 5.8.1 的本机 Lyra 项目**为依据，教程会补充读懂相关代码所需的 C++、蓝图、GAS 与网络概念。
 
 ## 路线 A：从 Lyra 开始
 
@@ -34,3 +34,24 @@ description: 从第一次运行官方示例，到构建自己的射击训练场�
 本手册是独立教学项目。Lyra、Unreal Engine 及其官方示例内容来自 Epic Games；本地截图工具是额外的编辑器工具，不属于 Lyra 玩法架构。
 
 官方入口：[Lyra Sample Game](https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-sample-game-in-unreal-engine)。配套文件与复现方式见[配套资料](/docs/downloads)。
+
+{/* full-guide-begin */}
+
+## 第一次阅读的顺序
+
+![先学会观察，再组合自己的玩法](/media/guide-diagrams/index.svg)
+
+**读图**：路线 A 是后续实战的共同基础。路线 B 不是跳过 UE 概念的捷径；先完成下面的最低前置练习。
+
+**完全新手先走这条短路线**：[认界面与第一段代码](/docs/01-start/ue-basics) → [关闭 Live Coding](/docs/01-start/live-coding) → [第一次进入游戏](/docs/01-start/first-session) → [步枪五步图解](/docs/01-start/project-map) → [插件职责总览](/docs/02-architecture/plugin-atlas)。
+
+一节课按四轮读：先读图和名词；按截图找到同一个对象；对照代码解释值怎样被使用；最后做一项小实验并记录实际结果。不会某个类名不需要离开手册漫无目的搜索，先用本章的具体对象追下去。
+
+阅读代码时把“声明、授予、激活、复制、显示”写成五列。例如 AbilitySet 声明包含 Dash；服务器授予技能；按键请求激活；相关状态按复制规则传播；动画/UI 才显示结果。这五步不是看到一个资产名字就自动全部完成。
+
+{/* full-guide-end */}
+
+## 从理解走到独立复刻
+
+- [MMORPG 从零复刻主线](/docs/08-mmorpg/from-zero)：每一步写哪些完整文件、搭哪些蓝图、填哪些配置，以及怎样验收。
+- [Lyra 模块改造实作](/docs/02-architecture/modification-workshop)：按对象、调用链和清理流程理解模块，再完成可验证的修改。

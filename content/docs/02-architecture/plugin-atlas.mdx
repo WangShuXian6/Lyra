@@ -1,0 +1,321 @@
+---
+title: Lyra 插件总览：每个插件做什么、怎样接到游戏
+description: 核对本机 22 个项目插件及 .uproject 的引擎插件选择，按职责、配置、模块和生命周期建立阅读地图。
+---
+
+先不要背所有插件名。你要能够回答：“这个功能属于哪个插件、配置在哪个资产、谁把它接到本局游戏、退出时谁清理。”本页按**本机描述符、模块和源码**整理；引擎为 UE 5.8.1，基准工程为 LyraStarterGame，Clawtopia 不在范围内。
+
+## 先从真实插件窗口认名字
+
+1. 在 UE 主窗口选择 **编辑 → 插件**。这不是 Project Settings 的某个普通字段。
+2. 左侧选“所有插件”，顶部搜索 `Common`。本机 Friendly Name 为 **Common UI Plugin**，直接搜不带空格的 `CommonUI` 曾得到空列表；关键词搜索更容易定位。
+3. 看条目左侧复选框、名称和描述；不要点“包”来启动打包，也不要为了看配置反复切换启用状态。
+4. 再比较 CommonGame、CommonUser、CommonLoadingScreen。名字都有 Common，但解决的工作不同。
+![插件浏览器搜索 Common：Common UI Plugin、CommonGame、CommonLoadingScreen、CommonStartupLoadingScreen 与 CommonUser](/media/beginner/whole-guide/plugins-commonui.png)
+
+**看图操作**：搜索框中实际输入 Common；每张卡片左侧的勾表示启用配置。名字旁 Beta/实验性是插件自身标记；它不告诉你该插件此刻是否已向当前 World 添加了组件。
+![同一个功能需要经过四种连接](/media/guide-diagrams/02-architecture-plugin-atlas.svg)
+
+**读图**：“勾了插件”只完成第一层。以 CommonUI 为例，还需要正确视口类、LocalPlayer/Policy、根布局、可激活控件、焦点和输入配置。
+## 本地 Plugins 目录：逐项看职责
+
+下表覆盖本机 **22 个项目目录中的 `.uplugin` 描述符**，包括玩法、共享库、内容和编辑器辅助工具。插件浏览器按来源/类别显示的数字可能不同，不能把目录数量当成当前 World 已激活功能数量。
+
+| 插件 | 它负责什么 | 第一次怎么读 |
+|---|---|---|
+| `AsyncMixin` | 管理异步加载与回调的 C++ 辅助类 | 加载 UI 或资产时管理请求；不是自动给所有代码加线程。 [具体课程](/docs/06-ui/common-game) |
+| `BlueprintScreenshotTool` | 导出蓝图图表的编辑器工具 | 用于制作教学图片；不承担玩家技能逻辑。 [具体课程](/docs/11-reference/blueprint-screenshots) |
+| `CommonGame` | 按 LocalPlayer 创建 UI Policy、根布局并组合通用游戏类 | Policy 选根布局，根布局管理层；不直接设计每一个按钮。 [具体课程](/docs/06-ui/common-game) |
+| `CommonLoadingScreen` | 按加载条件显示或隐藏加载界面 | 先读取未就绪原因；不要把隐藏 Widget 当成解决加载失败。 [具体课程](/docs/02-architecture/loading-online) |
+| `CommonStartupLoadingScreen` | 处理游戏启动早期的预加载画面 | 启动早期画面与进入玩法时的加载界面是不同阶段。 [具体课程](/docs/02-architecture/loading-online) |
+| `CommonUser` | 本地/平台用户初始化、权限和会话的通用接口 | 不等于本教程另写的账号密码、角色存档后端。 [具体课程](/docs/02-architecture/loading-online) |
+| `GameplayMessageRouter` | 按 GameplayTag 在本地游戏实例内发送结构化消息 | 广播本地消息本身不会跨网络复制。 [具体课程](/docs/05-gameplay/messages-audio) |
+| `GameSettings` | 定义设置项、数值来源、编辑条件与 UI 展示接口 | 音量值实际落在哪里，还要看 LyraSettingsLocal/Shared。 [具体课程](/docs/06-ui/settings-mvvm) |
+| `GameSubtitles` | 媒体字幕播放、字幕显示选项与控件 | 字幕与任意 HUD 文本、伤害消息不是同一通道。 [具体课程](/docs/05-gameplay/messages-audio) |
+| `GreenRoom` | 仅内容插件，本机可见 Green 资产 | 没有 C++ 模块；不要仅凭文件名判断运行中的调用关系。 [具体课程](/docs/01-start/project-map) |
+| `LyraExampleContent` | 多种玩法共享的示例美术内容 | 共享资源被多个插件引用；迁移一个玩法时检查其资源依赖。 [具体课程](/docs/08-mmorpg/migration) |
+| `LyraExtTool` | 本机额外的材质编辑工具与蓝图函数库 | ChangeMeshMaterials 与 EUW_MaterialTool 用于内容处理；不能称为核心战斗模块。 [具体课程](/docs/01-start/project-map) |
+| `ModularGameplayActors` | 参与模块化组件扩展的基础 Actor 类 | 向组件管理器登记 Actor，使功能插件可以对它们请求组件。 [具体课程](/docs/02-architecture/initialization) |
+| `PocketWorlds` | 为本地玩家管理小型关卡实例及画面捕获 | 常用于独立预览空间；不是 MMORPG 的持久化服务器分区。 [具体课程](/docs/06-ui/common-game) |
+| `RedRoom` | 仅内容插件，本机可见 Red 资产 | 描述符无运行模块；从具体资产的 Reference Viewer 开始查用途。 [具体课程](/docs/01-start/project-map) |
+| `RiderLink` | Rider 与编辑器之间的通信、日志、蓝图和调试支持 | IDE 辅助设施；移除它不会替你修复 Gameplay 代码。 [具体课程](/docs/01-start/environment) |
+| `ShooterCore` | 射击玩法的技能、武器、HUD、组件装配与运行模块 | 本机初始 Registered，由 Experience 请求激活。 [具体课程](/docs/02-architecture/game-features) |
+| `ShooterExplorer` | 依赖 ShooterCore 的冒险内容扩展示例 | 无 C++ 模块不表示没有玩法内容，继续查 Content 与依赖。 [具体课程](/docs/02-architecture/game-features) |
+| `ShooterMaps` | 射击地图内容 | 地图插件依赖 ShooterCore；场景资源与规则代码分开存放。 [具体课程](/docs/01-start/first-session) |
+| `ShooterTests` | 射击玩法测试及测试依赖 | 测试用例不能直接当作正常游戏规则。 [具体课程](/docs/11-reference/upgrades) |
+| `TopDownArena` | 另一套俯视角玩法、内容和运行模块 | 用于比较共享基础与独立玩法；不是 ShooterCore 的改名。 [具体课程](/docs/02-architecture/game-features) |
+| `UIExtension` | 让模块按标签向已有 UI 扩展点提交内容 | 扩展点是目的位置，注册的 Widget 是具体内容。 [具体课程](/docs/06-ui/extensions) |
+
+### 描述符与源码的位置
+
+路径均相对 `F:/UE/LyraStarterGame`。在 Rider 双 Shift 搜索右列文件名，重复文件名时根据左侧插件目录选择。
+
+| 插件目录 | 可开始阅读的位置 | 声明的模块 |
+|---|---|---|
+| `Plugins/AsyncMixin` | `Source/Public/AsyncMixin.h` | AsyncMixin |
+| `Plugins/BlueprintScreenshotTool` | `Source/BlueprintScreenshotTool/Private/BlueprintScreenshotToolHandler.cpp` | BlueprintScreenshotTool |
+| `Plugins/CommonGame` | `Source/Public/GameUIPolicy.h` | CommonGame |
+| `Plugins/CommonLoadingScreen` | `Source/CommonLoadingScreen/Public/LoadingScreenManager.h` | CommonLoadingScreen |
+| `Plugins/CommonStartupLoadingScreen` | `Source/CommonStartupLoadingScreen/Private/CommonPreLoadScreen.h` | CommonStartupLoadingScreen |
+| `Plugins/CommonUser` | `Source/CommonUser/Public/CommonUserSubsystem.h` | CommonUser |
+| `Plugins/GameplayMessageRouter` | `Source/GameplayMessageRuntime/Public/GameFramework/GameplayMessageSubsystem.h` | GameplayMessageRuntime, GameplayMessageNodes |
+| `Plugins/GameSettings` | `Source/Public/GameSetting.h` | GameSettings |
+| `Plugins/GameSubtitles` | `Source/Public/SubtitleDisplaySubsystem.h` | GameSubtitles |
+| `Plugins/GreenRoom` | `Content` | 无 C++ 模块（内容插件） |
+| `Plugins/LyraExampleContent` | `Content` | 无 C++ 模块（内容插件） |
+| `Plugins/LyraExtTool` | `Source/LyraExtTool/Public/BPFunctionLibrary.h` | LyraExtTool |
+| `Plugins/ModularGameplayActors` | `Source/ModularGameplayActors/Public` | ModularGameplayActors |
+| `Plugins/PocketWorlds` | `Source/Public/PocketLevelSystem.h` | PocketWorlds |
+| `Plugins/RedRoom` | `Content` | 无 C++ 模块（内容插件） |
+| `Plugins/Developer/RiderLink` | `RiderLink.uplugin` | RD, RiderLink, RiderLogging, RiderBlueprint, RiderGameControl, RiderShaderInfo, RiderLC, RiderDebuggerSupport |
+| `Plugins/GameFeatures/ShooterCore` | `Content/Experiences` | ShooterCoreRuntime |
+| `Plugins/GameFeatures/ShooterExplorer` | `ShooterExplorer.uplugin` | 无 C++ 模块（内容插件） |
+| `Plugins/GameFeatures/ShooterMaps` | `Content/Maps` | 无 C++ 模块（内容插件） |
+| `Plugins/GameFeatures/ShooterTests` | `ShooterTests.uplugin` | ShooterTestsRuntime |
+| `Plugins/GameFeatures/TopDownArena` | `TopDownArena.uplugin` | TopDownArenaRuntime |
+| `Plugins/UIExtension` | `Source/Public/UIExtensionSystem.h` | UIExtension |
+
+## 以 ShooterCore 读懂描述符
+源码：`Plugins/GameFeatures/ShooterCore/ShooterCore.uplugin`，本机第 13–19 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```json
+"CanContainContent": true,
+"IsBetaVersion": false,
+"IsExperimentalVersion": false,
+"Installed": false,
+"ExplicitlyLoaded": true,
+"EnabledByDefault": false,
+"BuiltInInitialFeatureState": "Registered",
+```
+逐行对应到实际操作：
+
+- `CanContainContent=true`：这个插件能带 Content 资产，所以内容浏览器开启“插件内容”后能进入它的虚拟挂载目录。
+- `ExplicitlyLoaded=true`：它是显式加载的插件，不能仅凭文件存在就认为已经激活。
+- `EnabledByDefault=false`：插件自身默认配置与工程/目标显式选择是不同来源；继续检查 `.uproject` 与 Game Feature 策略。
+- `BuiltInInitialFeatureState=Registered`：内置 Feature 初始登记状态为 Registered。射击 Experience 的 `GameFeaturesToEnable` 再请求加载和激活它。
+- `Modules` 里的 `ShooterCoreRuntime` 是模块名；插件叫 ShooterCore。找不到同名 `.cpp` 并不表示缺了整个插件。
+
+**编辑器启用、模块加载、Feature Active、给 Actor 添加组件**是四件事。排障时按当前缺少的结果向前查，不要反复勾选插件碰运气。
+
+## 引擎插件：按功能定位，再进入具体章节
+
+下面列出 `.uproject` 中启用的引擎侧插件。描述符启用仍受平台/目标条件约束；尤其 PlayFabParty 的列表限制到特定平台，不能从 `Enabled=true` 推断本机普通 Win64 会使用它。
+
+| 名称 | 零基础理解与检查入口 |
+|---|---|
+| `ModelContextProtocol` | 当前编辑器的 MCP 工具服务，用于本地读取/操作与截图。 |
+| `ActorPalette` | 从已有关卡建立可拖放 Actor 的编辑器面板。 |
+| `AESGCMHandlerComponent` | 网络包 AES-GCM 处理组件；是否使用取决于连接处理链配置。 |
+| `DTLSHandlerComponent` | 网络包 DTLS 加解密处理组件；不是自定义后端 HTTP 登录接口。 |
+| `GameplayAbilities` | 技能、效果、属性与能力系统组件；从 AbilitySet 的授予走到具体技能激活。 |
+| `Gauntlet` | 运行自动化游戏测试的控制与组织工具。 |
+| `CommonConversation` | 实验性对话树功能；与射击交互扫描和通用消息总线不同。 |
+| `GameFeatures` | 功能插件的注册/加载/激活生命周期；看 Experience 与 GameFeatureData。 |
+| `ModularGameplay` | 组件请求、扩展事件与初始化状态；与 ModularGameplayActors 配套观察。 |
+| `EnhancedInput` | 物理按键到 InputAction 的上下文映射；看 IMC 与 InputConfig。 |
+| `WinDualShock` | Windows 的 DualShock 控制器设备支持；受平台条件约束。 |
+| `Volumetrics` | 体积生成和渲染内容工具。 |
+| `DataRegistry` | 按 ID 从数据源取得结构化数据；不是所有 Data Asset 都自动经过它。 |
+| `ReplicationGraph` | 按连接组织需要复制的 Actor；要检查实际 NetDriver 是否选择此实现。 |
+| `SignificanceManager` | 按对象重要性调整更新行为；先测量再检查注册与评分逻辑。 |
+| `Niagara` | 粒子与视觉特效系统；沿 Gameplay Cue 或组件引用找具体系统资产。 |
+| `Water` | 水体编辑和渲染工具；地图内容依赖，不承担玩法装配与账号逻辑。 |
+| `CommonUI` | 可激活控件、层栈、焦点和返回输入；先检查视口与 UI 根布局。 |
+| `ControlFlows` | 组织分步骤异步操作；例如前端初始化流程，回调完成后推进下一步。 |
+| `Metasound` | 声音生成与处理图；从实际音效资源进入，不等于 Gameplay Cue 本身。 |
+| `OnlineFramework` | 在线玩法服务的共享代码；由 CommonUser/会话流程等使用。 |
+| `PlayFabParty` | 特定受支持平台的网络传输插件；看 PlatformAllowList 和 SupportedTargetPlatforms。 |
+| `OnlineServicesNull` | 无外部在线服务的实现；本地实验可用不等于公网身份认证成功。 |
+| `OnlineServicesOSSAdapter` | 将在线子系统实现接到 Online Services 接口的适配层。 |
+| `OnlineSubsystemSteam` | 访问 Steam 平台能力；还需要对应平台和账号配置。 |
+| `SocketSubsystemSteamIP` | Steam 用户间的 IP 连接实现；描述符明确区分它与 P2P SteamSockets。 |
+| `SteamSockets` | 基于 SteamSockets 的连接/NetDriver 实现；必须与实际驱动配置对应。 |
+| `AssetReferenceRestrictions` | 按项目规则限制跨内容/插件引用；先看规则再迁移资源。 |
+| `ModelingToolsEditorMode` | 编辑器建模模式；不是运行时玩家角色控制器。 |
+| `GeometryScripting` | 在蓝图/Python 中生成与编辑网格的函数库。 |
+| `AnimationLocomotionLibrary` | 驱动移动动画的技术库；从实际动画蓝图节点反查使用。 |
+| `AudioModulation` | 音频控制总线/混音调制；沿设置中的音量值找到实际控制对象。 |
+| `AudioGameplayVolume` | 按场景体积影响音频行为；看关卡中的对应体积与组件。 |
+| `AudioGameplay` | 音频玩法功能的基础模块。 |
+| `SoundUtilities` | 声音相关蓝图函数与工具。 |
+| `AnimationWarping` | 步幅、朝向、坡度等动画变形支持；检查动画节点和输入参数。 |
+| `MovieRenderPipeline` | 电影渲染队列与高质量序列输出；与游戏每帧渲染验收不同。 |
+| `MoviePipelineMaskRenderPass` | 电影渲染的附加遮罩/对象 ID 等通道。 |
+| `AssetSearch` | 编辑器资产搜索支持。 |
+| `GameplayInsights` | 通过 Unreal Insights 观察动画等 Gameplay 数据。 |
+| `Spatialization` | 基础三维声音空间化实现；检查项目实际选择的音频空间化插件。 |
+| `FunctionalTestingEditor` | 功能测试的编辑器支持。 |
+| `GameplayInteractions` | 玩家/NPC 交互框架；不能只因启用就替代 Lyra 的交互能力实现。 |
+| `SmartObjects` | 世界中的可使用对象/活动位置框架；看具体定义与运行查询。 |
+| `ContextualAnimation` | 情境交互动画系统；不是角色常规移动动画的唯一入口。 |
+| `GameplayBehaviorSmartObjects` | 用 GameplayBehavior 执行 SmartObject 行为的连接层。 |
+| `GameplayStateTree` | 将 StateTree 用于 AI/Gameplay 行为；检查所用行为资产再学习状态。 |
+| `GameplayBehaviors` | 封装 AI 行为；与技能系统的 GameplayAbility 是不同类型。 |
+| `RuntimeTests` | 可在编辑器或 Cook 构建运行的自动化测试。 |
+| `AutomatedPerfTesting` | 组织自动性能测试的控制器；测试结果要标明目标、场景和配置。 |
+| `Reflex` | NVIDIA Reflex 延迟跟踪与相关 Tick 处理；不是服务器权威机制。 |
+| `XInputDevice` | Windows XInput 控制器接口。 |
+| `GameInputWindows` | Windows GameInput 设备接口；与 InputAction 逻辑层不同。 |
+| `AIAssistant` | 本机编辑器助手功能；不要将其依赖当成游戏客户端功能。 |
+| `ToolsetRegistry` | 编辑器工具集注册设施；属于当前工具环境。 |
+| `AllToolsets` | 汇集工具集依赖的工具插件；不是运行 Lyra 射击必需的 Gameplay 配方。 |
+| `PlayerInputDebugger` | 输入调试工具；按键无效时配合输入映射和焦点检查。 |
+| `PlatformDLC` | 受支持平台上的原生 DLC 支持；描述符标为实验性。 |
+
+**显式关闭的历史/平台条目**：`MagicLeap`, `MagicLeapMedia`, `MagicLeapPassableWorld`, `OpenXREyeTracker`, `OpenXRHandTracking`, `OpenXRHMD`, `SteamVR`, `GearVR`, `MLSDK`, `ResonanceAudio`, `RuntimePhysXCooking`。列在文件中不等于已经启用；有些名字在本机引擎插件目录中也已不存在。不要为了与旧文章截图一致把它们全打开。
+
+## 第一次跟踪一个插件的实际使用
+
+以 UIExtension 为练习：
+
+1. 插件浏览器确认名字；Rider 打开 `UIExtension.uplugin`，看模块和 CommonGame 依赖。
+2. 打开 `LAS_ShooterGame_StandardHUD`，找到 `W_QuickBar` 对应 `HUD.Slot.Equipment` 的注册配置。
+3. 打开 `W_ShooterHUDLayout` 的 Designer，选 `ExtensionPoint_Equipment`，核对同一个标签。
+4. 在 `GameFeatureAction_AddWidget.cpp` 找注册调用，再在 `UIExtensionSystem.cpp` 读匹配条件。
+5. 运行相关玩法检查快捷栏；退出时查注册句柄的注销。由此得到“插件 → 配置 → 执行 → 表现 → 清理”一条完整链。
+
+前两步只是配置层，第三步是目标容器，第四步才是执行机制。具体截图与代码逐段解释见 [UIExtension](/docs/06-ui/extensions)。
+
+## 这份清单的证据与边界
+
+描述符原路径、SHA-256、模块及依赖保存在 `source-evidence/full-guide-plugins.json`。表中“启用”指项目描述符的配置，不宣称所有平台功能都在本机运行过；各章的运行、Cook、网络与后端验证记录分别说明实际执行范围。
+
+**完成标准**：任选一个插件，说出它的职责、一个入口文件、一个实际配置对象、使用它的运行系统。只能复述插件名称时，回到截图与代码对应的那一章继续读。
+
+{/* plugin-depth-begin */}
+
+## 再深入几个容易被一笔带过的插件
+
+### AsyncMixin：处理列表/提示的异步加载生命周期
+
+它是 C++ 混入辅助类。实际使用者之一是 `SActorCanvas`，同时继承 SPanel、FAsyncMixin 与 FGCObject。`AddIndicatorForEntry` 异步加载提示 Widget 类，回调先确认提示对象仍有效、仍在 AllIndicators 中，再从 WidgetPool 创建/复用控件，最后 StartAsyncLoading。
+
+这解释了“玩家已走离目标，但资源刚加载完”的情况：仅凭加载成功就显示提示，会留下过时界面。FAsyncMixin 管请求生命周期，AllIndicators 判断业务上是否仍需要这条提示，两项都要考虑。
+
+阅读 `Plugins/AsyncMixin/Source/Public/AsyncMixin.h` 顶部示例：CancelAsyncLoading → AsyncLoad 多个资源 → StartAsyncLoading。注释说明回调按请求顺序触发；它不是“任何 Lambda 都自动切到工作线程”的工具。调试入口为 `LogAsyncMixin Verbose`，只在需要诊断时开启。
+
+### PocketWorlds：按本地玩家复用小型关卡实例
+源码：`Plugins/PocketWorlds/Source/Private/PocketLevelSystem.cpp`，本机第 10–36 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+UPocketLevelInstance* UPocketLevelSubsystem::GetOrCreatePocketLevelFor(ULocalPlayer* LocalPlayer, UPocketLevel* PocketLevel, FVector DesiredSpawnPoint)
+{
+	if (PocketLevel == nullptr)
+	{
+		return nullptr;
+	}
+
+	float VerticalBoundsOffset = 0;
+	for (UPocketLevelInstance* Instance : PocketInstances)
+	{
+		if (Instance->LocalPlayer == LocalPlayer && Instance->PocketLevel == PocketLevel)
+		{
+			return Instance;
+		}
+
+		VerticalBoundsOffset += Instance->PocketLevel->Bounds.Z;
+	}
+
+	const FVector SpawnPoint = DesiredSpawnPoint + FVector(0, 0, VerticalBoundsOffset);
+
+	UPocketLevelInstance* NewInstance = NewObject<UPocketLevelInstance>(this);
+	NewInstance->Initialize(LocalPlayer, PocketLevel, SpawnPoint);
+
+	PocketInstances.Add(NewInstance);
+
+	return NewInstance;
+}
+```
+
+PocketLevel 为空就返回；已有实例的 LocalPlayer 和 PocketLevel 都匹配就复用。循环还累积 Bounds.Z，为后续实例安排竖直偏移，避免多个预览空间重叠。函数后半部 NewObject → Initialize → 保存实例。
+
+`UPocketLevel` 数据资产的 **Streaming → Level** 是地图软引用，**Bounds** 描述空间范围；实例提供 StreamIn、StreamOut、AddReadyCallback/RemoveReadyCallback。准备预览时要等待 Ready，再显示捕获结果。这里是在游戏世界中管理小型流送空间，不提供账号租约、跨服或数据库隔离。
+
+新手阅读顺序：PocketLevel.h 的两个字段 → PocketLevelSystem.cpp 的复用键 → PocketLevelInstance.cpp 的加载/显示回调。先找到项目中实际引用该资产的预览控件，再修改自己的副本，不能只启用插件就期待主菜单自动多出角色预览。
+
+### GameSubtitles：内容来源与显示格式分别检查
+源码：`Plugins/GameSubtitles/Source/Private/SubtitleDisplaySubsystem.cpp`，本机第 36–40 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void USubtitleDisplaySubsystem::SetSubtitleDisplayOptions(const FSubtitleFormat& InOptions)
+{
+	SubtitleFormat = InOptions;
+	DisplayFormatChangedEvent.Broadcast(SubtitleFormat);
+}
+```
+
+先保存新的 FSubtitleFormat，再广播格式变化。这个结构包含字号、文字颜色、边框和背景透明度。LyraSettingsShared 的 ApplySubtitleOptions 把用户设置送到这里；字幕内容仍要由实际音频/媒体来源提供。
+
+所以字幕无显示时应分别检查“是否有字幕内容”“是否启用显示”“格式与控件是否正确”；修改字号不能凭空生成台词。它与 UMG ViewModel 的任意文本、击杀消息也不是同一个数据源。
+
+### CommonStartupLoadingScreen：为什么 PIE 不显示同一种启动画面
+源码：`Plugins/CommonStartupLoadingScreen/Source/CommonStartupLoadingScreen/Private/CommonStartupLoadingScreen.cpp`，本机第 34–49 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void FCommonStartupLoadingScreenModule::StartupModule()
+{
+	// No need to load these assets on dedicated servers.
+	// Still want to load them in commandlets so cook catches them
+	if (!IsRunningDedicatedServer())
+	{
+		PreLoadingScreen = MakeShared<FCommonPreLoadScreen>();
+		PreLoadingScreen->Init();
+
+		if (!GIsEditor && FApp::CanEverRender() && FPreLoadScreenManager::Get())
+		{
+			FPreLoadScreenManager::Get()->RegisterPreLoadScreen(PreLoadingScreen);
+			FPreLoadScreenManager::Get()->OnPreLoadScreenManagerCleanUp.AddRaw(this, &FCommonStartupLoadingScreenModule::OnPreLoadScreenManagerCleanUp);
+		}
+	}
+}
+```
+
+外层排除 Dedicated Server；内部只有非 Editor、能够渲染并已有 PreLoadScreenManager 才注册预加载屏。PIE 已在编辑器内，不能用它证明进程最早启动阶段的画面。进入地图期间的 CommonLoadingScreen 则是另一套加载条件判断，见加载与在线流程章节。
+
+源码顶部还说明启动预加载 Widget 与启动 Movie 的选择关系；若制作自己的启动影片，先读这一模块与 Project Settings → Movies，使用独立程序验证，避免同时把两种机制当成必定依次播放。
+
+### TopDownArena：同一相机基础如何服务另一种玩法
+
+在 Content Browser 开启插件内容，选 **TopDownArena Content → Game**，双击 `CM_ArenaFramingCamera`。纯数据蓝图直接显示默认值；展开 Default Pivot Rotation，比较下图与 Shooter 的 CM_ThirdPerson。
+![TopDownArena 相机实拍：Arena Width/Height=1600，Y 旋转=-66，FOV=80](/media/beginner/whole-guide/topdown-camera.png)
+
+**看图操作**：窗口父类为 LyraCameraMode_TopDownArenaCamera。这里根据竞技场范围取景，而非第三人称肩后偏移；Bounds Size to Distance 是范围尺寸到相机距离的曲线。图显示当前曲线控件，不把缩略曲线上的刻度当成所有实际关键帧值。
+源码：`Plugins/GameFeatures/TopDownArena/Source/TopDownArenaRuntime/Private/LyraCameraMode_TopDownArenaCamera.cpp`，本机第 14–30 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void ULyraCameraMode_TopDownArenaCamera::UpdateView(float DeltaTime)
+{
+	FBox ArenaBounds(FVector(-ArenaWidth, -ArenaHeight, 0.0f), FVector(ArenaWidth, ArenaHeight, 100.0f));
+
+	const double BoundsMaxComponent = ArenaBounds.GetSize().GetMax();
+
+	const double CameraLoftDistance = BoundsSizeToDistance.GetRichCurveConst()->Eval(BoundsMaxComponent);
+
+	FVector PivotLocation = ArenaBounds.GetCenter() - DefaultPivotRotation.Vector() * CameraLoftDistance;
+
+	FRotator PivotRotation = DefaultPivotRotation;
+
+	View.Location = PivotLocation;
+	View.Rotation = PivotRotation;
+	View.ControlRotation = View.Rotation;
+	View.FieldOfView = FieldOfView;
+}
+```
+
+代码用 `(-ArenaWidth,-ArenaHeight)` 到 `(ArenaWidth,ArenaHeight)` 构造范围。因此截图 Width=1600 在这个函数中是半范围，X 方向总宽度为 3200；不要只凭字段英文把它理解成整场宽度。取最大尺寸后求曲线值，沿 DefaultPivotRotation 的反方向拉开相机，设置 View 的位置、旋转和 FOV。
+
+继续打开 `/TopDownArena/Game/HeroData_Arena` 与 `/TopDownArena/System/Experiences/B_TopDownArenaExperience`，记录 PawnData、相机与 Feature。对照射击 Experience 的同类字段，就能理解复用的是装配方式，而不是所有模式都使用步枪/肩后相机。移动和属性的专用代码位于 TopDownArenaRuntime 的 TopDownArenaMovementComponent 与 TopDownArenaAttributeSet。
+
+### 内容和测试插件怎样读
+
+ShooterMaps、LyraExampleContent、GreenRoom、RedRoom 没有运行模块时，从具体地图/资产的 Reference Viewer 查引用者与依赖。ShooterTests 则从测试模块和测试入口读断言。看到 `.uplugin` 或资产文件并不能证明它参与本局游戏；运行身份要回到 Experience、已加载 Feature 与当前 World。
+
+**插件学习记录模板**：插件名 → 模块名/内容目录 → 一份真实配置 → 一个执行入口 → 一个清理入口 → 一项可观察结果。用本页 22 项清单逐个填写，可以避免只记住名字却不知道怎样使用。
+
+{/* plugin-depth-end */}
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+读完每个插件入口，用责任表写出输入、输出、所属端和清理入口，再沿六个实验练习跨插件改造。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

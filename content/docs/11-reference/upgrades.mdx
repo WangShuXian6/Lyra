@@ -39,6 +39,39 @@ ModelContextProtocol、AllToolsets、ToolsetRegistry、RiderLink、LyraExtTool �
 
 本地化也要区分来源：官方 Lyra 已有 GameSettings 语言选项和 Game 等翻译目标；教程新增的是 MMORPG 自己的界面词条、MMO Target 和 ViewModel 刷新链。UE 编辑器菜单的语言、游戏 Culture、实际 Stage 的 locres 与网站中文正文是四个不同观察点。更换任一项，都不能据此推断另外三项已通过。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![版本证据逐层更新](/media/guide-diagrams/11-reference-upgrades.svg)
+
+**读图**：哈希变化提醒你材料变了，但只有具体差异和重新验证才能解释行为是否改变。
+
+### 不会读 diff 时先从一行 API 变化开始
+
+在 Rider 打开同一文件的版本比较：红色通常表示删除，绿色通常表示新增；同时看函数声明和调用者。比如 AbilitySpec 的标签读取应对照本机 GetDynamicSpecSourceTags 接口，不把旧文章中的字段名替换后就认为所有语义一致。
+
+PowerShell 可用下列只读命令记录文件内容哈希：
+
+```powershell
+Get-FileHash 'F:/UE/LyraStarterGame/Source/LyraGame/AbilitySystem/LyraAbilitySet.cpp' -Algorithm SHA256
+```
+
+输出的 Hash 对应文件字节；换行也会改变它。哈希没有说明“哪一行改了”，所以接着查看 diff，定位到资产字段或运行分支。不要为了让旧清单通过，直接把新哈希填进去而不复核材料。
+
+### 本轮图文扩写的来源文件
+
+| 文件 | 记录内容 |
+|---|---|
+| source-evidence/full-guide-code.json | 新增实际代码节选的源文件、行号、原文和哈希 |
+| source-evidence/full-guide-media.json | 本轮原生截图与明确标注的关系示意图 |
+| source-evidence/full-guide-plugins.json | 当前本机项目与启用插件的描述符证据 |
+| source-evidence/full-guide-coverage.json | 每页扩写前后范围与复核状态 |
+
+这些记录补充原有 2026-09-13 资料，没有把旧运行结果重标成 2026-09-15 新测试。**完成检查**：能从任意新增代码块回到同一源文件行，再从任意截图说明找到对应资产/面板。
+
+{/* full-guide-end */}
+
 ## 预期结果与练习
 
 最终升级记录应能回答：升级了什么、使用哪个版本、通过哪些构建和运行场景、剩余哪些限制。若某个验证未执行，明确写“未执行”和原因，不写“应当可用”作为验收结论。

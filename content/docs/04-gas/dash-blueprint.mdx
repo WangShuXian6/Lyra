@@ -52,6 +52,37 @@ description: 从真实 SelectDirectionalMontage 图解释朝向差、移动方�
 
 本机另行完成了完整 Dash 副本中的原生导入和编译：26 个节点、函数签名保留、0 errors/0 warnings，记录在 `verification/training-blueprint-roundtrip.json`。复现入口见[训练场蓝图复制步骤](/docs/07-training/feature-and-experience#五验证真实蓝图复制文本)；这是该函数的编译证据，不是四方向运动全部通过的声明。
 
+{/* full-guide-begin */}
+
+## 从函数图练习输入、条件与输出
+
+![冲刺方向函数只负责选择表现](/media/guide-diagrams/04-gas-dash-blueprint.svg)
+
+**读图**：先读函数输入输出，再读每条分支。选择了前冲动画不等于已经执行角色位移。
+![Dash 默认值中的冷却引用](/media/configuration/training/dash-defaults-cooldown.png)
+
+**看图操作**：从函数图回到 Class Defaults，搜索 Cooldown。本机变量 Cooldown=0.0，同时引用 GE_HeroDash_Cooldown。它们不是相互替代的同一个字段；要到调用/Commit 和效果持续时间继续读。
+
+### 手算一次，再看图走哪条线
+
+固定面朝为世界前方：输入同方向，角度差约 0°，进入前向分支；输入反方向，差约 180°，进入后向分支；输入左右垂直方向，差约 ±90°，进入相应侧向分支。45° 和 135° 恰好落在边界时，要按图的严格比较推导，不能四舍五入成前/后。
+
+可以先用下面的**阅读伪代码**复述图，不把它粘进工程：
+
+```text
+theta = Normalize(MovementRotation - FacingRotation).Yaw
+if abs(theta) < 45: 前向 Montage，BiasForward=true
+else if abs(theta) > 135: 后向 Montage，BiasForward=false
+else if theta < 0: 左向 Montage，BiasForward=false
+else: 右向 Montage，BiasForward=false
+```
+
+每一行都要能在原图找到对应节点和引脚；伪代码只是解释。真正的来源是本页可下载的 UE 原生节点文本，里面还保留成员、局部变量、签名和引用。调用方若给出零向量，应另看调用方如何决定静止时的冲刺方向。
+
+**检查点**：给定一组方向，能写出选中的 Montage 和布尔输出；然后回到 EventGraph，指出谁消费这个输出，谁执行位移，谁提交冷却。只读方向函数不能代表读完全部技能。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 用固定朝向分别输入前、后、左、右移动方向，应该能说明选中哪个 Montage 以及 BiasForward 的输出。动画选对而位移错误时，转查调用方和移动任务。

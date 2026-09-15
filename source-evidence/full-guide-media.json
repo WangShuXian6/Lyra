@@ -1,0 +1,609 @@
+{
+  "schemaVersion": 1,
+  "media": [
+    {
+      "publicPath": "public/media/beginner/whole-guide/editor-overview.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 1762478,
+      "sha256": "120b1f3d536c38b3d866a18ecabced4e7c785cb11a25986db57b8574148e373e",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T08:50:38.575927+08:00",
+      "postProcessing": false,
+      "width": 1716,
+      "height": 1315
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/plugins-commonui.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 192596,
+      "sha256": "bcad432910de2a76e35f6c097cf98721eecd2945a178fc8da93241644ae2a359",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T08:53:25.282294+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 900
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/01-start-ue-basics.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3108,
+      "sha256": "6299dbb0c3db42e26c9c44e375ed70bd6dc73a23fe4c163c624f0aece9f23b84",
+      "width": 1120,
+      "height": 658,
+      "chapter": "01-start/ue-basics"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3001,
+      "sha256": "8b89713a943631bec188dad878ef09f24066e95ba5d57d0661434b8488727bd6",
+      "width": 1120,
+      "height": 658,
+      "chapter": "index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/01-start-first-session.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2958,
+      "sha256": "b51ac999d6a92578a0f388468786cf16fe09bb60fd2ac67afb3183451358df79",
+      "width": 1120,
+      "height": 658,
+      "chapter": "01-start/first-session"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/01-start-live-coding.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2951,
+      "sha256": "55ff4a57f12cee58dd8187d8d65636c7f69e6606bc99e7ac41833a39dbeb50e4",
+      "width": 1120,
+      "height": 658,
+      "chapter": "01-start/live-coding"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/01-start-project-map.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3026,
+      "sha256": "4b651438cc8706d94d66eab76120a6a85f00a9d2a9233ed1835c2fcc84df9e38",
+      "width": 1120,
+      "height": 658,
+      "chapter": "01-start/project-map"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/02-architecture-plugin-atlas.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3116,
+      "sha256": "c0e3cc7fbf24a813cd2fe166e2e53accfecee0f5c180ed986f772a5107ef4c6a",
+      "width": 1120,
+      "height": 658,
+      "chapter": "02-architecture/plugin-atlas"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/02-architecture-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2996,
+      "sha256": "3616bb0b35e917274337e7af6f6d188039113cb441fa8412b0f86362af1738da",
+      "width": 1120,
+      "height": 658,
+      "chapter": "02-architecture/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/02-architecture-asset-manager.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2942,
+      "sha256": "0ee684a925dbb82b74fc5dccf42c0149dfb4d79aedcd335631145689ce193fee",
+      "width": 1120,
+      "height": 658,
+      "chapter": "02-architecture/asset-manager"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/02-architecture-experience.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2996,
+      "sha256": "8a616c11605e23cdce4e0cc837667de037ba72ce0c7b9f20c1a9d75beb849e2b",
+      "width": 1120,
+      "height": 658,
+      "chapter": "02-architecture/experience"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/02-architecture-initialization.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3099,
+      "sha256": "0d08362b7fe2d01599a43803efb02818393d2b1dbfc036ac33203c09c4c43dae",
+      "width": 1120,
+      "height": 658,
+      "chapter": "02-architecture/initialization"
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/camera-offset.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 131998,
+      "sha256": "e8dd4eb15870a0f89a3f4ab45a7cf249d1174aefa21ddefe46afd6d0347accc2",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "/Game/Characters/Cameras/CM_ThirdPerson",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:03:48.080549+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 1050
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/camera-view.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 87046,
+      "sha256": "c578fc7dc8d1e1d8444a96bdc030891b478da6b610fea1813ab18915a3dee0fd",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "/Game/Characters/Cameras/CM_ThirdPerson",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:03:58.703496+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 1050
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/weapon-animation-layers.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 128090,
+      "sha256": "2293449d788c7ae184bac66ca18951ac264a42951e686add75385fcabf97dd05",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "/ShooterCore/Weapons/Rifle/B_WeaponInstance_Rifle",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:04:26.404898+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 1050
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/rifle-damage-effect.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 156924,
+      "sha256": "c2a5ee8cb7bd5602d02e32e57cd85bb7444c33e7dc7db6fe71f5623776728ff5",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "/ShooterCore/Weapons/Rifle/GE_Damage_RifleAuto",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:05:11.978518+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 1050
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/loading-screen-settings.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 136385,
+      "sha256": "4958c67efbeb06e64f3368515dead4d0b5b52d5e20e0f6b51b5fe43e78054145",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "Project Settings / Game / Common Loading Screen",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:06:35.705061+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 900
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/02-architecture-loading-online.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3080,
+      "sha256": "c0325899b74cb05b63e2c88c5e4534097a847fc66fc6349d9399010f112d80fb",
+      "width": 1120,
+      "height": 658,
+      "chapter": "02-architecture/loading-online"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/03-character-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2998,
+      "sha256": "51be29d3669a67f9c2c951d3966000d6ed649af4d1326c9450f5dad7145b0095",
+      "width": 1120,
+      "height": 658,
+      "chapter": "03-character/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/03-character-player-pawn.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2977,
+      "sha256": "bc5cd6d86414e07f5efb407eda09121a296c14493b49620a238eafa7e24d129b",
+      "width": 1120,
+      "height": 658,
+      "chapter": "03-character/player-pawn"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/03-character-enhanced-input.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2944,
+      "sha256": "7c138af6b773af0dbbca2d685d7aff4f255313d053a8612d16566f39b9d143a4",
+      "width": 1120,
+      "height": 658,
+      "chapter": "03-character/enhanced-input"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/03-character-jump-blueprint.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2994,
+      "sha256": "283d4b0bb19dd65c38e21c17e8ea2ea2c607cb6025a622fd39162e77e2e73b61",
+      "width": 1120,
+      "height": 658,
+      "chapter": "03-character/jump-blueprint"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/04-gas-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3015,
+      "sha256": "a2fc22942b471118249582bf9428269b34f42a00d229530796f52ae64c81c566",
+      "width": 1120,
+      "height": 658,
+      "chapter": "04-gas/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/04-gas-effects-health.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3061,
+      "sha256": "ff2d84e870d02ac20613c6a7ac3d8fedf7407b59203eda897607df8f6894b723",
+      "width": 1120,
+      "height": 658,
+      "chapter": "04-gas/effects-health"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/04-gas-prediction.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3072,
+      "sha256": "baabed85abbf7e2b840ed5fff27e78eed55d89d0c78c16605e722b01ce389065",
+      "width": 1120,
+      "height": 658,
+      "chapter": "04-gas/prediction"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/04-gas-dash-blueprint.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3013,
+      "sha256": "a9484e66c3eb7e6b74aec0460ac273b58035007e70eb2a892007a8bfd5bbf778",
+      "width": 1120,
+      "height": 658,
+      "chapter": "04-gas/dash-blueprint"
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/interaction-defaults.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 266111,
+      "sha256": "0ba3a51dc16e8099ab65ed5f64171c414c1d3e7ea6cb50d1921ff26317654ec4",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "/ShooterExplorer/Input/Abilities/GA_Interact",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:16:15.708340+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 1050
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/bot-spawner.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 115277,
+      "sha256": "0f7e19c18cb90ab1f0f537153830be39844b0af274da327017b960981ef78b1d",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "/ShooterCore/Bot/B_ShooterBotSpawner",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:16:25.339401+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 1050
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/context-effects.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 150414,
+      "sha256": "19e48c653bed318b4a3acb0d8ae391c5fc58fac2a1822698a6806aa3aca3fdcb",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "/Game/ContextEffects/CFX_DefaultSkin",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:16:48.599372+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 1050
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/05-gameplay-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3079,
+      "sha256": "be988ad6f07128bb8766be62ebdb3de274d739f287a95a5a6341dc729b489c62",
+      "width": 1120,
+      "height": 658,
+      "chapter": "05-gameplay/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/05-gameplay-inventory-equipment.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3065,
+      "sha256": "b4d9b9a962294f4d9811284132b1969d78a0c18b0be3b64a491c962141e82a4d",
+      "width": 1120,
+      "height": 658,
+      "chapter": "05-gameplay/inventory-equipment"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/05-gameplay-weapons.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3023,
+      "sha256": "89099fe9bae653b89f954756a8251b7d327434dfd606d08f21fac6b0dfec8be1",
+      "width": 1120,
+      "height": 658,
+      "chapter": "05-gameplay/weapons"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/05-gameplay-messages-audio.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3099,
+      "sha256": "d9b35c4ec80b5d71ffbc6a9906a2e87ed105eb7994e9c34c97429601f97de1b2",
+      "width": 1120,
+      "height": 658,
+      "chapter": "05-gameplay/messages-audio"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/06-ui-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3045,
+      "sha256": "dc9a341e84e81283d2327b6907dc5e15aefa698024fd95a39f59695e10b05682",
+      "width": 1120,
+      "height": 658,
+      "chapter": "06-ui/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/06-ui-settings-mvvm.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3082,
+      "sha256": "3caace535b52a132849243d030475275485c9d4ef2c3588fd88219fe676b3bc6",
+      "width": 1120,
+      "height": 658,
+      "chapter": "06-ui/settings-mvvm"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/07-training-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3594,
+      "sha256": "85d2f7db60fb49d78bf5c69b7c8a9d4216ec60c97bc8d964f8ae148eeae86258",
+      "width": 1120,
+      "height": 786,
+      "chapter": "07-training/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/07-training-dash-and-blueprints.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2419,
+      "sha256": "a6a555ef34fdd3ce8eab2d7717715c766e4634a8812e5e78eaea1bacb7223841",
+      "width": 1120,
+      "height": 530,
+      "chapter": "07-training/dash-and-blueprints"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/07-training-multiplayer-and-package.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2968,
+      "sha256": "60aa8886d55ef728b2e62a95c86b370c19a6a6f80475ca1b69b26b7ab6d43612",
+      "width": 1120,
+      "height": 658,
+      "chapter": "07-training/multiplayer-and-package"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/08-mmorpg-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3018,
+      "sha256": "d7a0ba56c0c25cdf85c1985b030173041d5309422c1a54a14336bf2785f192c3",
+      "width": 1120,
+      "height": 658,
+      "chapter": "08-mmorpg/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/08-mmorpg-animation.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2990,
+      "sha256": "38aa8516263357b0aac418ad830a18b7f7e50347d494a036bce3431e64c6c6cc",
+      "width": 1120,
+      "height": 658,
+      "chapter": "08-mmorpg/animation"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/08-mmorpg-network-persistence.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3049,
+      "sha256": "ae943ffc3e17670e09166877066ce544440d27daa84f9f8a3c1b98b638e22ad5",
+      "width": 1120,
+      "height": 658,
+      "chapter": "08-mmorpg/network-persistence"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/09-mmo-ui-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2998,
+      "sha256": "b650eeb093978a5a026fb426d1250a261f84e74a9fcd3078627858af117e9f38",
+      "width": 1120,
+      "height": 658,
+      "chapter": "09-mmo-ui/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/09-mmo-ui-viewmodels.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2906,
+      "sha256": "ed112c94033c15408c7eef73a611e37f32753780d5e3dc035b60dc4b1b2bbc6c",
+      "width": 1120,
+      "height": 658,
+      "chapter": "09-mmo-ui/viewmodels"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/09-mmo-ui-localization.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2990,
+      "sha256": "de27fc6757456ef179f629adb85dca37030d8ac393853fa3c7203eb5e721b70b",
+      "width": 1120,
+      "height": 658,
+      "chapter": "09-mmo-ui/localization"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/10-backend-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2978,
+      "sha256": "1018f73a7570f134d174df4075d2d7f9f2f809f3bfaaf1c21b9451ef5d49a8ca",
+      "width": 1120,
+      "height": 658,
+      "chapter": "10-backend/index"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/10-backend-program-and-workers.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3057,
+      "sha256": "c9883753095c8823f083f56855e5eeee1a991f846e923c8b1cd8bff5a25a782f",
+      "width": 1120,
+      "height": 658,
+      "chapter": "10-backend/program-and-workers"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/10-backend-database.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2935,
+      "sha256": "63a44e83356e4141afc2bf5bfa801e221c4423fab4be4fc685c5a66c4d9c4cb7",
+      "width": 1120,
+      "height": 658,
+      "chapter": "10-backend/database"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/10-backend-authentication.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3046,
+      "sha256": "c89ee8048638e850c3bf2256f3f4317095c0855eacb977e2409bfa64be651c88",
+      "width": 1120,
+      "height": 658,
+      "chapter": "10-backend/authentication"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/10-backend-persistence.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2943,
+      "sha256": "3e5be30f392564045b70821786e704e078f582fef7b19b440afeaf97f032ccf6",
+      "width": 1120,
+      "height": 658,
+      "chapter": "10-backend/persistence"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/10-backend-run-and-test.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3027,
+      "sha256": "5afbcb615b88dbda5a51edf4d5b740e87401bcd64a16b6bb3ce1aa6c49831bd5",
+      "width": 1120,
+      "height": 658,
+      "chapter": "10-backend/run-and-test"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/10-backend-deployment.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3022,
+      "sha256": "2bf4b3c7e791301afe344363679641afa3ff4f369788c4fc4b7d6844a45ecbe9",
+      "width": 1120,
+      "height": 658,
+      "chapter": "10-backend/deployment"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/11-reference-index.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3034,
+      "sha256": "ab0d221d12b9ee0e22c35b4c8fa4ca11ed9095cb1d75a45b242b950780a9d491",
+      "width": 1120,
+      "height": 658,
+      "chapter": "11-reference/index"
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/blueprint-screenshot-settings.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 140056,
+      "sha256": "e255056c989b3c6b6770ab5010d16f487a754ae7b26abe74494d71af8196b764",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "Editor Preferences / Plugins / Blueprint Screenshot Tool",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:33:22.151997+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 900
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/11-reference-performance.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2994,
+      "sha256": "d36d7da5442f24497bfd354552b71ebd4faec6d68afbbc7ce4f5888dcffaf827",
+      "width": 1120,
+      "height": 658,
+      "chapter": "11-reference/performance"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/11-reference-upgrades.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2963,
+      "sha256": "8bd577cebdd00a5836ae19f29e619666dcd63d54c5a661bae9d6d272a6d12a95",
+      "width": 1120,
+      "height": 658,
+      "chapter": "11-reference/upgrades"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/11-reference-publishing.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 2995,
+      "sha256": "7e6bff8b07ef8e3cbd58dff1e11ae527eee58188e9759cf9e9604fbb92c69c0b",
+      "width": 1120,
+      "height": 658,
+      "chapter": "11-reference/publishing"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/11-reference-glossary.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3034,
+      "sha256": "f54e18f0adb3a0032e77ab95b9e0adc6c924e2b09f657c734fb6bc38067915cd",
+      "width": 1120,
+      "height": 658,
+      "chapter": "11-reference/glossary"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/downloads.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3057,
+      "sha256": "87fffecfe98532d6adfb4e11ed5684ac0d434b5c585f08da7e970369c57aaaf8",
+      "width": 1120,
+      "height": 658,
+      "chapter": "downloads"
+    },
+    {
+      "publicPath": "public/media/beginner/whole-guide/topdown-camera.png",
+      "method": "Native SlateInspectorToolset.Screenshot",
+      "bytes": 107724,
+      "sha256": "ac7ca8cf81b11c2c6b68bbd56e8bbff3e34acdea3380a25aabed797a47aa8540",
+      "project": "F:/UE/LyraStarterGame/LyraStarterGame.uproject",
+      "assetPath": "/TopDownArena/Game/CM_ArenaFramingCamera",
+      "editorPid": 12344,
+      "savedAt": "2026-09-15T09:38:16.330706+08:00",
+      "postProcessing": false,
+      "width": 1550,
+      "height": 1050
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/08-mmorpg-source-workbook.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3008,
+      "sha256": "87c77b463f02090093c25fd20d5885f019c51b2aea390f1a7614bf26880c84ae",
+      "width": 1120,
+      "height": 658,
+      "chapter": "08-mmorpg-source-workbook"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/08-mmorpg-asset-construction.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3190,
+      "sha256": "321c6585c938c698c0c92bb02015575e13eca01b3aeefced20649f36eddc3311",
+      "width": 1120,
+      "height": 658,
+      "chapter": "08-mmorpg-asset-construction"
+    },
+    {
+      "publicPath": "public/media/guide-diagrams/02-architecture-modification-workshop.svg",
+      "method": "Authored SVG source-based schematic; not an editor screenshot",
+      "bytes": 3476,
+      "sha256": "dba8999793e4574be58d8939f3740a1dc60b9f1f56ce0547afc54b3179ab6c5b",
+      "width": 1120,
+      "height": 786,
+      "chapter": "02-architecture/modification-workshop"
+    }
+  ]
+}

@@ -36,8 +36,76 @@ EffectiveBotCount = UGameplayStatics::GetIntOption(
 
 计分要沿实际玩法组件或蓝图继续查找：基础 Lyra 层提供队伍、标签计数和消息；ShooterCore 的淘汰/控制点内容组合成具体胜负规则。击杀连锁与助攻处理器位于 `ShooterCoreRuntime` 的 `MessageProcessors`，并不是“所有计分都在 C++ GameMode”。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 按图找到 Bot 数量与控制器
+
+在 Content Browser 选 **ShooterCore Content → Bot**，打开 `B_ShooterBotSpawner`。这是纯数据蓝图，打开后通常直接显示默认值；不是地图中一个已经运行的 Bot。展开 **Gameplay**，记录下面两个字段。
+![Bot 生成组件默认值：数量 3、射击 AI 控制器](/media/beginner/whole-guide/bot-spawner.png)
+
+**看图操作**：Num Bots to Create=3，Bot Controller Class=B_AI_Controller_LyraShooter。Random Bot Names 是名字候选数组，不是生成数量。自动启用复选框也不能替代 Experience 完成后的创建流程。
+
+继续用引用旁的放大镜定位控制器，打开它的逻辑，寻找启动 Behavior Tree 的位置。**AIController** 负责决策，**Pawn** 是它控制的身体，**Behavior Tree** 组织行为，**Blackboard** 存放当前目标等工作数据。把它们当作一个对象会很难解释“Bot 已生成但不走路”。
+源码：`Source/LyraGame/GameModes/LyraBotCreationComponent.cpp`，本机第 53–78 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+	// Determine how many bots to spawn
+	int32 EffectiveBotCount = NumBotsToCreate;
+
+	// Give the developer settings a chance to override it
+	if (GIsEditor)
+	{
+		const ULyraDeveloperSettings* DeveloperSettings = GetDefault<ULyraDeveloperSettings>();
+
+		if (DeveloperSettings->bOverrideBotCount)
+		{
+			EffectiveBotCount = DeveloperSettings->OverrideNumPlayerBotsToSpawn;
+		}
+	}
+
+	// Give the URL a chance to override it
+	if (AGameModeBase* GameModeBase = GetGameMode<AGameModeBase>())
+	{
+		EffectiveBotCount = UGameplayStatics::GetIntOption(GameModeBase->OptionsString, TEXT("NumBots"), EffectiveBotCount);
+	}
+
+	// Create them
+	for (int32 Count = 0; Count < EffectiveBotCount; ++Count)
+	{
+		SpawnOneBot();
+	}
+}
+```
+
+从上到下，数量先取资产默认值，再允许编辑器 Developer Settings 覆盖，最后允许 URL 的 `NumBots` 覆盖。因此你把图中的 3 改成 1，却仍看到多个 Bot 时，先检查覆盖来源；不要立刻怀疑保存失败。
+
+函数前还有空控制器类检查；调用入口在 Experience 加载完成后检查 `HasAuthority()`。`SpawnOneBot` 创建 AIController，再交给 GameMode 的通用初始化与 RestartPlayer 创建/控制角色。这条链复用了玩家初始化，不是简单 SpawnActor 一个网格体。
+
+### 队伍、分数和阶段从哪里读
+
+| 资产/源码入口 | 打开后先读什么 | 和 Bot 的关系 |
+|---|---|---|
+| B_TeamSetup_TwoTeams | Class Defaults 中队伍配置；父类 LyraTeamCreationComponent | 队伍成员身份由规则分配，不取决于衣服颜色 |
+| B_TeamDeathMatchScoring | 计分相关变量与收到死亡消息后的图 | Bot 和玩家都可能参与计分，不能只看控制器种类 |
+| Phase_Warmup / Phase_Playing / Phase_PostGame | 父类、Phase Tag、激活和结束逻辑 | 等待、战斗、结束阶段可授予或撤销不同规则 |
+| BT_Lyra_Shooter_Bot / BB_Lyra_Shooter_Bot | 树的 Root、选择节点、任务与 Blackboard Key | 解释它为什么选择某个目标/移动位置 |
+
+行为树调试时，先进入 PIE，再在树编辑器的 Debug 下拉选择实际 Bot。未运行时显示的静态树没有当前执行高亮。要检查走路，还需可到达的导航区域；训练场章节有导航构建的实拍和归档验证。
+
+**完成检查**：记录一只 Bot 的 Controller、Pawn、PlayerState、Team ID；指出谁保存队伍身份，谁运行行为树。再把 PIE 的数量覆盖关掉核对资产默认值，这比只数屏幕中的模型更可靠。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 应能指出 Bot 的队伍、PawnData、当前行为树和对局阶段。机器人站着不动时分开检查 NavMesh、控制器/行为树、黑板目标与技能初始化；不要先提高移动速度。
 
 练习：把实验地图机器人数量设为 0、1、多个，核对配置覆盖来源。再画出“淘汰一人 → 消息/计分 → 胜利条件 → 赛后阶段”的实际链路，标出权威执行位置。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验五列出了 3→1 的操作、编辑器/URL 覆盖排查，以及服务器 AIController 的数量验收。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

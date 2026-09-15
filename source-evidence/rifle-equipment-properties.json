@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"returnValue\":\"{\\\"InstanceType\\\":{\\\"refPath\\\":\\\"/ShooterCore/Weapons/Rifle/B_WeaponInstance_Rifle.B_WeaponInstance_Rifle_C\\\"},\\\"AbilitySetsToGrant\\\":[{\\\"refPath\\\":\\\"/ShooterCore/Weapons/Rifle/AbilitySet_ShooterRifle.AbilitySet_ShooterRifle\\\"}],\\\"ActorsToSpawn\\\":[{\\\"actorToSpawn\\\":{\\\"refPath\\\":\\\"/ShooterCore/Weapons/Rifle/B_Rifle.B_Rifle_C\\\"},\\\"attachSocket\\\":\\\"weapon_r\\\",\\\"attachTransform\\\":{\\\"location\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"z\\\":0},\\\"rotation\\\":{\\\"pitch\\\":-1.0263996075160125e-29,\\\"yaw\\\":-89.999988379503037,\\\"roll\\\":8.7294862735680099e-38},\\\"scale\\\":{\\\"x\\\":1,\\\"y\\\":1,\\\"z\\\":1}}}]}\"}"
+    }
+  ]
+}

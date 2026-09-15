@@ -1,0 +1,199 @@
+---
+title: MMORPG 从零复刻：按步骤写代码、搭蓝图与配置
+description: 以四个可编译源码阶段和资产、UI、后端、双客户端验收串起完整制作过程。
+---
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+**读图**：每一层都有独立检查点。C++ 编译通过后，仍要创建它引用的资产；界面出现后，仍要验证服务器和存档。
+
+本章是 MMORPG 的**实际制作顺序**。从一个没有教程代码、没有教程资产的新目录开始，按 00–10 完成。每一段都给出要写的文件、要搭的资产、执行位置和通过标准。项目成果是本教程的单区域联机 RPG：账号、角色、双客户端、移动与战斗、死亡重生、背包、UI、中文切换、存档与打包。
+
+## 00｜准备工作目录与第一个 C++ 模块
+
+先打开 [UE 零基础](/docs/01-start/ue-basics)，完成“认窗口、找文件、读配置”。本机使用 UE 5.8.1 源码引擎和 PowerShell 7；工具安装与编译器检查按 [环境篇](/docs/01-start/environment) 和 [后端工具准备](/docs/10-backend/run-and-test) 完成。下面的目录变量只需改这一处，然后在同一个 PowerShell 终端继续。
+
+从 [下载页](/docs/downloads) 解压 MMORPG 包，进入含 `examples`、`scripts`、`curriculum` 的包根目录；如果使用仓库，就进入仓库根。不要进入 Unreal Editor 的 Cmd 输入这些 PowerShell 命令。
+
+```powershell title="PowerShell 7：只修改这里的实际目录"
+Set-Location 'F:/UE/LyraDoc'
+$lessonEngine = 'E:/UnrealEngine'
+$lessonLyra = 'F:/UE/LyraStarterGame'
+$lessonProject = 'F:/UE/LyraDocLabs/MyFirstMMO/MMORPG'
+$lessonUProject = Join-Path $lessonProject 'MMORPG.uproject'
+```
+
+`$lessonProject` 必须是全新的空目录，最后一级保留 `MMORPG`。所有 C++ 模块宏、Target 和资产类路径都使用这个名称；理解重命名流程前，不在这一轮改成自己的游戏名。
+
+```powershell title="创建最小骨架；不会复制成品 Content"
+./scripts/mmorpg/Advance-Lesson.ps1 -Stage 0 -Destination $lessonProject -Action Apply -LyraRoot $lessonLyra
+```
+
+这一步创建 9 个文件。核心 `MMORPG.cpp` 注册游戏模块，轻量 Build.cs 只依赖 Core/CoreUObject/Engine/InputCore；4 个 Target 声明 Game、Editor、Client、Server；配置选择 Entry 地图并关闭 Live Coding。打开 [00 完整骨架文件](/docs/08-mmorpg/source/skeleton) 逐文件复制，或打开包内 `curriculum/mmorpg/skeleton` 查看当前骨架，不要此时用后面“完整依赖版”替换 Build.cs。
+
+在 Rider 选择 **Open → MMORPG.uproject**。左侧文件树切到文件视图，展开 Source → MMORPG；新文件的操作是**右键父目录 → New → File → 输入完整扩展名**。不手工创建 `.generated.h`。复制整个文件时先全选原内容再粘贴，不能重复追加类声明。
+
+```powershell title="此后每个源码阶段都执行同一条 Editor 构建命令"
+& (Join-Path $lessonEngine 'Engine/Build/BatchFiles/Build.bat') `
+  MMORPGEditor Win64 Development "-Project=$lessonUProject" `
+  -WaitMutex -NoHotReloadFromIDE -NoUBA -MaxParallelActions=4
+if ($LASTEXITCODE -ne 0) { throw 'Editor 构建失败：先修复日志中的第一条错误。' }
+```
+
+**通过标准**：`Result: Succeeded`，目标目录出现 `Binaries/Win64/UnrealEditor-MMORPG.dll`。此时没有登录、技能和区域是正常的；本阶段只验证能构建空模块。以后完整构建前先保存并正常关闭使用同一引擎的编辑器。
+
+## 01｜写出可复用的游戏基础框架
+
+打开 [框架完整源码](/docs/08-mmorpg/source/framework)，按清单创建整个 `Plugins/MMOFramework`。先写数据定义头文件，再写 AbilitySet、InputConfig、ExperienceManager、PawnExtension 和 Subsystem 的实现。
+
+| 顺序 | 写什么 | 为什么先写它 |
+|---|---|---|
+| 1 | `.uplugin`、`MMOFramework.Build.cs` | 让 UBT 知道插件和模块存在、能引用哪些接口 |
+| 2 | AbilitySet / InputConfig / PawnData / ExperienceDefinition | 声明随后 Details 面板可以编辑的数据 |
+| 3 | AbilitySet.cpp / InputConfig.cpp / AbilitySystemComponent.cpp | 把数据变成授予、查找与激活行为 |
+| 4 | ExperienceManager / PawnExtension / FrameworkSubsystem | 注册状态、加载依赖、等待不同机器上的就绪条件 |
+
+将 `curriculum/mmorpg/descriptors/01.uproject` 的完整内容复制到项目 `MMORPG.uproject`。它只在 00 基础上启用框架所需插件；不要将 `.uproject` 内容粘进 `.uplugin`。
+
+完成一组后，用下面命令逐文件比较。若希望先获得一份准确的阶段代码，再边读边改，可用 Apply 完成同一组的复制；它不会替你执行编译。
+
+```powershell
+./scripts/mmorpg/Advance-Lesson.ps1 -Stage 1 -Destination $lessonProject -Action Check -LyraRoot $lessonLyra
+./scripts/mmorpg/Advance-Lesson.ps1 -Stage 1 -Destination $lessonProject -Action Apply -LyraRoot $lessonLyra
+```
+
+手工写文件后先 Check，再 Apply 登记阶段；直接使用阶段副本的读者先 Apply，再 Check。工具发现你改过已安装文件时会停止并列出文件名，不会覆盖改动。完成后执行 00 的构建命令。
+
+**通过标准**：Editor 构建成功；源码中能找到 `UMMOExperienceDefinition`、`UMMOPawnData`、`UMMOAbilitySet`。**解释练习**：找到 PawnData 的 AbilitySets 字段，再找到哪个函数消费它。只是出现类名，还没有实际生成这些资产。
+
+## 02｜写协议校验与 HTTP 两端
+
+按 [协议与 HTTP 完整源码](/docs/08-mmorpg/source/http) 创建 MMOContracts、MMOBackendClient、MMOBackendServer 与 MMOIntegration 描述符；替换 `MMORPG.uproject` 为 `curriculum/mmorpg/descriptors/02.uproject`。仍保留 00 的轻量 MMORPG.Build.cs。
+
+先读请求/响应结构与 JSON 校验，再读客户端异步请求的完成处理，最后读 ServerOnly 模块如何带游戏服身份调用后端。蓝图中将出现的 **Request MMO** 节点来自这一阶段的 `UFUNCTION` 声明。
+
+```powershell
+./scripts/mmorpg/Advance-Lesson.ps1 -Stage 2 -Destination $lessonProject -Action Apply -LyraRoot $lessonLyra
+./scripts/mmorpg/Advance-Lesson.ps1 -Stage 2 -Destination $lessonProject -Action Check -LyraRoot $lessonLyra
+```
+
+手写文件的读者可以先 Check，再 Apply 登记。再次执行 Editor 构建。**通过标准**：3 个模块参与构建且成功；这里未启动数据库或 HTTP 服务，暂时不要求登录成功。
+
+## 03｜写完整游戏逻辑、UI 父类与区域
+
+本阶段把相互引用的一组游戏类接起来。按下列顺序阅读和创建完整文件；全部完成后统一编译，不能在只复制头文件时期待链接成功。
+
+| 顺序 | 完整文件入口 | 这一组做出来什么 |
+|---|---|---|
+| 1 | [工程与构建](/docs/08-mmorpg/source/build) | 用完整 Build.cs 和 .uproject 替换前几阶段的轻量版本 |
+| 2 | [角色、战斗、存档](/docs/08-mmorpg/source/gameplay) | PlayerState/ASC、Character、GameMode、目标、伤害、奖励和保存 |
+| 3 | [输入与死亡](/docs/08-mmorpg/source/input-health) | 按键接入、RPC、HealthComponent、重生与验收入口 |
+| 4 | [UI 父类](/docs/08-mmorpg/source/ui) | BindWidget、按钮行为、三层根布局和 PlayerVM |
+| 5 | [动画接口](/docs/08-mmorpg/source/animation) | 给动画图提供 GroundSpeed、bIsFalling 等数据 |
+| 6 | [区域插件](/docs/08-mmorpg/source/zone) | MMOCore 和 MMOZoneComponent，创建并清理训练区 |
+| 7 | [后端 Program](/docs/08-mmorpg/source/backend) | 独立服务目标、工作线程、SQL 事务与第三方库构建规则 |
+| 8 | [完整配置](/docs/08-mmorpg/source/config) | 原生类、扫描路径、标签、UI 契约、语言和 Cook |
+| 9 | [编辑器辅助工具](/docs/08-mmorpg/source/editor-tools) | 原生资产创建/编译/核对接口，供后续对照验证使用 |
+
+从自己取得的官方 Lyra 复制 CommonGame、CommonUser、ModularGameplayActors、UIExtension 四个插件，精确目录见 [迁移表](/docs/08-mmorpg/migration)。阶段工具同样会按清单复制这四项依赖，跳过 Binaries、Intermediate、Saved。
+
+```powershell
+./scripts/mmorpg/Advance-Lesson.ps1 -Stage 3 -Destination $lessonProject -Action Apply -LyraRoot $lessonLyra
+./scripts/mmorpg/Advance-Lesson.ps1 -Stage 3 -Destination $lessonProject -Action Check -LyraRoot $lessonLyra
+```
+
+再次完整构建 Editor。**通过标准**：MMORPG、MMOCore、MMODocTools 及依赖模块构建成功。此时源码与配置齐全，**教程资产仍需在下面创建**。打开编辑器看到缺失默认 GameMode/Policy 引用时，按 04–07 建出对应对象，不要随意选一个模板类消除提示。首次空 Content 启动时还可能出现 `Plugin_Missing_GameFeatureData`：先创建并保存 `/MMOCore/MMOCore`，再正常退出并重开。插件状态机需要在新进程重新注册，不能在第一次错误状态下直接继续联机验收。
+
+## 04｜先准备资源，再手工创建资产
+
+完整资产制作顺序见 [资产施工清单](/docs/08-mmorpg/asset-construction)。这份清单明确每个对象是 Blueprint、Data Asset、输入资产还是 Widget，以及哪些只有默认值、哪些有必须连接的图表。
+
+1. 按 [迁移篇的 Manny 资源步骤](/docs/08-mmorpg/migration#生成脚本对应哪些人工操作) 从自己引擎模板复制完整 Mannequins 目录到 `Content/Characters/Mannequins`，重新打开确认网格和骨骼能加载。
+2. 按 [动画篇](/docs/08-mmorpg/animation) 创建动画层接口、无武器层、主 AnimBP；复制蓝图文本前先建对骨骼、父类和接口。
+3. 按 [角色与 GAS](/docs/08-mmorpg/character-gas#手工创建角色技能和目标蓝图) 创建 BP_MMOCharacter、GA_ArcaneBolt、BP_MMOTrainingTarget；角色 Mesh 设置 Manny 和主 AnimBP。
+4. 创建 7 个 InputAction、IMC、InputConfig、AbilitySet、PawnData、Experience，最后创建 BP_MMOGameMode。按清单逐项填写引用，先创建被引用对象，再填引用它的对象。
+5. 创建 `/MMOCore/MMOCore` GameFeatureData，配置 Add Components；保存并重开核对。
+
+**通过标准**：所有资产可重新打开；蓝图 Compile 无错误；每条引用都能通过右侧放大镜定位到预期对象。只看文件名存在不算完成。
+
+## 05｜搭建 UI、真实绑定和返回流程
+
+严格按 [Designer 逐控件制作](/docs/09-mmo-ui/designer) 的顺序：ST_MMO → 七个 Widget Blueprint → 栈 → 按钮/文本 → PlayerVM → 绑定 → Policy。完整类名、控件名与绑定表在 [UI 施工清单](/docs/08-mmorpg/asset-construction#ui-逐项创建与绑定)。
+
+每做一个 Widget：选择正确原生父类，搭 Hierarchy，勾选代码所需控件的 Is Variable，名字与 `BindWidget` 一致，最后 Compile → Save。原生代码已绑定的按钮不再额外接一套 OnClicked，否则一次点击可能执行两次。
+
+**通过标准**：根布局的 GameLayer/MenuLayer/ModalLayer 对应三个 Stack；ManaStatus 的两条绑定与 HUD/背包绑定方向正确；BP_MMOUIPolicy.LayoutClass 指向 WBP_MMOLayout。先能编译全部 Widget，再启动账号流程。
+
+## 06｜粘贴健康检查蓝图，核对每条线
+
+打开 [蓝图施工清单](/docs/08-mmorpg/asset-construction#健康检查图复制后的逐线验收)，下载原生节点文本，在 BP_BackendHealth 的 EventGraph 粘贴。保留一个 BeginPlay，核对执行线、WorldContext 和 Completed.Json 的数据线，再 Compile/Save。
+
+按 [Cook Label 图解](/docs/09-mmo-ui/blueprint-workflow#为健康检查蓝图声明-cook-依赖) 创建 DA_TutorialExamples。它让字符串加载的健康检查蓝图进入包；不要把往返测试副本加入。
+
+**通过标准**：蓝图编译成功；服务启动后运行该 Actor 打印 `{"ok":true}`。没有服务时按状态码定位，不能把编译成功当作 HTTP 请求成功。
+
+## 07｜对照配置实拍，把项目接起来
+
+按 [十四组配置图解](/docs/08-mmorpg/configuration) 从上到下核对。先检查 GameMode、GameInstance、LocalPlayer、Viewport，再检查 Input、CommonInput、Asset Manager、GameFeatureData、UI Policy、Tags 和 Cook。每项都在 [完整配置文件](/docs/08-mmorpg/source/config) 有对应文本。
+
+项目设置提交后保存并正常关闭编辑器，再打开同一工程。GameInstance 和视口类需要新进程创建；不能只在旧窗口改完文本就判断接线成功。
+
+## 08｜构建并启动后端，再运行双客户端
+
+按 [后端构建与启动](/docs/10-backend/run-and-test) 一至五完成 PostgreSQL、libpq/libsodium、专用数据库、Program 构建和健康检查。脚本的默认后端源码与凭据位于包内 `examples/MMORPG`；这是完整源码书中相同的后端文件。游戏工程则在 `$lessonProject`，不要混淆两个目录。
+
+想使用自己在练习工程修改的后端代码时，构建和启动脚本都传 `-ProjectRoot $lessonProject`；初始化凭据仍由包根的 Common.ps1 管理，不将数据库口令复制进游戏 Config。
+
+```powershell title="后端健康后，选择本次练习工程启动两个客户端"
+./scripts/mmorpg/Start-Lab.ps1 -Project $lessonUProject -Engine $lessonEngine -ClientCount 2
+```
+
+按照 [两客户端验收表](/docs/08-mmorpg/run-lab#两客户端验收表) 分别注册两个账号、创建两个角色并进入同一区域。不要在客户端 B 输入 A 的账号来验证隔离。先确认能看见对方移动，再验证攻击、药剂、死亡和存档。
+
+## 09｜验证中文、打包与重新进入
+
+先按 [本地化课程](/docs/09-mmo-ui/localization) 将 ST_MMO、LOCTEXT 文本收集、翻译、编译并打包，再按 [独立目标与 Cook](/docs/08-mmorpg/run-lab#独立目标cook-与实际产物启动) 构建 Client/Server 和真实分发目录。不要双击尚未 Cook 的裸 Client.exe 代替实际分发包。
+
+这些深入章节同时保留原参考工程的具体路径。制作自己的复刻工程时，继续使用 00 中的变量，向支持项目参数的脚本明确传入本次工程，不能漏掉 `-Project` 后运行到旧工程。
+
+```powershell title="本次练习工程的本地化与独立目标"
+./scripts/mmorpg/Build-Localization.ps1 -Project $lessonUProject -Engine $lessonEngine
+foreach ($lessonTarget in @('MMORPGClient', 'MMORPGServer')) {
+  & (Join-Path $lessonEngine 'Engine/Build/BatchFiles/Build.bat') `
+    $lessonTarget Win64 Development "-Project=$lessonUProject" `
+    -WaitMutex -NoHotReloadFromIDE -NoUBA -MaxParallelActions=3
+  if ($LASTEXITCODE -ne 0) { throw "$lessonTarget 构建失败，先修复第一条错误。" }
+}
+```
+
+先按运行篇完成源码引擎的 UnrealPak、BootstrapPackagedGame 与 AutomationTool 前置检查，然后执行实际 Cook 和 Stage：
+
+```powershell title="首次打包保留 Cook；不加 SkipCook"
+./scripts/mmorpg/Package-Lab.ps1 -Project $lessonUProject -Engine $lessonEngine
+$lessonClient = Join-Path $lessonProject 'Saved/StagedBuilds/WindowsClient/MMORPG/Binaries/Win64/MMORPGClient.exe'
+$lessonServer = Join-Path $lessonProject 'Saved/StagedBuilds/WindowsServer/MMORPG/Binaries/Win64/MMORPGServer.exe'
+./scripts/mmorpg/Invoke-Smoke.ps1 -Project $lessonUProject -Engine $lessonEngine `
+  -ClientExecutable $lessonClient -ServerExecutable $lessonServer
+```
+
+每项完成就记录一次：A 获得奖励 → B 的 XP 不变；A 消耗法力 → HUD 与进度条一致；退出并重进 → 保存值恢复；中文/英文切换 → 固定和动态文字都正确；在分发目录启动 → 布局、动画和健康检查资产都可用。
+
+## 10｜最终复刻验收单
+
+| 检查 | 必须看到的结果 | 不通过时回到 |
+|---|---|---|
+| 编译 | 四个源码阶段各自 Succeeded，最终 Editor/Client/Server/Backend 目标正确 | 00–03 / 后端构建 |
+| 资产 | 正确父类、完整引用、蓝图编译无错误、重开保留 | 04–06 |
+| 输入与表现 | 两客户端能移动、选目标、攻击；Manny 动画随状态变化 | 输入配置 / 动画 |
+| 战斗 | 奥术箭成本、伤害、冷却和服务器验证一致；死亡后新 Pawn 正确绑定 | GAS / 死亡组件 |
+| UI | 所有按钮有效，法力与背包绑定刷新；菜单返回恢复输入 | Designer / 层与焦点 |
+| 存档 | 正常退出确认保存；重进恢复角色，旧写入不能覆盖新状态 | 持久化 |
+| 分发 | 使用 Cook 后的真实 Client/Server 目录也通过上述核心流程 | 运行与打包 |
+
+本页的源码阶段、完整文件与实际检查记录放在 `curriculum/mmorpg` 和 `verification/copy-course-*`。历史运行图片标明采集日期；没有重新执行的用例不冒充本轮通过。完成复刻后再做每章的修改练习，并保留一份已通过的版本作比较。
+
+### 本次从空目录验证了什么
+
+2026-09-15，在全新 `CopyCourse-20260915/MMORPG` 中依次完成四阶段 Editor 构建，均为 `Succeeded`。随后用原生编辑器 API 从空教程 Content 创建资产，保存 GameFeatureData 后重启，完成引用、动画图往返编译与 Cook Label 检查；开发进程的双客户端四轮共 **8/8** 项通过。
+
+这次资产制作使用工具自动完成，未将每个手工点击冒充为人工操作验证；客户端运行采用 NullRHI，不能据此判断渲染画面。独立 Client/Server Cook、实际分发包和渲染截图仍对应运行篇明确注明的 2026-09-13 记录。本次记录分别在 `copy-course-builds.json`、`copy-course-assets.json`、`copy-course-editor.json` 和 `copy-course-runtime.json`，可与自己的检查结果比较。

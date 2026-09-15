@@ -56,7 +56,15 @@ description: 使用本机 Gradess Blueprint Screenshot Tool 1.1.7，在 UE 5.8.1
 
 图下注释按“入口 → 字段 → 值的作用 → 保存方式 → 预期结果”排列。只读官方资产无需保存；自己修改的 Blueprint 要 Compile 并查看 Compiler Results 后 Save，Data Asset 只需 Save，World Settings 则保存地图。保存后重开核对配置，截图本身不证明修改已写入磁盘。
 
-采集计划位于 `source-evidence/configuration-capture-plan.json`，其中 **19/19 个配置视图**已经由 **26 张原生 PNG**覆盖，包括 Asset Manager、Experience、ActionSet、PawnData、AbilitySet、输入、装备和 UI 层栈。实际时间、连接 PID、字段值、原图路径、尺寸与 SHA-256 单独记录于 `source-evidence/configuration-training.json`。UI 根布局的配置上下文已取得，选中节点的 1:1 导出仍单独标为待补采；计划和已有缩放视图不能替代它。
+### 面向 UE 新手的配图示例
+
+新手还需要知道怎样到达这个面板。至少保留一张菜单或文件夹入口图，再给一张展开关键配置的结果图。每张图下写清当前选中的资产或组件、字段实际值，以及读者完成后应该看到什么。Rider 代码图应包含文件名和函数体，并解释如何从搜索结果进入实现。
+
+本教程新增的[关闭 Live Coding 图解](/docs/01-start/live-coding)用两张图说明菜单入口和关闭后的面板；[步枪五步导航](/docs/01-start/project-map#操作步骤以步枪为线索)用十四张 UE / Rider 实拍图，从插件显示选项一直讲到具体技能和枪械网格。可以按这两个示例补充其他章节，避免只列“打开资产、查看字段”而省略点击路径。
+
+图中数值与文字说明必须逐项核对。保留原始 PNG，记录来源工程、界面版本、尺寸和哈希；网页允许点击放大。不要重绘出看似编辑器的界面来代替实拍，也不要将折叠数组或孤立节点图作为配置已经讲清的依据。
+
+采集计划位于 `source-evidence/configuration-capture-plan.json`，其中 **19/19 个配置视图**已经由 **26 张原生 PNG**覆盖，包括 Asset Manager、Experience、ActionSet、PawnData、AbilitySet、输入、装备和 UI 层栈。实际时间、连接 PID、字段值、原图路径、尺寸与 SHA-256 单独记录于 `source-evidence/configuration-training.json`。该计划保留早期采集状态；随后根布局已补齐 1648×1264 的完整十节点 1:1 原图，见 CommonGame 章节和 training-blueprint-roundtrip 记录。早期缩放上下文图与后续原图分别保留来源。
 
 ## 已取得的蓝图图表结果
 
@@ -71,6 +79,62 @@ description: 使用本机 Gradess Blueprint Screenshot Tool 1.1.7，在 UE 5.8.1
 导出成功说明捕获管线可用，仍不代表节点文本已在另一工程粘贴编译。蓝图资源依赖、父类、变量和函数签名需要单独验证。
 
 本机已在独立 `LyraDocLabs/LyraTraining` 工程中完成后续验证：将 Jump 的 `EventGraph`（20 节点）、Dash 的 `SelectDirectionalMontage`（26 节点）以及 W_OverallUILayout 的 `EventGraph`（10 节点）原生文本导入完整蓝图测试副本，保留函数签名与 Widget Designer 树，三图均编译成功且无编译警告。记录位于 `verification/training-blueprint-roundtrip.json`，包含文本 SHA-256、目标资产和真实编译结果。运行复现见[训练场准备步骤](/docs/07-training/feature-and-experience)。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 按实拍找到比例、最大尺寸与快捷键
+
+主编辑器 **Edit → Editor Preferences**，顶部搜索 `Blueprint Screenshot`，点 **所有**，展开 **General** 和 **Hotkeys**。不同中文翻译下可直接按图中的英文插件名搜索。
+![Blueprint Screenshot Tool 的原生配置：Zoom Amount=1、Max Size=15360、Ctrl+F7/F8](/media/beginner/whole-guide/blueprint-screenshot-settings.png)
+
+**看图操作**：2026-09-15 在 Lyra 基准工程实拍。General 中 Extension=PNG、Padding=128、Max Screenshot Size=15360、Zoom Amount=1.0；Hotkeys 中 F7/F8 仅勾选 Ctrl，分别截图和打开目录。Save Directory 指向当前基准工程的 Saved/Screenshots/WindowsEditor。
+
+这张图证明配置值，图画布中的选区还要另外确认。打开具体 Graph 后，点节点/画布并 Ctrl+A，看到全部选择描边再 Ctrl+F7。保存路径属于当前工程，切换到 Training 或 MMORPG 后核对对应目录。
+源码：`Plugins/BlueprintScreenshotTool/Source/BlueprintScreenshotTool/Private/BlueprintScreenshotToolHandler.cpp`，本机第 128–151 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+if (SelectedNodes.Num() > 0)
+{
+	FSlateRect BoundsForSelectedNodes;
+	InGraphEditor->GetBoundsForSelectedNodes(BoundsForSelectedNodes, Settings->ScreenshotPadding);
+
+	NewViewLocation = BoundsForSelectedNodes.GetTopLeft();
+	NewZoomAmount = Settings->ZoomAmount;
+
+	WindowSizeScale = Settings->ZoomAmount;
+
+	WindowSize = BoundsForSelectedNodes.GetSize();
+}
+else
+{
+	NewViewLocation = CachedViewLocation;
+	NewZoomAmount = CachedZoomAmount;
+
+	const auto DPIScale = FPlatformApplicationMisc::GetDPIScaleFactorAtPoint(0.0f, 0.0f);
+	const auto& CachedGeometry = InGraphEditor->GetCachedGeometry();
+	const auto SizeOfWidget = CachedGeometry.GetLocalSize();
+	WindowSize = SizeOfWidget * DPIScale;
+
+	InGraphEditor->SetViewLocation(NewViewLocation, CachedZoomAmount);
+}
+```
+
+有选择时，插件计算选区包围盒并使用 Settings.ZoomAmount；无选择时，保留 CachedViewLocation 与 CachedZoomAmount。代码解释了为什么只把 Zoom 设成 1，仍可能得到当前缩小视口的截图。
+
+### 一组完整教学图应该包含哪些视图
+
+| 读者需要知道 | 使用什么图 | 图下解释 |
+|---|---|---|
+| 怎么找到配置 | 菜单/文件夹入口实拍 | 从哪个窗口开始点 |
+| 配置如何填写 | 展开数组/结构的 Details 实拍 | 当前对象、字段、实际值、保存方式 |
+| 代码/蓝图怎样执行 | 实际源代码节选与 1:1 Graph | 输入、顺序、分支、输出、清理 |
+| 做完应该怎样 | 真实运行画面与观察记录 | 画面证明什么，数值/网络另如何验证 |
+
+关系示意图可帮助理解调用顺序，但必须标明是示意图。本轮新增流程图已明确标注；UE/Rider 截图保留原始像素，不用重绘面板充当配置实拍。
+
+{/* full-guide-end */}
 
 ## 排障与练习
 

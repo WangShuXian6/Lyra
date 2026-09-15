@@ -68,6 +68,59 @@ Gameplay Cue 用于表现，不能成为唯一的伤害计算位置。没有音�
 
 把音量滑块绑定到正确设置模型比直接修改单个声音组件更可靠，否则切换地图或重新生成角色后会失效。音效缺失时先检查资源、上下文标签、音量/混音和 Cue 路径，再检查音频设备。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 用一个脚步例子读懂标签和资源
+
+在 Content Browser 选 **Content → ContextEffects**，双击 `CFX_DefaultSkin`。展开 **Context Effects → 索引 0 → Effects**。如果嵌套项很多，右键属性名称选 **全部展开**；每个数组都从 0 开始编号。
+![CFX_DefaultSkin：同一 Walk 事件按 Concrete 和 Glass 上下文选声音](/media/beginner/whole-guide/context-effects.png)
+
+**看图操作**：索引 0：Effect Tag=AnimEffect.Footstep.Walk，Context=SurfaceType.Concrete，Effects 引用 sfx_Character_FS_Concrete_nl_meta。索引 1 保持 Walk，但换成 Glass 和对应玻璃脚步。Effects 中的资源类型是 MetaSound Source。
+
+Effect Tag 回答“发生了什么”，Context 回答“在什么条件下”，Effects 回答“播放哪些资源”。MetaSound 是程序化声音资产；Niagara 是特效系统。该库允许声音与 Niagara 资源，并不要求每个条目二者都有。
+源码：`Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsLibrary.cpp`，本机第 11–31 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void ULyraContextEffectsLibrary::GetEffects(const FGameplayTag Effect, const FGameplayTagContainer Context, 
+	TArray<USoundBase*>& Sounds, TArray<UNiagaraSystem*>& NiagaraSystems)
+{
+	// Make sure Effect is valid and Library is loaded
+	if (Effect.IsValid() && Context.IsValid() && EffectsLoadState == EContextEffectsLibraryLoadState::Loaded)
+	{
+		// Loop through Context Effects
+		for (const auto& ActiveContextEffect : ActiveContextEffects)
+		{
+			// Make sure the Effect is an exact Tag Match and ensure the Context has all tags in the Effect (and neither or both are empty)
+			if (Effect.MatchesTagExact(ActiveContextEffect->EffectTag)
+				&& Context.HasAllExact(ActiveContextEffect->Context)
+				&& (ActiveContextEffect->Context.IsEmpty() == Context.IsEmpty()))
+			{
+				// Get all Matching Sounds and Niagara Systems
+				Sounds.Append(ActiveContextEffect->Sounds);
+				NiagaraSystems.Append(ActiveContextEffect->NiagaraSystems);
+			}
+		}
+	}
+}
+```
+
+先检查库已加载和标签有效，再遍历条目。`MatchesTagExact` 要求事件标签完全相同；`HasAllExact` 要求传入上下文具备条目中的全部标签；后面的空集合条件又限制了空/非空上下文的配对。匹配后使用 `Append` 汇总所有符合项，而不是只返回第一项。
+
+因此 `SurfaceType.Default` 在此函数中没有“自动兜底”的特殊分支；如果希望落到该条目，调用方必须产生能匹配的上下文。排查无声时，沿动画 Notify → ContextEffectsComponent/Subsystem → 实际上下文 → 库加载 → 匹配结果检查。
+
+### GameplayMessage 与 GameplayCue 不共用一条传输线
+![状态、通知和表现各走哪条线](/media/guide-diagrams/05-gameplay-messages-audio.svg)
+
+**读图**：一张击杀提示可以由本地消息驱动，一次枪口效果可以由 Cue 驱动；都不能替代权威 Health 的更新。
+
+打开 `GCN_Weapon_Rifle_Fire` 的 Class Defaults，记录 Gameplay Cue Tag，再读处理事件中使用的声音与粒子引用。若找不到 Cue，检查 GameFeatureData 的 Cue 路径注册动作及 Feature 状态。`GameSubtitles` 另负责字幕展示相关支持，启用它不会把所有枪声自动翻译成字幕。
+
+**练习**：做一张三列记录：事件标签、谁发送/接收、是否跨网络。对 `Lyra.Inventory.Message.StackChanged`、步枪 Cue 和 `AnimEffect.Footstep.Walk` 各填一行，并指出地图切换时谁负责清理订阅。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 你应能解释每条消息在哪个 GameInstance 产生，哪些数据真正复制。重复提示查重复监听；旧界面已关闭仍回调则查句柄注销。练习：为“击杀敌人后加分、弹出文字并播放音效”画三条链，标明计分在服务器、UI 在所属客户端、音效表现的广播范围。

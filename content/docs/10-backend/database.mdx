@@ -94,6 +94,58 @@ SQL 结构是固定字符串，用户输入放进参数数组。角色名称即�
 
 本机 `libpq` 头文件和导入库来自 PostgreSQL 安装目录。`MMOThirdParty` 负责链接和运行时 DLL，不会进入游戏 Client Target。Windows DLL 来源和实际路径均由依赖准备脚本说明。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 从最小角色表读 SQL 约束
+源码：`examples/MMORPG/backend/migrations/001_initial.sql`，本机第 10–15 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```sql
+CREATE TABLE characters(
+ id uuid PRIMARY KEY DEFAULT gen_random_uuid(), account_id uuid NOT NULL REFERENCES accounts(id) ON DELETE CASCADE,
+ name text NOT NULL CHECK(length(name) BETWEEN 2 AND 24), version bigint NOT NULL DEFAULT 0 CHECK(version>=0),
+ state jsonb NOT NULL DEFAULT '{"level":1,"xp":0,"health":100,"mana":100,"inventory":[],"position":{"x":0,"y":0,"z":150}}',
+ updated_at timestamptz NOT NULL DEFAULT now(), UNIQUE(account_id,name)
+);
+```
+
+逐行解释：
+
+1. `id uuid PRIMARY KEY` 是稳定角色标识，默认由数据库生成。
+2. `account_id ... REFERENCES accounts(id)` 把角色关联到账号；它不是客户端随意声明的昵称。
+3. `NOT NULL` 要求有值；`CHECK` 限定名称长度与非负版本；`UNIQUE(account_id,name)` 限制同账号重复角色名。
+4. `state jsonb` 保存完整初始快照，默认 XP=0、Health/Mana=100、空背包和初始位置。
+5. `updated_at` 记录更新时间。时间戳与版本号各有用途，不能把“时间更新了”当作所有字段都保存正确。
+
+这是迁移文件中的建表片段，用来阅读，不应在已有库中单独反复执行。按本章初始化脚本应用版本化迁移，随后只读检查 schema_migrations。
+![数据表中的关系](/media/guide-diagrams/10-backend-database.svg)
+
+**读图**：这是关系示意，不是每张表都顺序调用下一张表。schema_migrations 另记录结构版本，不保存角色进度。
+
+### 为什么 SQL 中写 $1 而不拼接用户名
+源码：`examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp`，本机第 23–33 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+FRows Query(PGconn* DB, const ANSICHAR* SQL, const TArray<FString>& Args = {})
+{
+    TArray<TArray<ANSICHAR>> Bytes; TArray<const ANSICHAR*> Values;
+    for (const FString& Arg : Args)
+    {
+        FTCHARToUTF8 Utf8(*Arg); TArray<ANSICHAR>& B=Bytes.AddDefaulted_GetRef();
+        B.Append(Utf8.Get(),Utf8.Length()+1);
+    }
+    for (const auto& B : Bytes) Values.Add(B.GetData());
+    return FRows(PQexecParams(DB,SQL,Args.Num(),nullptr,Values.GetData(),nullptr,nullptr,0));
+}
+```
+
+Args 里的每个字符串先编码成 UTF-8 字节，再把指针数组传给 PQexecParams。SQL 中的 `$1/$2` 是参数位置，数据不会成为 SQL 结构的一部分。字节数组在调用结束前保持有效，避免把临时转换的悬空指针交给数据库。
+
+**检查输出**：`pg_isready` 只证明服务在接收连接；本章 SQL 查询才检查角色权限、迁移和真实表。查询私有明细时在本机看结果，教学截图与报告只记数量、版本和断言，避免导出凭据字段。
+
+{/* full-guide-end */}
+
 ## 预期结果与排障
 
 执行脚本后应存在两条迁移记录。运行 `Start-Backend.ps1` 后 `/health` 会执行数据库查询，返回 `{"ok":true}`。认证失败时核对当前 Windows 用户是否能解密凭据、专用角色密码是否被外部修改；不要把管理员密码填进客户端工程。

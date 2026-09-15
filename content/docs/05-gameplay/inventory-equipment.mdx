@@ -61,8 +61,81 @@ MarkItemDirty(NewEntry);
 
 默认背包也不是完整 MMORPG 背包：容量、堆叠策略、持久 ID、跨容器移动、交易与数据库事务需要明确设计。把整个 UObject 序列化到数据库不是推荐的协议边界；持久层使用稳定物品 ID 和数值，运行层重建实例。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 按图认清“同一把步枪”的三个对象
+![ID_Rifle 的碎片配置](/media/beginner/rifle/id-rifle-fragments.png)
+
+**看图操作**：先在 Content Browser 打开 ID_Rifle，点 Class Defaults，展开 Fragments。装备碎片的引用回答“装备什么”，SetStats 的数值回答“新物品的初始状态是什么”。完整点击过程见工程地图中的步枪练习。
+![拥有、装备与显示模型](/media/guide-diagrams/05-gameplay-inventory-equipment.svg)
+
+**读图**：同一物品可以先在背包中，随后被装备，最后卸装。背包数量、装备生命周期与模型可见性要分别检查。
+
+### C++：从类创建一份物品，而不是复制一张图片
+源码：`Source/LyraGame/Inventory/LyraInventoryManagerComponent.cpp`，本机第 80–114 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+ULyraInventoryItemInstance* FLyraInventoryList::AddEntry(TSubclassOf<ULyraInventoryItemDefinition> ItemDef, int32 StackCount)
+{
+	ULyraInventoryItemInstance* Result = nullptr;
+
+	check(ItemDef != nullptr);
+ 	check(OwnerComponent);
+
+	AActor* OwningActor = OwnerComponent->GetOwner();
+	check(OwningActor->HasAuthority());
+
+
+	FLyraInventoryEntry& NewEntry = Entries.AddDefaulted_GetRef();
+	NewEntry.Instance = NewObject<ULyraInventoryItemInstance>(OwnerComponent->GetOwner());  //@TODO: Using the actor instead of component as the outer due to UE-127172
+	NewEntry.Instance->SetItemDef(ItemDef);
+	for (ULyraInventoryItemFragment* Fragment : GetDefault<ULyraInventoryItemDefinition>(ItemDef)->Fragments)
+	{
+		if (Fragment != nullptr)
+		{
+			Fragment->OnInstanceCreated(NewEntry.Instance);
+		}
+	}
+	NewEntry.StackCount = StackCount;
+	Result = NewEntry.Instance;
+
+	//const ULyraInventoryItemDefinition* ItemCDO = GetDefault<ULyraInventoryItemDefinition>(ItemDef);
+	MarkItemDirty(NewEntry);
+
+	return Result;
+}
+
+void FLyraInventoryList::AddEntry(ULyraInventoryItemInstance* Instance)
+{
+	unimplemented();
+}
+
+```
+
+逐段阅读：
+
+1. `TSubclassOf` 参数是定义的类。`check(ItemDef != nullptr)` 要求调用者提供它；`check` 不是面向玩家的错误提示机制。
+2. `HasAuthority()` 检查服务器权限。多人游戏不能让每个客户端各建一份权威背包。
+3. `Entries.AddDefaulted_GetRef()` 在数组中增加条目；`NewObject` 创建运行时物品对象；`SetItemDef` 记住定义。
+4. `GetDefault(...)->Fragments` 从类默认对象读取碎片，依次调用 `OnInstanceCreated`，把初始化规则应用到新实例。
+5. `StackCount` 是此条目的堆叠数量。`MarkItemDirty` 告诉 FastArray 复制系统该条目变了；它不是“保存到数据库”。
+
+在 Rider 找到相邻的 `PostReplicatedAdd` 与 `PostReplicatedChange`：接收复制的一端再发送本地变化消息，让 UI 更新。因此“看到 UI 改了”与“重启后物品还在”是两个验收项目。
+
+**小练习**：只在训练副本修改 ID 的初始弹药，重新创建物品再比较。已经创建的实例不一定随着类默认值自动重置；若只是卸装后重新装备同一物品，也不能把它当作新建背包实例。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 拾取产生背包实例，切槽产生装备实例并授予技能，卸装回收该装备拥有的能力。模型有了却不能射击时，查装备 AbilitySet 与 InputTag；另一个客户端看不见枪时，查生成 Actor 和子对象复制。
 
 练习：列出掉落当前武器需要的原子步骤，以及中途失败如何避免“背包没了、世界也没生成”。概念补充见 [Epic Inventory and Equipment](https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-inventory-and-equipment-in-unreal-engine)。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验三将新物品弹匣改为 45 发，再开一枪确认 44；通过 OnInstanceCreated 断点确认改动应用于新实例。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

@@ -1,0 +1,208 @@
+---
+title: Game Feature 与区域内容：完整文件
+description: 按目标路径新建或替换文件，复制完整实现，再与逐步操作课程对照。
+---
+
+MMOCore 描述符负责被发现和加载，GameFeatureData 的 Add Components 动作负责安装 MMOZoneComponent，组件负责创建和清理区域。只复制 cpp 不会让组件自动出现在世界中。
+
+[返回对应操作与解释](/docs/08-mmorpg/migration) · [返回制作主线](/docs/08-mmorpg/from-zero)
+
+![完整文件怎样变成可以运行的游戏](/media/guide-diagrams/08-mmorpg-source-workbook.svg)
+
+## 复制之前先确认位置
+
+下列路径均相对你的 **MMORPG 工程根目录**。在 Rider 的文件视图中右键父目录 → New → File，输入完整文件名（包括扩展名）；文件已存在时替换整个文件，不能把第二套类声明追加到末尾。页面给出的是当前教程的完整文件，代码框右上角可以复制，不含省略号占位实现。
+
+先写 `.h` 再写 `.cpp` 便于阅读；**完成当前源码阶段的全部文件后才编译**。`*.generated.h` 由 UnrealHeaderTool 生成，不手工创建。`#include`、模块导出宏和函数签名都要保留。一个文件中出现多个类时，复制整个文件一次即可。
+
+按 [四个源码阶段](/docs/08-mmorpg/from-zero) 使用这些文件。本组从 **03 阶段**开始使用。00–02 阶段保留当阶段的轻量 `.uproject` 和 Build.cs；03 阶段再切换到完整项目依赖。
+
+## 逐段理解与资产连接
+
+### 组件为什么能带来整个区域
+
+MMOCore.Build.cs 依赖 MMORPG，因此区域组件能生成游戏目标。`.uplugin` 中 Registered 只登记特性；Experience 请求激活后，GameFeatureData 的 Add Components 把 MMOZoneComponent 安装到 ModularGameStateBase。
+
+BeginPlay 按组件代码创建地面、边界、遮挡物、灯光和目标；EndPlay 清理自己创建的 Actor。复制整份 MMOZoneComponent 后仍需要配置 `/MMOCore/MMOCore`，否则没有宿主实例调用这些函数。
+
+**改造练习**：先找目标的生成数组，在副本增加一个位置；保持地面仍为稳定的静态碰撞支撑，不将 Character 的站立地面改成每个客户端各自生成的可复制移动基座。验证服务器与两客户端目标数量一致，退出地图后没有残留。
+
+## 本组文件清单
+
+| 文件 | 行数 | 操作 |
+|---|---:|---|
+| `Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h` | 30 | 新建；已有同名文件则整体替换 |
+| `Plugins/GameFeatures/MMOCore/MMOCore.uplugin` | 7 | 新建；已有同名文件则整体替换 |
+| `Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs` | 9 | 新建；已有同名文件则整体替换 |
+| `Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp` | 73 | 新建；已有同名文件则整体替换 |
+
+## 文件 1：MMOZoneComponent.h
+
+目标路径：`Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h`。原文件位于包内 `examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h"
+#pragma once
+#include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
+#include "MMOZoneComponent.generated.h"
+
+/** Added to ModularGameStateBase by MMOCore's AddComponents action. */
+UCLASS(meta=(BlueprintSpawnableComponent))
+class MMOCORE_API UMMOZoneComponent : public UActorComponent
+{
+    GENERATED_BODY()
+public:
+    UMMOZoneComponent();
+    virtual void BeginPlay() override;
+    virtual void EndPlay(EEndPlayReason::Type Reason) override;
+private:
+    // A reflected CDO reference makes the runtime-generated floor a declared Cook dependency.
+    UPROPERTY() TObjectPtr<class UStaticMesh> ZoneMesh;
+    UPROPERTY() TArray<TObjectPtr<AActor>> Spawned;
+};
+
+class UGameFeatureData;
+/** Typed editor bridge because GameFeatureComponentEntry has no Python wrapper in this engine. */
+UCLASS()
+class MMOCORE_API UMMOContentLibrary : public UBlueprintFunctionLibrary
+{
+    GENERATED_BODY()
+public:
+    UFUNCTION(BlueprintCallable, Category="MMO|Editor") static void ConfigureFeatureData(UGameFeatureData* Data);
+};
+```
+
+</details>
+
+## 文件 2：MMOCore.uplugin
+
+目标路径：`Plugins/GameFeatures/MMOCore/MMOCore.uplugin`。原文件位于包内 `examples/MMORPG/Plugins/GameFeatures/MMOCore/MMOCore.uplugin`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```json title="Plugins/GameFeatures/MMOCore/MMOCore.uplugin"
+{
+  "FileVersion":3,"Version":1,"VersionName":"1.0","FriendlyName":"MMO Core Training Zone",
+  "Category":"Game Features","CanContainContent":true,"ExplicitlyLoaded":true,"EnabledByDefault":false,
+  "BuiltInInitialFeatureState":"Registered",
+  "Modules":[{"Name":"MMOCore","Type":"Runtime","LoadingPhase":"Default"}],
+  "Plugins":[{"Name":"GameFeatures","Enabled":true},{"Name":"ModularGameplay","Enabled":true},{"Name":"ModularGameplayActors","Enabled":true}]
+}
+```
+
+</details>
+
+## 文件 3：MMOCore.Build.cs
+
+目标路径：`Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs`。原文件位于包内 `examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```csharp title="Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs"
+using UnrealBuildTool;
+public class MMOCore : ModuleRules
+{
+    public MMOCore(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PublicDependencyModuleNames.AddRange(new[] { "Core", "CoreUObject", "Engine", "GameFeatures", "ModularGameplayActors", "MMORPG" });
+    }
+}
+```
+
+</details>
+
+## 文件 4：MMOZoneComponent.cpp
+
+目标路径：`Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp`。原文件位于包内 `examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp`，不是需要修改的引擎文件。
+
+<details>
+<summary>展开完整文件并复制</summary>
+
+```cpp title="Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp"
+#include "MMOZoneComponent.h"
+#include "MMOGameplay.h"
+#include "Engine/StaticMeshActor.h"
+#include "Engine/StaticMesh.h"
+#include "Engine/DirectionalLight.h"
+#include "Engine/SkyLight.h"
+#include "Components/SkyAtmosphereComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/DirectionalLightComponent.h"
+#include "Components/SkyLightComponent.h"
+#include "Modules/ModuleManager.h"
+#include "GameFeatureData.h"
+#include "GameFeatureAction_AddComponents.h"
+#include "ModularGameState.h"
+#include "UObject/ConstructorHelpers.h"
+IMPLEMENT_MODULE(FDefaultModuleImpl, MMOCore)
+UMMOZoneComponent::UMMOZoneComponent()
+{
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> Cube(TEXT("/Engine/BasicShapes/Cube.Cube"));
+    ZoneMesh = Cube.Object;
+}
+void UMMOContentLibrary::ConfigureFeatureData(UGameFeatureData* Data)
+{
+#if WITH_EDITOR
+    if (!Data) return;
+    auto* Action = NewObject<UGameFeatureAction_AddComponents>(Data, TEXT("AddTrainingZone"));
+    FGameFeatureComponentEntry Entry;
+    Entry.ActorClass = AModularGameStateBase::StaticClass(); Entry.ComponentClass = UMMOZoneComponent::StaticClass();
+    Entry.bClientComponent = true; Entry.bServerComponent = true; Action->ComponentList.Add(Entry);
+    Data->GetMutableActionsInEditor().Reset(); Data->GetMutableActionsInEditor().Add(Action); Data->MarkPackageDirty();
+#endif
+}
+void UMMOZoneComponent::BeginPlay()
+{
+    Super::BeginPlay(); UWorld* World = GetWorld();
+    UStaticMesh* Cube = ZoneMesh;
+    auto Box = [this, World, Cube](const TCHAR* StableName, FVector Position, FVector Scale)
+    {
+        FActorSpawnParameters Parameters;
+        Parameters.Name = FName(StableName);
+        Parameters.NameMode = FActorSpawnParameters::ESpawnActorNameMode::Required_ErrorAndReturnNull;
+        Parameters.bDeferConstruction = true;
+        auto* Actor = World->SpawnActor<AStaticMeshActor>(Position, FRotator::ZeroRotator, Parameters);
+        if (!ensureMsgf(Actor && Cube, TEXT("MMOCore requires one uniquely named geometry actor and its cooked Cube mesh."))) return;
+        // Explicit names are identical in every world's deterministic zone. Dynamic spawn suffixes differ in cooked clients.
+        Actor->SetNetAddressable(); // Native contract: set before FinishSpawning.
+        Actor->SetMobility(EComponentMobility::Movable);
+        Actor->GetStaticMeshComponent()->SetStaticMesh(Cube);
+        Actor->GetStaticMeshComponent()->SetCollisionProfileName(TEXT("BlockAll"));
+        Actor->FinishSpawning(FTransform(FRotator::ZeroRotator, Position, Scale));
+        Actor->SetMobility(EComponentMobility::Static);
+        Spawned.Add(Actor);
+        UE_LOG(LogTemp, Display, TEXT("MMO_ZONE_GEOMETRY name=%s stable=%d mobility=Static"), *Actor->GetName(), Actor->IsNameStableForNetworking());
+    };
+    // Fixed geometry is built on all peers; stable paths resolve any CharacterMovement base references.
+    Box(TEXT("MMOZone_Floor"), FVector(0,0,-50), FVector(40,40,1));
+    Box(TEXT("MMOZone_WallEast"), FVector(2000,0,100), FVector(1,40,3)); Box(TEXT("MMOZone_WallWest"), FVector(-2000,0,100), FVector(1,40,3));
+    Box(TEXT("MMOZone_WallNorth"), FVector(0,2000,100), FVector(40,1,3)); Box(TEXT("MMOZone_WallSouth"), FVector(0,-2000,100), FVector(40,1,3));
+    Box(TEXT("MMOZone_Obstacle"), FVector(750,600,100), FVector(2,7,3));
+    if (GetOwner()->HasAuthority())
+        for (int32 I=0; I<3; ++I) Spawned.Add(World->SpawnActor<AMMOTarget>(FVector(650, -400 + I*350, 90), FRotator::ZeroRotator));
+    if (World->GetNetMode() != NM_DedicatedServer)
+    {
+        auto* Atmosphere = World->SpawnActor<ASkyAtmosphere>(); Spawned.Add(Atmosphere);
+        auto* Sun = World->SpawnActor<ADirectionalLight>(FVector(0,0,800), FRotator(-45,-30,0)); Sun->GetLightComponent()->SetMobility(EComponentMobility::Movable); Sun->GetLightComponent()->SetIntensity(8); Spawned.Add(Sun);
+        auto* Sky = World->SpawnActor<ASkyLight>(); Sky->GetLightComponent()->SetMobility(EComponentMobility::Movable); Sky->GetLightComponent()->SetIntensity(1.2f); Spawned.Add(Sky);
+    }
+    UE_LOG(LogTemp, Display, TEXT("MMOCore: zone added to %s"), *GetNameSafe(GetOwner()));
+}
+void UMMOZoneComponent::EndPlay(EEndPlayReason::Type Reason)
+{
+    for (const auto& Actor : Spawned) if (IsValid(Actor)) Actor->Destroy(); Spawned.Empty(); Super::EndPlay(Reason);
+}
+```
+
+</details>
+
+## 写完后怎样确认
+
+保存全部文件，回到当前阶段执行文件核对和 Editor 构建。文件核对只能发现缺文件、复制不完整和版本差异；`Result: Succeeded` 才说明编译成功。资产、UI 与联机行为继续按 [对应课程](/docs/08-mmorpg/migration) 验收。

@@ -110,3 +110,43 @@ Invoke-MMOPsql 'SELECT count(*) FROM characters;' $mmoRestoreDb $mmoPostgres
 过期会话和票据可以按到期时间清理；保存幂等记录的保留期必须长于客户端/服务器允许的重试窗口。当前教学不会自动删除幂等记录，以便观察保存历史；长期运行需要新增有明确保留策略的维护任务。
 
 练习：写一份服务停止后 10 分钟内恢复的演练记录，包含备份来源、恢复目标、健康请求、角色版本和库存对比。跨服、交易、公会、邮件、运营封禁、密码找回与大规模并发属于后续系统，不能通过这一单区演示推断它们已经实现。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 先分清四个端口/地址的用途
+
+| 地址/服务 | 谁访问 | 放什么内容 |
+|---|---|---|
+| 文档站的 HTTPS 地址 | 开发者浏览器 | 静态 HTML、图片、教学下载 |
+| 公开 API 入口 | 游戏客户端/受信游戏服 | 经部署配置转发的 HTTP API |
+| 本机 Backend 127.0.0.1:8088 | 同机代理或本地测试 | UE HTTPServer 监听 |
+| PostgreSQL 5432 | Backend Program | SQL 连接，不能填进客户端 Base URL |
+
+表中的 8088、5432 是本课程本地默认值，部署时以实际配置为准。GitHub Pages 发布成功不启动游戏服务器、后端或数据库。
+![一次正常停止应该按什么顺序](/media/guide-diagrams/10-backend-deployment.svg)
+
+**读图**：本图描述操作顺序；它不是声明已有公网部署或自动化故障切换。数据库恢复命令在本章前文使用独立目标库。
+源码：`examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp`，本机第 160–167 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+bAccepting=false;
+// Drain accepted transactions before stopping the listeners. SQL/connection timeouts bound each job.
+while(Work.Num()>0)
+{
+    Work.Pump(); FTSTicker::GetCoreTicker().Tick(0.01f); FPlatformProcess::Sleep(0.01f);
+}
+const double FlushUntil=FPlatformTime::Seconds()+0.2;
+while(FPlatformTime::Seconds()<FlushUntil) { FTSTicker::GetCoreTicker().Tick(0.01f); FPlatformProcess::Sleep(0.01f); }
+```
+
+`bAccepting=false` 让新请求被拒绝；while 里继续 Tick 和 Pump，保证已接收任务的结果还可发送。只有 Work.Num()==0 才继续停止监听器。直接结束进程不会执行同样的排空保证。
+
+### 备份命令中的几个开关
+
+`pg_dump -Fc` 生成自定义归档格式；`pg_restore --no-owner --no-acl` 避免按旧归档恢复所有者与授权；`--exit-on-error` 遇错终止。按本章顺序在新的恢复库验证，检查迁移、数量和角色状态，而不是仅确认压缩文件有字节。
+
+**完成检查**：一份可用的部署记录应包含实际二进制版本、配置来源、启动/停止方式、健康检查和一次恢复结果。队列容量 32 与单区演示的成功记录不能当作商业 MMO 并发容量证明。
+
+{/* full-guide-end */}

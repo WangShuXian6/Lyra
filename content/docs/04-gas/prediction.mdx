@@ -36,6 +36,33 @@ LyraPlayerState 中 ASC 使用 Mixed GameplayEffect 复制模式。不同连接�
 
 界面可展示预测中的操作，但服务器拒绝后必须回到一致状态。按键失败、费用不足和冷却未结束应有清晰提示；预测失败不能靠客户端永久保留修改后的数值掩盖。
 
+{/* full-guide-begin */}
+
+## 把网络策略变成可观察的四个阶段
+
+![Dash 的网络执行策略与实例策略](/media/configuration/training/dash-defaults-policy.png)
+
+**看图操作**：打开 GA_Hero_Dash 的 Class Defaults，搜索 Policy。Net Execution Policy=Local Predicted；Instancing Policy=Instanced Per Actor。Replication Policy 是另一项，它们不能替换理解。此图记录配置，不证明所有预测场景已验收。
+![本地响应与权威结果分开观察](/media/guide-diagrams/04-gas-prediction.svg)
+
+**读图**：图是职责顺序，不是网络延迟相同的时间比例图。自己的窗口、远端窗口、服务器日志应分别记录。
+源码：`Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility_Jump.cpp`，本机第 16–17 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
+```
+
+### 把两个枚举读清楚
+
+`InstancedPerActor` 说明能力实例如何被拥有者使用；`LocalPredicted` 说明网络执行策略。第一个不表示每个客户端都随便创建一个能力，第二个也不表示服务器无条件相信客户端。
+
+松键路径中 `InvokeReplicatedEvent` 的本机注释特别说明：这次调用本身不是直接在这里发送复制；监听它的能力任务可能再把输入释放事件送到服务器。因此读函数名时仍要看实现/注释，不能只见 Replicated 就断言“这一行已经广播给所有客户端”。
+
+**实验表**：记录每次按键的拥有者窗口、技能是否进入、服务器是否接受、目标生命变化、远端表现、取消后状态。先无网络模拟完成基线，再只增加一个延迟条件。已有两客户端启动步骤见[训练场联机](/docs/07-training/multiplayer-and-package)；本章没有替你实际执行新的延迟矩阵。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 同一操作在所属客户端响应迅速，最终权威状态在客户端一致。只在监听服务器主机正常时，检查 LocalRole 分支和网络拥有权；技能重复播放时检查本地预测与服务器确认是否重复触发非预测表现。

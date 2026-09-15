@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="658" viewBox="0 0 1120 658" role="img" aria-labelledby="title desc">
+<title id="title">后端验收从便宜检查到真实联调</title><desc id="desc">测试脚本会建立隔离的测试账号并修改其数据；应在本教程的本地测试服务运行。单独健康检查无法证明账号与保存流程。</desc>
+<defs><marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#7aa6b2"/></marker></defs>
+<rect width="1120" height="658" rx="18" fill="#112027"/>
+<g font-family="Noto Sans SC,Microsoft YaHei,sans-serif">
+<text x="42" y="48" fill="#f1f5f6" font-size="27" font-weight="700">后端验收从便宜检查到真实联调</text>
+<text x="42" y="80" fill="#9db4bd" font-size="17">关系示意图 · 按序号阅读 · 不是编辑器截图</text>
+<rect x="42" y="110" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="142" r="18" fill="#b6d588"/>
+<text x="78" y="149" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">1</text>
+<text x="112" y="148" fill="#f1f5f6" font-size="23" font-weight="700">文件和工具链</text>
+<text x="112" y="178" fill="#d3e1e6" font-size="18">确认项目、Build.bat、libpq/libsodium 文件与环境目录。</text>
+<path d="M560,211 V230" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="238" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="270" r="18" fill="#b6d588"/>
+<text x="78" y="277" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">2</text>
+<text x="112" y="276" fill="#f1f5f6" font-size="23" font-weight="700">构建与进程健康</text>
+<text x="112" y="306" fill="#d3e1e6" font-size="18">Program 构建成功，进程持续监听，/health 能访问数据库。</text>
+<path d="M560,339 V358" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="366" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="398" r="18" fill="#b6d588"/>
+<text x="78" y="405" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">3</text>
+<text x="112" y="404" fill="#f1f5f6" font-size="23" font-weight="700">HTTP 合约与故障测试</text>
+<text x="112" y="434" fill="#d3e1e6" font-size="18">合法流程、拒绝流程、重复请求、锁竞争与重启恢复。</text>
+<path d="M560,467 V486" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="494" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="526" r="18" fill="#b6d588"/>
+<text x="78" y="533" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">4</text>
+<text x="112" y="532" fill="#f1f5f6" font-size="23" font-weight="700">游戏联调</text>
+<text x="112" y="562" fill="#d3e1e6" font-size="18">客户端入服，真实技能产生状态，离服保存并重新读取。</text>
+</g></svg>

@@ -438,3 +438,37 @@ DefaultUIPolicyClass=/Game/UI/BP_MMOUIPolicy.BP_MMOUIPolicy_C
 | 修改教学子类但运行结果不变 | 回查 GameMode、区域生成和 GiveAbility 实际引用的类 |
 
 练习：在独立副本中记录一个字段的“界面值 → Config/资产值 → 创建对象 → 游戏结果”。先选 GameViewportClient 或 Layout Class，不要同时改多个配置；一次验证只改变一个连接点，便于定位原因。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 面板截图背后的 ini 应该怎样阅读
+源码：`examples/MMORPG/Config/DefaultInput.ini`，本机第 1–3 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```ini
+[/Script/Engine.InputSettings]
+DefaultPlayerInputClass=/Script/EnhancedInput.EnhancedPlayerInput
+DefaultInputComponentClass=/Script/EnhancedInput.EnhancedInputComponent
+```
+
+方括号是配置节，表示要配置哪一个反射类。等号左边是属性名，右边 `/Script/模块.类` 是原生类路径；C++ 类名前缀 `U` 不写进这个反射路径。这三行分别对应本章的默认输入类两张截图。
+
+`Default*.ini` 是项目默认配置，`Saved/Config` 是本机/运行生成的覆盖。字段改了又恢复时，应查配置层级和保存结果，不要随意把整份 Saved Config 复制到项目默认文件。数组配置中的 `+` 表示追加条目，`!属性=ClearArray` 表示清空继承数组；它们不是注释。
+
+### 按用途复查本章的十四组截图
+
+| 组别 | 先看哪几个图中字段 | 失败会出现什么 |
+|---|---|---|
+| 启动与类型 | Entry 地图、BP_MMOGameMode、MMOGameInstance | 加载了错误世界，或没有业务 GameInstance |
+| 本地玩家和输入 | CommonLocalPlayer、CommonGameViewportClient、EnhancedInput 两类 | 界面路由/玩家子系统/输入绑定不正确 |
+| 资产发现 | Primary Asset Type、Base Class、Has Blueprint Classes、Directories | 能看到文件，却用 PrimaryAssetId 找不到它 |
+| Feature 装配 | Add Components 的 Actor/Component 与客户端/服务端开关 | 区域组件没有出现在正确世界 |
+| 展示 | Policy.LayoutClass、Mesh.AnimClass、复制字段 | 有角色数据但模型/界面/远端显示不对 |
+| 构建内容 | Maps to Cook、目录与 DX12/SM6 | 编辑器可运行，归档缺资源或着色格式不匹配 |
+
+不要一次改十四组然后才测试。每组都按“选对对象 → 展开具体字段 → 保存 → 重开确认 → 检查对应日志/行为”推进。重启要求以实际面板提示为准；蓝图 Class Defaults 变化先 Compile、再 Save，普通 Data Asset 没有 Compile。
+
+**小练习**：在不改数值的情况下，把一个原生类路径、一个蓝图生成类路径、一个普通数据资产路径各抄一条，分别指出 `/Script/...`、`_C` 与普通对象引用的差别。不要给 Data Asset 随意加 `_C`。
+
+{/* full-guide-end */}

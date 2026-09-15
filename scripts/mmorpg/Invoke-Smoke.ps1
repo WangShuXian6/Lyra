@@ -8,7 +8,8 @@ param(
     [switch]$Visible,
     [switch]$RenderOffscreen,
     [switch]$RestartBackendBetweenRounds,
-    [switch]$DeathLogoutOnly
+    [switch]$DeathLogoutOnly,
+    [string]$EvidencePath=''
 )
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot '../backend/Common.ps1')
@@ -19,6 +20,7 @@ $mmoPackaged=[bool]$ClientExecutable
 if($mmoPackaged -and -not $ServerExecutable -and -not $UseRunningServer){throw 'Packaged smoke requires both ClientExecutable and ServerExecutable'}
 if($ServerExecutable -and -not $mmoPackaged){throw 'Provide ClientExecutable with ServerExecutable'}
 $mmoEvidence=Join-Path $mmoRepo $(if($DeathLogoutOnly){if($mmoPackaged){'verification/mmorpg-packaged-death-logout.json'}else{'verification/mmorpg-death-logout.json'}}elseif($mmoPackaged){'verification/mmorpg-packaged-smoke.json'}else{'verification/mmorpg-smoke.json'})
+if($EvidencePath){$mmoEvidence=[IO.Path]::GetFullPath($EvidencePath);New-Item -ItemType Directory -Path (Split-Path $mmoEvidence -Parent) -Force | Out-Null}
 New-Item -ItemType Directory -Path $mmoRawLogs -Force | Out-Null
 $mmoExe=Join-Path $Engine 'Engine/Binaries/Win64/UnrealEditor.exe'
 if($mmoPackaged) {

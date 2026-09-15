@@ -1,0 +1,1745 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-15T08:49:50.118328+08:00",
+  "scope": "All 84 tutorial pages, including the copy/paste course and complete source workbook. Clawtopia excluded.",
+  "chapters": [
+    {
+      "path": "content/docs/01-start/environment.mdx",
+      "title": "环境、版本与安全的第一次构建",
+      "before": {
+        "characters": 3031,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added Rider context, exact target excerpt and per-argument explanation.",
+      "after": {
+        "characters": 4249,
+        "images": 1,
+        "codeBlocks": 2,
+        "sha256": "612ce85aeb1a0e28a86305266bf2991fcb97a0d9dc2d1c22708f1fe38eda14bb"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/01-start/first-session.mdx",
+      "title": "第一次进入 Lyra：地图与游戏模式",
+      "before": {
+        "characters": 3635,
+        "images": 2,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added launch diagram and click-by-click PIE context and checks.",
+      "after": {
+        "characters": 4683,
+        "images": 4,
+        "codeBlocks": 1,
+        "sha256": "a03d076af22f4fee54d088a8ce0827658ace4192bddefbca0828aa1c545750cd"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/01-start/index.mdx",
+      "title": "从零认识 Lyra",
+      "before": {
+        "characters": 1731,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added actual editor overview and explicit per-exercise context.",
+      "after": {
+        "characters": 2262,
+        "images": 1,
+        "codeBlocks": 1,
+        "sha256": "85d43c150d519b6f01b8924fb4e0bb1290add6cad0411009f3d27068f26d6c4e"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/01-start/live-coding.mdx",
+      "title": "关闭 Live Coding：按图设置与验证",
+      "before": {
+        "characters": 4949,
+        "images": 2,
+        "codeBlocks": 3
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added full cycle diagram and distinction from Blueprint/UBT compilation.",
+      "after": {
+        "characters": 5480,
+        "images": 3,
+        "codeBlocks": 3,
+        "sha256": "e60fd48aae62102e341ad87ec799a8666d2f08def084ece9c2f390f252fbca3a"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/01-start/project-map.mdx",
+      "title": "工程地图：源码、资产、插件如何对应",
+      "before": {
+        "characters": 12766,
+        "images": 14,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Connected detailed rifle walkthrough to C++ primer and plugin atlas.",
+      "after": {
+        "characters": 13341,
+        "images": 15,
+        "codeBlocks": 1,
+        "sha256": "e26059d066ded2d4fabd6f42cdbf1111eac8e92ec9a2552fb6add31049aec48d"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/02-architecture/asset-manager.mdx",
+      "title": "Asset Manager、软引用与 Cook",
+      "before": {
+        "characters": 3400,
+        "images": 2,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact Get() code, control flow explanation and scan/load/cook diagram.",
+      "after": {
+        "characters": 4972,
+        "images": 3,
+        "codeBlocks": 2,
+        "sha256": "c61053122b395cd47a755c570961fe6a76b553f4317f741a8f0b9d84e9a8528c"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/02-architecture/experience.mdx",
+      "title": "Experience：一局游戏怎样被组装",
+      "before": {
+        "characters": 4181,
+        "images": 2,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added direct/shared action code and value-to-execution reasoning.",
+      "after": {
+        "characters": 5730,
+        "images": 3,
+        "codeBlocks": 3,
+        "sha256": "9cef39fed9753a83b0ce16173d68e169c21cf979a66c97f74b91b1859cd8110f"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/02-architecture/game-features.mdx",
+      "title": "Game Features 与 ActionSet 的职责",
+      "before": {
+        "characters": 2302,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added two real action-set captures, field source and lifecycle table.",
+      "after": {
+        "characters": 4426,
+        "images": 2,
+        "codeBlocks": 1,
+        "sha256": "2d22a7c309d0b05b0cb3f84d1131d2172fe6e9959f8a034fbef4f84d37792259"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/02-architecture/index.mdx",
+      "title": "从启动到 GameplayReady",
+      "before": {
+        "characters": 1009,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added architecture flow and novice debugging boundaries.",
+      "after": {
+        "characters": 1732,
+        "images": 1,
+        "codeBlocks": 0,
+        "sha256": "e8e66a92dd187eeb23f08f58b460d334398f3b67c0cc9b63c9ef18ce33d63b18"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/02-architecture/initialization.mdx",
+      "title": "PawnData 与初始化状态链",
+      "before": {
+        "characters": 2134,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added PawnData capture, state diagram and actual local-input gating code.",
+      "after": {
+        "characters": 3838,
+        "images": 2,
+        "codeBlocks": 2,
+        "sha256": "2daec89e7a84a8a19d3142ca4b24bffc30e699dd82d399b33e40a257cb1650c6"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/03-character/camera-animation.mdx",
+      "title": "相机模式、动画层与角色外观",
+      "before": {
+        "characters": 3686,
+        "images": 0,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added three newly captured panels, exact values and two code walkthroughs.",
+      "after": {
+        "characters": 6328,
+        "images": 3,
+        "codeBlocks": 4,
+        "sha256": "606e4e2d6af2cec18ac888c33b00b083ea9f456e1ca0ea67de5ffc21ff351ec0"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/03-character/enhanced-input.mdx",
+      "title": "从按键到 InputTag，再到技能",
+      "before": {
+        "characters": 4813,
+        "images": 3,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added input flow, exact BindAbilityActions code and controlled experiment.",
+      "after": {
+        "characters": 6941,
+        "images": 4,
+        "codeBlocks": 3,
+        "sha256": "97a1e6721d41a8c09e06f49c03a2d72111a9e853a83abadd4cbc81722ac576f2"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/03-character/index.mdx",
+      "title": "角色、输入与表现的分工",
+      "before": {
+        "characters": 879,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added novice object responsibility diagram and cross-system example.",
+      "after": {
+        "characters": 1335,
+        "images": 1,
+        "codeBlocks": 0,
+        "sha256": "f63162cb437ea9d18103fc966aea1dc0b5d2cf0a90342626aae1b6cfd0ef9e3b"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/03-character/jump-blueprint.mdx",
+      "title": "蓝图阅读实战：跳跃技能的完整事件图",
+      "before": {
+        "characters": 2669,
+        "images": 1,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added whole lifecycle figure, exact jump function and node-by-node reading table.",
+      "after": {
+        "characters": 4024,
+        "images": 2,
+        "codeBlocks": 2,
+        "sha256": "e9a31f1ba775410b00cf4098547333bf566bb7801c196231b732c7fb909a5260"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/03-character/player-pawn.mdx",
+      "title": "PlayerController、PlayerState 与 Pawn",
+      "before": {
+        "characters": 2880,
+        "images": 1,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added owner/avatar code and runtime inspection steps.",
+      "after": {
+        "characters": 4267,
+        "images": 2,
+        "codeBlocks": 2,
+        "sha256": "5a05fe56e006beb011123f993676ce10960e93aad8e92513c99737b42aa70ceb"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/04-gas/ability-sets.mdx",
+      "title": "AbilitySet、技能激活与标签关系",
+      "before": {
+        "characters": 4170,
+        "images": 4,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added real grant/spec/tag matching excerpts and stepwise explanation.",
+      "after": {
+        "characters": 6428,
+        "images": 4,
+        "codeBlocks": 3,
+        "sha256": "87760df68860364cf9b3faa51c488783589f7b25f2db1c73b02c550140c76a6f"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/04-gas/dash-blueprint.mdx",
+      "title": "蓝图阅读实战：冲刺方向与动画选择",
+      "before": {
+        "characters": 2792,
+        "images": 1,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added directional diagram, worked examples, explicit pseudocode and cooldown screenshot context.",
+      "after": {
+        "characters": 3793,
+        "images": 3,
+        "codeBlocks": 1,
+        "sha256": "a51632cd9a124153d312ff52f2750a29dfc3fc7e60c68047f2efd77bee7fcaaf"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/04-gas/effects-health.mdx",
+      "title": "属性、费用、冷却、伤害与死亡",
+      "before": {
+        "characters": 1709,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added newly captured GE panel, verified BaseDamage=12 and execution/health timeline.",
+      "after": {
+        "characters": 3466,
+        "images": 2,
+        "codeBlocks": 2,
+        "sha256": "e6c55caf3cfef59ca2afc1d2854370b76d80a303baf83072cc7a62ddd232808f"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/04-gas/index.mdx",
+      "title": "GAS：从拥有技能到完成一次行动",
+      "before": {
+        "characters": 823,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added GAS flow and actual rifle ability-set illustration.",
+      "after": {
+        "characters": 1418,
+        "images": 2,
+        "codeBlocks": 0,
+        "sha256": "4fe426cad779fb20e42b19993a1a232afa617166a0df6d8277ae4befe6b3898c"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/04-gas/prediction.mdx",
+      "title": "GAS 预测与多人验证",
+      "before": {
+        "characters": 1601,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added policy screenshot, execution diagram and precise replicated-event interpretation.",
+      "after": {
+        "characters": 2739,
+        "images": 2,
+        "codeBlocks": 2,
+        "sha256": "84d2f3c941273cb17bdbf9df2b4c03cf4d9a68181453898a70ed456115840966"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/05-gameplay/index.mdx",
+      "title": "让系统组成一局可玩的游戏",
+      "before": {
+        "characters": 888,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added end-to-end source/asset reading map and novice lookup worksheet.",
+      "after": {
+        "characters": 1620,
+        "images": 1,
+        "codeBlocks": 0,
+        "sha256": "4449ff042e5a095db46b95ccfa96ea35f2a8ad684dcf58105a65f9c7b545d61b"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/05-gameplay/interaction.mdx",
+      "title": "交互：发现目标、显示提示、执行能力",
+      "before": {
+        "characters": 1904,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added native scan settings and exact TriggerInteraction data walkthrough.",
+      "after": {
+        "characters": 5446,
+        "images": 1,
+        "codeBlocks": 2,
+        "sha256": "7fd242c37639e46c06884af8e3527ee311fb75e67cc56345700468c9a4eb3de5"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/05-gameplay/inventory-equipment.mdx",
+      "title": "Inventory、Equipment 与 QuickBar",
+      "before": {
+        "characters": 3510,
+        "images": 2,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact AddEntry creation excerpt and definition/instance/equipment distinction.",
+      "after": {
+        "characters": 6075,
+        "images": 4,
+        "codeBlocks": 2,
+        "sha256": "22cdb5c0c477ba15347a7be576228fa25a0439a5072a8d86838bea4853ebea6f"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/05-gameplay/messages-audio.mdx",
+      "title": "消息路由、Gameplay Cue 与音效",
+      "before": {
+        "characters": 4655,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added true context library image, exact matching code, and message/Cue/network distinctions.",
+      "after": {
+        "characters": 7175,
+        "images": 2,
+        "codeBlocks": 2,
+        "sha256": "a20862024daa8532f510bc4353b869ee8b42f6d8556f1066dcaf76b75bc5a04f"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/05-gameplay/teams-bots.mdx",
+      "title": "队伍、机器人、计分与对局阶段",
+      "before": {
+        "characters": 1859,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added native bot config and override precedence excerpt with AI terminology.",
+      "after": {
+        "characters": 4498,
+        "images": 1,
+        "codeBlocks": 2,
+        "sha256": "76053cf7d765b5d7cee52d8354034f60f8db3cf1a1e70c807b246768b7e0fbee"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/05-gameplay/weapons.mdx",
+      "title": "从开火键到命中反馈",
+      "before": {
+        "characters": 1824,
+        "images": 0,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added real damage settings capture, exact commit branch and tracing vocabulary.",
+      "after": {
+        "characters": 3957,
+        "images": 2,
+        "codeBlocks": 3,
+        "sha256": "d3a8eef439aace8430c77cbfa0cf49104a287a54b7c5b934474e4b56047c44ba"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/06-ui/common-game.mdx",
+      "title": "CommonGame、LocalPlayer 与 UI Policy",
+      "before": {
+        "characters": 5472,
+        "images": 4,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Explained exact RegisterLayer source and mapped Blueprint pins to function parameters.",
+      "after": {
+        "characters": 7227,
+        "images": 4,
+        "codeBlocks": 3,
+        "sha256": "10c5f4f7ec3848e225211cb0da94fe6be4c2765f49d96839ddd65d10835a43b5"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/06-ui/commonui-input.mdx",
+      "title": "CommonUI、焦点与返回操作",
+      "before": {
+        "characters": 1744,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Corrected false settings-screen inheritance and added input-config source explanation.",
+      "after": {
+        "characters": 3674,
+        "images": 1,
+        "codeBlocks": 2,
+        "sha256": "ba41262bee93d454ed59830818098090ce855f824a8fb70d41fb44a6b3711cf8"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/06-ui/extensions.mdx",
+      "title": "UIExtension：让玩法提供自己的 HUD 内容",
+      "before": {
+        "characters": 3979,
+        "images": 2,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added complete extension-point registration snippet and three-owner novice walkthrough.",
+      "after": {
+        "characters": 6015,
+        "images": 2,
+        "codeBlocks": 2,
+        "sha256": "0d033425e3d86e4bca20e4718877480a0b512b677dacb9869dabd6c1485bdd0c"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/06-ui/index.mdx",
+      "title": "UI：从输入到数据展示",
+      "before": {
+        "characters": 885,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added beginner editor-location table and complete UI responsibility schematic.",
+      "after": {
+        "characters": 1425,
+        "images": 1,
+        "codeBlocks": 0,
+        "sha256": "f138b45064959a29934e8463da30c562ebeca9b48c8d42dcb83cd1a7a497c354"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/06-ui/settings-mvvm.mdx",
+      "title": "设置系统与 MVVM 的边界",
+      "before": {
+        "characters": 3612,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added volume construction excerpt, model/display value explanation and Back-versus-Cancel source.",
+      "after": {
+        "characters": 5551,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "cdb9d37cbf638a5894b02daf0ffbcceedc53a8c8a885ed40f01cbf71ce427aa9"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/07-training/dash-and-blueprints.mdx",
+      "title": "读取、复制与调试训练冲刺蓝图",
+      "before": {
+        "characters": 2870,
+        "images": 2,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Explained actual clone/compile/rebind snippet and three-pass Blueprint reading method.",
+      "after": {
+        "characters": 4331,
+        "images": 3,
+        "codeBlocks": 1,
+        "sha256": "4eac00fa80ef952614e015925952acbb1b7443cc269939ef1b51c895ace22674"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/07-training/feature-and-experience.mdx",
+      "title": "创建训练场 Game Feature、地图与 Experience",
+      "before": {
+        "characters": 12973,
+        "images": 6,
+        "codeBlocks": 4
+      },
+      "status": "reviewed",
+      "revisionNotes": "Mapped actual generation code to CDO/DataAsset fields and explained scan/navigation screenshots.",
+      "after": {
+        "characters": 15040,
+        "images": 6,
+        "codeBlocks": 5,
+        "sha256": "7a17e571ebf2afe73b5b6860529ca43c5b8681afba93708298b5c68101a0ad0c"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/07-training/index.mdx",
+      "title": "做出自己的 Lyra 射击训练场",
+      "before": {
+        "characters": 2115,
+        "images": 1,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added staged novice workflow and explained setup commands/artifact checks.",
+      "after": {
+        "characters": 2999,
+        "images": 2,
+        "codeBlocks": 1,
+        "sha256": "0b5fbbba1b2f9f874e0b030fdfcc1ff0b4474baf5c9e0c866c7f93a1de7fccc3"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/07-training/multiplayer-and-package.mdx",
+      "title": "联机、Cook 与训练场验收",
+      "before": {
+        "characters": 16300,
+        "images": 4,
+        "codeBlocks": 6
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added environment ladder, command glossary and instructions for reading network evidence.",
+      "after": {
+        "characters": 17585,
+        "images": 5,
+        "codeBlocks": 6,
+        "sha256": "e355ba476454b5d73d0de1b414df8a3b313fe04de2407a1fc50e584d62f41922"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/07-training/weapons-hud-bots.mdx",
+      "title": "接通武器、交互、HUD 与机器人",
+      "before": {
+        "characters": 5000,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added true equipment defaults, complete QuickBar equip excerpt and paired visual/state checks.",
+      "after": {
+        "characters": 6760,
+        "images": 1,
+        "codeBlocks": 2,
+        "sha256": "2703450e045d9d9010116e5c8277b37857b725149a7e9a3d7ccdb57134eeebd7"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/animation.mdx",
+      "title": "UE 自带角色与模块化动画",
+      "before": {
+        "characters": 12927,
+        "images": 11,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added native animation-update source and thread/data/pose flow explanation.",
+      "after": {
+        "characters": 14888,
+        "images": 12,
+        "codeBlocks": 2,
+        "sha256": "53dfebb97670a018d90d7fe828913b265e5e984835b7fa4efddd8ac24c5fa752"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/character-gas.mdx",
+      "title": "角色初始化、GAS 与基础战斗",
+      "before": {
+        "characters": 18021,
+        "images": 17,
+        "codeBlocks": 4
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added actual tag-dispatch code with locking rationale and combat screenshot numeric interpretation.",
+      "after": {
+        "characters": 20105,
+        "images": 17,
+        "codeBlocks": 5,
+        "sha256": "81b1cef17fadf085eab1b10853556d6f17a86c9e040aaab47a021aadddf3e2bc"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/configuration.mdx",
+      "title": "对照真实界面完成项目与资产配置",
+      "before": {
+        "characters": 24542,
+        "images": 33,
+        "codeBlocks": 5
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact ini-to-panel mapping and fourteen-group configuration reading checklist.",
+      "after": {
+        "characters": 25965,
+        "images": 33,
+        "codeBlocks": 6,
+        "sha256": "e70c122d49877161e4d89c53175c404c156c5a1390edaca5f29aab6384511792"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/index.mdx",
+      "title": "从空白工程到单区域 RPG",
+      "before": {
+        "characters": 2344,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added novice process map and definitions for first MMO terminology.",
+      "after": {
+        "characters": 3351,
+        "images": 1,
+        "codeBlocks": 1,
+        "sha256": "0af848b2176153cfe2529ffbfe2efa0b578c675a58522a99da3465616ea4c775"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/migration.mdx",
+      "title": "依赖迁移与 Game Feature",
+      "before": {
+        "characters": 10564,
+        "images": 0,
+        "codeBlocks": 3
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact Editor target snippet and plugin/file-versus-asset migration explanation.",
+      "after": {
+        "characters": 12182,
+        "images": 1,
+        "codeBlocks": 4,
+        "sha256": "7152e512d04ace11a3f66b29cfef796097c3252fc2069feeec38687c8ff33bef"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/network-persistence.mdx",
+      "title": "服务器准入与持久化生命周期",
+      "before": {
+        "characters": 2877,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added request retry schematic, exact pending-body code and process-specific reading guide.",
+      "after": {
+        "characters": 4765,
+        "images": 1,
+        "codeBlocks": 2,
+        "sha256": "7e5bd814aec6cb9572aa6290e8bfd924735c138f8e43053d017d25ee417ab667"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/run-lab.mdx",
+      "title": "运行两个客户端并验收",
+      "before": {
+        "characters": 12083,
+        "images": 4,
+        "codeBlocks": 6
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added complete actual player-start gate and novice process/status troubleshooting map.",
+      "after": {
+        "characters": 14279,
+        "images": 4,
+        "codeBlocks": 7,
+        "sha256": "95d45eb3b8c804638e2b3c2c27f8c9759565f042ce3c76c3701dad47d871a5a3"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/09-mmo-ui/blueprint-workflow.mdx",
+      "title": "让 C++ 与蓝图共同承担教学",
+      "before": {
+        "characters": 12526,
+        "images": 3,
+        "codeBlocks": 4
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added asynchronous Blueprint pin interpretation and shared HUD/nested model assignment excerpt.",
+      "after": {
+        "characters": 13913,
+        "images": 3,
+        "codeBlocks": 5,
+        "sha256": "44cd74166bb07bd2faae7edae9b130eed73d6c5a18e922a3223de985adc28836"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/09-mmo-ui/designer.mdx",
+      "title": "在 UMG Designer 中制作全部游戏界面",
+      "before": {
+        "characters": 17818,
+        "images": 24,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Explained widget/source/display naming, slot ownership and actual Manual-source assignment.",
+      "after": {
+        "characters": 19753,
+        "images": 24,
+        "codeBlocks": 3,
+        "sha256": "e80573d67666984098d04392071fe1f8283db9d5d07c5502ca2e266146b1b3d0"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/09-mmo-ui/index.mdx",
+      "title": "MMORPG 界面的数据与交互边界",
+      "before": {
+        "characters": 2570,
+        "images": 1,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added four-stage field-to-widget schematic and novice single-binding learning route.",
+      "after": {
+        "characters": 3130,
+        "images": 2,
+        "codeBlocks": 0,
+        "sha256": "781b5e1c43d46d89e95cd61d00ab414b51fe42426002c8fd906d494491f14d83"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/09-mmo-ui/layers-input.mdx",
+      "title": "CommonUI 层栈、输入与焦点",
+      "before": {
+        "characters": 6990,
+        "images": 1,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact root registration and novice layer/focus observation table.",
+      "after": {
+        "characters": 8167,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "3b3826702ff366303191b387bcf9d94c447b1badb64c03f376a04b7a4c8f3cda"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/09-mmo-ui/localization.mdx",
+      "title": "国际化：中英文、字符串表与打包",
+      "before": {
+        "characters": 13892,
+        "images": 8,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added source-to-locres diagram, fixed/dynamic text distinction and exact culture-change code.",
+      "after": {
+        "characters": 15267,
+        "images": 9,
+        "codeBlocks": 1,
+        "sha256": "71f23831b895d8f46aebe33cac9956672621f69aab324c0ed8efdf561404c58e"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/09-mmo-ui/viewmodels.mdx",
+      "title": "GAS、复制通知与 FieldNotify",
+      "before": {
+        "characters": 4805,
+        "images": 1,
+        "codeBlocks": 3
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added full RefreshMana excerpt, conversion explanation and binding lifecycle schematic.",
+      "after": {
+        "characters": 6000,
+        "images": 2,
+        "codeBlocks": 4,
+        "sha256": "d973495b7afef43cdc5a1fa79cb37ab471614e7729e716ccc1e8a58a707be1fe"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/10-backend/authentication.mdx",
+      "title": "登录、票据与角色租约",
+      "before": {
+        "characters": 3349,
+        "images": 0,
+        "codeBlocks": 5
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added genuine login image, credential lifecycle diagram and real token helper explanation.",
+      "after": {
+        "characters": 4583,
+        "images": 2,
+        "codeBlocks": 6,
+        "sha256": "45b2ec30aa7ed8f367a066d16cf835873aef6e66be4ee2e0df7ef8e4e8355f9f"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/10-backend/database.mdx",
+      "title": "PostgreSQL 初始化与迁移",
+      "before": {
+        "characters": 4359,
+        "images": 0,
+        "codeBlocks": 4
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact schema/query excerpts and novice database relationship diagram.",
+      "after": {
+        "characters": 6391,
+        "images": 1,
+        "codeBlocks": 6,
+        "sha256": "daf853f0429c5d9672f30011201ff002310c166bfe6d040132e55ea83f5546fa"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/10-backend/deployment.mdx",
+      "title": "部署、故障处理与后续演进",
+      "before": {
+        "characters": 5920,
+        "images": 0,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added endpoint/process table, shutdown sequence and exact drain-loop explanation.",
+      "after": {
+        "characters": 7361,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "9b271dfe4fc377025571fdc5d00a06c0dc2d6975d069725046aed4556e451481"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/10-backend/index.mdx",
+      "title": "用 UE 模块实现独立后端",
+      "before": {
+        "characters": 2279,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added novice HTTP terminology and request/process schematic.",
+      "after": {
+        "characters": 2949,
+        "images": 1,
+        "codeBlocks": 0,
+        "sha256": "94bd133802334adb7eb41e2f047b23509d2f6bb16bc0df48c68916bc99271153"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/10-backend/persistence.mdx",
+      "title": "角色快照、事务与幂等保存",
+      "before": {
+        "characters": 2223,
+        "images": 0,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact RAII transaction code, save decision schematic and worked version examples.",
+      "after": {
+        "characters": 3533,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "0f4f0895f2080048631d3d9f676c2d88bf54d9c3f0349f5cab475b8a609ee9cd"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/10-backend/program-and-workers.mdx",
+      "title": "Program 主循环与有界工作队列",
+      "before": {
+        "characters": 6408,
+        "images": 0,
+        "codeBlocks": 4
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added bounded enqueue/pump excerpt and explicit thread/ownership diagram.",
+      "after": {
+        "characters": 7692,
+        "images": 1,
+        "codeBlocks": 5,
+        "sha256": "bd091d10651b17971ca382e1ba9d89ef9266055f7694506a0dbaddefcff40f83"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/10-backend/run-and-test.mdx",
+      "title": "构建、启动与接口验收",
+      "before": {
+        "characters": 11221,
+        "images": 0,
+        "codeBlocks": 13
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added actual save-retry assertion walkthrough and layered test schematic.",
+      "after": {
+        "characters": 12491,
+        "images": 1,
+        "codeBlocks": 14,
+        "sha256": "8dff05511da361d480f24b99c38e05d6d192d92d6343284fa7c8b7b2e3668105"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/11-reference/blueprint-screenshots.mdx",
+      "title": "蓝图 1:1 全图截图：安装、修复与导出",
+      "before": {
+        "characters": 4942,
+        "images": 0,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added real plugin preferences capture, selection-branch code and corrected stale root-graph pending statement.",
+      "after": {
+        "characters": 7188,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "b979471b29918b665733bdd219d1cea5d2af3b6a8f4543706fc62bce1c0d2ec6"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/11-reference/glossary.mdx",
+      "title": "术语表与源码速查",
+      "before": {
+        "characters": 2671,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added precise code/asset terminology mapping and beginner lifetime diagram.",
+      "after": {
+        "characters": 4276,
+        "images": 1,
+        "codeBlocks": 1,
+        "sha256": "7b39bd3059d9ed44d8ba1935803f708f6cb9308b835ad784ab7003e32c75e046"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/11-reference/index.mdx",
+      "title": "排障、性能与版本查阅",
+      "before": {
+        "characters": 909,
+        "images": 0,
+        "codeBlocks": 1
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added beginner troubleshooting route and symptom-driven reference navigation.",
+      "after": {
+        "characters": 1438,
+        "images": 1,
+        "codeBlocks": 1,
+        "sha256": "afae9ea1b81ab26d07eaf6b0d99161851ed370a93d7aef5b119fea4748796da0"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/11-reference/performance.mdx",
+      "title": "性能定位：先测量，再选择优化层",
+      "before": {
+        "characters": 2475,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact performance-stat code, unit/parallelism explanation and measurement workflow.",
+      "after": {
+        "characters": 4328,
+        "images": 1,
+        "codeBlocks": 1,
+        "sha256": "be89c08ea69cf4c070113d976f7c65d3b373b869140e7c13a5bad05c88b76e7c"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/11-reference/publishing.mdx",
+      "title": "文档站构建与 GitHub Pages 发布",
+      "before": {
+        "characters": 4591,
+        "images": 0,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added exact CI matrix, publishing flow and rendered artifact inspection.",
+      "after": {
+        "characters": 5511,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "ede072732f59f2e30845abeacbecba814081b4436aa3cecc13b443bf4c20bd88"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/11-reference/troubleshooting.mdx",
+      "title": "按现象排障：从日志定位到调用链",
+      "before": {
+        "characters": 4100,
+        "images": 0,
+        "codeBlocks": 2
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added concrete missing-module recovery, true Live Coding capture and delay-formula code.",
+      "after": {
+        "characters": 5454,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "7c237e0e5f464f0e6234e2d189c435ad7b2dcede790b7efefbbe605b6431f0f1"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/11-reference/upgrades.mdx",
+      "title": "版本升级、来源清单与可复现验证",
+      "before": {
+        "characters": 1913,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added source/version workflow and novice diff/hash/provenance reading guide.",
+      "after": {
+        "characters": 2879,
+        "images": 1,
+        "codeBlocks": 1,
+        "sha256": "e576eabed041dbb7537c2ec883ace134457a6cb7d28a47ca04eeff2eb76be489"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/downloads.mdx",
+      "title": "配套资料与复现",
+      "before": {
+        "characters": 3147,
+        "images": 0,
+        "codeBlocks": 3
+      },
+      "status": "reviewed",
+      "revisionNotes": "Added download/material workflow, command explanations and file-type handling guide.",
+      "after": {
+        "characters": 4070,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "e97ec03f89658120affef0a5abf8a6e684979698bb3a3814e14d443da32a41d5"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/index.mdx",
+      "title": "学习路线",
+      "before": {
+        "characters": 1269,
+        "images": 0,
+        "codeBlocks": 0
+      },
+      "status": "reviewed",
+      "revisionNotes": "Removed editor-experience prerequisite; added novice entry and staged learning route.",
+      "after": {
+        "characters": 2130,
+        "images": 1,
+        "codeBlocks": 0,
+        "sha256": "eaba2fe383e6a55bacef8595b91853d6ff3ec6dc9e2beabd7c9ca2b929b8cb10"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/01-start/ue-basics.mdx",
+      "title": "UE 零基础：认界面、读配置与第一段代码",
+      "status": "reviewed",
+      "newPage": true,
+      "after": {
+        "characters": 5511,
+        "images": 4,
+        "codeBlocks": 1,
+        "sha256": "d65422c1dc18f78c17bc194d5dd5b0b17d291247b742c07c400578fe535361e2"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/02-architecture/plugin-atlas.mdx",
+      "title": "Lyra 插件总览：每个插件做什么、怎样接到游戏",
+      "status": "reviewed",
+      "newPage": true,
+      "after": {
+        "characters": 17211,
+        "images": 3,
+        "codeBlocks": 5,
+        "sha256": "a9717abfd74a6c17ad4ffbef2eaa226c25a443d8d664c413f09ac9539a23a3fc"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/02-architecture/loading-online.mdx",
+      "title": "加载画面、用户初始化与在线会话",
+      "status": "reviewed",
+      "newPage": true,
+      "after": {
+        "characters": 4518,
+        "images": 2,
+        "codeBlocks": 3,
+        "sha256": "9f44d02e98bd6e1c092f26d415b75c51e8437d6795d4871a44e86999850a44a0"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/full-guide-site.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/from-zero.mdx",
+      "title": "MMORPG 从零复刻：按步骤写代码、搭蓝图与配置",
+      "status": "reviewed",
+      "newPage": true,
+      "after": {
+        "characters": 10885,
+        "images": 1,
+        "codeBlocks": 9,
+        "sha256": "44a5686593a76a1e1daef45cba0a8e8686c0a64529b703ea576b3331b4ebf813"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/index.mdx",
+      "title": "MMORPG 完整源码书",
+      "status": "reviewed",
+      "newPage": true,
+      "after": {
+        "characters": 1013,
+        "images": 1,
+        "codeBlocks": 0,
+        "sha256": "d504274bec48f130eb928e28620c17871f2ab17039f0c9f57770af5dd21a5a27"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/asset-construction.mdx",
+      "title": "资产施工清单：蓝图、节点、输入与 UI 逐项搭建",
+      "status": "reviewed",
+      "newPage": true,
+      "after": {
+        "characters": 12471,
+        "images": 7,
+        "codeBlocks": 0,
+        "sha256": "08b034a266bdca6ccb6badd14f67d8c0d643217bd612eb71ec6c5b287c4004a4"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/02-architecture/modification-workshop.mdx",
+      "title": "理解之后动手改：六个 Lyra 改造实验",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 9399,
+        "images": 8,
+        "codeBlocks": 0,
+        "sha256": "a63919cbfa81dc05294757b0a0f26004c98cb508b5c6d4db08d6f699e2fb1f64"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/animation.mdx",
+      "title": "动画数据接口：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 5479,
+        "images": 1,
+        "codeBlocks": 2,
+        "sha256": "502aa9f4346bf573e7f301e1313c95a30bf9b585b7282142fe239e8ebf3c0fec"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/backend.mdx",
+      "title": "后端 Program 与数据库：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 33628,
+        "images": 1,
+        "codeBlocks": 7,
+        "sha256": "85194d02516802f6c6308c755252ee23734998ce8763b6ce334fe928921c2d4e"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/build.mdx",
+      "title": "工程入口与构建目标：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 6544,
+        "images": 1,
+        "codeBlocks": 7,
+        "sha256": "dad4df702257a761caebf475c6ad72c32356c2b406e8d79bdc078ec8187758c4"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/config.mdx",
+      "title": "项目配置与界面契约：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 35154,
+        "images": 1,
+        "codeBlocks": 18,
+        "sha256": "ef724843da5805dcd0ad273177109f34b03f952774bf59fecacbad71c8869683"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/editor-tools.mdx",
+      "title": "资产核对与生成工具：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 109124,
+        "images": 1,
+        "codeBlocks": 14,
+        "sha256": "ba9ac157a5ea6875968136a6256d89e222374015f95c8efaaca0975caa3554b6"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/framework.mdx",
+      "title": "数据定义与初始化框架：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 50368,
+        "images": 1,
+        "codeBlocks": 17,
+        "sha256": "e9a9d4e93405c354415efa857cb2b376be5b7f972d13df26e014bd22b8ca66bd"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/gameplay.mdx",
+      "title": "角色、战斗与存档代码：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 67352,
+        "images": 1,
+        "codeBlocks": 3,
+        "sha256": "30db7a5123831a38d78ec068bc896e1285f66233895028b8f7d7969dccf92b98"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/http.mdx",
+      "title": "协议与 HTTP 模块：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 20564,
+        "images": 1,
+        "codeBlocks": 11,
+        "sha256": "b0af2c7c45ac36bf99374cc4d1c7ad76edc6048abb4e964c1fc1255aa908a1fa"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/input-health.mdx",
+      "title": "输入、死亡与验证代码：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 29514,
+        "images": 1,
+        "codeBlocks": 8,
+        "sha256": "d1f62d81569f866a9293c14089085b0df0a47443d117ed1b6f0f77488ba70557"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/skeleton.mdx",
+      "title": "00 空白工程骨架：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 6059,
+        "images": 1,
+        "codeBlocks": 9,
+        "sha256": "d9f9dff6a90141084454060931488da7953ddfe24338777298f2539564bf94d2"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/ui.mdx",
+      "title": "UI 与 ViewModel 的完整父类：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 43786,
+        "images": 1,
+        "codeBlocks": 2,
+        "sha256": "91d81c0bd02cd47bac21725249931e1e34d930f99c368b43306a7f8cf9259050"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    },
+    {
+      "path": "content/docs/08-mmorpg/source/zone.mdx",
+      "title": "Game Feature 与区域内容：完整文件",
+      "newPage": true,
+      "status": "reviewed",
+      "after": {
+        "characters": 9279,
+        "images": 1,
+        "codeBlocks": 4,
+        "sha256": "ea7e72a6f5dc9161b8d765c9e018e65238a34f4531bec6c183c7a3ac8e5434ab"
+      },
+      "reviewEvidence": [
+        "verification/full-guide-source-review.json",
+        "verification/copy-course-site.json"
+      ]
+    }
+  ],
+  "completedAt": "2026-09-15T09:55:11.591326+08:00"
+}

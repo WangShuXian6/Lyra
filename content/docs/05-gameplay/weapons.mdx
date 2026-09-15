@@ -48,8 +48,59 @@ if (bIsTargetDataValid && CommitAbility(CurrentSpecHandle,
 
 `ULyraRangedWeaponInstance` 承载射击相关配置和状态；InventoryInstance 的标签计数可参与弹药管理。先找到技能使用的 SourceObject 和装备关联，再查看弹夹与备用弹药。直接改 HUD 文本不能补充弹药；修改错误的实例也不会影响正在使用的枪。
 
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+### 从伤害效果图返回开火逻辑
+![步枪即时伤害效果的执行配置](/media/beginner/whole-guide/rifle-damage-effect.png)
+
+**看图操作**：打开 Rifle 文件夹中的 GE_Damage_RifleAuto。展开 Executions → 索引 0 → Calculation Modifiers。图中 LyraDamageExecution 使用 BaseDamage=12，持续时间策略是 Instant。最外层 Modifiers 为 0 不代表没有伤害：这里通过 Execution 计算。
+
+先认识四个词：**Trace** 是沿路径查询碰撞；**HitResult** 是一次查询结果；**TargetData** 是能力系统传递目标信息的容器；**CommitAbility** 是提交这次能力的消耗/冷却检查与应用。它们不是四次开火。
+
+从 `WID_Rifle → Ability Sets To Grant → AbilitySet_Rifle` 打开开火能力，再沿父类进入 `GA_Weapon_Fire` 与 `ULyraGameplayAbility_RangedWeapon`。在 Rider 的 `OnTargetDataReadyCallback` 内设断点，观察当前角色和网络身份，避免把客户端和服务端的两次进入当成重复扣弹药。
+源码：`Source/LyraGame/Weapons/LyraGameplayAbility_RangedWeapon.cpp`，本机第 530–546 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+	// See if we still have ammo
+	if (bIsTargetDataValid && CommitAbility(CurrentSpecHandle, CurrentActorInfo, CurrentActivationInfo))
+	{
+		// We fired the weapon, add spread
+		ULyraRangedWeaponInstance* WeaponData = GetWeaponInstance();
+		check(WeaponData);
+		WeaponData->AddSpread();
+
+		// Let the blueprint do stuff like apply effects to the targets
+		OnRangedWeaponTargetDataReady(LocalTargetDataHandle);
+	}
+	else
+	{
+		UE_LOG(LogLyraAbilitySystem, Warning, TEXT("Weapon ability %s failed to commit (bIsTargetDataValid=%d)"), *GetPathName(), bIsTargetDataValid ? 1 : 0);
+		K2_EndAbility();
+	}
+}
+```
+
+`&&` 两侧都成功才进入大括号。拿到武器实例后 `AddSpread()` 增加射击扩散，再把目标数据交给蓝图事件 `OnRangedWeaponTargetDataReady`。失败分支记录日志并结束能力；所以命中射线可视化成功，也可能因弹药/消耗规则而没有造成伤害。
+
+同一函数更前面把 `bIsTargetDataValid` 直接设为 `true`。这是本机示例实现的边界，不能据此宣称服务器已经严格检查了客户端报送的每个命中点。MMO 的射程、视线、目标状态等校验应在服务器独立实现。
+![调试一次开火的四个停靠点](/media/guide-diagrams/05-gameplay-weapons.svg)
+
+**读图**：每次只检查一个停靠点。看见枪口光不能证明目标收到伤害，目标掉血也不能证明远端玩家听见了声音。
+
+**完成检查**：分别试一次有弹药开火、空弹匣开火、朝空处开火，记录能力进入、Commit、目标数与 Health 变化。使用哪个网络进程观察，就在记录中写清楚哪个进程；不要把示意流程当作本轮已实测记录。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 应能记录一次按键到底有没有提交技能、命中哪个对象、在哪台机器应用伤害。能看见火花却不掉血时，依次检查命中目标 ASC、伤害 EffectSpec、队伍规则和免伤标签。准星重复命中提示时检查预测表现与确认表现是否重复添加。
 
 练习：分别测试墙体、友军、敌人和射程外目标。每项记录本地检测、服务器结果与 UI；再写出新增近战武器时哪些装备/能力机制可复用，哪些射线规则需要重新设计。
+
+{/* copy-course-exercise */}
+
+## 按步骤完成一次改造
+
+实验四只改一个 Execution 的基础伤害；固定距离和命中部位，用服务器结果比较修改前后。 [打开六个改造实验](/docs/02-architecture/modification-workshop)。

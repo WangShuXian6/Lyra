@@ -1,0 +1,444 @@
+{
+  "schemaVersion": 1,
+  "projectName": "MMORPG",
+  "stages": [
+    {
+      "id": 0,
+      "title": "空白 C++ 工程",
+      "files": [
+        {
+          "source": "curriculum/mmorpg/skeleton/Config/DefaultEditorPerProjectUserSettings.ini",
+          "target": "Config/DefaultEditorPerProjectUserSettings.ini"
+        },
+        {
+          "source": "curriculum/mmorpg/skeleton/Config/DefaultEngine.ini",
+          "target": "Config/DefaultEngine.ini"
+        },
+        {
+          "source": "curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.Build.cs",
+          "target": "Source/MMORPG/MMORPG.Build.cs"
+        },
+        {
+          "source": "curriculum/mmorpg/skeleton/Source/MMORPG/MMORPG.cpp",
+          "target": "Source/MMORPG/MMORPG.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG.Target.cs",
+          "target": "Source/MMORPG.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGEditor.Target.cs",
+          "target": "Source/MMORPGEditor.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGClient.Target.cs",
+          "target": "Source/MMORPGClient.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPGServer.Target.cs",
+          "target": "Source/MMORPGServer.Target.cs"
+        },
+        {
+          "source": "curriculum/mmorpg/descriptors/00.uproject",
+          "target": "MMORPG.uproject"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "数据定义与角色初始化框架",
+      "files": [
+        {
+          "source": "curriculum/mmorpg/descriptors/01.uproject",
+          "target": "MMORPG.uproject"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/MMOFramework.uplugin",
+          "target": "Plugins/MMOFramework/MMOFramework.uplugin"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/MMOFramework.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySet.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOAbilitySystemComponent.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOExperienceManagerComponent.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOFrameworkSubsystem.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOInputConfig.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Private/MMOPawnExtensionComponent.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySet.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOAbilitySystemComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceDefinition.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOExperienceManagerComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOFrameworkSubsystem.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOInputConfig.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnData.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h",
+          "target": "Plugins/MMOFramework/Source/MMOFramework/Public/MMOPawnExtensionComponent.h"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "协议和 HTTP 客户端/服务器模块",
+      "files": [
+        {
+          "source": "curriculum/mmorpg/descriptors/02.uproject",
+          "target": "MMORPG.uproject"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/MMOIntegration.uplugin",
+          "target": "Plugins/MMOIntegration/MMOIntegration.uplugin"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendClient/MMOBackendClient.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendClient/Private/MMOBackendClient.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendClient/Public/MMOBackendClient.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendServer/MMOBackendServer.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendServer/Private/MMOBackendServer.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h",
+          "target": "Plugins/MMOIntegration/Source/MMOBackendServer/Public/MMOBackendServer.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOContracts/MMOContracts.Build.cs",
+          "target": "Source/MMOContracts/MMOContracts.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOContracts/Private/MMOContracts.cpp",
+          "target": "Source/MMOContracts/Private/MMOContracts.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOContracts/Public/MMOContracts.h",
+          "target": "Source/MMOContracts/Public/MMOContracts.h"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "游戏、UI、动画、区域与完整配置",
+      "files": [
+        {
+          "source": "examples/MMORPG/backend/migrations/001_initial.sql",
+          "target": "backend/migrations/001_initial.sql"
+        },
+        {
+          "source": "examples/MMORPG/backend/migrations/002_state_constraints.sql",
+          "target": "backend/migrations/002_state_constraints.sql"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultEditor.ini",
+          "target": "Config/DefaultEditor.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultEngine.ini",
+          "target": "Config/DefaultEngine.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultGame.ini",
+          "target": "Config/DefaultGame.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultGameplayTags.ini",
+          "target": "Config/DefaultGameplayTags.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultGameUserSettings.ini",
+          "target": "Config/DefaultGameUserSettings.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/DefaultInput.ini",
+          "target": "Config/DefaultInput.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_Compile.ini",
+          "target": "Config/Localization/MMO_Compile.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_Export.ini",
+          "target": "Config/Localization/MMO_Export.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_Gather.ini",
+          "target": "Config/Localization/MMO_Gather.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_GenerateReports.ini",
+          "target": "Config/Localization/MMO_GenerateReports.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Localization/MMO_Import.ini",
+          "target": "Config/Localization/MMO_Import.ini"
+        },
+        {
+          "source": "examples/MMORPG/Config/Windows/WindowsEngine.ini",
+          "target": "Config/Windows/WindowsEngine.ini"
+        },
+        {
+          "source": "examples/MMORPG/dependencies.json",
+          "target": "dependencies.json"
+        },
+        {
+          "source": "examples/MMORPG/localization-runtime-zh-Hans.json",
+          "target": "localization-runtime-zh-Hans.json"
+        },
+        {
+          "source": "examples/MMORPG/MMORPG.uproject",
+          "target": "MMORPG.uproject"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/MMOCore.uplugin",
+          "target": "Plugins/GameFeatures/MMOCore/MMOCore.uplugin"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs",
+          "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/MMOCore.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp",
+          "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/Private/MMOZoneComponent.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h",
+          "target": "Plugins/GameFeatures/MMOCore/Source/MMOCore/Public/MMOZoneComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/MMODocTools.uplugin",
+          "target": "Plugins/MMODocTools/MMODocTools.uplugin"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/MMODocTools.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMOAnimationTools.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODesignerWidgets.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocExperienceTools.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocTaggedAbilityInputs.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsLibrary.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocToolsModule.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMOManaStatus.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMOAnimationTools.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMODocExperienceTools.h"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Public/MMODocToolsLibrary.h"
+        },
+        {
+          "source": "examples/MMORPG/prepare_content.py",
+          "target": "prepare_content.py"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOBackendService/MMOBackendService.Build.cs",
+          "target": "Source/MMOBackendService/MMOBackendService.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOBackendService/Private/MMOBackendService.cpp",
+          "target": "Source/MMOBackendService/Private/MMOBackendService.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOBackendService.Target.cs",
+          "target": "Source/MMOBackendService.Target.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOPersistence/MMOPersistence.Build.cs",
+          "target": "Source/MMOPersistence/MMOPersistence.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOPersistence/Private/MMOPersistence.cpp",
+          "target": "Source/MMOPersistence/Private/MMOPersistence.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMOPersistence/Public/MMOPersistence.h",
+          "target": "Source/MMOPersistence/Public/MMOPersistence.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/MMORPG.Build.cs",
+          "target": "Source/MMORPG/MMORPG.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/MMORPG.cpp",
+          "target": "Source/MMORPG/MMORPG.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOAbilityInputValidation.cpp",
+          "target": "Source/MMORPG/Private/MMOAbilityInputValidation.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOAnimationValidation.cpp",
+          "target": "Source/MMORPG/Private/MMOAnimationValidation.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOAnimInstance.cpp",
+          "target": "Source/MMORPG/Private/MMOAnimInstance.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMODeathValidation.cpp",
+          "target": "Source/MMORPG/Private/MMODeathValidation.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOExperienceGameplay.cpp",
+          "target": "Source/MMORPG/Private/MMOExperienceGameplay.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOGameplay.cpp",
+          "target": "Source/MMORPG/Private/MMOGameplay.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOHealthComponent.cpp",
+          "target": "Source/MMORPG/Private/MMOHealthComponent.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOInputGameplay.cpp",
+          "target": "Source/MMORPG/Private/MMOInputGameplay.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOLocalizationValidation.cpp",
+          "target": "Source/MMORPG/Private/MMOLocalizationValidation.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMORespawnGameplay.cpp",
+          "target": "Source/MMORPG/Private/MMORespawnGameplay.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Private/MMOUI.cpp",
+          "target": "Source/MMORPG/Private/MMOUI.cpp"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Public/MMOAnimInstance.h",
+          "target": "Source/MMORPG/Public/MMOAnimInstance.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Public/MMOGameplay.h",
+          "target": "Source/MMORPG/Public/MMOGameplay.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Public/MMOHealthComponent.h",
+          "target": "Source/MMORPG/Public/MMOHealthComponent.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/MMORPG/Public/MMOUI.h",
+          "target": "Source/MMORPG/Public/MMOUI.h"
+        },
+        {
+          "source": "examples/MMORPG/Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs",
+          "target": "Source/ThirdParty/MMOThirdParty/MMOThirdParty.Build.cs"
+        },
+        {
+          "source": "examples/MMORPG/ui-designer-contract.json",
+          "target": "ui-designer-contract.json"
+        },
+        {
+          "source": "examples/MMORPG/ui-designer-strings.json",
+          "target": "ui-designer-strings.json"
+        },
+        {
+          "source": "examples/MMORPG/Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h",
+          "target": "Plugins/MMODocTools/Source/MMODocTools/Private/MMODocProjectGuard.h"
+        }
+      ],
+      "imports": [
+        {
+          "from": "Plugins/CommonGame",
+          "to": "Plugins/CommonGame",
+          "reason": "LocalPlayer, PlayerController, UIManager, UIPolicy and root layout"
+        },
+        {
+          "from": "Plugins/CommonUser",
+          "to": "Plugins/CommonUser",
+          "reason": "CommonGame transitive platform-user dependency"
+        },
+        {
+          "from": "Plugins/ModularGameplayActors",
+          "to": "Plugins/ModularGameplayActors",
+          "reason": "Component receiver lifecycle for Game Feature actions"
+        },
+        {
+          "from": "Plugins/UIExtension",
+          "to": "Plugins/UIExtension",
+          "reason": "Player-scoped HUD extension points"
+        }
+      ]
+    }
+  ]
+}

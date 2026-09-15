@@ -1,0 +1,173 @@
+{
+  "checkedAt": "2026-09-15T10:53:47.122340+08:00",
+  "project": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG",
+  "passed": true,
+  "method": "Native asset builder from fresh source project, then a separate process creates and validates explicit Cook label. This is automated reproduction, not a claim that every manual editor click was repeated.",
+  "bootstrap": {
+    "initialAssetBuildExit": 1,
+    "initialCause": "MMOCore first startup before GameFeatureData exists: Plugin_Missing_GameFeatureData",
+    "assetsSaved": true,
+    "newProcessAfterSaveExit": 0,
+    "restartRequired": true
+  },
+  "reports": [
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\backend-health-roundtrip.json",
+      "passed": true,
+      "sha256": "a588f05397e8ffff812b0b0818a9fe293158bb0fb4f14922407bfba581c0e6fe"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\mana-status-bindings.json",
+      "passed": true,
+      "sha256": "047c4291c524268e1e2e7a6e9c18322a9f0dae9374d7c7a1bb14c0fb226b4789"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\mmorpg-animation-assets.json",
+      "passed": true,
+      "sha256": "3aee0241bb7a51786a64a31a286a4016e76d93166a2ce3810353679a9aa84837"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\mmorpg-character-defaults.json",
+      "passed": true,
+      "sha256": "fae73cd527687c60e61477ab71f0bcad02b7e87cadee36ee6dbb6581848c454e"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\mmorpg-experience-assets.json",
+      "passed": true,
+      "sha256": "bf0e3e3f0c9985e6974a49a6d2c0be06258a4b2d9048c069536a5a132da3fee1"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\mmorpg-game-mode.json",
+      "passed": true,
+      "sha256": "c05ff625086b3110977829462a284c0fac15a29a67edf361d5538df1d254856b"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\mmorpg-health-cook-label-scan.json",
+      "passed": true,
+      "sha256": "d788f8f8f470aa60120ada975341ca83cf44832ca859b4637166eb9bb72622dc"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\mmorpg-health-cook-label.json",
+      "passed": true,
+      "sha256": "c2c54919c3de358f41d8d034eeae8058c120a2fb62f73f2ff897c3845feab35b"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\ui-designer-assets.json",
+      "passed": true,
+      "sha256": "b4d920f8ce363dbecceeabd8a823b07b48379db6b32e180191c3394763431eb7"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\WBP_Confirm-designer.json",
+      "passed": true,
+      "sha256": "1c2b59dcd46b9b5d721bcf614591d8dac9ebcc584e6dabd59eb4eb291e55c9ec"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\WBP_Inventory-designer.json",
+      "passed": true,
+      "sha256": "d17de1a26787080e21f59c7a90c2400819b5961e2a3592a8c7dc1228be699dd2"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\WBP_Login-designer.json",
+      "passed": true,
+      "sha256": "d58d05c8d2d28840b8ef25e23c9ab1d4b083e104a2f45ef6aacb197c63581d6e"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\WBP_ManaStatus-designer.json",
+      "passed": true,
+      "sha256": "047c4291c524268e1e2e7a6e9c18322a9f0dae9374d7c7a1bb14c0fb226b4789"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\WBP_MMOLayout-designer.json",
+      "passed": true,
+      "sha256": "d9c48a4d2a8c11dc0c6ff1db0f3f12663f3932e90e9da7b3345edc79a03e81ac"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\WBP_PlayerHUD-designer.json",
+      "passed": true,
+      "sha256": "4f2f3e07e751dcd0308f1e7b2d77fc5f0abb41ef5427394d67397f186d2e566a"
+    },
+    {
+      "report": "F:\\UE\\LyraDocLabs\\CopyCourse-20260915\\MMORPG\\Saved\\Evidence\\WBP_Settings-designer.json",
+      "passed": true,
+      "sha256": "61470fc1d63044cda47293a2d28ca0ce053d137475f634ee2d3e3f2e2f3063c3"
+    }
+  ],
+  "assets": [
+    {
+      "path": "Content/MMO/Abilities/DA_MMOAbilities.uasset",
+      "sha256": "335c4faf20fa84215675dc2b9ed4a710357fceddf94f4ef9261105f22c3425e6"
+    },
+    {
+      "path": "Content/MMO/BP_MMOGameMode.uasset",
+      "sha256": "3b9734a3d001381a0dca2b95bd1782a39f11095b1c0f39270832a15624178bbb"
+    },
+    {
+      "path": "Content/MMO/Experiences/DA_MMOExperience.uasset",
+      "sha256": "a9ebb67ee100103d2d533b7f956720d5f883c688b39aa443575f110f9f3cd13e"
+    },
+    {
+      "path": "Content/MMO/Input/DA_MMOInputConfig.uasset",
+      "sha256": "b9f6b81fb8a433e97c0b63eb2f446090ae04472424ef2e57b686bc46b64a2309"
+    },
+    {
+      "path": "Content/MMO/Input/IA_Attack.uasset",
+      "sha256": "620b681d011600033cb668fb01d9a0d468e222ee62e739a28a5ab53c89f1a5f6"
+    },
+    {
+      "path": "Content/MMO/Input/IA_Inventory.uasset",
+      "sha256": "07dac4cd510c6db2046ca3d8de843b8f491da0a43dde1a7916cbbb95d42c03f8"
+    },
+    {
+      "path": "Content/MMO/Input/IA_Look.uasset",
+      "sha256": "b25a2b2e82f598990fe1789a2d6d4d17b31b6ac6f1692eab06df87dd3b8b6f5f"
+    },
+    {
+      "path": "Content/MMO/Input/IA_Move.uasset",
+      "sha256": "6c508f39eb1dae0dc5dfb694b336dff1911900f9c281249e51018f887ff3eb7c"
+    },
+    {
+      "path": "Content/MMO/Input/IA_Settings.uasset",
+      "sha256": "9f377ccac3ad086f317bef36d5bc8ea0eb02d4b96f55c5405f4240d7d8bcf45b"
+    },
+    {
+      "path": "Content/MMO/Input/IA_Spell.uasset",
+      "sha256": "a55f773d19af1af63537a361e2d857ee194683327bbedd6565b0f654a244e0ef"
+    },
+    {
+      "path": "Content/MMO/Input/IA_Target.uasset",
+      "sha256": "a2c97ab18405524a0cf1d02582ab3bdb4125a03c5985c276e2373527560fce3f"
+    },
+    {
+      "path": "Content/MMO/Input/IMC_MMOPlayer.uasset",
+      "sha256": "e5842a7364ceb188a2b807d1a165629a82c848857d12b12b719699ddd682bf37"
+    },
+    {
+      "path": "Content/MMO/Labels/DA_TutorialExamples.uasset",
+      "sha256": "49e017b4b1ff4e2cd85fd9f5d9913841c93967ff5713ab1c6bdb74439163062a"
+    },
+    {
+      "path": "Content/MMO/Pawns/DA_MMOPlayer.uasset",
+      "sha256": "132113ec5229dfb39a9fd68bc195a56a7511f4b9d8e142b8438bdea568390e10"
+    },
+    {
+      "path": "Content/Tutorial/BP_BackendHealth.uasset",
+      "sha256": "2a028e6c68a9da877de48c0a17834765e54abdda65e9ba6d13a2420a453dc4d6"
+    },
+    {
+      "path": "Content/Tutorial/BP_MMOCharacter.uasset",
+      "sha256": "63c2a31cfb7fab7346227ca4b0acc5513108146515b36272dea9dc735ae1385f"
+    },
+    {
+      "path": "Content/Tutorial/BP_MMOTrainingTarget.uasset",
+      "sha256": "588c6600639aa36217310a46d2d64ddd39e10fb0288ee0497631bcfe6d804883"
+    },
+    {
+      "path": "Content/Tutorial/GA_ArcaneBolt.uasset",
+      "sha256": "5058ec68d590d6beea1623d89a61a60bccf1c9a6bc552da3a753e7bde01b993c"
+    },
+    {
+      "path": "Plugins/GameFeatures/MMOCore/Content/MMOCore.uasset",
+      "sha256": "520c88f8a5878264585530d2e6d88bab32c3d0e71a021202ba7448bf52ae5576"
+    }
+  ]
+}

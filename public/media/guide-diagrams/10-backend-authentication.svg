@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="658" viewBox="0 0 1120 658" role="img" aria-labelledby="title desc">
+<title id="title">登录凭据怎样换成角色写权限</title><desc id="desc">这不是逐次加密同一个密码。每种凭据有独立用途、持有者和有效期，数据库保存其摘要。</desc>
+<defs><marker id="a" markerWidth="9" markerHeight="9" refX="5" refY="4" orient="auto"><path d="M0,0 L0,8 L7,4 z" fill="#7aa6b2"/></marker></defs>
+<rect width="1120" height="658" rx="18" fill="#112027"/>
+<g font-family="Noto Sans SC,Microsoft YaHei,sans-serif">
+<text x="42" y="48" fill="#f1f5f6" font-size="27" font-weight="700">登录凭据怎样换成角色写权限</text>
+<text x="42" y="80" fill="#9db4bd" font-size="17">关系示意图 · 按序号阅读 · 不是编辑器截图</text>
+<rect x="42" y="110" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="142" r="18" fill="#b6d588"/>
+<text x="78" y="149" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">1</text>
+<text x="112" y="148" fill="#f1f5f6" font-size="23" font-weight="700">账号密码 → 登录会话</text>
+<text x="112" y="178" fill="#d3e1e6" font-size="18">客户端通过登录得到 token，后续请求把它放进 Bearer 头。</text>
+<path d="M560,211 V230" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="238" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="270" r="18" fill="#b6d588"/>
+<text x="78" y="277" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">2</text>
+<text x="112" y="276" fill="#f1f5f6" font-size="23" font-weight="700">登录会话 → 一次性票据</text>
+<text x="112" y="306" fill="#d3e1e6" font-size="18">验证角色归属，绑定目标服务器，票据只用于这次入服。</text>
+<path d="M560,339 V358" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="366" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="398" r="18" fill="#b6d588"/>
+<text x="78" y="405" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">3</text>
+<text x="112" y="404" fill="#f1f5f6" font-size="23" font-weight="700">游戏服兑换 → 角色租约</text>
+<text x="112" y="434" fill="#d3e1e6" font-size="18">可信游戏服使用服务身份兑换，后端原子地标记消费并建立租约。</text>
+<path d="M560,467 V486" stroke="#7aa6b2" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="494" width="1036" height="100" rx="10" fill="#1d343e" stroke="#486571"/>
+<circle cx="78" cy="526" r="18" fill="#b6d588"/>
+<text x="78" y="533" text-anchor="middle" font-size="20" font-weight="700" fill="#142123">4</text>
+<text x="112" y="532" fill="#f1f5f6" font-size="23" font-weight="700">保存、续租、释放</text>
+<text x="112" y="562" fill="#d3e1e6" font-size="18">只有有效服务身份和有效租约才能访问相应角色保存接口。</text>
+</g></svg>

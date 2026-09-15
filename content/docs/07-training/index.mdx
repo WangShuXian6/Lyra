@@ -41,3 +41,28 @@ description: 从独立 Game Feature、Experience 和 PawnData 到技能、武器
 仓库的 `examples/LyraTraining/prepare_training.py` 用 Unreal 原生资产 API 重现本章的复制与配置操作。源码和脚本可以阅读；`.uasset`、`.umap` 必须交给 Unreal 加载和保存。
 
 生成报告位于实验工程的 `Saved/training-assets.json`。报告记录复制关系；运行验收另见仓库 `verification/`。生成了资产、蓝图编译成功和游戏运行正确是三种不同证据。
+
+{/* full-guide-begin */}
+
+## 从图中配置走到代码行为
+
+![训练场按五个可观察结果推进](/media/guide-diagrams/07-training-index.svg)
+
+**读图**：本图是学习顺序。每到一格先写下观察结果，再继续；前面的编译成功不能代替后面的输入和网络检查。
+
+### 第一条命令中的每一部分
+
+`./scripts/prepare-labs.ps1 -Lab Training` 必须在文档仓库根目录的 PowerShell 中执行。`./` 表示当前目录，`.ps1` 是 PowerShell 脚本，`-Lab` 选择要准备哪份实验。它会读取本机 Lyra 并写入训练副本；不会替你进入 UE 点击 Play。
+
+第二条 `set-preview-quality.ps1` 的 `-ProjectRoot` 指向训练工程文件夹，不是 `.uproject` 文件。它统一预览设置，便于对比截图；改画质不能解决缺失模块。
+
+| 完成后检查 | 在哪里看 | 没有时先做什么 |
+|---|---|---|
+| LyraStarterGame.uproject | 训练目录根 | 检查复制脚本输出与目标路径 |
+| TrainingRange.uplugin | Plugins/GameFeatures/TrainingRange | 检查插件文件是否整套复制 |
+| L_TrainingRange | UE 的 TrainingRange Content → Maps | 构建后执行资产生成，再核对保存 |
+| training-assets.json | 训练工程 Saved | 阅读 source/destination，不要把它当成运行报告 |
+
+**对照截图**：本页开头画面中的 LYRA TRAINING 标牌用来识别训练地图；手枪、血量和弹药 HUD 用来确认基础装配。窗口里的画面本身无法证明完整工程路径，仍需在打开时核对路径。
+
+{/* full-guide-end */}

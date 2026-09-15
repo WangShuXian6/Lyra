@@ -44,6 +44,47 @@ if (LyraCharacter->IsLocallyControlled() && !LyraCharacter->bPressedJump)
 
 推荐先按[训练场原生复制验证](/docs/07-training/feature-and-experience#五验证真实蓝图复制文本)运行工具，再打开报告指定的 `/TrainingRange/Tests/GA_JumpClipboardTest_*`。工具保留完整资产的成员与依赖，只清空测试 EventGraph，导入这份 20 节点文本后编译并保存；本机此项已实际通过且没有编译警告。手工重新试验时也要使用独立副本，避免把整图叠加到已有事件上。
 
+{/* full-guide-begin */}
+
+## 用一个函数和三段生命周期读完整蓝图
+
+![读跳跃图时分开三种生命周期](/media/guide-diagrams/03-character-jump-blueprint.svg)
+
+**读图**：一项技能可被授予一次、激活很多次、最后移除一次。将这几条白线混成一条，会导致重复界面或过早注销。
+源码：`Source/LyraGame/AbilitySystem/Abilities/LyraGameplayAbility_Jump.cpp`，本机第 49–59 行。下面是实际节选；在 Rider 中按文件名和函数名定位，完整上下文以源文件为准。
+
+```cpp
+void ULyraGameplayAbility_Jump::CharacterJumpStart()
+{
+	if (ALyraCharacter* LyraCharacter = GetLyraCharacterFromActorInfo())
+	{
+		if (LyraCharacter->IsLocallyControlled() && !LyraCharacter->bPressedJump)
+		{
+			LyraCharacter->UnCrouch();
+			LyraCharacter->Jump();
+		}
+	}
+}
+```
+
+### 不认识节点时先用这张表读图
+
+| 图中部分 | 输入/条件 | 做了什么 | 继续去哪里 |
+|---|---|---|---|
+| ActivateAbility | 技能本次激活成功 | 开始跳跃处理 | 等松键与能力状态 |
+| CharacterJumpStart | 有当前角色，本地控制，尚未按下跳跃 | 先 UnCrouch，再调用 Character.Jump | 角色移动系统 |
+| WaitInputRelease | 监听本次能力输入释放 | OnRelease 输出才表示已松键 | EndAbility |
+| StartAbilityState | 状态名 Jumping | 分别处理结束和中断 | 两条清理线都要读 |
+| Extension Handle | UI 注册返回的标识 | 以后按同一标识注销 | OnAbilityRemoved |
+
+代码里的 `if (ALyraCharacter* ... )` 同时取得并检查角色；第二个 if 防止对非本地角色或已经处于按下状态的角色重复发起这次动作。动画图中出现 Jump 并不能替代这段能力/运动调用。
+
+**手动定位**：内容浏览器进入 `/Game/Characters/Heroes/Abilities`，双击 GA_Hero_Jump；如果打开的是默认值，切完整蓝图编辑器，在 My Blueprint → Graphs 双击 EventGraph。先按全图适配看白线，再放大读取任务参数。实际粘贴实验仍使用本章说明的独立副本。
+
+**检查点**：分别解释“授予、按下、松开、取消、移除”五种事件会走哪条线。不要仅用“按空格跳起来了”作为理解 UI 生命周期的证明。
+
+{/* full-guide-end */}
+
 ## 预期结果、排障与练习
 
 按下跳跃、保持、松开三种操作应能沿不同任务阶段解释；取消技能同样需要停止跳跃。文本导出可用于阅读与重建辅助，其本身不构成粘贴编译或联网运行已经通过的证明；运行验收记录以实验报告为准。

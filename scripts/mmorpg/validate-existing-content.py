@@ -7,9 +7,8 @@ import runpy
 from datetime import datetime, timezone
 import unreal
 
-project = Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir()))
-if project.as_posix().rstrip('/').lower() != 'f:/ue/lyradoclabs/mmorpg':
-    raise RuntimeError('Existing-content validation is restricted to the MMORPG lab.')
+import runpy
+project = runpy.run_path(str(Path(__file__).with_name('lesson_project.py')))['require_lesson_project']()
 
 started = datetime.now(timezone.utc)
 evidence_dir = project / 'Saved/Evidence'
